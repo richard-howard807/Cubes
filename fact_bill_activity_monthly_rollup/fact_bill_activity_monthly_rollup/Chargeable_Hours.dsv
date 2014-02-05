@@ -1085,7 +1085,7 @@
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
-            <xs:element name="dbo_dim_time_activity" msprop:design-time-name="8464947c-e1d3-4e73-aaaf-3cd6ace72ada" msprop:IsLogical="True" msprop:FriendlyName="dim_time_activity" msprop:DbTableName="dim_time_activity" msprop:TableType="View" msprop:QueryDefinition="SELECT        dim_time_activity_key, additional_description_indicator, batch_number, bill_number, ISNULL(billed_or_written_off, 0) AS billed_or_written_off, &#xD;&#xA;                         financial_year_period_of_posting_date, hourly_charge_rate, matter_identifier, number_of_items, posting_date, rate_code, run_date, system_date, &#xD;&#xA;                         time_activity_code, ISNULL(time_activity_descrn, '') AS time_activity_descrn, transaction_sequence_number, ISNULL(type_of_activity, '') AS type_of_activity&#xD;&#xA;FROM            dim_time_activity WITH (nolock)" msprop:QueryBuilder="SpecificQueryBuilder">
+            <xs:element name="dbo_dim_time_activity" msprop:design-time-name="8464947c-e1d3-4e73-aaaf-3cd6ace72ada" msprop:IsLogical="True" msprop:FriendlyName="dim_time_activity" msprop:DbTableName="dim_time_activity" msprop:TableType="View" msprop:QueryDefinition="SELECT        dim_time_activity_key, additional_description_indicator, batch_number, bill_number, ISNULL(billed_or_written_off, 0) AS billed_or_written_off, &#xD;&#xA;                         financial_year_period_of_posting_date, hourly_charge_rate, matter_identifier, number_of_items, rate_code, time_activity_code, ISNULL(time_activity_descrn, '') &#xD;&#xA;                         AS time_activity_descrn, transaction_sequence_number, ISNULL(type_of_activity, '') AS type_of_activity, &#xD;&#xA;                         CASE WHEN time_activity_code = '' THEN 'Unbilled' WHEN time_activity_code &lt;&gt; 'Bill' AND (bill_number &lt;&gt; '' OR&#xD;&#xA;                         bill_number &lt;&gt; 'xxxxxxxx') THEN 'Billed' WHEN time_activity_code = 'W/O' THEN 'Written Off' ELSE '' END AS Time_Type&#xD;&#xA;FROM            dim_time_activity WITH (nolock)" msprop:QueryBuilder="SpecificQueryBuilder">
               <xs:complexType>
                 <xs:sequence>
                   <xs:element name="dim_time_activity_key" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:design-time-name="1e122099-0cf4-4a9b-b163-4d24e790aa90" msprop:DbColumnName="dim_time_activity_key" msprop:FriendlyName="dim_time_activity_key" type="xs:int" minOccurs="0" />
@@ -1104,7 +1104,6 @@
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
-                  <xs:element name="run_date" msprop:design-time-name="7fddaf68-68a3-4a35-9de0-a071ac3b7112" msprop:DbColumnName="run_date" msprop:FriendlyName="run_date" type="xs:dateTime" minOccurs="0" />
                   <xs:element name="batch_number" msprop:design-time-name="d04124e3-e24d-446c-9f88-95c6f5eef212" msprop:DbColumnName="batch_number" msprop:FriendlyName="batch_number" type="xs:int" minOccurs="0" />
                   <xs:element name="additional_description_indicator" msprop:design-time-name="138c65f4-74d1-42da-b2db-941a0065346a" msprop:DbColumnName="additional_description_indicator" msprop:FriendlyName="additional_description_indicator" minOccurs="0">
                     <xs:simpleType>
@@ -1124,14 +1123,19 @@
                   </xs:element>
                   <xs:element name="number_of_items" msprop:design-time-name="27b4e70b-7f8b-4942-80d5-198179677e64" msprop:DbColumnName="number_of_items" msprop:FriendlyName="number_of_items" type="xs:short" minOccurs="0" />
                   <xs:element name="matter_identifier" msprop:design-time-name="2dd8e736-0c59-491f-bc18-a3742a26bc86" msprop:DbColumnName="matter_identifier" msprop:FriendlyName="matter_identifier" type="xs:int" minOccurs="0" />
-                  <xs:element name="posting_date" msprop:design-time-name="cf12ec47-203b-499c-8ad4-02ba642218ef" msprop:DbColumnName="posting_date" msprop:FriendlyName="posting_date" type="xs:dateTime" minOccurs="0" />
-                  <xs:element name="system_date" msprop:design-time-name="0237dee3-4b51-4561-81ad-102223424d95" msprop:DbColumnName="system_date" msprop:FriendlyName="system_date" type="xs:dateTime" minOccurs="0" />
                   <xs:element name="financial_year_period_of_posting_date" msprop:design-time-name="eccb50ef-97a6-42d1-8464-98dc0afc0930" msprop:DbColumnName="financial_year_period_of_posting_date" msprop:FriendlyName="financial_year_period_of_posting_date" type="xs:int" minOccurs="0" />
                   <xs:element name="billed_or_written_off" msprop:design-time-name="12d3de23-66ec-4087-af7a-53133a92a8a9" msprop:DbColumnName="billed_or_written_off" msprop:FriendlyName="billed_or_written_off" type="xs:int" minOccurs="0" />
                   <xs:element name="type_of_activity" msprop:design-time-name="3e7bf797-f331-4464-93fd-8bad652c7fb5" msprop:DbColumnName="type_of_activity" msprop:FriendlyName="type_of_activity" minOccurs="0">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
                         <xs:maxLength value="1" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="Time_Type" msprop:DbColumnName="Time_Type" msprop:design-time-name="e7b72827-a74f-4473-8655-96cfc1a55662" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="11" />
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
