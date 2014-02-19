@@ -955,7 +955,7 @@ The CALCULATE command controls the aggregation of leaf cells in the cube.
 If the CALCULATE command is deleted or modified, the data within the cube is affected.
 You should edit this command only if you manually specify how the cube is aggregated.
 */
-CALCULATE;  
+CALCULATE;   
 CREATE MEMBER CURRENTCUBE.[Measures].[Today]
  AS vba!str(vba!DatePart("yyyy", vba!Now())) 
 
@@ -964,25 +964,10 @@ CREATE MEMBER CURRENTCUBE.[Measures].[Today]
 + "-" + vba!str(vba!format((vba!DatePart("d", vba!Now())), "0#")) 
 
 + vba!str("T00:00:00"), 
-VISIBLE = 1;  
+VISIBLE = 1;   
 CREATE MEMBER CURRENTCUBE.[Measures].[Username]
  AS Username, 
-VISIBLE = 1; 
-CREATE MEMBER CURRENTCUBE.[Measures].[Time_Type]
- AS CASE 
-      WHEN 
-        [Dim Time Activity].[Bill Number] = [Dim Time Activity].[Bill Number].[] THEN "Unbilled"
-	  WHEN 
-		[Dim Time Activity].[Time Activity Code] &lt;&gt; [Dim Time Activity].[Time Activity Code].[Bill] AND
-        ([Dim Time Activity].[Bill Number] &lt;&gt; [Dim Time Activity].[Bill Number].[] OR
-		[Dim Time Activity].[Bill Number] &lt;&gt; [Dim Time Activity].[Bill Number].[xxxxxxxx])
-		THEN "Billed"
-      WHEN 
-        [Dim Time Activity].[Time Activity Code] = [Dim Time Activity].[Time Activity Code].[W/O] THEN "Write Off"
-      ELSE ""
-END, 
-FORMAT_STRING = "Standard", 
-VISIBLE = 1  ; </Text>
+VISIBLE = 1; </Text>
         </Command>
       </Commands>
     </MdxScript>
