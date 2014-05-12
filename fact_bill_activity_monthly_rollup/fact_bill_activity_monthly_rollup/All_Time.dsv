@@ -294,7 +294,7 @@
             <xs:element name="dbo_dim_all_time_activity" msprop:design-time-name="c0570705-b5cd-4f7d-9de3-53a4d8b56477" msprop:IsLogical="True" msprop:FriendlyName="dim_all_time_activity" msprop:DbTableName="dim_all_time_activity" msprop:TableType="View" msprop:QueryDefinition="SELECT        dim_all_time_activity_key, transaction_sequence_number, time_activity_code, time_activity_descrn, batch_number, additional_description_indicator, rate_code, &#xD;&#xA;                         hourly_charge_rate, bill_number, ISNULL(number_of_items, 0) AS number_of_items, matter_identifier, financial_year_period_of_posting_date, billed_or_written_off, &#xD;&#xA;                         type_of_activity, unbilled_record, billed_record, written_off_record, written_off_transaction, transferred_time_files, all_chargeable_time, matter_stage, &#xD;&#xA;                         matter_stage_descrn, department, chargeable, time_type, dss_update_time&#xD;&#xA;FROM            dim_all_time_activity" msprop:QueryBuilder="SpecificQueryBuilder">
               <xs:complexType>
                 <xs:sequence>
-                  <xs:element name="dim_all_time_activity_key" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:design-time-name="942dac79-1099-4b70-8024-81b6643cdbfd" msprop:DbColumnName="dim_all_time_activity_key" msprop:FriendlyName="dim_all_time_activity_key" type="xs:int" minOccurs="0" />
+                  <xs:element name="dim_all_time_activity_key" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:design-time-name="942dac79-1099-4b70-8024-81b6643cdbfd" msprop:DbColumnName="dim_all_time_activity_key" msprop:FriendlyName="dim_all_time_activity_key" type="xs:int" />
                   <xs:element name="transaction_sequence_number" msprop:design-time-name="fce8d5ed-f090-4276-948a-e5673c24263b" msprop:DbColumnName="transaction_sequence_number" msprop:FriendlyName="transaction_sequence_number" type="xs:int" minOccurs="0" />
                   <xs:element name="time_activity_code" msprop:design-time-name="9d670186-8aef-48a5-abdc-1936c2666726" msprop:DbColumnName="time_activity_code" msprop:FriendlyName="time_activity_code" minOccurs="0">
                     <xs:simpleType>
@@ -406,13 +406,20 @@
                   <xs:element name="actual_time_recorded_value" msprop:design-time-name="8da23fd4-3b84-4f00-bc1c-3ef678408755" msprop:DbColumnName="actual_time_recorded_value" msprop:FriendlyName="actual_time_recorded_value" type="xs:decimal" minOccurs="0" />
                   <xs:element name="time_billed_value" msprop:design-time-name="e9f3692c-c370-4482-90eb-1628c7fea79a" msprop:DbColumnName="time_billed_value" msprop:FriendlyName="time_billed_value" type="xs:decimal" minOccurs="0" />
                   <xs:element name="dss_update_time" msprop:design-time-name="6acccd40-e201-4c74-8a1a-c12a2cc32fee" msprop:DbColumnName="dss_update_time" msprop:FriendlyName="dss_update_time" type="xs:dateTime" minOccurs="0" />
+                  <xs:element name="td_rectyp" msprop:DbColumnName="td_rectyp" msprop:design-time-name="b6b9b9d1-d0bf-47b7-b6f4-e414755d9574" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="2" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
             <xs:element name="dbo_dim_all_time_narrative" msprop:design-time-name="60afc99a-04ac-4bbc-b7f4-2f312d6b9b51" msprop:IsLogical="True" msprop:FriendlyName="dim_all_time_narrative" msprop:DbTableName="dim_all_time_narrative" msprop:TableType="View" msprop:QueryDefinition="SELECT        dim_time_narratives_key, ISNULL(source_system_id, '') AS source_system_id, ISNULL(td_seqnum, '') AS td_seqnum, ISNULL(td_rectyp, '') AS td_rectyp, &#xD;&#xA;                         ISNULL(REPLACE(REPLACE(REPLACE(RTRIM(td_textln), CHAR(13), ''), CHAR(10), ''), CHAR(9), ''), '') AS td_textln, ISNULL(td_batchid, '') AS td_batchid, &#xD;&#xA;                         ISNULL(td_posref, '') AS td_posref, dss_update_time&#xD;&#xA;FROM            dim_all_time_narrative" msprop:QueryBuilder="SpecificQueryBuilder">
               <xs:complexType>
                 <xs:sequence>
-                  <xs:element name="dim_time_narratives_key" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:design-time-name="816b21e8-3d3e-4e5e-935c-526ed09b031e" msprop:DbColumnName="dim_time_narratives_key" msprop:FriendlyName="dim_time_narratives_key" type="xs:int" minOccurs="0" />
+                  <xs:element name="dim_time_narratives_key" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:design-time-name="816b21e8-3d3e-4e5e-935c-526ed09b031e" msprop:DbColumnName="dim_time_narratives_key" msprop:FriendlyName="dim_time_narratives_key" type="xs:int" />
                   <xs:element name="source_system_id" msprop:design-time-name="80bafece-4981-4f21-99c2-8313e17e8903" msprop:DbColumnName="source_system_id" msprop:FriendlyName="source_system_id" type="xs:int" minOccurs="0" />
                   <xs:element name="td_seqnum" msprop:design-time-name="88b7ec77-7e11-44ac-ba39-391b2de853a2" msprop:DbColumnName="td_seqnum" msprop:FriendlyName="td_seqnum" type="xs:int" minOccurs="0" />
                   <xs:element name="td_rectyp" msprop:design-time-name="4b2044af-d908-4a66-a371-dff43459c567" msprop:DbColumnName="td_rectyp" msprop:FriendlyName="td_rectyp" minOccurs="0">
@@ -1329,7 +1336,7 @@
           <xs:selector xpath=".//dbo_dim_fed_hierarchy_history" />
           <xs:field xpath="dim_fed_hierarchy_history_key" />
         </xs:unique>
-        <xs:unique name="dbo_dim_transaction_date_Constraint1" msdata:ConstraintName="Constraint1" msprop:IsLogical="True" msdata:PrimaryKey="true">
+        <xs:unique name="dbo_dim_transaction_date_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
           <xs:selector xpath=".//dbo_dim_transaction_date" />
           <xs:field xpath="dim_transaction_date_key" />
         </xs:unique>
