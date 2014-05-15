@@ -130,6 +130,26 @@ WHERE        (time_activity_code NOT IN ('Bill', 'W/O', 'Abmt')) AND (dim_transa
           <EstimatedRows>2062974</EstimatedRows>
           <AggregationDesignID>AggregationDesign 2008-2009</AggregationDesignID>
         </Partition>
+        <Partition dwd:design-time-name="a130760e-29a1-454a-ae75-e096c96982c2">
+          <ID>Fact Time Activity 2014-2015</ID>
+          <Name>Fact Time Activity 2014-2015</Name>
+          <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+          <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+          <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+          <State>Unprocessed</State>
+          <Source xsi:type="QueryBinding" dwd:design-time-name="f0c59b9d-6cba-4a6b-9d4c-c3bbfc157332">
+            <DataSourceID>Red_dw</DataSourceID>
+            <QueryDefinition>SELECT        dim_bill_key, dim_client_key, dim_transaction_date_key, dim_fed_hierarchy_history_key, dim_matter_header_key, dim_run_date_key, dim_posting_date_key, 
+                         dim_system_date_key, dim_time_activity_key, source_system_id, transaction_sequence_number, time_activity_code, minutes_recorded, hourly_charge_rate, 
+                         time_cost_value, time_charge_value, overridden_time_charge_value, actual_time_recorded_value, time_billed_value, dss_update_time
+FROM            fact_time_activity
+WHERE        (time_activity_code NOT IN ('Bill', 'W/O', 'Abmt')) AND (dim_transaction_date_key between '20140501' and '20150430')</QueryDefinition>
+          </Source>
+          <StorageMode>Molap</StorageMode>
+          <CurrentStorageMode>Molap</CurrentStorageMode>
+          <ProcessingMode>Regular</ProcessingMode>
+          <EstimatedRows>79671</EstimatedRows>
+        </Partition>
       </Partitions>
       <AggregationDesigns>
         <AggregationDesign>
