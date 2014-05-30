@@ -586,5 +586,23 @@
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
   </Attributes>
+  <ProactiveCaching dwd:design-time-name="da476bda-5400-47ea-bc62-135caa3c141f">
+    <SilenceInterval>PT10S</SilenceInterval>
+    <Latency>-PT1S</Latency>
+    <SilenceOverrideInterval>PT10M</SilenceOverrideInterval>
+    <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+    <Enabled>true</Enabled>
+    <OnlineMode>OnCacheComplete</OnlineMode>
+    <AggregationStorage>MolapOnly</AggregationStorage>
+    <Source xsi:type="ProactiveCachingTablesBinding" dwd:design-time-name="0c32c907-9555-4bef-aa59-3e76c878737c">
+      <NotificationTechnique>Server</NotificationTechnique>
+      <TableNotifications>
+        <TableNotification>
+          <DbTableName>dim_all_time_activity</DbTableName>
+          <DbSchemaName>dbo</DbSchemaName>
+        </TableNotification>
+      </TableNotifications>
+    </Source>
+  </ProactiveCaching>
   <ddl300:ProcessingState>Unprocessed</ddl300:ProcessingState>
 </Dimension>
