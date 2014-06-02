@@ -65,6 +65,22 @@
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
       <Value>100</Value>
     </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ProactiveCachingQueryDesignerDetails</Name>
+      <Value>&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;DesignerTypes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;NotificationDesignerDetails&gt;
+    &lt;PollingQuery&gt;
+      &lt;DesignerType&gt;Specific&lt;/DesignerType&gt;
+      &lt;Query&gt;SELECT        MAX(dss_update_time) AS dss_update_time FROM            dim_all_time_narrative&lt;/Query&gt;
+    &lt;/PollingQuery&gt;
+    &lt;ProcessingQuery&gt;
+      &lt;DesignerType&gt;Specific&lt;/DesignerType&gt;
+      &lt;Query&gt;SELECT        dim_time_narrative_key, td_rectyp, td_textln FROM            dim_all_time_narrative WHERE        (dss_update_time &amp;gt; GETDATE() - 7)&lt;/Query&gt;
+    &lt;/ProcessingQuery&gt;
+  &lt;/NotificationDesignerDetails&gt;
+&lt;/DesignerTypes&gt;</Value>
+    </Annotation>
   </Annotations>
   <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
   <State>Unprocessed</State>
@@ -140,7 +156,7 @@
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
   </Attributes>
-  <ProactiveCaching dwd:design-time-name="f2ac19e2-3c38-4e04-96ad-f75776efe142">
+  <ProactiveCaching dwd:design-time-name="0cba10e9-9031-4e05-9b42-7d5764e193f1">
     <SilenceInterval>PT10S</SilenceInterval>
     <Latency>-PT1S</Latency>
     <SilenceOverrideInterval>PT10M</SilenceOverrideInterval>
@@ -148,14 +164,15 @@
     <Enabled>true</Enabled>
     <OnlineMode>OnCacheComplete</OnlineMode>
     <AggregationStorage>MolapOnly</AggregationStorage>
-    <Source xsi:type="ProactiveCachingTablesBinding" dwd:design-time-name="df814aa2-fbe3-4fb7-9cc2-e4f1559392d8">
-      <NotificationTechnique>Server</NotificationTechnique>
-      <TableNotifications>
-        <TableNotification>
-          <DbTableName>dim_all_time_narrative</DbTableName>
-          <DbSchemaName>dbo</DbSchemaName>
-        </TableNotification>
-      </TableNotifications>
+    <Source xsi:type="ProactiveCachingIncrementalProcessingBinding" dwd:design-time-name="c6145f2c-d13c-47bd-b0b8-5e456f755c12">
+      <RefreshInterval>PT10S</RefreshInterval>
+      <IncrementalProcessingNotifications>
+        <IncrementalProcessingNotification>
+          <Query>SELECT        MAX(dss_update_time) AS dss_update_time FROM            dim_all_time_narrative</Query>
+          <TableID>dbo_dim_all_time_narrative</TableID>
+          <ProcessingQuery>SELECT        dim_time_narrative_key, td_rectyp, td_textln FROM            dim_all_time_narrative WHERE        (dss_update_time &gt; GETDATE() - 7)</ProcessingQuery>
+        </IncrementalProcessingNotification>
+      </IncrementalProcessingNotifications>
     </Source>
   </ProactiveCaching>
   <ddl300:ProcessingState>Unprocessed</ddl300:ProcessingState>
