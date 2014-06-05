@@ -65,22 +65,6 @@
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
       <Value>100</Value>
     </Annotation>
-    <Annotation>
-      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ProactiveCachingQueryDesignerDetails</Name>
-      <Value>&lt;?xml version="1.0" encoding="utf-16"?&gt;
-&lt;DesignerTypes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;NotificationDesignerDetails&gt;
-    &lt;PollingQuery&gt;
-      &lt;DesignerType&gt;Specific&lt;/DesignerType&gt;
-      &lt;Query&gt;SELECT        MAX(dss_update_time) AS dss_update_time FROM            dim_all_time_activity&lt;/Query&gt;
-    &lt;/PollingQuery&gt;
-    &lt;ProcessingQuery&gt;
-      &lt;DesignerType&gt;Specific&lt;/DesignerType&gt;
-      &lt;Query&gt;SELECT        dim_all_time_activity_key, transaction_sequence_number, time_activity_code, time_activity_descrn, batch_number, additional_description_indicator, rate_code,                           hourly_charge_rate, bill_number, ISNULL(number_of_items, 0) AS number_of_items, matter_identifier, financial_year_period_of_posting_date, billed_or_written_off,                           type_of_activity, unbilled_record, billed_record, written_off_record, written_off_transaction, transferred_time_files, all_chargeable_time, matter_stage,                           matter_stage_descrn, department, chargeable, time_type, dss_update_time, reporting_exclusions FROM            dim_all_time_activity WHERE        (dss_update_time &amp;gt; GETDATE() - 7)&lt;/Query&gt;
-    &lt;/ProcessingQuery&gt;
-  &lt;/NotificationDesignerDetails&gt;
-&lt;/DesignerTypes&gt;</Value>
-    </Annotation>
   </Annotations>
   <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
   <State>Unprocessed</State>
@@ -602,23 +586,22 @@
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
   </Attributes>
-  <ProactiveCaching dwd:design-time-name="78087a44-7218-4d02-a98c-0714cc1e0661">
-    <SilenceInterval>-PT1S</SilenceInterval>
+  <ProactiveCaching dwd:design-time-name="aff94105-c736-4191-9889-79fb5d7176b1">
+    <SilenceInterval>PT10S</SilenceInterval>
     <Latency>-PT1S</Latency>
-    <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
-    <ForceRebuildInterval>PT1H</ForceRebuildInterval>
+    <SilenceOverrideInterval>PT10M</SilenceOverrideInterval>
+    <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
     <Enabled>true</Enabled>
     <OnlineMode>OnCacheComplete</OnlineMode>
     <AggregationStorage>MolapOnly</AggregationStorage>
-    <Source xsi:type="ProactiveCachingIncrementalProcessingBinding" dwd:design-time-name="0938eb40-3921-4066-9846-6ed35ca7c01f">
-      <RefreshInterval>PT10S</RefreshInterval>
-      <IncrementalProcessingNotifications>
-        <IncrementalProcessingNotification>
-          <Query>SELECT        MAX(dss_update_time) AS dss_update_time FROM            dim_all_time_activity</Query>
-          <TableID>dbo_dim_all_time_activity</TableID>
-          <ProcessingQuery>SELECT        dim_all_time_activity_key, transaction_sequence_number, time_activity_code, time_activity_descrn, batch_number, additional_description_indicator, rate_code,                           hourly_charge_rate, bill_number, ISNULL(number_of_items, 0) AS number_of_items, matter_identifier, financial_year_period_of_posting_date, billed_or_written_off,                           type_of_activity, unbilled_record, billed_record, written_off_record, written_off_transaction, transferred_time_files, all_chargeable_time, matter_stage,                           matter_stage_descrn, department, chargeable, time_type, dss_update_time, reporting_exclusions FROM            dim_all_time_activity WHERE        (dss_update_time &gt; GETDATE() - 7)</ProcessingQuery>
-        </IncrementalProcessingNotification>
-      </IncrementalProcessingNotifications>
+    <Source xsi:type="ProactiveCachingTablesBinding" dwd:design-time-name="2b4b5822-6bfb-40fb-904f-ed1388b7e6d1">
+      <NotificationTechnique>Server</NotificationTechnique>
+      <TableNotifications>
+        <TableNotification>
+          <DbTableName>dim_all_time_activity</DbTableName>
+          <DbSchemaName>dbo</DbSchemaName>
+        </TableNotification>
+      </TableNotifications>
     </Source>
   </ProactiveCaching>
   <ddl300:ProcessingState>Unprocessed</ddl300:ProcessingState>
