@@ -1,196 +1,25 @@
 ﻿<Cube xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="3a7e2bdf-b353-4882-babf-ac4e5e2610ae" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
-  <ID>All_Time_Cube</ID>
+  <ID>All_Time_Cube_Three_Years</ID>
   <MeasureGroups>
     <MeasureGroup>
       <ID>Fact All Time Activity</ID>
       <Partitions>
-        <Partition dwd:design-time-name="f8d5d2bb-1f33-4723-b15c-8ca6eb7ee3da">
-          <ID>Fact All Time Activity Pre 2008</ID>
-          <Name>Fact All Time Activity Pre 2008</Name>
-          <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
-          <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
-          <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
-          <State>Unprocessed</State>
-          <Source xsi:type="QueryBinding" dwd:design-time-name="d400fdcf-8a7b-4bcc-82c1-1cc1fa0119f7">
-            <DataSourceID>Red_dw</DataSourceID>
-            <QueryDefinition>SELECT [dbo].[fact_all_time_activity].[dim_bill_key],[dbo].[fact_all_time_activity].[dim_client_key],[dbo].[fact_all_time_activity].[dim_transaction_date_key],[dbo].[fact_all_time_activity].[dim_fed_hierarchy_history_key],[dbo].[fact_all_time_activity].[dim_matter_header_key],[dbo].[fact_all_time_activity].[dim_run_date_key],[dbo].[fact_all_time_activity].[dim_posting_date_key],[dbo].[fact_all_time_activity].[dim_system_date_key],[dbo].[fact_all_time_activity].[dim_all_time_activity_key],[dbo].[fact_all_time_activity].[dim_time_narratives_key],[dbo].[fact_all_time_activity].[source_system_id],[dbo].[fact_all_time_activity].[transaction_sequence_number],[dbo].[fact_all_time_activity].[minutes_recorded],[dbo].[fact_all_time_activity].[hourly_charge_rate],[dbo].[fact_all_time_activity].[time_cost_value],[dbo].[fact_all_time_activity].[time_charge_value],[dbo].[fact_all_time_activity].[overridden_time_charge_value],[dbo].[fact_all_time_activity].[actual_time_recorded_value],[dbo].[fact_all_time_activity].[time_billed_value],[dbo].[fact_all_time_activity].[dss_update_time],[dbo].[fact_all_time_activity].[td_rectyp]
-		FROM [dbo].[fact_all_time_activity]
-		WHERE dim_transaction_date_key &lt; 20080501</QueryDefinition>
-          </Source>
-          <StorageMode>Molap</StorageMode>
-          <CurrentStorageMode>Molap</CurrentStorageMode>
-          <ProcessingMode>Regular</ProcessingMode>
-          <ProactiveCaching dwd:design-time-name="695f0f77-1c28-4fd7-aec3-5d253898f00b">
-            <SilenceInterval>-PT1S</SilenceInterval>
-            <Latency>-PT1S</Latency>
-            <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
-            <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
-            <AggregationStorage>MolapOnly</AggregationStorage>
-            <Source xsi:type="ProactiveCachingTablesBinding" dwd:design-time-name="cc95955e-daf1-459d-b0f5-5f1a2c33829f">
-              <NotificationTechnique>Server</NotificationTechnique>
-              <TableNotifications>
-                <TableNotification>
-                  <DbTableName>fact_all_time_activity</DbTableName>
-                  <DbSchemaName>dbo</DbSchemaName>
-                </TableNotification>
-              </TableNotifications>
-            </Source>
-          </ProactiveCaching>
-          <EstimatedRows>20060809</EstimatedRows>
-          <AggregationDesignID>Fact All Time Activity Pre 2008 Aggregation</AggregationDesignID>
-        </Partition>
-        <Partition dwd:design-time-name="30b63f63-0ccf-4a6b-aa78-a81fb66081c2">
-          <ID>Fact All Time Activity 2008-2009</ID>
-          <Name>Fact All Time Activity 2008-2009</Name>
-          <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
-          <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
-          <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
-          <State>Unprocessed</State>
-          <Source xsi:type="QueryBinding" dwd:design-time-name="4a750a19-6781-48e9-adc4-973a50d8f5ef">
-            <DataSourceID>Red_dw</DataSourceID>
-            <QueryDefinition>SELECT [dbo].[fact_all_time_activity].[dim_bill_key],[dbo].[fact_all_time_activity].[dim_client_key],[dbo].[fact_all_time_activity].[dim_transaction_date_key],[dbo].[fact_all_time_activity].[dim_fed_hierarchy_history_key],[dbo].[fact_all_time_activity].[dim_matter_header_key],[dbo].[fact_all_time_activity].[dim_run_date_key],[dbo].[fact_all_time_activity].[dim_posting_date_key],[dbo].[fact_all_time_activity].[dim_system_date_key],[dbo].[fact_all_time_activity].[dim_all_time_activity_key],[dbo].[fact_all_time_activity].[dim_time_narratives_key],[dbo].[fact_all_time_activity].[source_system_id],[dbo].[fact_all_time_activity].[transaction_sequence_number],[dbo].[fact_all_time_activity].[minutes_recorded],[dbo].[fact_all_time_activity].[hourly_charge_rate],[dbo].[fact_all_time_activity].[time_cost_value],[dbo].[fact_all_time_activity].[time_charge_value],[dbo].[fact_all_time_activity].[overridden_time_charge_value],[dbo].[fact_all_time_activity].[actual_time_recorded_value],[dbo].[fact_all_time_activity].[time_billed_value],[dbo].[fact_all_time_activity].[dss_update_time],[dbo].[fact_all_time_activity].[td_rectyp]
-		FROM [dbo].[fact_all_time_activity]
-		WHERE (dim_transaction_date_key between '20080501' and '20090430')</QueryDefinition>
-          </Source>
-          <StorageMode>Molap</StorageMode>
-          <CurrentStorageMode>Molap</CurrentStorageMode>
-          <ProcessingMode>Regular</ProcessingMode>
-          <ProactiveCaching dwd:design-time-name="c36634ab-730b-4eb0-b14b-7c355dd2707e">
-            <SilenceInterval>-PT1S</SilenceInterval>
-            <Latency>-PT1S</Latency>
-            <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
-            <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
-            <AggregationStorage>MolapOnly</AggregationStorage>
-            <Source xsi:type="ProactiveCachingTablesBinding" dwd:design-time-name="ec3b7a88-e1ad-46e0-9e86-fce115316925">
-              <NotificationTechnique>Server</NotificationTechnique>
-              <TableNotifications>
-                <TableNotification>
-                  <DbTableName>fact_all_time_activity</DbTableName>
-                  <DbSchemaName>dbo</DbSchemaName>
-                </TableNotification>
-              </TableNotifications>
-            </Source>
-          </ProactiveCaching>
-          <EstimatedRows>2456675</EstimatedRows>
-          <AggregationDesignID>Fact All Time Activity 2008-2009 Aggregation</AggregationDesignID>
-        </Partition>
-        <Partition dwd:design-time-name="60993ce1-041d-41f0-b0e0-0efd63cba2f7">
-          <ID>Fact All Time Activity 2009-2010</ID>
-          <Name>Fact All Time Activity 2009-2010</Name>
-          <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
-          <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
-          <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
-          <State>Unprocessed</State>
-          <Source xsi:type="QueryBinding" dwd:design-time-name="c14ad713-d022-403c-915d-4a279695609e">
-            <DataSourceID>Red_dw</DataSourceID>
-            <QueryDefinition>SELECT [dbo].[fact_all_time_activity].[dim_bill_key],[dbo].[fact_all_time_activity].[dim_client_key],[dbo].[fact_all_time_activity].[dim_transaction_date_key],[dbo].[fact_all_time_activity].[dim_fed_hierarchy_history_key],[dbo].[fact_all_time_activity].[dim_matter_header_key],[dbo].[fact_all_time_activity].[dim_run_date_key],[dbo].[fact_all_time_activity].[dim_posting_date_key],[dbo].[fact_all_time_activity].[dim_system_date_key],[dbo].[fact_all_time_activity].[dim_all_time_activity_key],[dbo].[fact_all_time_activity].[dim_time_narratives_key],[dbo].[fact_all_time_activity].[source_system_id],[dbo].[fact_all_time_activity].[transaction_sequence_number],[dbo].[fact_all_time_activity].[minutes_recorded],[dbo].[fact_all_time_activity].[hourly_charge_rate],[dbo].[fact_all_time_activity].[time_cost_value],[dbo].[fact_all_time_activity].[time_charge_value],[dbo].[fact_all_time_activity].[overridden_time_charge_value],[dbo].[fact_all_time_activity].[actual_time_recorded_value],[dbo].[fact_all_time_activity].[time_billed_value],[dbo].[fact_all_time_activity].[dss_update_time],[dbo].[fact_all_time_activity].[td_rectyp]
-		FROM [dbo].[fact_all_time_activity]
-		WHERE (dim_transaction_date_key between '20090501' and '20100430')</QueryDefinition>
-          </Source>
-          <StorageMode>Molap</StorageMode>
-          <CurrentStorageMode>Molap</CurrentStorageMode>
-          <ProcessingMode>Regular</ProcessingMode>
-          <ProactiveCaching dwd:design-time-name="664452cb-d348-4f07-a687-b24d17f0eb8f">
-            <SilenceInterval>-PT1S</SilenceInterval>
-            <Latency>-PT1S</Latency>
-            <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
-            <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
-            <AggregationStorage>MolapOnly</AggregationStorage>
-            <Source xsi:type="ProactiveCachingTablesBinding" dwd:design-time-name="04b79147-d2fe-427c-8bdd-c892d2e51617">
-              <NotificationTechnique>Server</NotificationTechnique>
-              <TableNotifications>
-                <TableNotification>
-                  <DbTableName>fact_all_time_activity</DbTableName>
-                  <DbSchemaName>dbo</DbSchemaName>
-                </TableNotification>
-              </TableNotifications>
-            </Source>
-          </ProactiveCaching>
-          <EstimatedRows>2549849</EstimatedRows>
-          <AggregationDesignID>Fact All Time Activity 2009-2010 Aggregation</AggregationDesignID>
-        </Partition>
-        <Partition dwd:design-time-name="8f21f28f-0f26-42a8-9313-ec1ec68966fe">
-          <ID>Fact All Time Activity 2010-2011</ID>
-          <Name>Fact All Time Activity 2010-2011</Name>
-          <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
-          <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
-          <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
-          <State>Unprocessed</State>
-          <Source xsi:type="QueryBinding" dwd:design-time-name="5036fd73-8ce6-499e-9f5e-e28f6c1a0446">
-            <DataSourceID>Red_dw</DataSourceID>
-            <QueryDefinition>SELECT [dbo].[fact_all_time_activity].[dim_bill_key],[dbo].[fact_all_time_activity].[dim_client_key],[dbo].[fact_all_time_activity].[dim_transaction_date_key],[dbo].[fact_all_time_activity].[dim_fed_hierarchy_history_key],[dbo].[fact_all_time_activity].[dim_matter_header_key],[dbo].[fact_all_time_activity].[dim_run_date_key],[dbo].[fact_all_time_activity].[dim_posting_date_key],[dbo].[fact_all_time_activity].[dim_system_date_key],[dbo].[fact_all_time_activity].[dim_all_time_activity_key],[dbo].[fact_all_time_activity].[dim_time_narratives_key],[dbo].[fact_all_time_activity].[source_system_id],[dbo].[fact_all_time_activity].[transaction_sequence_number],[dbo].[fact_all_time_activity].[minutes_recorded],[dbo].[fact_all_time_activity].[hourly_charge_rate],[dbo].[fact_all_time_activity].[time_cost_value],[dbo].[fact_all_time_activity].[time_charge_value],[dbo].[fact_all_time_activity].[overridden_time_charge_value],[dbo].[fact_all_time_activity].[actual_time_recorded_value],[dbo].[fact_all_time_activity].[time_billed_value],[dbo].[fact_all_time_activity].[dss_update_time],[dbo].[fact_all_time_activity].[td_rectyp]
-		FROM [dbo].[fact_all_time_activity]
-		WHERE (dim_transaction_date_key between '20100501' and '20110430')</QueryDefinition>
-          </Source>
-          <StorageMode>Molap</StorageMode>
-          <CurrentStorageMode>Molap</CurrentStorageMode>
-          <ProcessingMode>Regular</ProcessingMode>
-          <ProactiveCaching dwd:design-time-name="79e1d1bd-ebc0-4dde-94c2-42dff5abf6a8">
-            <SilenceInterval>-PT1S</SilenceInterval>
-            <Latency>-PT1S</Latency>
-            <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
-            <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
-            <AggregationStorage>MolapOnly</AggregationStorage>
-            <Source xsi:type="ProactiveCachingTablesBinding" dwd:design-time-name="a0555c81-bcdb-4936-933f-b15ebf7390b6">
-              <NotificationTechnique>Server</NotificationTechnique>
-              <TableNotifications>
-                <TableNotification>
-                  <DbTableName>fact_all_time_activity</DbTableName>
-                  <DbSchemaName>dbo</DbSchemaName>
-                </TableNotification>
-              </TableNotifications>
-            </Source>
-          </ProactiveCaching>
-          <EstimatedRows>2521108</EstimatedRows>
-          <AggregationDesignID>Fact All Time Activity 2010-2011 Aggregation</AggregationDesignID>
-        </Partition>
-        <Partition dwd:design-time-name="8e49ed85-4790-4155-9f33-e251c9bcfc2a">
-          <ID>Fact All Time Activity 2011-2012</ID>
-          <Name>Fact All Time Activity 2011-2012</Name>
-          <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
-          <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
-          <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
-          <State>Unprocessed</State>
-          <Source xsi:type="QueryBinding" dwd:design-time-name="f665e788-6866-4b92-a470-f06626f28a3e">
-            <DataSourceID>Red_dw</DataSourceID>
-            <QueryDefinition>SELECT [dbo].[fact_all_time_activity].[dim_bill_key],[dbo].[fact_all_time_activity].[dim_client_key],[dbo].[fact_all_time_activity].[dim_transaction_date_key],[dbo].[fact_all_time_activity].[dim_fed_hierarchy_history_key],[dbo].[fact_all_time_activity].[dim_matter_header_key],[dbo].[fact_all_time_activity].[dim_run_date_key],[dbo].[fact_all_time_activity].[dim_posting_date_key],[dbo].[fact_all_time_activity].[dim_system_date_key],[dbo].[fact_all_time_activity].[dim_all_time_activity_key],[dbo].[fact_all_time_activity].[dim_time_narratives_key],[dbo].[fact_all_time_activity].[source_system_id],[dbo].[fact_all_time_activity].[transaction_sequence_number],[dbo].[fact_all_time_activity].[minutes_recorded],[dbo].[fact_all_time_activity].[hourly_charge_rate],[dbo].[fact_all_time_activity].[time_cost_value],[dbo].[fact_all_time_activity].[time_charge_value],[dbo].[fact_all_time_activity].[overridden_time_charge_value],[dbo].[fact_all_time_activity].[actual_time_recorded_value],[dbo].[fact_all_time_activity].[time_billed_value],[dbo].[fact_all_time_activity].[dss_update_time],[dbo].[fact_all_time_activity].[td_rectyp]
-		FROM [dbo].[fact_all_time_activity]
-		WHERE (dim_transaction_date_key between '20110501' and '20120430')</QueryDefinition>
-          </Source>
-          <StorageMode>Molap</StorageMode>
-          <CurrentStorageMode>Molap</CurrentStorageMode>
-          <ProcessingMode>Regular</ProcessingMode>
-          <ProactiveCaching dwd:design-time-name="f43e5353-05fc-41b2-9a28-9475aa20a6c5">
-            <SilenceInterval>-PT1S</SilenceInterval>
-            <Latency>-PT1S</Latency>
-            <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
-            <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
-            <AggregationStorage>MolapOnly</AggregationStorage>
-            <Source xsi:type="ProactiveCachingTablesBinding" dwd:design-time-name="baa8e7e3-722a-44e5-92f1-98e1ad44be09">
-              <NotificationTechnique>Server</NotificationTechnique>
-              <TableNotifications>
-                <TableNotification>
-                  <DbTableName>fact_all_time_activity</DbTableName>
-                  <DbSchemaName>dbo</DbSchemaName>
-                </TableNotification>
-              </TableNotifications>
-            </Source>
-          </ProactiveCaching>
-          <EstimatedRows>2941650</EstimatedRows>
-          <AggregationDesignID>Fact All Time Activity 2011-2012 Aggregation</AggregationDesignID>
-        </Partition>
         <Partition dwd:design-time-name="9e2028b3-16d5-4ea9-b335-4a8e18a2aee5">
           <ID>Fact All Time Activity 2012-2013</ID>
-          <Name>Fact All Time Activity 2012-2013</Name>
+          <Name>Fact All Time Activity 3 Year</Name>
           <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
           <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
           <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
           <State>Unprocessed</State>
-          <Source xsi:type="QueryBinding" dwd:design-time-name="08405f42-a5d7-466b-912c-b002aabe8c2a">
+          <Source xsi:type="QueryBinding" dwd:design-time-name="bfb95344-a798-4e59-98f3-009ceed63073">
             <DataSourceID>Red_dw</DataSourceID>
-            <QueryDefinition>SELECT [dbo].[fact_all_time_activity].[dim_bill_key],[dbo].[fact_all_time_activity].[dim_client_key],[dbo].[fact_all_time_activity].[dim_transaction_date_key],[dbo].[fact_all_time_activity].[dim_fed_hierarchy_history_key],[dbo].[fact_all_time_activity].[dim_matter_header_key],[dbo].[fact_all_time_activity].[dim_run_date_key],[dbo].[fact_all_time_activity].[dim_posting_date_key],[dbo].[fact_all_time_activity].[dim_system_date_key],[dbo].[fact_all_time_activity].[dim_all_time_activity_key],[dbo].[fact_all_time_activity].[dim_time_narratives_key],[dbo].[fact_all_time_activity].[source_system_id],[dbo].[fact_all_time_activity].[transaction_sequence_number],[dbo].[fact_all_time_activity].[minutes_recorded],[dbo].[fact_all_time_activity].[hourly_charge_rate],[dbo].[fact_all_time_activity].[time_cost_value],[dbo].[fact_all_time_activity].[time_charge_value],[dbo].[fact_all_time_activity].[overridden_time_charge_value],[dbo].[fact_all_time_activity].[actual_time_recorded_value],[dbo].[fact_all_time_activity].[time_billed_value],[dbo].[fact_all_time_activity].[dss_update_time],[dbo].[fact_all_time_activity].[td_rectyp]
+            <QueryDefinition>SELECT [dbo].[fact_all_time_activity].[dim_bill_key],[dbo].[fact_all_time_activity].[dim_client_key],[dbo].[fact_all_time_activity].[dim_transaction_date_key],[dbo].[fact_all_time_activity].[dim_fed_hierarchy_history_key],[dbo].[fact_all_time_activity].[dim_matter_header_key],[dbo].[fact_all_time_activity].[dim_run_date_key],[dbo].[fact_all_time_activity].[dim_posting_date_key],[dbo].[fact_all_time_activity].[dim_system_date_key],[dbo].[fact_all_time_activity].[dim_all_time_activity_key],[dbo].[fact_all_time_activity].[dim_time_narratives_key],[dbo].[fact_all_time_activity].[source_system_id],[dbo].[fact_all_time_activity].[transaction_sequence_number],[dbo].[fact_all_time_activity].[minutes_recorded],[dbo].[fact_all_time_activity].[hourly_charge_rate],[dbo].[fact_all_time_activity].[time_cost_value],[dbo].[fact_all_time_activity].[time_charge_value],[dbo].[fact_all_time_activity].[overridden_time_charge_value],[dbo].[fact_all_time_activity].[actual_time_recorded_value],[dbo].[fact_all_time_activity].[time_billed_value],[dbo].[fact_all_time_activity].[dss_update_time],[dbo].[fact_all_time_activity].[time_type]
 		FROM [dbo].[fact_all_time_activity]
-		WHERE (dim_transaction_date_key between '20120501' and '20130430')</QueryDefinition>
+		WHERE (dim_transaction_date_key between      CASE WHEN datepart(month, getdate()) &gt;= 5 THEN CAST(CAST(year(dateadd(year, - 0, getdate())) AS varchar(4)) + '0501' AS int) 
+                                                         ELSE CAST(CAST(year(dateadd(year, - 1, getdate())) AS varchar(4)) + '0501' AS int) END
+
+and     CASE WHEN datepart(month, getdate()) &gt;= 5 THEN CAST(CAST(year(dateadd(year, +1, getdate())) AS varchar(4)) + '0430' AS int) 
+                                                         ELSE CAST(CAST(year(dateadd(year, - 0, getdate())) AS varchar(4)) + '0430' AS int) END)</QueryDefinition>
           </Source>
           <StorageMode>Molap</StorageMode>
           <CurrentStorageMode>Molap</CurrentStorageMode>
@@ -216,16 +45,20 @@
         </Partition>
         <Partition dwd:design-time-name="422d8607-619b-4cb7-9d86-ae15441d64f7">
           <ID>Fact All Time Activity 2013-2014</ID>
-          <Name>Fact All Time Activity 2013-2014</Name>
+          <Name>Fact All Time Activity 2 Year</Name>
           <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
           <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
           <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
           <State>Unprocessed</State>
-          <Source xsi:type="QueryBinding" dwd:design-time-name="0873f85f-787d-42d6-9f6d-caf264d9775a">
+          <Source xsi:type="QueryBinding" dwd:design-time-name="2c1097b8-36ff-4aea-a66d-0b6c2d815da8">
             <DataSourceID>Red_dw</DataSourceID>
-            <QueryDefinition>SELECT [dbo].[fact_all_time_activity].[dim_bill_key],[dbo].[fact_all_time_activity].[dim_client_key],[dbo].[fact_all_time_activity].[dim_transaction_date_key],[dbo].[fact_all_time_activity].[dim_fed_hierarchy_history_key],[dbo].[fact_all_time_activity].[dim_matter_header_key],[dbo].[fact_all_time_activity].[dim_run_date_key],[dbo].[fact_all_time_activity].[dim_posting_date_key],[dbo].[fact_all_time_activity].[dim_system_date_key],[dbo].[fact_all_time_activity].[dim_all_time_activity_key],[dbo].[fact_all_time_activity].[dim_time_narratives_key],[dbo].[fact_all_time_activity].[source_system_id],[dbo].[fact_all_time_activity].[transaction_sequence_number],[dbo].[fact_all_time_activity].[minutes_recorded],[dbo].[fact_all_time_activity].[hourly_charge_rate],[dbo].[fact_all_time_activity].[time_cost_value],[dbo].[fact_all_time_activity].[time_charge_value],[dbo].[fact_all_time_activity].[overridden_time_charge_value],[dbo].[fact_all_time_activity].[actual_time_recorded_value],[dbo].[fact_all_time_activity].[time_billed_value],[dbo].[fact_all_time_activity].[dss_update_time],[dbo].[fact_all_time_activity].[td_rectyp]
+            <QueryDefinition>SELECT [dbo].[fact_all_time_activity].[dim_bill_key],[dbo].[fact_all_time_activity].[dim_client_key],[dbo].[fact_all_time_activity].[dim_transaction_date_key],[dbo].[fact_all_time_activity].[dim_fed_hierarchy_history_key],[dbo].[fact_all_time_activity].[dim_matter_header_key],[dbo].[fact_all_time_activity].[dim_run_date_key],[dbo].[fact_all_time_activity].[dim_posting_date_key],[dbo].[fact_all_time_activity].[dim_system_date_key],[dbo].[fact_all_time_activity].[dim_all_time_activity_key],[dbo].[fact_all_time_activity].[dim_time_narratives_key],[dbo].[fact_all_time_activity].[source_system_id],[dbo].[fact_all_time_activity].[transaction_sequence_number],[dbo].[fact_all_time_activity].[minutes_recorded],[dbo].[fact_all_time_activity].[hourly_charge_rate],[dbo].[fact_all_time_activity].[time_cost_value],[dbo].[fact_all_time_activity].[time_charge_value],[dbo].[fact_all_time_activity].[overridden_time_charge_value],[dbo].[fact_all_time_activity].[actual_time_recorded_value],[dbo].[fact_all_time_activity].[time_billed_value],[dbo].[fact_all_time_activity].[dss_update_time],[dbo].[fact_all_time_activity].[time_type]
 		FROM [dbo].[fact_all_time_activity]
-		WHERE (dim_transaction_date_key between '20130501' and '20140430')</QueryDefinition>
+		WHERE (dim_transaction_date_key between      CASE WHEN datepart(month, getdate()) &gt;= 5 THEN CAST(CAST(year(dateadd(year, - 1, getdate())) AS varchar(4)) + '0501' AS int) 
+                                                         ELSE CAST(CAST(year(dateadd(year, - 2, getdate())) AS varchar(4)) + '0501' AS int) END
+
+and     CASE WHEN datepart(month, getdate()) &gt;= 5 THEN CAST(CAST(year(dateadd(year, - 0, getdate())) AS varchar(4)) + '0430' AS int) 
+                                                         ELSE CAST(CAST(year(dateadd(year, - 1, getdate())) AS varchar(4)) + '0430' AS int) END)</QueryDefinition>
           </Source>
           <StorageMode>Molap</StorageMode>
           <CurrentStorageMode>Molap</CurrentStorageMode>
@@ -251,16 +84,20 @@
         </Partition>
         <Partition dwd:design-time-name="5676f14f-e5ee-43f1-9855-f7edc51acb24">
           <ID>Fact All Time Activity 2014-2015</ID>
-          <Name>Fact All Time Activity 2014-2015</Name>
+          <Name>Fact All Time Activity 1 Year</Name>
           <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
           <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
           <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
           <State>Unprocessed</State>
-          <Source xsi:type="QueryBinding" dwd:design-time-name="465c84d3-aca5-413d-a4c8-26ffcc870944">
+          <Source xsi:type="QueryBinding" dwd:design-time-name="33811664-330f-468f-8bd0-fff1f5a3e048">
             <DataSourceID>Red_dw</DataSourceID>
-            <QueryDefinition>SELECT [dbo].[fact_all_time_activity].[dim_bill_key],[dbo].[fact_all_time_activity].[dim_client_key],[dbo].[fact_all_time_activity].[dim_transaction_date_key],[dbo].[fact_all_time_activity].[dim_fed_hierarchy_history_key],[dbo].[fact_all_time_activity].[dim_matter_header_key],[dbo].[fact_all_time_activity].[dim_run_date_key],[dbo].[fact_all_time_activity].[dim_posting_date_key],[dbo].[fact_all_time_activity].[dim_system_date_key],[dbo].[fact_all_time_activity].[dim_all_time_activity_key],[dbo].[fact_all_time_activity].[dim_time_narratives_key],[dbo].[fact_all_time_activity].[source_system_id],[dbo].[fact_all_time_activity].[transaction_sequence_number],[dbo].[fact_all_time_activity].[minutes_recorded],[dbo].[fact_all_time_activity].[hourly_charge_rate],[dbo].[fact_all_time_activity].[time_cost_value],[dbo].[fact_all_time_activity].[time_charge_value],[dbo].[fact_all_time_activity].[overridden_time_charge_value],[dbo].[fact_all_time_activity].[actual_time_recorded_value],[dbo].[fact_all_time_activity].[time_billed_value],[dbo].[fact_all_time_activity].[dss_update_time],[dbo].[fact_all_time_activity].[td_rectyp]
+            <QueryDefinition>SELECT [dbo].[fact_all_time_activity].[dim_bill_key],[dbo].[fact_all_time_activity].[dim_client_key],[dbo].[fact_all_time_activity].[dim_transaction_date_key],[dbo].[fact_all_time_activity].[dim_fed_hierarchy_history_key],[dbo].[fact_all_time_activity].[dim_matter_header_key],[dbo].[fact_all_time_activity].[dim_run_date_key],[dbo].[fact_all_time_activity].[dim_posting_date_key],[dbo].[fact_all_time_activity].[dim_system_date_key],[dbo].[fact_all_time_activity].[dim_all_time_activity_key],[dbo].[fact_all_time_activity].[dim_time_narratives_key],[dbo].[fact_all_time_activity].[source_system_id],[dbo].[fact_all_time_activity].[transaction_sequence_number],[dbo].[fact_all_time_activity].[minutes_recorded],[dbo].[fact_all_time_activity].[hourly_charge_rate],[dbo].[fact_all_time_activity].[time_cost_value],[dbo].[fact_all_time_activity].[time_charge_value],[dbo].[fact_all_time_activity].[overridden_time_charge_value],[dbo].[fact_all_time_activity].[actual_time_recorded_value],[dbo].[fact_all_time_activity].[time_billed_value],[dbo].[fact_all_time_activity].[dss_update_time],[dbo].[fact_all_time_activity].[time_type]
 		FROM [dbo].[fact_all_time_activity]
-		WHERE (dim_transaction_date_key between '20140501' and '20150430')</QueryDefinition>
+		WHERE (dim_transaction_date_key between      CASE WHEN datepart(month, getdate()) &gt;= 5 THEN CAST(CAST(year(dateadd(year, - 2, getdate())) AS varchar(4)) + '0501' AS int) 
+                                                         ELSE CAST(CAST(year(dateadd(year, - 3, getdate())) AS varchar(4)) + '0501' AS int) END
+
+and     CASE WHEN datepart(month, getdate()) &gt;= 5 THEN CAST(CAST(year(dateadd(year, - 1, getdate())) AS varchar(4)) + '0430' AS int) 
+                                                         ELSE CAST(CAST(year(dateadd(year, - 2, getdate())) AS varchar(4)) + '0430' AS int) END)</QueryDefinition>
           </Source>
           <StorageMode>Molap</StorageMode>
           <CurrentStorageMode>Molap</CurrentStorageMode>
