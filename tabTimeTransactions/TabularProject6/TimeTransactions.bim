@@ -1,0 +1,418 @@
+<Alter AllowCreate="true" ObjectExpansion="ExpandFull" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <Object>
+    <DatabaseID>SemanticModel</DatabaseID>
+  </Object>
+  <ObjectDefinition>
+    <Database xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400">
+      <ID>SemanticModel</ID>
+      <Name>SemanticModel</Name>
+      <ddl200:CompatibilityLevel>1100</ddl200:CompatibilityLevel>
+      <ddl200_200:StorageEngineUsed>InMemory</ddl200_200:StorageEngineUsed>
+      <Language>1033</Language>
+      <Collation>Latin1_General_CS_AS</Collation>
+      <DataSourceImpersonationInfo>
+        <ImpersonationMode>Default</ImpersonationMode>
+      </DataSourceImpersonationInfo>
+      <Dimensions>
+        <Dimension>
+          <ID>dimClient_99761bbd-ac01-473a-a038-b55da6245fc5</ID>
+          <Name>dimClient</Name>
+          <Annotations>
+            <Annotation>
+              <Name>IsQueryEditorUsed</Name>
+              <Value>True</Value>
+            </Annotation>
+            <Annotation>
+              <Name>QueryEditorSerialization</Name>
+            </Annotation>
+            <Annotation>
+              <Name>TableWidgetSerialization</Name>
+            </Annotation>
+            <Annotation>
+              <Name>DataMarketWebBaseUrl</Name>
+            </Annotation>
+            <Annotation>
+              <Name>DataMarketWebQueryUrl</Name>
+            </Annotation>
+          </Annotations>
+          <Source xsi:type="DataSourceViewBinding">
+            <DataSourceViewID>Sandbox</DataSourceViewID>
+          </Source>
+          <UnknownMember valuens="ddl200_200">AutomaticNull</UnknownMember>
+          <ErrorConfiguration>
+            <KeyNotFound>IgnoreError</KeyNotFound>
+            <KeyDuplicate>ReportAndStop</KeyDuplicate>
+            <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+          </ErrorConfiguration>
+          <StorageMode valuens="ddl200_200">InMemory</StorageMode>
+          <Language>1033</Language>
+          <Collation>Latin1_General_CS_AS</Collation>
+          <UnknownMemberName>Unknown</UnknownMemberName>
+          <Attributes>
+            <Attribute>
+              <ID>RowNumber</ID>
+              <Name>RowNumber</Name>
+              <Type valuens="ddl200_200">RowNumber</Type>
+              <Usage>Key</Usage>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>4</DataSize>
+                  <NullProcessing>Error</NullProcessing>
+                  <Source xsi:type="ddl200_200:RowNumberBinding" />
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>4</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ddl200_200:RowNumberBinding" />
+              </NameColumn>
+              <AttributeRelationships>
+                <AttributeRelationship>
+                  <AttributeID>ClientID</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>ClientID</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>ClientCode</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>ClientCode</Name>
+                </AttributeRelationship>
+              </AttributeRelationships>
+              <OrderBy>Key</OrderBy>
+              <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>ClientID</ID>
+              <Name>ClientID</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimClient_99761bbd-ac01-473a-a038-b55da6245fc5</TableID>
+                    <ColumnID>ClientID</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimClient_99761bbd-ac01-473a-a038-b55da6245fc5</TableID>
+                  <ColumnID>ClientID</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="Text" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>ClientCode</ID>
+              <Name>ClientCode</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimClient_99761bbd-ac01-473a-a038-b55da6245fc5</TableID>
+                    <ColumnID>ClientCode</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimClient_99761bbd-ac01-473a-a038-b55da6245fc5</TableID>
+                  <ColumnID>ClientCode</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+          </Attributes>
+          <ProactiveCaching>
+            <SilenceInterval>-PT1S</SilenceInterval>
+            <Latency>-PT1S</Latency>
+            <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+            <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+            <Source xsi:type="ProactiveCachingInheritedBinding" />
+          </ProactiveCaching>
+        </Dimension>
+      </Dimensions>
+      <Cubes>
+        <Cube>
+          <ID>Model</ID>
+          <Name>Model</Name>
+          <Annotations>
+            <Annotation>
+              <Name>DefaultMeasure</Name>
+              <Value>__No measures defined</Value>
+            </Annotation>
+          </Annotations>
+          <Language>1033</Language>
+          <Collation>Latin1_General_CS_AS</Collation>
+          <Dimensions>
+            <Dimension>
+              <ID>dimClient_99761bbd-ac01-473a-a038-b55da6245fc5</ID>
+              <Name>dimClient</Name>
+              <DimensionID>dimClient_99761bbd-ac01-473a-a038-b55da6245fc5</DimensionID>
+              <Attributes>
+                <Attribute>
+                  <AttributeID>RowNumber</AttributeID>
+                  <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>ClientID</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>ClientCode</AttributeID>
+                </Attribute>
+              </Attributes>
+            </Dimension>
+          </Dimensions>
+          <MeasureGroups>
+            <MeasureGroup>
+              <ID>dimClient_99761bbd-ac01-473a-a038-b55da6245fc5</ID>
+              <Name>dimClient</Name>
+              <Measures>
+                <Measure>
+                  <ID>dimClient_99761bbd-ac01-473a-a038-b55da6245fc5</ID>
+                  <Name>_Count dimClient</Name>
+                  <AggregateFunction>Count</AggregateFunction>
+                  <DataType>BigInt</DataType>
+                  <Source>
+                    <DataType>BigInt</DataType>
+                    <DataSize>8</DataSize>
+                    <Source xsi:type="RowBinding">
+                      <TableID>dimClient_99761bbd-ac01-473a-a038-b55da6245fc5</TableID>
+                    </Source>
+                  </Source>
+                  <Visible>false</Visible>
+                </Measure>
+              </Measures>
+              <StorageMode valuens="ddl200_200">InMemory</StorageMode>
+              <ErrorConfiguration>
+                <KeyNotFound>IgnoreError</KeyNotFound>
+                <KeyDuplicate>ReportAndStop</KeyDuplicate>
+                <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+              </ErrorConfiguration>
+              <ProcessingMode>Regular</ProcessingMode>
+              <Dimensions>
+                <Dimension xsi:type="DegenerateMeasureGroupDimension">
+                  <CubeDimensionID>dimClient_99761bbd-ac01-473a-a038-b55da6245fc5</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>RowNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClient</TableID>
+                            <ColumnID>RowNumber</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientID</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClient_99761bbd-ac01-473a-a038-b55da6245fc5</TableID>
+                            <ColumnID>ClientID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientCode</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClient_99761bbd-ac01-473a-a038-b55da6245fc5</TableID>
+                            <ColumnID>ClientCode</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                  </Attributes>
+                  <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
+                </Dimension>
+              </Dimensions>
+              <Partitions>
+                <Partition>
+                  <ID>dimClient_99761bbd-ac01-473a-a038-b55da6245fc5</ID>
+                  <Name>dimClient</Name>
+                  <Annotations>
+                    <Annotation>
+                      <Name>IsQueryEditorUsed</Name>
+                      <Value>True</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>QueryEditorSerialization</Name>
+                    </Annotation>
+                    <Annotation>
+                      <Name>TableWidgetSerialization</Name>
+                    </Annotation>
+                  </Annotations>
+                  <Source xsi:type="QueryBinding">
+                    <DataSourceID>ac8f5312-9901-47b2-851b-0fb6f960ff11</DataSourceID>
+                    <QueryDefinition>SELECT distinct
+dim_client_key as 'ClientID',
+client_code as 'ClientCode'
+
+ FROM 
+[dim_client]</QueryDefinition>
+                  </Source>
+                  <StorageMode valuens="ddl200_200">InMemory</StorageMode>
+                  <ProcessingMode>Regular</ProcessingMode>
+                  <ErrorConfiguration>
+                    <KeyNotFound>IgnoreError</KeyNotFound>
+                    <KeyDuplicate>ReportAndStop</KeyDuplicate>
+                    <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+                  </ErrorConfiguration>
+                  <ProactiveCaching>
+                    <SilenceInterval>-PT1S</SilenceInterval>
+                    <Latency>-PT1S</Latency>
+                    <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+                    <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+                    <Source xsi:type="ProactiveCachingInheritedBinding" />
+                  </ProactiveCaching>
+                </Partition>
+              </Partitions>
+              <ProactiveCaching>
+                <SilenceInterval>-PT1S</SilenceInterval>
+                <Latency>-PT1S</Latency>
+                <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+                <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+                <Source xsi:type="ProactiveCachingInheritedBinding" />
+              </ProactiveCaching>
+            </MeasureGroup>
+          </MeasureGroups>
+          <Source>
+            <DataSourceViewID>Sandbox</DataSourceViewID>
+          </Source>
+          <MdxScripts>
+            <MdxScript>
+              <ID>MdxScript</ID>
+              <Name>MdxScript</Name>
+              <Commands>
+                <Command>
+                  <Text>CALCULATE; 
+CREATE MEMBER CURRENTCUBE.Measures.[__No measures defined] AS 1; 
+ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measures defined]; </Text>
+                </Command>
+              </Commands>
+            </MdxScript>
+          </MdxScripts>
+          <StorageMode valuens="ddl200_200">InMemory</StorageMode>
+          <ProactiveCaching>
+            <SilenceInterval>-PT1S</SilenceInterval>
+            <Latency>-PT1S</Latency>
+            <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+            <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+            <Source xsi:type="ProactiveCachingInheritedBinding" />
+          </ProactiveCaching>
+        </Cube>
+      </Cubes>
+      <DataSources>
+        <DataSource xsi:type="RelationalDataSource">
+          <ID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</ID>
+          <Name>SqlServer svr-liv-dwh-01 red_dw</Name>
+          <Annotations>
+            <Annotation>
+              <Name>ConnectionEditUISource</Name>
+              <Value>SqlServer</Value>
+            </Annotation>
+          </Annotations>
+          <ConnectionString>Provider=SQLNCLI11;Data Source=svr-liv-dwh-01;Initial Catalog=red_dw;Integrated Security=SSPI;Persist Security Info=false</ConnectionString>
+          <ImpersonationInfo>
+            <ImpersonationMode>ImpersonateServiceAccount</ImpersonationMode>
+          </ImpersonationInfo>
+          <Timeout>PT0S</Timeout>
+        </DataSource>
+        <DataSource xsi:type="RelationalDataSource">
+          <ID>ac8f5312-9901-47b2-851b-0fb6f960ff11</ID>
+          <Name>SqlServer svr-liv-dwh-01 red_dw 2</Name>
+          <Annotations>
+            <Annotation>
+              <Name>ConnectionEditUISource</Name>
+              <Value>SqlServer</Value>
+            </Annotation>
+          </Annotations>
+          <ConnectionString>Provider=SQLNCLI11;Data Source=svr-liv-dwh-01;Initial Catalog=red_dw;Integrated Security=SSPI;Persist Security Info=false</ConnectionString>
+          <ImpersonationInfo>
+            <ImpersonationMode>ImpersonateAccount</ImpersonationMode>
+            <Account>sbc\DWH_SSASAdmin</Account>
+          </ImpersonationInfo>
+          <Timeout>PT0S</Timeout>
+        </DataSource>
+      </DataSources>
+      <DataSourceViews>
+        <DataSourceView>
+          <ID>Sandbox</ID>
+          <Name>Sandbox</Name>
+          <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
+          <Schema>
+            <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop">
+              <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:Locale="en-US">
+                <xs:complexType>
+                  <xs:choice minOccurs="0" maxOccurs="unbounded">
+                    <xs:element name="dimClient_99761bbd-ac01-473a-a038-b55da6245fc5" msdata:Locale="" msprop:DataSourceID="ac8f5312-9901-47b2-851b-0fb6f960ff11" msprop:IsLogical="True" msprop:FriendlyName="dimClient" msprop:DbTableName="dimClient" msprop:TableType="View" msprop:Description="dimClient" msprop:QueryDefinition="SELECT distinct&#xD;&#xA;dim_client_key as 'ClientID',&#xD;&#xA;client_code as 'ClientCode'&#xD;&#xA;&#xD;&#xA; FROM &#xD;&#xA;[dim_client]">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="ClientID" msprop:DbColumnName="ClientID" msprop:FriendlyName="ClientID" type="xs:int" minOccurs="0" />
+                          <xs:element name="ClientCode" msprop:DbColumnName="ClientCode" msprop:FriendlyName="ClientCode" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:choice>
+                </xs:complexType>
+              </xs:element>
+            </xs:schema>
+            <NewDataSet xmlns="" />
+          </Schema>
+        </DataSourceView>
+      </DataSourceViews>
+    </Database>
+  </ObjectDefinition>
+</Alter>
