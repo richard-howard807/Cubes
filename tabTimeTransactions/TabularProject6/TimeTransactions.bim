@@ -1739,11 +1739,6 @@
                   <Name>TimeActivityCode</Name>
                 </AttributeRelationship>
                 <AttributeRelationship>
-                  <AttributeID>TimeTypeCode</AttributeID>
-                  <OverrideBehavior>None</OverrideBehavior>
-                  <Name>TimeTypeCode</Name>
-                </AttributeRelationship>
-                <AttributeRelationship>
                   <AttributeID>RateCode</AttributeID>
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>RateCode</Name>
@@ -1752,6 +1747,16 @@
                   <AttributeID>FEDCodeID</AttributeID>
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>FEDCodeID</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>ChargeableTimeCode</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>ChargeableTimeCode</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>TimeType</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>TimeType</Name>
                 </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
@@ -2062,31 +2067,6 @@
               <OrderBy>Key</OrderBy>
             </Attribute>
             <Attribute>
-              <ID>TimeTypeCode</ID>
-              <Name>TimeTypeCode</Name>
-              <KeyColumns>
-                <KeyColumn>
-                  <DataType>WChar</DataType>
-                  <DataSize>32768</DataSize>
-                  <NullProcessing>Preserve</NullProcessing>
-                  <Source xsi:type="ColumnBinding">
-                    <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
-                    <ColumnID>TimeTypeCode</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-              <NameColumn>
-                <DataType>WChar</DataType>
-                <DataSize>32768</DataSize>
-                <NullProcessing>ZeroOrBlank</NullProcessing>
-                <Source xsi:type="ColumnBinding">
-                  <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
-                  <ColumnID>TimeTypeCode</ColumnID>
-                </Source>
-              </NameColumn>
-              <OrderBy>Key</OrderBy>
-            </Attribute>
-            <Attribute>
               <ID>RateCode</ID>
               <Name>RateCode</Name>
               <KeyColumns>
@@ -2132,6 +2112,56 @@
                 <Source xsi:type="ColumnBinding">
                   <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
                   <ColumnID>FEDCodeID</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>ChargeableTimeCode</ID>
+              <Name>ChargeableTimeCode</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
+                    <ColumnID>ChargeableTimeCode</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
+                  <ColumnID>ChargeableTimeCode</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>TimeType</ID>
+              <Name>TimeType</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
+                    <ColumnID>TimeType</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
+                  <ColumnID>TimeType</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
@@ -2238,29 +2268,6 @@
               </ddl300_300:ToRelationshipEnd>
             </ddl300_300:Relationship>
             <ddl300_300:Relationship>
-              <ID>0f16bd01-f76d-4ef7-91e0-4fbc9141fa28</ID>
-              <ddl300_300:FromRelationshipEnd>
-                <ddl300_300:Multiplicity>Many</ddl300_300:Multiplicity>
-                <ddl300:VisualizationProperties />
-                <DimensionID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</DimensionID>
-                <Attributes>
-                  <Attribute>
-                    <AttributeID>TimeTypeCode</AttributeID>
-                  </Attribute>
-                </Attributes>
-              </ddl300_300:FromRelationshipEnd>
-              <ddl300_300:ToRelationshipEnd>
-                <ddl300_300:Multiplicity>One</ddl300_300:Multiplicity>
-                <ddl300:VisualizationProperties />
-                <DimensionID>dimTimeTransactionTimeType_b143b586-63c5-4482-a0af-8ed4f80b7a5f</DimensionID>
-                <Attributes>
-                  <Attribute>
-                    <AttributeID>TimeTransactionTimeTypeCode</AttributeID>
-                  </Attribute>
-                </Attributes>
-              </ddl300_300:ToRelationshipEnd>
-            </ddl300_300:Relationship>
-            <ddl300_300:Relationship>
               <ID>72eb6549-19c9-4d48-a67b-282d013e4fbd</ID>
               <ddl300_300:FromRelationshipEnd>
                 <ddl300_300:Multiplicity>Many</ddl300_300:Multiplicity>
@@ -2302,6 +2309,29 @@
                 <Attributes>
                   <Attribute>
                     <AttributeID>TimeActivityCode</AttributeID>
+                  </Attribute>
+                </Attributes>
+              </ddl300_300:ToRelationshipEnd>
+            </ddl300_300:Relationship>
+            <ddl300_300:Relationship>
+              <ID>2ef75f31-453d-452e-9ff9-0d663a0ca6ce</ID>
+              <ddl300_300:FromRelationshipEnd>
+                <ddl300_300:Multiplicity>Many</ddl300_300:Multiplicity>
+                <ddl300:VisualizationProperties />
+                <DimensionID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</DimensionID>
+                <Attributes>
+                  <Attribute>
+                    <AttributeID>ChargeableTimeCode</AttributeID>
+                  </Attribute>
+                </Attributes>
+              </ddl300_300:FromRelationshipEnd>
+              <ddl300_300:ToRelationshipEnd>
+                <ddl300_300:Multiplicity>One</ddl300_300:Multiplicity>
+                <ddl300:VisualizationProperties />
+                <DimensionID>dimTimeTransactionTimeType_b143b586-63c5-4482-a0af-8ed4f80b7a5f</DimensionID>
+                <Attributes>
+                  <Attribute>
+                    <AttributeID>TimeTransactionTimeTypeCode</AttributeID>
                   </Attribute>
                 </Attributes>
               </ddl300_300:ToRelationshipEnd>
@@ -2462,20 +2492,14 @@
           <Name>dimTimeTransactionTimeType</Name>
           <Annotations>
             <Annotation>
-              <Name>IsQueryEditorUsed</Name>
-              <Value>True</Value>
+              <Name>TableWidgetSerialization</Name>
             </Annotation>
             <Annotation>
               <Name>QueryEditorSerialization</Name>
             </Annotation>
             <Annotation>
-              <Name>TableWidgetSerialization</Name>
-            </Annotation>
-            <Annotation>
-              <Name>DataMarketWebBaseUrl</Name>
-            </Annotation>
-            <Annotation>
-              <Name>DataMarketWebQueryUrl</Name>
+              <Name>IsQueryEditorUsed</Name>
+              <Value>True</Value>
             </Annotation>
           </Annotations>
           <Source xsi:type="DataSourceViewBinding">
@@ -7152,13 +7176,16 @@
                   <AttributeID>TimeActivityCode</AttributeID>
                 </Attribute>
                 <Attribute>
-                  <AttributeID>TimeTypeCode</AttributeID>
-                </Attribute>
-                <Attribute>
                   <AttributeID>RateCode</AttributeID>
                 </Attribute>
                 <Attribute>
                   <AttributeID>FEDCodeID</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>ChargeableTimeCode</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>TimeType</AttributeID>
                 </Attribute>
               </Attributes>
             </Dimension>
@@ -8704,8 +8731,8 @@ client_name as 'ClientName'
                   </Annotations>
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
-                    <QueryDefinition>select
-f.dim_matter_header_key as 'MatterID',
+                    <QueryDefinition>select 
+d.dim_matter_header_key as 'MatterID',
 d.client_code as 'ClientCode',
 d.matter_group_code as 'MatterGroupCode',
 d.branch_code as 'BranchCode',
@@ -8723,17 +8750,18 @@ costs_to_date as 'CostsToDate',
 time_billed as 'TotalTimeBilled',
 number_bills_matter as 'NumberOfBillsRaised',
 unbilled_time as 'UnbilledTime' 
-
 from
-red_dw.dbo.fact_matter_summary f
+red_dw.dbo.dim_matter_header d
+
+left join fact_matter_summary f
+ on d.dim_matter_header_key = f.dim_matter_header_key
+
 left join dim_client c
  on c.dim_client_key = f.dim_client_key
 
-left join dim_matter_header d
- on d.dim_matter_header_key = f.dim_matter_header_key
 
 where
-f.dim_matter_header_key &gt; 0;</QueryDefinition>
+d.dim_matter_header_key &gt; 0;</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
@@ -9719,20 +9747,6 @@ branch_name is not null</QueryDefinition>
                       </KeyColumns>
                     </Attribute>
                     <Attribute>
-                      <AttributeID>TimeTypeCode</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
-                            <ColumnID>TimeTypeCode</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
                       <AttributeID>RateCode</AttributeID>
                       <KeyColumns>
                         <KeyColumn>
@@ -9756,6 +9770,34 @@ branch_name is not null</QueryDefinition>
                           <Source xsi:type="ColumnBinding">
                             <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
                             <ColumnID>FEDCodeID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ChargeableTimeCode</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
+                            <ColumnID>ChargeableTimeCode</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>TimeType</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
+                            <ColumnID>TimeType</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -11826,57 +11868,6 @@ branch_name is not null</QueryDefinition>
                   <IntermediateGranularityAttributeID>DateMatterClosed</IntermediateGranularityAttributeID>
                 </Dimension>
                 <Dimension xsi:type="ReferenceMeasureGroupDimension">
-                  <CubeDimensionID>dimTimeTransactionTimeType_b143b586-63c5-4482-a0af-8ed4f80b7a5f</CubeDimensionID>
-                  <Attributes>
-                    <Attribute>
-                      <AttributeID>RowNumber</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>4</DataSize>
-                          <NullProcessing>Error</NullProcessing>
-                          <Source xsi:type="ddl200_200:RowNumberBinding" />
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>TimeTransactionTimeTypeCode</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Error</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimTimeTransactionTimeType_b143b586-63c5-4482-a0af-8ed4f80b7a5f</TableID>
-                            <ColumnID>TimeTransactionTimeTypeCode</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                      <Type>Granularity</Type>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>TimeTransactionTimeTypeDesc</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimTimeTransactionTimeType_b143b586-63c5-4482-a0af-8ed4f80b7a5f</TableID>
-                            <ColumnID>TimeTransactionTimeTypeDesc</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                  </Attributes>
-                  <IntermediateCubeDimensionID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</IntermediateCubeDimensionID>
-                  <IntermediateGranularityAttributeID>TimeTypeCode</IntermediateGranularityAttributeID>
-                  <Materialization>Regular</Materialization>
-                  <ddl300:RelationshipID>0f16bd01-f76d-4ef7-91e0-4fbc9141fa28</ddl300:RelationshipID>
-                </Dimension>
-                <Dimension xsi:type="ReferenceMeasureGroupDimension">
                   <CubeDimensionID>dimFEDHierarchy_e077edfd-a3df-4415-9164-2f7aab15a75f</CubeDimensionID>
                   <Attributes>
                     <Attribute>
@@ -12020,6 +12011,57 @@ branch_name is not null</QueryDefinition>
                   <Materialization>Regular</Materialization>
                   <ddl300:RelationshipID>27ea934e-b675-4cac-b16f-51f487dc0122</ddl300:RelationshipID>
                 </Dimension>
+                <Dimension xsi:type="ReferenceMeasureGroupDimension">
+                  <CubeDimensionID>dimTimeTransactionTimeType_b143b586-63c5-4482-a0af-8ed4f80b7a5f</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>RowNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>4</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ddl200_200:RowNumberBinding" />
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>TimeTransactionTimeTypeCode</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimTimeTransactionTimeType_b143b586-63c5-4482-a0af-8ed4f80b7a5f</TableID>
+                            <ColumnID>TimeTransactionTimeTypeCode</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>TimeTransactionTimeTypeDesc</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimTimeTransactionTimeType_b143b586-63c5-4482-a0af-8ed4f80b7a5f</TableID>
+                            <ColumnID>TimeTransactionTimeTypeDesc</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                  </Attributes>
+                  <IntermediateCubeDimensionID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</IntermediateCubeDimensionID>
+                  <IntermediateGranularityAttributeID>ChargeableTimeCode</IntermediateGranularityAttributeID>
+                  <Materialization>Regular</Materialization>
+                  <ddl300:RelationshipID>2ef75f31-453d-452e-9ff9-0d663a0ca6ce</ddl300:RelationshipID>
+                </Dimension>
               </Dimensions>
               <Partitions>
                 <Partition>
@@ -12047,7 +12089,7 @@ a.transaction_sequence_number as 'TimeTransactionID',
 a.dim_bill_key as 'BillID',
 a.dim_matter_header_key as 'MatterId',
 t.time_activity_code as 'TimeActivityCode',
-a.time_type as 'TimeTypeCode',
+a.time_type as 'ChargeableTimeCode',
 t.rate_code as 'RateCode',
 a.dim_fed_hierarchy_history_key as 'FEDCodeID',
 a.dim_transaction_date_key as 'TransactionDate',
@@ -12056,11 +12098,25 @@ a.minutes_recorded as 'MinutesRecorded',
 a.time_cost_value as 'ValueOfTimeRecorded',
 a.hourly_charge_rate as 'ChargeRate',
 a.time_charge_value as 'timeChargeValue',
-a.overridden_time_charge_value as 'OverriddenTimeChargeValue'
+a.overridden_time_charge_value as 'OverriddenTimeChargeValue',
+case 
+when t.time_activity_code != 'W/O'
+and t.bill_number = 'xxxxxxxx'
+ then 'Written Off'
+when t.time_activity_code = 'W/O'
+ then 'Written Off Transaction'
+when t.bill_number = ''
+ then 'Unbilled'
+when a.dim_bill_key &gt; 0
+and t.time_activity_code not in ('Bill','Abmt')
+ then 'Billed'
+when a.time_type = 'NC' 
+ then 'Non Chargeable Time'
+end as 'TimeType'
+
 
 from
 fact_all_time_activity a
-
 
 left join
  fact_bill_activity b
@@ -12071,8 +12127,11 @@ left join
   on m.dim_matter_header_key = a.dim_matter_header_key
 
 left join 
-	dim_all_time_activity t
-		on t.dim_all_time_activity_key = a.dim_all_time_activity_key</QueryDefinition>
+ dim_all_time_activity t
+  on t.dim_all_time_activity_key = a.dim_all_time_activity_key
+
+where
+t.time_activity_code not in ('Bill','Abmt')</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
@@ -12309,23 +12368,26 @@ red_dw.dbo.fact_bill_activity</QueryDefinition>
                   <Name>dimTimeTransactionTimeType</Name>
                   <Annotations>
                     <Annotation>
-                      <Name>IsQueryEditorUsed</Name>
-                      <Value>True</Value>
+                      <Name>TableWidgetSerialization</Name>
+                    </Annotation>
+                    <Annotation>
+                      <Name>TableWidgetSourceTable</Name>
                     </Annotation>
                     <Annotation>
                       <Name>QueryEditorSerialization</Name>
                     </Annotation>
                     <Annotation>
-                      <Name>TableWidgetSerialization</Name>
+                      <Name>IsQueryEditorUsed</Name>
+                      <Value>True</Value>
                     </Annotation>
                   </Annotations>
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
                     <QueryDefinition>select distinct
 time_type as 'TimeTransactionTimeTypeCode',
-case when time_type = 'NC' then 'Non-Chargeable'
-	when time_type = 'TM' then 'Time'
-	end as 'TimeTransactionTimeTypeDesc'
+case when time_type = 'NC' then 'Non Chargeable Time'
+ when time_type = 'TM' then 'Chargeable Time'
+ end as 'TimeTransactionTimeTypeDesc'
 
 from
 red_dw.dbo.fact_all_time_activity</QueryDefinition>
@@ -14776,7 +14838,7 @@ CREATE MEASURE 'TimeTransactions'[TotalMinutesRecorded]=sum([MinutesRecorded]);
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="Matter" msprop:DbTableName="factMatter" msprop:TableType="View" msprop:Description="factMatter" msprop:QueryDefinition="select&#xD;&#xA;f.dim_matter_header_key as 'MatterID',&#xD;&#xA;d.client_code as 'ClientCode',&#xD;&#xA;d.matter_group_code as 'MatterGroupCode',&#xD;&#xA;d.branch_code as 'BranchCode',&#xD;&#xA;d.work_type_code as 'WorkTypeCode',&#xD;&#xA;d.department_code as 'DepartmentCode',&#xD;&#xA;d.matter_number as 'MatterNumber',&#xD;&#xA;d.case_public_desc1 as 'MatterDesc',&#xD;&#xA;cast(d.date_opened_matter as date) as 'DateMatterOpen',&#xD;&#xA;cast(d.date_closed_matter as date) as 'DateMatterClosed',&#xD;&#xA;disbursement_balance as 'DisbursementBalance',&#xD;&#xA;client_account_balance_of_matter as 'ClientAccountBalance',&#xD;&#xA;unpaid_bill_balance as 'UnpaidBillsBalance',&#xD;&#xA;wip_balance as 'WIPBalance',&#xD;&#xA;costs_to_date as 'CostsToDate',&#xD;&#xA;time_billed as 'TotalTimeBilled',&#xD;&#xA;number_bills_matter as 'NumberOfBillsRaised',&#xD;&#xA;unbilled_time as 'UnbilledTime' &#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_matter_summary f&#xD;&#xA;left join dim_client c&#xD;&#xA; on c.dim_client_key = f.dim_client_key&#xD;&#xA;&#xD;&#xA;left join dim_matter_header d&#xD;&#xA; on d.dim_matter_header_key = f.dim_matter_header_key&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;f.dim_matter_header_key &gt; 0;">
+                    <xs:element name="factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="Matter" msprop:DbTableName="factMatter" msprop:TableType="View" msprop:Description="factMatter" msprop:QueryDefinition="select &#xD;&#xA;d.dim_matter_header_key as 'MatterID',&#xD;&#xA;d.client_code as 'ClientCode',&#xD;&#xA;d.matter_group_code as 'MatterGroupCode',&#xD;&#xA;d.branch_code as 'BranchCode',&#xD;&#xA;d.work_type_code as 'WorkTypeCode',&#xD;&#xA;d.department_code as 'DepartmentCode',&#xD;&#xA;d.matter_number as 'MatterNumber',&#xD;&#xA;d.case_public_desc1 as 'MatterDesc',&#xD;&#xA;cast(d.date_opened_matter as date) as 'DateMatterOpen',&#xD;&#xA;cast(d.date_closed_matter as date) as 'DateMatterClosed',&#xD;&#xA;disbursement_balance as 'DisbursementBalance',&#xD;&#xA;client_account_balance_of_matter as 'ClientAccountBalance',&#xD;&#xA;unpaid_bill_balance as 'UnpaidBillsBalance',&#xD;&#xA;wip_balance as 'WIPBalance',&#xD;&#xA;costs_to_date as 'CostsToDate',&#xD;&#xA;time_billed as 'TotalTimeBilled',&#xD;&#xA;number_bills_matter as 'NumberOfBillsRaised',&#xD;&#xA;unbilled_time as 'UnbilledTime' &#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_matter_header d&#xD;&#xA;&#xD;&#xA;left join fact_matter_summary f&#xD;&#xA; on d.dim_matter_header_key = f.dim_matter_header_key&#xD;&#xA;&#xD;&#xA;left join dim_client c&#xD;&#xA; on c.dim_client_key = f.dim_client_key&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;d.dim_matter_header_key &gt; 0;">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="MatterID" msprop:DbColumnName="MatterID" msprop:FriendlyName="MatterID" type="xs:int" minOccurs="0" />
@@ -14897,7 +14959,7 @@ CREATE MEASURE 'TimeTransactions'[TotalMinutesRecorded]=sum([MinutesRecorded]);
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="TimeTransactions" msprop:DbTableName="factMainTable" msprop:TableType="View" msprop:Description="factMainTable" msprop:QueryDefinition="select distinct &#xD;&#xA;a.transaction_sequence_number as 'TimeTransactionID',&#xD;&#xA;a.dim_bill_key as 'BillID',&#xD;&#xA;a.dim_matter_header_key as 'MatterId',&#xD;&#xA;t.time_activity_code as 'TimeActivityCode',&#xD;&#xA;a.time_type as 'TimeTypeCode',&#xD;&#xA;t.rate_code as 'RateCode',&#xD;&#xA;a.dim_fed_hierarchy_history_key as 'FEDCodeID',&#xD;&#xA;a.dim_transaction_date_key as 'TransactionDate',&#xD;&#xA;a.dim_run_date_key as 'RunDate',&#xD;&#xA;a.minutes_recorded as 'MinutesRecorded',&#xD;&#xA;a.time_cost_value as 'ValueOfTimeRecorded',&#xD;&#xA;a.hourly_charge_rate as 'ChargeRate',&#xD;&#xA;a.time_charge_value as 'timeChargeValue',&#xD;&#xA;a.overridden_time_charge_value as 'OverriddenTimeChargeValue'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;fact_all_time_activity a&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; fact_bill_activity b&#xD;&#xA;  on b.dim_bill_key = a.dim_bill_key&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; fact_matter_summary m&#xD;&#xA;  on m.dim_matter_header_key = a.dim_matter_header_key&#xD;&#xA;&#xD;&#xA;left join &#xD;&#xA; dim_all_time_activity t&#xD;&#xA;  on t.dim_all_time_activity_key = a.dim_all_time_activity_key">
+                    <xs:element name="factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="TimeTransactions" msprop:DbTableName="factMainTable" msprop:TableType="View" msprop:Description="factMainTable" msprop:QueryDefinition="select distinct &#xD;&#xA;a.transaction_sequence_number as 'TimeTransactionID',&#xD;&#xA;a.dim_bill_key as 'BillID',&#xD;&#xA;a.dim_matter_header_key as 'MatterId',&#xD;&#xA;t.time_activity_code as 'TimeActivityCode',&#xD;&#xA;a.time_type as 'ChargeableTimeCode',&#xD;&#xA;t.rate_code as 'RateCode',&#xD;&#xA;a.dim_fed_hierarchy_history_key as 'FEDCodeID',&#xD;&#xA;a.dim_transaction_date_key as 'TransactionDate',&#xD;&#xA;a.dim_run_date_key as 'RunDate',&#xD;&#xA;a.minutes_recorded as 'MinutesRecorded',&#xD;&#xA;a.time_cost_value as 'ValueOfTimeRecorded',&#xD;&#xA;a.hourly_charge_rate as 'ChargeRate',&#xD;&#xA;a.time_charge_value as 'timeChargeValue',&#xD;&#xA;a.overridden_time_charge_value as 'OverriddenTimeChargeValue',&#xD;&#xA;case &#xD;&#xA;when t.time_activity_code != 'W/O'&#xD;&#xA;and t.bill_number = 'xxxxxxxx'&#xD;&#xA; then 'Written Off'&#xD;&#xA;when t.time_activity_code = 'W/O'&#xD;&#xA; then 'Written Off Transaction'&#xD;&#xA;when t.bill_number = ''&#xD;&#xA; then 'Unbilled'&#xD;&#xA;when a.dim_bill_key &gt; 0&#xD;&#xA;and t.time_activity_code not in ('Bill','Abmt')&#xD;&#xA; then 'Billed'&#xD;&#xA;when a.time_type = 'NC' &#xD;&#xA; then 'Non Chargeable Time'&#xD;&#xA;end as 'TimeType'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;fact_all_time_activity a&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; fact_bill_activity b&#xD;&#xA;  on b.dim_bill_key = a.dim_bill_key&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; fact_matter_summary m&#xD;&#xA;  on m.dim_matter_header_key = a.dim_matter_header_key&#xD;&#xA;&#xD;&#xA;left join &#xD;&#xA; dim_all_time_activity t&#xD;&#xA;  on t.dim_all_time_activity_key = a.dim_all_time_activity_key&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;t.time_activity_code not in ('Bill','Abmt')">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="TimeTransactionID" msprop:DbColumnName="TimeTransactionID" msprop:FriendlyName="TimeTransactionID" type="xs:int" minOccurs="0" />
@@ -14917,15 +14979,22 @@ CREATE MEASURE 'TimeTransactions'[TotalMinutesRecorded]=sum([MinutesRecorded]);
                               </xs:restriction>
                             </xs:simpleType>
                           </xs:element>
-                          <xs:element name="TimeTypeCode" msprop:DbColumnName="TimeTypeCode" msprop:FriendlyName="TimeTypeCode" minOccurs="0">
+                          <xs:element name="RateCode" msprop:DbColumnName="RateCode" msprop:FriendlyName="RateCode" type="xs:decimal" minOccurs="0" />
+                          <xs:element name="FEDCodeID" msprop:DbColumnName="FEDCodeID" msprop:FriendlyName="FEDCodeID" type="xs:int" minOccurs="0" />
+                          <xs:element name="ChargeableTimeCode" msprop:DbColumnName="ChargeableTimeCode" msprop:FriendlyName="ChargeableTimeCode" minOccurs="0">
                             <xs:simpleType>
                               <xs:restriction base="xs:string">
                                 <xs:maxLength value="32768" />
                               </xs:restriction>
                             </xs:simpleType>
                           </xs:element>
-                          <xs:element name="RateCode" msprop:DbColumnName="RateCode" msprop:FriendlyName="RateCode" type="xs:decimal" minOccurs="0" />
-                          <xs:element name="FEDCodeID" msprop:DbColumnName="FEDCodeID" msprop:FriendlyName="FEDCodeID" type="xs:int" minOccurs="0" />
+                          <xs:element name="TimeType" msprop:DbColumnName="TimeType" msprop:FriendlyName="TimeType" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
@@ -14949,7 +15018,7 @@ CREATE MEASURE 'TimeTransactions'[TotalMinutesRecorded]=sum([MinutesRecorded]);
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimTimeTransactionTimeType_b143b586-63c5-4482-a0af-8ed4f80b7a5f" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimTimeTransactionTimeType" msprop:DbTableName="dimTimeTransactionTimeType" msprop:TableType="View" msprop:Description="dimTimeTransactionTimeType" msprop:QueryDefinition="select distinct&#xD;&#xA;time_type as 'TimeTransactionTimeTypeCode',&#xD;&#xA;case when time_type = 'NC' then 'Non-Chargeable'&#xD;&#xA; when time_type = 'TM' then 'Time'&#xD;&#xA; end as 'TimeTransactionTimeTypeDesc'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_all_time_activity">
+                    <xs:element name="dimTimeTransactionTimeType_b143b586-63c5-4482-a0af-8ed4f80b7a5f" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimTimeTransactionTimeType" msprop:DbTableName="dimTimeTransactionTimeType" msprop:TableType="View" msprop:Description="dimTimeTransactionTimeType" msprop:QueryDefinition="select distinct&#xD;&#xA;time_type as 'TimeTransactionTimeTypeCode',&#xD;&#xA;case when time_type = 'NC' then 'Non Chargeable Time'&#xD;&#xA; when time_type = 'TM' then 'Chargeable Time'&#xD;&#xA; end as 'TimeTransactionTimeTypeDesc'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_all_time_activity">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="TimeTransactionTimeTypeCode" msprop:DbColumnName="TimeTransactionTimeTypeCode" msprop:FriendlyName="TimeTransactionTimeTypeCode" minOccurs="0">
