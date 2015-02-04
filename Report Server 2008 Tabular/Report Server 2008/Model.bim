@@ -4666,13 +4666,13 @@
 ReportGuid as 'ReportID',
 cast(e.EmployeeID as varchar(36)) as 'UserID',
 cast(DateTime as date) as 'ReportRunDate',
-convert(varchar, DateTime, 108) as 'ReportRunTime',
-c.TimeDataRetrieval / 1000 as 'TimeDataRetrievalSeconds',
-c.TimeProcessing / 1000 as 'TimeProcessingSeconds',
-c.TimeRendering / 1000 as 'TimeRenderingSeconds',
-c.TimeDataRetrieval +
+left(convert(varchar, DateTime, 108), 5) as 'ReportRunTime',
+cast(c.TimeDataRetrieval / 1000  as decimal(10,2)) as 'TimeDataRetrievalSeconds',
+cast(c.TimeProcessing / 1000 as decimal(10,2)) as 'TimeProcessingSeconds',
+cast(c.TimeRendering / 1000 as decimal(10,2)) as 'TimeRenderingSeconds',
+cast(c.TimeDataRetrieval +
 c.TimeProcessing +
-c.TimeRendering / 1000 as 'TotalLoadTimeSeconds'
+c.TimeRendering / 1000 as decimal(10,2)) as 'TotalLoadTimeSeconds'
 
 
 from
@@ -5929,7 +5929,7 @@ DateKey</QueryDefinition>
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>0ee6ebfa-2c0a-4f90-90ff-0f366d812ffd</DataSourceID>
                     <QueryDefinition>select
-rank() over (order by ReportID) as 'Rank',
+cast(rank() over (order by cast(creationdate as varchar(100)) + cast(creationtime as varchar(100)) asc) as varchar(100)) as 'Rank',
 *
 
 from
@@ -5994,16 +5994,16 @@ left join ReportServer.dbo.Users u
  on u.UserID = c.CreatedByID
  
  left join [Cascade].dbo.Employee e
- on case when left(u.UserName, 4) != 'SBC\' then 'SBC\' + u.UserName else u.UserName end = 'SBC\' + e.windowsusername collate database_default
+ on case when left(u.UserName, 4) != 'SBC\' then 'SBC\' + u.UserName else u.UserName end = 'SBC\' + e.windowsusername collate database_default 
 
 left join ReportServer.dbo.Users u2
  on u2.UserID = c.ModifiedByID
 
   left join [Cascade].dbo.Employee e2
- on case when left(u2.UserName, 4) != 'SBC\' then 'SBC\' + u2.UserName else u2.UserName end = 'SBC\' + e2.windowsusername collate database_default
+ on case when left(u2.UserName, 4) != 'SBC\' then 'SBC\' + u2.UserName else u2.UserName end = 'SBC\' + e2.windowsusername collate database_default 
 
   left join [Cascade].dbo.Employee MRe
- on MR.MostRecentUser = 'SBC\' + MRe.windowsusername collate database_default
+ on MR.MostRecentUser = 'SBC\' + MRe.windowsusername collate database_default and MRe.LeftDate is null
 
 
  where
@@ -6363,7 +6363,7 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
 
 
 CREATE MEASURE 'ExecutionLog'[Count of Executions]=countrows('ExecutionLog');
-CREATE MEASURE 'ExecutionLog'[Average Data Retrieval Time (Seconds)]=average([TimeDataRetrievalSeconds]);
+CREATE MEASURE 'ExecutionLog'[Average Data Retrieval Time (Seconds)]=calculate( average([TimeDataRetrievalSeconds]), ExecutionLog[TimeDataRetrievalSeconds]&gt; 0.0);
 CREATE MEASURE 'ExecutionLog'[Average Report Processing Time (Seconds)]=average([TimeProcessingSeconds]);
 CREATE MEASURE 'ExecutionLog'[Average Report Rendering Time (Seconds)]=average([TimeRenderingSeconds]);
 CREATE MEASURE 'ExecutionLog'[Average Report Load Time (Seconds)]=average([TotalLoadTimeSeconds]);
@@ -6631,7 +6631,7 @@ CREATE MEASURE 'dimReportCatalogue'[Count of Reports]=countrows('dimReportCatalo
               <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:Locale="en-GB">
                 <xs:complexType>
                   <xs:choice minOccurs="0" maxOccurs="unbounded">
-                    <xs:element name="ExecutionLog_8ba32cd9-e938-4bce-87b7-251e27df5540" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="ExecutionLog" msprop:DbTableName="ExecutionLog" msprop:TableType="View" msprop:Description="ExecutionLog" msprop:QueryDefinition="select distinct&#xD;&#xA;ReportGuid as 'ReportID',&#xD;&#xA;cast(e.EmployeeID as varchar(36)) as 'UserID',&#xD;&#xA;cast(DateTime as date) as 'ReportRunDate',&#xD;&#xA;convert(varchar, DateTime, 108) as 'ReportRunTime',&#xD;&#xA;c.TimeDataRetrieval / 1000 as 'TimeDataRetrievalSeconds',&#xD;&#xA;c.TimeProcessing / 1000 as 'TimeProcessingSeconds',&#xD;&#xA;c.TimeRendering / 1000 as 'TimeRenderingSeconds',&#xD;&#xA;c.TimeDataRetrieval +&#xD;&#xA;c.TimeProcessing +&#xD;&#xA;c.TimeRendering / 1000 as 'TotalLoadTimeSeconds'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;Reporting.dw.tbl_reportexecutionsadvanced c&#xD;&#xA;&#xD;&#xA;left join [Cascade].dbo.Employee e&#xD;&#xA; on case when left(c.UserName, 4) != 'SBC\' then 'SBC\' + c.UserName else c.UserName end = 'SBC\' + e.windowsusername collate database_default&#xD;&#xA;&#xD;&#xA; where&#xD;&#xA; c.UserName not in ('SBC\SQLalert','SBC\sqlservice')">
+                    <xs:element name="ExecutionLog_8ba32cd9-e938-4bce-87b7-251e27df5540" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="ExecutionLog" msprop:DbTableName="ExecutionLog" msprop:TableType="View" msprop:Description="ExecutionLog" msprop:QueryDefinition="select distinct&#xD;&#xA;ReportGuid as 'ReportID',&#xD;&#xA;cast(e.EmployeeID as varchar(36)) as 'UserID',&#xD;&#xA;cast(DateTime as date) as 'ReportRunDate',&#xD;&#xA;left(convert(varchar, DateTime, 108), 5) as 'ReportRunTime',&#xD;&#xA;cast(c.TimeDataRetrieval / 1000  as decimal(10,2)) as 'TimeDataRetrievalSeconds',&#xD;&#xA;cast(c.TimeProcessing / 1000 as decimal(10,2)) as 'TimeProcessingSeconds',&#xD;&#xA;cast(c.TimeRendering / 1000 as decimal(10,2)) as 'TimeRenderingSeconds',&#xD;&#xA;cast(c.TimeDataRetrieval +&#xD;&#xA;c.TimeProcessing +&#xD;&#xA;c.TimeRendering / 1000 as decimal(10,2)) as 'TotalLoadTimeSeconds'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;Reporting.dw.tbl_reportexecutionsadvanced c&#xD;&#xA;&#xD;&#xA;left join [Cascade].dbo.Employee e&#xD;&#xA; on case when left(c.UserName, 4) != 'SBC\' then 'SBC\' + c.UserName else c.UserName end = 'SBC\' + e.windowsusername collate database_default&#xD;&#xA;&#xD;&#xA; where&#xD;&#xA; c.UserName not in ('SBC\SQLalert','SBC\sqlservice')">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="ReportID" msprop:DbColumnName="ReportID" msprop:FriendlyName="ReportID" minOccurs="0">
@@ -6806,7 +6806,7 @@ CREATE MEASURE 'dimReportCatalogue'[Count of Reports]=countrows('dimReportCatalo
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimReportCatalogue_a7b89ce4-0564-462d-8307-e883d9f3ed17" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimReportCatalogue" msprop:DbTableName="dimReportCatalogue" msprop:TableType="View" msprop:Description="dimReportCatalogue" msprop:QueryDefinition="select&#xD;&#xA;rank() over (order by ReportID) as 'Rank',&#xD;&#xA;*&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;(&#xD;&#xA;&#xD;&#xA;select distinct  &#xD;&#xA;cast(c.ItemID as varchar(36)) as 'ReportID',&#xD;&#xA;c.[Path] as 'ReportPath',&#xD;&#xA;c.Name as 'ReportName',&#xD;&#xA;replace(&#xD;&#xA; substring(c.[Path], 6,&#xD;&#xA;  charindex('/', &#xD;&#xA;   substring(c.[Path], 7, 100)&#xD;&#xA;  )&#xD;&#xA; )&#xD;&#xA;,'/','') as 'ReportCategory',&#xD;&#xA;cast(c.CreationDate as date) as 'CreationDate',&#xD;&#xA;convert(varchar, c.CreationDate, 108) as 'CreationTime',&#xD;&#xA;isnull(e.EmployeeDescNoID,&#xD;&#xA; case when left(u.UserName, 4) != 'SBC\' then 'SBC\' + u.UserName else u.UserName end) as 'CreatedBy',&#xD;&#xA;cast(c.ModifiedDate as date) as 'LastEditDate',&#xD;&#xA;convert(varchar, c.ModifiedDate, 108) as 'LastEditTime',&#xD;&#xA;isnull(e2.EmployeeDescNoID,&#xD;&#xA; case when left(u2.UserName, 4) != 'SBC\' then 'SBC\' + u2.UserName else u2.UserName end) as 'LastEditBy',&#xD;&#xA;'http://sql2008svr/Reports/Pages/Report.aspx?ItemPath=' + replace(replace(c.[Path], '/', '%2f'), ' ', '+') as 'ReportURL',&#xD;&#xA;MR.MostRecentDate as 'ReportLastExecutedDate',&#xD;&#xA;--isnull(&#xD;&#xA;MRe.EmployeeDescNoID&#xD;&#xA;  --MR.MostRecentUser &#xD;&#xA;  as 'ReportLastExecutedBy'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;ReportServer.dbo.[Catalog] c&#xD;&#xA;left join (&#xD;&#xA;select distinct&#xD;&#xA;tbl.ReportGUID,&#xD;&#xA;tbl.MostRecentDate,&#xD;&#xA;reaU.UserName as 'MostRecentUser'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;(&#xD;&#xA;select &#xD;&#xA;rea2.ReportGUID,&#xD;&#xA;max(rea2.DateTime) as 'MostRecentDate'&#xD;&#xA;from&#xD;&#xA;Reporting.dw.tbl_ReportExecutionsAdvanced rea2&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;rea2.UserName not in ('SBC\SQLalert','SBC\sqlservice','SBC\jcoope')&#xD;&#xA;&#xD;&#xA;group by&#xD;&#xA;rea2.ReportGUID &#xD;&#xA;) tbl&#xD;&#xA;&#xD;&#xA;left join Reporting.dw.tbl_ReportExecutionsAdvanced reaU &#xD;&#xA; on tbl.ReportGUID + cast(cast(tbl.MostRecentDate as date) as varchar(100)) + cast(cast(tbl.MostRecentDate as time) as varchar(100)) =&#xD;&#xA;  reaU.ReportGUID + cast(cast(reaU.DateTime as date) as varchar(100)) + cast(cast(reaU.Datetime as time) as varchar(100))&#xD;&#xA; ) MR on MR.ReportGUID = c.ItemID&#xD;&#xA; &#xD;&#xA;&#xD;&#xA;left join ReportServer.dbo.Users u&#xD;&#xA; on u.UserID = c.CreatedByID&#xD;&#xA; &#xD;&#xA; left join [Cascade].dbo.Employee e&#xD;&#xA; on case when left(u.UserName, 4) != 'SBC\' then 'SBC\' + u.UserName else u.UserName end = 'SBC\' + e.windowsusername collate database_default&#xD;&#xA;&#xD;&#xA;left join ReportServer.dbo.Users u2&#xD;&#xA; on u2.UserID = c.ModifiedByID&#xD;&#xA;&#xD;&#xA;  left join [Cascade].dbo.Employee e2&#xD;&#xA; on case when left(u2.UserName, 4) != 'SBC\' then 'SBC\' + u2.UserName else u2.UserName end = 'SBC\' + e2.windowsusername collate database_default&#xD;&#xA;&#xD;&#xA;  left join [Cascade].dbo.Employee MRe&#xD;&#xA; on MR.MostRecentUser = 'SBC\' + MRe.windowsusername collate database_default&#xD;&#xA;&#xD;&#xA;&#xD;&#xA; where&#xD;&#xA; c.[Path] like '%/LIVE/%'&#xD;&#xA; and c.Type = 2&#xD;&#xA; and e.EmployeeID != 'D6797712-0999-408A-9472-6D1D81426952'&#xD;&#xA; and e2.EmployeeID != 'D6797712-0999-408A-9472-6D1D81426952'&#xD;&#xA; ) tbl&#xD;&#xA; order by&#xD;&#xA; ReportLastExecutedDate">
+                    <xs:element name="dimReportCatalogue_a7b89ce4-0564-462d-8307-e883d9f3ed17" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimReportCatalogue" msprop:DbTableName="dimReportCatalogue" msprop:TableType="View" msprop:Description="dimReportCatalogue" msprop:QueryDefinition="select&#xD;&#xA;cast(rank() over (order by cast(creationdate as varchar(100)) + cast(creationtime as varchar(100)) asc) as varchar(100)) as 'Rank',&#xD;&#xA;*&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;(&#xD;&#xA;&#xD;&#xA;select distinct  &#xD;&#xA;cast(c.ItemID as varchar(36)) as 'ReportID',&#xD;&#xA;c.[Path] as 'ReportPath',&#xD;&#xA;c.Name as 'ReportName',&#xD;&#xA;replace(&#xD;&#xA; substring(c.[Path], 6,&#xD;&#xA;  charindex('/', &#xD;&#xA;   substring(c.[Path], 7, 100)&#xD;&#xA;  )&#xD;&#xA; )&#xD;&#xA;,'/','') as 'ReportCategory',&#xD;&#xA;cast(c.CreationDate as date) as 'CreationDate',&#xD;&#xA;convert(varchar, c.CreationDate, 108) as 'CreationTime',&#xD;&#xA;isnull(e.EmployeeDescNoID,&#xD;&#xA; case when left(u.UserName, 4) != 'SBC\' then 'SBC\' + u.UserName else u.UserName end) as 'CreatedBy',&#xD;&#xA;cast(c.ModifiedDate as date) as 'LastEditDate',&#xD;&#xA;convert(varchar, c.ModifiedDate, 108) as 'LastEditTime',&#xD;&#xA;isnull(e2.EmployeeDescNoID,&#xD;&#xA; case when left(u2.UserName, 4) != 'SBC\' then 'SBC\' + u2.UserName else u2.UserName end) as 'LastEditBy',&#xD;&#xA;'http://sql2008svr/Reports/Pages/Report.aspx?ItemPath=' + replace(replace(c.[Path], '/', '%2f'), ' ', '+') as 'ReportURL',&#xD;&#xA;MR.MostRecentDate as 'ReportLastExecutedDate',&#xD;&#xA;--isnull(&#xD;&#xA;MRe.EmployeeDescNoID&#xD;&#xA;  --MR.MostRecentUser &#xD;&#xA;  as 'ReportLastExecutedBy'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;ReportServer.dbo.[Catalog] c&#xD;&#xA;left join (&#xD;&#xA;select distinct&#xD;&#xA;tbl.ReportGUID,&#xD;&#xA;tbl.MostRecentDate,&#xD;&#xA;reaU.UserName as 'MostRecentUser'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;(&#xD;&#xA;select &#xD;&#xA;rea2.ReportGUID,&#xD;&#xA;max(rea2.DateTime) as 'MostRecentDate'&#xD;&#xA;from&#xD;&#xA;Reporting.dw.tbl_ReportExecutionsAdvanced rea2&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;rea2.UserName not in ('SBC\SQLalert','SBC\sqlservice','SBC\jcoope')&#xD;&#xA;&#xD;&#xA;group by&#xD;&#xA;rea2.ReportGUID &#xD;&#xA;) tbl&#xD;&#xA;&#xD;&#xA;left join Reporting.dw.tbl_ReportExecutionsAdvanced reaU &#xD;&#xA; on tbl.ReportGUID + cast(cast(tbl.MostRecentDate as date) as varchar(100)) + cast(cast(tbl.MostRecentDate as time) as varchar(100)) =&#xD;&#xA;  reaU.ReportGUID + cast(cast(reaU.DateTime as date) as varchar(100)) + cast(cast(reaU.Datetime as time) as varchar(100))&#xD;&#xA; ) MR on MR.ReportGUID = c.ItemID&#xD;&#xA; &#xD;&#xA;&#xD;&#xA;left join ReportServer.dbo.Users u&#xD;&#xA; on u.UserID = c.CreatedByID&#xD;&#xA; &#xD;&#xA; left join [Cascade].dbo.Employee e&#xD;&#xA; on case when left(u.UserName, 4) != 'SBC\' then 'SBC\' + u.UserName else u.UserName end = 'SBC\' + e.windowsusername collate database_default &#xD;&#xA;&#xD;&#xA;left join ReportServer.dbo.Users u2&#xD;&#xA; on u2.UserID = c.ModifiedByID&#xD;&#xA;&#xD;&#xA;  left join [Cascade].dbo.Employee e2&#xD;&#xA; on case when left(u2.UserName, 4) != 'SBC\' then 'SBC\' + u2.UserName else u2.UserName end = 'SBC\' + e2.windowsusername collate database_default &#xD;&#xA;&#xD;&#xA;  left join [Cascade].dbo.Employee MRe&#xD;&#xA; on MR.MostRecentUser = 'SBC\' + MRe.windowsusername collate database_default and MRe.LeftDate is null&#xD;&#xA;&#xD;&#xA;&#xD;&#xA; where&#xD;&#xA; c.[Path] like '%/LIVE/%'&#xD;&#xA; and c.Type = 2&#xD;&#xA; and e.EmployeeID != 'D6797712-0999-408A-9472-6D1D81426952'&#xD;&#xA; and e2.EmployeeID != 'D6797712-0999-408A-9472-6D1D81426952'&#xD;&#xA; ) tbl&#xD;&#xA; order by&#xD;&#xA; ReportLastExecutedDate">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="ReportID" msprop:DbColumnName="ReportID" msprop:FriendlyName="ReportID" minOccurs="0">
