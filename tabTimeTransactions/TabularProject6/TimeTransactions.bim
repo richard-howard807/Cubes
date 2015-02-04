@@ -874,29 +874,6 @@
               </ddl300_300:ToRelationshipEnd>
             </ddl300_300:Relationship>
             <ddl300_300:Relationship>
-              <ID>e6c7d481-d61d-400a-b6ea-f1580db072b3</ID>
-              <ddl300_300:FromRelationshipEnd>
-                <ddl300_300:Multiplicity>Many</ddl300_300:Multiplicity>
-                <ddl300:VisualizationProperties />
-                <DimensionID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</DimensionID>
-                <Attributes>
-                  <Attribute>
-                    <AttributeID>ClientCode</AttributeID>
-                  </Attribute>
-                </Attributes>
-              </ddl300_300:FromRelationshipEnd>
-              <ddl300_300:ToRelationshipEnd>
-                <ddl300_300:Multiplicity>One</ddl300_300:Multiplicity>
-                <ddl300:VisualizationProperties />
-                <DimensionID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</DimensionID>
-                <Attributes>
-                  <Attribute>
-                    <AttributeID>ClientCode</AttributeID>
-                  </Attribute>
-                </Attributes>
-              </ddl300_300:ToRelationshipEnd>
-            </ddl300_300:Relationship>
-            <ddl300_300:Relationship>
               <ID>19c0f60f-96c4-4390-a4b8-69f856410cbf</ID>
               <ddl300_300:FromRelationshipEnd>
                 <ddl300_300:Multiplicity>Many</ddl300_300:Multiplicity>
@@ -1748,19 +1725,19 @@
                   <Name>TransactionID</Name>
                 </AttributeRelationship>
                 <AttributeRelationship>
-                  <AttributeID>dim_client_key</AttributeID>
-                  <OverrideBehavior>None</OverrideBehavior>
-                  <Name>dim_client_key</Name>
-                </AttributeRelationship>
-                <AttributeRelationship>
-                  <AttributeID>dim_matter_header_key</AttributeID>
-                  <OverrideBehavior>None</OverrideBehavior>
-                  <Name>dim_matter_header_key</Name>
-                </AttributeRelationship>
-                <AttributeRelationship>
                   <AttributeID>TransactionType</AttributeID>
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>TransactionType</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>ClientID</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>ClientID</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>MatterID</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>MatterID</Name>
                 </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
@@ -2127,56 +2104,6 @@
               <OrderBy>Key</OrderBy>
             </Attribute>
             <Attribute>
-              <ID>dim_client_key</ID>
-              <Name>dim_client_key</Name>
-              <KeyColumns>
-                <KeyColumn>
-                  <DataType>Integer</DataType>
-                  <DataSize>-1</DataSize>
-                  <NullProcessing>Preserve</NullProcessing>
-                  <Source xsi:type="ColumnBinding">
-                    <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
-                    <ColumnID>dim_client_key</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-              <NameColumn>
-                <DataType>WChar</DataType>
-                <DataSize>-1</DataSize>
-                <NullProcessing>ZeroOrBlank</NullProcessing>
-                <Source xsi:type="ColumnBinding">
-                  <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
-                  <ColumnID>dim_client_key</ColumnID>
-                </Source>
-              </NameColumn>
-              <OrderBy>Key</OrderBy>
-            </Attribute>
-            <Attribute>
-              <ID>dim_matter_header_key</ID>
-              <Name>dim_matter_header_key</Name>
-              <KeyColumns>
-                <KeyColumn>
-                  <DataType>Integer</DataType>
-                  <DataSize>-1</DataSize>
-                  <NullProcessing>Preserve</NullProcessing>
-                  <Source xsi:type="ColumnBinding">
-                    <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
-                    <ColumnID>dim_matter_header_key</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-              <NameColumn>
-                <DataType>WChar</DataType>
-                <DataSize>-1</DataSize>
-                <NullProcessing>ZeroOrBlank</NullProcessing>
-                <Source xsi:type="ColumnBinding">
-                  <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
-                  <ColumnID>dim_matter_header_key</ColumnID>
-                </Source>
-              </NameColumn>
-              <OrderBy>Key</OrderBy>
-            </Attribute>
-            <Attribute>
               <ID>TransactionType</ID>
               <Name>TransactionType</Name>
               <KeyColumns>
@@ -2197,6 +2124,56 @@
                 <Source xsi:type="ColumnBinding">
                   <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
                   <ColumnID>TransactionType</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>ClientID</ID>
+              <Name>ClientID</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
+                    <ColumnID>ClientID</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
+                  <ColumnID>ClientID</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>MatterID</ID>
+              <Name>MatterID</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
+                    <ColumnID>MatterID</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
+                  <ColumnID>MatterID</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
@@ -2344,6 +2321,52 @@
                 <Attributes>
                   <Attribute>
                     <AttributeID>TimeTransactionTimeTypeCode</AttributeID>
+                  </Attribute>
+                </Attributes>
+              </ddl300_300:ToRelationshipEnd>
+            </ddl300_300:Relationship>
+            <ddl300_300:Relationship>
+              <ID>60202aef-017a-49cd-a37d-3b1131b6fad8</ID>
+              <ddl300_300:FromRelationshipEnd>
+                <ddl300_300:Multiplicity>Many</ddl300_300:Multiplicity>
+                <ddl300:VisualizationProperties />
+                <DimensionID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</DimensionID>
+                <Attributes>
+                  <Attribute>
+                    <AttributeID>MatterID</AttributeID>
+                  </Attribute>
+                </Attributes>
+              </ddl300_300:FromRelationshipEnd>
+              <ddl300_300:ToRelationshipEnd>
+                <ddl300_300:Multiplicity>One</ddl300_300:Multiplicity>
+                <ddl300:VisualizationProperties />
+                <DimensionID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</DimensionID>
+                <Attributes>
+                  <Attribute>
+                    <AttributeID>MatterID</AttributeID>
+                  </Attribute>
+                </Attributes>
+              </ddl300_300:ToRelationshipEnd>
+            </ddl300_300:Relationship>
+            <ddl300_300:Relationship>
+              <ID>ec34a4b0-2f8b-4142-b171-8873bf17a401</ID>
+              <ddl300_300:FromRelationshipEnd>
+                <ddl300_300:Multiplicity>Many</ddl300_300:Multiplicity>
+                <ddl300:VisualizationProperties />
+                <DimensionID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</DimensionID>
+                <Attributes>
+                  <Attribute>
+                    <AttributeID>ClientID</AttributeID>
+                  </Attribute>
+                </Attributes>
+              </ddl300_300:FromRelationshipEnd>
+              <ddl300_300:ToRelationshipEnd>
+                <ddl300_300:Multiplicity>One</ddl300_300:Multiplicity>
+                <ddl300:VisualizationProperties />
+                <DimensionID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</DimensionID>
+                <Attributes>
+                  <Attribute>
+                    <AttributeID>ClientCode</AttributeID>
                   </Attribute>
                 </Attributes>
               </ddl300_300:ToRelationshipEnd>
@@ -7197,13 +7220,13 @@
                   <AttributeID>TransactionID</AttributeID>
                 </Attribute>
                 <Attribute>
-                  <AttributeID>dim_client_key</AttributeID>
-                </Attribute>
-                <Attribute>
-                  <AttributeID>dim_matter_header_key</AttributeID>
-                </Attribute>
-                <Attribute>
                   <AttributeID>TransactionType</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>ClientID</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>MatterID</AttributeID>
                 </Attribute>
               </Attributes>
             </Dimension>
@@ -8100,57 +8123,6 @@ inner join fact_all_time_activity a
                   <IntermediateGranularityAttributeID>BranchCode</IntermediateGranularityAttributeID>
                   <Materialization>Regular</Materialization>
                   <ddl300:RelationshipID>5d198784-fdfb-43e7-a7ee-d48ef772b7f7</ddl300:RelationshipID>
-                </Dimension>
-                <Dimension xsi:type="ReferenceMeasureGroupDimension">
-                  <CubeDimensionID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</CubeDimensionID>
-                  <Attributes>
-                    <Attribute>
-                      <AttributeID>RowNumber</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>4</DataSize>
-                          <NullProcessing>Error</NullProcessing>
-                          <Source xsi:type="ddl200_200:RowNumberBinding" />
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>ClientCode</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Error</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
-                            <ColumnID>ClientCode</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                      <Type>Granularity</Type>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>ClientName</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
-                            <ColumnID>ClientName</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                  </Attributes>
-                  <IntermediateCubeDimensionID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</IntermediateCubeDimensionID>
-                  <IntermediateGranularityAttributeID>ClientCode</IntermediateGranularityAttributeID>
-                  <Materialization>Regular</Materialization>
-                  <ddl300:RelationshipID>e6c7d481-d61d-400a-b6ea-f1580db072b3</ddl300:RelationshipID>
                 </Dimension>
                 <Dimension xsi:type="ReferenceMeasureGroupDimension">
                   <CubeDimensionID>dimDateMatterOpened_866fdd20-c0be-47a9-9ff2-e0c3a5aa9443</CubeDimensionID>
@@ -9811,34 +9783,6 @@ branch_name is not null</QueryDefinition>
                       </KeyColumns>
                     </Attribute>
                     <Attribute>
-                      <AttributeID>dim_client_key</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
-                            <ColumnID>dim_client_key</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>dim_matter_header_key</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
-                            <ColumnID>dim_matter_header_key</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
                       <AttributeID>TransactionType</AttributeID>
                       <KeyColumns>
                         <KeyColumn>
@@ -9848,6 +9792,34 @@ branch_name is not null</QueryDefinition>
                           <Source xsi:type="ColumnBinding">
                             <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
                             <ColumnID>TransactionType</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientID</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
+                            <ColumnID>ClientID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterID</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
+                            <ColumnID>MatterID</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -11155,6 +11127,965 @@ branch_name is not null</QueryDefinition>
                   <Materialization>Regular</Materialization>
                   <ddl300:RelationshipID>2ef75f31-453d-452e-9ff9-0d663a0ca6ce</ddl300:RelationshipID>
                 </Dimension>
+                <Dimension xsi:type="ReferenceMeasureGroupDimension">
+                  <CubeDimensionID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>RowNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>4</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ddl200_200:RowNumberBinding" />
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterID</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                            <ColumnID>MatterID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DisbursementBalance</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Double</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                            <ColumnID>DisbursementBalance</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientAccountBalance</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Double</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                            <ColumnID>ClientAccountBalance</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>UnpaidBillsBalance</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Double</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                            <ColumnID>UnpaidBillsBalance</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>WIPBalance</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Double</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                            <ColumnID>WIPBalance</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>CostsToDate</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Double</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                            <ColumnID>CostsToDate</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>TotalTimeBilled</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Double</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                            <ColumnID>TotalTimeBilled</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>NumberOfBillsRaised</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>SmallInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                            <ColumnID>NumberOfBillsRaised</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>UnbilledTime</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                            <ColumnID>UnbilledTime</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientCode</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                            <ColumnID>ClientCode</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterGroupCode</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                            <ColumnID>MatterGroupCode</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BranchCode</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                            <ColumnID>BranchCode</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>WorkTypeCode</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                            <ColumnID>WorkTypeCode</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DepartmentCode</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                            <ColumnID>DepartmentCode</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                            <ColumnID>MatterNumber</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterDesc</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                            <ColumnID>MatterDesc</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DateMatterOpen</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                            <ColumnID>DateMatterOpen</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DateMatterClosed</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                            <ColumnID>DateMatterClosed</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                  </Attributes>
+                  <IntermediateCubeDimensionID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</IntermediateCubeDimensionID>
+                  <IntermediateGranularityAttributeID>MatterID</IntermediateGranularityAttributeID>
+                  <Materialization>Regular</Materialization>
+                  <ddl300:RelationshipID>60202aef-017a-49cd-a37d-3b1131b6fad8</ddl300:RelationshipID>
+                </Dimension>
+                <Dimension xsi:type="ReferenceMeasureGroupDimension">
+                  <CubeDimensionID>dimBranch_6fd44d6b-acaf-4a45-9bb8-1f4af8f84c53</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>RowNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>4</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ddl200_200:RowNumberBinding" />
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>branch_code</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimBranch_6fd44d6b-acaf-4a45-9bb8-1f4af8f84c53</TableID>
+                            <ColumnID>branch_code</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>branch_name</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimBranch_6fd44d6b-acaf-4a45-9bb8-1f4af8f84c53</TableID>
+                            <ColumnID>branch_name</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                  </Attributes>
+                  <IntermediateCubeDimensionID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</IntermediateCubeDimensionID>
+                  <IntermediateGranularityAttributeID>BranchCode</IntermediateGranularityAttributeID>
+                </Dimension>
+                <Dimension xsi:type="ReferenceMeasureGroupDimension">
+                  <CubeDimensionID>dimDateMatterOpened_866fdd20-c0be-47a9-9ff2-e0c3a5aa9443</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>RowNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>4</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ddl200_200:RowNumberBinding" />
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_date_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateMatterOpened_866fdd20-c0be-47a9-9ff2-e0c3a5aa9443</TableID>
+                            <ColumnID>dim_date_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>Date</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateMatterOpened_866fdd20-c0be-47a9-9ff2-e0c3a5aa9443</TableID>
+                            <ColumnID>Date</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DayInMonth</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateMatterOpened_866fdd20-c0be-47a9-9ff2-e0c3a5aa9443</TableID>
+                            <ColumnID>DayInMonth</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DayInYear</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateMatterOpened_866fdd20-c0be-47a9-9ff2-e0c3a5aa9443</TableID>
+                            <ColumnID>DayInYear</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>WeekdayNo</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateMatterOpened_866fdd20-c0be-47a9-9ff2-e0c3a5aa9443</TableID>
+                            <ColumnID>WeekdayNo</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>WeekdayName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateMatterOpened_866fdd20-c0be-47a9-9ff2-e0c3a5aa9443</TableID>
+                            <ColumnID>WeekdayName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>CalendarWeek</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateMatterOpened_866fdd20-c0be-47a9-9ff2-e0c3a5aa9443</TableID>
+                            <ColumnID>CalendarWeek</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>CalendarMonthNo</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateMatterOpened_866fdd20-c0be-47a9-9ff2-e0c3a5aa9443</TableID>
+                            <ColumnID>CalendarMonthNo</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>CalendarMonthName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateMatterOpened_866fdd20-c0be-47a9-9ff2-e0c3a5aa9443</TableID>
+                            <ColumnID>CalendarMonthName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>CalendarQuarterNo</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateMatterOpened_866fdd20-c0be-47a9-9ff2-e0c3a5aa9443</TableID>
+                            <ColumnID>CalendarQuarterNo</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>CalendarYear</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateMatterOpened_866fdd20-c0be-47a9-9ff2-e0c3a5aa9443</TableID>
+                            <ColumnID>CalendarYear</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>FinancialWeek</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateMatterOpened_866fdd20-c0be-47a9-9ff2-e0c3a5aa9443</TableID>
+                            <ColumnID>FinancialWeek</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>FinancialMonthNo</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateMatterOpened_866fdd20-c0be-47a9-9ff2-e0c3a5aa9443</TableID>
+                            <ColumnID>FinancialMonthNo</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>FinancialMonthName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateMatterOpened_866fdd20-c0be-47a9-9ff2-e0c3a5aa9443</TableID>
+                            <ColumnID>FinancialMonthName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>FinancialQuarterNo</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateMatterOpened_866fdd20-c0be-47a9-9ff2-e0c3a5aa9443</TableID>
+                            <ColumnID>FinancialQuarterNo</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>FinancialYear</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateMatterOpened_866fdd20-c0be-47a9-9ff2-e0c3a5aa9443</TableID>
+                            <ColumnID>FinancialYear</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>Weekend</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateMatterOpened_866fdd20-c0be-47a9-9ff2-e0c3a5aa9443</TableID>
+                            <ColumnID>Weekend</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>Holiday</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateMatterOpened_866fdd20-c0be-47a9-9ff2-e0c3a5aa9443</TableID>
+                            <ColumnID>Holiday</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                  </Attributes>
+                  <IntermediateCubeDimensionID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</IntermediateCubeDimensionID>
+                  <IntermediateGranularityAttributeID>DateMatterOpen</IntermediateGranularityAttributeID>
+                </Dimension>
+                <Dimension xsi:type="ReferenceMeasureGroupDimension">
+                  <CubeDimensionID>dimDateMatterClosed_ab636a6a-d3cd-4638-9aaf-bddf26883940</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>RowNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>4</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ddl200_200:RowNumberBinding" />
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_date_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateMatterClosed_ab636a6a-d3cd-4638-9aaf-bddf26883940</TableID>
+                            <ColumnID>dim_date_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>Date</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateMatterClosed_ab636a6a-d3cd-4638-9aaf-bddf26883940</TableID>
+                            <ColumnID>Date</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DayInMonth</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateMatterClosed_ab636a6a-d3cd-4638-9aaf-bddf26883940</TableID>
+                            <ColumnID>DayInMonth</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DayInYear</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateMatterClosed_ab636a6a-d3cd-4638-9aaf-bddf26883940</TableID>
+                            <ColumnID>DayInYear</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>WeekdayNo</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateMatterClosed_ab636a6a-d3cd-4638-9aaf-bddf26883940</TableID>
+                            <ColumnID>WeekdayNo</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>WeekdayName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateMatterClosed_ab636a6a-d3cd-4638-9aaf-bddf26883940</TableID>
+                            <ColumnID>WeekdayName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>CalendarWeek</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateMatterClosed_ab636a6a-d3cd-4638-9aaf-bddf26883940</TableID>
+                            <ColumnID>CalendarWeek</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>CalendarMonthNo</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateMatterClosed_ab636a6a-d3cd-4638-9aaf-bddf26883940</TableID>
+                            <ColumnID>CalendarMonthNo</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>CalendarMonthName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateMatterClosed_ab636a6a-d3cd-4638-9aaf-bddf26883940</TableID>
+                            <ColumnID>CalendarMonthName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>CalendarQuarterNo</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateMatterClosed_ab636a6a-d3cd-4638-9aaf-bddf26883940</TableID>
+                            <ColumnID>CalendarQuarterNo</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>CalendarYear</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateMatterClosed_ab636a6a-d3cd-4638-9aaf-bddf26883940</TableID>
+                            <ColumnID>CalendarYear</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>FinancialWeek</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateMatterClosed_ab636a6a-d3cd-4638-9aaf-bddf26883940</TableID>
+                            <ColumnID>FinancialWeek</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>FinancialMonthNo</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateMatterClosed_ab636a6a-d3cd-4638-9aaf-bddf26883940</TableID>
+                            <ColumnID>FinancialMonthNo</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>FinancialMonthName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateMatterClosed_ab636a6a-d3cd-4638-9aaf-bddf26883940</TableID>
+                            <ColumnID>FinancialMonthName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>FinancialQuarterNo</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateMatterClosed_ab636a6a-d3cd-4638-9aaf-bddf26883940</TableID>
+                            <ColumnID>FinancialQuarterNo</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>FinancialYear</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateMatterClosed_ab636a6a-d3cd-4638-9aaf-bddf26883940</TableID>
+                            <ColumnID>FinancialYear</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>Weekend</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateMatterClosed_ab636a6a-d3cd-4638-9aaf-bddf26883940</TableID>
+                            <ColumnID>Weekend</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>Holiday</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateMatterClosed_ab636a6a-d3cd-4638-9aaf-bddf26883940</TableID>
+                            <ColumnID>Holiday</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                  </Attributes>
+                  <IntermediateCubeDimensionID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</IntermediateCubeDimensionID>
+                  <IntermediateGranularityAttributeID>DateMatterClosed</IntermediateGranularityAttributeID>
+                </Dimension>
+                <Dimension xsi:type="ReferenceMeasureGroupDimension">
+                  <CubeDimensionID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>RowNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>4</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ddl200_200:RowNumberBinding" />
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientCode</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
+                            <ColumnID>ClientCode</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
+                            <ColumnID>ClientName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                  </Attributes>
+                  <IntermediateCubeDimensionID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</IntermediateCubeDimensionID>
+                  <IntermediateGranularityAttributeID>ClientID</IntermediateGranularityAttributeID>
+                  <Materialization>Regular</Materialization>
+                  <ddl300:RelationshipID>ec34a4b0-2f8b-4142-b171-8873bf17a401</ddl300:RelationshipID>
+                </Dimension>
               </Dimensions>
               <Partitions>
                 <Partition>
@@ -11179,8 +12110,8 @@ branch_name is not null</QueryDefinition>
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
                     <QueryDefinition>select 
 tbl.TransactionID,
-a.dim_client_key,
-a.dim_matter_header_key,
+a.dim_client_key as 'ClientID',
+a.dim_matter_header_key as 'MatterID',
 a.dim_bill_key as 'BillID',
 a.time_type as 'ChargeableTimeCode',
 a.dim_fed_hierarchy_history_key as 'FEDCodeID',
@@ -11213,23 +12144,23 @@ from
 [SVR-LIV-DWH-01].red_dw.dbo.fact_all_time_activity a
 
 left join
-	[SVR-LIV-DWH-01].red_dw.dbo.dim_all_time_activity t
-		on a.dim_all_time_activity_key = t.dim_all_time_activity_key
+ [SVR-LIV-DWH-01].red_dw.dbo.dim_all_time_activity t
+  on a.dim_all_time_activity_key = t.dim_all_time_activity_key
 
 left join
-	[SVR-LIV-DWH-01].red_dw.dbo.dim_time_narratives n
-	  on n.dim_time_narratives_key = a.dim_time_narratives_key
+ [SVR-LIV-DWH-01].red_dw.dbo.dim_time_narratives n
+   on n.dim_time_narratives_key = a.dim_time_narratives_key
 
 left join (
-	select
-	a.dim_all_time_activity_key,
-	a.dim_client_key, 
-	a.dim_matter_header_key, 
-	a.time_type,
-	row_number() over (partition by a.dim_client_key, a.dim_matter_header_key, a.time_type order by a.transaction_sequence_number) as 'TransactionID'
+ select
+ a.dim_all_time_activity_key,
+ a.dim_client_key, 
+ a.dim_matter_header_key, 
+ a.time_type,
+ row_number() over (partition by a.dim_client_key, a.dim_matter_header_key, a.time_type order by a.transaction_sequence_number) as 'TransactionID'
 
-	from
-	red_dw.dbo.fact_all_time_activity a
+ from
+ red_dw.dbo.fact_all_time_activity a
 ) tbl on tbl.dim_all_time_activity_key = a.dim_all_time_activity_key</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
@@ -14058,7 +14989,7 @@ CREATE MEASURE 'TimeTransactions'[TotalMinutesRecorded]=sum([MinutesRecorded]);
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="TimeTransactions" msprop:DbTableName="factMainTable" msprop:TableType="View" msprop:Description="factMainTable" msprop:QueryDefinition="select &#xD;&#xA;tbl.TransactionID,&#xD;&#xA;a.dim_client_key,&#xD;&#xA;a.dim_matter_header_key,&#xD;&#xA;a.dim_bill_key as 'BillID',&#xD;&#xA;a.time_type as 'ChargeableTimeCode',&#xD;&#xA;a.dim_fed_hierarchy_history_key as 'FEDCodeID',&#xD;&#xA;a.dim_transaction_date_key as 'TransactionDate',&#xD;&#xA;a.dim_run_date_key as 'RunDate',&#xD;&#xA;a.minutes_recorded as 'MinutesRecorded',&#xD;&#xA;a.time_cost_value as 'ValueOfTimeRecorded',&#xD;&#xA;a.hourly_charge_rate as 'ChargeRate',&#xD;&#xA;a.time_charge_value as 'timeChargeValue',&#xD;&#xA;a.overridden_time_charge_value as 'OverriddenTimeChargeValue',&#xD;&#xA;case &#xD;&#xA;when t.time_activity_code != 'W/O'&#xD;&#xA;and t.bill_number = 'xxxxxxxx'&#xD;&#xA; then 'Written Off'&#xD;&#xA;when t.time_activity_code = 'W/O'&#xD;&#xA; then 'Written Off Transaction'&#xD;&#xA;when t.bill_number = ''&#xD;&#xA; then 'Unbilled'&#xD;&#xA;when a.dim_bill_key &gt; 0&#xD;&#xA;and t.time_activity_code not in ('Bill','Abmt')&#xD;&#xA; then 'Billed'&#xD;&#xA;when a.time_type = 'NC' &#xD;&#xA; then 'Non Chargeable Time'&#xD;&#xA;end as 'TransactionType',&#xD;&#xA;n.td_textln as 'Narrative',&#xD;&#xA;t.time_activity_code as 'TimeActivityCode',&#xD;&#xA;t.rate_code as 'RateCode'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;[SVR-LIV-DWH-01].red_dw.dbo.fact_all_time_activity a&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; [SVR-LIV-DWH-01].red_dw.dbo.dim_all_time_activity t&#xD;&#xA;  on a.dim_all_time_activity_key = t.dim_all_time_activity_key&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; [SVR-LIV-DWH-01].red_dw.dbo.dim_time_narratives n&#xD;&#xA;   on n.dim_time_narratives_key = a.dim_time_narratives_key&#xD;&#xA;&#xD;&#xA;left join (&#xD;&#xA; select&#xD;&#xA; a.dim_all_time_activity_key,&#xD;&#xA; a.dim_client_key, &#xD;&#xA; a.dim_matter_header_key, &#xD;&#xA; a.time_type,&#xD;&#xA; row_number() over (partition by a.dim_client_key, a.dim_matter_header_key, a.time_type order by a.transaction_sequence_number) as 'TransactionID'&#xD;&#xA;&#xD;&#xA; from&#xD;&#xA; red_dw.dbo.fact_all_time_activity a&#xD;&#xA;) tbl on tbl.dim_all_time_activity_key = a.dim_all_time_activity_key">
+                    <xs:element name="factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="TimeTransactions" msprop:DbTableName="factMainTable" msprop:TableType="View" msprop:Description="factMainTable" msprop:QueryDefinition="select &#xD;&#xA;tbl.TransactionID,&#xD;&#xA;a.dim_client_key as 'ClientID',&#xD;&#xA;a.dim_matter_header_key as 'MatterID',&#xD;&#xA;a.dim_bill_key as 'BillID',&#xD;&#xA;a.time_type as 'ChargeableTimeCode',&#xD;&#xA;a.dim_fed_hierarchy_history_key as 'FEDCodeID',&#xD;&#xA;a.dim_transaction_date_key as 'TransactionDate',&#xD;&#xA;a.dim_run_date_key as 'RunDate',&#xD;&#xA;a.minutes_recorded as 'MinutesRecorded',&#xD;&#xA;a.time_cost_value as 'ValueOfTimeRecorded',&#xD;&#xA;a.hourly_charge_rate as 'ChargeRate',&#xD;&#xA;a.time_charge_value as 'timeChargeValue',&#xD;&#xA;a.overridden_time_charge_value as 'OverriddenTimeChargeValue',&#xD;&#xA;case &#xD;&#xA;when t.time_activity_code != 'W/O'&#xD;&#xA;and t.bill_number = 'xxxxxxxx'&#xD;&#xA; then 'Written Off'&#xD;&#xA;when t.time_activity_code = 'W/O'&#xD;&#xA; then 'Written Off Transaction'&#xD;&#xA;when t.bill_number = ''&#xD;&#xA; then 'Unbilled'&#xD;&#xA;when a.dim_bill_key &gt; 0&#xD;&#xA;and t.time_activity_code not in ('Bill','Abmt')&#xD;&#xA; then 'Billed'&#xD;&#xA;when a.time_type = 'NC' &#xD;&#xA; then 'Non Chargeable Time'&#xD;&#xA;end as 'TransactionType',&#xD;&#xA;n.td_textln as 'Narrative',&#xD;&#xA;t.time_activity_code as 'TimeActivityCode',&#xD;&#xA;t.rate_code as 'RateCode'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;[SVR-LIV-DWH-01].red_dw.dbo.fact_all_time_activity a&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; [SVR-LIV-DWH-01].red_dw.dbo.dim_all_time_activity t&#xD;&#xA;  on a.dim_all_time_activity_key = t.dim_all_time_activity_key&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; [SVR-LIV-DWH-01].red_dw.dbo.dim_time_narratives n&#xD;&#xA;   on n.dim_time_narratives_key = a.dim_time_narratives_key&#xD;&#xA;&#xD;&#xA;left join (&#xD;&#xA; select&#xD;&#xA; a.dim_all_time_activity_key,&#xD;&#xA; a.dim_client_key, &#xD;&#xA; a.dim_matter_header_key, &#xD;&#xA; a.time_type,&#xD;&#xA; row_number() over (partition by a.dim_client_key, a.dim_matter_header_key, a.time_type order by a.transaction_sequence_number) as 'TransactionID'&#xD;&#xA;&#xD;&#xA; from&#xD;&#xA; red_dw.dbo.fact_all_time_activity a&#xD;&#xA;) tbl on tbl.dim_all_time_activity_key = a.dim_all_time_activity_key">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="BillID" msprop:DbColumnName="BillID" msprop:FriendlyName="BillID" type="xs:int" minOccurs="0" />
@@ -14093,8 +15024,6 @@ CREATE MEASURE 'TimeTransactions'[TotalMinutesRecorded]=sum([MinutesRecorded]);
                             </xs:simpleType>
                           </xs:element>
                           <xs:element name="TransactionID" msprop:DbColumnName="TransactionID" msprop:FriendlyName="TransactionID" type="xs:long" minOccurs="0" />
-                          <xs:element name="dim_client_key" msprop:DbColumnName="dim_client_key" msprop:FriendlyName="dim_client_key" type="xs:int" minOccurs="0" />
-                          <xs:element name="dim_matter_header_key" msprop:DbColumnName="dim_matter_header_key" msprop:FriendlyName="dim_matter_header_key" type="xs:int" minOccurs="0" />
                           <xs:element name="TransactionType" msprop:DbColumnName="TransactionType" msprop:FriendlyName="TransactionType" minOccurs="0">
                             <xs:simpleType>
                               <xs:restriction base="xs:string">
@@ -14102,6 +15031,8 @@ CREATE MEASURE 'TimeTransactions'[TotalMinutesRecorded]=sum([MinutesRecorded]);
                               </xs:restriction>
                             </xs:simpleType>
                           </xs:element>
+                          <xs:element name="ClientID" msprop:DbColumnName="ClientID" msprop:FriendlyName="ClientID" type="xs:int" minOccurs="0" />
+                          <xs:element name="MatterID" msprop:DbColumnName="MatterID" msprop:FriendlyName="MatterID" type="xs:int" minOccurs="0" />
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
