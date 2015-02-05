@@ -5903,6 +5903,11 @@
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>BusinessLine</Name>
                 </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>PracticeArea</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>PracticeArea</Name>
+                </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
@@ -6048,6 +6053,31 @@
                 <Source xsi:type="ColumnBinding">
                   <TableID>dimFEDHierarchy_e077edfd-a3df-4415-9164-2f7aab15a75f</TableID>
                   <ColumnID>BusinessLine</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>PracticeArea</ID>
+              <Name>PracticeArea</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimFEDHierarchy_e077edfd-a3df-4415-9164-2f7aab15a75f</TableID>
+                    <ColumnID>PracticeArea</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimFEDHierarchy_e077edfd-a3df-4415-9164-2f7aab15a75f</TableID>
+                  <ColumnID>PracticeArea</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
@@ -7740,6 +7770,9 @@
                 </Attribute>
                 <Attribute>
                   <AttributeID>BusinessLine</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>PracticeArea</AttributeID>
                 </Attribute>
               </Attributes>
             </Dimension>
@@ -10741,6 +10774,20 @@ branch_name is not null</QueryDefinition>
                           <Source xsi:type="ColumnBinding">
                             <TableID>dimFEDHierarchy_e077edfd-a3df-4415-9164-2f7aab15a75f</TableID>
                             <ColumnID>BusinessLine</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>PracticeArea</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimFEDHierarchy_e077edfd-a3df-4415-9164-2f7aab15a75f</TableID>
+                            <ColumnID>PracticeArea</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -15345,6 +15392,20 @@ dim_date</QueryDefinition>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>PracticeArea</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimFEDHierarchy_e077edfd-a3df-4415-9164-2f7aab15a75f</TableID>
+                            <ColumnID>PracticeArea</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
                 </Dimension>
@@ -15375,8 +15436,8 @@ dim_fed_hierarchy_history_key as 'FEDCodeID',
 fed_code as 'FEDCode',
 name as 'FEDName',
 hierarchylevel2hist as 'BusinessLine',
-hierarchylevel3hist as 'Team'
-
+hierarchylevel3hist as 'PracticeArea',
+hierarchylevel5hist as 'Team'
 
 from
 red_dw.dbo.dim_fed_hierarchy_history</QueryDefinition>
@@ -17195,7 +17256,7 @@ CREATE MEASURE 'TimeTransactions'[TotalOverriddenTimeChargeValue]=sum([Overridde
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimFEDHierarchy_e077edfd-a3df-4415-9164-2f7aab15a75f" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimTimeTransactionsFEDHierarchy" msprop:DbTableName="dimFEDHierarchy" msprop:TableType="View" msprop:Description="dimFEDHierarchy" msprop:QueryDefinition="select&#xD;&#xA;dim_fed_hierarchy_history_key as 'FEDCodeID',&#xD;&#xA;fed_code as 'FEDCode',&#xD;&#xA;name as 'FEDName',&#xD;&#xA;hierarchylevel2hist as 'BusinessLine',&#xD;&#xA;hierarchylevel3hist as 'Team'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_fed_hierarchy_history">
+                    <xs:element name="dimFEDHierarchy_e077edfd-a3df-4415-9164-2f7aab15a75f" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimTimeTransactionsFEDHierarchy" msprop:DbTableName="dimFEDHierarchy" msprop:TableType="View" msprop:Description="dimFEDHierarchy" msprop:QueryDefinition="select&#xD;&#xA;dim_fed_hierarchy_history_key as 'FEDCodeID',&#xD;&#xA;fed_code as 'FEDCode',&#xD;&#xA;name as 'FEDName',&#xD;&#xA;hierarchylevel2hist as 'BusinessLine',&#xD;&#xA;hierarchylevel3hist as 'PracticeArea',&#xD;&#xA;hierarchylevel5hist as 'Team'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_fed_hierarchy_history">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="FEDCode" msprop:DbColumnName="FEDCode" msprop:FriendlyName="FEDCode" minOccurs="0">
@@ -17221,6 +17282,13 @@ CREATE MEASURE 'TimeTransactions'[TotalOverriddenTimeChargeValue]=sum([Overridde
                             </xs:simpleType>
                           </xs:element>
                           <xs:element name="BusinessLine" msprop:DbColumnName="BusinessLine" msprop:FriendlyName="BusinessLine" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="PracticeArea" msprop:DbColumnName="PracticeArea" msprop:FriendlyName="PracticeArea" minOccurs="0">
                             <xs:simpleType>
                               <xs:restriction base="xs:string">
                                 <xs:maxLength value="32768" />
