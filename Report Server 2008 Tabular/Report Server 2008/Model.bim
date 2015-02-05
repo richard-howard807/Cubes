@@ -4765,9 +4765,11 @@ left(convert(varchar, DateTime, 108), 5) as 'ReportRunTime',
 cast(c.TimeDataRetrieval / 1000  as decimal(10,2)) as 'TimeDataRetrievalSeconds',
 cast(c.TimeProcessing / 1000 as decimal(10,2)) as 'TimeProcessingSeconds',
 cast(c.TimeRendering / 1000 as decimal(10,2)) as 'TimeRenderingSeconds',
-cast(c.TimeDataRetrieval +
+cast(
+(c.TimeDataRetrieval +
 c.TimeProcessing +
-c.TimeRendering / 1000 as decimal(10,2)) as 'TotalLoadTimeSeconds'
+c.TimeRendering)
+/ 1000 as decimal(10,2)) as 'TotalLoadTimeSeconds'
 
 
 from
@@ -6825,7 +6827,7 @@ CREATE MEASURE 'dimReportCatalogue'[Count of Reports]=countrows('dimReportCatalo
               <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:Locale="en-GB">
                 <xs:complexType>
                   <xs:choice minOccurs="0" maxOccurs="unbounded">
-                    <xs:element name="ExecutionLog_8ba32cd9-e938-4bce-87b7-251e27df5540" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="ExecutionLog" msprop:DbTableName="ExecutionLog" msprop:TableType="View" msprop:Description="ExecutionLog" msprop:QueryDefinition="select distinct&#xD;&#xA;c.SERVER as 'Server',&#xD;&#xA;ReportGuid as 'ReportID',&#xD;&#xA;cast(e.EmployeeID as varchar(36)) as 'UserID',&#xD;&#xA;cast(DateTime as date) as 'ReportRunDate',&#xD;&#xA;left(convert(varchar, DateTime, 108), 5) as 'ReportRunTime',&#xD;&#xA;cast(c.TimeDataRetrieval / 1000  as decimal(10,2)) as 'TimeDataRetrievalSeconds',&#xD;&#xA;cast(c.TimeProcessing / 1000 as decimal(10,2)) as 'TimeProcessingSeconds',&#xD;&#xA;cast(c.TimeRendering / 1000 as decimal(10,2)) as 'TimeRenderingSeconds',&#xD;&#xA;cast(c.TimeDataRetrieval +&#xD;&#xA;c.TimeProcessing +&#xD;&#xA;c.TimeRendering / 1000 as decimal(10,2)) as 'TotalLoadTimeSeconds'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;Reporting.dw.tbl_reportexecutionsadvanced c&#xD;&#xA;&#xD;&#xA;left join [Cascade].dbo.Employee e&#xD;&#xA; on case when left(c.UserName, 4) != 'SBC\' then 'SBC\' + c.UserName else c.UserName end = 'SBC\' + e.windowsusername collate database_default&#xD;&#xA;&#xD;&#xA; where&#xD;&#xA; c.UserName not in ('SBC\SQLalert','SBC\sqlservice')">
+                    <xs:element name="ExecutionLog_8ba32cd9-e938-4bce-87b7-251e27df5540" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="ExecutionLog" msprop:DbTableName="ExecutionLog" msprop:TableType="View" msprop:Description="ExecutionLog" msprop:QueryDefinition="select distinct&#xD;&#xA;c.SERVER as 'Server',&#xD;&#xA;ReportGuid as 'ReportID',&#xD;&#xA;cast(e.EmployeeID as varchar(36)) as 'UserID',&#xD;&#xA;cast(DateTime as date) as 'ReportRunDate',&#xD;&#xA;left(convert(varchar, DateTime, 108), 5) as 'ReportRunTime',&#xD;&#xA;cast(c.TimeDataRetrieval / 1000  as decimal(10,2)) as 'TimeDataRetrievalSeconds',&#xD;&#xA;cast(c.TimeProcessing / 1000 as decimal(10,2)) as 'TimeProcessingSeconds',&#xD;&#xA;cast(c.TimeRendering / 1000 as decimal(10,2)) as 'TimeRenderingSeconds',&#xD;&#xA;cast(&#xD;&#xA;(c.TimeDataRetrieval +&#xD;&#xA;c.TimeProcessing +&#xD;&#xA;c.TimeRendering)&#xD;&#xA;/ 1000 as decimal(10,2)) as 'TotalLoadTimeSeconds'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;Reporting.dw.tbl_reportexecutionsadvanced c&#xD;&#xA;&#xD;&#xA;left join [Cascade].dbo.Employee e&#xD;&#xA; on case when left(c.UserName, 4) != 'SBC\' then 'SBC\' + c.UserName else c.UserName end = 'SBC\' + e.windowsusername collate database_default&#xD;&#xA;&#xD;&#xA; where&#xD;&#xA; c.UserName not in ('SBC\SQLalert','SBC\sqlservice')">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="ReportID" msprop:DbColumnName="ReportID" msprop:FriendlyName="ReportID" minOccurs="0">
