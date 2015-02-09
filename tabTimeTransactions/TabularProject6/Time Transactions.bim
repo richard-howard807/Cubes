@@ -1152,6 +1152,11 @@
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>BillAgeDays</Name>
                 </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>AmountOutstanding</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>AmountOutstanding</Name>
+                </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
@@ -1596,6 +1601,31 @@
                 <Source xsi:type="ColumnBinding">
                   <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
                   <ColumnID>BillAgeDays</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>AmountOutstanding</ID>
+              <Name>AmountOutstanding</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Double</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
+                    <ColumnID>AmountOutstanding</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
+                  <ColumnID>AmountOutstanding</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
@@ -7579,6 +7609,9 @@
                 <Attribute>
                   <AttributeID>BillAgeDays</AttributeID>
                 </Attribute>
+                <Attribute>
+                  <AttributeID>AmountOutstanding</AttributeID>
+                </Attribute>
               </Attributes>
             </Dimension>
             <Dimension>
@@ -9747,6 +9780,20 @@ d.dim_matter_header_key &gt; 0;</QueryDefinition>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>AmountOutstanding</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Double</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
+                            <ColumnID>AmountOutstanding</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
                 </Dimension>
@@ -10424,18 +10471,17 @@ case when f.bill_record_type = 'Bill' then 'B'
         when f.bill_record_type = 'Abatement' then 'A'
         end as 'BillTypeCode',
 d.bill_flag as 'BillFinalOrInterimCode',
---open billing item code 1 or 2,
 bill_last_pay_date as 'BillLastPaymentDate',
 dim_bill_date_key as 'BillDate',
-case when bill_last_pay_date is null then cast(datediff(day,f.bill_date, getdate()) as varchar(10)) else 'Paid' end as 'BillAgeDays',
-sum(bill_total) as 'BillAmount',
+sum(f.bill_total) as 'BillAmount',
 sum(fees_total) as 'FeeValue',
 sum(payed_disbursement) as 'DisbursementsPaid',
 sum(unpaid_disbursement) as 'DisbursementsUnpaid',
 sum(administration_charges) as 'AdministrationCharges',
 sum(vat_amount) as 'VATAmount',
-sum(payed_amount) as 'AmountPaid'
-
+sum(f.payed_amount) as 'AmountPaid',
+sum(f.bill_total) - sum(f.payed_amount) as 'AmountOutstanding',
+case when tbl.payed_amount = tbl.bill_total then 'Paid' else cast(datediff(day,f.bill_date, getdate()) as varchar(10)) end as 'BillAgeDays'
 
 from
 red_dw.dbo.fact_bill_activity f
@@ -10443,6 +10489,18 @@ red_dw.dbo.fact_bill_activity f
 left join
  red_dw.dbo.dim_bill d
   on d.dim_bill_key = f.dim_bill_key
+
+ left join (
+   select
+  dim_bill_key,
+  sum(payed_amount) as 'payed_amount',
+  sum(bill_total) as 'bill_total'
+
+  from
+  red_dw.dbo.fact_bill_activity
+
+  group by 
+  dim_bill_key) tbl on tbl.dim_bill_key = f.dim_bill_key
 
 group by
 f.dim_bill_key,
@@ -10452,7 +10510,7 @@ bill_record_type,
 dim_bill_date_key,
 d.bill_flag,
 f.bill_last_pay_date,
-case when bill_last_pay_date is null then cast(datediff(day,f.bill_date, getdate()) as varchar(10)) else 'Paid' end</QueryDefinition>
+case when tbl.payed_amount = tbl.bill_total then 'Paid' else cast(datediff(day,f.bill_date, getdate()) as varchar(10)) end</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
@@ -11109,6 +11167,20 @@ branch_name is not null</QueryDefinition>
                           <Source xsi:type="ColumnBinding">
                             <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
                             <ColumnID>BillAgeDays</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>AmountOutstanding</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Double</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
+                            <ColumnID>AmountOutstanding</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -16988,6 +17060,7 @@ CREATE MEASURE 'Matter'[TotalUnbilledTime]=sum([UnbilledTime]);
 CREATE MEASURE 'TimeTransactions'[TotalvalueOfTimeRecorded]=sum([ValueOfTimeRecorded]);
 CREATE MEASURE 'TimeTransactions'[TotalTimeChargeValue]=sum([timeChargeValue]);
 CREATE MEASURE 'TimeTransactions'[TotalOverriddenTimeChargeValue]=sum([OverriddenTimeChargeValue]);
+CREATE MEASURE 'Bill'[TotalBillAmountOutstanding]=sum([AmountOutstanding]);
 </Text>
                 </Command>
               </Commands>
@@ -17413,6 +17486,27 @@ CREATE MEASURE 'TimeTransactions'[TotalOverriddenTimeChargeValue]=sum([Overridde
                   <FormatString>''</FormatString>
                 </CalculationProperty>
                 <CalculationProperty>
+                  <Annotations>
+                    <Annotation>
+                      <Name>Type</Name>
+                      <Value>User</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsPrivate</Name>
+                      <Value>False</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Format</Name>
+                      <Value>
+                        <Format Format="General" xmlns="" />
+                      </Value>
+                    </Annotation>
+                  </Annotations>
+                  <CalculationReference>[TotalBillAmountOutstanding]</CalculationReference>
+                  <CalculationType>Member</CalculationType>
+                  <FormatString>''</FormatString>
+                </CalculationProperty>
+                <CalculationProperty>
                   <CalculationReference>Measures.[__No measures defined]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <Visible>false</Visible>
@@ -17552,7 +17646,7 @@ CREATE MEASURE 'TimeTransactions'[TotalOverriddenTimeChargeValue]=sum([Overridde
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="Bill" msprop:DbTableName="factBill" msprop:TableType="View" msprop:Description="factBill" msprop:QueryDefinition="select&#xD;&#xA;f.dim_bill_key as 'BillID',&#xD;&#xA;f.bill_number as 'BillNumber',&#xD;&#xA;case when f.bill_record_type = 'Bill' then 'B' &#xD;&#xA;        when f.bill_record_type = 'Abatement' then 'A'&#xD;&#xA;        end as 'BillTypeCode',&#xD;&#xA;d.bill_flag as 'BillFinalOrInterimCode',&#xD;&#xA;--open billing item code 1 or 2,&#xD;&#xA;bill_last_pay_date as 'BillLastPaymentDate',&#xD;&#xA;dim_bill_date_key as 'BillDate',&#xD;&#xA;case when bill_last_pay_date is null then cast(datediff(day,f.bill_date, getdate()) as varchar(10)) else 'Paid' end as 'BillAgeDays',&#xD;&#xA;sum(bill_total) as 'BillAmount',&#xD;&#xA;sum(fees_total) as 'FeeValue',&#xD;&#xA;sum(payed_disbursement) as 'DisbursementsPaid',&#xD;&#xA;sum(unpaid_disbursement) as 'DisbursementsUnpaid',&#xD;&#xA;sum(administration_charges) as 'AdministrationCharges',&#xD;&#xA;sum(vat_amount) as 'VATAmount',&#xD;&#xA;sum(payed_amount) as 'AmountPaid'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_bill_activity f&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; red_dw.dbo.dim_bill d&#xD;&#xA;  on d.dim_bill_key = f.dim_bill_key&#xD;&#xA;&#xD;&#xA;group by&#xD;&#xA;f.dim_bill_key,&#xD;&#xA;f.bill_number,&#xD;&#xA;dim_client_key,&#xD;&#xA;bill_record_type,&#xD;&#xA;dim_bill_date_key,&#xD;&#xA;d.bill_flag,&#xD;&#xA;f.bill_last_pay_date,&#xD;&#xA;case when bill_last_pay_date is null then cast(datediff(day,f.bill_date, getdate()) as varchar(10)) else 'Paid' end">
+                    <xs:element name="factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="Bill" msprop:DbTableName="factBill" msprop:TableType="View" msprop:Description="factBill" msprop:QueryDefinition="select&#xD;&#xA;f.dim_bill_key as 'BillID',&#xD;&#xA;f.bill_number as 'BillNumber',&#xD;&#xA;case when f.bill_record_type = 'Bill' then 'B' &#xD;&#xA;        when f.bill_record_type = 'Abatement' then 'A'&#xD;&#xA;        end as 'BillTypeCode',&#xD;&#xA;d.bill_flag as 'BillFinalOrInterimCode',&#xD;&#xA;bill_last_pay_date as 'BillLastPaymentDate',&#xD;&#xA;dim_bill_date_key as 'BillDate',&#xD;&#xA;sum(f.bill_total) as 'BillAmount',&#xD;&#xA;sum(fees_total) as 'FeeValue',&#xD;&#xA;sum(payed_disbursement) as 'DisbursementsPaid',&#xD;&#xA;sum(unpaid_disbursement) as 'DisbursementsUnpaid',&#xD;&#xA;sum(administration_charges) as 'AdministrationCharges',&#xD;&#xA;sum(vat_amount) as 'VATAmount',&#xD;&#xA;sum(f.payed_amount) as 'AmountPaid',&#xD;&#xA;sum(f.bill_total) - sum(f.payed_amount) as 'AmountOutstanding',&#xD;&#xA;case when tbl.payed_amount = tbl.bill_total then 'Paid' else cast(datediff(day,f.bill_date, getdate()) as varchar(10)) end as 'BillAgeDays'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_bill_activity f&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; red_dw.dbo.dim_bill d&#xD;&#xA;  on d.dim_bill_key = f.dim_bill_key&#xD;&#xA;&#xD;&#xA; left join (&#xD;&#xA;   select&#xD;&#xA;  dim_bill_key,&#xD;&#xA;  sum(payed_amount) as 'payed_amount',&#xD;&#xA;  sum(bill_total) as 'bill_total'&#xD;&#xA;&#xD;&#xA;  from&#xD;&#xA;  red_dw.dbo.fact_bill_activity&#xD;&#xA;&#xD;&#xA;  group by &#xD;&#xA;  dim_bill_key) tbl on tbl.dim_bill_key = f.dim_bill_key&#xD;&#xA;&#xD;&#xA;group by&#xD;&#xA;f.dim_bill_key,&#xD;&#xA;f.bill_number,&#xD;&#xA;dim_client_key,&#xD;&#xA;bill_record_type,&#xD;&#xA;dim_bill_date_key,&#xD;&#xA;d.bill_flag,&#xD;&#xA;f.bill_last_pay_date,&#xD;&#xA;case when tbl.payed_amount = tbl.bill_total then 'Paid' else cast(datediff(day,f.bill_date, getdate()) as varchar(10)) end">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="BillID" msprop:DbColumnName="BillID" msprop:FriendlyName="BillID" minOccurs="0">
@@ -17599,6 +17693,7 @@ CREATE MEASURE 'TimeTransactions'[TotalOverriddenTimeChargeValue]=sum([Overridde
                               </xs:restriction>
                             </xs:simpleType>
                           </xs:element>
+                          <xs:element name="AmountOutstanding" msprop:DbColumnName="AmountOutstanding" msprop:FriendlyName="AmountOutstanding" type="xs:decimal" minOccurs="0" />
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
