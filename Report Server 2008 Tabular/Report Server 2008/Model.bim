@@ -5576,6 +5576,9 @@ left join [SVR-LIV-DWH-01].red_dw.dbo.dim_fed_hierarchy_history s
       ,[WeekBeginDate]
       ,[WeekEndDate]
   FROM [Reporting].[DW].[dim_Date]
+  where
+  Date between '2013-01-01' and getdate()
+
 order by 
 DateKey</QueryDefinition>
                   </Source>
@@ -7124,7 +7127,7 @@ CREATE MEASURE 'ExecutionLog'[Zero Executions]=calculate (if ( isblank( countrow
               <Value>SqlServer</Value>
             </Annotation>
           </Annotations>
-          <ConnectionString>Provider=SQLNCLI11;Data Source=sql2008svr;Initial Catalog=Reporting;Persist Security Info=false;User ID=Reporting</ConnectionString>
+          <ConnectionString>Provider=SQLNCLI11;Data Source=sql2008svr;Initial Catalog=Reporting;Persist Security Info=true;User ID=Reporting</ConnectionString>
           <ImpersonationInfo>
             <ImpersonationMode>ImpersonateServiceAccount</ImpersonationMode>
           </ImpersonationInfo>
@@ -7242,7 +7245,7 @@ CREATE MEASURE 'ExecutionLog'[Zero Executions]=calculate (if ( isblank( countrow
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimDate" msprop:DbTableName="dimDate" msprop:TableType="View" msprop:Description="dimDate" msprop:QueryDefinition="SELECT [DateKey]&#xD;&#xA;      ,[Date]&#xD;&#xA;      ,[DayOfMonth]&#xD;&#xA;      ,[DayOfYear]&#xD;&#xA;      ,[WeekOfMonth]&#xD;&#xA;      ,[WeekOfYear]&#xD;&#xA;      ,[Year]&#xD;&#xA;      ,[Semester]&#xD;&#xA;      ,[Quarter]&#xD;&#xA;      ,[QuarterName]&#xD;&#xA;      ,[MonthNumber]&#xD;&#xA;      ,[MonthName]&#xD;&#xA;      ,case &#xD;&#xA;   when [DayOfWeek] = 1 then 7&#xD;&#xA;   else [DayOfWeek] - 1&#xD;&#xA;   end  as 'DayNumber'&#xD;&#xA;      ,[DayName]&#xD;&#xA;      ,[FiscalMonthNumber]&#xD;&#xA;      ,[FiscalMonthName]&#xD;&#xA;      ,[FiscalYear]&#xD;&#xA;      ,[FiscalQuarter]&#xD;&#xA;      ,[FiscalQuarterName]&#xD;&#xA;      ,[IsHoliday]&#xD;&#xA;      ,[IsBusinessDay]&#xD;&#xA;      ,[IsWeekEnd]&#xD;&#xA;      ,[WeightmansYearPeriod]&#xD;&#xA;      ,[WeightmansFinancialYearPeriod]&#xD;&#xA;      ,[WeekBeginDate]&#xD;&#xA;      ,[WeekEndDate]&#xD;&#xA;  FROM [Reporting].[DW].[dim_Date]&#xD;&#xA;order by &#xD;&#xA;DateKey">
+                    <xs:element name="dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimDate" msprop:DbTableName="dimDate" msprop:TableType="View" msprop:Description="dimDate" msprop:QueryDefinition="SELECT [DateKey]&#xD;&#xA;      ,[Date]&#xD;&#xA;      ,[DayOfMonth]&#xD;&#xA;      ,[DayOfYear]&#xD;&#xA;      ,[WeekOfMonth]&#xD;&#xA;      ,[WeekOfYear]&#xD;&#xA;      ,[Year]&#xD;&#xA;      ,[Semester]&#xD;&#xA;      ,[Quarter]&#xD;&#xA;      ,[QuarterName]&#xD;&#xA;      ,[MonthNumber]&#xD;&#xA;      ,[MonthName]&#xD;&#xA;      ,case &#xD;&#xA;   when [DayOfWeek] = 1 then 7&#xD;&#xA;   else [DayOfWeek] - 1&#xD;&#xA;   end  as 'DayNumber'&#xD;&#xA;      ,[DayName]&#xD;&#xA;      ,[FiscalMonthNumber]&#xD;&#xA;      ,[FiscalMonthName]&#xD;&#xA;      ,[FiscalYear]&#xD;&#xA;      ,[FiscalQuarter]&#xD;&#xA;      ,[FiscalQuarterName]&#xD;&#xA;      ,[IsHoliday]&#xD;&#xA;      ,[IsBusinessDay]&#xD;&#xA;      ,[IsWeekEnd]&#xD;&#xA;      ,[WeightmansYearPeriod]&#xD;&#xA;      ,[WeightmansFinancialYearPeriod]&#xD;&#xA;      ,[WeekBeginDate]&#xD;&#xA;      ,[WeekEndDate]&#xD;&#xA;  FROM [Reporting].[DW].[dim_Date]&#xD;&#xA;  where&#xD;&#xA;  Date between '2013-01-01' and getdate()&#xD;&#xA;&#xD;&#xA;order by &#xD;&#xA;DateKey">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="DateKey" msprop:DbColumnName="DateKey" msprop:FriendlyName="DateKey" type="xs:int" minOccurs="0" />
