@@ -337,6 +337,11 @@
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>HasRecordInCashdr</Name>
                 </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>ClientNumber</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>ClientNumber</Name>
+                </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
@@ -932,6 +937,31 @@
                 <Source xsi:type="ColumnBinding">
                   <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
                   <ColumnID>HasRecordInCashdr</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>ClientNumber</ID>
+              <Name>ClientNumber</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                    <ColumnID>ClientNumber</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                  <ColumnID>ClientNumber</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
@@ -7585,6 +7615,9 @@
                 <Attribute>
                   <AttributeID>HasRecordInCashdr</AttributeID>
                 </Attribute>
+                <Attribute>
+                  <AttributeID>ClientNumber</AttributeID>
+                </Attribute>
               </Attributes>
             </Dimension>
             <Dimension>
@@ -8747,6 +8780,20 @@ inner join fact_all_time_activity a
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                            <ColumnID>ClientNumber</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
                 </Dimension>
@@ -9523,8 +9570,8 @@ inner join fact_all_time_activity a
                   </Annotations>
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
-                    <QueryDefinition>select 
-d.dim_matter_header_key as 'MatterID',
+                    <QueryDefinition>select distinct 
+f.dim_matter_header_key as 'MatterID',
 f.dim_fed_hierarchy_history_key as 'FEDCodeID',
 d.matter_group_code as 'MatterGroupCode',
 d.branch_code as 'BranchCode',
@@ -9532,9 +9579,10 @@ d.work_type_code as 'WorkTypeCode',
 d.department_code as 'DepartmentCode',
 d.fed_code_partner_hist as 'PartnerCode',
 d.matter_number as 'MatterNumber',
-d.case_public_desc1 as 'MatterDesc',
-cast(d.date_opened_matter as date) as 'DateMatterOpen',
-cast(d.date_closed_matter as date) as 'DateMatterClosed',
+c.client_code as 'ClientNumber',
+d.namkey_camatgrp as 'MatterDesc',
+cast(d.date_opened_case as date) as 'DateMatterOpen',
+cast(d.date_closed_case as date) as 'DateMatterClosed',
 disbursement_balance as 'DisbursementBalance',
 client_account_balance_of_matter as 'ClientAccountBalance',
 unpaid_bill_balance as 'UnpaidBillsBalance',
@@ -9543,18 +9591,24 @@ costs_to_date as 'CostsToDate',
 time_billed as 'TotalTimeBilled',
 number_bills_matter as 'NumberOfBillsRaised',
 unbilled_time as 'UnbilledTime',
-case when d.case_id is null then 'No' else 'Yes' end as 'HasRecordInCashdr'
+case when d.case_id is null then 'No' else 'Yes' end as 'HasRecordInCashdr'  
 from
-red_dw.dbo.dim_matter_header d
+red_dw.dbo.fact_matter_summary f
 
-left join fact_matter_summary f
- on d.dim_matter_header_key = f.dim_matter_header_key
+left join red_dw.dbo.dim_client c
+	on c.dim_client_key = f.dim_client_key
 
-
-
+left join red_dw.dbo.dim_matter_header d
+ on	d.client_code = c.client_code
+and	d.matter_number = f.matter_number
+and	d.source_system_id = f.source_system_id
+and d.current_flag = 'Y'
 
 where
-d.dim_matter_header_key &gt; 0;</QueryDefinition>
+d.dim_matter_header_key &gt; 0
+
+order by 
+f.dim_matter_header_key</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
@@ -11641,6 +11695,20 @@ branch_name is not null</QueryDefinition>
                           <Source xsi:type="ColumnBinding">
                             <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
                             <ColumnID>HasRecordInCashdr</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                            <ColumnID>ClientNumber</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -17641,7 +17709,7 @@ CREATE MEASURE 'Bill'[TotalBillAmountOutstanding]=sum([AmountOutstanding]);
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="Matter" msprop:DbTableName="factMatter" msprop:TableType="View" msprop:Description="factMatter" msprop:QueryDefinition="select &#xD;&#xA;d.dim_matter_header_key as 'MatterID',&#xD;&#xA;f.dim_fed_hierarchy_history_key as 'FEDCodeID',&#xD;&#xA;d.matter_group_code as 'MatterGroupCode',&#xD;&#xA;d.branch_code as 'BranchCode',&#xD;&#xA;d.work_type_code as 'WorkTypeCode',&#xD;&#xA;d.department_code as 'DepartmentCode',&#xD;&#xA;d.fed_code_partner_hist as 'PartnerCode',&#xD;&#xA;d.matter_number as 'MatterNumber',&#xD;&#xA;d.case_public_desc1 as 'MatterDesc',&#xD;&#xA;cast(d.date_opened_matter as date) as 'DateMatterOpen',&#xD;&#xA;cast(d.date_closed_matter as date) as 'DateMatterClosed',&#xD;&#xA;disbursement_balance as 'DisbursementBalance',&#xD;&#xA;client_account_balance_of_matter as 'ClientAccountBalance',&#xD;&#xA;unpaid_bill_balance as 'UnpaidBillsBalance',&#xD;&#xA;wip_balance as 'WIPBalance',&#xD;&#xA;costs_to_date as 'CostsToDate',&#xD;&#xA;time_billed as 'TotalTimeBilled',&#xD;&#xA;number_bills_matter as 'NumberOfBillsRaised',&#xD;&#xA;unbilled_time as 'UnbilledTime',&#xD;&#xA;case when d.case_id is null then 'No' else 'Yes' end as 'HasRecordInCashdr'&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_matter_header d&#xD;&#xA;&#xD;&#xA;left join fact_matter_summary f&#xD;&#xA; on d.dim_matter_header_key = f.dim_matter_header_key&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;d.dim_matter_header_key &gt; 0;">
+                    <xs:element name="factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="Matter" msprop:DbTableName="factMatter" msprop:TableType="View" msprop:Description="factMatter" msprop:QueryDefinition="select distinct &#xD;&#xA;f.dim_matter_header_key as 'MatterID',&#xD;&#xA;f.dim_fed_hierarchy_history_key as 'FEDCodeID',&#xD;&#xA;d.matter_group_code as 'MatterGroupCode',&#xD;&#xA;d.branch_code as 'BranchCode',&#xD;&#xA;d.work_type_code as 'WorkTypeCode',&#xD;&#xA;d.department_code as 'DepartmentCode',&#xD;&#xA;d.fed_code_partner_hist as 'PartnerCode',&#xD;&#xA;d.matter_number as 'MatterNumber',&#xD;&#xA;c.client_code as 'ClientNumber',&#xD;&#xA;d.namkey_camatgrp as 'MatterDesc',&#xD;&#xA;cast(d.date_opened_case as date) as 'DateMatterOpen',&#xD;&#xA;cast(d.date_closed_case as date) as 'DateMatterClosed',&#xD;&#xA;disbursement_balance as 'DisbursementBalance',&#xD;&#xA;client_account_balance_of_matter as 'ClientAccountBalance',&#xD;&#xA;unpaid_bill_balance as 'UnpaidBillsBalance',&#xD;&#xA;wip_balance as 'WIPBalance',&#xD;&#xA;costs_to_date as 'CostsToDate',&#xD;&#xA;time_billed as 'TotalTimeBilled',&#xD;&#xA;number_bills_matter as 'NumberOfBillsRaised',&#xD;&#xA;unbilled_time as 'UnbilledTime',&#xD;&#xA;case when d.case_id is null then 'No' else 'Yes' end as 'HasRecordInCashdr'  &#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_matter_summary f&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_client c&#xD;&#xA; on c.dim_client_key = f.dim_client_key&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_matter_header d&#xD;&#xA; on d.client_code = c.client_code&#xD;&#xA;and d.matter_number = f.matter_number&#xD;&#xA;and d.source_system_id = f.source_system_id&#xD;&#xA;and d.current_flag = 'Y'&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;d.dim_matter_header_key &gt; 0&#xD;&#xA;&#xD;&#xA;order by &#xD;&#xA;f.dim_matter_header_key">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="MatterID" msprop:DbColumnName="MatterID" msprop:FriendlyName="MatterID" type="xs:int" minOccurs="0" />
@@ -17706,6 +17774,13 @@ CREATE MEASURE 'Bill'[TotalBillAmountOutstanding]=sum([AmountOutstanding]);
                           </xs:element>
                           <xs:element name="FEDCodeID" msprop:DbColumnName="FEDCodeID" msprop:FriendlyName="FEDCodeID" type="xs:int" minOccurs="0" />
                           <xs:element name="HasRecordInCashdr" msprop:DbColumnName="HasRecordInCashdr" msprop:FriendlyName="HasRecordInCashdr" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="ClientNumber" msprop:DbColumnName="ClientNumber" msprop:FriendlyName="ClientNumber" minOccurs="0">
                             <xs:simpleType>
                               <xs:restriction base="xs:string">
                                 <xs:maxLength value="32768" />
