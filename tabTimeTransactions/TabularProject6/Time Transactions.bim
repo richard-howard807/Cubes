@@ -2050,6 +2050,11 @@
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>ClientCode</Name>
                 </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>StageDesc</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>StageDesc</Name>
+                </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
@@ -2492,6 +2497,31 @@
                 <Source xsi:type="ColumnBinding">
                   <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
                   <ColumnID>ClientCode</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>StageDesc</ID>
+              <Name>StageDesc</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
+                    <ColumnID>StageDesc</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
+                  <ColumnID>StageDesc</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
@@ -7764,6 +7794,9 @@
                 <Attribute>
                   <AttributeID>ClientCode</AttributeID>
                 </Attribute>
+                <Attribute>
+                  <AttributeID>StageDesc</AttributeID>
+                </Attribute>
               </Attributes>
             </Dimension>
             <Dimension>
@@ -11050,6 +11083,20 @@ branch_name is not null</QueryDefinition>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>StageDesc</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
+                            <ColumnID>StageDesc</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
                 </Dimension>
@@ -13865,7 +13912,8 @@ when a.time_type = 'NC'
 end as 'TransactionType',
 n.td_textln as 'Narrative',
 t.time_activity_code as 'TimeActivityCode',
-t.rate_code as 'RateCode' 
+t.rate_code as 'RateCode' ,
+t.matter_stage_descrn as 'StageDesc'
 
 
 
@@ -13890,11 +13938,11 @@ left join red_dw.dbo.dim_matter_header d2
 
 
 left join red_dw.dbo.fact_matter_summary f
-	 on d2.client_code = f.client_code	
-	and d2.matter_number = f.matter_number
-	and f.source_system_id = d2.source_system_id
+  on d2.client_code = f.client_code 
+ and d2.matter_number = f.matter_number
+ and f.source_system_id = d2.source_system_id
 
-	
+ 
 
 
 
@@ -17878,7 +17926,7 @@ CREATE MEASURE 'Bill'[TotalBillAmountOutstanding]=sum([AmountOutstanding]);
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="TimeTransactions" msprop:DbTableName="factMainTable" msprop:TableType="View" msprop:Description="factMainTable" msprop:QueryDefinition="select  &#xD;&#xA;tbl.TransactionID,&#xD;&#xA;c.client_code as 'ClientCode',&#xD;&#xA;f.dim_matter_header_key as 'MatterID',&#xD;&#xA;a.dim_bill_key as 'BillID',&#xD;&#xA;a.time_type as 'ChargeableTimeCode',&#xD;&#xA;a.dim_fed_hierarchy_history_key as 'FEDCodeID',&#xD;&#xA;a.dim_transaction_date_key as 'TransactionDate',&#xD;&#xA;a.dim_run_date_key as 'RunDate',&#xD;&#xA;a.minutes_recorded as 'MinutesRecorded',&#xD;&#xA;a.time_cost_value as 'ValueOfTimeRecorded',&#xD;&#xA;a.hourly_charge_rate as 'ChargeRate',&#xD;&#xA;a.time_charge_value as 'timeChargeValue',&#xD;&#xA;a.overridden_time_charge_value as 'OverriddenTimeChargeValue',&#xD;&#xA;case &#xD;&#xA;when t.time_activity_code != 'W/O'&#xD;&#xA;and t.bill_number = 'xxxxxxxx'&#xD;&#xA; then 'Written Off'&#xD;&#xA;when t.time_activity_code = 'W/O'&#xD;&#xA; then 'Written Off Transaction'&#xD;&#xA;when t.bill_number = ''&#xD;&#xA; then 'Unbilled'&#xD;&#xA;when a.dim_bill_key &gt; 0&#xD;&#xA;and t.time_activity_code not in ('Bill','Abmt')&#xD;&#xA; then 'Billed'&#xD;&#xA;when a.time_type = 'NC' &#xD;&#xA; then 'Non Chargeable Time'&#xD;&#xA;end as 'TransactionType',&#xD;&#xA;n.td_textln as 'Narrative',&#xD;&#xA;t.time_activity_code as 'TimeActivityCode',&#xD;&#xA;t.rate_code as 'RateCode' &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;[SVR-LIV-DWH-01].red_dw.dbo.fact_all_time_activity a&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_client c&#xD;&#xA; on c.dim_client_key = a.dim_client_key&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; [SVR-LIV-DWH-01].red_dw.dbo.dim_all_time_activity t&#xD;&#xA;  on a.dim_all_time_activity_key = t.dim_all_time_activity_key&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; [SVR-LIV-DWH-01].red_dw.dbo.dim_time_narratives n&#xD;&#xA;   on n.dim_time_narratives_key = a.dim_time_narratives_key&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_matter_header d2&#xD;&#xA; on d2.dim_matter_header_key = a.dim_matter_header_key&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.fact_matter_summary f&#xD;&#xA;  on d2.client_code = f.client_code &#xD;&#xA; and d2.matter_number = f.matter_number&#xD;&#xA; and f.source_system_id = d2.source_system_id&#xD;&#xA;&#xD;&#xA; &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join (&#xD;&#xA; select&#xD;&#xA; a.dim_all_time_activity_key,&#xD;&#xA; a.dim_client_key, &#xD;&#xA; a.dim_matter_header_key, &#xD;&#xA; a.time_type,&#xD;&#xA; row_number() over (partition by a.dim_client_key, a.dim_matter_header_key, a.time_type order by a.transaction_sequence_number) as 'TransactionID'&#xD;&#xA;&#xD;&#xA; from&#xD;&#xA; red_dw.dbo.fact_all_time_activity a&#xD;&#xA;) tbl on tbl.dim_all_time_activity_key = a.dim_all_time_activity_key">
+                    <xs:element name="factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="TimeTransactions" msprop:DbTableName="factMainTable" msprop:TableType="View" msprop:Description="factMainTable" msprop:QueryDefinition="select  &#xD;&#xA;tbl.TransactionID,&#xD;&#xA;c.client_code as 'ClientCode',&#xD;&#xA;f.dim_matter_header_key as 'MatterID',&#xD;&#xA;a.dim_bill_key as 'BillID',&#xD;&#xA;a.time_type as 'ChargeableTimeCode',&#xD;&#xA;a.dim_fed_hierarchy_history_key as 'FEDCodeID',&#xD;&#xA;a.dim_transaction_date_key as 'TransactionDate',&#xD;&#xA;a.dim_run_date_key as 'RunDate',&#xD;&#xA;a.minutes_recorded as 'MinutesRecorded',&#xD;&#xA;a.time_cost_value as 'ValueOfTimeRecorded',&#xD;&#xA;a.hourly_charge_rate as 'ChargeRate',&#xD;&#xA;a.time_charge_value as 'timeChargeValue',&#xD;&#xA;a.overridden_time_charge_value as 'OverriddenTimeChargeValue',&#xD;&#xA;case &#xD;&#xA;when t.time_activity_code != 'W/O'&#xD;&#xA;and t.bill_number = 'xxxxxxxx'&#xD;&#xA; then 'Written Off'&#xD;&#xA;when t.time_activity_code = 'W/O'&#xD;&#xA; then 'Written Off Transaction'&#xD;&#xA;when t.bill_number = ''&#xD;&#xA; then 'Unbilled'&#xD;&#xA;when a.dim_bill_key &gt; 0&#xD;&#xA;and t.time_activity_code not in ('Bill','Abmt')&#xD;&#xA; then 'Billed'&#xD;&#xA;when a.time_type = 'NC' &#xD;&#xA; then 'Non Chargeable Time'&#xD;&#xA;end as 'TransactionType',&#xD;&#xA;n.td_textln as 'Narrative',&#xD;&#xA;t.time_activity_code as 'TimeActivityCode',&#xD;&#xA;t.rate_code as 'RateCode' ,&#xD;&#xA;t.matter_stage_descrn as 'StageDesc'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;[SVR-LIV-DWH-01].red_dw.dbo.fact_all_time_activity a&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_client c&#xD;&#xA; on c.dim_client_key = a.dim_client_key&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; [SVR-LIV-DWH-01].red_dw.dbo.dim_all_time_activity t&#xD;&#xA;  on a.dim_all_time_activity_key = t.dim_all_time_activity_key&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; [SVR-LIV-DWH-01].red_dw.dbo.dim_time_narratives n&#xD;&#xA;   on n.dim_time_narratives_key = a.dim_time_narratives_key&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_matter_header d2&#xD;&#xA; on d2.dim_matter_header_key = a.dim_matter_header_key&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.fact_matter_summary f&#xD;&#xA;  on d2.client_code = f.client_code &#xD;&#xA; and d2.matter_number = f.matter_number&#xD;&#xA; and f.source_system_id = d2.source_system_id&#xD;&#xA;&#xD;&#xA; &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join (&#xD;&#xA; select&#xD;&#xA; a.dim_all_time_activity_key,&#xD;&#xA; a.dim_client_key, &#xD;&#xA; a.dim_matter_header_key, &#xD;&#xA; a.time_type,&#xD;&#xA; row_number() over (partition by a.dim_client_key, a.dim_matter_header_key, a.time_type order by a.transaction_sequence_number) as 'TransactionID'&#xD;&#xA;&#xD;&#xA; from&#xD;&#xA; red_dw.dbo.fact_all_time_activity a&#xD;&#xA;) tbl on tbl.dim_all_time_activity_key = a.dim_all_time_activity_key">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="BillID" msprop:DbColumnName="BillID" msprop:FriendlyName="BillID" type="xs:int" minOccurs="0" />
@@ -17922,6 +17970,13 @@ CREATE MEASURE 'Bill'[TotalBillAmountOutstanding]=sum([AmountOutstanding]);
                           </xs:element>
                           <xs:element name="MatterID" msprop:DbColumnName="MatterID" msprop:FriendlyName="MatterID" type="xs:int" minOccurs="0" />
                           <xs:element name="ClientCode" msprop:DbColumnName="ClientCode" msprop:FriendlyName="ClientCode" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="StageDesc" msprop:DbColumnName="StageDesc" msprop:FriendlyName="StageDesc" minOccurs="0">
                             <xs:simpleType>
                               <xs:restriction base="xs:string">
                                 <xs:maxLength value="32768" />
