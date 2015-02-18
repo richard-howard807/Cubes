@@ -966,6 +966,7 @@
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
+              <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
             </Attribute>
           </Attributes>
           <ProactiveCaching>
@@ -1110,6 +1111,29 @@
                 <Attributes>
                   <Attribute>
                     <AttributeID>MatterGroupCode</AttributeID>
+                  </Attribute>
+                </Attributes>
+              </ddl300_300:ToRelationshipEnd>
+            </ddl300_300:Relationship>
+            <ddl300_300:Relationship>
+              <ID>07d95391-61bd-4a76-b3c2-ce08f34f05c2</ID>
+              <ddl300_300:FromRelationshipEnd>
+                <ddl300_300:Multiplicity>Many</ddl300_300:Multiplicity>
+                <ddl300:VisualizationProperties />
+                <DimensionID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</DimensionID>
+                <Attributes>
+                  <Attribute>
+                    <AttributeID>ClientNumber</AttributeID>
+                  </Attribute>
+                </Attributes>
+              </ddl300_300:FromRelationshipEnd>
+              <ddl300_300:ToRelationshipEnd>
+                <ddl300_300:Multiplicity>One</ddl300_300:Multiplicity>
+                <ddl300:VisualizationProperties />
+                <DimensionID>dimClientMatter_efa9a451-b17b-4f91-8fea-de6ec489402f</DimensionID>
+                <Attributes>
+                  <Attribute>
+                    <AttributeID>MatterClientCode</AttributeID>
                   </Attribute>
                 </Attributes>
               </ddl300_300:ToRelationshipEnd>
@@ -7710,6 +7734,159 @@
             <Source xsi:type="ProactiveCachingInheritedBinding" />
           </ProactiveCaching>
         </Dimension>
+        <Dimension>
+          <ID>dimClientMatter_efa9a451-b17b-4f91-8fea-de6ec489402f</ID>
+          <Name>dimMatterClient</Name>
+          <Annotations>
+            <Annotation>
+              <Name>TableWidgetSerialization</Name>
+            </Annotation>
+            <Annotation>
+              <Name>QueryEditorSerialization</Name>
+            </Annotation>
+            <Annotation>
+              <Name>IsQueryEditorUsed</Name>
+              <Value>True</Value>
+            </Annotation>
+          </Annotations>
+          <Source xsi:type="DataSourceViewBinding">
+            <DataSourceViewID>Sandbox</DataSourceViewID>
+          </Source>
+          <UnknownMember valuens="ddl200_200">AutomaticNull</UnknownMember>
+          <ErrorConfiguration>
+            <KeyNotFound>IgnoreError</KeyNotFound>
+            <KeyDuplicate>ReportAndStop</KeyDuplicate>
+            <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+          </ErrorConfiguration>
+          <StorageMode valuens="ddl200_200">InMemory</StorageMode>
+          <Language>1033</Language>
+          <Collation>Latin1_General_CS_AS</Collation>
+          <UnknownMemberName>Unknown</UnknownMemberName>
+          <Attributes>
+            <Attribute>
+              <ID>RowNumber</ID>
+              <Name>RowNumber</Name>
+              <Type valuens="ddl200_200">RowNumber</Type>
+              <Usage>Key</Usage>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>4</DataSize>
+                  <NullProcessing>Error</NullProcessing>
+                  <Source xsi:type="ddl200_200:RowNumberBinding" />
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>4</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ddl200_200:RowNumberBinding" />
+              </NameColumn>
+              <AttributeRelationships>
+                <AttributeRelationship>
+                  <AttributeID>MatterClientCode</AttributeID>
+                  <Cardinality>One</Cardinality>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>MatterClientCode</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>MatterClientName</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>MatterClientName</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>MatterClientGroupName</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>MatterClientGroupName</Name>
+                </AttributeRelationship>
+              </AttributeRelationships>
+              <OrderBy>Key</OrderBy>
+              <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+            </Attribute>
+            <Attribute>
+              <ID>MatterClientCode</ID>
+              <Name>MatterClientCode</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Error</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimClientMatter_efa9a451-b17b-4f91-8fea-de6ec489402f</TableID>
+                    <ColumnID>MatterClientCode</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimClientMatter_efa9a451-b17b-4f91-8fea-de6ec489402f</TableID>
+                  <ColumnID>MatterClientCode</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>MatterClientName</ID>
+              <Name>MatterClientName</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimClientMatter_efa9a451-b17b-4f91-8fea-de6ec489402f</TableID>
+                    <ColumnID>MatterClientName</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimClientMatter_efa9a451-b17b-4f91-8fea-de6ec489402f</TableID>
+                  <ColumnID>MatterClientName</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>MatterClientGroupName</ID>
+              <Name>MatterClientGroupName</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimClientMatter_efa9a451-b17b-4f91-8fea-de6ec489402f</TableID>
+                    <ColumnID>MatterClientGroupName</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimClientMatter_efa9a451-b17b-4f91-8fea-de6ec489402f</TableID>
+                  <ColumnID>MatterClientGroupName</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+          </Attributes>
+          <ProactiveCaching>
+            <SilenceInterval>-PT1S</SilenceInterval>
+            <Latency>-PT1S</Latency>
+            <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+            <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+            <Source xsi:type="ProactiveCachingInheritedBinding" />
+          </ProactiveCaching>
+        </Dimension>
       </Dimensions>
       <Cubes>
         <Cube>
@@ -7821,6 +7998,7 @@
                 </Attribute>
                 <Attribute>
                   <AttributeID>ClientNumber</AttributeID>
+                  <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
                 </Attribute>
               </Attributes>
             </Dimension>
@@ -8520,6 +8698,26 @@
                 </Attribute>
                 <Attribute>
                   <AttributeID>MatterGroupDesc</AttributeID>
+                </Attribute>
+              </Attributes>
+            </Dimension>
+            <Dimension>
+              <ID>dimClientMatter_efa9a451-b17b-4f91-8fea-de6ec489402f</ID>
+              <Name>dimMatterClient</Name>
+              <DimensionID>dimClientMatter_efa9a451-b17b-4f91-8fea-de6ec489402f</DimensionID>
+              <Attributes>
+                <Attribute>
+                  <AttributeID>RowNumber</AttributeID>
+                  <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>MatterClientCode</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>MatterClientName</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>MatterClientGroupName</AttributeID>
                 </Attribute>
               </Attributes>
             </Dimension>
@@ -9822,6 +10020,69 @@ inner join fact_all_time_activity a
                   <IntermediateGranularityAttributeID>MatterGroupCode</IntermediateGranularityAttributeID>
                   <Materialization>Regular</Materialization>
                   <ddl300:RelationshipID>4084b8ff-1593-466a-ad0c-5280a9d016c8</ddl300:RelationshipID>
+                </Dimension>
+                <Dimension xsi:type="ReferenceMeasureGroupDimension">
+                  <CubeDimensionID>dimClientMatter_efa9a451-b17b-4f91-8fea-de6ec489402f</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>RowNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>4</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ddl200_200:RowNumberBinding" />
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterClientCode</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClientMatter_efa9a451-b17b-4f91-8fea-de6ec489402f</TableID>
+                            <ColumnID>MatterClientCode</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterClientName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClientMatter_efa9a451-b17b-4f91-8fea-de6ec489402f</TableID>
+                            <ColumnID>MatterClientName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterClientGroupName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClientMatter_efa9a451-b17b-4f91-8fea-de6ec489402f</TableID>
+                            <ColumnID>MatterClientGroupName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                  </Attributes>
+                  <IntermediateCubeDimensionID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</IntermediateCubeDimensionID>
+                  <IntermediateGranularityAttributeID>ClientNumber</IntermediateGranularityAttributeID>
+                  <Materialization>Regular</Materialization>
+                  <ddl300:RelationshipID>07d95391-61bd-4a76-b3c2-ce08f34f05c2</ddl300:RelationshipID>
                 </Dimension>
               </Dimensions>
               <Partitions>
@@ -14151,6 +14412,67 @@ branch_name is not null</QueryDefinition>
                   <IntermediateCubeDimensionID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</IntermediateCubeDimensionID>
                   <IntermediateGranularityAttributeID>MatterGroupCode</IntermediateGranularityAttributeID>
                 </Dimension>
+                <Dimension xsi:type="ReferenceMeasureGroupDimension">
+                  <CubeDimensionID>dimClientMatter_efa9a451-b17b-4f91-8fea-de6ec489402f</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>RowNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>4</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ddl200_200:RowNumberBinding" />
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterClientCode</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClientMatter_efa9a451-b17b-4f91-8fea-de6ec489402f</TableID>
+                            <ColumnID>MatterClientCode</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterClientName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClientMatter_efa9a451-b17b-4f91-8fea-de6ec489402f</TableID>
+                            <ColumnID>MatterClientName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterClientGroupName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClientMatter_efa9a451-b17b-4f91-8fea-de6ec489402f</TableID>
+                            <ColumnID>MatterClientGroupName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                  </Attributes>
+                  <IntermediateCubeDimensionID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</IntermediateCubeDimensionID>
+                  <IntermediateGranularityAttributeID>ClientNumber</IntermediateGranularityAttributeID>
+                </Dimension>
               </Dimensions>
               <Partitions>
                 <Partition>
@@ -17632,6 +17954,151 @@ red_dw.dbo.dim_matter_group</QueryDefinition>
                 <Source xsi:type="ProactiveCachingInheritedBinding" />
               </ProactiveCaching>
             </MeasureGroup>
+            <MeasureGroup>
+              <ID>dimClientMatter_efa9a451-b17b-4f91-8fea-de6ec489402f</ID>
+              <Name>dimMatterClient</Name>
+              <Measures>
+                <Measure>
+                  <ID>dimClientMatter_efa9a451-b17b-4f91-8fea-de6ec489402f</ID>
+                  <Name>_Count dimMatterClient</Name>
+                  <AggregateFunction>Count</AggregateFunction>
+                  <DataType>BigInt</DataType>
+                  <Source>
+                    <DataType>BigInt</DataType>
+                    <DataSize>8</DataSize>
+                    <Source xsi:type="RowBinding">
+                      <TableID>dimClientMatter_efa9a451-b17b-4f91-8fea-de6ec489402f</TableID>
+                    </Source>
+                  </Source>
+                  <Visible>false</Visible>
+                </Measure>
+              </Measures>
+              <StorageMode valuens="ddl200_200">InMemory</StorageMode>
+              <ErrorConfiguration>
+                <KeyNotFound>IgnoreError</KeyNotFound>
+                <KeyDuplicate>ReportAndStop</KeyDuplicate>
+                <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+              </ErrorConfiguration>
+              <ProcessingMode>Regular</ProcessingMode>
+              <Dimensions>
+                <Dimension xsi:type="DegenerateMeasureGroupDimension">
+                  <CubeDimensionID>dimClientMatter_efa9a451-b17b-4f91-8fea-de6ec489402f</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>RowNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClientMatter</TableID>
+                            <ColumnID>RowNumber</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterClientCode</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClientMatter_efa9a451-b17b-4f91-8fea-de6ec489402f</TableID>
+                            <ColumnID>MatterClientCode</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterClientName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClientMatter_efa9a451-b17b-4f91-8fea-de6ec489402f</TableID>
+                            <ColumnID>MatterClientName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterClientGroupName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClientMatter_efa9a451-b17b-4f91-8fea-de6ec489402f</TableID>
+                            <ColumnID>MatterClientGroupName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                  </Attributes>
+                  <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
+                </Dimension>
+              </Dimensions>
+              <Partitions>
+                <Partition>
+                  <ID>dimClientMatter_efa9a451-b17b-4f91-8fea-de6ec489402f</ID>
+                  <Name>dimClientMatter</Name>
+                  <Annotations>
+                    <Annotation>
+                      <Name>TableWidgetSerialization</Name>
+                    </Annotation>
+                    <Annotation>
+                      <Name>TableWidgetSourceTable</Name>
+                    </Annotation>
+                    <Annotation>
+                      <Name>QueryEditorSerialization</Name>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsQueryEditorUsed</Name>
+                      <Value>True</Value>
+                    </Annotation>
+                  </Annotations>
+                  <Source xsi:type="QueryBinding">
+                    <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
+                    <QueryDefinition>SELECT distinct
+c.client_code as 'MatterClientCode',
+c.client_name as 'MatterClientName',
+c.client_group_name as 'MatterClientGroupName'
+
+ FROM 
+[dim_client] c
+
+inner join fact_matter_summary a
+ on a.dim_client_key = c.dim_client_key</QueryDefinition>
+                  </Source>
+                  <StorageMode valuens="ddl200_200">InMemory</StorageMode>
+                  <ProcessingMode>Regular</ProcessingMode>
+                  <ErrorConfiguration>
+                    <KeyNotFound>IgnoreError</KeyNotFound>
+                    <KeyDuplicate>ReportAndStop</KeyDuplicate>
+                    <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+                  </ErrorConfiguration>
+                  <ProactiveCaching>
+                    <SilenceInterval>-PT1S</SilenceInterval>
+                    <Latency>-PT1S</Latency>
+                    <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+                    <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+                    <Source xsi:type="ProactiveCachingInheritedBinding" />
+                  </ProactiveCaching>
+                </Partition>
+              </Partitions>
+              <ProactiveCaching>
+                <SilenceInterval>-PT1S</SilenceInterval>
+                <Latency>-PT1S</Latency>
+                <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+                <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+                <Source xsi:type="ProactiveCachingInheritedBinding" />
+              </ProactiveCaching>
+            </MeasureGroup>
           </MeasureGroups>
           <Source>
             <DataSourceViewID>Sandbox</DataSourceViewID>
@@ -17673,6 +18140,7 @@ CREATE MEASURE 'TimeTransactions'[TotalvalueOfTimeRecorded]=sum([ValueOfTimeReco
 CREATE MEASURE 'TimeTransactions'[TotalTimeChargeValue]=sum([timeChargeValue]);
 CREATE MEASURE 'TimeTransactions'[TotalOverriddenTimeChargeValue]=sum([OverriddenTimeChargeValue]);
 CREATE MEASURE 'Bill'[TotalBillAmountOutstanding]=sum([AmountOutstanding]);
+CREATE MEASURE 'TimeTransactions'[DistinctMatters]=distinctcount([MatterID]);
 </Text>
                 </Command>
               </Commands>
@@ -18115,6 +18583,27 @@ CREATE MEASURE 'Bill'[TotalBillAmountOutstanding]=sum([AmountOutstanding]);
                     </Annotation>
                   </Annotations>
                   <CalculationReference>[TotalBillAmountOutstanding]</CalculationReference>
+                  <CalculationType>Member</CalculationType>
+                  <FormatString>''</FormatString>
+                </CalculationProperty>
+                <CalculationProperty>
+                  <Annotations>
+                    <Annotation>
+                      <Name>Type</Name>
+                      <Value>User</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsPrivate</Name>
+                      <Value>False</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Format</Name>
+                      <Value>
+                        <Format Format="General" xmlns="" />
+                      </Value>
+                    </Annotation>
+                  </Annotations>
+                  <CalculationReference>[DistinctMatters]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
                 </CalculationProperty>
@@ -18922,6 +19411,33 @@ CREATE MEASURE 'Bill'[TotalBillAmountOutstanding]=sum([AmountOutstanding]);
                             </xs:simpleType>
                           </xs:element>
                           <xs:element name="MatterGroupDesc" msprop:DbColumnName="MatterGroupDesc" msprop:FriendlyName="MatterGroupDesc" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="dimClientMatter_efa9a451-b17b-4f91-8fea-de6ec489402f" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimMatterClient" msprop:DbTableName="dimClientMatter" msprop:TableType="View" msprop:Description="dimClientMatter" msprop:QueryDefinition="SELECT distinct&#xD;&#xA;c.client_code as 'MatterClientCode',&#xD;&#xA;c.client_name as 'MatterClientName',&#xD;&#xA;c.client_group_name as 'MatterClientGroupName'&#xD;&#xA;&#xD;&#xA; FROM &#xD;&#xA;[dim_client] c&#xD;&#xA;&#xD;&#xA;inner join fact_matter_summary a&#xD;&#xA; on a.dim_client_key = c.dim_client_key">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="MatterClientCode" msprop:DbColumnName="MatterClientCode" msprop:FriendlyName="MatterClientCode" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="MatterClientName" msprop:DbColumnName="MatterClientName" msprop:FriendlyName="MatterClientName" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="MatterClientGroupName" msprop:DbColumnName="MatterClientGroupName" msprop:FriendlyName="MatterClientGroupName" minOccurs="0">
                             <xs:simpleType>
                               <xs:restriction base="xs:string">
                                 <xs:maxLength value="32768" />
