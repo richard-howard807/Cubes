@@ -1387,11 +1387,6 @@
                   <Name>BillFinalOrInterimCode</Name>
                 </AttributeRelationship>
                 <AttributeRelationship>
-                  <AttributeID>BillLastPaymentDate</AttributeID>
-                  <OverrideBehavior>None</OverrideBehavior>
-                  <Name>BillLastPaymentDate</Name>
-                </AttributeRelationship>
-                <AttributeRelationship>
                   <AttributeID>BillAgeDays</AttributeID>
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>BillAgeDays</Name>
@@ -1400,6 +1395,11 @@
                   <AttributeID>AmountOutstanding</AttributeID>
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>AmountOutstanding</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>BillLastPaymentDate</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>BillLastPaymentDate</Name>
                 </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
@@ -1799,32 +1799,6 @@
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
             </Attribute>
             <Attribute>
-              <ID>BillLastPaymentDate</ID>
-              <Name>BillLastPaymentDate</Name>
-              <KeyColumns>
-                <KeyColumn>
-                  <DataType>Date</DataType>
-                  <DataSize>-1</DataSize>
-                  <NullProcessing>Preserve</NullProcessing>
-                  <Source xsi:type="ColumnBinding">
-                    <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
-                    <ColumnID>BillLastPaymentDate</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-              <NameColumn>
-                <DataType>WChar</DataType>
-                <DataSize>-1</DataSize>
-                <NullProcessing>ZeroOrBlank</NullProcessing>
-                <Source xsi:type="ColumnBinding">
-                  <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
-                  <ColumnID>BillLastPaymentDate</ColumnID>
-                </Source>
-              </NameColumn>
-              <OrderBy>Key</OrderBy>
-              <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
-            </Attribute>
-            <Attribute>
               <ID>BillAgeDays</ID>
               <Name>BillAgeDays</Name>
               <KeyColumns>
@@ -1873,6 +1847,32 @@
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>BillLastPaymentDate</ID>
+              <Name>BillLastPaymentDate</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
+                    <ColumnID>BillLastPaymentDate</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
+                  <ColumnID>BillLastPaymentDate</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+              <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
             </Attribute>
           </Attributes>
           <ProactiveCaching>
@@ -1930,29 +1930,6 @@
               </ddl300_300:ToRelationshipEnd>
             </ddl300_300:Relationship>
             <ddl300_300:Relationship>
-              <ID>6fa018b2-b78f-461d-9498-db20aa377d5f</ID>
-              <ddl300_300:FromRelationshipEnd>
-                <ddl300_300:Multiplicity>Many</ddl300_300:Multiplicity>
-                <ddl300:VisualizationProperties />
-                <DimensionID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</DimensionID>
-                <Attributes>
-                  <Attribute>
-                    <AttributeID>BillLastPaymentDate</AttributeID>
-                  </Attribute>
-                </Attributes>
-              </ddl300_300:FromRelationshipEnd>
-              <ddl300_300:ToRelationshipEnd>
-                <ddl300_300:Multiplicity>One</ddl300_300:Multiplicity>
-                <ddl300:VisualizationProperties />
-                <DimensionID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</DimensionID>
-                <Attributes>
-                  <Attribute>
-                    <AttributeID>DateBillLastPaymentDate</AttributeID>
-                  </Attribute>
-                </Attributes>
-              </ddl300_300:ToRelationshipEnd>
-            </ddl300_300:Relationship>
-            <ddl300_300:Relationship>
               <ID>ffe4bb5c-8c5a-4048-a134-ca863b29a400</ID>
               <ddl300_300:FromRelationshipEnd>
                 <ddl300_300:Multiplicity>Many</ddl300_300:Multiplicity>
@@ -1971,6 +1948,29 @@
                 <Attributes>
                   <Attribute>
                     <AttributeID>BillDateKey</AttributeID>
+                  </Attribute>
+                </Attributes>
+              </ddl300_300:ToRelationshipEnd>
+            </ddl300_300:Relationship>
+            <ddl300_300:Relationship>
+              <ID>6898afc4-0c47-437b-991b-4ce5a87c2571</ID>
+              <ddl300_300:FromRelationshipEnd>
+                <ddl300_300:Multiplicity>Many</ddl300_300:Multiplicity>
+                <ddl300:VisualizationProperties />
+                <DimensionID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</DimensionID>
+                <Attributes>
+                  <Attribute>
+                    <AttributeID>BillLastPaymentDate</AttributeID>
+                  </Attribute>
+                </Attributes>
+              </ddl300_300:FromRelationshipEnd>
+              <ddl300_300:ToRelationshipEnd>
+                <ddl300_300:Multiplicity>One</ddl300_300:Multiplicity>
+                <ddl300:VisualizationProperties />
+                <DimensionID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</DimensionID>
+                <Attributes>
+                  <Attribute>
+                    <AttributeID>DateBillLastPaymentDate</AttributeID>
                   </Attribute>
                 </Attributes>
               </ddl300_300:ToRelationshipEnd>
@@ -9588,14 +9588,14 @@
                   <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
                 </Attribute>
                 <Attribute>
-                  <AttributeID>BillLastPaymentDate</AttributeID>
-                  <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
-                </Attribute>
-                <Attribute>
                   <AttributeID>BillAgeDays</AttributeID>
                 </Attribute>
                 <Attribute>
                   <AttributeID>AmountOutstanding</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>BillLastPaymentDate</AttributeID>
+                  <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
                 </Attribute>
               </Attributes>
             </Dimension>
@@ -12685,20 +12685,6 @@ f.dim_matter_header_key</QueryDefinition>
                       </KeyColumns>
                     </Attribute>
                     <Attribute>
-                      <AttributeID>BillLastPaymentDate</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Date</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
-                            <ColumnID>BillLastPaymentDate</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
                       <AttributeID>BillAgeDays</AttributeID>
                       <KeyColumns>
                         <KeyColumn>
@@ -12722,6 +12708,20 @@ f.dim_matter_header_key</QueryDefinition>
                           <Source xsi:type="ColumnBinding">
                             <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
                             <ColumnID>AmountOutstanding</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BillLastPaymentDate</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
+                            <ColumnID>BillLastPaymentDate</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -12828,279 +12828,6 @@ f.dim_matter_header_key</QueryDefinition>
                   <IntermediateGranularityAttributeID>BillTypeCode</IntermediateGranularityAttributeID>
                   <Materialization>Regular</Materialization>
                   <ddl300:RelationshipID>69282755-f53e-4e04-ae35-73a08e5cd29c</ddl300:RelationshipID>
-                </Dimension>
-                <Dimension xsi:type="ReferenceMeasureGroupDimension">
-                  <CubeDimensionID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</CubeDimensionID>
-                  <Attributes>
-                    <Attribute>
-                      <AttributeID>RowNumber</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>4</DataSize>
-                          <NullProcessing>Error</NullProcessing>
-                          <Source xsi:type="ddl200_200:RowNumberBinding" />
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>DateBillLastPaymentKey</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
-                            <ColumnID>DateBillLastPaymentKey</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>DateBillLastPaymentDate</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Date</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Error</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
-                            <ColumnID>DateBillLastPaymentDate</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                      <Type>Granularity</Type>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>DateBillLastPaymentDayInMonth</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
-                            <ColumnID>DateBillLastPaymentDayInMonth</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>DateBillLastPaymentDayInYear</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
-                            <ColumnID>DateBillLastPaymentDayInYear</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>DateBillLastPaymentWeekdayNo</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
-                            <ColumnID>DateBillLastPaymentWeekdayNo</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>DateBillLastPaymentWeekdayName</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
-                            <ColumnID>DateBillLastPaymentWeekdayName</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>DateBillLastPaymentCalendarWeek</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
-                            <ColumnID>DateBillLastPaymentCalendarWeek</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>DateBillLastPaymentCalendarMonthNo</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
-                            <ColumnID>DateBillLastPaymentCalendarMonthNo</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>DateBillLastPaymentCalendarMonthName</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
-                            <ColumnID>DateBillLastPaymentCalendarMonthName</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>DateBillLastPaymentCalendarQuarterNo</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
-                            <ColumnID>DateBillLastPaymentCalendarQuarterNo</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>DateBillLastPaymentCalendarYear</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
-                            <ColumnID>DateBillLastPaymentCalendarYear</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>DateBillLastPaymentFinancialWeek</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
-                            <ColumnID>DateBillLastPaymentFinancialWeek</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>DateBillLastPaymentFinancialMonthNo</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
-                            <ColumnID>DateBillLastPaymentFinancialMonthNo</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>DateBillLastPaymentFinancialMonthName</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
-                            <ColumnID>DateBillLastPaymentFinancialMonthName</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>DateBillLastPaymentFinancialQuarterNo</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
-                            <ColumnID>DateBillLastPaymentFinancialQuarterNo</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>DateBillLastPaymentFinancialYear</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
-                            <ColumnID>DateBillLastPaymentFinancialYear</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>DateBillLastPaymentWeekend</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
-                            <ColumnID>DateBillLastPaymentWeekend</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>DateBillLastPaymentHoliday</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
-                            <ColumnID>DateBillLastPaymentHoliday</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                  </Attributes>
-                  <IntermediateCubeDimensionID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</IntermediateCubeDimensionID>
-                  <IntermediateGranularityAttributeID>BillLastPaymentDate</IntermediateGranularityAttributeID>
-                  <Materialization>Regular</Materialization>
-                  <ddl300:RelationshipID>6fa018b2-b78f-461d-9498-db20aa377d5f</ddl300:RelationshipID>
                 </Dimension>
                 <Dimension xsi:type="ReferenceMeasureGroupDimension">
                   <CubeDimensionID>dimDateBillDate_5d487121-6f04-420b-b2c5-aaac44ffc60f</CubeDimensionID>
@@ -13375,6 +13102,279 @@ f.dim_matter_header_key</QueryDefinition>
                   <Materialization>Regular</Materialization>
                   <ddl300:RelationshipID>ffe4bb5c-8c5a-4048-a134-ca863b29a400</ddl300:RelationshipID>
                 </Dimension>
+                <Dimension xsi:type="ReferenceMeasureGroupDimension">
+                  <CubeDimensionID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>RowNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>4</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ddl200_200:RowNumberBinding" />
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DateBillLastPaymentKey</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
+                            <ColumnID>DateBillLastPaymentKey</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DateBillLastPaymentDate</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
+                            <ColumnID>DateBillLastPaymentDate</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DateBillLastPaymentDayInMonth</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
+                            <ColumnID>DateBillLastPaymentDayInMonth</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DateBillLastPaymentDayInYear</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
+                            <ColumnID>DateBillLastPaymentDayInYear</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DateBillLastPaymentWeekdayNo</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
+                            <ColumnID>DateBillLastPaymentWeekdayNo</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DateBillLastPaymentWeekdayName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
+                            <ColumnID>DateBillLastPaymentWeekdayName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DateBillLastPaymentCalendarWeek</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
+                            <ColumnID>DateBillLastPaymentCalendarWeek</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DateBillLastPaymentCalendarMonthNo</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
+                            <ColumnID>DateBillLastPaymentCalendarMonthNo</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DateBillLastPaymentCalendarMonthName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
+                            <ColumnID>DateBillLastPaymentCalendarMonthName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DateBillLastPaymentCalendarQuarterNo</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
+                            <ColumnID>DateBillLastPaymentCalendarQuarterNo</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DateBillLastPaymentCalendarYear</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
+                            <ColumnID>DateBillLastPaymentCalendarYear</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DateBillLastPaymentFinancialWeek</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
+                            <ColumnID>DateBillLastPaymentFinancialWeek</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DateBillLastPaymentFinancialMonthNo</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
+                            <ColumnID>DateBillLastPaymentFinancialMonthNo</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DateBillLastPaymentFinancialMonthName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
+                            <ColumnID>DateBillLastPaymentFinancialMonthName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DateBillLastPaymentFinancialQuarterNo</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
+                            <ColumnID>DateBillLastPaymentFinancialQuarterNo</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DateBillLastPaymentFinancialYear</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
+                            <ColumnID>DateBillLastPaymentFinancialYear</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DateBillLastPaymentWeekend</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
+                            <ColumnID>DateBillLastPaymentWeekend</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DateBillLastPaymentHoliday</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
+                            <ColumnID>DateBillLastPaymentHoliday</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                  </Attributes>
+                  <IntermediateCubeDimensionID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</IntermediateCubeDimensionID>
+                  <IntermediateGranularityAttributeID>BillLastPaymentDate</IntermediateGranularityAttributeID>
+                  <Materialization>Regular</Materialization>
+                  <ddl300:RelationshipID>6898afc4-0c47-437b-991b-4ce5a87c2571</ddl300:RelationshipID>
+                </Dimension>
               </Dimensions>
               <Partitions>
                 <Partition>
@@ -13397,53 +13397,29 @@ f.dim_matter_header_key</QueryDefinition>
                   </Annotations>
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
-                    <QueryDefinition>select
+                    <QueryDefinition>select distinct
 f.dim_bill_key as 'BillID',
 f.bill_number as 'BillNumber',
-case when f.bill_record_type = 'Bill' then 'B' 
-        when f.bill_record_type = 'Abatement' then 'A'
-        end as 'BillTypeCode',
+upper(d.record_type) as  'BillTypeCode',
 d.bill_flag as 'BillFinalOrInterimCode',
-bill_last_pay_date as 'BillLastPaymentDate',
-dim_bill_date_key as 'BillDate',
-sum(f.bill_total) as 'BillAmount',
-sum(fees_total) as 'FeeValue',
-sum(payed_disbursement) as 'DisbursementsPaid',
-sum(unpaid_disbursement) as 'DisbursementsUnpaid',
-sum(administration_charges) as 'AdministrationCharges',
-sum(vat_amount) as 'VATAmount',
-sum(f.payed_amount) as 'AmountPaid',
-sum(f.bill_total) - sum(f.payed_amount) as 'AmountOutstanding',
-case when tbl.payed_amount = tbl.bill_total then 'Paid' else cast(datediff(day,f.bill_date, getdate()) as varchar(10)) end as 'BillAgeDays'
+f.dim_last_pay_date_key as 'BillLastPaymentDate',
+f.dim_bill_date_key as 'BillDate',
+f.bill_total as 'BillAmount',
+f.fees_total as 'FeeValue',
+f.paid_disbursements as 'DisbursementsPaid',
+f.unpaid_disbursements as 'DisbursementsUnpaid',
+f.admin_charges_total as 'AdministrationCharges',
+f.vat_amount as 'VATAmount',
+f.amount_paid as 'AmountPaid',
+f.bill_total - f.amount_paid as 'AmountOutstanding',
+case when f.amount_paid = f.bill_total then 'Paid' else cast(datediff(day,cast( cast(f.dim_bill_date_key as varchar(10)) as date), getdate()) as varchar(10)) end as 'BillAgeDays'
 
 from
-red_dw.dbo.fact_bill_activity f
+red_dw.dbo.fact_bill f
 
 left join
  red_dw.dbo.dim_bill d
-  on d.dim_bill_key = f.dim_bill_key
-
- left join (
-   select
-  dim_bill_key,
-  sum(payed_amount) as 'payed_amount',
-  sum(bill_total) as 'bill_total'
-
-  from
-  red_dw.dbo.fact_bill_activity
-
-  group by 
-  dim_bill_key) tbl on tbl.dim_bill_key = f.dim_bill_key
-
-group by
-f.dim_bill_key,
-f.bill_number,
-dim_client_key,
-bill_record_type,
-dim_bill_date_key,
-d.bill_flag,
-f.bill_last_pay_date,
-case when tbl.payed_amount = tbl.bill_total then 'Paid' else cast(datediff(day,f.bill_date, getdate()) as varchar(10)) end</QueryDefinition>
+  on d.dim_bill_key = f.dim_bill_key</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
@@ -14091,20 +14067,6 @@ branch_name is not null</QueryDefinition>
                       </KeyColumns>
                     </Attribute>
                     <Attribute>
-                      <AttributeID>BillLastPaymentDate</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Date</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
-                            <ColumnID>BillLastPaymentDate</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
                       <AttributeID>BillAgeDays</AttributeID>
                       <KeyColumns>
                         <KeyColumn>
@@ -14128,6 +14090,20 @@ branch_name is not null</QueryDefinition>
                           <Source xsi:type="ColumnBinding">
                             <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
                             <ColumnID>AmountOutstanding</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BillLastPaymentDate</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
+                            <ColumnID>BillLastPaymentDate</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -15359,277 +15335,6 @@ branch_name is not null</QueryDefinition>
                   <IntermediateGranularityAttributeID>RunDate</IntermediateGranularityAttributeID>
                   <Materialization>Regular</Materialization>
                   <ddl300:RelationshipID>184805f5-3dd6-4715-8566-3eb825e8c572</ddl300:RelationshipID>
-                </Dimension>
-                <Dimension xsi:type="ReferenceMeasureGroupDimension">
-                  <CubeDimensionID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</CubeDimensionID>
-                  <Attributes>
-                    <Attribute>
-                      <AttributeID>RowNumber</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>4</DataSize>
-                          <NullProcessing>Error</NullProcessing>
-                          <Source xsi:type="ddl200_200:RowNumberBinding" />
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>DateBillLastPaymentKey</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
-                            <ColumnID>DateBillLastPaymentKey</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>DateBillLastPaymentDate</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Date</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Error</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
-                            <ColumnID>DateBillLastPaymentDate</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                      <Type>Granularity</Type>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>DateBillLastPaymentDayInMonth</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
-                            <ColumnID>DateBillLastPaymentDayInMonth</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>DateBillLastPaymentDayInYear</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
-                            <ColumnID>DateBillLastPaymentDayInYear</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>DateBillLastPaymentWeekdayNo</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
-                            <ColumnID>DateBillLastPaymentWeekdayNo</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>DateBillLastPaymentWeekdayName</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
-                            <ColumnID>DateBillLastPaymentWeekdayName</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>DateBillLastPaymentCalendarWeek</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
-                            <ColumnID>DateBillLastPaymentCalendarWeek</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>DateBillLastPaymentCalendarMonthNo</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
-                            <ColumnID>DateBillLastPaymentCalendarMonthNo</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>DateBillLastPaymentCalendarMonthName</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
-                            <ColumnID>DateBillLastPaymentCalendarMonthName</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>DateBillLastPaymentCalendarQuarterNo</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
-                            <ColumnID>DateBillLastPaymentCalendarQuarterNo</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>DateBillLastPaymentCalendarYear</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
-                            <ColumnID>DateBillLastPaymentCalendarYear</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>DateBillLastPaymentFinancialWeek</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
-                            <ColumnID>DateBillLastPaymentFinancialWeek</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>DateBillLastPaymentFinancialMonthNo</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
-                            <ColumnID>DateBillLastPaymentFinancialMonthNo</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>DateBillLastPaymentFinancialMonthName</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
-                            <ColumnID>DateBillLastPaymentFinancialMonthName</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>DateBillLastPaymentFinancialQuarterNo</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
-                            <ColumnID>DateBillLastPaymentFinancialQuarterNo</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>DateBillLastPaymentFinancialYear</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
-                            <ColumnID>DateBillLastPaymentFinancialYear</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>DateBillLastPaymentWeekend</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
-                            <ColumnID>DateBillLastPaymentWeekend</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>DateBillLastPaymentHoliday</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
-                            <ColumnID>DateBillLastPaymentHoliday</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                  </Attributes>
-                  <IntermediateCubeDimensionID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</IntermediateCubeDimensionID>
-                  <IntermediateGranularityAttributeID>BillLastPaymentDate</IntermediateGranularityAttributeID>
                 </Dimension>
                 <Dimension xsi:type="ReferenceMeasureGroupDimension">
                   <CubeDimensionID>dimWorkType_8bd61155-060a-4cc0-ae78-5ed96ec74177</CubeDimensionID>
@@ -17368,6 +17073,277 @@ branch_name is not null</QueryDefinition>
                   </Attributes>
                   <IntermediateCubeDimensionID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</IntermediateCubeDimensionID>
                   <IntermediateGranularityAttributeID>BillDate</IntermediateGranularityAttributeID>
+                </Dimension>
+                <Dimension xsi:type="ReferenceMeasureGroupDimension">
+                  <CubeDimensionID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>RowNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>4</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ddl200_200:RowNumberBinding" />
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DateBillLastPaymentKey</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
+                            <ColumnID>DateBillLastPaymentKey</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DateBillLastPaymentDate</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
+                            <ColumnID>DateBillLastPaymentDate</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DateBillLastPaymentDayInMonth</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
+                            <ColumnID>DateBillLastPaymentDayInMonth</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DateBillLastPaymentDayInYear</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
+                            <ColumnID>DateBillLastPaymentDayInYear</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DateBillLastPaymentWeekdayNo</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
+                            <ColumnID>DateBillLastPaymentWeekdayNo</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DateBillLastPaymentWeekdayName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
+                            <ColumnID>DateBillLastPaymentWeekdayName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DateBillLastPaymentCalendarWeek</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
+                            <ColumnID>DateBillLastPaymentCalendarWeek</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DateBillLastPaymentCalendarMonthNo</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
+                            <ColumnID>DateBillLastPaymentCalendarMonthNo</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DateBillLastPaymentCalendarMonthName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
+                            <ColumnID>DateBillLastPaymentCalendarMonthName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DateBillLastPaymentCalendarQuarterNo</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
+                            <ColumnID>DateBillLastPaymentCalendarQuarterNo</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DateBillLastPaymentCalendarYear</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
+                            <ColumnID>DateBillLastPaymentCalendarYear</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DateBillLastPaymentFinancialWeek</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
+                            <ColumnID>DateBillLastPaymentFinancialWeek</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DateBillLastPaymentFinancialMonthNo</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
+                            <ColumnID>DateBillLastPaymentFinancialMonthNo</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DateBillLastPaymentFinancialMonthName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
+                            <ColumnID>DateBillLastPaymentFinancialMonthName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DateBillLastPaymentFinancialQuarterNo</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
+                            <ColumnID>DateBillLastPaymentFinancialQuarterNo</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DateBillLastPaymentFinancialYear</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
+                            <ColumnID>DateBillLastPaymentFinancialYear</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DateBillLastPaymentWeekend</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
+                            <ColumnID>DateBillLastPaymentWeekend</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DateBillLastPaymentHoliday</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5</TableID>
+                            <ColumnID>DateBillLastPaymentHoliday</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                  </Attributes>
+                  <IntermediateCubeDimensionID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</IntermediateCubeDimensionID>
+                  <IntermediateGranularityAttributeID>BillLastPaymentDate</IntermediateGranularityAttributeID>
                 </Dimension>
               </Dimensions>
               <Partitions>
@@ -22413,7 +22389,7 @@ CREATE MEASURE 'TimeTransactions'[DistinctMatters]=distinctcount([MatterID]);
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="Bill" msprop:DbTableName="factBill" msprop:TableType="View" msprop:Description="factBill" msprop:QueryDefinition="select&#xD;&#xA;f.dim_bill_key as 'BillID',&#xD;&#xA;f.bill_number as 'BillNumber',&#xD;&#xA;case when f.bill_record_type = 'Bill' then 'B' &#xD;&#xA;        when f.bill_record_type = 'Abatement' then 'A'&#xD;&#xA;        end as 'BillTypeCode',&#xD;&#xA;d.bill_flag as 'BillFinalOrInterimCode',&#xD;&#xA;bill_last_pay_date as 'BillLastPaymentDate',&#xD;&#xA;dim_bill_date_key as 'BillDate',&#xD;&#xA;sum(f.bill_total) as 'BillAmount',&#xD;&#xA;sum(fees_total) as 'FeeValue',&#xD;&#xA;sum(payed_disbursement) as 'DisbursementsPaid',&#xD;&#xA;sum(unpaid_disbursement) as 'DisbursementsUnpaid',&#xD;&#xA;sum(administration_charges) as 'AdministrationCharges',&#xD;&#xA;sum(vat_amount) as 'VATAmount',&#xD;&#xA;sum(f.payed_amount) as 'AmountPaid',&#xD;&#xA;sum(f.bill_total) - sum(f.payed_amount) as 'AmountOutstanding',&#xD;&#xA;case when tbl.payed_amount = tbl.bill_total then 'Paid' else cast(datediff(day,f.bill_date, getdate()) as varchar(10)) end as 'BillAgeDays'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_bill_activity f&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; red_dw.dbo.dim_bill d&#xD;&#xA;  on d.dim_bill_key = f.dim_bill_key&#xD;&#xA;&#xD;&#xA; left join (&#xD;&#xA;   select&#xD;&#xA;  dim_bill_key,&#xD;&#xA;  sum(payed_amount) as 'payed_amount',&#xD;&#xA;  sum(bill_total) as 'bill_total'&#xD;&#xA;&#xD;&#xA;  from&#xD;&#xA;  red_dw.dbo.fact_bill_activity&#xD;&#xA;&#xD;&#xA;  group by &#xD;&#xA;  dim_bill_key) tbl on tbl.dim_bill_key = f.dim_bill_key&#xD;&#xA;&#xD;&#xA;group by&#xD;&#xA;f.dim_bill_key,&#xD;&#xA;f.bill_number,&#xD;&#xA;dim_client_key,&#xD;&#xA;bill_record_type,&#xD;&#xA;dim_bill_date_key,&#xD;&#xA;d.bill_flag,&#xD;&#xA;f.bill_last_pay_date,&#xD;&#xA;case when tbl.payed_amount = tbl.bill_total then 'Paid' else cast(datediff(day,f.bill_date, getdate()) as varchar(10)) end">
+                    <xs:element name="factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="Bill" msprop:DbTableName="factBill" msprop:TableType="View" msprop:Description="factBill" msprop:QueryDefinition="select distinct&#xD;&#xA;f.dim_bill_key as 'BillID',&#xD;&#xA;f.bill_number as 'BillNumber',&#xD;&#xA;upper(d.record_type) as  'BillTypeCode',&#xD;&#xA;d.bill_flag as 'BillFinalOrInterimCode',&#xD;&#xA;f.dim_last_pay_date_key as 'BillLastPaymentDate',&#xD;&#xA;f.dim_bill_date_key as 'BillDate',&#xD;&#xA;f.bill_total as 'BillAmount',&#xD;&#xA;f.fees_total as 'FeeValue',&#xD;&#xA;f.paid_disbursements as 'DisbursementsPaid',&#xD;&#xA;f.unpaid_disbursements as 'DisbursementsUnpaid',&#xD;&#xA;f.admin_charges_total as 'AdministrationCharges',&#xD;&#xA;f.vat_amount as 'VATAmount',&#xD;&#xA;f.amount_paid as 'AmountPaid',&#xD;&#xA;f.bill_total - f.amount_paid as 'AmountOutstanding',&#xD;&#xA;case when f.amount_paid = f.bill_total then 'Paid' else cast(datediff(day,cast( cast(f.dim_bill_date_key as varchar(10)) as date), getdate()) as varchar(10)) end as 'BillAgeDays'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_bill f&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; red_dw.dbo.dim_bill d&#xD;&#xA;  on d.dim_bill_key = f.dim_bill_key">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="BillID" msprop:DbColumnName="BillID" msprop:FriendlyName="BillID" minOccurs="0">
@@ -22452,7 +22428,6 @@ CREATE MEASURE 'TimeTransactions'[DistinctMatters]=distinctcount([MatterID]);
                               </xs:restriction>
                             </xs:simpleType>
                           </xs:element>
-                          <xs:element name="BillLastPaymentDate" msprop:DbColumnName="BillLastPaymentDate" msprop:FriendlyName="BillLastPaymentDate" type="xs:dateTime" minOccurs="0" />
                           <xs:element name="BillAgeDays" msprop:DbColumnName="BillAgeDays" msprop:FriendlyName="BillAgeDays" minOccurs="0">
                             <xs:simpleType>
                               <xs:restriction base="xs:string">
@@ -22461,6 +22436,7 @@ CREATE MEASURE 'TimeTransactions'[DistinctMatters]=distinctcount([MatterID]);
                             </xs:simpleType>
                           </xs:element>
                           <xs:element name="AmountOutstanding" msprop:DbColumnName="AmountOutstanding" msprop:FriendlyName="AmountOutstanding" type="xs:decimal" minOccurs="0" />
+                          <xs:element name="BillLastPaymentDate" msprop:DbColumnName="BillLastPaymentDate" msprop:FriendlyName="BillLastPaymentDate" type="xs:int" minOccurs="0" />
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
