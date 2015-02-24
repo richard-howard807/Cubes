@@ -1401,6 +1401,11 @@
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>BillID</Name>
                 </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>OpenItem</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>OpenItem</Name>
+                </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
@@ -1860,6 +1865,31 @@
                 <Source xsi:type="ColumnBinding">
                   <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
                   <ColumnID>BillID</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>OpenItem</ID>
+              <Name>OpenItem</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
+                    <ColumnID>OpenItem</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
+                  <ColumnID>OpenItem</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
@@ -9587,6 +9617,9 @@
                 <Attribute>
                   <AttributeID>BillID</AttributeID>
                 </Attribute>
+                <Attribute>
+                  <AttributeID>OpenItem</AttributeID>
+                </Attribute>
               </Attributes>
             </Dimension>
             <Dimension>
@@ -12723,6 +12756,20 @@ d.matter_number</QueryDefinition>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>OpenItem</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
+                            <ColumnID>OpenItem</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
                 </Dimension>
@@ -13409,7 +13456,8 @@ f.admin_charges_total as 'AdministrationCharges',
 f.vat_amount as 'VATAmount',
 f.amount_paid as 'AmountPaid',
 f.bill_total - f.amount_paid as 'AmountOutstanding',
-case when f.amount_paid = f.bill_total then 'Paid' else cast(datediff(day,cast( cast(f.dim_bill_date_key as varchar(10)) as date), getdate()) as varchar(10)) end as 'BillAgeDays'
+case when f.amount_paid = f.bill_total then 'Paid' else cast(datediff(day,cast( cast(f.dim_bill_date_key as varchar(10)) as date), getdate()) as varchar(10)) end as 'BillAgeDays',
+d.outstanding_flag as 'OpenItem'
 
 from
 red_dw.dbo.fact_bill f
@@ -16708,6 +16756,20 @@ branch_name is not null</QueryDefinition>
                         </KeyColumn>
                       </KeyColumns>
                       <Type>Granularity</Type>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>OpenItem</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
+                            <ColumnID>OpenItem</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
                     </Attribute>
                   </Attributes>
                   <IntermediateCubeDimensionID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</IntermediateCubeDimensionID>
@@ -22375,7 +22437,7 @@ CREATE MEASURE 'Bill'[TotalBillAmountOutstanding]=sum([AmountOutstanding]);
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="Bill" msprop:DbTableName="factBill" msprop:TableType="View" msprop:Description="factBill" msprop:QueryDefinition="select distinct&#xD;&#xA;f.dim_bill_key as 'BillID',&#xD;&#xA;f.bill_number as 'BillNumber',&#xD;&#xA;upper(d.record_type) as  'BillTypeCode',&#xD;&#xA;d.bill_flag as 'BillFinalOrInterimCode',&#xD;&#xA;f.dim_last_pay_date_key as 'BillLastPaymentDate',&#xD;&#xA;f.dim_bill_date_key as 'BillDate',&#xD;&#xA;f.bill_total as 'BillAmount',&#xD;&#xA;f.fees_total as 'FeeValue',&#xD;&#xA;f.paid_disbursements as 'DisbursementsPaid',&#xD;&#xA;f.unpaid_disbursements as 'DisbursementsUnpaid',&#xD;&#xA;f.admin_charges_total as 'AdministrationCharges',&#xD;&#xA;f.vat_amount as 'VATAmount',&#xD;&#xA;f.amount_paid as 'AmountPaid',&#xD;&#xA;f.bill_total - f.amount_paid as 'AmountOutstanding',&#xD;&#xA;case when f.amount_paid = f.bill_total then 'Paid' else cast(datediff(day,cast( cast(f.dim_bill_date_key as varchar(10)) as date), getdate()) as varchar(10)) end as 'BillAgeDays'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_bill f&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; red_dw.dbo.dim_bill d&#xD;&#xA;  on d.dim_bill_key = f.dim_bill_key&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_matter_header d2&#xD;&#xA; on d2.client_code = f.client_code&#xD;&#xA;and d2.matter_number = f.matter_number&#xD;&#xA;and d2.source_system_id = f.source_system_id&#xD;&#xA;and d2.current_flag = 'Y'&#xD;&#xA;&#xD;&#xA;inner join red_dw.dbo.fact_all_time_activity t&#xD;&#xA; on t.dim_bill_key = f.dim_bill_key&#xD;&#xA;&#xD;&#xA;order by&#xD;&#xA;f.bill_number">
+                    <xs:element name="factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="Bill" msprop:DbTableName="factBill" msprop:TableType="View" msprop:Description="factBill" msprop:QueryDefinition="select distinct&#xD;&#xA;f.dim_bill_key as 'BillID',&#xD;&#xA;f.bill_number as 'BillNumber',&#xD;&#xA;upper(d.record_type) as  'BillTypeCode',&#xD;&#xA;d.bill_flag as 'BillFinalOrInterimCode',&#xD;&#xA;f.dim_last_pay_date_key as 'BillLastPaymentDate',&#xD;&#xA;f.dim_bill_date_key as 'BillDate',&#xD;&#xA;f.bill_total as 'BillAmount',&#xD;&#xA;f.fees_total as 'FeeValue',&#xD;&#xA;f.paid_disbursements as 'DisbursementsPaid',&#xD;&#xA;f.unpaid_disbursements as 'DisbursementsUnpaid',&#xD;&#xA;f.admin_charges_total as 'AdministrationCharges',&#xD;&#xA;f.vat_amount as 'VATAmount',&#xD;&#xA;f.amount_paid as 'AmountPaid',&#xD;&#xA;f.bill_total - f.amount_paid as 'AmountOutstanding',&#xD;&#xA;case when f.amount_paid = f.bill_total then 'Paid' else cast(datediff(day,cast( cast(f.dim_bill_date_key as varchar(10)) as date), getdate()) as varchar(10)) end as 'BillAgeDays',&#xD;&#xA;d.outstanding_flag as 'OpenItem'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_bill f&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; red_dw.dbo.dim_bill d&#xD;&#xA;  on d.dim_bill_key = f.dim_bill_key&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_matter_header d2&#xD;&#xA; on d2.client_code = f.client_code&#xD;&#xA;and d2.matter_number = f.matter_number&#xD;&#xA;and d2.source_system_id = f.source_system_id&#xD;&#xA;and d2.current_flag = 'Y'&#xD;&#xA;&#xD;&#xA;inner join red_dw.dbo.fact_all_time_activity t&#xD;&#xA; on t.dim_bill_key = f.dim_bill_key&#xD;&#xA;&#xD;&#xA;order by&#xD;&#xA;f.bill_number">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="BillDate" msprop:DbColumnName="BillDate" msprop:FriendlyName="BillDate" type="xs:int" minOccurs="0" />
@@ -22417,6 +22479,13 @@ CREATE MEASURE 'Bill'[TotalBillAmountOutstanding]=sum([AmountOutstanding]);
                           <xs:element name="AmountOutstanding" msprop:DbColumnName="AmountOutstanding" msprop:FriendlyName="AmountOutstanding" type="xs:decimal" minOccurs="0" />
                           <xs:element name="BillLastPaymentDate" msprop:DbColumnName="BillLastPaymentDate" msprop:FriendlyName="BillLastPaymentDate" type="xs:int" minOccurs="0" />
                           <xs:element name="BillID" msprop:DbColumnName="BillID" msprop:FriendlyName="BillID" type="xs:int" minOccurs="0" />
+                          <xs:element name="OpenItem" msprop:DbColumnName="OpenItem" msprop:FriendlyName="OpenItem" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
