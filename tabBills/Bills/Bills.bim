@@ -1214,11 +1214,6 @@
                   <Name>BillFinalOrInterimCode</Name>
                 </AttributeRelationship>
                 <AttributeRelationship>
-                  <AttributeID>BillAgeDays</AttributeID>
-                  <OverrideBehavior>None</OverrideBehavior>
-                  <Name>BillAgeDays</Name>
-                </AttributeRelationship>
-                <AttributeRelationship>
                   <AttributeID>AmountOutstanding</AttributeID>
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>AmountOutstanding</Name>
@@ -1237,6 +1232,11 @@
                   <AttributeID>OpenItem</AttributeID>
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>OpenItem</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>BillAgeDays</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>BillAgeDays</Name>
                 </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
@@ -1601,31 +1601,6 @@
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
             </Attribute>
             <Attribute>
-              <ID>BillAgeDays</ID>
-              <Name>BillAgeDays</Name>
-              <KeyColumns>
-                <KeyColumn>
-                  <DataType>WChar</DataType>
-                  <DataSize>32768</DataSize>
-                  <NullProcessing>Preserve</NullProcessing>
-                  <Source xsi:type="ColumnBinding">
-                    <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
-                    <ColumnID>BillAgeDays</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-              <NameColumn>
-                <DataType>WChar</DataType>
-                <DataSize>32768</DataSize>
-                <NullProcessing>ZeroOrBlank</NullProcessing>
-                <Source xsi:type="ColumnBinding">
-                  <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
-                  <ColumnID>BillAgeDays</ColumnID>
-                </Source>
-              </NameColumn>
-              <OrderBy>Key</OrderBy>
-            </Attribute>
-            <Attribute>
               <ID>AmountOutstanding</ID>
               <Name>AmountOutstanding</Name>
               <KeyColumns>
@@ -1722,6 +1697,31 @@
                 <Source xsi:type="ColumnBinding">
                   <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
                   <ColumnID>OpenItem</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>BillAgeDays</ID>
+              <Name>BillAgeDays</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Double</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
+                    <ColumnID>BillAgeDays</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
+                  <ColumnID>BillAgeDays</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
@@ -6748,9 +6748,6 @@
                   <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
                 </Attribute>
                 <Attribute>
-                  <AttributeID>BillAgeDays</AttributeID>
-                </Attribute>
-                <Attribute>
                   <AttributeID>AmountOutstanding</AttributeID>
                 </Attribute>
                 <Attribute>
@@ -6762,6 +6759,9 @@
                 </Attribute>
                 <Attribute>
                   <AttributeID>OpenItem</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>BillAgeDays</AttributeID>
                 </Attribute>
               </Attributes>
             </Dimension>
@@ -9371,20 +9371,6 @@ d.matter_number</QueryDefinition>
                       </KeyColumns>
                     </Attribute>
                     <Attribute>
-                      <AttributeID>BillAgeDays</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
-                            <ColumnID>BillAgeDays</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
                       <AttributeID>AmountOutstanding</AttributeID>
                       <KeyColumns>
                         <KeyColumn>
@@ -9436,6 +9422,20 @@ d.matter_number</QueryDefinition>
                           <Source xsi:type="ColumnBinding">
                             <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
                             <ColumnID>OpenItem</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BillAgeDays</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Double</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
+                            <ColumnID>BillAgeDays</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -15553,13 +15553,6 @@ CREATE MEASURE 'Bills'[TotalBillAmountOutstanding]=sum([AmountOutstanding]);
                               </xs:restriction>
                             </xs:simpleType>
                           </xs:element>
-                          <xs:element name="BillAgeDays" msprop:DbColumnName="BillAgeDays" msprop:FriendlyName="BillAgeDays" minOccurs="0">
-                            <xs:simpleType>
-                              <xs:restriction base="xs:string">
-                                <xs:maxLength value="32768" />
-                              </xs:restriction>
-                            </xs:simpleType>
-                          </xs:element>
                           <xs:element name="AmountOutstanding" msprop:DbColumnName="AmountOutstanding" msprop:FriendlyName="AmountOutstanding" type="xs:decimal" minOccurs="0" />
                           <xs:element name="BillLastPaymentDate" msprop:DbColumnName="BillLastPaymentDate" msprop:FriendlyName="BillLastPaymentDate" type="xs:int" minOccurs="0" />
                           <xs:element name="MatterID" msprop:DbColumnName="MatterID" msprop:FriendlyName="MatterID" type="xs:int" minOccurs="0" />
@@ -15570,6 +15563,7 @@ CREATE MEASURE 'Bills'[TotalBillAmountOutstanding]=sum([AmountOutstanding]);
                               </xs:restriction>
                             </xs:simpleType>
                           </xs:element>
+                          <xs:element name="BillAgeDays" msprop:DbColumnName="BillAgeDays" msprop:FriendlyName="BillAgeDays" type="xs:decimal" minOccurs="0" />
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
