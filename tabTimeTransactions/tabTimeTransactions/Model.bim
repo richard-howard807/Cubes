@@ -13491,7 +13491,7 @@ cast(f.dss_update_time as date) =
 	cast(dss_update_time as date) 
 
 	from
-	red_dw.dbo.fact_all_time_activity
+	red_dw.dbo.fact_bill
 
 	order by
 	cast(dss_update_time as date)
@@ -13570,14 +13570,14 @@ inner join red_dw.dbo.fact_all_time_activity t
  on t.dim_bill_key = f.dim_bill_key
 
 where
-cast(f.dss_update_time as date) &gt; 
+cast(f.dss_update_time as date) &gt;
 
 	(
 	select top 1
 	cast(dss_update_time as date) 
 
 	from
-	red_dw.dbo.fact_all_time_activity
+	red_dw.dbo.fact_bill
 
 	order by
 	cast(dss_update_time as date)
