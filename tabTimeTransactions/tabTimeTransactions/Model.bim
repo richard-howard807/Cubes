@@ -13483,12 +13483,8 @@ and d2.current_flag = 'Y'
 inner join red_dw.dbo.fact_all_time_activity t
  on t.dim_bill_key = f.dim_bill_key
 
-order by
-f.bill_number
-
-
 where
-cast(a.dss_update_time as date) = 
+cast(f.dss_update_time as date) = 
 
 	(
 	select top 1
@@ -13499,7 +13495,10 @@ cast(a.dss_update_time as date) =
 
 	order by
 	cast(dss_update_time as date)
-	)</QueryDefinition>
+	)
+
+order by
+f.bill_number</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
@@ -13570,10 +13569,6 @@ and d2.current_flag = 'Y'
 inner join red_dw.dbo.fact_all_time_activity t
  on t.dim_bill_key = f.dim_bill_key
 
-order by
-f.bill_number
-
-
 where
 cast(f.dss_update_time as date) &gt; 
 
@@ -13586,7 +13581,10 @@ cast(f.dss_update_time as date) &gt;
 
 	order by
 	cast(dss_update_time as date)
-	)</QueryDefinition>
+	)
+
+order by
+f.bill_number</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
