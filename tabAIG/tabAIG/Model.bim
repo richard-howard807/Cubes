@@ -194,6 +194,12 @@
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>case_id</Name>
                 </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>CasdetKey</AttributeID>
+                  <Cardinality>One</Cardinality>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>CasdetKey</Name>
+                </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
@@ -944,6 +950,31 @@
               </NameColumn>
               <OrderBy>Key</OrderBy>
             </Attribute>
+            <Attribute>
+              <ID>CasdetKey</ID>
+              <Name>CasdetKey</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Error</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                    <ColumnID>CasdetKey</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                  <ColumnID>CasdetKey</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
           </Attributes>
           <ProactiveCaching>
             <SilenceInterval>-PT1S</SilenceInterval>
@@ -1138,29 +1169,6 @@
               </ddl300_300:ToRelationshipEnd>
             </ddl300_300:Relationship>
             <ddl300_300:Relationship>
-              <ID>8b289a6f-359d-4652-993d-5d34bf55bb1d</ID>
-              <ddl300_300:FromRelationshipEnd>
-                <ddl300_300:Multiplicity>Many</ddl300_300:Multiplicity>
-                <ddl300:VisualizationProperties />
-                <DimensionID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</DimensionID>
-                <Attributes>
-                  <Attribute>
-                    <AttributeID>case_id</AttributeID>
-                  </Attribute>
-                </Attributes>
-              </ddl300_300:FromRelationshipEnd>
-              <ddl300_300:ToRelationshipEnd>
-                <ddl300_300:Multiplicity>One</ddl300_300:Multiplicity>
-                <ddl300:VisualizationProperties />
-                <DimensionID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</DimensionID>
-                <Attributes>
-                  <Attribute>
-                    <AttributeID>case_id</AttributeID>
-                  </Attribute>
-                </Attributes>
-              </ddl300_300:ToRelationshipEnd>
-            </ddl300_300:Relationship>
-            <ddl300_300:Relationship>
               <ID>aa1ed77c-795c-4199-a672-22529eb61508</ID>
               <ddl300_300:FromRelationshipEnd>
                 <ddl300_300:Multiplicity>Many</ddl300_300:Multiplicity>
@@ -1184,7 +1192,7 @@
               </ddl300_300:ToRelationshipEnd>
             </ddl300_300:Relationship>
             <ddl300_300:Relationship>
-              <ID>add40de5-b477-431c-b48f-4f85f1366393</ID>
+              <ID>37d0214f-b41c-409f-897f-a1fd8614251d</ID>
               <ddl300_300:FromRelationshipEnd>
                 <ddl300_300:Multiplicity>Many</ddl300_300:Multiplicity>
                 <ddl300:VisualizationProperties />
@@ -1199,6 +1207,29 @@
                 <ddl300_300:Multiplicity>One</ddl300_300:Multiplicity>
                 <ddl300:VisualizationProperties />
                 <DimensionID>CaseText_ac77bc78-28a7-4696-83f0-4ce0ed521c58</DimensionID>
+                <Attributes>
+                  <Attribute>
+                    <AttributeID>case_id</AttributeID>
+                  </Attribute>
+                </Attributes>
+              </ddl300_300:ToRelationshipEnd>
+            </ddl300_300:Relationship>
+            <ddl300_300:Relationship>
+              <ID>6dd82566-ac8f-4fd1-af9d-abc477262095</ID>
+              <ddl300_300:FromRelationshipEnd>
+                <ddl300_300:Multiplicity>Many</ddl300_300:Multiplicity>
+                <ddl300:VisualizationProperties />
+                <DimensionID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</DimensionID>
+                <Attributes>
+                  <Attribute>
+                    <AttributeID>case_id</AttributeID>
+                  </Attribute>
+                </Attributes>
+              </ddl300_300:FromRelationshipEnd>
+              <ddl300_300:ToRelationshipEnd>
+                <ddl300_300:Multiplicity>One</ddl300_300:Multiplicity>
+                <ddl300:VisualizationProperties />
+                <DimensionID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</DimensionID>
                 <Attributes>
                   <Attribute>
                     <AttributeID>case_id</AttributeID>
@@ -10473,6 +10504,9 @@
                 <Attribute>
                   <AttributeID>case_id</AttributeID>
                 </Attribute>
+                <Attribute>
+                  <AttributeID>CasdetKey</AttributeID>
+                </Attribute>
               </Attributes>
             </Dimension>
             <Dimension>
@@ -11783,6 +11817,20 @@
                           <Source xsi:type="ColumnBinding">
                             <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
                             <ColumnID>case_id</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>CasdetKey</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                            <ColumnID>CasdetKey</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -13181,212 +13229,6 @@
                   <ddl300:RelationshipID>6ef63e74-b865-4167-a5ec-f5c4eb45d113</ddl300:RelationshipID>
                 </Dimension>
                 <Dimension xsi:type="ReferenceMeasureGroupDimension">
-                  <CubeDimensionID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</CubeDimensionID>
-                  <Attributes>
-                    <Attribute>
-                      <AttributeID>RowNumber</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>4</DataSize>
-                          <NullProcessing>Error</NullProcessing>
-                          <Source xsi:type="ddl200_200:RowNumberBinding" />
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>case_id</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Double</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Error</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
-                            <ColumnID>case_id</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                      <Type>Granularity</Type>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>FTR087</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Date</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
-                            <ColumnID>FTR087</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>TRA094</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Date</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
-                            <ColumnID>TRA094</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>DOA</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Date</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
-                            <ColumnID>DOA</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>EXP</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Date</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
-                            <ColumnID>EXP</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>LDAT</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Date</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
-                            <ColumnID>LDAT</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>NMI130</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Date</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
-                            <ColumnID>NMI130</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>RD</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Date</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
-                            <ColumnID>RD</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>SD</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Date</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
-                            <ColumnID>SD</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>TRA07</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Date</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
-                            <ColumnID>TRA07</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>WPS141</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Date</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
-                            <ColumnID>WPS141</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>WPS142</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Date</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
-                            <ColumnID>WPS142</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>LIT196</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Date</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
-                            <ColumnID>LIT196</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                  </Attributes>
-                  <IntermediateCubeDimensionID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</IntermediateCubeDimensionID>
-                  <IntermediateGranularityAttributeID>case_id</IntermediateGranularityAttributeID>
-                  <Materialization>Regular</Materialization>
-                  <ddl300:RelationshipID>8b289a6f-359d-4652-993d-5d34bf55bb1d</ddl300:RelationshipID>
-                </Dimension>
-                <Dimension xsi:type="ReferenceMeasureGroupDimension">
                   <CubeDimensionID>CaseValue_49f379ff-6162-4516-9aa1-684485bfcf1f</CubeDimensionID>
                   <Attributes>
                     <Attribute>
@@ -14642,7 +14484,213 @@
                   <IntermediateCubeDimensionID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</IntermediateCubeDimensionID>
                   <IntermediateGranularityAttributeID>case_id</IntermediateGranularityAttributeID>
                   <Materialization>Regular</Materialization>
-                  <ddl300:RelationshipID>add40de5-b477-431c-b48f-4f85f1366393</ddl300:RelationshipID>
+                  <ddl300:RelationshipID>37d0214f-b41c-409f-897f-a1fd8614251d</ddl300:RelationshipID>
+                </Dimension>
+                <Dimension xsi:type="ReferenceMeasureGroupDimension">
+                  <CubeDimensionID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>RowNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>4</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ddl200_200:RowNumberBinding" />
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>case_id</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Double</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
+                            <ColumnID>case_id</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>FTR087</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
+                            <ColumnID>FTR087</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>TRA094</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
+                            <ColumnID>TRA094</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DOA</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
+                            <ColumnID>DOA</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>EXP</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
+                            <ColumnID>EXP</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>LDAT</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
+                            <ColumnID>LDAT</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>NMI130</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
+                            <ColumnID>NMI130</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>RD</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
+                            <ColumnID>RD</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>SD</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
+                            <ColumnID>SD</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>TRA07</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
+                            <ColumnID>TRA07</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>WPS141</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
+                            <ColumnID>WPS141</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>WPS142</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
+                            <ColumnID>WPS142</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>LIT196</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
+                            <ColumnID>LIT196</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                  </Attributes>
+                  <IntermediateCubeDimensionID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</IntermediateCubeDimensionID>
+                  <IntermediateGranularityAttributeID>case_id</IntermediateGranularityAttributeID>
+                  <Materialization>Regular</Materialization>
+                  <ddl300:RelationshipID>6dd82566-ac8f-4fd1-af9d-abc477262095</ddl300:RelationshipID>
                 </Dimension>
               </Dimensions>
               <Partitions>
@@ -14667,6 +14715,7 @@
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
                     <QueryDefinition>select distinct 
+cast(f.client_code as varchar(8)) + cast(f.matter_number as varchar(8)) as 'CasdetKey',
 d.case_id,
 f.dim_matter_header_key as 'MatterID',
 f.dim_fed_hierarchy_history_key as 'FEDCodeID',
@@ -16097,6 +16146,20 @@ and c.client_group_name = 'AIG'</QueryDefinition>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>CasdetKey</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                            <ColumnID>CasdetKey</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <IntermediateCubeDimensionID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</IntermediateCubeDimensionID>
                   <IntermediateGranularityAttributeID>MatterID</IntermediateGranularityAttributeID>
@@ -17478,210 +17541,6 @@ and c.client_group_name = 'AIG'</QueryDefinition>
                   <IntermediateGranularityAttributeID>ClientNumber</IntermediateGranularityAttributeID>
                 </Dimension>
                 <Dimension xsi:type="ReferenceMeasureGroupDimension">
-                  <CubeDimensionID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</CubeDimensionID>
-                  <Attributes>
-                    <Attribute>
-                      <AttributeID>RowNumber</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>4</DataSize>
-                          <NullProcessing>Error</NullProcessing>
-                          <Source xsi:type="ddl200_200:RowNumberBinding" />
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>case_id</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Double</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Error</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
-                            <ColumnID>case_id</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                      <Type>Granularity</Type>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>FTR087</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Date</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
-                            <ColumnID>FTR087</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>TRA094</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Date</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
-                            <ColumnID>TRA094</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>DOA</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Date</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
-                            <ColumnID>DOA</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>EXP</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Date</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
-                            <ColumnID>EXP</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>LDAT</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Date</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
-                            <ColumnID>LDAT</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>NMI130</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Date</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
-                            <ColumnID>NMI130</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>RD</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Date</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
-                            <ColumnID>RD</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>SD</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Date</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
-                            <ColumnID>SD</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>TRA07</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Date</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
-                            <ColumnID>TRA07</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>WPS141</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Date</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
-                            <ColumnID>WPS141</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>WPS142</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Date</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
-                            <ColumnID>WPS142</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>LIT196</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Date</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
-                            <ColumnID>LIT196</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                  </Attributes>
-                  <IntermediateCubeDimensionID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</IntermediateCubeDimensionID>
-                  <IntermediateGranularityAttributeID>case_id</IntermediateGranularityAttributeID>
-                </Dimension>
-                <Dimension xsi:type="ReferenceMeasureGroupDimension">
                   <CubeDimensionID>CaseValue_49f379ff-6162-4516-9aa1-684485bfcf1f</CubeDimensionID>
                   <Attributes>
                     <Attribute>
@@ -18927,6 +18786,210 @@ and c.client_group_name = 'AIG'</QueryDefinition>
                           <Source xsi:type="ColumnBinding">
                             <TableID>CaseText_ac77bc78-28a7-4696-83f0-4ce0ed521c58</TableID>
                             <ColumnID>WPS203</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                  </Attributes>
+                  <IntermediateCubeDimensionID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</IntermediateCubeDimensionID>
+                  <IntermediateGranularityAttributeID>case_id</IntermediateGranularityAttributeID>
+                </Dimension>
+                <Dimension xsi:type="ReferenceMeasureGroupDimension">
+                  <CubeDimensionID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>RowNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>4</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ddl200_200:RowNumberBinding" />
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>case_id</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Double</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
+                            <ColumnID>case_id</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>FTR087</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
+                            <ColumnID>FTR087</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>TRA094</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
+                            <ColumnID>TRA094</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DOA</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
+                            <ColumnID>DOA</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>EXP</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
+                            <ColumnID>EXP</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>LDAT</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
+                            <ColumnID>LDAT</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>NMI130</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
+                            <ColumnID>NMI130</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>RD</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
+                            <ColumnID>RD</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>SD</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
+                            <ColumnID>SD</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>TRA07</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
+                            <ColumnID>TRA07</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>WPS141</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
+                            <ColumnID>WPS141</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>WPS142</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
+                            <ColumnID>WPS142</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>LIT196</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
+                            <ColumnID>LIT196</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -24379,7 +24442,7 @@ CREATE MEASURE 'Bills'[TotalBillAmountOutstanding]=sum([AmountOutstanding]);
               <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:Locale="en-US">
                 <xs:complexType>
                   <xs:choice minOccurs="0" maxOccurs="unbounded">
-                    <xs:element name="factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="Matters" msprop:DbTableName="factMatter" msprop:TableType="View" msprop:Description="factMatter" msprop:QueryDefinition="select distinct &#xD;&#xA;d.case_id,&#xD;&#xA;f.dim_matter_header_key as 'MatterID',&#xD;&#xA;f.dim_fed_hierarchy_history_key as 'FEDCodeID',&#xD;&#xA;d.matter_group_code as 'MatterGroupCode',&#xD;&#xA;d.matter_group_name as 'MatterGroupDesc',&#xD;&#xA;d.branch_code as 'BranchCode',&#xD;&#xA;d.work_type_code as 'WorkTypeCode',&#xD;&#xA;d.department_code as 'DepartmentCode',&#xD;&#xA;d.fed_code_partner_hist as 'PartnerCode',&#xD;&#xA;d.matter_number as 'MatterNumber',&#xD;&#xA;c.client_code as 'ClientNumber',&#xD;&#xA;d.namkey_camatgrp as 'MatterDesc',&#xD;&#xA;date1.dim_date_key as 'DateMatterOpen',&#xD;&#xA;date2.dim_date_key as 'DateMatterClosed',&#xD;&#xA;datediff(day, d.date_opened_case, isnull(d.date_closed_case, getdate())) as 'AgeOfMatterDays',&#xD;&#xA;disbursement_balance as 'DisbursementBalance',&#xD;&#xA;client_account_balance_of_matter as 'ClientAccountBalance',&#xD;&#xA;unpaid_bill_balance as 'UnpaidBillsBalance',&#xD;&#xA;wip_balance as 'WIPBalance',&#xD;&#xA;costs_to_date as 'CostsToDate',&#xD;&#xA;time_billed as 'TotalTimeBilled',&#xD;&#xA;number_bills_matter as 'NumberOfBillsRaised',&#xD;&#xA;unbilled_time as 'UnbilledTime',&#xD;&#xA;case when d.date_closed_matter is null and d.date_closed_case is not null and date_opened_matter is not null and d.current_flag = 'Y' then 'OpenInFEDClosedInArtiion'&#xD;&#xA;     when d.date_closed_matter is not null and d.date_closed_case is null and d.current_flag = 'Y' then 'OpenInArtiionClosedInFED' &#xD;&#xA;  when d.date_opened_case is not null and   d.date_closed_case is null then 'Open'&#xD;&#xA;  else 'Closed'&#xD;&#xA;end as 'FileClosedStatus',&#xD;&#xA;lastbill.LastBillDate,&#xD;&#xA;lasttime.LastTimeDate &#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_matter_summary f&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_client c&#xD;&#xA; on c.dim_client_key = f.dim_client_key&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_matter_header d&#xD;&#xA; on d.dim_matter_header_key = f.dim_matter_header_key&#xD;&#xA; &#xD;&#xA;  &#xD;&#xA;left join red_dw.dbo.dim_date date1&#xD;&#xA; on date1.calendar_date = d.date_opened_case&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_date date2&#xD;&#xA; on date2.calendar_date = isnull(d.date_closed_case, '1753-01-01 00:00:00.000')&#xD;&#xA;&#xD;&#xA;left join (&#xD;&#xA;  select client_code,matter_number, max(dim_bill_date_key) as 'LastBillDate' from red_dw.dbo.fact_bill&#xD;&#xA;  group by client_code,matter_number ) lastbill &#xD;&#xA;  on  c.client_code = lastbill.client_code&#xD;&#xA;  and f.matter_number = lastbill.matter_number&#xD;&#xA;&#xD;&#xA;left join (&#xD;&#xA;  select &#xD;&#xA;  client_code, &#xD;&#xA;  matter_number,&#xD;&#xA;  t.source_system_id, &#xD;&#xA;  max(dim_transaction_date_key) as 'LastTimeDate' &#xD;&#xA;  &#xD;&#xA;  from &#xD;&#xA;  red_dw.dbo.fact_all_time_activity t&#xD;&#xA;  left join red_dw.dbo.dim_matter_header m&#xD;&#xA; on m.dim_matter_header_key = t.dim_matter_header_key&#xD;&#xA;  &#xD;&#xA;  left join red_dw.dbo.dim_all_time_activity td&#xD;&#xA; on td.dim_all_time_activity_key = t.dim_all_time_activity_key&#xD;&#xA; &#xD;&#xA; where&#xD;&#xA; td.time_activity_code not in ('W/O','TEST','Abmt','1','Bill')&#xD;&#xA; &#xD;&#xA;  group by &#xD;&#xA;  client_code,&#xD;&#xA;  matter_number, &#xD;&#xA;  t.source_system_id &#xD;&#xA;   ) lasttime &#xD;&#xA;  on   f.client_code = lasttime.client_code&#xD;&#xA;  and  f.matter_number = lasttime.matter_number&#xD;&#xA; and f.source_system_id = lasttime.source_system_id&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;f.fin_month = (&#xD;&#xA;select &#xD;&#xA;fin_month&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_date&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;calendar_date = cast(getdate() as date))&#xD;&#xA;and c.client_group_name = 'AIG'">
+                    <xs:element name="factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="Matters" msprop:DbTableName="factMatter" msprop:TableType="View" msprop:Description="factMatter" msprop:QueryDefinition="select distinct &#xD;&#xA;cast(f.client_code as varchar(8)) + cast(f.matter_number as varchar(8)) as 'CasdetKey',&#xD;&#xA;d.case_id,&#xD;&#xA;f.dim_matter_header_key as 'MatterID',&#xD;&#xA;f.dim_fed_hierarchy_history_key as 'FEDCodeID',&#xD;&#xA;d.matter_group_code as 'MatterGroupCode',&#xD;&#xA;d.matter_group_name as 'MatterGroupDesc',&#xD;&#xA;d.branch_code as 'BranchCode',&#xD;&#xA;d.work_type_code as 'WorkTypeCode',&#xD;&#xA;d.department_code as 'DepartmentCode',&#xD;&#xA;d.fed_code_partner_hist as 'PartnerCode',&#xD;&#xA;d.matter_number as 'MatterNumber',&#xD;&#xA;c.client_code as 'ClientNumber',&#xD;&#xA;d.namkey_camatgrp as 'MatterDesc',&#xD;&#xA;date1.dim_date_key as 'DateMatterOpen',&#xD;&#xA;date2.dim_date_key as 'DateMatterClosed',&#xD;&#xA;datediff(day, d.date_opened_case, isnull(d.date_closed_case, getdate())) as 'AgeOfMatterDays',&#xD;&#xA;disbursement_balance as 'DisbursementBalance',&#xD;&#xA;client_account_balance_of_matter as 'ClientAccountBalance',&#xD;&#xA;unpaid_bill_balance as 'UnpaidBillsBalance',&#xD;&#xA;wip_balance as 'WIPBalance',&#xD;&#xA;costs_to_date as 'CostsToDate',&#xD;&#xA;time_billed as 'TotalTimeBilled',&#xD;&#xA;number_bills_matter as 'NumberOfBillsRaised',&#xD;&#xA;unbilled_time as 'UnbilledTime',&#xD;&#xA;case when d.date_closed_matter is null and d.date_closed_case is not null and date_opened_matter is not null and d.current_flag = 'Y' then 'OpenInFEDClosedInArtiion'&#xD;&#xA;     when d.date_closed_matter is not null and d.date_closed_case is null and d.current_flag = 'Y' then 'OpenInArtiionClosedInFED' &#xD;&#xA;  when d.date_opened_case is not null and   d.date_closed_case is null then 'Open'&#xD;&#xA;  else 'Closed'&#xD;&#xA;end as 'FileClosedStatus',&#xD;&#xA;lastbill.LastBillDate,&#xD;&#xA;lasttime.LastTimeDate &#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_matter_summary f&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_client c&#xD;&#xA; on c.dim_client_key = f.dim_client_key&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_matter_header d&#xD;&#xA; on d.dim_matter_header_key = f.dim_matter_header_key&#xD;&#xA; &#xD;&#xA;  &#xD;&#xA;left join red_dw.dbo.dim_date date1&#xD;&#xA; on date1.calendar_date = d.date_opened_case&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_date date2&#xD;&#xA; on date2.calendar_date = isnull(d.date_closed_case, '1753-01-01 00:00:00.000')&#xD;&#xA;&#xD;&#xA;left join (&#xD;&#xA;  select client_code,matter_number, max(dim_bill_date_key) as 'LastBillDate' from red_dw.dbo.fact_bill&#xD;&#xA;  group by client_code,matter_number ) lastbill &#xD;&#xA;  on  c.client_code = lastbill.client_code&#xD;&#xA;  and f.matter_number = lastbill.matter_number&#xD;&#xA;&#xD;&#xA;left join (&#xD;&#xA;  select &#xD;&#xA;  client_code, &#xD;&#xA;  matter_number,&#xD;&#xA;  t.source_system_id, &#xD;&#xA;  max(dim_transaction_date_key) as 'LastTimeDate' &#xD;&#xA;  &#xD;&#xA;  from &#xD;&#xA;  red_dw.dbo.fact_all_time_activity t&#xD;&#xA;  left join red_dw.dbo.dim_matter_header m&#xD;&#xA; on m.dim_matter_header_key = t.dim_matter_header_key&#xD;&#xA;  &#xD;&#xA;  left join red_dw.dbo.dim_all_time_activity td&#xD;&#xA; on td.dim_all_time_activity_key = t.dim_all_time_activity_key&#xD;&#xA; &#xD;&#xA; where&#xD;&#xA; td.time_activity_code not in ('W/O','TEST','Abmt','1','Bill')&#xD;&#xA; &#xD;&#xA;  group by &#xD;&#xA;  client_code,&#xD;&#xA;  matter_number, &#xD;&#xA;  t.source_system_id &#xD;&#xA;   ) lasttime &#xD;&#xA;  on   f.client_code = lasttime.client_code&#xD;&#xA;  and  f.matter_number = lasttime.matter_number&#xD;&#xA; and f.source_system_id = lasttime.source_system_id&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;f.fin_month = (&#xD;&#xA;select &#xD;&#xA;fin_month&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_date&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;calendar_date = cast(getdate() as date))&#xD;&#xA;and c.client_group_name = 'AIG'">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="MatterID" msprop:DbColumnName="MatterID" msprop:FriendlyName="MatterID" type="xs:int" minOccurs="0" />
@@ -24468,6 +24531,13 @@ CREATE MEASURE 'Bills'[TotalBillAmountOutstanding]=sum([AmountOutstanding]);
                             </xs:simpleType>
                           </xs:element>
                           <xs:element name="case_id" msprop:DbColumnName="case_id" msprop:FriendlyName="case_id" type="xs:int" minOccurs="0" />
+                          <xs:element name="CasdetKey" msprop:DbColumnName="CasdetKey" msprop:FriendlyName="CasdetKey" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
