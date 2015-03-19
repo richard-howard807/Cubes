@@ -9327,6 +9327,11 @@
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>WPS142</Name>
                 </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>LIT196</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>LIT196</Name>
+                </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
@@ -9659,6 +9664,31 @@
                 <Source xsi:type="ColumnBinding">
                   <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
                   <ColumnID>WPS142</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>LIT196</ID>
+              <Name>LIT196</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Date</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
+                    <ColumnID>LIT196</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
+                  <ColumnID>LIT196</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
@@ -11277,6 +11307,9 @@
                 </Attribute>
                 <Attribute>
                   <AttributeID>WPS142</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>LIT196</AttributeID>
                 </Attribute>
               </Attributes>
             </Dimension>
@@ -13329,6 +13362,20 @@
                           <Source xsi:type="ColumnBinding">
                             <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
                             <ColumnID>WPS142</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>LIT196</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
+                            <ColumnID>LIT196</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -17612,6 +17659,20 @@ and c.client_group_name = 'AIG'</QueryDefinition>
                           <Source xsi:type="ColumnBinding">
                             <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
                             <ColumnID>WPS142</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>LIT196</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
+                            <ColumnID>LIT196</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -23437,6 +23498,20 @@ c.client_group_name = 'AIG'</QueryDefinition>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>LIT196</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>CaseDate_491f4198-9674-427d-b097-0a489abb058c</TableID>
+                            <ColumnID>LIT196</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
                 </Dimension>
@@ -23474,7 +23549,8 @@ SD,
 TRA07,
 TRA094,
 WPS141,
-WPS142
+WPS142,
+LIT196
 
 from
 red_dw.dbo.casdet_date d
@@ -24995,7 +25071,7 @@ CREATE MEASURE 'Bills'[TotalBillAmountOutstanding]=sum([AmountOutstanding]);
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="CaseDate_491f4198-9674-427d-b097-0a489abb058c" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="CaseDate" msprop:DbTableName="CaseDate" msprop:TableType="View" msprop:Description="CaseDate" msprop:QueryDefinition="select distinct&#xD;&#xA;d.case_id,&#xD;&#xA;DOA,&#xD;&#xA;EXP,&#xD;&#xA;FTR087,&#xD;&#xA;LDAT,&#xD;&#xA;NMI130,&#xD;&#xA;RD,&#xD;&#xA;SD,&#xD;&#xA;TRA07,&#xD;&#xA;TRA094,&#xD;&#xA;WPS141,&#xD;&#xA;WPS142&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.casdet_date d&#xD;&#xA;&#xD;&#xA;inner join red_dw.dbo.dim_matter_header m&#xD;&#xA; on m.case_id = d.case_id&#xD;&#xA;&#xD;&#xA;inner join red_dw.dbo.dim_client c&#xD;&#xA; on c.client_code = m.client_code&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;c.client_group_name = 'AIG'">
+                    <xs:element name="CaseDate_491f4198-9674-427d-b097-0a489abb058c" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="CaseDate" msprop:DbTableName="CaseDate" msprop:TableType="View" msprop:Description="CaseDate" msprop:QueryDefinition="select distinct&#xD;&#xA;d.case_id,&#xD;&#xA;DOA,&#xD;&#xA;EXP,&#xD;&#xA;FTR087,&#xD;&#xA;LDAT,&#xD;&#xA;NMI130,&#xD;&#xA;RD,&#xD;&#xA;SD,&#xD;&#xA;TRA07,&#xD;&#xA;TRA094,&#xD;&#xA;WPS141,&#xD;&#xA;WPS142,&#xD;&#xA;LIT196&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.casdet_date d&#xD;&#xA;&#xD;&#xA;inner join red_dw.dbo.dim_matter_header m&#xD;&#xA; on m.case_id = d.case_id&#xD;&#xA;&#xD;&#xA;inner join red_dw.dbo.dim_client c&#xD;&#xA; on c.client_code = m.client_code&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;c.client_group_name = 'AIG'">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="case_id" msprop:DbColumnName="case_id" msprop:FriendlyName="case_id" type="xs:decimal" minOccurs="0" />
@@ -25010,6 +25086,7 @@ CREATE MEASURE 'Bills'[TotalBillAmountOutstanding]=sum([AmountOutstanding]);
                           <xs:element name="TRA07" msprop:DbColumnName="TRA07" msprop:FriendlyName="TRA07" type="xs:dateTime" minOccurs="0" />
                           <xs:element name="WPS141" msprop:DbColumnName="WPS141" msprop:FriendlyName="WPS141" type="xs:dateTime" minOccurs="0" />
                           <xs:element name="WPS142" msprop:DbColumnName="WPS142" msprop:FriendlyName="WPS142" type="xs:dateTime" minOccurs="0" />
+                          <xs:element name="LIT196" msprop:DbColumnName="LIT196" msprop:FriendlyName="LIT196" type="xs:dateTime" minOccurs="0" />
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
