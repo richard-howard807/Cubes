@@ -730,24 +730,88 @@
       <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
       <Commands>
         <Command>
-          <Text>/*
-The CALCULATE command controls the aggregation of leaf cells in the cube.
-If the CALCULATE command is deleted or modified, the data within the cube is affected.
-You should edit this command only if you manually specify how the cube is aggregated.
-*/
-CALCULATE; 
-CREATE MEMBER CURRENTCUBE.[Measures].[Username]
- AS username, 
-VISIBLE = 1  ; 
-CREATE MEMBER CURRENTCUBE.[Measures].[Today]
- AS vba!str(vba!DatePart("yyyy", vba!Now())) 
+          <Text>	/*
+								The CALCULATE command controls the aggregation of leaf cells in the cube.
+								If the CALCULATE command is deleted or modified, the data within the cube is affected.
+								You should edit this command only if you manually specify how the cube is aggregated.
+								*/
+								CALCULATE;
+								CREATE MEMBER CURRENTCUBE.[Measures].[YTD Billed Budget]
+								AS sum(
+								YTD([Dim Bill Date].[Hierarchy].CurrentMember),
+								Measures.[Fed Level Tb Budget Value]
+								),
+								FORMAT_STRING = "#,##0.00;-#,##0.00",
+								VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';
+								CREATE MEMBER CURRENTCUBE.[Measures].[YTD Profit Costs]
+								AS sum(
+								YTD([Dim Bill Date].[Hierarchy].CurrentMember),
+								Measures.[Bill Amount]
+								),
+								FORMAT_STRING = "#,##0.00;-#,##0.00",
+								VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';
+								CREATE MEMBER CURRENTCUBE.[Measures].[YTD Budget]
+								AS sum(
+								YTD([Dim Bill Date].[Hierarchy].CurrentMember),
+								Measures.[Bill Amount]
+								),
+								FORMAT_STRING = "#,##0.00;-#,##0.00",
+								VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';
+								CREATE MEMBER CURRENTCUBE.[Measures].[YTD Chargeable Minutes]
+								AS sum(
+								YTD([Dim Bill Date].[Hierarchy].CurrentMember),
+								Measures.[Chargeable Minutes Recorded]
+								),
+								VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';
+								CREATE MEMBER CURRENTCUBE.[Measures].[YTD Minute Budget]
+								AS sum(
+								YTD([Dim Bill Date].[Hierarchy].CurrentMember),
+								Measures.[Fed Level Minute Value]
+								),
+								FORMAT_STRING = "#,##0.00;-#,##0.00",
+								VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';
+								CREATE MEMBER CURRENTCUBE.[Measures].[YTD Non Chargeable Minutes]
+								AS sum(
+								ytd(
+								[Dim Bill Date].[Hierarchy].CurrentMember),
+								Measures.[Non Chargeable Minutes]
+								),
+								FORMAT_STRING = "#,##0.00;-#,##0.00",
+								VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';
+								CREATE MEMBER CURRENTCUBE.[Measures].[YTD Billed Minutes]
+								AS sum(
+								ytd(
+								[Dim Bill Date].[Hierarchy].CurrentMember),
+								Measures.[Billed Minutes]
+								),
+								FORMAT_STRING = "#,##0.00;-#,##0.00",
+								VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup'  ;
+								CREATE MEMBER CURRENTCUBE.[Measures].[Total Annual Budget]
+								AS sum(
+								([Dim Bill Date].[Hierarchy].Parent),
+								Measures.[Fed Level Budget Value]
+								),
+								FORMAT_STRING = "#,##0.00;-#,##0.00",
+								VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';
+								CREATE MEMBER CURRENTCUBE.[Measures].[Total Annual Budget Minutes]
+								AS sum(
+								([Dim Bill Date].[Hierarchy].Parent),
+								Measures.[Fed Level Minute Value]
+								),
+								FORMAT_STRING = "#,##0.00;-#,##0.00",
+								VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';
+								CREATE MEMBER CURRENTCUBE.[Measures].[Username]
+								AS username,
+								VISIBLE = 1;
+								CREATE MEMBER CURRENTCUBE.[Measures].[Today]
+								AS vba!str(vba!DatePart("yyyy", vba!Now()))
 
-+ "-" + vba!str(vba!format(vba!Month(vba!Now()), "0#")) 
+								+ "-" + vba!str(vba!format(vba!Month(vba!Now()), "0#"))
 
-+ "-" + vba!str(vba!format((vba!DatePart("d", vba!Now())), "0#")) 
+								+ "-" + vba!str(vba!format((vba!DatePart("d", vba!Now())), "0#"))
 
-+ vba!str("T00:00:00"), 
-VISIBLE = 1  ; </Text>
+								+ vba!str("T00:00:00"),
+								VISIBLE = 1;</Text>
         </Command>
       </Commands>
     </MdxScript>
