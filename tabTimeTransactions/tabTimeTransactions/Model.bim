@@ -2259,6 +2259,11 @@
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>StageDesc</Name>
                 </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>TransactionAgeDays</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>TransactionAgeDays</Name>
+                </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
@@ -2726,6 +2731,31 @@
                 <Source xsi:type="ColumnBinding">
                   <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
                   <ColumnID>StageDesc</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>TransactionAgeDays</ID>
+              <Name>TransactionAgeDays</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
+                    <ColumnID>TransactionAgeDays</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
+                  <ColumnID>TransactionAgeDays</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
@@ -9709,6 +9739,9 @@
                 <Attribute>
                   <AttributeID>StageDesc</AttributeID>
                 </Attribute>
+                <Attribute>
+                  <AttributeID>TransactionAgeDays</AttributeID>
+                </Attribute>
               </Attributes>
             </Dimension>
             <Dimension>
@@ -12458,15 +12491,7 @@ left join (
 
  
 where
-f.dim_matter_header_key in (
-select distinct
-dim_matter_header_key
-
-from
-red_dw.dbo.fact_all_time_activity t
-)
-
-and f.fin_month = (
+ f.fin_month = (
 select 
 fin_month
 
@@ -14028,6 +14053,20 @@ branch_name is not null</QueryDefinition>
                           <Source xsi:type="ColumnBinding">
                             <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
                             <ColumnID>StageDesc</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>TransactionAgeDays</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
+                            <ColumnID>TransactionAgeDays</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -17542,6 +17581,7 @@ branch_name is not null</QueryDefinition>
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
                     <QueryDefinition>select  
+
 tbl.TransactionID,
 c.client_code as 'ClientCode',
 f.dim_matter_header_key as 'MatterID',
@@ -17572,7 +17612,11 @@ end as 'TransactionType',
 n.td_textln as 'Narrative',
 t.time_activity_code as 'TimeActivityCode',
 t.rate_code as 'RateCode' ,
-t.matter_stage_descrn as 'StageDesc'
+t.matter_stage_descrn as 'StageDesc',
+datediff(d, d3.calendar_date, getdate()) as 'TransactionAgeDays'
+
+
+
 
 
 
@@ -17593,6 +17637,10 @@ left join
 
 left join red_dw.dbo.dim_matter_header d2
  on d2.dim_matter_header_key = a.dim_matter_header_key
+left join red_dw.dbo.dim_date d3
+	on d3.dim_date_key = a.dim_transaction_date_key
+
+
 
 
 
@@ -17786,9 +17834,8 @@ end as 'TransactionType',
 n.td_textln as 'Narrative',
 t.time_activity_code as 'TimeActivityCode',
 t.rate_code as 'RateCode' ,
-t.matter_stage_descrn as 'StageDesc'
-
-
+t.matter_stage_descrn as 'StageDesc',
+datediff(d, d3.calendar_date, getdate()) as 'TransactionAgeDays'
 
 from
 [SVR-LIV-DWH-01].red_dw.dbo.fact_all_time_activity a
@@ -17815,7 +17862,8 @@ left join red_dw.dbo.fact_matter_summary f
  and d2.matter_number = f.matter_number
  and f.source_system_id = d2.source_system_id
 
- 
+ left join red_dw.dbo.dim_date d3
+	on d3.dim_date_key = a.dim_transaction_date_key
 
 
 
@@ -22681,7 +22729,7 @@ CREATE MEASURE 'Bill'[TotalBillAmountOutstanding]=sum([AmountOutstanding]);
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="Matter" msprop:DbTableName="factMatter" msprop:TableType="View" msprop:Description="factMatter" msprop:QueryDefinition="select distinct &#xD;&#xA;f.dim_matter_header_key as 'MatterID',&#xD;&#xA;f.dim_fed_hierarchy_history_key as 'FEDCodeID',&#xD;&#xA;d.matter_group_code as 'MatterGroupCode',&#xD;&#xA;d.branch_code as 'BranchCode',&#xD;&#xA;d.work_type_code as 'WorkTypeCode',&#xD;&#xA;d.department_code as 'DepartmentCode',&#xD;&#xA;d.fed_code_partner_hist as 'PartnerCode',&#xD;&#xA;d.matter_number as 'MatterNumber',&#xD;&#xA;c.client_code as 'ClientNumber',&#xD;&#xA;d.namkey_camatgrp as 'MatterDesc',&#xD;&#xA;date1.dim_date_key as 'DateMatterOpen',&#xD;&#xA;date2.dim_date_key as 'DateMatterClosed',&#xD;&#xA;datediff(day, d.date_opened_case, isnull(d.date_closed_case, getdate())) as 'AgeOfMatterDays',&#xD;&#xA;disbursement_balance as 'DisbursementBalance',&#xD;&#xA;client_account_balance_of_matter as 'ClientAccountBalance',&#xD;&#xA;unpaid_bill_balance as 'UnpaidBillsBalance',&#xD;&#xA;wip_balance as 'WIPBalance',&#xD;&#xA;costs_to_date as 'CostsToDate',&#xD;&#xA;time_billed as 'TotalTimeBilled',&#xD;&#xA;number_bills_matter as 'NumberOfBillsRaised',&#xD;&#xA;unbilled_time as 'UnbilledTime',&#xD;&#xA;case when d.case_id is null then 'No' else 'Yes' end as 'HasRecordInCashdr',&#xD;&#xA;lastbill.LastBillDate,&#xD;&#xA;lasttime.LastTimeDate &#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_matter_summary f&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_client c&#xD;&#xA; on c.dim_client_key = f.dim_client_key&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_matter_header d&#xD;&#xA; on d.dim_matter_header_key = f.dim_matter_header_key&#xD;&#xA; &#xD;&#xA;  &#xD;&#xA;left join red_dw.dbo.dim_date date1&#xD;&#xA; on date1.calendar_date = d.date_opened_case&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_date date2&#xD;&#xA; on date2.calendar_date = isnull(d.date_closed_case, '1753-01-01 00:00:00.000')&#xD;&#xA;&#xD;&#xA;left join (&#xD;&#xA;  select client_code,matter_number, max(dim_bill_date_key) as 'LastBillDate' from red_dw.dbo.fact_bill&#xD;&#xA;  group by client_code,matter_number ) lastbill &#xD;&#xA;  on  c.client_code = lastbill.client_code&#xD;&#xA;  and f.matter_number = lastbill.matter_number&#xD;&#xA;&#xD;&#xA;left join (&#xD;&#xA;  select dim_client_key,dim_matter_header_key , max(dim_transaction_date_key) as 'LastTimeDate' from red_dw.dbo.fact_all_time_activity&#xD;&#xA;  group by dim_client_key,dim_matter_header_key ) lasttime &#xD;&#xA;  on  f.dim_client_key = lasttime.dim_client_key&#xD;&#xA;  and d.dim_matter_header_key = lasttime.dim_matter_header_key&#xD;&#xA;&#xD;&#xA; &#xD;&#xA;where&#xD;&#xA;f.dim_matter_header_key in (&#xD;&#xA;select distinct&#xD;&#xA;dim_matter_header_key&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_all_time_activity t&#xD;&#xA;)&#xD;&#xA;&#xD;&#xA;and f.fin_month = (&#xD;&#xA;select &#xD;&#xA;fin_month&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_date&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;calendar_date = cast(getdate() as date))&#xD;&#xA;&#xD;&#xA;order by&#xD;&#xA;d.matter_number">
+                    <xs:element name="factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="Matter" msprop:DbTableName="factMatter" msprop:TableType="View" msprop:Description="factMatter" msprop:QueryDefinition="select distinct &#xD;&#xA;f.dim_matter_header_key as 'MatterID',&#xD;&#xA;f.dim_fed_hierarchy_history_key as 'FEDCodeID',&#xD;&#xA;d.matter_group_code as 'MatterGroupCode',&#xD;&#xA;d.branch_code as 'BranchCode',&#xD;&#xA;d.work_type_code as 'WorkTypeCode',&#xD;&#xA;d.department_code as 'DepartmentCode',&#xD;&#xA;d.fed_code_partner_hist as 'PartnerCode',&#xD;&#xA;d.matter_number as 'MatterNumber',&#xD;&#xA;c.client_code as 'ClientNumber',&#xD;&#xA;d.namkey_camatgrp as 'MatterDesc',&#xD;&#xA;date1.dim_date_key as 'DateMatterOpen',&#xD;&#xA;date2.dim_date_key as 'DateMatterClosed',&#xD;&#xA;datediff(day, d.date_opened_case, isnull(d.date_closed_case, getdate())) as 'AgeOfMatterDays',&#xD;&#xA;disbursement_balance as 'DisbursementBalance',&#xD;&#xA;client_account_balance_of_matter as 'ClientAccountBalance',&#xD;&#xA;unpaid_bill_balance as 'UnpaidBillsBalance',&#xD;&#xA;wip_balance as 'WIPBalance',&#xD;&#xA;costs_to_date as 'CostsToDate',&#xD;&#xA;time_billed as 'TotalTimeBilled',&#xD;&#xA;number_bills_matter as 'NumberOfBillsRaised',&#xD;&#xA;unbilled_time as 'UnbilledTime',&#xD;&#xA;case when d.case_id is null then 'No' else 'Yes' end as 'HasRecordInCashdr',&#xD;&#xA;lastbill.LastBillDate,&#xD;&#xA;lasttime.LastTimeDate &#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_matter_summary f&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_client c&#xD;&#xA; on c.dim_client_key = f.dim_client_key&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_matter_header d&#xD;&#xA; on d.dim_matter_header_key = f.dim_matter_header_key&#xD;&#xA; &#xD;&#xA;  &#xD;&#xA;left join red_dw.dbo.dim_date date1&#xD;&#xA; on date1.calendar_date = d.date_opened_case&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_date date2&#xD;&#xA; on date2.calendar_date = isnull(d.date_closed_case, '1753-01-01 00:00:00.000')&#xD;&#xA;&#xD;&#xA;left join (&#xD;&#xA;  select client_code,matter_number, max(dim_bill_date_key) as 'LastBillDate' from red_dw.dbo.fact_bill&#xD;&#xA;  group by client_code,matter_number ) lastbill &#xD;&#xA;  on  c.client_code = lastbill.client_code&#xD;&#xA;  and f.matter_number = lastbill.matter_number&#xD;&#xA;&#xD;&#xA;left join (&#xD;&#xA;  select dim_client_key,dim_matter_header_key , max(dim_transaction_date_key) as 'LastTimeDate' from red_dw.dbo.fact_all_time_activity&#xD;&#xA;  group by dim_client_key,dim_matter_header_key ) lasttime &#xD;&#xA;  on  f.dim_client_key = lasttime.dim_client_key&#xD;&#xA;  and d.dim_matter_header_key = lasttime.dim_matter_header_key&#xD;&#xA;&#xD;&#xA; &#xD;&#xA;where&#xD;&#xA; f.fin_month = (&#xD;&#xA;select &#xD;&#xA;fin_month&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_date&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;calendar_date = cast(getdate() as date))&#xD;&#xA;&#xD;&#xA;order by&#xD;&#xA;d.matter_number">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="MatterID" msprop:DbColumnName="MatterID" msprop:FriendlyName="MatterID" type="xs:int" minOccurs="0" />
@@ -22837,7 +22885,7 @@ CREATE MEASURE 'Bill'[TotalBillAmountOutstanding]=sum([AmountOutstanding]);
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="TimeTransactions" msprop:DbTableName="factMainTable" msprop:TableType="View" msprop:Description="factMainTable" msprop:QueryDefinition="select  &#xD;&#xA;tbl.TransactionID,&#xD;&#xA;c.client_code as 'ClientCode',&#xD;&#xA;f.dim_matter_header_key as 'MatterID',&#xD;&#xA;a.dim_bill_key as 'BillID',&#xD;&#xA;a.time_type as 'ChargeableTimeCode',&#xD;&#xA;a.dim_fed_hierarchy_history_key as 'FEDCodeID',&#xD;&#xA;a.dim_transaction_date_key as 'TransactionDate',&#xD;&#xA;a.dim_run_date_key as 'RunDate',&#xD;&#xA;a.minutes_recorded as 'MinutesRecorded',&#xD;&#xA;a.time_cost_value as 'ValueOfTimeRecorded',&#xD;&#xA;a.hourly_charge_rate as 'ChargeRate',&#xD;&#xA;a.time_charge_value as 'timeChargeValue',&#xD;&#xA;a.overridden_time_charge_value as 'OverriddenTimeChargeValue',&#xD;&#xA;case &#xD;&#xA;when t.time_activity_code != 'W/O'&#xD;&#xA;and t.bill_number = 'xxxxxxxx'&#xD;&#xA; then 'Written Off'&#xD;&#xA;when t.time_activity_code = 'W/O'&#xD;&#xA; then 'Written Off Transaction'&#xD;&#xA;when t.bill_number = ''&#xD;&#xA; then 'Unbilled'&#xD;&#xA;when a.dim_bill_key &gt; 0&#xD;&#xA;and t.time_activity_code not in ('Bill','Abmt')&#xD;&#xA; then 'Billed'&#xD;&#xA;when a.time_type = 'NC' &#xD;&#xA; then 'Non Chargeable Time'&#xD;&#xA;end as 'TransactionType',&#xD;&#xA;n.td_textln as 'Narrative',&#xD;&#xA;t.time_activity_code as 'TimeActivityCode',&#xD;&#xA;t.rate_code as 'RateCode' ,&#xD;&#xA;t.matter_stage_descrn as 'StageDesc'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;[SVR-LIV-DWH-01].red_dw.dbo.fact_all_time_activity a&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_client c&#xD;&#xA; on c.dim_client_key = a.dim_client_key&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; [SVR-LIV-DWH-01].red_dw.dbo.dim_all_time_activity t&#xD;&#xA;  on a.dim_all_time_activity_key = t.dim_all_time_activity_key&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; [SVR-LIV-DWH-01].red_dw.dbo.dim_time_narratives n&#xD;&#xA;   on n.dim_time_narratives_key = a.dim_time_narratives_key&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_matter_header d2&#xD;&#xA; on d2.dim_matter_header_key = a.dim_matter_header_key&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.fact_matter_summary f&#xD;&#xA;  on d2.client_code = f.client_code &#xD;&#xA; and d2.matter_number = f.matter_number&#xD;&#xA; and f.source_system_id = d2.source_system_id&#xD;&#xA;&#xD;&#xA; &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join (&#xD;&#xA; select&#xD;&#xA; a.dim_all_time_activity_key,&#xD;&#xA; a.dim_client_key, &#xD;&#xA; a.dim_matter_header_key, &#xD;&#xA; a.time_type,&#xD;&#xA; row_number() over (partition by a.dim_client_key, a.dim_matter_header_key, a.time_type order by a.transaction_sequence_number) as 'TransactionID'&#xD;&#xA;&#xD;&#xA; from&#xD;&#xA; red_dw.dbo.fact_all_time_activity a&#xD;&#xA;) tbl on tbl.dim_all_time_activity_key = a.dim_all_time_activity_key">
+                    <xs:element name="factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="TimeTransactions" msprop:DbTableName="factMainTable" msprop:TableType="View" msprop:Description="factMainTable" msprop:QueryDefinition="select  &#xD;&#xA;tbl.TransactionID,&#xD;&#xA;c.client_code as 'ClientCode',&#xD;&#xA;f.dim_matter_header_key as 'MatterID',&#xD;&#xA;a.dim_bill_key as 'BillID',&#xD;&#xA;a.time_type as 'ChargeableTimeCode',&#xD;&#xA;a.dim_fed_hierarchy_history_key as 'FEDCodeID',&#xD;&#xA;a.dim_transaction_date_key as 'TransactionDate',&#xD;&#xA;a.dim_run_date_key as 'RunDate',&#xD;&#xA;a.minutes_recorded as 'MinutesRecorded',&#xD;&#xA;a.time_cost_value as 'ValueOfTimeRecorded',&#xD;&#xA;a.hourly_charge_rate as 'ChargeRate',&#xD;&#xA;a.time_charge_value as 'timeChargeValue',&#xD;&#xA;a.overridden_time_charge_value as 'OverriddenTimeChargeValue',&#xD;&#xA;case &#xD;&#xA;when t.time_activity_code != 'W/O'&#xD;&#xA;and t.bill_number = 'xxxxxxxx'&#xD;&#xA; then 'Written Off'&#xD;&#xA;when t.time_activity_code = 'W/O'&#xD;&#xA; then 'Written Off Transaction'&#xD;&#xA;when t.bill_number = ''&#xD;&#xA; then 'Unbilled'&#xD;&#xA;when a.dim_bill_key &gt; 0&#xD;&#xA;and t.time_activity_code not in ('Bill','Abmt')&#xD;&#xA; then 'Billed'&#xD;&#xA;when a.time_type = 'NC' &#xD;&#xA; then 'Non Chargeable Time'&#xD;&#xA;end as 'TransactionType',&#xD;&#xA;n.td_textln as 'Narrative',&#xD;&#xA;t.time_activity_code as 'TimeActivityCode',&#xD;&#xA;t.rate_code as 'RateCode' ,&#xD;&#xA;t.matter_stage_descrn as 'StageDesc',&#xD;&#xA;datediff(d, d3.calendar_date, getdate()) as 'TransactionAgeDays'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;[SVR-LIV-DWH-01].red_dw.dbo.fact_all_time_activity a&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_client c&#xD;&#xA; on c.dim_client_key = a.dim_client_key&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; [SVR-LIV-DWH-01].red_dw.dbo.dim_all_time_activity t&#xD;&#xA;  on a.dim_all_time_activity_key = t.dim_all_time_activity_key&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; [SVR-LIV-DWH-01].red_dw.dbo.dim_time_narratives n&#xD;&#xA;   on n.dim_time_narratives_key = a.dim_time_narratives_key&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_matter_header d2&#xD;&#xA; on d2.dim_matter_header_key = a.dim_matter_header_key&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_date d3&#xD;&#xA; on d3.dim_date_key = a.dim_transaction_date_key&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.fact_matter_summary f&#xD;&#xA;  on d2.client_code = f.client_code &#xD;&#xA; and d2.matter_number = f.matter_number&#xD;&#xA; and f.source_system_id = d2.source_system_id&#xD;&#xA;&#xD;&#xA; &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join (&#xD;&#xA; select&#xD;&#xA; a.dim_all_time_activity_key,&#xD;&#xA; a.dim_client_key, &#xD;&#xA; a.dim_matter_header_key, &#xD;&#xA; a.time_type,&#xD;&#xA; row_number() over (partition by a.dim_client_key, a.dim_matter_header_key, a.time_type order by a.transaction_sequence_number) as 'TransactionID'&#xD;&#xA;&#xD;&#xA; from&#xD;&#xA; red_dw.dbo.fact_all_time_activity a&#xD;&#xA;) tbl on tbl.dim_all_time_activity_key = a.dim_all_time_activity_key">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="BillID" msprop:DbColumnName="BillID" msprop:FriendlyName="BillID" type="xs:int" minOccurs="0" />
@@ -22894,6 +22942,7 @@ CREATE MEASURE 'Bill'[TotalBillAmountOutstanding]=sum([AmountOutstanding]);
                               </xs:restriction>
                             </xs:simpleType>
                           </xs:element>
+                          <xs:element name="TransactionAgeDays" msprop:DbColumnName="TransactionAgeDays" msprop:FriendlyName="TransactionAgeDays" type="xs:int" minOccurs="0" />
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
