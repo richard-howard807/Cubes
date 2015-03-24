@@ -13644,94 +13644,8 @@ d.matter_number</QueryDefinition>
               </Dimensions>
               <Partitions>
                 <Partition>
-                  <ID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</ID>
-                  <Name>Bill_historic</Name>
-                  <Annotations>
-                    <Annotation>
-                      <Name>TableWidgetSerialization</Name>
-                    </Annotation>
-                    <Annotation>
-                      <Name>TableWidgetSourceTable</Name>
-                    </Annotation>
-                    <Annotation>
-                      <Name>QueryEditorSerialization</Name>
-                    </Annotation>
-                    <Annotation>
-                      <Name>IsQueryEditorUsed</Name>
-                      <Value>True</Value>
-                    </Annotation>
-                  </Annotations>
-                  <Source xsi:type="QueryBinding">
-                    <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
-                    <QueryDefinition>select distinct
-f.dim_bill_key as 'BillID',
-f.bill_number as 'BillNumber',
-upper(d.record_type) as  'BillTypeCode',
-d.bill_flag as 'BillFinalOrInterimCode',
-f.dim_last_pay_date_key as 'BillLastPaymentDate',
-f.dim_bill_date_key as 'BillDate',
-f.bill_total as 'BillAmount',
-f.fees_total as 'FeeValue',
-f.paid_disbursements as 'DisbursementsPaid',
-f.unpaid_disbursements as 'DisbursementsUnpaid',
-f.admin_charges_total as 'AdministrationCharges',
-f.vat_amount as 'VATAmount',
-f.amount_paid as 'AmountPaid',
-f.bill_total - f.amount_paid as 'AmountOutstanding',
-case when f.amount_paid = f.bill_total then 'Paid' else cast(datediff(day,cast( cast(f.dim_bill_date_key as varchar(10)) as date), getdate()) as varchar(10)) end as 'BillAgeDays',
-d.outstanding_flag as 'OpenItem'
-
-from
-red_dw.dbo.fact_bill f
-
-left join
- red_dw.dbo.dim_bill d
-  on d.dim_bill_key = f.dim_bill_key
-
-left join red_dw.dbo.dim_matter_header d2
- on d2.client_code = f.client_code
-and d2.matter_number = f.matter_number
-and d2.source_system_id = f.source_system_id
-and d2.current_flag = 'Y'
-
-inner join red_dw.dbo.fact_all_time_activity t
- on t.dim_bill_key = f.dim_bill_key
-
-where
-cast(f.dss_update_time as date) = 
-
-	(
-	select top 1
-	cast(dss_update_time as date) 
-
-	from
-	red_dw.dbo.fact_bill
-
-	order by
-	cast(dss_update_time as date)
-	)
-
-order by
-f.bill_number</QueryDefinition>
-                  </Source>
-                  <StorageMode valuens="ddl200_200">InMemory</StorageMode>
-                  <ProcessingMode>Regular</ProcessingMode>
-                  <ErrorConfiguration>
-                    <KeyNotFound>IgnoreError</KeyNotFound>
-                    <KeyDuplicate>ReportAndStop</KeyDuplicate>
-                    <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
-                  </ErrorConfiguration>
-                  <ProactiveCaching>
-                    <SilenceInterval>-PT1S</SilenceInterval>
-                    <Latency>-PT1S</Latency>
-                    <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
-                    <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
-                    <Source xsi:type="ProactiveCachingInheritedBinding" />
-                  </ProactiveCaching>
-                </Partition>
-                <Partition>
                   <ID>Bill_9d55b594-047e-4c94-98a7-9dbf4df21314</ID>
-                  <Name>Bill_recent</Name>
+                  <Name>Bills</Name>
                   <Annotations>
                     <Annotation>
                       <Name>TableWidgetSerialization</Name>
@@ -13783,20 +13697,6 @@ and d2.current_flag = 'Y'
 inner join red_dw.dbo.fact_all_time_activity t
  on t.dim_bill_key = f.dim_bill_key
 
-where
-cast(f.dss_update_time as date) &gt;
-
-	(
-	select top 1
-	cast(dss_update_time as date) 
-
-	from
-	red_dw.dbo.fact_bill
-
-	order by
-	cast(dss_update_time as date)
-	)
-
 order by
 f.bill_number</QueryDefinition>
                   </Source>
@@ -13809,7 +13709,6 @@ f.bill_number</QueryDefinition>
                     <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
                     <Source xsi:type="ProactiveCachingInheritedBinding" />
                   </ProactiveCaching>
-                  <ddl300_300:DirectQueryUsage>InMemoryOnly</ddl300_300:DirectQueryUsage>
                 </Partition>
               </Partitions>
               <ProactiveCaching>
@@ -17802,7 +17701,7 @@ branch_name is not null</QueryDefinition>
               <Partitions>
                 <Partition>
                   <ID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</ID>
-                  <Name>TimeTransactions_historic</Name>
+                  <Name>TimeTransactions_2014</Name>
                   <Annotations>
                     <Annotation>
                       <Name>TableWidgetSerialization</Name>
@@ -17820,9 +17719,8 @@ branch_name is not null</QueryDefinition>
                   </Annotations>
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
-                    <QueryDefinition>select  
-
-tbl.TransactionID,
+                    <QueryDefinition>select distinct
+a.dim_all_time_activity_key as 'TransactionID',
 c.client_code as 'ClientCode',
 f.dim_matter_header_key as 'MatterID',
 a.dim_bill_key as 'BillID',
@@ -17853,12 +17751,7 @@ n.td_textln as 'Narrative',
 t.time_activity_code as 'TimeActivityCode',
 t.rate_code as 'RateCode' ,
 t.matter_stage_descrn as 'StageDesc',
-datediff(d, d3.calendar_date, getdate()) as 'TransactionAgeDays'
-
-
-
-
-
+datediff(d, d3.calendar_date, getdate()) as 'TransactionAgeDays' 
 
 from
 [SVR-LIV-DWH-01].red_dw.dbo.fact_all_time_activity a
@@ -17877,47 +17770,24 @@ left join
 
 left join red_dw.dbo.dim_matter_header d2
  on d2.dim_matter_header_key = a.dim_matter_header_key
-left join red_dw.dbo.dim_date d3
-	on d3.dim_date_key = a.dim_transaction_date_key
-
-
 
 
 
 left join red_dw.dbo.fact_matter_summary f
-  on d2.client_code = f.client_code 
- and d2.matter_number = f.matter_number
- and f.source_system_id = d2.source_system_id
+ -- on c.client_code = f.client_code 
+ --and d2.matter_number = f.matter_number
+ --and a.source_system_id = f.source_system_id
+on f.dim_matter_header_key = d2.dim_matter_header_key
 
- 
+ left join red_dw.dbo.dim_date d3
+	on d3.dim_date_key = a.dim_transaction_date_key
 
+ left join red_dw.dbo.dim_date d4
+	on d4.dim_date_key = a.dim_run_date_key
 
-
-left join (
- select
- a.dim_all_time_activity_key,
- a.dim_client_key, 
- a.dim_matter_header_key, 
- a.time_type,
- row_number() over (partition by a.dim_client_key, a.dim_matter_header_key, a.time_type order by a.transaction_sequence_number) as 'TransactionID'
-
- from
- red_dw.dbo.fact_all_time_activity a
-) tbl on tbl.dim_all_time_activity_key = a.dim_all_time_activity_key
 
 where
-cast(a.dss_update_time as date) = 
-
-	(
-	select top 1
-	cast(dss_update_time as date) 
-
-	from
-	red_dw.dbo.fact_all_time_activity
-
-	order by
-	cast(dss_update_time as date)
-	)</QueryDefinition>
+d4.cal_year = 2014</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
@@ -17936,7 +17806,7 @@ cast(a.dss_update_time as date) =
                 </Partition>
                 <Partition>
                   <ID>TimeTransactions_d77bf007-2afb-4c9d-a8ba-a774cafe8911</ID>
-                  <Name>TimeTransactions_recent</Name>
+                  <Name>TimeTransactions_2015</Name>
                   <Annotations>
                     <Annotation>
                       <Name>TableWidgetSerialization</Name>
@@ -18043,8 +17913,8 @@ cast(a.dss_update_time as date) &gt;
                   </Annotations>
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
-                    <QueryDefinition>select  
-tbl.TransactionID,
+                    <QueryDefinition>select distinct
+a.dim_all_time_activity_key as 'TransactionID',
 c.client_code as 'ClientCode',
 f.dim_matter_header_key as 'MatterID',
 a.dim_bill_key as 'BillID',
@@ -18075,7 +17945,7 @@ n.td_textln as 'Narrative',
 t.time_activity_code as 'TimeActivityCode',
 t.rate_code as 'RateCode' ,
 t.matter_stage_descrn as 'StageDesc',
-datediff(d, d3.calendar_date, getdate()) as 'TransactionAgeDays'
+datediff(d, d3.calendar_date, getdate()) as 'TransactionAgeDays' 
 
 from
 [SVR-LIV-DWH-01].red_dw.dbo.fact_all_time_activity a
@@ -18098,40 +17968,525 @@ left join red_dw.dbo.dim_matter_header d2
 
 
 left join red_dw.dbo.fact_matter_summary f
-  on d2.client_code = f.client_code 
- and d2.matter_number = f.matter_number
- and f.source_system_id = d2.source_system_id
+ -- on c.client_code = f.client_code 
+ --and d2.matter_number = f.matter_number
+ --and a.source_system_id = f.source_system_id
+on f.dim_matter_header_key = d2.dim_matter_header_key
 
  left join red_dw.dbo.dim_date d3
 	on d3.dim_date_key = a.dim_transaction_date_key
 
+ left join red_dw.dbo.dim_date d4
+	on d4.dim_date_key = a.dim_run_date_key
 
-
-left join (
- select
- a.dim_all_time_activity_key,
- a.dim_client_key, 
- a.dim_matter_header_key, 
- a.time_type,
- row_number() over (partition by a.dim_client_key, a.dim_matter_header_key, a.time_type order by a.transaction_sequence_number) as 'TransactionID'
-
- from
- red_dw.dbo.fact_all_time_activity a
-) tbl on tbl.dim_all_time_activity_key = a.dim_all_time_activity_key
 
 where
-cast(a.dss_update_time as date) &gt; 
+d4.cal_year = 2015</QueryDefinition>
+                  </Source>
+                  <StorageMode valuens="ddl200_200">InMemory</StorageMode>
+                  <ProcessingMode>Regular</ProcessingMode>
+                  <ProactiveCaching>
+                    <SilenceInterval>-PT1S</SilenceInterval>
+                    <Latency>-PT1S</Latency>
+                    <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+                    <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+                    <Source xsi:type="ProactiveCachingInheritedBinding" />
+                  </ProactiveCaching>
+                  <ddl300_300:DirectQueryUsage>InMemoryOnly</ddl300_300:DirectQueryUsage>
+                </Partition>
+                <Partition>
+                  <ID>TimeTransactions_25df003c-dea9-4b9e-a668-120bf15e2389</ID>
+                  <Name>TimeTransactions_2013</Name>
+                  <Annotations>
+                    <Annotation>
+                      <Name>TableWidgetSerialization</Name>
+                    </Annotation>
+                    <Annotation>
+                      <Name>TableWidgetSourceTable</Name>
+                    </Annotation>
+                    <Annotation>
+                      <Name>QueryEditorSerialization</Name>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsQueryEditorUsed</Name>
+                      <Value>True</Value>
+                    </Annotation>
+                  </Annotations>
+                  <Source xsi:type="QueryBinding">
+                    <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
+                    <QueryDefinition>select distinct
+a.dim_all_time_activity_key as 'TransactionID',
+c.client_code as 'ClientCode',
+f.dim_matter_header_key as 'MatterID',
+a.dim_bill_key as 'BillID',
+a.time_type as 'ChargeableTimeCode',
+a.dim_fed_hierarchy_history_key as 'FEDCodeID',
+a.dim_transaction_date_key as 'TransactionDate',
+a.dim_run_date_key as 'RunDate',
+a.minutes_recorded as 'MinutesRecorded',
+a.time_cost_value as 'ValueOfTimeRecorded',
+a.hourly_charge_rate as 'ChargeRate',
+a.time_charge_value as 'timeChargeValue',
+a.overridden_time_charge_value as 'OverriddenTimeChargeValue',
+case 
+when t.time_activity_code != 'W/O'
+and t.bill_number = 'xxxxxxxx'
+ then 'Written Off'
+when t.time_activity_code = 'W/O'
+ then 'Written Off Transaction'
+when t.bill_number = ''
+ then 'Unbilled'
+when a.dim_bill_key &gt; 0
+and t.time_activity_code not in ('Bill','Abmt')
+ then 'Billed'
+when a.time_type = 'NC' 
+ then 'Non Chargeable Time'
+end as 'TransactionType',
+n.td_textln as 'Narrative',
+t.time_activity_code as 'TimeActivityCode',
+t.rate_code as 'RateCode' ,
+t.matter_stage_descrn as 'StageDesc',
+datediff(d, d3.calendar_date, getdate()) as 'TransactionAgeDays' 
 
-	(
-	select top 1
-	cast(dss_update_time as date) 
+from
+[SVR-LIV-DWH-01].red_dw.dbo.fact_all_time_activity a
 
-	from
-	red_dw.dbo.fact_all_time_activity
+left join red_dw.dbo.dim_client c
+ on c.dim_client_key = a.dim_client_key
 
-	order by
-	cast(dss_update_time as date)
-	)</QueryDefinition>
+left join
+ [SVR-LIV-DWH-01].red_dw.dbo.dim_all_time_activity t
+  on a.dim_all_time_activity_key = t.dim_all_time_activity_key
+
+left join
+ [SVR-LIV-DWH-01].red_dw.dbo.dim_time_narratives n
+   on n.dim_time_narratives_key = a.dim_time_narratives_key
+
+
+left join red_dw.dbo.dim_matter_header d2
+ on d2.dim_matter_header_key = a.dim_matter_header_key
+
+
+
+left join red_dw.dbo.fact_matter_summary f
+ -- on c.client_code = f.client_code 
+ --and d2.matter_number = f.matter_number
+ --and a.source_system_id = f.source_system_id
+on f.dim_matter_header_key = d2.dim_matter_header_key
+
+ left join red_dw.dbo.dim_date d3
+	on d3.dim_date_key = a.dim_transaction_date_key
+
+ left join red_dw.dbo.dim_date d4
+	on d4.dim_date_key = a.dim_run_date_key
+
+
+where
+d4.cal_year = 2013</QueryDefinition>
+                  </Source>
+                  <StorageMode valuens="ddl200_200">InMemory</StorageMode>
+                  <ProcessingMode>Regular</ProcessingMode>
+                  <ProactiveCaching>
+                    <SilenceInterval>-PT1S</SilenceInterval>
+                    <Latency>-PT1S</Latency>
+                    <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+                    <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+                    <Source xsi:type="ProactiveCachingInheritedBinding" />
+                  </ProactiveCaching>
+                  <ddl300_300:DirectQueryUsage>InMemoryOnly</ddl300_300:DirectQueryUsage>
+                </Partition>
+                <Partition>
+                  <ID>TimeTransactions_db912f98-5c47-4718-ad48-c000293438a3</ID>
+                  <Name>TimeTransactions_2012</Name>
+                  <Annotations>
+                    <Annotation>
+                      <Name>TableWidgetSerialization</Name>
+                    </Annotation>
+                    <Annotation>
+                      <Name>TableWidgetSourceTable</Name>
+                    </Annotation>
+                    <Annotation>
+                      <Name>QueryEditorSerialization</Name>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsQueryEditorUsed</Name>
+                      <Value>True</Value>
+                    </Annotation>
+                  </Annotations>
+                  <Source xsi:type="QueryBinding">
+                    <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
+                    <QueryDefinition>select distinct
+a.dim_all_time_activity_key as 'TransactionID',
+c.client_code as 'ClientCode',
+f.dim_matter_header_key as 'MatterID',
+a.dim_bill_key as 'BillID',
+a.time_type as 'ChargeableTimeCode',
+a.dim_fed_hierarchy_history_key as 'FEDCodeID',
+a.dim_transaction_date_key as 'TransactionDate',
+a.dim_run_date_key as 'RunDate',
+a.minutes_recorded as 'MinutesRecorded',
+a.time_cost_value as 'ValueOfTimeRecorded',
+a.hourly_charge_rate as 'ChargeRate',
+a.time_charge_value as 'timeChargeValue',
+a.overridden_time_charge_value as 'OverriddenTimeChargeValue',
+case 
+when t.time_activity_code != 'W/O'
+and t.bill_number = 'xxxxxxxx'
+ then 'Written Off'
+when t.time_activity_code = 'W/O'
+ then 'Written Off Transaction'
+when t.bill_number = ''
+ then 'Unbilled'
+when a.dim_bill_key &gt; 0
+and t.time_activity_code not in ('Bill','Abmt')
+ then 'Billed'
+when a.time_type = 'NC' 
+ then 'Non Chargeable Time'
+end as 'TransactionType',
+n.td_textln as 'Narrative',
+t.time_activity_code as 'TimeActivityCode',
+t.rate_code as 'RateCode' ,
+t.matter_stage_descrn as 'StageDesc',
+datediff(d, d3.calendar_date, getdate()) as 'TransactionAgeDays' 
+
+from
+[SVR-LIV-DWH-01].red_dw.dbo.fact_all_time_activity a
+
+left join red_dw.dbo.dim_client c
+ on c.dim_client_key = a.dim_client_key
+
+left join
+ [SVR-LIV-DWH-01].red_dw.dbo.dim_all_time_activity t
+  on a.dim_all_time_activity_key = t.dim_all_time_activity_key
+
+left join
+ [SVR-LIV-DWH-01].red_dw.dbo.dim_time_narratives n
+   on n.dim_time_narratives_key = a.dim_time_narratives_key
+
+
+left join red_dw.dbo.dim_matter_header d2
+ on d2.dim_matter_header_key = a.dim_matter_header_key
+
+
+
+left join red_dw.dbo.fact_matter_summary f
+ -- on c.client_code = f.client_code 
+ --and d2.matter_number = f.matter_number
+ --and a.source_system_id = f.source_system_id
+on f.dim_matter_header_key = d2.dim_matter_header_key
+
+ left join red_dw.dbo.dim_date d3
+	on d3.dim_date_key = a.dim_transaction_date_key
+
+ left join red_dw.dbo.dim_date d4
+	on d4.dim_date_key = a.dim_run_date_key
+
+
+where
+d4.cal_year = 2012</QueryDefinition>
+                  </Source>
+                  <StorageMode valuens="ddl200_200">InMemory</StorageMode>
+                  <ProcessingMode>Regular</ProcessingMode>
+                  <ProactiveCaching>
+                    <SilenceInterval>-PT1S</SilenceInterval>
+                    <Latency>-PT1S</Latency>
+                    <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+                    <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+                    <Source xsi:type="ProactiveCachingInheritedBinding" />
+                  </ProactiveCaching>
+                  <ddl300_300:DirectQueryUsage>InMemoryOnly</ddl300_300:DirectQueryUsage>
+                </Partition>
+                <Partition>
+                  <ID>TimeTransactions_5f412dd5-0c69-46c6-be51-b91bf8b1ac2c</ID>
+                  <Name>TimeTransactions_2011</Name>
+                  <Annotations>
+                    <Annotation>
+                      <Name>TableWidgetSerialization</Name>
+                    </Annotation>
+                    <Annotation>
+                      <Name>TableWidgetSourceTable</Name>
+                    </Annotation>
+                    <Annotation>
+                      <Name>QueryEditorSerialization</Name>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsQueryEditorUsed</Name>
+                      <Value>True</Value>
+                    </Annotation>
+                  </Annotations>
+                  <Source xsi:type="QueryBinding">
+                    <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
+                    <QueryDefinition>select distinct
+a.dim_all_time_activity_key as 'TransactionID',
+c.client_code as 'ClientCode',
+f.dim_matter_header_key as 'MatterID',
+a.dim_bill_key as 'BillID',
+a.time_type as 'ChargeableTimeCode',
+a.dim_fed_hierarchy_history_key as 'FEDCodeID',
+a.dim_transaction_date_key as 'TransactionDate',
+a.dim_run_date_key as 'RunDate',
+a.minutes_recorded as 'MinutesRecorded',
+a.time_cost_value as 'ValueOfTimeRecorded',
+a.hourly_charge_rate as 'ChargeRate',
+a.time_charge_value as 'timeChargeValue',
+a.overridden_time_charge_value as 'OverriddenTimeChargeValue',
+case 
+when t.time_activity_code != 'W/O'
+and t.bill_number = 'xxxxxxxx'
+ then 'Written Off'
+when t.time_activity_code = 'W/O'
+ then 'Written Off Transaction'
+when t.bill_number = ''
+ then 'Unbilled'
+when a.dim_bill_key &gt; 0
+and t.time_activity_code not in ('Bill','Abmt')
+ then 'Billed'
+when a.time_type = 'NC' 
+ then 'Non Chargeable Time'
+end as 'TransactionType',
+n.td_textln as 'Narrative',
+t.time_activity_code as 'TimeActivityCode',
+t.rate_code as 'RateCode' ,
+t.matter_stage_descrn as 'StageDesc',
+datediff(d, d3.calendar_date, getdate()) as 'TransactionAgeDays' 
+
+from
+[SVR-LIV-DWH-01].red_dw.dbo.fact_all_time_activity a
+
+left join red_dw.dbo.dim_client c
+ on c.dim_client_key = a.dim_client_key
+
+left join
+ [SVR-LIV-DWH-01].red_dw.dbo.dim_all_time_activity t
+  on a.dim_all_time_activity_key = t.dim_all_time_activity_key
+
+left join
+ [SVR-LIV-DWH-01].red_dw.dbo.dim_time_narratives n
+   on n.dim_time_narratives_key = a.dim_time_narratives_key
+
+
+left join red_dw.dbo.dim_matter_header d2
+ on d2.dim_matter_header_key = a.dim_matter_header_key
+
+
+
+left join red_dw.dbo.fact_matter_summary f
+ -- on c.client_code = f.client_code 
+ --and d2.matter_number = f.matter_number
+ --and a.source_system_id = f.source_system_id
+on f.dim_matter_header_key = d2.dim_matter_header_key
+
+ left join red_dw.dbo.dim_date d3
+	on d3.dim_date_key = a.dim_transaction_date_key
+
+ left join red_dw.dbo.dim_date d4
+	on d4.dim_date_key = a.dim_run_date_key
+
+
+where
+d4.cal_year = 2011</QueryDefinition>
+                  </Source>
+                  <StorageMode valuens="ddl200_200">InMemory</StorageMode>
+                  <ProcessingMode>Regular</ProcessingMode>
+                  <ProactiveCaching>
+                    <SilenceInterval>-PT1S</SilenceInterval>
+                    <Latency>-PT1S</Latency>
+                    <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+                    <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+                    <Source xsi:type="ProactiveCachingInheritedBinding" />
+                  </ProactiveCaching>
+                  <ddl300_300:DirectQueryUsage>InMemoryOnly</ddl300_300:DirectQueryUsage>
+                </Partition>
+                <Partition>
+                  <ID>TimeTransactions_043403b3-79f1-419d-8730-daea74fa0e8d</ID>
+                  <Name>TimeTransactions_2010</Name>
+                  <Annotations>
+                    <Annotation>
+                      <Name>TableWidgetSerialization</Name>
+                    </Annotation>
+                    <Annotation>
+                      <Name>TableWidgetSourceTable</Name>
+                    </Annotation>
+                    <Annotation>
+                      <Name>QueryEditorSerialization</Name>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsQueryEditorUsed</Name>
+                      <Value>True</Value>
+                    </Annotation>
+                  </Annotations>
+                  <Source xsi:type="QueryBinding">
+                    <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
+                    <QueryDefinition>select distinct
+a.dim_all_time_activity_key as 'TransactionID',
+c.client_code as 'ClientCode',
+f.dim_matter_header_key as 'MatterID',
+a.dim_bill_key as 'BillID',
+a.time_type as 'ChargeableTimeCode',
+a.dim_fed_hierarchy_history_key as 'FEDCodeID',
+a.dim_transaction_date_key as 'TransactionDate',
+a.dim_run_date_key as 'RunDate',
+a.minutes_recorded as 'MinutesRecorded',
+a.time_cost_value as 'ValueOfTimeRecorded',
+a.hourly_charge_rate as 'ChargeRate',
+a.time_charge_value as 'timeChargeValue',
+a.overridden_time_charge_value as 'OverriddenTimeChargeValue',
+case 
+when t.time_activity_code != 'W/O'
+and t.bill_number = 'xxxxxxxx'
+ then 'Written Off'
+when t.time_activity_code = 'W/O'
+ then 'Written Off Transaction'
+when t.bill_number = ''
+ then 'Unbilled'
+when a.dim_bill_key &gt; 0
+and t.time_activity_code not in ('Bill','Abmt')
+ then 'Billed'
+when a.time_type = 'NC' 
+ then 'Non Chargeable Time'
+end as 'TransactionType',
+n.td_textln as 'Narrative',
+t.time_activity_code as 'TimeActivityCode',
+t.rate_code as 'RateCode' ,
+t.matter_stage_descrn as 'StageDesc',
+datediff(d, d3.calendar_date, getdate()) as 'TransactionAgeDays' 
+
+from
+[SVR-LIV-DWH-01].red_dw.dbo.fact_all_time_activity a
+
+left join red_dw.dbo.dim_client c
+ on c.dim_client_key = a.dim_client_key
+
+left join
+ [SVR-LIV-DWH-01].red_dw.dbo.dim_all_time_activity t
+  on a.dim_all_time_activity_key = t.dim_all_time_activity_key
+
+left join
+ [SVR-LIV-DWH-01].red_dw.dbo.dim_time_narratives n
+   on n.dim_time_narratives_key = a.dim_time_narratives_key
+
+
+left join red_dw.dbo.dim_matter_header d2
+ on d2.dim_matter_header_key = a.dim_matter_header_key
+
+
+
+left join red_dw.dbo.fact_matter_summary f
+ -- on c.client_code = f.client_code 
+ --and d2.matter_number = f.matter_number
+ --and a.source_system_id = f.source_system_id
+on f.dim_matter_header_key = d2.dim_matter_header_key
+
+ left join red_dw.dbo.dim_date d3
+	on d3.dim_date_key = a.dim_transaction_date_key
+
+ left join red_dw.dbo.dim_date d4
+	on d4.dim_date_key = a.dim_run_date_key
+
+
+where
+d4.cal_year = 2010</QueryDefinition>
+                  </Source>
+                  <StorageMode valuens="ddl200_200">InMemory</StorageMode>
+                  <ProcessingMode>Regular</ProcessingMode>
+                  <ProactiveCaching>
+                    <SilenceInterval>-PT1S</SilenceInterval>
+                    <Latency>-PT1S</Latency>
+                    <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+                    <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+                    <Source xsi:type="ProactiveCachingInheritedBinding" />
+                  </ProactiveCaching>
+                  <ddl300_300:DirectQueryUsage>InMemoryOnly</ddl300_300:DirectQueryUsage>
+                </Partition>
+                <Partition>
+                  <ID>TimeTransactions_0e373e0d-e92f-4edd-95f4-27a7bf66c62e</ID>
+                  <Name>TimeTransactions_historic</Name>
+                  <Annotations>
+                    <Annotation>
+                      <Name>TableWidgetSerialization</Name>
+                    </Annotation>
+                    <Annotation>
+                      <Name>TableWidgetSourceTable</Name>
+                    </Annotation>
+                    <Annotation>
+                      <Name>QueryEditorSerialization</Name>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsQueryEditorUsed</Name>
+                      <Value>True</Value>
+                    </Annotation>
+                  </Annotations>
+                  <Source xsi:type="QueryBinding">
+                    <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
+                    <QueryDefinition>select distinct
+a.dim_all_time_activity_key as 'TransactionID',
+c.client_code as 'ClientCode',
+f.dim_matter_header_key as 'MatterID',
+a.dim_bill_key as 'BillID',
+a.time_type as 'ChargeableTimeCode',
+a.dim_fed_hierarchy_history_key as 'FEDCodeID',
+a.dim_transaction_date_key as 'TransactionDate',
+a.dim_run_date_key as 'RunDate',
+a.minutes_recorded as 'MinutesRecorded',
+a.time_cost_value as 'ValueOfTimeRecorded',
+a.hourly_charge_rate as 'ChargeRate',
+a.time_charge_value as 'timeChargeValue',
+a.overridden_time_charge_value as 'OverriddenTimeChargeValue',
+case 
+when t.time_activity_code != 'W/O'
+and t.bill_number = 'xxxxxxxx'
+ then 'Written Off'
+when t.time_activity_code = 'W/O'
+ then 'Written Off Transaction'
+when t.bill_number = ''
+ then 'Unbilled'
+when a.dim_bill_key &gt; 0
+and t.time_activity_code not in ('Bill','Abmt')
+ then 'Billed'
+when a.time_type = 'NC' 
+ then 'Non Chargeable Time'
+end as 'TransactionType',
+n.td_textln as 'Narrative',
+t.time_activity_code as 'TimeActivityCode',
+t.rate_code as 'RateCode' ,
+t.matter_stage_descrn as 'StageDesc',
+datediff(d, d3.calendar_date, getdate()) as 'TransactionAgeDays' 
+
+from
+[SVR-LIV-DWH-01].red_dw.dbo.fact_all_time_activity a
+
+left join red_dw.dbo.dim_client c
+ on c.dim_client_key = a.dim_client_key
+
+left join
+ [SVR-LIV-DWH-01].red_dw.dbo.dim_all_time_activity t
+  on a.dim_all_time_activity_key = t.dim_all_time_activity_key
+
+left join
+ [SVR-LIV-DWH-01].red_dw.dbo.dim_time_narratives n
+   on n.dim_time_narratives_key = a.dim_time_narratives_key
+
+
+left join red_dw.dbo.dim_matter_header d2
+ on d2.dim_matter_header_key = a.dim_matter_header_key
+
+
+
+left join red_dw.dbo.fact_matter_summary f
+ -- on c.client_code = f.client_code 
+ --and d2.matter_number = f.matter_number
+ --and a.source_system_id = f.source_system_id
+on f.dim_matter_header_key = d2.dim_matter_header_key
+
+ left join red_dw.dbo.dim_date d3
+	on d3.dim_date_key = a.dim_transaction_date_key
+
+ left join red_dw.dbo.dim_date d4
+	on d4.dim_date_key = a.dim_run_date_key
+
+
+where
+d4.cal_year &lt; 2010</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
@@ -22595,6 +22950,7 @@ CREATE MEASURE 'TimeTransactions'[TotalvalueOfTimeRecorded]=sum([ValueOfTimeReco
 CREATE MEASURE 'TimeTransactions'[TotalTimeChargeValue]=sum([timeChargeValue]);
 CREATE MEASURE 'TimeTransactions'[TotalOverriddenTimeChargeValue]=sum([OverriddenTimeChargeValue]);
 CREATE MEASURE 'Bill'[TotalBillAmountOutstanding]=sum([AmountOutstanding]);
+CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransactions[MinutesRecorded] ), dimTimeTransactionTimeActivity[TimeActivityCode] &lt;&gt; "Bill", dimTimeTransactionTimeActivity[TimeActivityCode] &lt;&gt; "Abmt", dimTimeTransactionTimeActivity[TimeActivityCode] &lt;&gt; "W/O" );
 </Text>
                 </Command>
               </Commands>
@@ -23041,6 +23397,27 @@ CREATE MEASURE 'Bill'[TotalBillAmountOutstanding]=sum([AmountOutstanding]);
                   <FormatString>''</FormatString>
                 </CalculationProperty>
                 <CalculationProperty>
+                  <Annotations>
+                    <Annotation>
+                      <Name>Type</Name>
+                      <Value>User</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsPrivate</Name>
+                      <Value>False</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Format</Name>
+                      <Value>
+                        <Format Format="General" xmlns="" />
+                      </Value>
+                    </Annotation>
+                  </Annotations>
+                  <CalculationReference>[ChargeableMinutes]</CalculationReference>
+                  <CalculationType>Member</CalculationType>
+                  <FormatString>''</FormatString>
+                </CalculationProperty>
+                <CalculationProperty>
                   <CalculationReference>Measures.[__No measures defined]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <Visible>false</Visible>
@@ -23269,7 +23646,7 @@ CREATE MEASURE 'Bill'[TotalBillAmountOutstanding]=sum([AmountOutstanding]);
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="TimeTransactions" msprop:DbTableName="factMainTable" msprop:TableType="View" msprop:Description="factMainTable" msprop:QueryDefinition="select  &#xD;&#xA;tbl.TransactionID,&#xD;&#xA;c.client_code as 'ClientCode',&#xD;&#xA;f.dim_matter_header_key as 'MatterID',&#xD;&#xA;a.dim_bill_key as 'BillID',&#xD;&#xA;a.time_type as 'ChargeableTimeCode',&#xD;&#xA;a.dim_fed_hierarchy_history_key as 'FEDCodeID',&#xD;&#xA;a.dim_transaction_date_key as 'TransactionDate',&#xD;&#xA;a.dim_run_date_key as 'RunDate',&#xD;&#xA;a.minutes_recorded as 'MinutesRecorded',&#xD;&#xA;a.time_cost_value as 'ValueOfTimeRecorded',&#xD;&#xA;a.hourly_charge_rate as 'ChargeRate',&#xD;&#xA;a.time_charge_value as 'timeChargeValue',&#xD;&#xA;a.overridden_time_charge_value as 'OverriddenTimeChargeValue',&#xD;&#xA;case &#xD;&#xA;when t.time_activity_code != 'W/O'&#xD;&#xA;and t.bill_number = 'xxxxxxxx'&#xD;&#xA; then 'Written Off'&#xD;&#xA;when t.time_activity_code = 'W/O'&#xD;&#xA; then 'Written Off Transaction'&#xD;&#xA;when t.bill_number = ''&#xD;&#xA; then 'Unbilled'&#xD;&#xA;when a.dim_bill_key &gt; 0&#xD;&#xA;and t.time_activity_code not in ('Bill','Abmt')&#xD;&#xA; then 'Billed'&#xD;&#xA;when a.time_type = 'NC' &#xD;&#xA; then 'Non Chargeable Time'&#xD;&#xA;end as 'TransactionType',&#xD;&#xA;n.td_textln as 'Narrative',&#xD;&#xA;t.time_activity_code as 'TimeActivityCode',&#xD;&#xA;t.rate_code as 'RateCode' ,&#xD;&#xA;t.matter_stage_descrn as 'StageDesc',&#xD;&#xA;datediff(d, d3.calendar_date, getdate()) as 'TransactionAgeDays'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;[SVR-LIV-DWH-01].red_dw.dbo.fact_all_time_activity a&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_client c&#xD;&#xA; on c.dim_client_key = a.dim_client_key&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; [SVR-LIV-DWH-01].red_dw.dbo.dim_all_time_activity t&#xD;&#xA;  on a.dim_all_time_activity_key = t.dim_all_time_activity_key&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; [SVR-LIV-DWH-01].red_dw.dbo.dim_time_narratives n&#xD;&#xA;   on n.dim_time_narratives_key = a.dim_time_narratives_key&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_matter_header d2&#xD;&#xA; on d2.dim_matter_header_key = a.dim_matter_header_key&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_date d3&#xD;&#xA; on d3.dim_date_key = a.dim_transaction_date_key&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.fact_matter_summary f&#xD;&#xA;  on d2.client_code = f.client_code &#xD;&#xA; and d2.matter_number = f.matter_number&#xD;&#xA; and f.source_system_id = d2.source_system_id&#xD;&#xA;&#xD;&#xA; &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join (&#xD;&#xA; select&#xD;&#xA; a.dim_all_time_activity_key,&#xD;&#xA; a.dim_client_key, &#xD;&#xA; a.dim_matter_header_key, &#xD;&#xA; a.time_type,&#xD;&#xA; row_number() over (partition by a.dim_client_key, a.dim_matter_header_key, a.time_type order by a.transaction_sequence_number) as 'TransactionID'&#xD;&#xA;&#xD;&#xA; from&#xD;&#xA; red_dw.dbo.fact_all_time_activity a&#xD;&#xA;) tbl on tbl.dim_all_time_activity_key = a.dim_all_time_activity_key">
+                    <xs:element name="factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="TimeTransactions" msprop:DbTableName="factMainTable" msprop:TableType="View" msprop:Description="factMainTable" msprop:QueryDefinition="select distinct&#xA;a.dim_all_time_activity_key as 'TransactionID',&#xA;c.client_code as 'ClientCode',&#xA;f.dim_matter_header_key as 'MatterID',&#xA;a.dim_bill_key as 'BillID',&#xA;a.time_type as 'ChargeableTimeCode',&#xA;a.dim_fed_hierarchy_history_key as 'FEDCodeID',&#xA;a.dim_transaction_date_key as 'TransactionDate',&#xA;a.dim_run_date_key as 'RunDate',&#xA;a.minutes_recorded as 'MinutesRecorded',&#xA;a.time_cost_value as 'ValueOfTimeRecorded',&#xA;a.hourly_charge_rate as 'ChargeRate',&#xA;a.time_charge_value as 'timeChargeValue',&#xA;a.overridden_time_charge_value as 'OverriddenTimeChargeValue',&#xA;case &#xA;when t.time_activity_code != 'W/O'&#xA;and t.bill_number = 'xxxxxxxx'&#xA; then 'Written Off'&#xA;when t.time_activity_code = 'W/O'&#xA; then 'Written Off Transaction'&#xA;when t.bill_number = ''&#xA; then 'Unbilled'&#xA;when a.dim_bill_key &gt; 0&#xA;and t.time_activity_code not in ('Bill','Abmt')&#xA; then 'Billed'&#xA;when a.time_type = 'NC' &#xA; then 'Non Chargeable Time'&#xA;end as 'TransactionType',&#xA;n.td_textln as 'Narrative',&#xA;t.time_activity_code as 'TimeActivityCode',&#xA;t.rate_code as 'RateCode' ,&#xA;t.matter_stage_descrn as 'StageDesc',&#xA;datediff(d, d3.calendar_date, getdate()) as 'TransactionAgeDays' &#xA;&#xA;from&#xA;[SVR-LIV-DWH-01].red_dw.dbo.fact_all_time_activity a&#xA;&#xA;left join red_dw.dbo.dim_client c&#xA; on c.dim_client_key = a.dim_client_key&#xA;&#xA;left join&#xA; [SVR-LIV-DWH-01].red_dw.dbo.dim_all_time_activity t&#xA;  on a.dim_all_time_activity_key = t.dim_all_time_activity_key&#xA;&#xA;left join&#xA; [SVR-LIV-DWH-01].red_dw.dbo.dim_time_narratives n&#xA;   on n.dim_time_narratives_key = a.dim_time_narratives_key&#xA;&#xA;&#xA;left join red_dw.dbo.dim_matter_header d2&#xA; on d2.dim_matter_header_key = a.dim_matter_header_key&#xA;&#xA;&#xA;&#xA;left join red_dw.dbo.fact_matter_summary f&#xA; -- on c.client_code = f.client_code &#xA; --and d2.matter_number = f.matter_number&#xA; --and a.source_system_id = f.source_system_id&#xA;on f.dim_matter_header_key = d2.dim_matter_header_key&#xA;&#xA; left join red_dw.dbo.dim_date d3&#xA; on d3.dim_date_key = a.dim_transaction_date_key&#xA;&#xA; left join red_dw.dbo.dim_date d4&#xA; on d4.dim_date_key = a.dim_run_date_key">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="BillID" msprop:DbColumnName="BillID" msprop:FriendlyName="BillID" type="xs:int" minOccurs="0" />
