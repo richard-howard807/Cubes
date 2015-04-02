@@ -5196,6 +5196,11 @@
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>ClientGroupName</Name>
                 </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>ClientPartnerName</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>ClientPartnerName</Name>
+                </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
@@ -5271,6 +5276,31 @@
                 <Source xsi:type="ColumnBinding">
                   <TableID>dimClientMatter_efa9a451-b17b-4f91-8fea-de6ec489402f</TableID>
                   <ColumnID>ClientGroupName</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>ClientPartnerName</ID>
+              <Name>ClientPartnerName</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimClientMatter_efa9a451-b17b-4f91-8fea-de6ec489402f</TableID>
+                    <ColumnID>ClientPartnerName</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimClientMatter_efa9a451-b17b-4f91-8fea-de6ec489402f</TableID>
+                  <ColumnID>ClientPartnerName</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
@@ -7401,6 +7431,9 @@
                 <Attribute>
                   <AttributeID>ClientGroupName</AttributeID>
                 </Attribute>
+                <Attribute>
+                  <AttributeID>ClientPartnerName</AttributeID>
+                </Attribute>
               </Attributes>
             </Dimension>
             <Dimension>
@@ -9354,6 +9387,20 @@
                           <Source xsi:type="ColumnBinding">
                             <TableID>dimClientMatter_efa9a451-b17b-4f91-8fea-de6ec489402f</TableID>
                             <ColumnID>ClientGroupName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientPartnerName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClientMatter_efa9a451-b17b-4f91-8fea-de6ec489402f</TableID>
+                            <ColumnID>ClientPartnerName</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -11917,6 +11964,20 @@ calendar_date = cast(getdate() as date))</QueryDefinition>
                           <Source xsi:type="ColumnBinding">
                             <TableID>dimClientMatter_efa9a451-b17b-4f91-8fea-de6ec489402f</TableID>
                             <ColumnID>ClientGroupName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientPartnerName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClientMatter_efa9a451-b17b-4f91-8fea-de6ec489402f</TableID>
+                            <ColumnID>ClientPartnerName</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -14720,6 +14781,20 @@ order by 1</QueryDefinition>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientPartnerName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClientMatter_efa9a451-b17b-4f91-8fea-de6ec489402f</TableID>
+                            <ColumnID>ClientPartnerName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
                 </Dimension>
@@ -14748,7 +14823,8 @@ order by 1</QueryDefinition>
                     <QueryDefinition>SELECT distinct
 c.client_code as 'ClientCode',
 c.client_name as 'ClientName',
-c.client_group_name as 'ClientGroupName'
+c.client_group_name as 'ClientGroupName',
+c.client_partner_name as 'ClientPartnerName'
 
  FROM 
 [dim_client] c
@@ -16638,7 +16714,7 @@ CREATE MEASURE 'Bills'[TotalBillAmountOutstanding]=calculate(sum([AmountOutstand
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimClientMatter_efa9a451-b17b-4f91-8fea-de6ec489402f" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimClient" msprop:DbTableName="dimClientMatter" msprop:TableType="View" msprop:Description="dimClientMatter" msprop:QueryDefinition="SELECT distinct&#xD;&#xA;c.client_code as 'ClientCode',&#xD;&#xA;c.client_name as 'ClientName',&#xD;&#xA;c.client_group_name as 'ClientGroupName'&#xD;&#xA;&#xD;&#xA; FROM &#xD;&#xA;[dim_client] c&#xD;&#xA;&#xD;&#xA;inner join fact_matter_summary a&#xD;&#xA; on a.dim_client_key = c.dim_client_key">
+                    <xs:element name="dimClientMatter_efa9a451-b17b-4f91-8fea-de6ec489402f" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimClient" msprop:DbTableName="dimClientMatter" msprop:TableType="View" msprop:Description="dimClientMatter" msprop:QueryDefinition="SELECT distinct&#xD;&#xA;c.client_code as 'ClientCode',&#xD;&#xA;c.client_name as 'ClientName',&#xD;&#xA;c.client_group_name as 'ClientGroupName',&#xD;&#xA;c.client_partner_name as 'ClientPartnerName'&#xD;&#xA;&#xD;&#xA; FROM &#xD;&#xA;[dim_client] c&#xD;&#xA;&#xD;&#xA;inner join fact_matter_summary a&#xD;&#xA; on a.dim_client_key = c.dim_client_key">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="ClientCode" msprop:DbColumnName="ClientCode" msprop:FriendlyName="ClientCode" minOccurs="0">
@@ -16656,6 +16732,13 @@ CREATE MEASURE 'Bills'[TotalBillAmountOutstanding]=calculate(sum([AmountOutstand
                             </xs:simpleType>
                           </xs:element>
                           <xs:element name="ClientGroupName" msprop:DbColumnName="ClientGroupName" msprop:FriendlyName="ClientGroupName" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="ClientPartnerName" msprop:DbColumnName="ClientPartnerName" msprop:FriendlyName="ClientPartnerName" minOccurs="0">
                             <xs:simpleType>
                               <xs:restriction base="xs:string">
                                 <xs:maxLength value="32768" />
