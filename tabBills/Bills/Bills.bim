@@ -6682,20 +6682,14 @@
           <Name>dimDaysBanding</Name>
           <Annotations>
             <Annotation>
-              <Name>IsQueryEditorUsed</Name>
-              <Value>True</Value>
+              <Name>TableWidgetSerialization</Name>
             </Annotation>
             <Annotation>
               <Name>QueryEditorSerialization</Name>
             </Annotation>
             <Annotation>
-              <Name>TableWidgetSerialization</Name>
-            </Annotation>
-            <Annotation>
-              <Name>DataMarketWebBaseUrl</Name>
-            </Annotation>
-            <Annotation>
-              <Name>DataMarketWebQueryUrl</Name>
+              <Name>IsQueryEditorUsed</Name>
+              <Value>True</Value>
             </Annotation>
           </Annotations>
           <Source xsi:type="DataSourceViewBinding">
@@ -6742,6 +6736,11 @@
                   <AttributeID>DebtAgeBanding</AttributeID>
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>DebtAgeBanding</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>ClientAgedDebtBanding</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>ClientAgedDebtBanding</Name>
                 </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
@@ -6813,6 +6812,31 @@
                 <Source xsi:type="ColumnBinding">
                   <TableID>dimDaysBanding_2ede524d-d0cd-4ddd-9a96-7274ca6b2a03</TableID>
                   <ColumnID>DebtAgeBanding</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>ClientAgedDebtBanding</ID>
+              <Name>ClientAgedDebtBanding</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimDaysBanding_2ede524d-d0cd-4ddd-9a96-7274ca6b2a03</TableID>
+                    <ColumnID>ClientAgedDebtBanding</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimDaysBanding_2ede524d-d0cd-4ddd-9a96-7274ca6b2a03</TableID>
+                  <ColumnID>ClientAgedDebtBanding</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
@@ -7523,6 +7547,9 @@
                 </Attribute>
                 <Attribute>
                   <AttributeID>DebtAgeBanding</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>ClientAgedDebtBanding</AttributeID>
                 </Attribute>
               </Attributes>
             </Dimension>
@@ -12215,6 +12242,20 @@ calendar_date = cast(getdate() as date))</QueryDefinition>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientAgedDebtBanding</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDaysBanding_2ede524d-d0cd-4ddd-9a96-7274ca6b2a03</TableID>
+                            <ColumnID>ClientAgedDebtBanding</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <IntermediateCubeDimensionID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</IntermediateCubeDimensionID>
                   <IntermediateGranularityAttributeID>BillAgeDays</IntermediateGranularityAttributeID>
@@ -15565,6 +15606,20 @@ dim_date</QueryDefinition>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientAgedDebtBanding</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDaysBanding_2ede524d-d0cd-4ddd-9a96-7274ca6b2a03</TableID>
+                            <ColumnID>ClientAgedDebtBanding</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
                 </Dimension>
@@ -15575,27 +15630,41 @@ dim_date</QueryDefinition>
                   <Name>dimDaysBanding</Name>
                   <Annotations>
                     <Annotation>
-                      <Name>IsQueryEditorUsed</Name>
-                      <Value>True</Value>
+                      <Name>TableWidgetSerialization</Name>
+                    </Annotation>
+                    <Annotation>
+                      <Name>TableWidgetSourceTable</Name>
                     </Annotation>
                     <Annotation>
                       <Name>QueryEditorSerialization</Name>
                     </Annotation>
                     <Annotation>
-                      <Name>TableWidgetSerialization</Name>
+                      <Name>IsQueryEditorUsed</Name>
+                      <Value>True</Value>
                     </Annotation>
                   </Annotations>
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
                     <QueryDefinition>select 
   n as 'Number',
-  case	when n between 0 and 30 then '0 - 30 Days'
-		when n between 31 and 90 then '31 - 90 Days'
-		when n between 91 and 180 then '91 - 180 Days'
-		when n between 181 and 270 then '181 - 270 Days'
-		when n between 271 and 360 then '271 - 360 Days'
-		when n between 361 and 720 then '361 - 720 Days'
-		when n &gt; 710 then 'Over 720 Days' end as 'DebtAgeBanding'
+  case when n between 0 and 30 then '0 - 30 Days'
+  when n between 31 and 90 then '31 - 90 Days'
+  when n between 91 and 180 then '91 - 180 Days'
+  when n between 181 and 270 then '181 - 270 Days'
+  when n between 271 and 360 then '271 - 360 Days'
+  when n between 361 and 720 then '361 - 720 Days'
+  when n &gt; 710 then 'Over 720 Days' end as 'DebtAgeBanding',
+  case when n between 0 and 30 then '0 - 30 Days'
+  when n between 31 and 45 then '31 - 45 Days'
+  when n between 46 and 60 then '46 - 60 Days'
+  when n between 61 and 90 then '61 - 90 Days'
+  when n between 91 and 120 then '91 - 120 Days'
+  when n between 121 and 180 then '121 - 180 Days'
+  when n between 181 and 270 then '181 - 270 Days'
+  when n between 271 and 360 then '271 - 360 Days'
+  when n &gt; 360 then 'Over 360 Days' end as 'ClientAgedDebtBanding'
+
+
   from (
   select 
   top 100000
@@ -15608,7 +15677,7 @@ dim_date</QueryDefinition>
 
   ) tbl
   union
-  select 0, '0 - 30 Days'
+  select 0, '0 - 30 Days', '0 - 30 Days'
 
   order by 1</QueryDefinition>
                   </Source>
@@ -15672,8 +15741,7 @@ CREATE MEASURE 'Matters'[TotalWIPBalance]=sum([WIPBalance]);
 CREATE MEASURE 'Matters'[TotalCostsToDate]=sum([CostsToDate]);
 CREATE MEASURE 'Matters'[TotalNumberOfBillsRaised]=sum([NumberOfBillsRaised]);
 CREATE MEASURE 'Matters'[TotalUnbilledTime]=sum([UnbilledTime]);
-CREATE MEASURE 'Bills'[TotalBillAmountOutstanding]=sum([AmountOutstanding]);
-CREATE MEASURE 'Bills'[TotalDebt]=calculate(sum(Bills[BillAmount]), Bills[OpenItem] = "Y");
+CREATE MEASURE 'Bills'[TotalBillAmountOutstanding]=calculate(sum([AmountOutstanding]), Bills[OpenItem] = "Y");
 </Text>
                 </Command>
               </Commands>
@@ -16032,27 +16100,6 @@ CREATE MEASURE 'Bills'[TotalDebt]=calculate(sum(Bills[BillAmount]), Bills[OpenIt
                     </Annotation>
                   </Annotations>
                   <CalculationReference>[TotalBillAmountOutstanding]</CalculationReference>
-                  <CalculationType>Member</CalculationType>
-                  <FormatString>''</FormatString>
-                </CalculationProperty>
-                <CalculationProperty>
-                  <Annotations>
-                    <Annotation>
-                      <Name>Type</Name>
-                      <Value>User</Value>
-                    </Annotation>
-                    <Annotation>
-                      <Name>IsPrivate</Name>
-                      <Value>False</Value>
-                    </Annotation>
-                    <Annotation>
-                      <Name>Format</Name>
-                      <Value>
-                        <Format Format="General" xmlns="" />
-                      </Value>
-                    </Annotation>
-                  </Annotations>
-                  <CalculationReference>[TotalDebt]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
                 </CalculationProperty>
@@ -16726,11 +16773,18 @@ CREATE MEASURE 'Bills'[TotalDebt]=calculate(sum(Bills[BillAmount]), Bills[OpenIt
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimDaysBanding_2ede524d-d0cd-4ddd-9a96-7274ca6b2a03" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimDaysBanding" msprop:DbTableName="dimDaysBanding" msprop:TableType="View" msprop:Description="dimDaysBanding" msprop:QueryDefinition="select &#xD;&#xA;  n as 'Number',&#xD;&#xA;  case when n between 0 and 30 then '0 - 30 Days'&#xD;&#xA;  when n between 31 and 90 then '31 - 90 Days'&#xD;&#xA;  when n between 91 and 180 then '91 - 180 Days'&#xD;&#xA;  when n between 181 and 270 then '181 - 270 Days'&#xD;&#xA;  when n between 271 and 360 then '271 - 360 Days'&#xD;&#xA;  when n between 361 and 720 then '361 - 720 Days'&#xD;&#xA;  when n &gt; 710 then 'Over 720 Days' end as 'DebtAgeBanding'&#xD;&#xA;  from (&#xD;&#xA;  select &#xD;&#xA;  top 100000&#xD;&#xA;  row_number() over(order by t1.number) as n&#xD;&#xA;  &#xD;&#xA;  &#xD;&#xA;  from &#xD;&#xA;  master..spt_values t1   &#xD;&#xA;  CROSS JOIN master..spt_values t2&#xD;&#xA;&#xD;&#xA;  ) tbl&#xD;&#xA;  union&#xD;&#xA;  select 0, '0 - 30 Days'&#xD;&#xA;&#xD;&#xA;  order by 1">
+                    <xs:element name="dimDaysBanding_2ede524d-d0cd-4ddd-9a96-7274ca6b2a03" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimDaysBanding" msprop:DbTableName="dimDaysBanding" msprop:TableType="View" msprop:Description="dimDaysBanding" msprop:QueryDefinition="select &#xD;&#xA;  n as 'Number',&#xD;&#xA;  case when n between 0 and 30 then '0 - 30 Days'&#xD;&#xA;  when n between 31 and 90 then '31 - 90 Days'&#xD;&#xA;  when n between 91 and 180 then '91 - 180 Days'&#xD;&#xA;  when n between 181 and 270 then '181 - 270 Days'&#xD;&#xA;  when n between 271 and 360 then '271 - 360 Days'&#xD;&#xA;  when n between 361 and 720 then '361 - 720 Days'&#xD;&#xA;  when n &gt; 710 then 'Over 720 Days' end as 'DebtAgeBanding',&#xD;&#xA;  case when n between 0 and 30 then '0 - 30 Days'&#xD;&#xA;  when n between 31 and 45 then '31 - 45 Days'&#xD;&#xA;  when n between 46 and 60 then '46 - 60 Days'&#xD;&#xA;  when n between 61 and 90 then '61 - 90 Days'&#xD;&#xA;  when n between 91 and 120 then '91 - 120 Days'&#xD;&#xA;  when n between 121 and 180 then '121 - 180 Days'&#xD;&#xA;  when n between 181 and 270 then '181 - 270 Days'&#xD;&#xA;  when n between 271 and 360 then '271 - 360 Days'&#xD;&#xA;  when n &gt; 360 then 'Over 360 Days' end as 'ClientAgedDebtBanding'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;  from (&#xD;&#xA;  select &#xD;&#xA;  top 100000&#xD;&#xA;  row_number() over(order by t1.number) as n&#xD;&#xA;  &#xD;&#xA;  &#xD;&#xA;  from &#xD;&#xA;  master..spt_values t1   &#xD;&#xA;  CROSS JOIN master..spt_values t2&#xD;&#xA;&#xD;&#xA;  ) tbl&#xD;&#xA;  union&#xD;&#xA;  select 0, '0 - 30 Days', '0 - 30 Days'&#xD;&#xA;&#xD;&#xA;  order by 1">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="Number" msprop:DbColumnName="Number" msprop:FriendlyName="Number" type="xs:long" minOccurs="0" />
                           <xs:element name="DebtAgeBanding" msprop:DbColumnName="DebtAgeBanding" msprop:FriendlyName="DebtAgeBanding" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="ClientAgedDebtBanding" msprop:DbColumnName="ClientAgedDebtBanding" msprop:FriendlyName="ClientAgedDebtBanding" minOccurs="0">
                             <xs:simpleType>
                               <xs:restriction base="xs:string">
                                 <xs:maxLength value="32768" />
