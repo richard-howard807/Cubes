@@ -9943,6 +9943,11 @@
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>KPIUnbilledTimeBanding</Name>
                 </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>KPIUnbilledTimeOrder</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>KPIUnbilledTimeOrder</Name>
+                </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
@@ -10038,6 +10043,31 @@
                 <Source xsi:type="ColumnBinding">
                   <TableID>DaysBanding_a0bb1990-5adf-49c9-8dd2-ce75361b1478</TableID>
                   <ColumnID>KPIUnbilledTimeBanding</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>KPIUnbilledTimeOrder</ID>
+              <Name>KPIUnbilledTimeOrder</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>DaysBanding_a0bb1990-5adf-49c9-8dd2-ce75361b1478</TableID>
+                    <ColumnID>KPIUnbilledTimeOrder</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>DaysBanding_a0bb1990-5adf-49c9-8dd2-ce75361b1478</TableID>
+                  <ColumnID>KPIUnbilledTimeOrder</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
@@ -11086,6 +11116,9 @@
                 </Attribute>
                 <Attribute>
                   <AttributeID>KPIUnbilledTimeBanding</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>KPIUnbilledTimeOrder</AttributeID>
                 </Attribute>
               </Attributes>
             </Dimension>
@@ -18424,6 +18457,20 @@ branch_name is not null</QueryDefinition>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>KPIUnbilledTimeOrder</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>DaysBanding_a0bb1990-5adf-49c9-8dd2-ce75361b1478</TableID>
+                            <ColumnID>KPIUnbilledTimeOrder</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <IntermediateCubeDimensionID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</IntermediateCubeDimensionID>
                   <IntermediateGranularityAttributeID>TransactionAgeDays</IntermediateGranularityAttributeID>
@@ -23811,6 +23858,20 @@ dim_date</QueryDefinition>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>KPIUnbilledTimeOrder</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>DaysBanding_a0bb1990-5adf-49c9-8dd2-ce75361b1478</TableID>
+                            <ColumnID>KPIUnbilledTimeOrder</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
                 </Dimension>
@@ -23852,7 +23913,15 @@ dim_date</QueryDefinition>
   when n between 181 and 270 then '181 - 270 Days'
   when n between 271 and 360 then '271 - 360 Days'
   when n between 361 and 720 then '361 - 720 Days'
-  when n &gt; 710 then 'Greater than 720 Days' end as 'KPIUnbilledTimeBanding'
+  when n &gt; 710 then 'Greater than 720 Days' end as 'KPIUnbilledTimeBanding',
+  case when n between 0 and 60 then 1
+  when n between 61 and 90 then 2
+  when n between 91 and 180 then 3
+  when n between 181 and 270 then 4
+  when n between 271 and 360 then 5
+  when n between 361 and 720 then 6
+  when n &gt; 710 then 7 end as 'KPIUnbilledTimeOrder'
+
 
 
   from (
@@ -23867,7 +23936,7 @@ dim_date</QueryDefinition>
 
   ) tbl
   union
-  select 0, '0 - 30 Days', 'Current'
+  select 0, '0 - 30 Days', 'Current', 1
 
   order by 1</QueryDefinition>
                   </Source>
@@ -25441,7 +25510,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="DaysBanding_a0bb1990-5adf-49c9-8dd2-ce75361b1478" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimDaysBanding" msprop:DbTableName="DaysBanding" msprop:TableType="View" msprop:Description="DaysBanding" msprop:QueryDefinition="select &#xD;&#xA;  n as 'Number',&#xD;&#xA;  case when n between 0 and 30 then '0 - 30 Days'&#xD;&#xA;  when n between 31 and 90 then '31 - 90 Days'&#xD;&#xA;  when n between 91 and 180 then '91 - 180 Days'&#xD;&#xA;  when n between 181 and 270 then '181 - 270 Days'&#xD;&#xA;  when n between 271 and 360 then '271 - 360 Days'&#xD;&#xA;  when n between 361 and 720 then '361 - 720 Days'&#xD;&#xA;  when n &gt; 710 then 'Over 720 Days' end as 'TransactionAgeBanding',&#xD;&#xA;  &#xD;&#xA;  case when n between 0 and 60 then 'Current'&#xD;&#xA;  when n between 61 and 90 then '61 - 90 Days'&#xD;&#xA;  when n between 91 and 180 then '91 - 180 Days'&#xD;&#xA;  when n between 181 and 270 then '181 - 270 Days'&#xD;&#xA;  when n between 271 and 360 then '271 - 360 Days'&#xD;&#xA;  when n between 361 and 720 then '361 - 720 Days'&#xD;&#xA;  when n &gt; 710 then 'Greater than 720 Days' end as 'KPIUnbilledTimeBanding'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;  from (&#xD;&#xA;  select &#xD;&#xA;  top 100000&#xD;&#xA;  row_number() over(order by t1.number) as n&#xD;&#xA;  &#xD;&#xA;  &#xD;&#xA;  from &#xD;&#xA;  master..spt_values t1   &#xD;&#xA;  CROSS JOIN master..spt_values t2&#xD;&#xA;&#xD;&#xA;  ) tbl&#xD;&#xA;  union&#xD;&#xA;  select 0, '0 - 30 Days', 'Current'&#xD;&#xA;&#xD;&#xA;  order by 1">
+                    <xs:element name="DaysBanding_a0bb1990-5adf-49c9-8dd2-ce75361b1478" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimDaysBanding" msprop:DbTableName="DaysBanding" msprop:TableType="View" msprop:Description="DaysBanding" msprop:QueryDefinition="select &#xD;&#xA;  n as 'Number',&#xD;&#xA;  case when n between 0 and 30 then '0 - 30 Days'&#xD;&#xA;  when n between 31 and 90 then '31 - 90 Days'&#xD;&#xA;  when n between 91 and 180 then '91 - 180 Days'&#xD;&#xA;  when n between 181 and 270 then '181 - 270 Days'&#xD;&#xA;  when n between 271 and 360 then '271 - 360 Days'&#xD;&#xA;  when n between 361 and 720 then '361 - 720 Days'&#xD;&#xA;  when n &gt; 710 then 'Over 720 Days' end as 'TransactionAgeBanding',&#xD;&#xA;  &#xD;&#xA;  case when n between 0 and 60 then 'Current'&#xD;&#xA;  when n between 61 and 90 then '61 - 90 Days'&#xD;&#xA;  when n between 91 and 180 then '91 - 180 Days'&#xD;&#xA;  when n between 181 and 270 then '181 - 270 Days'&#xD;&#xA;  when n between 271 and 360 then '271 - 360 Days'&#xD;&#xA;  when n between 361 and 720 then '361 - 720 Days'&#xD;&#xA;  when n &gt; 710 then 'Greater than 720 Days' end as 'KPIUnbilledTimeBanding',&#xD;&#xA;  case when n between 0 and 60 then 1&#xD;&#xA;  when n between 61 and 90 then 2&#xD;&#xA;  when n between 91 and 180 then 3&#xD;&#xA;  when n between 181 and 270 then 4&#xD;&#xA;  when n between 271 and 360 then 5&#xD;&#xA;  when n between 361 and 720 then 6&#xD;&#xA;  when n &gt; 710 then 7 end as 'KPIUnbilledTimeOrder'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;  from (&#xD;&#xA;  select &#xD;&#xA;  top 100000&#xD;&#xA;  row_number() over(order by t1.number) as n&#xD;&#xA;  &#xD;&#xA;  &#xD;&#xA;  from &#xD;&#xA;  master..spt_values t1   &#xD;&#xA;  CROSS JOIN master..spt_values t2&#xD;&#xA;&#xD;&#xA;  ) tbl&#xD;&#xA;  union&#xD;&#xA;  select 0, '0 - 30 Days', 'Current', 1&#xD;&#xA;&#xD;&#xA;  order by 1">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="Number" msprop:DbColumnName="Number" msprop:FriendlyName="Number" type="xs:long" minOccurs="0" />
@@ -25459,6 +25528,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                               </xs:restriction>
                             </xs:simpleType>
                           </xs:element>
+                          <xs:element name="KPIUnbilledTimeOrder" msprop:DbColumnName="KPIUnbilledTimeOrder" msprop:FriendlyName="KPIUnbilledTimeOrder" type="xs:int" minOccurs="0" />
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
