@@ -12326,91 +12326,8 @@ calendar_date = cast(getdate() as date))</QueryDefinition>
               </Dimensions>
               <Partitions>
                 <Partition>
-                  <ID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</ID>
-                  <Name>Bills_historic</Name>
-                  <Annotations>
-                    <Annotation>
-                      <Name>TableWidgetSerialization</Name>
-                    </Annotation>
-                    <Annotation>
-                      <Name>TableWidgetSourceTable</Name>
-                    </Annotation>
-                    <Annotation>
-                      <Name>QueryEditorSerialization</Name>
-                    </Annotation>
-                    <Annotation>
-                      <Name>IsQueryEditorUsed</Name>
-                      <Value>True</Value>
-                    </Annotation>
-                  </Annotations>
-                  <Source xsi:type="QueryBinding">
-                    <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
-                    <QueryDefinition>select distinct
-f.bill_number as 'BillNumber',
-upper(d.record_type) as  'BillTypeCode',
-d2.dim_matter_header_key as 'MatterID',
-d.bill_flag as 'BillFinalOrInterimCode',
-f.dim_last_pay_date_key as 'BillLastPaymentDate',
-f.dim_bill_date_key as 'BillDate',
-f.bill_total as 'BillAmount',
-f.fees_total as 'FeeValue',
-f.paid_disbursements as 'DisbursementsPaid',
-f.unpaid_disbursements as 'DisbursementsUnpaid',
-f.admin_charges_total as 'AdministrationCharges',
-f.vat_amount as 'VATAmount',
-f.amount_paid as 'AmountPaid',
-f.bill_total - f.amount_paid as 'AmountOutstanding',
-case when f.amount_paid = f.bill_total then 0 else cast(datediff(day,cast( cast(f.dim_bill_date_key as varchar(10)) as date), getdate()) as numeric(10,2))  end as 'BillAgeDays',
-d.outstanding_flag as 'OpenItem'
-
-from
-red_dw.dbo.fact_bill f
-
-left join
- red_dw.dbo.dim_bill d
-  on d.dim_bill_key = f.dim_bill_key
-
-inner join red_dw.dbo.fact_matter_summary d2
- on d2.client_code = f.client_code
-and d2.matter_number = f.matter_number
-and d2.source_system_id = f.source_system_id
-
-where
-cast(f.dss_update_time as date) =
-
-	(
-	select top 1
-	cast(dss_update_time as date) 
-
-	from
-	red_dw.dbo.fact_bill
-
-	order by
-	cast(dss_update_time as date)
-	)
-
-
-order by
-f.bill_number</QueryDefinition>
-                  </Source>
-                  <StorageMode valuens="ddl200_200">InMemory</StorageMode>
-                  <ProcessingMode>Regular</ProcessingMode>
-                  <ErrorConfiguration>
-                    <KeyNotFound>IgnoreError</KeyNotFound>
-                    <KeyDuplicate>ReportAndStop</KeyDuplicate>
-                    <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
-                  </ErrorConfiguration>
-                  <ProactiveCaching>
-                    <SilenceInterval>-PT1S</SilenceInterval>
-                    <Latency>-PT1S</Latency>
-                    <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
-                    <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
-                    <Source xsi:type="ProactiveCachingInheritedBinding" />
-                  </ProactiveCaching>
-                </Partition>
-                <Partition>
                   <ID>Bills_1f2072cd-c950-4dcd-9c37-adc3d42a14a1</ID>
-                  <Name>Bills_recent</Name>
+                  <Name>Bills</Name>
                   <Annotations>
                     <Annotation>
                       <Name>TableWidgetSerialization</Name>
@@ -12442,7 +12359,7 @@ f.unpaid_disbursements as 'DisbursementsUnpaid',
 f.admin_charges_total as 'AdministrationCharges',
 f.vat_amount as 'VATAmount',
 f.amount_paid as 'AmountPaid',
-f.bill_total - f.amount_paid as 'AmountOutstanding',
+amount_outstanding as 'AmountOutstanding',
 case when f.amount_paid = f.bill_total then 0 else cast(datediff(day,cast( cast(f.dim_bill_date_key as varchar(10)) as date), getdate()) as numeric(10,2))  end as 'BillAgeDays',
 d.outstanding_flag as 'OpenItem'
 
@@ -12458,21 +12375,6 @@ inner join red_dw.dbo.fact_matter_summary d2
 and d2.matter_number = f.matter_number
 and d2.source_system_id = f.source_system_id
 
-where
-cast(f.dss_update_time as date) &gt;
-
-	(
-	select top 1
-	cast(dss_update_time as date) 
-
-	from
-	red_dw.dbo.fact_bill
-
-	order by
-	cast(dss_update_time as date)
-	)
-
-
 order by
 f.bill_number</QueryDefinition>
                   </Source>
@@ -12485,7 +12387,6 @@ f.bill_number</QueryDefinition>
                     <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
                     <Source xsi:type="ProactiveCachingInheritedBinding" />
                   </ProactiveCaching>
-                  <ddl300_300:DirectQueryUsage>InMemoryOnly</ddl300_300:DirectQueryUsage>
                 </Partition>
               </Partitions>
               <ProactiveCaching>
@@ -16323,7 +16224,7 @@ CREATE MEASURE 'Bills'[TotalBillAmountOutstanding]=calculate(sum([AmountOutstand
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="Bills" msprop:DbTableName="factBill" msprop:TableType="View" msprop:Description="factBill" msprop:QueryDefinition="select distinct&#xD;&#xA;f.bill_number as 'BillNumber',&#xD;&#xA;upper(d.record_type) as  'BillTypeCode',&#xD;&#xA;d2.dim_matter_header_key as 'MatterID',&#xD;&#xA;d.bill_flag as 'BillFinalOrInterimCode',&#xD;&#xA;f.dim_last_pay_date_key as 'BillLastPaymentDate',&#xD;&#xA;f.dim_bill_date_key as 'BillDate',&#xD;&#xA;f.bill_total as 'BillAmount',&#xD;&#xA;f.fees_total as 'FeeValue',&#xD;&#xA;f.paid_disbursements as 'DisbursementsPaid',&#xD;&#xA;f.unpaid_disbursements as 'DisbursementsUnpaid',&#xD;&#xA;f.admin_charges_total as 'AdministrationCharges',&#xD;&#xA;f.vat_amount as 'VATAmount',&#xD;&#xA;f.amount_paid as 'AmountPaid',&#xD;&#xA;f.bill_total - f.amount_paid as 'AmountOutstanding',&#xD;&#xA;case when f.amount_paid = f.bill_total then 0 else cast(datediff(day,cast( cast(f.dim_bill_date_key as varchar(10)) as date), getdate()) as numeric(10,2))  end as 'BillAgeDays',&#xD;&#xA;d.outstanding_flag as 'OpenItem'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_bill f&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; red_dw.dbo.dim_bill d&#xD;&#xA;  on d.dim_bill_key = f.dim_bill_key&#xD;&#xA;&#xD;&#xA;inner join red_dw.dbo.fact_matter_summary d2&#xD;&#xA; on d2.client_code = f.client_code&#xD;&#xA;and d2.matter_number = f.matter_number&#xD;&#xA;and d2.source_system_id = f.source_system_id&#xD;&#xA;&#xD;&#xA;order by&#xD;&#xA;f.bill_number">
+                    <xs:element name="factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="Bills" msprop:DbTableName="factBill" msprop:TableType="View" msprop:Description="factBill" msprop:QueryDefinition="select distinct&#xD;&#xA;f.bill_number as 'BillNumber',&#xD;&#xA;upper(d.record_type) as  'BillTypeCode',&#xD;&#xA;d2.dim_matter_header_key as 'MatterID',&#xD;&#xA;d.bill_flag as 'BillFinalOrInterimCode',&#xD;&#xA;f.dim_last_pay_date_key as 'BillLastPaymentDate',&#xD;&#xA;f.dim_bill_date_key as 'BillDate',&#xD;&#xA;f.bill_total as 'BillAmount',&#xD;&#xA;f.fees_total as 'FeeValue',&#xD;&#xA;f.paid_disbursements as 'DisbursementsPaid',&#xD;&#xA;f.unpaid_disbursements as 'DisbursementsUnpaid',&#xD;&#xA;f.admin_charges_total as 'AdministrationCharges',&#xD;&#xA;f.vat_amount as 'VATAmount',&#xD;&#xA;f.amount_paid as 'AmountPaid',&#xD;&#xA;amount_outstanding as 'AmountOutstanding',&#xD;&#xA;case when f.amount_paid = f.bill_total then 0 else cast(datediff(day,cast( cast(f.dim_bill_date_key as varchar(10)) as date), getdate()) as numeric(10,2))  end as 'BillAgeDays',&#xD;&#xA;d.outstanding_flag as 'OpenItem'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_bill f&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; red_dw.dbo.dim_bill d&#xD;&#xA;  on d.dim_bill_key = f.dim_bill_key&#xD;&#xA;&#xD;&#xA;inner join red_dw.dbo.fact_matter_summary d2&#xD;&#xA; on d2.client_code = f.client_code&#xD;&#xA;and d2.matter_number = f.matter_number&#xD;&#xA;and d2.source_system_id = f.source_system_id&#xD;&#xA;&#xD;&#xA;order by&#xD;&#xA;f.bill_number">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="BillDate" msprop:DbColumnName="BillDate" msprop:FriendlyName="BillDate" type="xs:int" minOccurs="0" />
