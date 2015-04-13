@@ -6976,20 +6976,14 @@
           <Name>BillExtension</Name>
           <Annotations>
             <Annotation>
-              <Name>IsQueryEditorUsed</Name>
-              <Value>True</Value>
+              <Name>TableWidgetSerialization</Name>
             </Annotation>
             <Annotation>
               <Name>QueryEditorSerialization</Name>
             </Annotation>
             <Annotation>
-              <Name>TableWidgetSerialization</Name>
-            </Annotation>
-            <Annotation>
-              <Name>DataMarketWebBaseUrl</Name>
-            </Annotation>
-            <Annotation>
-              <Name>DataMarketWebQueryUrl</Name>
+              <Name>IsQueryEditorUsed</Name>
+              <Value>True</Value>
             </Annotation>
           </Annotations>
           <Source xsi:type="DataSourceViewBinding">
@@ -19113,34 +19107,32 @@ dim_date</QueryDefinition>
                   <Name>BillExtension</Name>
                   <Annotations>
                     <Annotation>
-                      <Name>IsQueryEditorUsed</Name>
-                      <Value>True</Value>
+                      <Name>TableWidgetSerialization</Name>
+                    </Annotation>
+                    <Annotation>
+                      <Name>TableWidgetSourceTable</Name>
                     </Annotation>
                     <Annotation>
                       <Name>QueryEditorSerialization</Name>
                     </Annotation>
                     <Annotation>
-                      <Name>TableWidgetSerialization</Name>
+                      <Name>IsQueryEditorUsed</Name>
+                      <Value>True</Value>
                     </Annotation>
                   </Annotations>
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
                     <QueryDefinition>select
-ba_bilnum as 'BillXBillNumber',
+bill_number as 'BillXBillNumber',
 ba_feecod as 'BillXFeeEarner',
 ba_bilamt as 'BillXBillAmount',
 ba_timbil as 'BillXTimeBilled'
 
 from
-axxia01.dbo.cablaloc cab
+red_dw.dbo.fact_bill bil
 
-where
-cab.ba_bilnum in (
-select
-bill_number
-
-from
-red_dw.dbo.dim_bill)</QueryDefinition>
+left join axxia01.dbo.cablaloc cab
+	on cab.ba_bilnum = bil.bill_number</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
@@ -20283,7 +20275,7 @@ CREATE MEASURE 'Bills'[TotalBillAmountOutstanding]=calculate(sum([AmountOutstand
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="BillExtension_f335d257-da82-45f9-8729-a19aea809c40" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="BillExtension" msprop:DbTableName="BillExtension" msprop:TableType="View" msprop:Description="BillExtension" msprop:QueryDefinition="select&#xD;&#xA;ba_bilnum as 'BillXBillNumber',&#xD;&#xA;ba_feecod as 'BillXFeeEarner',&#xD;&#xA;ba_bilamt as 'BillXBillAmount',&#xD;&#xA;ba_timbil as 'BillXTimeBilled'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;axxia01.dbo.cablaloc cab&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;cab.ba_bilnum in (&#xD;&#xA;select&#xD;&#xA;bill_number&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_bill)">
+                    <xs:element name="BillExtension_f335d257-da82-45f9-8729-a19aea809c40" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="BillExtension" msprop:DbTableName="BillExtension" msprop:TableType="View" msprop:Description="BillExtension" msprop:QueryDefinition="select&#xD;&#xA;bill_number as 'BillXBillNumber',&#xD;&#xA;ba_feecod as 'BillXFeeEarner',&#xD;&#xA;ba_bilamt as 'BillXBillAmount',&#xD;&#xA;ba_timbil as 'BillXTimeBilled'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_bill bil&#xD;&#xA;&#xD;&#xA;left join axxia01.dbo.cablaloc cab&#xD;&#xA; on cab.ba_bilnum = bil.bill_number">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="BillXBillNumber" msprop:DbColumnName="BillXBillNumber" msprop:FriendlyName="BillXBillNumber" minOccurs="0">
