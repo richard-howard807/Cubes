@@ -3358,6 +3358,113 @@
             <Source xsi:type="ProactiveCachingInheritedBinding" />
           </ProactiveCaching>
         </Dimension>
+        <Dimension>
+          <ID>ReportIDBridge_b6f8e85f-8cbe-4dd2-bf11-b0b402cbb574</ID>
+          <Name>ReportIDBridge</Name>
+          <Annotations>
+            <Annotation>
+              <Name>IsQueryEditorUsed</Name>
+              <Value>True</Value>
+            </Annotation>
+            <Annotation>
+              <Name>QueryEditorSerialization</Name>
+            </Annotation>
+            <Annotation>
+              <Name>TableWidgetSerialization</Name>
+            </Annotation>
+            <Annotation>
+              <Name>DataMarketWebBaseUrl</Name>
+            </Annotation>
+            <Annotation>
+              <Name>DataMarketWebQueryUrl</Name>
+            </Annotation>
+          </Annotations>
+          <Source xsi:type="DataSourceViewBinding">
+            <DataSourceViewID>Sandbox</DataSourceViewID>
+          </Source>
+          <UnknownMember valuens="ddl200_200">AutomaticNull</UnknownMember>
+          <ErrorConfiguration>
+            <KeyNotFound>IgnoreError</KeyNotFound>
+            <KeyDuplicate>ReportAndStop</KeyDuplicate>
+            <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+          </ErrorConfiguration>
+          <StorageMode valuens="ddl200_200">InMemory</StorageMode>
+          <Language>2057</Language>
+          <UnknownMemberName>Unknown</UnknownMemberName>
+          <Attributes>
+            <Attribute>
+              <ID>RowNumber</ID>
+              <Name>RowNumber</Name>
+              <Type valuens="ddl200_200">RowNumber</Type>
+              <Usage>Key</Usage>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>4</DataSize>
+                  <NullProcessing>Error</NullProcessing>
+                  <Source xsi:type="ddl200_200:RowNumberBinding" />
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>4</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ddl200_200:RowNumberBinding" />
+              </NameColumn>
+              <AttributeRelationships>
+                <AttributeRelationship>
+                  <AttributeID>ItemID</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>ItemID</Name>
+                </AttributeRelationship>
+              </AttributeRelationships>
+              <OrderBy>Key</OrderBy>
+              <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="Text" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>ItemID</ID>
+              <Name>ItemID</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>ReportIDBridge_b6f8e85f-8cbe-4dd2-bf11-b0b402cbb574</TableID>
+                    <ColumnID>ItemID</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>ReportIDBridge_b6f8e85f-8cbe-4dd2-bf11-b0b402cbb574</TableID>
+                  <ColumnID>ItemID</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+          </Attributes>
+          <ProactiveCaching>
+            <SilenceInterval>-PT1S</SilenceInterval>
+            <Latency>-PT1S</Latency>
+            <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+            <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+            <Source xsi:type="ProactiveCachingInheritedBinding" />
+          </ProactiveCaching>
+        </Dimension>
       </Dimensions>
       <Cubes>
         <Cube>
@@ -3680,6 +3787,20 @@
                 </Attribute>
                 <Attribute>
                   <AttributeID>DataSource</AttributeID>
+                </Attribute>
+              </Attributes>
+            </Dimension>
+            <Dimension>
+              <ID>ReportIDBridge_b6f8e85f-8cbe-4dd2-bf11-b0b402cbb574</ID>
+              <Name>ReportIDBridge</Name>
+              <DimensionID>ReportIDBridge_b6f8e85f-8cbe-4dd2-bf11-b0b402cbb574</DimensionID>
+              <Attributes>
+                <Attribute>
+                  <AttributeID>RowNumber</AttributeID>
+                  <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>ItemID</AttributeID>
                 </Attribute>
               </Attributes>
             </Dimension>
@@ -6983,6 +7104,132 @@ where
                 <Source xsi:type="ProactiveCachingInheritedBinding" />
               </ProactiveCaching>
             </MeasureGroup>
+            <MeasureGroup>
+              <ID>ReportIDBridge_b6f8e85f-8cbe-4dd2-bf11-b0b402cbb574</ID>
+              <Name>ReportIDBridge</Name>
+              <Measures>
+                <Measure>
+                  <ID>ReportIDBridge_b6f8e85f-8cbe-4dd2-bf11-b0b402cbb574</ID>
+                  <Name>_Count ReportIDBridge</Name>
+                  <AggregateFunction>Count</AggregateFunction>
+                  <DataType>BigInt</DataType>
+                  <Source>
+                    <DataType>BigInt</DataType>
+                    <DataSize>8</DataSize>
+                    <Source xsi:type="RowBinding">
+                      <TableID>ReportIDBridge_b6f8e85f-8cbe-4dd2-bf11-b0b402cbb574</TableID>
+                    </Source>
+                  </Source>
+                  <Visible>false</Visible>
+                </Measure>
+              </Measures>
+              <StorageMode valuens="ddl200_200">InMemory</StorageMode>
+              <ErrorConfiguration>
+                <KeyNotFound>IgnoreError</KeyNotFound>
+                <KeyDuplicate>ReportAndStop</KeyDuplicate>
+                <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+              </ErrorConfiguration>
+              <ProcessingMode>Regular</ProcessingMode>
+              <Dimensions>
+                <Dimension xsi:type="DegenerateMeasureGroupDimension">
+                  <CubeDimensionID>ReportIDBridge_b6f8e85f-8cbe-4dd2-bf11-b0b402cbb574</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>RowNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>ReportIDBridge</TableID>
+                            <ColumnID>RowNumber</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ItemID</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>ReportIDBridge_b6f8e85f-8cbe-4dd2-bf11-b0b402cbb574</TableID>
+                            <ColumnID>ItemID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                  </Attributes>
+                  <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
+                </Dimension>
+              </Dimensions>
+              <Partitions>
+                <Partition>
+                  <ID>ReportIDBridge_b6f8e85f-8cbe-4dd2-bf11-b0b402cbb574</ID>
+                  <Name>ReportIDBridge</Name>
+                  <Annotations>
+                    <Annotation>
+                      <Name>IsQueryEditorUsed</Name>
+                      <Value>True</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>QueryEditorSerialization</Name>
+                    </Annotation>
+                    <Annotation>
+                      <Name>TableWidgetSerialization</Name>
+                    </Annotation>
+                  </Annotations>
+                  <Source xsi:type="QueryBinding">
+                    <DataSourceID>0ee6ebfa-2c0a-4f90-90ff-0f366d812ffd</DataSourceID>
+                    <QueryDefinition>select distinct 
+reverse(
+	replace(
+	substring(reverse(c.[Path]), 0,
+	charindex('/', 
+	substring(reverse(c.[Path]), 0, 100)
+	)
+	)
+	,'/','')
+) 
+
++
+
+
++
+
+SERVER as 'ItemID'
+
+
+from
+Reporting.dw.tbl_ReportExecutionsAdvanced c</QueryDefinition>
+                  </Source>
+                  <StorageMode valuens="ddl200_200">InMemory</StorageMode>
+                  <ProcessingMode>Regular</ProcessingMode>
+                  <ErrorConfiguration>
+                    <KeyNotFound>IgnoreError</KeyNotFound>
+                    <KeyDuplicate>ReportAndStop</KeyDuplicate>
+                    <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+                  </ErrorConfiguration>
+                  <ProactiveCaching>
+                    <SilenceInterval>-PT1S</SilenceInterval>
+                    <Latency>-PT1S</Latency>
+                    <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+                    <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+                    <Source xsi:type="ProactiveCachingInheritedBinding" />
+                  </ProactiveCaching>
+                </Partition>
+              </Partitions>
+              <ProactiveCaching>
+                <SilenceInterval>-PT1S</SilenceInterval>
+                <Latency>-PT1S</Latency>
+                <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+                <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+                <Source xsi:type="ProactiveCachingInheritedBinding" />
+              </ProactiveCaching>
+            </MeasureGroup>
           </MeasureGroups>
           <Source>
             <DataSourceViewID>Sandbox</DataSourceViewID>
@@ -7550,6 +7797,19 @@ CREATE MEASURE 'ExecutionLog'[Zero Executions]=calculate (if ( isblank( countrow
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="DataSource" msprop:DbColumnName="DataSource" msprop:FriendlyName="DataSource" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="ReportIDBridge_b6f8e85f-8cbe-4dd2-bf11-b0b402cbb574" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="ReportIDBridge" msprop:DbTableName="ReportIDBridge" msprop:TableType="View" msprop:Description="ReportIDBridge" msprop:QueryDefinition="select distinct &#xD;&#xA;reverse(&#xD;&#xA; replace(&#xD;&#xA; substring(reverse(c.[Path]), 0,&#xD;&#xA; charindex('/', &#xD;&#xA; substring(reverse(c.[Path]), 0, 100)&#xD;&#xA; )&#xD;&#xA; )&#xD;&#xA; ,'/','')&#xD;&#xA;) &#xD;&#xA;&#xD;&#xA;+&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;+&#xD;&#xA;&#xD;&#xA;SERVER as 'ItemID'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;Reporting.dw.tbl_ReportExecutionsAdvanced c">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="ItemID" msprop:DbColumnName="ItemID" msprop:FriendlyName="ItemID" minOccurs="0">
                             <xs:simpleType>
                               <xs:restriction base="xs:string">
                                 <xs:maxLength value="32768" />
