@@ -4153,13 +4153,11 @@
                     <DataSourceID>0ee6ebfa-2c0a-4f90-90ff-0f366d812ffd</DataSourceID>
                     <QueryDefinition>select distinct
 c.Server + 
-replace(
- substring(c.[Path], 6,
-  charindex('/', 
-   substring(c.[Path], 7, 100)
+     substring(c.[Path],
+   len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3, case when 
+   (len([Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) &lt; 0 then 0 else
+   (len([Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) + 1 end
   )
- )
-,'/','')
 
 +
 
@@ -5356,22 +5354,20 @@ DateKey</QueryDefinition>
                     <DataSourceID>0ee6ebfa-2c0a-4f90-90ff-0f366d812ffd</DataSourceID>
                     <QueryDefinition>select distinct
 'SVR-LIV-DWH-01' +  
-replace(
- substring(c.[Path], 6,
-  charindex('/', 
-   substring(c.[Path], 7, 100)
+     substring(c.[Path],
+   len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3, case when 
+   (len([Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) &lt; 0 then 0 else
+   (len([Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) + 1 end
   )
- )
-,'/','') + c.Name as 'BusinessKey',
++ c.Name as 'BusinessKey',
 'SVR-LIV-DWH-01' as 'Server',
 c.Name as 'ReportName',
-replace(
- substring(c.[Path], 6,
-  charindex('/', 
-   substring(c.[Path], 7, 100)
+     substring(c.[Path],
+   len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3, case when 
+   (len([Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) &lt; 0 then 0 else
+   (len([Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) + 1 end
   )
- )
-,'/','')  as 'ReportCategory'
+ as 'ReportCategory'
 
 from
 [SVR-LIV-DWH-01].ReportServer.dbo.[Catalog] c
@@ -5385,22 +5381,20 @@ c.Type = 2
 
 select distinct  
 'SQL2008SVR' + 
-replace(
- substring(c.[Path], 6,
-  charindex('/', 
-   substring(c.[Path], 7, 100)
+     substring(c.[Path],
+   len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3, case when 
+   (len([Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) &lt; 0 then 0 else
+   (len([Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) + 1 end
   )
- )
-,'/','')  + c.Name  as 'BusinessKey',
++ c.Name  as 'BusinessKey',
 'SQL2008SVR' as 'Server',
 c.Name as 'ReportName',
-replace(
- substring(c.[Path], 6,
-  charindex('/', 
-   substring(c.[Path], 7, 100)
+     substring(c.[Path],
+   len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3, case when 
+   (len([Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) &lt; 0 then 0 else
+   (len([Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) + 1 end
   )
- )
-,'/','') as 'ReportCategory'
+as 'ReportCategory'
 
 
 from
@@ -5647,13 +5641,12 @@ ReportServer.dbo.[Catalog] c
                     <DataSourceID>0ee6ebfa-2c0a-4f90-90ff-0f366d812ffd</DataSourceID>
                     <QueryDefinition>select
   'SQL2008SVR' +  
-replace(
- substring(c.[Path], 6,
-  charindex('/', 
-   substring(c.[Path], 7, 100)
+     substring(c.[Path],
+   len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3, case when 
+   (len(c.[Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) &lt; 0 then 0 else
+   (len(c.[Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) + 1 end
   )
- )
-,'/','') + c.Name as 'BusinessKey',
++ c.Name as 'BusinessKey',
   cat1.Name as 'DataSource'
 from
   ReportServer.dbo.Catalog  c
@@ -5668,13 +5661,12 @@ where
 
   select
   'SVR-LIV-DWH-01' +  
-replace(
- substring(c.[Path], 6,
-  charindex('/', 
-   substring(c.[Path], 7, 100)
+     substring(c.[Path],
+   len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3, case when 
+   (len(c.[Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) &lt; 0 then 0 else
+   (len(c.[Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) + 1 end
   )
- )
-,'/','') + c.Name as 'BusinessKey',
++ c.Name as 'BusinessKey',
   cat1.Name datasource
 from
   [SVR-LIV-DWH-01].[ReportServer].[dbo].[Catalog] c
@@ -6060,7 +6052,7 @@ CREATE MEASURE 'ExecutionLog'[Count of Executions (with blanks)]=calculate (if (
               <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:Locale="en-GB">
                 <xs:complexType>
                   <xs:choice minOccurs="0" maxOccurs="unbounded">
-                    <xs:element name="ExecutionLog_8ba32cd9-e938-4bce-87b7-251e27df5540" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="ExecutionLog" msprop:DbTableName="ExecutionLog" msprop:TableType="View" msprop:Description="ExecutionLog" msprop:QueryDefinition="select distinct&#xD;&#xA;c.Server + &#xD;&#xA;replace(&#xD;&#xA; substring(c.[Path], 6,&#xD;&#xA;  charindex('/', &#xD;&#xA;   substring(c.[Path], 7, 100)&#xD;&#xA;  )&#xD;&#xA; )&#xD;&#xA;,'/','')&#xD;&#xA;&#xD;&#xA;+&#xD;&#xA;&#xD;&#xA;reverse(&#xD;&#xA; replace(&#xD;&#xA; substring(reverse(c.[Path]), 0,&#xD;&#xA; charindex('/', &#xD;&#xA; substring(reverse(c.[Path]), 0, 100)&#xD;&#xA; )&#xD;&#xA; )&#xD;&#xA; ,'/','')&#xD;&#xA;) &#xD;&#xA;&#xD;&#xA;&#xD;&#xA; as 'BusinessKey',&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;c.SERVER as 'Server',&#xD;&#xA;cast(e.EmployeeID as varchar(36)) as 'UserID',&#xD;&#xA;cast(DateTime as date) as 'ReportRunDate',&#xD;&#xA;left(convert(varchar, DateTime, 108), 5) as 'ReportRunTime',&#xD;&#xA;cast(c.TimeDataRetrieval / 1000  as decimal(10,2)) as 'TimeDataRetrievalSeconds',&#xD;&#xA;cast(c.TimeProcessing / 1000 as decimal(10,2)) as 'TimeProcessingSeconds',&#xD;&#xA;cast(c.TimeRendering / 1000 as decimal(10,2)) as 'TimeRenderingSeconds',&#xD;&#xA;cast(&#xD;&#xA;(c.TimeDataRetrieval +&#xD;&#xA;c.TimeProcessing +&#xD;&#xA;c.TimeRendering)&#xD;&#xA;/ 1000 as decimal(10,2)) as 'TotalLoadTimeSeconds'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;Reporting.dw.tbl_reportexecutionsadvanced c&#xD;&#xA;&#xD;&#xA;left join [Cascade].dbo.Employee e&#xD;&#xA; on case when left(c.UserName, 4) != 'SBC\' then 'SBC\' + c.UserName else c.UserName end = 'SBC\' + e.windowsusername collate database_default&#xD;&#xA;&#xD;&#xA; where&#xD;&#xA; c.UserName not in ('SBC\SQLalert','SBC\sqlservice')">
+                    <xs:element name="ExecutionLog_8ba32cd9-e938-4bce-87b7-251e27df5540" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="ExecutionLog" msprop:DbTableName="ExecutionLog" msprop:TableType="View" msprop:Description="ExecutionLog" msprop:QueryDefinition="select distinct&#xD;&#xA;c.Server + &#xD;&#xA;     substring(c.[Path],&#xD;&#xA;   len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3, case when &#xD;&#xA;   (len([Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) &lt; 0 then 0 else&#xD;&#xA;   (len([Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) + 1 end&#xD;&#xA;  )&#xD;&#xA;&#xD;&#xA;+&#xD;&#xA;&#xD;&#xA;reverse(&#xD;&#xA; replace(&#xD;&#xA; substring(reverse(c.[Path]), 0,&#xD;&#xA; charindex('/', &#xD;&#xA; substring(reverse(c.[Path]), 0, 100)&#xD;&#xA; )&#xD;&#xA; )&#xD;&#xA; ,'/','')&#xD;&#xA;) &#xD;&#xA;&#xD;&#xA;&#xD;&#xA; as 'BusinessKey',&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;c.SERVER as 'Server',&#xD;&#xA;cast(e.EmployeeID as varchar(36)) as 'UserID',&#xD;&#xA;cast(DateTime as date) as 'ReportRunDate',&#xD;&#xA;left(convert(varchar, DateTime, 108), 5) as 'ReportRunTime',&#xD;&#xA;cast(c.TimeDataRetrieval / 1000  as decimal(10,2)) as 'TimeDataRetrievalSeconds',&#xD;&#xA;cast(c.TimeProcessing / 1000 as decimal(10,2)) as 'TimeProcessingSeconds',&#xD;&#xA;cast(c.TimeRendering / 1000 as decimal(10,2)) as 'TimeRenderingSeconds',&#xD;&#xA;cast(&#xD;&#xA;(c.TimeDataRetrieval +&#xD;&#xA;c.TimeProcessing +&#xD;&#xA;c.TimeRendering)&#xD;&#xA;/ 1000 as decimal(10,2)) as 'TotalLoadTimeSeconds'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;Reporting.dw.tbl_reportexecutionsadvanced c&#xD;&#xA;&#xD;&#xA;left join [Cascade].dbo.Employee e&#xD;&#xA; on case when left(c.UserName, 4) != 'SBC\' then 'SBC\' + c.UserName else c.UserName end = 'SBC\' + e.windowsusername collate database_default&#xD;&#xA;&#xD;&#xA; where&#xD;&#xA; c.UserName not in ('SBC\SQLalert','SBC\sqlservice')">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="ReportRunDate" msprop:DbColumnName="ReportRunDate" msprop:FriendlyName="ReportRunDate" type="xs:dateTime" minOccurs="0" />
@@ -6263,7 +6255,7 @@ CREATE MEASURE 'ExecutionLog'[Count of Executions (with blanks)]=calculate (if (
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimReportCatalogue_a7b89ce4-0564-462d-8307-e883d9f3ed17" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimReportCatalogue" msprop:DbTableName="dimReportCatalogue" msprop:TableType="View" msprop:Description="dimReportCatalogue" msprop:QueryDefinition="select distinct&#xD;&#xA;'SVR-LIV-DWH-01' +  &#xD;&#xA;replace(&#xD;&#xA; substring(c.[Path], 6,&#xD;&#xA;  charindex('/', &#xD;&#xA;   substring(c.[Path], 7, 100)&#xD;&#xA;  )&#xD;&#xA; )&#xD;&#xA;,'/','') + c.Name as 'BusinessKey',&#xD;&#xA;'SVR-LIV-DWH-01' as 'Server',&#xD;&#xA;c.Name as 'ReportName',&#xD;&#xA;replace(&#xD;&#xA; substring(c.[Path], 6,&#xD;&#xA;  charindex('/', &#xD;&#xA;   substring(c.[Path], 7, 100)&#xD;&#xA;  )&#xD;&#xA; )&#xD;&#xA;,'/','')  as 'ReportCategory'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;[SVR-LIV-DWH-01].ReportServer.dbo.[Catalog] c&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;c.Type = 2&#xD;&#xA; &#xD;&#xA; UNION&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;select distinct  &#xD;&#xA;'SQL2008SVR' + &#xD;&#xA;replace(&#xD;&#xA; substring(c.[Path], 6,&#xD;&#xA;  charindex('/', &#xD;&#xA;   substring(c.[Path], 7, 100)&#xD;&#xA;  )&#xD;&#xA; )&#xD;&#xA;,'/','')  + c.Name  as 'BusinessKey',&#xD;&#xA;'SQL2008SVR' as 'Server',&#xD;&#xA;c.Name as 'ReportName',&#xD;&#xA;replace(&#xD;&#xA; substring(c.[Path], 6,&#xD;&#xA;  charindex('/', &#xD;&#xA;   substring(c.[Path], 7, 100)&#xD;&#xA;  )&#xD;&#xA; )&#xD;&#xA;,'/','') as 'ReportCategory'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;ReportServer.dbo.[Catalog] c&#xD;&#xA;&#xD;&#xA;&#xD;&#xA; where&#xD;&#xA; c.Type = 2&#xD;&#xA;&#xD;&#xA; order by 1">
+                    <xs:element name="dimReportCatalogue_a7b89ce4-0564-462d-8307-e883d9f3ed17" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimReportCatalogue" msprop:DbTableName="dimReportCatalogue" msprop:TableType="View" msprop:Description="dimReportCatalogue" msprop:QueryDefinition="select distinct&#xD;&#xA;'SVR-LIV-DWH-01' +  &#xD;&#xA;     substring(c.[Path],&#xD;&#xA;   len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3, case when &#xD;&#xA;   (len([Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) &lt; 0 then 0 else&#xD;&#xA;   (len([Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) + 1 end&#xD;&#xA;  )&#xD;&#xA;+ c.Name as 'BusinessKey',&#xD;&#xA;'SVR-LIV-DWH-01' as 'Server',&#xD;&#xA;c.Name as 'ReportName',&#xD;&#xA;     substring(c.[Path],&#xD;&#xA;   len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3, case when &#xD;&#xA;   (len([Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) &lt; 0 then 0 else&#xD;&#xA;   (len([Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) + 1 end&#xD;&#xA;  )&#xD;&#xA; as 'ReportCategory'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;[SVR-LIV-DWH-01].ReportServer.dbo.[Catalog] c&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;c.Type = 2&#xD;&#xA; &#xD;&#xA; UNION&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;select distinct  &#xD;&#xA;'SQL2008SVR' + &#xD;&#xA;     substring(c.[Path],&#xD;&#xA;   len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3, case when &#xD;&#xA;   (len([Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) &lt; 0 then 0 else&#xD;&#xA;   (len([Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) + 1 end&#xD;&#xA;  )&#xD;&#xA;+ c.Name  as 'BusinessKey',&#xD;&#xA;'SQL2008SVR' as 'Server',&#xD;&#xA;c.Name as 'ReportName',&#xD;&#xA;     substring(c.[Path],&#xD;&#xA;   len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3, case when &#xD;&#xA;   (len([Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) &lt; 0 then 0 else&#xD;&#xA;   (len([Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) + 1 end&#xD;&#xA;  )&#xD;&#xA;as 'ReportCategory'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;ReportServer.dbo.[Catalog] c&#xD;&#xA;&#xD;&#xA;&#xD;&#xA; where&#xD;&#xA; c.Type = 2&#xD;&#xA;&#xD;&#xA; order by 1">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="ReportName" msprop:DbColumnName="ReportName" msprop:FriendlyName="ReportName" minOccurs="0">
@@ -6297,7 +6289,7 @@ CREATE MEASURE 'ExecutionLog'[Count of Executions (with blanks)]=calculate (if (
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="DataSources_638427a1-bee7-4a63-a00d-d9eb7839c1da" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="DataSourceBridge" msprop:DbTableName="DataSources" msprop:TableType="View" msprop:Description="DataSources" msprop:QueryDefinition="select&#xD;&#xA;  'SQL2008SVR' +  &#xD;&#xA;replace(&#xD;&#xA; substring(c.[Path], 6,&#xD;&#xA;  charindex('/', &#xD;&#xA;   substring(c.[Path], 7, 100)&#xD;&#xA;  )&#xD;&#xA; )&#xD;&#xA;,'/','') + c.Name as 'BusinessKey',&#xD;&#xA;  cat1.Name as 'DataSource'&#xD;&#xA;from&#xD;&#xA;  ReportServer.dbo.Catalog  c&#xD;&#xA;  join ReportServer.dbo.DataSource&#xD;&#xA;    on c.ItemID = DataSource.ItemID&#xD;&#xA;  join ReportServer.dbo.Catalog cat1&#xD;&#xA;    on DataSource.Link = cat1.ItemID&#xD;&#xA;where&#xD;&#xA;  c.Type = 2&#xD;&#xA;&#xD;&#xA;  union&#xD;&#xA;&#xD;&#xA;  select&#xD;&#xA;  'SVR-LIV-DWH-01' +  &#xD;&#xA;replace(&#xD;&#xA; substring(c.[Path], 6,&#xD;&#xA;  charindex('/', &#xD;&#xA;   substring(c.[Path], 7, 100)&#xD;&#xA;  )&#xD;&#xA; )&#xD;&#xA;,'/','') + c.Name as 'BusinessKey',&#xD;&#xA;  cat1.Name datasource&#xD;&#xA;from&#xD;&#xA;  [SVR-LIV-DWH-01].[ReportServer].[dbo].[Catalog] c&#xD;&#xA;  join [SVR-LIV-DWH-01].[ReportServer].[dbo].DataSource&#xD;&#xA;    on c.ItemID = DataSource.ItemID&#xD;&#xA;  join [SVR-LIV-DWH-01].[ReportServer].[dbo].Catalog cat1&#xD;&#xA;    on DataSource.Link = cat1.ItemID&#xD;&#xA;where&#xD;&#xA;  c.Type = 2">
+                    <xs:element name="DataSources_638427a1-bee7-4a63-a00d-d9eb7839c1da" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="DataSourceBridge" msprop:DbTableName="DataSources" msprop:TableType="View" msprop:Description="DataSources" msprop:QueryDefinition="select&#xD;&#xA;  'SQL2008SVR' +  &#xD;&#xA;     substring(c.[Path],&#xD;&#xA;   len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3, case when &#xD;&#xA;   (len(c.[Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) &lt; 0 then 0 else&#xD;&#xA;   (len(c.[Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) + 1 end&#xD;&#xA;  )&#xD;&#xA;+ c.Name as 'BusinessKey',&#xD;&#xA;  cat1.Name as 'DataSource'&#xD;&#xA;from&#xD;&#xA;  ReportServer.dbo.Catalog  c&#xD;&#xA;  join ReportServer.dbo.DataSource&#xD;&#xA;    on c.ItemID = DataSource.ItemID&#xD;&#xA;  join ReportServer.dbo.Catalog cat1&#xD;&#xA;    on DataSource.Link = cat1.ItemID&#xD;&#xA;where&#xD;&#xA;  c.Type = 2&#xD;&#xA;&#xD;&#xA;  union&#xD;&#xA;&#xD;&#xA;  select&#xD;&#xA;  'SVR-LIV-DWH-01' +  &#xD;&#xA;     substring(c.[Path],&#xD;&#xA;   len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3, case when &#xD;&#xA;   (len(c.[Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) &lt; 0 then 0 else&#xD;&#xA;   (len(c.[Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) + 1 end&#xD;&#xA;  )&#xD;&#xA;+ c.Name as 'BusinessKey',&#xD;&#xA;  cat1.Name datasource&#xD;&#xA;from&#xD;&#xA;  [SVR-LIV-DWH-01].[ReportServer].[dbo].[Catalog] c&#xD;&#xA;  join [SVR-LIV-DWH-01].[ReportServer].[dbo].DataSource&#xD;&#xA;    on c.ItemID = DataSource.ItemID&#xD;&#xA;  join [SVR-LIV-DWH-01].[ReportServer].[dbo].Catalog cat1&#xD;&#xA;    on DataSource.Link = cat1.ItemID&#xD;&#xA;where&#xD;&#xA;  c.Type = 2">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="DataSource" msprop:DbColumnName="DataSource" msprop:FriendlyName="DataSource" minOccurs="0">
