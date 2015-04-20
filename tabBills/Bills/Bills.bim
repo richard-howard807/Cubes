@@ -2315,6 +2315,16 @@
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>BillDateHoliday</Name>
                 </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>BillDateFinancialPeriod</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>BillDateFinancialPeriod</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>BillDateDaysInMonth</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>BillDateDaysInMonth</Name>
+                </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
@@ -2765,6 +2775,56 @@
                 <Source xsi:type="ColumnBinding">
                   <TableID>dimDateBillDate_5d487121-6f04-420b-b2c5-aaac44ffc60f</TableID>
                   <ColumnID>BillDateHoliday</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>BillDateFinancialPeriod</ID>
+              <Name>BillDateFinancialPeriod</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimDateBillDate_5d487121-6f04-420b-b2c5-aaac44ffc60f</TableID>
+                    <ColumnID>BillDateFinancialPeriod</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimDateBillDate_5d487121-6f04-420b-b2c5-aaac44ffc60f</TableID>
+                  <ColumnID>BillDateFinancialPeriod</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>BillDateDaysInMonth</ID>
+              <Name>BillDateDaysInMonth</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimDateBillDate_5d487121-6f04-420b-b2c5-aaac44ffc60f</TableID>
+                    <ColumnID>BillDateDaysInMonth</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimDateBillDate_5d487121-6f04-420b-b2c5-aaac44ffc60f</TableID>
+                  <ColumnID>BillDateDaysInMonth</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
@@ -8026,6 +8086,12 @@
                 <Attribute>
                   <AttributeID>BillDateHoliday</AttributeID>
                 </Attribute>
+                <Attribute>
+                  <AttributeID>BillDateFinancialPeriod</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>BillDateDaysInMonth</AttributeID>
+                </Attribute>
               </Attributes>
             </Dimension>
             <Dimension>
@@ -11248,6 +11314,34 @@ calendar_date = cast(getdate() as date))</QueryDefinition>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>BillDateFinancialPeriod</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateBillDate_5d487121-6f04-420b-b2c5-aaac44ffc60f</TableID>
+                            <ColumnID>BillDateFinancialPeriod</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BillDateDaysInMonth</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateBillDate_5d487121-6f04-420b-b2c5-aaac44ffc60f</TableID>
+                            <ColumnID>BillDateDaysInMonth</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <IntermediateCubeDimensionID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</IntermediateCubeDimensionID>
                   <IntermediateGranularityAttributeID>BillDate</IntermediateGranularityAttributeID>
@@ -14101,6 +14195,34 @@ red_dw.dbo.fact_bill_activity</QueryDefinition>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>BillDateFinancialPeriod</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateBillDate_5d487121-6f04-420b-b2c5-aaac44ffc60f</TableID>
+                            <ColumnID>BillDateFinancialPeriod</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BillDateDaysInMonth</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateBillDate_5d487121-6f04-420b-b2c5-aaac44ffc60f</TableID>
+                            <ColumnID>BillDateDaysInMonth</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
                 </Dimension>
@@ -14144,12 +14266,24 @@ fin_month_name as 'BillDateFinancialMonthName',
 fin_quarter_no as 'BillDateFinancialQuarterNo',
 fin_year as 'BillDateFinancialYear',
 week_end_flag as 'BillDateWeekend',
-holiday_flag as 'BillDateHoliday'
-
+holiday_flag as 'BillDateHoliday',
+fin_month_name + '-' + right(fin_year, 2) as 'BillDateFinancialPeriod',
+p.BillDateDaysInMonth
 
 
 from
-dim_date</QueryDefinition>
+red_dw.dbo.dim_date
+
+left join (
+	select 
+		fin_month_name + '-' + right(fin_year, 2) as 'BillDateFinancialPeriod',
+		max(cal_day_in_month) as 'BillDateDaysInMonth'
+	from
+		red_dw.dbo.dim_date
+	group by
+				fin_month_name + '-' + right(fin_year, 2) 
+		) p
+			on p.BillDateFinancialPeriod = fin_month_name + '-' + right(fin_year, 2)</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
@@ -17631,6 +17765,34 @@ dim_date</QueryDefinition>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>BillDateFinancialPeriod</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateBillDate_5d487121-6f04-420b-b2c5-aaac44ffc60f</TableID>
+                            <ColumnID>BillDateFinancialPeriod</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BillDateDaysInMonth</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateBillDate_5d487121-6f04-420b-b2c5-aaac44ffc60f</TableID>
+                            <ColumnID>BillDateDaysInMonth</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <IntermediateCubeDimensionID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</IntermediateCubeDimensionID>
                   <IntermediateGranularityAttributeID>BillDate</IntermediateGranularityAttributeID>
@@ -21006,7 +21168,7 @@ CREATE MEASURE 'Bills'[TotalBillAmountOutstanding]=calculate(sum([AmountOutstand
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimDateBillDate_5d487121-6f04-420b-b2c5-aaac44ffc60f" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimDateBillDate" msprop:DbTableName="dimDateBillDate" msprop:TableType="View" msprop:Description="dimDateBillDate" msprop:QueryDefinition="select&#xD;&#xA;dim_date_key as 'BillDateKey',&#xD;&#xA;calendar_date as 'BillDateDate',&#xD;&#xA;cal_day_in_month as 'BillDateDayInMonth',&#xD;&#xA;cal_day_in_year as 'BillDateDayInYear',&#xD;&#xA;cal_day_in_week_no as 'BillDateWeekdayNo',&#xD;&#xA;cal_day_in_week as 'BillDateWeekdayName',&#xD;&#xA;cal_week_in_year as 'BillDateCalendarWeek',&#xD;&#xA;cal_month_no as 'BillDateCalendarMonthNo',&#xD;&#xA;cal_month_name as 'BillDateCalendarMonthName',&#xD;&#xA;cal_quarter_no as 'BillDateCalendarQuarterNo',&#xD;&#xA;cal_year as 'BillDateCalendarYear',&#xD;&#xA;fin_week_in_year as 'BillDateFinancialWeek',&#xD;&#xA;fin_month_no as 'BillDateFinancialMonthNo',&#xD;&#xA;fin_month_name as 'BillDateFinancialMonthName',&#xD;&#xA;fin_quarter_no as 'BillDateFinancialQuarterNo',&#xD;&#xA;fin_year as 'BillDateFinancialYear',&#xD;&#xA;week_end_flag as 'BillDateWeekend',&#xD;&#xA;holiday_flag as 'BillDateHoliday'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;dim_date">
+                    <xs:element name="dimDateBillDate_5d487121-6f04-420b-b2c5-aaac44ffc60f" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimDateBillDate" msprop:DbTableName="dimDateBillDate" msprop:TableType="View" msprop:Description="dimDateBillDate" msprop:QueryDefinition="select&#xD;&#xA;dim_date_key as 'BillDateKey',&#xD;&#xA;calendar_date as 'BillDateDate',&#xD;&#xA;cal_day_in_month as 'BillDateDayInMonth',&#xD;&#xA;cal_day_in_year as 'BillDateDayInYear',&#xD;&#xA;cal_day_in_week_no as 'BillDateWeekdayNo',&#xD;&#xA;cal_day_in_week as 'BillDateWeekdayName',&#xD;&#xA;cal_week_in_year as 'BillDateCalendarWeek',&#xD;&#xA;cal_month_no as 'BillDateCalendarMonthNo',&#xD;&#xA;cal_month_name as 'BillDateCalendarMonthName',&#xD;&#xA;cal_quarter_no as 'BillDateCalendarQuarterNo',&#xD;&#xA;cal_year as 'BillDateCalendarYear',&#xD;&#xA;fin_week_in_year as 'BillDateFinancialWeek',&#xD;&#xA;fin_month_no as 'BillDateFinancialMonthNo',&#xD;&#xA;fin_month_name as 'BillDateFinancialMonthName',&#xD;&#xA;fin_quarter_no as 'BillDateFinancialQuarterNo',&#xD;&#xA;fin_year as 'BillDateFinancialYear',&#xD;&#xA;week_end_flag as 'BillDateWeekend',&#xD;&#xA;holiday_flag as 'BillDateHoliday',&#xD;&#xA;fin_month_name + '-' + right(fin_year, 2) as 'BillDateFinancialPeriod',&#xD;&#xA;p.BillDateDaysInMonth&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_date&#xD;&#xA;&#xD;&#xA;left join (&#xD;&#xA; select &#xD;&#xA;  fin_month_name + '-' + right(fin_year, 2) as 'BillDateFinancialPeriod',&#xD;&#xA;  max(cal_day_in_month) as 'BillDateDaysInMonth'&#xD;&#xA; from&#xD;&#xA;  red_dw.dbo.dim_date&#xD;&#xA; group by&#xD;&#xA;    fin_month_name + '-' + right(fin_year, 2) &#xD;&#xA;  ) p&#xD;&#xA;   on p.BillDateFinancialPeriod = fin_month_name + '-' + right(fin_year, 2)">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="BillDateKey" msprop:DbColumnName="BillDateKey" msprop:FriendlyName="BillDateKey" type="xs:int" minOccurs="0" />
@@ -21057,6 +21219,14 @@ CREATE MEASURE 'Bills'[TotalBillAmountOutstanding]=calculate(sum([AmountOutstand
                               </xs:restriction>
                             </xs:simpleType>
                           </xs:element>
+                          <xs:element name="BillDateFinancialPeriod" msprop:DbColumnName="BillDateFinancialPeriod" msprop:FriendlyName="BillDateFinancialPeriod" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="BillDateDaysInMonth" msprop:DbColumnName="BillDateDaysInMonth" msprop:FriendlyName="BillDateDaysInMonth" type="xs:int" minOccurs="0" />
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
