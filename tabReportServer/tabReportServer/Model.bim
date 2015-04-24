@@ -6454,6 +6454,8 @@ CREATE MEASURE 'ExecutionLog'[Average Report Rendering Time (Seconds)]=calculate
 CREATE MEASURE 'ExecutionLog'[Average Report Load Time (Seconds)]=calculate( average([TotalLoadTimeSeconds]), ExecutionLog[TimeDataRetrievalSeconds]&gt; 0.0, 'DataSourceBridge');
 CREATE MEASURE 'dimReportCatalogue'[Count of Reports]=countrows('dimReportCatalogue');
 CREATE MEASURE 'ExecutionLog'[Count of Executions (with blanks)]=calculate (if ( isblank( countrows(ExecutionLog)), 0, countrows(ExecutionLog)),DataSourceBridge);
+CREATE MEASURE 'dimReportCatalogue'[LiveOnDWH]=calculate(COUNTA(dimReportCatalogue[ReportName]),dimReportCatalogue[Status] = "Live");
+CREATE MEASURE 'dimReportCatalogue'[LiveOn2008]=calculate(counta(dimReportCatalogue[ReportName]),dimReportCatalogue[Status] = blank());
 </Text>
                 </Command>
               </Commands>
@@ -6602,6 +6604,48 @@ CREATE MEASURE 'ExecutionLog'[Count of Executions (with blanks)]=calculate (if (
                     </Annotation>
                   </Annotations>
                   <CalculationReference>[Count of Executions (with blanks)]</CalculationReference>
+                  <CalculationType>Member</CalculationType>
+                  <FormatString>''</FormatString>
+                </CalculationProperty>
+                <CalculationProperty>
+                  <Annotations>
+                    <Annotation>
+                      <Name>Type</Name>
+                      <Value>User</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsPrivate</Name>
+                      <Value>False</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Format</Name>
+                      <Value>
+                        <Format Format="General" xmlns="" />
+                      </Value>
+                    </Annotation>
+                  </Annotations>
+                  <CalculationReference>[LiveOnDWH]</CalculationReference>
+                  <CalculationType>Member</CalculationType>
+                  <FormatString>''</FormatString>
+                </CalculationProperty>
+                <CalculationProperty>
+                  <Annotations>
+                    <Annotation>
+                      <Name>Type</Name>
+                      <Value>User</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsPrivate</Name>
+                      <Value>False</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Format</Name>
+                      <Value>
+                        <Format Format="General" xmlns="" />
+                      </Value>
+                    </Annotation>
+                  </Annotations>
+                  <CalculationReference>[LiveOn2008]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
                 </CalculationProperty>
