@@ -1,17 +1,17 @@
-﻿<Cube xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="51f30ee7-71a4-4c73-824c-b0aadc18e9e1" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+﻿<Cube xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="3f164f2f-053b-470a-891b-2fc730ab26f3" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
   <ID>Chargeable_Hours_Drill_Down</ID>
   <MeasureGroups>
     <MeasureGroup>
       <ID>Fact Time Activity</ID>
       <Partitions>
-        <Partition dwd:design-time-name="b507b758-e792-4183-bc39-d9805b9932a0">
+        <Partition dwd:design-time-name="0709d590-3621-433a-919b-1cb2da66066e">
           <ID>Fact Time Activity 2009-2010</ID>
           <Name>Fact Time Activity 2009-2010</Name>
-          <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
-          <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
-          <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
-          <State>Unprocessed</State>
-          <Source xsi:type="QueryBinding" dwd:design-time-name="403b770e-1cca-4728-b533-e44f64effe6e">
+          <CreatedTimestamp>2014-10-27T22:41:57.79Z</CreatedTimestamp>
+          <LastSchemaUpdate>2014-11-14T09:05:47.953333Z</LastSchemaUpdate>
+          <LastProcessed>2015-04-24T08:56:13.713333Z</LastProcessed>
+          <State>Processed</State>
+          <Source xsi:type="QueryBinding" dwd:design-time-name="1352ccbd-e434-46c7-947f-738ef633949f">
             <DataSourceID>Red_dw</DataSourceID>
             <QueryDefinition>SELECT        dim_bill_key, dim_client_key, dim_transaction_date_key, dim_fed_hierarchy_history_key, dim_matter_header_key, dim_run_date_key, dim_posting_date_key, 
                          dim_system_date_key, dim_time_activity_key, source_system_id, transaction_sequence_number, time_activity_code, minutes_recorded, hourly_charge_rate, 
@@ -22,17 +22,28 @@ WHERE        (time_activity_code NOT IN ('Bill', 'W/O', 'Abmt')) AND (dim_transa
           <StorageMode>Molap</StorageMode>
           <CurrentStorageMode>Molap</CurrentStorageMode>
           <ProcessingMode>Regular</ProcessingMode>
+          <ProactiveCaching dwd:design-time-name="b0241b1a-52f9-476e-bfa6-f61fb4a18c5f">
+            <SilenceInterval>-PT1S</SilenceInterval>
+            <Latency>-PT1S</Latency>
+            <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+            <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+            <AggregationStorage>MolapOnly</AggregationStorage>
+            <Source xsi:type="ProactiveCachingInheritedBinding" dwd:design-time-name="adb30057-0246-46e9-a9ba-ba8c937108f7">
+              <NotificationTechnique>Server</NotificationTechnique>
+            </Source>
+          </ProactiveCaching>
+          <EstimatedSize>143221370</EstimatedSize>
           <EstimatedRows>2123443</EstimatedRows>
           <AggregationDesignID>AggregationDesign 2009-2010</AggregationDesignID>
         </Partition>
-        <Partition dwd:design-time-name="c79f2e9c-86f3-40a1-875e-4379080e17e9">
+        <Partition dwd:design-time-name="42d90291-fa56-402c-b721-59b31fe1adee">
           <ID>Fact Time Activity 2010-2011</ID>
           <Name>Fact Time Activity 2010-2011</Name>
-          <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
-          <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
-          <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
-          <State>Unprocessed</State>
-          <Source xsi:type="QueryBinding" dwd:design-time-name="23e8d2bd-b892-484a-927f-c1c1f52fcdbb">
+          <CreatedTimestamp>2014-10-27T22:41:57.836667Z</CreatedTimestamp>
+          <LastSchemaUpdate>2014-11-14T09:05:47.97Z</LastSchemaUpdate>
+          <LastProcessed>2015-04-24T08:56:07.293333Z</LastProcessed>
+          <State>Processed</State>
+          <Source xsi:type="QueryBinding" dwd:design-time-name="914761d0-4f77-4fba-bbac-7f9fb701ceca">
             <DataSourceID>Red_dw</DataSourceID>
             <QueryDefinition>SELECT        dim_bill_key, dim_client_key, dim_transaction_date_key, dim_fed_hierarchy_history_key, dim_matter_header_key, dim_run_date_key, dim_posting_date_key, 
                          dim_system_date_key, dim_time_activity_key, source_system_id, transaction_sequence_number, time_activity_code, minutes_recorded, hourly_charge_rate, 
@@ -43,17 +54,28 @@ WHERE        (time_activity_code NOT IN ('Bill', 'W/O', 'Abmt')) AND (dim_transa
           <StorageMode>Molap</StorageMode>
           <CurrentStorageMode>Molap</CurrentStorageMode>
           <ProcessingMode>Regular</ProcessingMode>
+          <ProactiveCaching dwd:design-time-name="3daf009e-e224-4462-9a29-bdbfbc68fd37">
+            <SilenceInterval>-PT1S</SilenceInterval>
+            <Latency>-PT1S</Latency>
+            <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+            <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+            <AggregationStorage>MolapOnly</AggregationStorage>
+            <Source xsi:type="ProactiveCachingInheritedBinding" dwd:design-time-name="cc2e163c-5df8-42ad-a17c-6e7ffd3d5c56">
+              <NotificationTechnique>Server</NotificationTechnique>
+            </Source>
+          </ProactiveCaching>
+          <EstimatedSize>141342434</EstimatedSize>
           <EstimatedRows>2093143</EstimatedRows>
           <AggregationDesignID>AggregationDesign 2010-2011</AggregationDesignID>
         </Partition>
-        <Partition dwd:design-time-name="b1aa857d-b5c6-4941-84c3-7db141b9e7c5">
+        <Partition dwd:design-time-name="f213b224-a17f-46d6-b7ef-04ee602cf6f7">
           <ID>Fact Time Activity 2011-2012</ID>
           <Name>Fact Time Activity 2011-2012</Name>
-          <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
-          <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
-          <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
-          <State>Unprocessed</State>
-          <Source xsi:type="QueryBinding" dwd:design-time-name="1076943b-0d05-4dae-9fee-a16ffadd8c1a">
+          <CreatedTimestamp>2014-10-27T22:41:57.866667Z</CreatedTimestamp>
+          <LastSchemaUpdate>2014-11-14T09:05:48Z</LastSchemaUpdate>
+          <LastProcessed>2015-04-24T08:56:09.996667Z</LastProcessed>
+          <State>Processed</State>
+          <Source xsi:type="QueryBinding" dwd:design-time-name="1837b645-8bb0-4ddb-ba0b-ee20652320b5">
             <DataSourceID>Red_dw</DataSourceID>
             <QueryDefinition>SELECT        dim_bill_key, dim_client_key, dim_transaction_date_key, dim_fed_hierarchy_history_key, dim_matter_header_key, dim_run_date_key, dim_posting_date_key, 
                          dim_system_date_key, dim_time_activity_key, source_system_id, transaction_sequence_number, time_activity_code, minutes_recorded, hourly_charge_rate, 
@@ -64,17 +86,28 @@ WHERE        (time_activity_code NOT IN ('Bill', 'W/O', 'Abmt')) AND (dim_transa
           <StorageMode>Molap</StorageMode>
           <CurrentStorageMode>Molap</CurrentStorageMode>
           <ProcessingMode>Regular</ProcessingMode>
+          <ProactiveCaching dwd:design-time-name="ed917476-0391-44a8-a754-9a7dc527df73">
+            <SilenceInterval>-PT1S</SilenceInterval>
+            <Latency>-PT1S</Latency>
+            <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+            <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+            <AggregationStorage>MolapOnly</AggregationStorage>
+            <Source xsi:type="ProactiveCachingInheritedBinding" dwd:design-time-name="7856da17-6661-49b1-acfb-6ce8048073b0">
+              <NotificationTechnique>Server</NotificationTechnique>
+            </Source>
+          </ProactiveCaching>
+          <EstimatedSize>176283896</EstimatedSize>
           <EstimatedRows>2453280</EstimatedRows>
           <AggregationDesignID>AggregationDesign 2011-2012</AggregationDesignID>
         </Partition>
-        <Partition dwd:design-time-name="4e15a860-4112-4dea-aebb-563c4a962793">
+        <Partition dwd:design-time-name="6448a85d-3831-4a77-a499-ca1c50c4a453">
           <ID>Fact Time Activity 2012-2013</ID>
           <Name>Fact Time Activity 2012-2013</Name>
-          <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
-          <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
-          <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
-          <State>Unprocessed</State>
-          <Source xsi:type="QueryBinding" dwd:design-time-name="e1941633-b073-40c8-9158-79e97b8a79dc">
+          <CreatedTimestamp>2014-10-27T22:41:57.9Z</CreatedTimestamp>
+          <LastSchemaUpdate>2014-11-14T09:05:48.016667Z</LastSchemaUpdate>
+          <LastProcessed>2015-04-24T08:57:00.543333Z</LastProcessed>
+          <State>Processed</State>
+          <Source xsi:type="QueryBinding" dwd:design-time-name="8dfe1b9e-6077-4d47-8e25-8f6da517e253">
             <DataSourceID>Red_dw</DataSourceID>
             <QueryDefinition>SELECT        dim_bill_key, dim_client_key, dim_transaction_date_key, dim_fed_hierarchy_history_key, dim_matter_header_key, dim_run_date_key, dim_posting_date_key, 
                          dim_system_date_key, dim_time_activity_key, source_system_id, transaction_sequence_number, time_activity_code, minutes_recorded, hourly_charge_rate, 
@@ -85,17 +118,28 @@ WHERE        (time_activity_code NOT IN ('Bill', 'W/O', 'Abmt')) AND (dim_transa
           <StorageMode>Molap</StorageMode>
           <CurrentStorageMode>Molap</CurrentStorageMode>
           <ProcessingMode>Regular</ProcessingMode>
+          <ProactiveCaching dwd:design-time-name="5c7755f0-8ed2-4c3f-9bf5-a17fdf6f2f1d">
+            <SilenceInterval>-PT1S</SilenceInterval>
+            <Latency>-PT1S</Latency>
+            <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+            <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+            <AggregationStorage>MolapOnly</AggregationStorage>
+            <Source xsi:type="ProactiveCachingInheritedBinding" dwd:design-time-name="b6d297a2-8c8c-4b5d-96f6-9dd3b6313f14">
+              <NotificationTechnique>Server</NotificationTechnique>
+            </Source>
+          </ProactiveCaching>
+          <EstimatedSize>182594063</EstimatedSize>
           <EstimatedRows>2481572</EstimatedRows>
           <AggregationDesignID>AggregationDesign 2012-2013</AggregationDesignID>
         </Partition>
-        <Partition dwd:design-time-name="126599e8-7a9c-4f1f-8052-b757d4ed249e">
+        <Partition dwd:design-time-name="fa2f89cf-1fd3-49bd-893f-5341349afaf9">
           <ID>Fact Time Activity 2013-2014</ID>
           <Name>Fact Time Activity 2013-2014</Name>
-          <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
-          <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
-          <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
-          <State>Unprocessed</State>
-          <Source xsi:type="QueryBinding" dwd:design-time-name="4ad8fb73-f144-4002-85c6-6da07a738167">
+          <CreatedTimestamp>2014-10-27T22:41:57.913333Z</CreatedTimestamp>
+          <LastSchemaUpdate>2014-11-14T09:05:48.046667Z</LastSchemaUpdate>
+          <LastProcessed>2015-04-24T08:56:28.196667Z</LastProcessed>
+          <State>Processed</State>
+          <Source xsi:type="QueryBinding" dwd:design-time-name="7652900d-4953-49b6-b2e8-1c21044f4c41">
             <DataSourceID>Red_dw</DataSourceID>
             <QueryDefinition>SELECT        dim_bill_key, dim_client_key, dim_transaction_date_key, dim_fed_hierarchy_history_key, dim_matter_header_key, dim_run_date_key, dim_posting_date_key, 
                          dim_system_date_key, dim_time_activity_key, source_system_id, transaction_sequence_number, time_activity_code, minutes_recorded, hourly_charge_rate, 
@@ -106,17 +150,28 @@ WHERE        (time_activity_code NOT IN ('Bill', 'W/O', 'Abmt')) AND (dim_transa
           <StorageMode>Molap</StorageMode>
           <CurrentStorageMode>Molap</CurrentStorageMode>
           <ProcessingMode>Regular</ProcessingMode>
+          <ProactiveCaching dwd:design-time-name="d11c9dda-fe4b-41bc-8edc-2cc510863d77">
+            <SilenceInterval>-PT1S</SilenceInterval>
+            <Latency>-PT1S</Latency>
+            <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+            <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+            <AggregationStorage>MolapOnly</AggregationStorage>
+            <Source xsi:type="ProactiveCachingInheritedBinding" dwd:design-time-name="cc5787a1-5eed-4743-a72e-0835a632516d">
+              <NotificationTechnique>Server</NotificationTechnique>
+            </Source>
+          </ProactiveCaching>
+          <EstimatedSize>186941623</EstimatedSize>
           <EstimatedRows>1987616</EstimatedRows>
           <AggregationDesignID>AggregationDesign 2013-2014</AggregationDesignID>
         </Partition>
-        <Partition dwd:design-time-name="5ea40b84-fa5f-4bf0-9514-c97f9a6d5b66">
+        <Partition dwd:design-time-name="a9dcaf53-1922-46d6-a0ae-68ccc46f0c6c">
           <ID>Fact Time Activity 2008-2009</ID>
           <Name>Fact Time Activity 2008-2009</Name>
-          <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
-          <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
-          <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
-          <State>Unprocessed</State>
-          <Source xsi:type="QueryBinding" dwd:design-time-name="46de1aa0-7d7a-46ce-8aca-6679ceb924ce">
+          <CreatedTimestamp>2014-10-27T22:41:57.946667Z</CreatedTimestamp>
+          <LastSchemaUpdate>2014-11-14T09:05:48.063333Z</LastSchemaUpdate>
+          <LastProcessed>2015-04-24T08:56:01.01Z</LastProcessed>
+          <State>Processed</State>
+          <Source xsi:type="QueryBinding" dwd:design-time-name="6df80cb2-1e59-4ded-8a3c-a6ca808bf804">
             <DataSourceID>Red_dw</DataSourceID>
             <QueryDefinition>SELECT        dim_bill_key, dim_client_key, dim_transaction_date_key, dim_fed_hierarchy_history_key, dim_matter_header_key, dim_run_date_key, dim_posting_date_key, 
                          dim_system_date_key, dim_time_activity_key, source_system_id, transaction_sequence_number, time_activity_code, minutes_recorded, hourly_charge_rate, 
@@ -127,17 +182,28 @@ WHERE        (time_activity_code NOT IN ('Bill', 'W/O', 'Abmt')) AND (dim_transa
           <StorageMode>Molap</StorageMode>
           <CurrentStorageMode>Molap</CurrentStorageMode>
           <ProcessingMode>Regular</ProcessingMode>
+          <ProactiveCaching dwd:design-time-name="f925916c-ef0b-4709-84e2-d1e9dd3ddf82">
+            <SilenceInterval>-PT1S</SilenceInterval>
+            <Latency>-PT1S</Latency>
+            <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+            <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+            <AggregationStorage>MolapOnly</AggregationStorage>
+            <Source xsi:type="ProactiveCachingInheritedBinding" dwd:design-time-name="477315e4-b096-4ef2-893a-c23be89e0f8a">
+              <NotificationTechnique>Server</NotificationTechnique>
+            </Source>
+          </ProactiveCaching>
+          <EstimatedSize>137047088</EstimatedSize>
           <EstimatedRows>2062974</EstimatedRows>
           <AggregationDesignID>AggregationDesign 2008-2009</AggregationDesignID>
         </Partition>
-        <Partition dwd:design-time-name="a130760e-29a1-454a-ae75-e096c96982c2">
+        <Partition dwd:design-time-name="e478a9ba-229b-4b10-99ae-1ae93006223d">
           <ID>Fact Time Activity 2014-2015</ID>
           <Name>Fact Time Activity 2014-2015</Name>
-          <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
-          <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
-          <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
-          <State>Unprocessed</State>
-          <Source xsi:type="QueryBinding" dwd:design-time-name="f0c59b9d-6cba-4a6b-9d4c-c3bbfc157332">
+          <CreatedTimestamp>2014-10-27T22:41:57.976667Z</CreatedTimestamp>
+          <LastSchemaUpdate>2014-11-14T09:05:48.096667Z</LastSchemaUpdate>
+          <LastProcessed>2015-04-24T08:56:05.056667Z</LastProcessed>
+          <State>Processed</State>
+          <Source xsi:type="QueryBinding" dwd:design-time-name="4d1b8feb-41b5-4ef6-bf18-7759f9e34159">
             <DataSourceID>Red_dw</DataSourceID>
             <QueryDefinition>SELECT        dim_bill_key, dim_client_key, dim_transaction_date_key, dim_fed_hierarchy_history_key, dim_matter_header_key, dim_run_date_key, dim_posting_date_key, 
                          dim_system_date_key, dim_time_activity_key, source_system_id, transaction_sequence_number, time_activity_code, minutes_recorded, hourly_charge_rate, 
@@ -148,6 +214,17 @@ WHERE        (time_activity_code NOT IN ('Bill', 'W/O', 'Abmt')) AND (dim_transa
           <StorageMode>Molap</StorageMode>
           <CurrentStorageMode>Molap</CurrentStorageMode>
           <ProcessingMode>Regular</ProcessingMode>
+          <ProactiveCaching dwd:design-time-name="fb4bfc05-0b0f-43bd-9c1a-b98283deb2ab">
+            <SilenceInterval>-PT1S</SilenceInterval>
+            <Latency>-PT1S</Latency>
+            <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+            <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+            <AggregationStorage>MolapOnly</AggregationStorage>
+            <Source xsi:type="ProactiveCachingInheritedBinding" dwd:design-time-name="ffaab67a-1d2e-4523-bddb-f7ff57b300af">
+              <NotificationTechnique>Server</NotificationTechnique>
+            </Source>
+          </ProactiveCaching>
+          <EstimatedSize>169590387</EstimatedSize>
           <EstimatedRows>79671</EstimatedRows>
         </Partition>
       </Partitions>
@@ -155,8 +232,8 @@ WHERE        (time_activity_code NOT IN ('Bill', 'W/O', 'Abmt')) AND (dim_transa
         <AggregationDesign>
           <ID>AggregationDesign 2008-2009</ID>
           <Name>AggregationDesign 2008-2009</Name>
-          <CreatedTimestamp>2014-02-20T08:19:24.946667Z</CreatedTimestamp>
-          <LastSchemaUpdate>2014-02-20T08:19:24.946667Z</LastSchemaUpdate>
+          <CreatedTimestamp>2014-10-27T22:41:57.586667Z</CreatedTimestamp>
+          <LastSchemaUpdate>2014-11-14T09:05:47.766667Z</LastSchemaUpdate>
           <EstimatedRows>2062974</EstimatedRows>
           <Dimensions>
             <Dimension>
@@ -550,6 +627,33 @@ WHERE        (time_activity_code NOT IN ('Bill', 'W/O', 'Abmt')) AND (dim_transa
                 </Attribute>
                 <Attribute>
                   <AttributeID>Time Type</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Department</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Matter Stage Descrn</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Matter Stage</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>All Chargeable Time</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transferred Time Files</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Written Off Transaction</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Written Off Record</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Billed Record</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Unbilled Record</AttributeID>
                 </Attribute>
               </Attributes>
             </Dimension>
@@ -1450,8 +1554,8 @@ WHERE        (time_activity_code NOT IN ('Bill', 'W/O', 'Abmt')) AND (dim_transa
         <AggregationDesign>
           <ID>AggregationDesign 2009-2010</ID>
           <Name>AggregationDesign 2009-2010</Name>
-          <CreatedTimestamp>2014-02-20T08:20:38.83Z</CreatedTimestamp>
-          <LastSchemaUpdate>2014-02-20T08:20:38.83Z</LastSchemaUpdate>
+          <CreatedTimestamp>2014-10-27T22:41:57.616667Z</CreatedTimestamp>
+          <LastSchemaUpdate>2014-11-14T09:05:47.796667Z</LastSchemaUpdate>
           <EstimatedRows>2123443</EstimatedRows>
           <Dimensions>
             <Dimension>
@@ -1845,6 +1949,33 @@ WHERE        (time_activity_code NOT IN ('Bill', 'W/O', 'Abmt')) AND (dim_transa
                 </Attribute>
                 <Attribute>
                   <AttributeID>Time Type</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Department</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Matter Stage Descrn</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Matter Stage</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>All Chargeable Time</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transferred Time Files</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Written Off Transaction</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Written Off Record</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Billed Record</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Unbilled Record</AttributeID>
                 </Attribute>
               </Attributes>
             </Dimension>
@@ -2745,8 +2876,8 @@ WHERE        (time_activity_code NOT IN ('Bill', 'W/O', 'Abmt')) AND (dim_transa
         <AggregationDesign>
           <ID>AggregationDesign 2010-2011</ID>
           <Name>AggregationDesign 2010-2011</Name>
-          <CreatedTimestamp>2014-02-20T08:21:54.336667Z</CreatedTimestamp>
-          <LastSchemaUpdate>2014-02-20T08:21:54.336667Z</LastSchemaUpdate>
+          <CreatedTimestamp>2014-10-27T22:41:57.65Z</CreatedTimestamp>
+          <LastSchemaUpdate>2014-11-14T09:05:47.83Z</LastSchemaUpdate>
           <EstimatedRows>2093143</EstimatedRows>
           <Dimensions>
             <Dimension>
@@ -3140,6 +3271,33 @@ WHERE        (time_activity_code NOT IN ('Bill', 'W/O', 'Abmt')) AND (dim_transa
                 </Attribute>
                 <Attribute>
                   <AttributeID>Time Type</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Department</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Matter Stage Descrn</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Matter Stage</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>All Chargeable Time</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transferred Time Files</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Written Off Transaction</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Written Off Record</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Billed Record</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Unbilled Record</AttributeID>
                 </Attribute>
               </Attributes>
             </Dimension>
@@ -4040,8 +4198,8 @@ WHERE        (time_activity_code NOT IN ('Bill', 'W/O', 'Abmt')) AND (dim_transa
         <AggregationDesign>
           <ID>AggregationDesign 2011-2012</ID>
           <Name>AggregationDesign 2011-2012</Name>
-          <CreatedTimestamp>2014-02-20T08:23:12.456667Z</CreatedTimestamp>
-          <LastSchemaUpdate>2014-02-20T08:23:12.456667Z</LastSchemaUpdate>
+          <CreatedTimestamp>2014-10-27T22:41:57.68Z</CreatedTimestamp>
+          <LastSchemaUpdate>2014-11-14T09:05:47.86Z</LastSchemaUpdate>
           <EstimatedRows>2453280</EstimatedRows>
           <Dimensions>
             <Dimension>
@@ -4435,6 +4593,33 @@ WHERE        (time_activity_code NOT IN ('Bill', 'W/O', 'Abmt')) AND (dim_transa
                 </Attribute>
                 <Attribute>
                   <AttributeID>Time Type</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Department</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Matter Stage Descrn</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Matter Stage</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>All Chargeable Time</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transferred Time Files</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Written Off Transaction</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Written Off Record</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Billed Record</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Unbilled Record</AttributeID>
                 </Attribute>
               </Attributes>
             </Dimension>
@@ -5335,8 +5520,8 @@ WHERE        (time_activity_code NOT IN ('Bill', 'W/O', 'Abmt')) AND (dim_transa
         <AggregationDesign>
           <ID>AggregationDesign 2012-2013</ID>
           <Name>AggregationDesign 2012-2013</Name>
-          <CreatedTimestamp>2014-02-20T08:24:57.71Z</CreatedTimestamp>
-          <LastSchemaUpdate>2014-02-20T08:24:57.71Z</LastSchemaUpdate>
+          <CreatedTimestamp>2014-10-27T22:41:57.726667Z</CreatedTimestamp>
+          <LastSchemaUpdate>2014-11-14T09:05:47.893333Z</LastSchemaUpdate>
           <EstimatedRows>2481572</EstimatedRows>
           <Dimensions>
             <Dimension>
@@ -5730,6 +5915,33 @@ WHERE        (time_activity_code NOT IN ('Bill', 'W/O', 'Abmt')) AND (dim_transa
                 </Attribute>
                 <Attribute>
                   <AttributeID>Time Type</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Department</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Matter Stage Descrn</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Matter Stage</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>All Chargeable Time</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transferred Time Files</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Written Off Transaction</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Written Off Record</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Billed Record</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Unbilled Record</AttributeID>
                 </Attribute>
               </Attributes>
             </Dimension>
@@ -6630,8 +6842,8 @@ WHERE        (time_activity_code NOT IN ('Bill', 'W/O', 'Abmt')) AND (dim_transa
         <AggregationDesign>
           <ID>AggregationDesign 2013-2014</ID>
           <Name>AggregationDesign 2013-2014</Name>
-          <CreatedTimestamp>2014-02-20T08:26:24.9Z</CreatedTimestamp>
-          <LastSchemaUpdate>2014-02-20T08:26:24.9Z</LastSchemaUpdate>
+          <CreatedTimestamp>2014-10-27T22:41:57.76Z</CreatedTimestamp>
+          <LastSchemaUpdate>2014-11-14T09:05:47.923333Z</LastSchemaUpdate>
           <EstimatedRows>1987616</EstimatedRows>
           <Dimensions>
             <Dimension>
@@ -7025,6 +7237,33 @@ WHERE        (time_activity_code NOT IN ('Bill', 'W/O', 'Abmt')) AND (dim_transa
                 </Attribute>
                 <Attribute>
                   <AttributeID>Time Type</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Department</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Matter Stage Descrn</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Matter Stage</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>All Chargeable Time</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transferred Time Files</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Written Off Transaction</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Written Off Record</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Billed Record</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Unbilled Record</AttributeID>
                 </Attribute>
               </Attributes>
             </Dimension>
