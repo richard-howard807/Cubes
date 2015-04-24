@@ -2481,6 +2481,11 @@
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>BusinessKey</Name>
                 </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>Status</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>Status</Name>
+                </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
@@ -2581,6 +2586,31 @@
                 <Source xsi:type="ColumnBinding">
                   <TableID>dimReportCatalogue_a7b89ce4-0564-462d-8307-e883d9f3ed17</TableID>
                   <ColumnID>BusinessKey</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>Status</ID>
+              <Name>Status</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimReportCatalogue_a7b89ce4-0564-462d-8307-e883d9f3ed17</TableID>
+                    <ColumnID>Status</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimReportCatalogue_a7b89ce4-0564-462d-8307-e883d9f3ed17</TableID>
+                  <ColumnID>Status</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
@@ -3374,6 +3404,9 @@
                 </Attribute>
                 <Attribute>
                   <AttributeID>BusinessKey</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Status</AttributeID>
                 </Attribute>
               </Attributes>
             </Dimension>
@@ -4397,6 +4430,20 @@
                         </KeyColumn>
                       </KeyColumns>
                       <Type>Granularity</Type>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>Status</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimReportCatalogue_a7b89ce4-0564-462d-8307-e883d9f3ed17</TableID>
+                            <ColumnID>Status</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
                     </Attribute>
                   </Attributes>
                   <IntermediateCubeDimensionID>ExecutionLog_8ba32cd9-e938-4bce-87b7-251e27df5540</IntermediateCubeDimensionID>
@@ -5603,6 +5650,20 @@ DateKey</QueryDefinition>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>Status</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimReportCatalogue_a7b89ce4-0564-462d-8307-e883d9f3ed17</TableID>
+                            <ColumnID>Status</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
                 </Dimension>
@@ -5628,59 +5689,18 @@ DateKey</QueryDefinition>
                   </Annotations>
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>0ee6ebfa-2c0a-4f90-90ff-0f366d812ffd</DataSourceID>
-                    <QueryDefinition>select distinct
-'SVR-LIV-DWH-01' +  
-     substring(c.[Path],
-   len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3, case when 
-   (len([Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) &lt; 0 then 0 else
-   (len([Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) + 1 end
-  )
-+ c.Name as 'BusinessKey',
-'SVR-LIV-DWH-01' as 'Server',
-c.Name as 'ReportName',
-     substring(c.[Path],
-   len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3, case when 
-   (len([Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) &lt; 0 then 0 else
-   (len([Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) + 1 end
-  )
- as 'ReportCategory'
+                    <QueryDefinition>select
+	BusinessKey,
+	Server,
+	ReportName,
+	ReportCategory,
+	case when Server = 'SVR-LIV-DWH-01'
+		 then coalesce(Live, UAT, Dev)
+	else Retired
+	end as 'Status' 
 
-from
-[SVR-LIV-DWH-01].ReportServer.dbo.[Catalog] c
-
-where
-c.Type = 2
- 
- UNION
-
-
-
-select distinct  
-'SQL2008SVR' + 
-     substring(c.[Path],
-   len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3, case when 
-   (len([Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) &lt; 0 then 0 else
-   (len([Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) + 1 end
-  )
-+ c.Name  as 'BusinessKey',
-'SQL2008SVR' as 'Server',
-c.Name as 'ReportName',
-     substring(c.[Path],
-   len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3, case when 
-   (len([Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) &lt; 0 then 0 else
-   (len([Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) + 1 end
-  )
-as 'ReportCategory'
-
-
-from
-ReportServer.dbo.[Catalog] c
-
-
- where
- c.Type = 2
-
- order by 1</QueryDefinition>
+	from
+	Reporting.dw.ExecutionStats</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
@@ -5886,6 +5906,20 @@ ReportServer.dbo.[Catalog] c
                         </KeyColumn>
                       </KeyColumns>
                       <Type>Granularity</Type>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>Status</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimReportCatalogue_a7b89ce4-0564-462d-8307-e883d9f3ed17</TableID>
+                            <ColumnID>Status</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
                     </Attribute>
                   </Attributes>
                   <IntermediateCubeDimensionID>DataSources_638427a1-bee7-4a63-a00d-d9eb7839c1da</IntermediateCubeDimensionID>
@@ -6281,6 +6315,20 @@ where
                         </KeyColumn>
                       </KeyColumns>
                       <Type>Granularity</Type>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>Status</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimReportCatalogue_a7b89ce4-0564-462d-8307-e883d9f3ed17</TableID>
+                            <ColumnID>Status</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
                     </Attribute>
                   </Attributes>
                   <IntermediateCubeDimensionID>dimReportFolder_42d9c745-bb1b-4a8e-8418-4e3fe271f674</IntermediateCubeDimensionID>
@@ -6805,7 +6853,7 @@ CREATE MEASURE 'ExecutionLog'[Count of Executions (with blanks)]=calculate (if (
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimReportCatalogue_a7b89ce4-0564-462d-8307-e883d9f3ed17" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimReportCatalogue" msprop:DbTableName="dimReportCatalogue" msprop:TableType="View" msprop:Description="dimReportCatalogue" msprop:QueryDefinition="select distinct&#xD;&#xA;'SVR-LIV-DWH-01' +  &#xD;&#xA;     substring(c.[Path],&#xD;&#xA;   len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3, case when &#xD;&#xA;   (len([Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) &lt; 0 then 0 else&#xD;&#xA;   (len([Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) + 1 end&#xD;&#xA;  )&#xD;&#xA;+ c.Name as 'BusinessKey',&#xD;&#xA;'SVR-LIV-DWH-01' as 'Server',&#xD;&#xA;c.Name as 'ReportName',&#xD;&#xA;     substring(c.[Path],&#xD;&#xA;   len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3, case when &#xD;&#xA;   (len([Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) &lt; 0 then 0 else&#xD;&#xA;   (len([Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) + 1 end&#xD;&#xA;  )&#xD;&#xA; as 'ReportCategory'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;[SVR-LIV-DWH-01].ReportServer.dbo.[Catalog] c&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;c.Type = 2&#xD;&#xA; &#xD;&#xA; UNION&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;select distinct  &#xD;&#xA;'SQL2008SVR' + &#xD;&#xA;     substring(c.[Path],&#xD;&#xA;   len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3, case when &#xD;&#xA;   (len([Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) &lt; 0 then 0 else&#xD;&#xA;   (len([Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) + 1 end&#xD;&#xA;  )&#xD;&#xA;+ c.Name  as 'BusinessKey',&#xD;&#xA;'SQL2008SVR' as 'Server',&#xD;&#xA;c.Name as 'ReportName',&#xD;&#xA;     substring(c.[Path],&#xD;&#xA;   len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3, case when &#xD;&#xA;   (len([Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) &lt; 0 then 0 else&#xD;&#xA;   (len([Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) + 1 end&#xD;&#xA;  )&#xD;&#xA;as 'ReportCategory'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;ReportServer.dbo.[Catalog] c&#xD;&#xA;&#xD;&#xA;&#xD;&#xA; where&#xD;&#xA; c.Type = 2&#xD;&#xA;&#xD;&#xA; order by 1">
+                    <xs:element name="dimReportCatalogue_a7b89ce4-0564-462d-8307-e883d9f3ed17" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimReportCatalogue" msprop:DbTableName="dimReportCatalogue" msprop:TableType="View" msprop:Description="dimReportCatalogue" msprop:QueryDefinition="select&#xD;&#xA; BusinessKey,&#xD;&#xA; Server,&#xD;&#xA; ReportName,&#xD;&#xA; ReportCategory,&#xD;&#xA; case when Server = 'SVR-LIV-DWH-01'&#xD;&#xA;   then coalesce(Live, UAT, Dev)&#xD;&#xA; else Retired&#xD;&#xA; end as 'Status' &#xD;&#xA;&#xD;&#xA; from&#xD;&#xA; Reporting.dw.ExecutionStats">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="ReportName" msprop:DbColumnName="ReportName" msprop:FriendlyName="ReportName" minOccurs="0">
@@ -6830,6 +6878,13 @@ CREATE MEASURE 'ExecutionLog'[Count of Executions (with blanks)]=calculate (if (
                             </xs:simpleType>
                           </xs:element>
                           <xs:element name="BusinessKey" msprop:DbColumnName="BusinessKey" msprop:FriendlyName="BusinessKey" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="Status" msprop:DbColumnName="Status" msprop:FriendlyName="Status" minOccurs="0">
                             <xs:simpleType>
                               <xs:restriction base="xs:string">
                                 <xs:maxLength value="32768" />
