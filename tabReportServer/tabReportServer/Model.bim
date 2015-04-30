@@ -5696,7 +5696,7 @@ DateKey</QueryDefinition>
  ReportCategory,
  case when Server = 'SVR-LIV-DWH-01'
    then coalesce([12Live], [12UAT], [12Dev])
- else [08Retired]
+ else coalesce([08Retired], case when [08Live] = 'Live' then '08Live' end)
  end as 'Status' 
 
  from
@@ -6455,7 +6455,11 @@ CREATE MEASURE 'ExecutionLog'[Average Report Load Time (Seconds)]=calculate( ave
 CREATE MEASURE 'dimReportCatalogue'[Count of Reports]=countrows('dimReportCatalogue');
 CREATE MEASURE 'ExecutionLog'[Count of Executions (with blanks)]=calculate (if ( isblank( countrows(ExecutionLog)), 0, countrows(ExecutionLog)),DataSourceBridge);
 CREATE MEASURE 'dimReportCatalogue'[LiveOnDWH]=calculate(COUNTA(dimReportCatalogue[ReportName]),dimReportCatalogue[Status] = "Live");
-CREATE MEASURE 'dimReportCatalogue'[LiveOn2008]=calculate(counta(dimReportCatalogue[ReportName]),dimReportCatalogue[Status] = blank());
+CREATE MEASURE 'dimReportCatalogue'[LiveOn2008]=calculate(counta(dimReportCatalogue[ReportName]),dimReportCatalogue[Status] = "08Live");
+CREATE MEASURE 'dimReportCatalogue'[UATOnDWH]=calculate(COUNTA(dimReportCatalogue[ReportName]),dimReportCatalogue[Status] = "UAT");
+CREATE MEASURE 'dimReportCatalogue'[DevOnDWH]=calculate(COUNTA(dimReportCatalogue[ReportName]),dimReportCatalogue[Status] = "Dev");
+CREATE MEASURE 'dimReportCatalogue'[RetiredOn2008]=calculate(COUNTA(dimReportCatalogue[ReportName]),dimReportCatalogue[Status] = "For Retirement");
+CREATE MEASURE 'dimReportCatalogue'[Percentage of Reports Completed]=if(([DevOnDWH]+[UATOnDWH]+[LiveOnDWH]) = 0, 0, ([DevOnDWH]+[UATOnDWH]+[LiveOnDWH]) / [LiveOn2008]);
 </Text>
                 </Command>
               </Commands>
@@ -6646,6 +6650,90 @@ CREATE MEASURE 'dimReportCatalogue'[LiveOn2008]=calculate(counta(dimReportCatalo
                     </Annotation>
                   </Annotations>
                   <CalculationReference>[LiveOn2008]</CalculationReference>
+                  <CalculationType>Member</CalculationType>
+                  <FormatString>''</FormatString>
+                </CalculationProperty>
+                <CalculationProperty>
+                  <Annotations>
+                    <Annotation>
+                      <Name>Type</Name>
+                      <Value>User</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsPrivate</Name>
+                      <Value>False</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Format</Name>
+                      <Value>
+                        <Format Format="General" xmlns="" />
+                      </Value>
+                    </Annotation>
+                  </Annotations>
+                  <CalculationReference>[UATOnDWH]</CalculationReference>
+                  <CalculationType>Member</CalculationType>
+                  <FormatString>''</FormatString>
+                </CalculationProperty>
+                <CalculationProperty>
+                  <Annotations>
+                    <Annotation>
+                      <Name>Type</Name>
+                      <Value>User</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsPrivate</Name>
+                      <Value>False</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Format</Name>
+                      <Value>
+                        <Format Format="General" xmlns="" />
+                      </Value>
+                    </Annotation>
+                  </Annotations>
+                  <CalculationReference>[DevOnDWH]</CalculationReference>
+                  <CalculationType>Member</CalculationType>
+                  <FormatString>''</FormatString>
+                </CalculationProperty>
+                <CalculationProperty>
+                  <Annotations>
+                    <Annotation>
+                      <Name>Type</Name>
+                      <Value>User</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsPrivate</Name>
+                      <Value>False</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Format</Name>
+                      <Value>
+                        <Format Format="General" xmlns="" />
+                      </Value>
+                    </Annotation>
+                  </Annotations>
+                  <CalculationReference>[RetiredOn2008]</CalculationReference>
+                  <CalculationType>Member</CalculationType>
+                  <FormatString>''</FormatString>
+                </CalculationProperty>
+                <CalculationProperty>
+                  <Annotations>
+                    <Annotation>
+                      <Name>Type</Name>
+                      <Value>User</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsPrivate</Name>
+                      <Value>False</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Format</Name>
+                      <Value>
+                        <Format Format="General" xmlns="" />
+                      </Value>
+                    </Annotation>
+                  </Annotations>
+                  <CalculationReference>[Percentage of Reports Completed]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
                 </CalculationProperty>
@@ -6897,7 +6985,7 @@ CREATE MEASURE 'dimReportCatalogue'[LiveOn2008]=calculate(counta(dimReportCatalo
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimReportCatalogue_a7b89ce4-0564-462d-8307-e883d9f3ed17" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimReportCatalogue" msprop:DbTableName="dimReportCatalogue" msprop:TableType="View" msprop:Description="dimReportCatalogue" msprop:QueryDefinition="select&#xD;&#xA; BusinessKey,&#xD;&#xA; Server,&#xD;&#xA; ReportName,&#xD;&#xA; ReportCategory,&#xD;&#xA; case when Server = 'SVR-LIV-DWH-01'&#xD;&#xA;   then coalesce([12Live], [12UAT], [12Dev])&#xD;&#xA; else [08Retired]&#xD;&#xA; end as 'Status' &#xD;&#xA;&#xD;&#xA; from&#xD;&#xA; Reporting.dw.ExecutionStats">
+                    <xs:element name="dimReportCatalogue_a7b89ce4-0564-462d-8307-e883d9f3ed17" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimReportCatalogue" msprop:DbTableName="dimReportCatalogue" msprop:TableType="View" msprop:Description="dimReportCatalogue" msprop:QueryDefinition="select&#xD;&#xA; BusinessKey,&#xD;&#xA; Server,&#xD;&#xA; ReportName,&#xD;&#xA; ReportCategory,&#xD;&#xA; case when Server = 'SVR-LIV-DWH-01'&#xD;&#xA;   then coalesce([12Live], [12UAT], [12Dev])&#xD;&#xA; else coalesce([08Retired], case when [08Live] = 'Live' then '08Live' end)&#xD;&#xA; end as 'Status' &#xD;&#xA;&#xD;&#xA; from&#xD;&#xA; Reporting.dw.ExecutionStats">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="ReportName" msprop:DbColumnName="ReportName" msprop:FriendlyName="ReportName" minOccurs="0">
