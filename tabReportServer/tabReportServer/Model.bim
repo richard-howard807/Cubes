@@ -6459,7 +6459,7 @@ CREATE MEASURE 'dimReportCatalogue'[LiveOn2008]=calculate(counta(dimReportCatalo
 CREATE MEASURE 'dimReportCatalogue'[UATOnDWH]=calculate(COUNTA(dimReportCatalogue[ReportName]),dimReportCatalogue[Status] = "UAT");
 CREATE MEASURE 'dimReportCatalogue'[DevOnDWH]=calculate(COUNTA(dimReportCatalogue[ReportName]),dimReportCatalogue[Status] = "Dev");
 CREATE MEASURE 'dimReportCatalogue'[RetiredOn2008]=calculate(COUNTA(dimReportCatalogue[ReportName]),dimReportCatalogue[Status] = "For Retirement");
-CREATE MEASURE 'dimReportCatalogue'[Percentage of Reports Completed]=if(([DevOnDWH]+[UATOnDWH]+[LiveOnDWH]) = 0, 0, ([DevOnDWH]+[UATOnDWH]+[LiveOnDWH]) / [LiveOn2008]);
+CREATE MEASURE 'dimReportCatalogue'[Percentage of Reports Completed]=if([LiveOn2008] = 0, 1, if(([DevOnDWH]+[UATOnDWH]+[LiveOnDWH]) = 0, 0, ([DevOnDWH]+[UATOnDWH]+[LiveOnDWH]) / [LiveOn2008]));
 </Text>
                 </Command>
               </Commands>
