@@ -13914,7 +13914,7 @@ from
 red_dw.dbo.dim_date
 
 where
-calendar_date = cast(getdate() as date))
+calendar_date = cast(getdate() - 1 as date))
 
 order by
 d.matter_number</QueryDefinition>
@@ -19249,7 +19249,7 @@ from
 red_dw.dbo.dim_date
 
 where
-calendar_date = cast(getdate() as date)) 
+calendar_date = cast(getdate() -1 as date)) 
 
  left join red_dw.dbo.dim_date d3
 	on d3.dim_date_key = a.dim_transaction_date_key
@@ -19454,7 +19454,7 @@ from
 red_dw.dbo.dim_date
 
 where
-calendar_date = cast(getdate() as date)) 
+calendar_date = cast(getdate() -1 as date)) 
 
  left join red_dw.dbo.dim_date d3
 	on d3.dim_date_key = a.dim_transaction_date_key
@@ -19566,7 +19566,7 @@ from
 red_dw.dbo.dim_date
 
 where
-calendar_date = cast(getdate() as date)) 
+calendar_date = cast(getdate() -1 as date)) 
 
  left join red_dw.dbo.dim_date d3
 	on d3.dim_date_key = a.dim_transaction_date_key
@@ -19678,7 +19678,7 @@ from
 red_dw.dbo.dim_date
 
 where
-calendar_date = cast(getdate() as date)) 
+calendar_date = cast(getdate() -1 as date)) 
 
  left join red_dw.dbo.dim_date d3
 	on d3.dim_date_key = a.dim_transaction_date_key
@@ -19790,7 +19790,7 @@ from
 red_dw.dbo.dim_date
 
 where
-calendar_date = cast(getdate() as date)) 
+calendar_date = cast(getdate() -1 as date)) 
 
  left join red_dw.dbo.dim_date d3
 	on d3.dim_date_key = a.dim_transaction_date_key
@@ -19902,7 +19902,7 @@ from
 red_dw.dbo.dim_date
 
 where
-calendar_date = cast(getdate() as date)) 
+calendar_date = cast(getdate() -1 as date)) 
 
  left join red_dw.dbo.dim_date d3
 	on d3.dim_date_key = a.dim_transaction_date_key
@@ -20014,7 +20014,7 @@ from
 red_dw.dbo.dim_date
 
 where
-calendar_date = cast(getdate() as date)) 
+calendar_date = cast(getdate() -1 as date)) 
 
  left join red_dw.dbo.dim_date d3
 	on d3.dim_date_key = a.dim_transaction_date_key
@@ -26646,7 +26646,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="Matter" msprop:DbTableName="factMatter" msprop:TableType="View" msprop:Description="factMatter" msprop:QueryDefinition="select distinct &#xD;&#xA;f.dim_matter_header_key as 'MatterID',&#xD;&#xA;f.dim_fed_hierarchy_history_key as 'FEDCodeID',&#xD;&#xA;d.matter_group_code as 'MatterGroupCode',&#xD;&#xA;d.branch_code as 'BranchCode',&#xD;&#xA;d.work_type_code as 'WorkTypeCode',&#xD;&#xA;d.department_code as 'DepartmentCode',&#xD;&#xA;d.fed_code_partner_hist as 'PartnerCode',&#xD;&#xA;d.matter_number as 'MatterNumber',&#xD;&#xA;c.client_code as 'ClientNumber',&#xD;&#xA;d.namkey_camatgrp as 'MatterDesc',&#xD;&#xA;date1.dim_date_key as 'DateMatterOpen',&#xD;&#xA;date2.dim_date_key as 'DateMatterClosed',&#xD;&#xA;datediff(day, d.date_opened_case, isnull(d.date_closed_case, getdate())) as 'AgeOfMatterDays',&#xD;&#xA;disbursement_balance as 'DisbursementBalance',&#xD;&#xA;client_account_balance_of_matter as 'ClientAccountBalance',&#xD;&#xA;unpaid_bill_balance as 'UnpaidBillsBalance',&#xD;&#xA;wip_balance as 'WIPBalance',&#xD;&#xA;costs_to_date as 'CostsToDate',&#xD;&#xA;time_billed as 'TotalTimeBilled',&#xD;&#xA;number_bills_matter as 'NumberOfBillsRaised',&#xD;&#xA;unbilled_time as 'UnbilledTime',&#xD;&#xA;case when d.case_id is null then 'No' else 'Yes' end as 'HasRecordInCashdr',&#xD;&#xA;lastbill.LastBillDate,&#xD;&#xA;lasttime.LastTimeDate &#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_matter_summary f&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_client c&#xD;&#xA; on c.dim_client_key = f.dim_client_key&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_matter_header d&#xD;&#xA; on d.dim_matter_header_key = f.dim_matter_header_key&#xD;&#xA; &#xD;&#xA;  &#xD;&#xA;left join red_dw.dbo.dim_date date1&#xD;&#xA; on date1.calendar_date = d.date_opened_case&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_date date2&#xD;&#xA; on date2.calendar_date = isnull(d.date_closed_case, '1753-01-01 00:00:00.000')&#xD;&#xA;&#xD;&#xA;left join (&#xD;&#xA;  select client_code,matter_number, max(dim_bill_date_key) as 'LastBillDate' from red_dw.dbo.fact_bill&#xD;&#xA;  group by client_code,matter_number ) lastbill &#xD;&#xA;  on  c.client_code = lastbill.client_code&#xD;&#xA;  and f.matter_number = lastbill.matter_number&#xD;&#xA;&#xD;&#xA;left join (&#xD;&#xA;  select dim_client_key,m.matter_number , max(dim_transaction_date_key) as 'LastTimeDate' from red_dw.dbo.fact_all_time_activity a left join red_dw.dbo.dim_matter_header m on m.dim_matter_header_key = a.dim_matter_header_key&#xD;&#xA;  group by dim_client_key, m.matter_number) lasttime &#xD;&#xA;  on  f.dim_client_key = lasttime.dim_client_key&#xD;&#xA;  and f.matter_number = lasttime.matter_number&#xD;&#xA;&#xD;&#xA; &#xD;&#xA;where&#xD;&#xA; f.fin_month = (&#xD;&#xA;select &#xD;&#xA;fin_month&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_date&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;calendar_date = cast(getdate() as date))&#xD;&#xA;&#xD;&#xA;order by&#xD;&#xA;d.matter_number">
+                    <xs:element name="factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="Matter" msprop:DbTableName="factMatter" msprop:TableType="View" msprop:Description="factMatter" msprop:QueryDefinition="select distinct &#xD;&#xA;f.dim_matter_header_key as 'MatterID',&#xD;&#xA;f.dim_fed_hierarchy_history_key as 'FEDCodeID',&#xD;&#xA;d.matter_group_code as 'MatterGroupCode',&#xD;&#xA;d.branch_code as 'BranchCode',&#xD;&#xA;d.work_type_code as 'WorkTypeCode',&#xD;&#xA;d.department_code as 'DepartmentCode',&#xD;&#xA;d.fed_code_partner_hist as 'PartnerCode',&#xD;&#xA;d.matter_number as 'MatterNumber',&#xD;&#xA;c.client_code as 'ClientNumber',&#xD;&#xA;d.namkey_camatgrp as 'MatterDesc',&#xD;&#xA;date1.dim_date_key as 'DateMatterOpen',&#xD;&#xA;date2.dim_date_key as 'DateMatterClosed',&#xD;&#xA;datediff(day, d.date_opened_case, isnull(d.date_closed_case, getdate())) as 'AgeOfMatterDays',&#xD;&#xA;disbursement_balance as 'DisbursementBalance',&#xD;&#xA;client_account_balance_of_matter as 'ClientAccountBalance',&#xD;&#xA;unpaid_bill_balance as 'UnpaidBillsBalance',&#xD;&#xA;wip_balance as 'WIPBalance',&#xD;&#xA;costs_to_date as 'CostsToDate',&#xD;&#xA;time_billed as 'TotalTimeBilled',&#xD;&#xA;number_bills_matter as 'NumberOfBillsRaised',&#xD;&#xA;unbilled_time as 'UnbilledTime',&#xD;&#xA;case when d.case_id is null then 'No' else 'Yes' end as 'HasRecordInCashdr',&#xD;&#xA;lastbill.LastBillDate,&#xD;&#xA;lasttime.LastTimeDate &#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_matter_summary f&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_client c&#xD;&#xA; on c.dim_client_key = f.dim_client_key&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_matter_header d&#xD;&#xA; on d.dim_matter_header_key = f.dim_matter_header_key&#xD;&#xA; &#xD;&#xA;  &#xD;&#xA;left join red_dw.dbo.dim_date date1&#xD;&#xA; on date1.calendar_date = d.date_opened_case&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_date date2&#xD;&#xA; on date2.calendar_date = isnull(d.date_closed_case, '1753-01-01 00:00:00.000')&#xD;&#xA;&#xD;&#xA;left join (&#xD;&#xA;  select client_code,matter_number, max(dim_bill_date_key) as 'LastBillDate' from red_dw.dbo.fact_bill&#xD;&#xA;  group by client_code,matter_number ) lastbill &#xD;&#xA;  on  c.client_code = lastbill.client_code&#xD;&#xA;  and f.matter_number = lastbill.matter_number&#xD;&#xA;&#xD;&#xA;left join (&#xD;&#xA;  select dim_client_key,m.matter_number , max(dim_transaction_date_key) as 'LastTimeDate' from red_dw.dbo.fact_all_time_activity a left join red_dw.dbo.dim_matter_header m on m.dim_matter_header_key = a.dim_matter_header_key&#xD;&#xA;  group by dim_client_key, m.matter_number) lasttime &#xD;&#xA;  on  f.dim_client_key = lasttime.dim_client_key&#xD;&#xA;  and f.matter_number = lasttime.matter_number&#xD;&#xA;&#xD;&#xA; &#xD;&#xA;where&#xD;&#xA; f.fin_month = (&#xD;&#xA;select &#xD;&#xA;fin_month&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_date&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;calendar_date = cast(getdate() - 1 as date))&#xD;&#xA;&#xD;&#xA;order by&#xD;&#xA;d.matter_number">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="MatterID" msprop:DbColumnName="MatterID" msprop:FriendlyName="MatterID" type="xs:int" minOccurs="0" />
@@ -26802,7 +26802,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="TimeTransactions" msprop:DbTableName="factMainTable" msprop:TableType="View" msprop:Description="factMainTable" msprop:QueryDefinition="select &#xA;a.dim_all_time_activity_key as 'TransactionID',&#xA;c.client_code as 'ClientCode',&#xA;f.dim_matter_header_key as 'MatterID',&#xA;f.matter_number,&#xA;f.client_code,&#xA;f.source_system_id,&#xA;a.dim_bill_key as 'BillID',&#xA;a.time_type as 'ChargeableTimeCode',&#xA;a.dim_fed_hierarchy_history_key as 'FEDCodeID',&#xA;a.dim_transaction_date_key as 'TransactionDate',&#xA;a.dim_run_date_key as 'RunDate',&#xA;a.minutes_recorded as 'MinutesRecorded',&#xA;a.time_cost_value as 'ValueOfTimeRecorded',&#xA;a.hourly_charge_rate as 'ChargeRate',&#xA;a.time_charge_value as 'timeChargeValue',&#xA;a.overridden_time_charge_value as 'OverriddenTimeChargeValue',&#xA;&#xA;&#xA;case &#xA;when t.time_activity_code != 'W/O'&#xA;and t.bill_number = 'xxxxxxxx'&#xA; then 'Written Off'&#xA;when t.time_activity_code = 'W/O'&#xA; then 'Written Off Transaction'&#xA;when t.bill_number = ''&#xA; then 'Unbilled'&#xA;when a.dim_bill_key &gt; 0&#xA;and t.time_activity_code not in ('Bill','Abmt')&#xA; then 'Billed'&#xA;when a.time_type = 'NC' &#xA; then 'Non Chargeable Time'&#xA;else 'Transferred'&#xA;end as 'TransactionType',&#xA;n.td_textln as 'Narrative',&#xA;t.time_activity_code as 'TimeActivityCode',&#xA;t.rate_code as 'RateCode' ,&#xA;t.matter_stage_descrn as 'StageDesc',&#xA;datediff(d, d3.calendar_date, getdate()) as 'TransactionAgeDays' &#xA;&#xA;from&#xA;[SVR-LIV-DWH-01].red_dw.dbo.fact_all_time_activity a&#xA;&#xA;left join red_dw.dbo.dim_client c&#xA; on c.dim_client_key = a.dim_client_key&#xA;&#xA;left join&#xA; [SVR-LIV-DWH-01].red_dw.dbo.dim_all_time_activity t&#xA;  on a.dim_all_time_activity_key = t.dim_all_time_activity_key&#xA;&#xA;left join&#xA; [SVR-LIV-DWH-01].red_dw.dbo.dim_time_narratives n&#xA;   on n.dim_time_narratives_key = a.dim_time_narratives_key&#xA;&#xA;&#xA;left join red_dw.dbo.dim_matter_header d2&#xA; on d2.dim_matter_header_key = a.dim_matter_header_key&#xA;&#xA;&#xA;&#xA;left join red_dw.dbo.fact_matter_summary f&#xA; on  d2.client_code = f.client_code &#xA; and d2.matter_number = f.matter_number&#xA; and d2.source_system_id = f.source_system_id&#xA; and f.fin_month = (&#xA;select &#xD;&#xA;fin_month&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_date&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;calendar_date = cast(getdate() as date)) &#xA;&#xA; left join red_dw.dbo.dim_date d3&#xA; on d3.dim_date_key = a.dim_transaction_date_key&#xA;&#xA; left join red_dw.dbo.dim_date d4&#xA; on d4.dim_date_key = a.dim_run_date_key">
+                    <xs:element name="factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="TimeTransactions" msprop:DbTableName="factMainTable" msprop:TableType="View" msprop:Description="factMainTable" msprop:QueryDefinition="select &#xA;a.dim_all_time_activity_key as 'TransactionID',&#xA;c.client_code as 'ClientCode',&#xA;f.dim_matter_header_key as 'MatterID',&#xA;f.matter_number,&#xA;f.client_code,&#xA;f.source_system_id,&#xA;a.dim_bill_key as 'BillID',&#xA;a.time_type as 'ChargeableTimeCode',&#xA;a.dim_fed_hierarchy_history_key as 'FEDCodeID',&#xA;a.dim_transaction_date_key as 'TransactionDate',&#xA;a.dim_run_date_key as 'RunDate',&#xA;a.minutes_recorded as 'MinutesRecorded',&#xA;a.time_cost_value as 'ValueOfTimeRecorded',&#xA;a.hourly_charge_rate as 'ChargeRate',&#xA;a.time_charge_value as 'timeChargeValue',&#xA;a.overridden_time_charge_value as 'OverriddenTimeChargeValue',&#xA;&#xA;&#xA;case &#xA;when t.time_activity_code != 'W/O'&#xA;and t.bill_number = 'xxxxxxxx'&#xA; then 'Written Off'&#xA;when t.time_activity_code = 'W/O'&#xA; then 'Written Off Transaction'&#xA;when t.bill_number = ''&#xA; then 'Unbilled'&#xA;when a.dim_bill_key &gt; 0&#xA;and t.time_activity_code not in ('Bill','Abmt')&#xA; then 'Billed'&#xA;when a.time_type = 'NC' &#xA; then 'Non Chargeable Time'&#xA;else 'Transferred'&#xA;end as 'TransactionType',&#xA;n.td_textln as 'Narrative',&#xA;t.time_activity_code as 'TimeActivityCode',&#xA;t.rate_code as 'RateCode' ,&#xA;t.matter_stage_descrn as 'StageDesc',&#xA;datediff(d, d3.calendar_date, getdate()) as 'TransactionAgeDays' &#xA;&#xA;from&#xA;[SVR-LIV-DWH-01].red_dw.dbo.fact_all_time_activity a&#xA;&#xA;left join red_dw.dbo.dim_client c&#xA; on c.dim_client_key = a.dim_client_key&#xA;&#xA;left join&#xA; [SVR-LIV-DWH-01].red_dw.dbo.dim_all_time_activity t&#xA;  on a.dim_all_time_activity_key = t.dim_all_time_activity_key&#xA;&#xA;left join&#xA; [SVR-LIV-DWH-01].red_dw.dbo.dim_time_narratives n&#xA;   on n.dim_time_narratives_key = a.dim_time_narratives_key&#xA;&#xA;&#xA;left join red_dw.dbo.dim_matter_header d2&#xA; on d2.dim_matter_header_key = a.dim_matter_header_key&#xA;&#xA;&#xA;&#xA;left join red_dw.dbo.fact_matter_summary f&#xA; on  d2.client_code = f.client_code &#xA; and d2.matter_number = f.matter_number&#xA; and d2.source_system_id = f.source_system_id&#xA; and f.fin_month = (&#xA;select &#xD;&#xA;fin_month&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_date&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;calendar_date = cast(getdate() - 1 as date)) &#xA;&#xA; left join red_dw.dbo.dim_date d3&#xA; on d3.dim_date_key = a.dim_transaction_date_key&#xA;&#xA; left join red_dw.dbo.dim_date d4&#xA; on d4.dim_date_key = a.dim_run_date_key">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="BillID" msprop:DbColumnName="BillID" msprop:FriendlyName="BillID" type="xs:int" minOccurs="0" />
