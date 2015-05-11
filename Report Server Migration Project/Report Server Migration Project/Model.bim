@@ -2670,7 +2670,15 @@
                   </Annotations>
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>5022e1af-5542-450a-9f2d-0fbbffc04044</DataSourceID>
-                    <QueryDefinition>Reporting.[SBC\sparke01].[ExecutionStatsNew]</QueryDefinition>
+                    <QueryDefinition>select 
+	cast(ReportID as numeric(10,2)) as 'ReportID',
+	Server,
+	ReportName,
+	ReportCategory,
+	coalesce([12Live], [12UAT], [12Dev]) [2012Status],
+	coalesce([08Retired], [08Live]) [2008Status]
+
+	 from Reporting.dw.ExecutionStatsNew</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
@@ -3981,7 +3989,7 @@ CREATE MEASURE 'ReportIDs'[Count of New Reports]=calculate(countrows(ReportIDs),
               <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:Locale="en-GB">
                 <xs:complexType>
                   <xs:choice minOccurs="0" maxOccurs="unbounded">
-                    <xs:element name="ReportIDs_21d66cf2-26c5-4f42-8f98-7f080ac0aaae" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="ReportIDs" msprop:DbTableName="ReportIDs" msprop:TableType="View" msprop:Description="ReportIDs" msprop:QueryDefinition="Reporting.[SBC\sparke01].[ExecutionStatsNew]">
+                    <xs:element name="ReportIDs_21d66cf2-26c5-4f42-8f98-7f080ac0aaae" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="ReportIDs" msprop:DbTableName="ReportIDs" msprop:TableType="View" msprop:Description="ReportIDs" msprop:QueryDefinition="select &#xD;&#xA; cast(ReportID as numeric(10,2)) as 'ReportID',&#xD;&#xA; Server,&#xD;&#xA; ReportName,&#xD;&#xA; ReportCategory,&#xD;&#xA; coalesce([12Live], [12UAT], [12Dev]) [2012Status],&#xD;&#xA; coalesce([08Retired], [08Live]) [2008Status]&#xD;&#xA;&#xD;&#xA;  from Reporting.dw.ExecutionStatsNew">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="ReportID" msprop:DbColumnName="ReportID" msprop:FriendlyName="ReportID" minOccurs="0">
@@ -4172,6 +4180,7 @@ CREATE MEASURE 'ReportIDs'[Count of New Reports]=calculate(countrows(ReportIDs),
           </Schema>
         </DataSourceView>
       </DataSourceViews>
+      <ddl300_300:DirectQueryMode>InMemoryWithDirectQuery</ddl300_300:DirectQueryMode>
     </Database>
   </ObjectDefinition>
 </Alter>
