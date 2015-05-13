@@ -3773,7 +3773,7 @@ CREATE MEASURE 'ReportIDs'[Count of Reports on sql2008]=calculate(distinctcount(
 CREATE MEASURE 'ReportIDs'[Count of Reports on DWH-01]=calculate(distinctcount(ReportIDs[ReportID]), ReportIDs[Server] = "SVR-LIV-DWH-01");
 CREATE MEASURE 'ReportIDs'[Ineligible Reports]=calculate(DISTINCTCOUNT(ReportIDs[ReportID]), EligibleReports[Status] = "Ineligible");
 CREATE MEASURE 'ReportIDs'[Retired Reports]=calculate(DISTINCTCOUNT(ReportIDs[ReportID]), EligibleReports[Status] = "Retired");
-CREATE MEASURE 'ReportIDs'[Copy of Count of New Reports]=calculate(countrows(ReportIDs), ReportIDs[2012Status] &lt;&gt; blank(), ReportIDs[2008Status] = blank());
+CREATE MEASURE 'ReportIDs'[Count of New Reports]=calculate(countrows(ReportIDs), ReportIDs[2012Status] &lt;&gt; blank(), ReportIDs[2008Status] = blank());
 </Text>
                 </Command>
               </Commands>
@@ -3984,7 +3984,7 @@ CREATE MEASURE 'ReportIDs'[Copy of Count of New Reports]=calculate(countrows(Rep
                       </Value>
                     </Annotation>
                   </Annotations>
-                  <CalculationReference>[Copy of Count of New Reports]</CalculationReference>
+                  <CalculationReference>[Count of New Reports]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
                 </CalculationProperty>
