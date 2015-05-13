@@ -3767,13 +3767,13 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
 CREATE MEASURE 'ReportIDs'[Report IDs Needed]=countblank([ReportID]);
 CREATE MEASURE 'ReportIDs'[Count of Reports]=countrows(ReportIDs);
 CREATE MEASURE 'ReportIDs'[Reports Mapped]=calculate(DISTINCTCOUNT(ReportIDs[ReportID]), ReportIDs[2012Status] &lt;&gt; blank(), ReportIDs[2008Status] &lt;&gt; blank());
-CREATE MEASURE 'ReportIDs'[Eligible Reports]=calculate(DISTINCTCOUNT(ReportIDs[ReportID]), ReportIDs[Server] = "SQL2008SVR") - [Ineligible Reports] - [Retired Reports];
+CREATE MEASURE 'ReportIDs'[Eligible Reports]=calculate(DISTINCTCOUNT(ReportIDs[ReportID]), ReportIDs[Server] = "SQL2008SVR", EligibleReports[Status] = "Outstanding");
 CREATE MEASURE 'ReportIDs'[Percentage of Eligible Reports Mapped]=calculate(if(isblank( [Reports Mapped] / [Eligible Reports]), 0, [Reports Mapped] / [Eligible Reports]));
 CREATE MEASURE 'ReportIDs'[Count of Reports on sql2008]=calculate(distinctcount(ReportIDs[ReportID]), ReportIDs[Server] = "SQL2008SVR");
 CREATE MEASURE 'ReportIDs'[Count of Reports on DWH-01]=calculate(distinctcount(ReportIDs[ReportID]), ReportIDs[Server] = "SVR-LIV-DWH-01");
-CREATE MEASURE 'ReportIDs'[Count of New Reports]=calculate(countrows(ReportIDs), ReportIDs[2012Status] &lt;&gt; blank(), ReportIDs[2008Status] = blank());
 CREATE MEASURE 'ReportIDs'[Ineligible Reports]=calculate(DISTINCTCOUNT(ReportIDs[ReportID]), EligibleReports[Status] = "Ineligible");
 CREATE MEASURE 'ReportIDs'[Retired Reports]=calculate(DISTINCTCOUNT(ReportIDs[ReportID]), EligibleReports[Status] = "Retired");
+CREATE MEASURE 'ReportIDs'[Copy of Count of New Reports]=calculate(countrows(ReportIDs), ReportIDs[2012Status] &lt;&gt; blank(), ReportIDs[2008Status] = blank());
 </Text>
                 </Command>
               </Commands>
@@ -3942,27 +3942,6 @@ CREATE MEASURE 'ReportIDs'[Retired Reports]=calculate(DISTINCTCOUNT(ReportIDs[Re
                       </Value>
                     </Annotation>
                   </Annotations>
-                  <CalculationReference>[Count of New Reports]</CalculationReference>
-                  <CalculationType>Member</CalculationType>
-                  <FormatString>''</FormatString>
-                </CalculationProperty>
-                <CalculationProperty>
-                  <Annotations>
-                    <Annotation>
-                      <Name>Type</Name>
-                      <Value>User</Value>
-                    </Annotation>
-                    <Annotation>
-                      <Name>IsPrivate</Name>
-                      <Value>False</Value>
-                    </Annotation>
-                    <Annotation>
-                      <Name>Format</Name>
-                      <Value>
-                        <Format Format="General" xmlns="" />
-                      </Value>
-                    </Annotation>
-                  </Annotations>
                   <CalculationReference>[Ineligible Reports]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
@@ -3985,6 +3964,27 @@ CREATE MEASURE 'ReportIDs'[Retired Reports]=calculate(DISTINCTCOUNT(ReportIDs[Re
                     </Annotation>
                   </Annotations>
                   <CalculationReference>[Retired Reports]</CalculationReference>
+                  <CalculationType>Member</CalculationType>
+                  <FormatString>''</FormatString>
+                </CalculationProperty>
+                <CalculationProperty>
+                  <Annotations>
+                    <Annotation>
+                      <Name>Type</Name>
+                      <Value>User</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsPrivate</Name>
+                      <Value>False</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Format</Name>
+                      <Value>
+                        <Format Format="General" xmlns="" />
+                      </Value>
+                    </Annotation>
+                  </Annotations>
+                  <CalculationReference>[Copy of Count of New Reports]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
                 </CalculationProperty>
