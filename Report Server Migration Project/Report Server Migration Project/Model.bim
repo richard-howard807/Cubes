@@ -3766,9 +3766,9 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
 
 CREATE MEASURE 'ReportIDs'[Report IDs Needed]=countblank([ReportID]);
 CREATE MEASURE 'ReportIDs'[Count of Reports]=countrows(ReportIDs);
-CREATE MEASURE 'ReportIDs'[Reports Mapped]=calculate(DISTINCTCOUNT(ReportIDs[ReportID]), ReportIDs[2012Status] &lt;&gt; blank(), ReportIDs[2008Status] &lt;&gt; blank());
-CREATE MEASURE 'ReportIDs'[Eligible Reports]=calculate(DISTINCTCOUNT(ReportIDs[ReportID]), ReportIDs[Server] = "SQL2008SVR", EligibleReports[Status] &lt;&gt; "Ineligible" || EligibleReports[Status] = "Retired");
-CREATE MEASURE 'ReportIDs'[Percentage of Eligible Reports Mapped]=calculate(if([Ineligible Reports] = 1, 1, [Reports Mapped] / [Eligible Reports]));
+CREATE MEASURE 'ReportIDs'[Reports Mapped]=if(isblank(calculate(DISTINCTCOUNT(ReportIDs[ReportID]), ReportIDs[2012Status] &lt;&gt; blank(), ReportIDs[2008Status] &lt;&gt; blank())), 0, calculate(DISTINCTCOUNT(ReportIDs[ReportID]), ReportIDs[2012Status] &lt;&gt; blank(), ReportIDs[2008Status] &lt;&gt; blank()));
+CREATE MEASURE 'ReportIDs'[Eligible Reports]=if(isblank(calculate(DISTINCTCOUNT(ReportIDs[ReportID]), ReportIDs[Server] = "SQL2008SVR", EligibleReports[Status] &lt;&gt; "Ineligible" || EligibleReports[Status] &lt;&gt; "Retired")), 0, calculate(DISTINCTCOUNT(ReportIDs[ReportID]), ReportIDs[Server] = "SQL2008SVR", EligibleReports[Status] &lt;&gt; "Ineligible" || EligibleReports[Status] &lt;&gt; "Retired"));
+CREATE MEASURE 'ReportIDs'[Percentage of Eligible Reports Mapped]=calculate(if([Eligible Reports] = 0, 1, [Reports Mapped] / [Eligible Reports]));
 CREATE MEASURE 'ReportIDs'[Count of Reports on sql2008]=calculate(distinctcount(ReportIDs[ReportID]), ReportIDs[Server] = "SQL2008SVR");
 CREATE MEASURE 'ReportIDs'[Count of Reports on DWH-01]=calculate(distinctcount(ReportIDs[ReportID]), ReportIDs[Server] = "SVR-LIV-DWH-01");
 CREATE MEASURE 'ReportIDs'[Ineligible Reports]=if(isblank(calculate(DISTINCTCOUNT(ReportIDs[ReportID]), EligibleReports[Status] = "Ineligible")), 0, calculate(DISTINCTCOUNT(ReportIDs[ReportID]), EligibleReports[Status] = "Ineligible"));
