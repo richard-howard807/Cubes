@@ -10087,20 +10087,14 @@
           <Name>BillExtension</Name>
           <Annotations>
             <Annotation>
-              <Name>IsQueryEditorUsed</Name>
-              <Value>True</Value>
+              <Name>TableWidgetSerialization</Name>
             </Annotation>
             <Annotation>
               <Name>QueryEditorSerialization</Name>
             </Annotation>
             <Annotation>
-              <Name>TableWidgetSerialization</Name>
-            </Annotation>
-            <Annotation>
-              <Name>DataMarketWebBaseUrl</Name>
-            </Annotation>
-            <Annotation>
-              <Name>DataMarketWebQueryUrl</Name>
+              <Name>IsQueryEditorUsed</Name>
+              <Value>True</Value>
             </Annotation>
           </Annotations>
           <Source xsi:type="DataSourceViewBinding">
@@ -10333,29 +10327,6 @@
                 </Attributes>
               </ddl300_300:ToRelationshipEnd>
             </ddl300_300:Relationship>
-            <ddl300_300:Relationship>
-              <ID>d2efdb83-8903-4b5d-acfe-9d75d1c5286e</ID>
-              <ddl300_300:FromRelationshipEnd>
-                <ddl300_300:Multiplicity>Many</ddl300_300:Multiplicity>
-                <ddl300:VisualizationProperties />
-                <DimensionID>BillExtension_f9cf1452-de25-4f55-8f1a-9e59d04c98dc</DimensionID>
-                <Attributes>
-                  <Attribute>
-                    <AttributeID>BillXFeeEarner</AttributeID>
-                  </Attribute>
-                </Attributes>
-              </ddl300_300:FromRelationshipEnd>
-              <ddl300_300:ToRelationshipEnd>
-                <ddl300_300:Multiplicity>One</ddl300_300:Multiplicity>
-                <ddl300:VisualizationProperties />
-                <DimensionID>dimBillXFEDHierarchy_1b7a28ed-c996-42e4-bec8-629be1efde7c</DimensionID>
-                <Attributes>
-                  <Attribute>
-                    <AttributeID>BillXFEDCode</AttributeID>
-                  </Attribute>
-                </Attributes>
-              </ddl300_300:ToRelationshipEnd>
-            </ddl300_300:Relationship>
           </ddl300_300:Relationships>
         </Dimension>
         <Dimension>
@@ -10363,20 +10334,14 @@
           <Name>dimBillXFEDHierarchy</Name>
           <Annotations>
             <Annotation>
-              <Name>IsQueryEditorUsed</Name>
-              <Value>True</Value>
+              <Name>TableWidgetSerialization</Name>
             </Annotation>
             <Annotation>
               <Name>QueryEditorSerialization</Name>
             </Annotation>
             <Annotation>
-              <Name>TableWidgetSerialization</Name>
-            </Annotation>
-            <Annotation>
-              <Name>DataMarketWebBaseUrl</Name>
-            </Annotation>
-            <Annotation>
-              <Name>DataMarketWebQueryUrl</Name>
+              <Name>IsQueryEditorUsed</Name>
+              <Value>True</Value>
             </Annotation>
           </Annotations>
           <Source xsi:type="DataSourceViewBinding">
@@ -10420,7 +10385,6 @@
                 </AttributeRelationship>
                 <AttributeRelationship>
                   <AttributeID>BillXFEDCode</AttributeID>
-                  <Cardinality>One</Cardinality>
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>BillXFEDCode</Name>
                 </AttributeRelationship>
@@ -10503,7 +10467,6 @@
                 <KeyColumn>
                   <DataType>WChar</DataType>
                   <DataSize>32768</DataSize>
-                  <NullProcessing>Error</NullProcessing>
                   <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
                   <Source xsi:type="ColumnBinding">
                     <TableID>dimBillXFEDHierarchy_1b7a28ed-c996-42e4-bec8-629be1efde7c</TableID>
@@ -25670,132 +25633,6 @@ dim_date</QueryDefinition>
                   <IntermediateCubeDimensionID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</IntermediateCubeDimensionID>
                   <IntermediateGranularityAttributeID>BillLastPaymentDate</IntermediateGranularityAttributeID>
                 </Dimension>
-                <Dimension xsi:type="ReferenceMeasureGroupDimension">
-                  <CubeDimensionID>dimBillXFEDHierarchy_1b7a28ed-c996-42e4-bec8-629be1efde7c</CubeDimensionID>
-                  <Attributes>
-                    <Attribute>
-                      <AttributeID>RowNumber</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>4</DataSize>
-                          <NullProcessing>Error</NullProcessing>
-                          <Source xsi:type="ddl200_200:RowNumberBinding" />
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>BillXFEDCodeID</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimBillXFEDHierarchy_1b7a28ed-c996-42e4-bec8-629be1efde7c</TableID>
-                            <ColumnID>BillXFEDCodeID</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>BillXFEDCode</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Error</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimBillXFEDHierarchy_1b7a28ed-c996-42e4-bec8-629be1efde7c</TableID>
-                            <ColumnID>BillXFEDCode</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                      <Type>Granularity</Type>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>BillXFEDName</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimBillXFEDHierarchy_1b7a28ed-c996-42e4-bec8-629be1efde7c</TableID>
-                            <ColumnID>BillXFEDName</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>BillXBusinessLine</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimBillXFEDHierarchy_1b7a28ed-c996-42e4-bec8-629be1efde7c</TableID>
-                            <ColumnID>BillXBusinessLine</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>BillXPracticeArea</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimBillXFEDHierarchy_1b7a28ed-c996-42e4-bec8-629be1efde7c</TableID>
-                            <ColumnID>BillXPracticeArea</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>BillXTeam</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimBillXFEDHierarchy_1b7a28ed-c996-42e4-bec8-629be1efde7c</TableID>
-                            <ColumnID>BillXTeam</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>BillXBCMName</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimBillXFEDHierarchy_1b7a28ed-c996-42e4-bec8-629be1efde7c</TableID>
-                            <ColumnID>BillXBCMName</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                  </Attributes>
-                  <IntermediateCubeDimensionID>BillExtension_f9cf1452-de25-4f55-8f1a-9e59d04c98dc</IntermediateCubeDimensionID>
-                  <IntermediateGranularityAttributeID>BillXFeeEarner</IntermediateGranularityAttributeID>
-                  <Materialization>Regular</Materialization>
-                  <ddl300:RelationshipID>d2efdb83-8903-4b5d-acfe-9d75d1c5286e</ddl300:RelationshipID>
-                </Dimension>
               </Dimensions>
               <Partitions>
                 <Partition>
@@ -25803,29 +25640,29 @@ dim_date</QueryDefinition>
                   <Name>BillExtension</Name>
                   <Annotations>
                     <Annotation>
-                      <Name>IsQueryEditorUsed</Name>
-                      <Value>True</Value>
+                      <Name>TableWidgetSerialization</Name>
+                    </Annotation>
+                    <Annotation>
+                      <Name>TableWidgetSourceTable</Name>
                     </Annotation>
                     <Annotation>
                       <Name>QueryEditorSerialization</Name>
                     </Annotation>
                     <Annotation>
-                      <Name>TableWidgetSerialization</Name>
+                      <Name>IsQueryEditorUsed</Name>
+                      <Value>True</Value>
                     </Annotation>
                   </Annotations>
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
                     <QueryDefinition>select
 bill_number as 'BillXBillNumber',
-ba_feecod as 'BillXFeeEarner',
-ba_bilamt as 'BillXBillAmount',
-ba_timbil as 'BillXTimeBilled'
+dim_fed_hierarchy_history_key as 'BillXFeeEarner',
+bill_amount as 'BillXBillAmount',
+billed_time as 'BillXTimeBilled'
 
 from
-red_dw.dbo.fact_bill bil
-
-left join axxia01.dbo.cablaloc cab
- on cab.ba_bilnum = bil.bill_number</QueryDefinition>
+red_dw.dbo.fact_bill_activity</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
@@ -26009,14 +25846,17 @@ left join axxia01.dbo.cablaloc cab
                   <Name>dimBillXFEDHierarchy</Name>
                   <Annotations>
                     <Annotation>
-                      <Name>IsQueryEditorUsed</Name>
-                      <Value>True</Value>
+                      <Name>TableWidgetSerialization</Name>
+                    </Annotation>
+                    <Annotation>
+                      <Name>TableWidgetSourceTable</Name>
                     </Annotation>
                     <Annotation>
                       <Name>QueryEditorSerialization</Name>
                     </Annotation>
                     <Annotation>
-                      <Name>TableWidgetSerialization</Name>
+                      <Name>IsQueryEditorUsed</Name>
+                      <Value>True</Value>
                     </Annotation>
                   </Annotations>
                   <Source xsi:type="QueryBinding">
@@ -26035,8 +25875,7 @@ h1.reportingbcmname as 'BillXBCMName'
 from
 red_dw.dbo.dim_fed_hierarchy_history h1 
 
-where h1.dss_current_flag = 'Y'
-and fed_code != 'Unknown'
+
 
 
 order by 1</QueryDefinition>
@@ -27633,7 +27472,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="BillExtension_f9cf1452-de25-4f55-8f1a-9e59d04c98dc" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="BillExtension" msprop:DbTableName="BillExtension" msprop:TableType="View" msprop:Description="BillExtension" msprop:QueryDefinition="select&#xD;&#xA;bill_number as 'BillXBillNumber',&#xD;&#xA;ba_feecod as 'BillXFeeEarner',&#xD;&#xA;ba_bilamt as 'BillXBillAmount',&#xD;&#xA;ba_timbil as 'BillXTimeBilled'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_bill bil&#xD;&#xA;&#xD;&#xA;left join axxia01.dbo.cablaloc cab&#xD;&#xA; on cab.ba_bilnum = bil.bill_number">
+                    <xs:element name="BillExtension_f9cf1452-de25-4f55-8f1a-9e59d04c98dc" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="BillExtension" msprop:DbTableName="BillExtension" msprop:TableType="View" msprop:Description="BillExtension" msprop:QueryDefinition="select&#xD;&#xA;bill_number as 'BillXBillNumber',&#xD;&#xA;dim_fed_hierarchy_history_key as 'BillXFeeEarner',&#xD;&#xA;bill_amount as 'BillXBillAmount',&#xD;&#xA;billed_time as 'BillXTimeBilled'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_bill_activity">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="BillXBillNumber" msprop:DbColumnName="BillXBillNumber" msprop:FriendlyName="BillXBillNumber" minOccurs="0">
@@ -27655,7 +27494,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimBillXFEDHierarchy_1b7a28ed-c996-42e4-bec8-629be1efde7c" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimBillXFEDHierarchy" msprop:DbTableName="dimBillXFEDHierarchy" msprop:TableType="View" msprop:Description="dimBillXFEDHierarchy" msprop:QueryDefinition="select distinct&#xD;&#xA;h1.dim_fed_hierarchy_history_key as 'BillXFEDCodeID',&#xD;&#xA;h1.fed_code as 'BillXFEDCode',&#xD;&#xA;h1.name as 'BillXFEDName',&#xD;&#xA;h1.hierarchylevel2hist as 'BillXBusinessLine',&#xD;&#xA;h1.hierarchylevel3hist as 'BillXPracticeArea',&#xD;&#xA;h1.hierarchylevel4hist as 'BillXTeam',&#xD;&#xA;h1.reportingbcmname as 'BillXBCMName'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_fed_hierarchy_history h1 &#xD;&#xA;&#xD;&#xA;where h1.dss_current_flag = 'Y'&#xD;&#xA;and fed_code != 'Unknown'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;order by 1">
+                    <xs:element name="dimBillXFEDHierarchy_1b7a28ed-c996-42e4-bec8-629be1efde7c" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimBillXFEDHierarchy" msprop:DbTableName="dimBillXFEDHierarchy" msprop:TableType="View" msprop:Description="dimBillXFEDHierarchy" msprop:QueryDefinition="select distinct&#xD;&#xA;h1.dim_fed_hierarchy_history_key as 'BillXFEDCodeID',&#xD;&#xA;h1.fed_code as 'BillXFEDCode',&#xD;&#xA;h1.name as 'BillXFEDName',&#xD;&#xA;h1.hierarchylevel2hist as 'BillXBusinessLine',&#xD;&#xA;h1.hierarchylevel3hist as 'BillXPracticeArea',&#xD;&#xA;h1.hierarchylevel4hist as 'BillXTeam',&#xD;&#xA;h1.reportingbcmname as 'BillXBCMName'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_fed_hierarchy_history h1 &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;order by 1">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="BillXFEDCodeID" msprop:DbColumnName="BillXFEDCodeID" msprop:FriendlyName="BillXFEDCodeID" type="xs:int" minOccurs="0" />
