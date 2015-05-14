@@ -7480,7 +7480,7 @@
               </ddl300_300:ToRelationshipEnd>
             </ddl300_300:Relationship>
             <ddl300_300:Relationship>
-              <ID>c3422362-d04f-4847-8108-1cc99e868936</ID>
+              <ID>aac5edfa-d5af-4a9f-a338-f62710c963cf</ID>
               <ddl300_300:FromRelationshipEnd>
                 <ddl300_300:Multiplicity>Many</ddl300_300:Multiplicity>
                 <ddl300:VisualizationProperties />
@@ -7497,7 +7497,7 @@
                 <DimensionID>dimBillXFEDHierarchy_cd7ebd06-20e5-4f3a-9c2e-7a2110dd736d</DimensionID>
                 <Attributes>
                   <Attribute>
-                    <AttributeID>BillXFEDCode</AttributeID>
+                    <AttributeID>BillXFEDCodeID</AttributeID>
                   </Attribute>
                 </Attributes>
               </ddl300_300:ToRelationshipEnd>
@@ -7555,12 +7555,12 @@
               <AttributeRelationships>
                 <AttributeRelationship>
                   <AttributeID>BillXFEDCodeID</AttributeID>
+                  <Cardinality>One</Cardinality>
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>BillXFEDCodeID</Name>
                 </AttributeRelationship>
                 <AttributeRelationship>
                   <AttributeID>BillXFEDCode</AttributeID>
-                  <Cardinality>One</Cardinality>
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>BillXFEDCode</Name>
                 </AttributeRelationship>
@@ -7608,7 +7608,7 @@
                 <KeyColumn>
                   <DataType>Integer</DataType>
                   <DataSize>-1</DataSize>
-                  <NullProcessing>Preserve</NullProcessing>
+                  <NullProcessing>Error</NullProcessing>
                   <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
                   <Source xsi:type="ColumnBinding">
                     <TableID>dimBillXFEDHierarchy_cd7ebd06-20e5-4f3a-9c2e-7a2110dd736d</TableID>
@@ -7643,7 +7643,6 @@
                 <KeyColumn>
                   <DataType>WChar</DataType>
                   <DataSize>32768</DataSize>
-                  <NullProcessing>Error</NullProcessing>
                   <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
                   <Source xsi:type="ColumnBinding">
                     <TableID>dimBillXFEDHierarchy_cd7ebd06-20e5-4f3a-9c2e-7a2110dd736d</TableID>
@@ -20493,6 +20492,55 @@ dim_date</QueryDefinition>
                   <IntermediateGranularityAttributeID>ClientNumber</IntermediateGranularityAttributeID>
                 </Dimension>
                 <Dimension xsi:type="ReferenceMeasureGroupDimension">
+                  <CubeDimensionID>dimLocalGovernmentMatters_7216695e-93b5-4045-8585-ecaa8789da89</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>RowNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>4</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ddl200_200:RowNumberBinding" />
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterID</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimLocalGovernmentMatters_7216695e-93b5-4045-8585-ecaa8789da89</TableID>
+                            <ColumnID>MatterID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>SectorName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimLocalGovernmentMatters_7216695e-93b5-4045-8585-ecaa8789da89</TableID>
+                            <ColumnID>SectorName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                  </Attributes>
+                  <IntermediateCubeDimensionID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</IntermediateCubeDimensionID>
+                  <IntermediateGranularityAttributeID>MatterID</IntermediateGranularityAttributeID>
+                </Dimension>
+                <Dimension xsi:type="ReferenceMeasureGroupDimension">
                   <CubeDimensionID>dimBillXFEDHierarchy_cd7ebd06-20e5-4f3a-9c2e-7a2110dd736d</CubeDimensionID>
                   <Attributes>
                     <Attribute>
@@ -20512,7 +20560,7 @@ dim_date</QueryDefinition>
                         <KeyColumn>
                           <DataType>Integer</DataType>
                           <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
+                          <NullProcessing>Error</NullProcessing>
                           <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
                           <Source xsi:type="ColumnBinding">
                             <TableID>dimBillXFEDHierarchy_cd7ebd06-20e5-4f3a-9c2e-7a2110dd736d</TableID>
@@ -20520,6 +20568,7 @@ dim_date</QueryDefinition>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
+                      <Type>Granularity</Type>
                     </Attribute>
                     <Attribute>
                       <AttributeID>BillXFEDCode</AttributeID>
@@ -20527,7 +20576,6 @@ dim_date</QueryDefinition>
                         <KeyColumn>
                           <DataType>WChar</DataType>
                           <DataSize>32768</DataSize>
-                          <NullProcessing>Error</NullProcessing>
                           <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
                           <Source xsi:type="ColumnBinding">
                             <TableID>dimBillXFEDHierarchy_cd7ebd06-20e5-4f3a-9c2e-7a2110dd736d</TableID>
@@ -20535,7 +20583,6 @@ dim_date</QueryDefinition>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
-                      <Type>Granularity</Type>
                     </Attribute>
                     <Attribute>
                       <AttributeID>BillXFEDName</AttributeID>
@@ -20616,56 +20663,7 @@ dim_date</QueryDefinition>
                   <IntermediateCubeDimensionID>BillExtension_f335d257-da82-45f9-8729-a19aea809c40</IntermediateCubeDimensionID>
                   <IntermediateGranularityAttributeID>BillXFeeEarner</IntermediateGranularityAttributeID>
                   <Materialization>Regular</Materialization>
-                  <ddl300:RelationshipID>c3422362-d04f-4847-8108-1cc99e868936</ddl300:RelationshipID>
-                </Dimension>
-                <Dimension xsi:type="ReferenceMeasureGroupDimension">
-                  <CubeDimensionID>dimLocalGovernmentMatters_7216695e-93b5-4045-8585-ecaa8789da89</CubeDimensionID>
-                  <Attributes>
-                    <Attribute>
-                      <AttributeID>RowNumber</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>4</DataSize>
-                          <NullProcessing>Error</NullProcessing>
-                          <Source xsi:type="ddl200_200:RowNumberBinding" />
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>MatterID</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Error</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimLocalGovernmentMatters_7216695e-93b5-4045-8585-ecaa8789da89</TableID>
-                            <ColumnID>MatterID</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                      <Type>Granularity</Type>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>SectorName</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimLocalGovernmentMatters_7216695e-93b5-4045-8585-ecaa8789da89</TableID>
-                            <ColumnID>SectorName</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                  </Attributes>
-                  <IntermediateCubeDimensionID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</IntermediateCubeDimensionID>
-                  <IntermediateGranularityAttributeID>MatterID</IntermediateGranularityAttributeID>
+                  <ddl300:RelationshipID>aac5edfa-d5af-4a9f-a338-f62710c963cf</ddl300:RelationshipID>
                 </Dimension>
               </Dimensions>
               <Partitions>
@@ -20691,15 +20689,12 @@ dim_date</QueryDefinition>
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
                     <QueryDefinition>select
 bill_number as 'BillXBillNumber',
-ba_feecod as 'BillXFeeEarner',
-ba_bilamt as 'BillXBillAmount',
-ba_timbil as 'BillXTimeBilled'
+dim_fed_hierarchy_history_key as 'BillXFeeEarner',
+bill_amount as 'BillXBillAmount',
+billed_time as 'BillXTimeBilled'
 
 from
-red_dw.dbo.fact_bill bil
-
-left join axxia01.dbo.cablaloc cab
-	on cab.ba_bilnum = bil.bill_number</QueryDefinition>
+red_dw.dbo.fact_bill_activity</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
@@ -20912,8 +20907,6 @@ h1.reportingbcmname as 'BillXBCMName'
 from
 red_dw.dbo.dim_fed_hierarchy_history h1 
 
-where h1.dss_current_flag = 'Y'
-and fed_code != 'Unknown'
 
 
 order by 1</QueryDefinition>
@@ -22251,7 +22244,7 @@ CREATE MEASURE 'Bills'[TotalBillAmountOutstanding]=calculate(sum([AmountOutstand
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="BillExtension_f335d257-da82-45f9-8729-a19aea809c40" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="BillExtension" msprop:DbTableName="BillExtension" msprop:TableType="View" msprop:Description="BillExtension" msprop:QueryDefinition="select&#xD;&#xA;bill_number as 'BillXBillNumber',&#xD;&#xA;ba_feecod as 'BillXFeeEarner',&#xD;&#xA;ba_bilamt as 'BillXBillAmount',&#xD;&#xA;ba_timbil as 'BillXTimeBilled'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_bill bil&#xD;&#xA;&#xD;&#xA;left join axxia01.dbo.cablaloc cab&#xD;&#xA; on cab.ba_bilnum = bil.bill_number">
+                    <xs:element name="BillExtension_f335d257-da82-45f9-8729-a19aea809c40" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="BillExtension" msprop:DbTableName="BillExtension" msprop:TableType="View" msprop:Description="BillExtension" msprop:QueryDefinition="select&#xD;&#xA;bill_number as 'BillXBillNumber',&#xD;&#xA;dim_fed_hierarchy_history_key as 'BillXFeeEarner',&#xD;&#xA;bill_amount as 'BillXBillAmount',&#xD;&#xA;billed_time as 'BillXTimeBilled'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_bill_activity">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="BillXBillNumber" msprop:DbColumnName="BillXBillNumber" msprop:FriendlyName="BillXBillNumber" minOccurs="0">
@@ -22273,7 +22266,7 @@ CREATE MEASURE 'Bills'[TotalBillAmountOutstanding]=calculate(sum([AmountOutstand
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimBillXFEDHierarchy_cd7ebd06-20e5-4f3a-9c2e-7a2110dd736d" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimBillXFEDHierarchy" msprop:DbTableName="dimBillXFEDHierarchy" msprop:TableType="View" msprop:Description="dimBillXFEDHierarchy" msprop:QueryDefinition="select distinct&#xD;&#xA;h1.dim_fed_hierarchy_history_key as 'BillXFEDCodeID',&#xD;&#xA;h1.fed_code as 'BillXFEDCode',&#xD;&#xA;h1.name as 'BillXFEDName',&#xD;&#xA;h1.hierarchylevel2hist as 'BillXBusinessLine',&#xD;&#xA;h1.hierarchylevel3hist as 'BillXPracticeArea',&#xD;&#xA;h1.hierarchylevel4hist as 'BillXTeam',&#xD;&#xA;h1.reportingbcmname as 'BillXBCMName'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_fed_hierarchy_history h1 &#xD;&#xA;&#xD;&#xA;where h1.dss_current_flag = 'Y'&#xD;&#xA;and fed_code != 'Unknown'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;order by 1">
+                    <xs:element name="dimBillXFEDHierarchy_cd7ebd06-20e5-4f3a-9c2e-7a2110dd736d" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimBillXFEDHierarchy" msprop:DbTableName="dimBillXFEDHierarchy" msprop:TableType="View" msprop:Description="dimBillXFEDHierarchy" msprop:QueryDefinition="select distinct&#xD;&#xA;h1.dim_fed_hierarchy_history_key as 'BillXFEDCodeID',&#xD;&#xA;h1.fed_code as 'BillXFEDCode',&#xD;&#xA;h1.name as 'BillXFEDName',&#xD;&#xA;h1.hierarchylevel2hist as 'BillXBusinessLine',&#xD;&#xA;h1.hierarchylevel3hist as 'BillXPracticeArea',&#xD;&#xA;h1.hierarchylevel4hist as 'BillXTeam',&#xD;&#xA;h1.reportingbcmname as 'BillXBCMName'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_fed_hierarchy_history h1 &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;order by 1">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="BillXFEDCodeID" msprop:DbColumnName="BillXFEDCodeID" msprop:FriendlyName="BillXFEDCodeID" type="xs:int" minOccurs="0" />
