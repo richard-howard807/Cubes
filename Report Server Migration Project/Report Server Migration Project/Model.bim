@@ -2671,14 +2671,14 @@
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>5022e1af-5542-450a-9f2d-0fbbffc04044</DataSourceID>
                     <QueryDefinition>select 
-	cast(ReportID as numeric(10,2)) as 'ReportID',
-	Server,
-	ReportName,
-	ReportCategory,
-	coalesce([12Live], [12UAT], [12Dev]) [2012Status],
-	coalesce([08Retired], [08Live]) [2008Status]
+ cast(ReportID as numeric(10,2)) as 'ReportID',
+ Server,
+ ReportName,
+ ReportCategory,
+ coalesce([12Live], [12UAT], [12Dev], [12Retired]) [2012Status],
+ coalesce([08Retired], [08Live]) [2008Status]
 
-	 from Reporting.dw.ExecutionStatsNew</QueryDefinition>
+  from Reporting.dw.ExecutionStatsNew</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
@@ -3767,7 +3767,7 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
 CREATE MEASURE 'ReportIDs'[Report IDs Needed]=countblank([ReportID]);
 CREATE MEASURE 'ReportIDs'[Count of Reports]=countrows(ReportIDs);
 CREATE MEASURE 'ReportIDs'[Reports Mapped]=if(isblank(calculate(DISTINCTCOUNT(ReportIDs[ReportID]), ReportIDs[2012Status] &lt;&gt; blank(), ReportIDs[2008Status] &lt;&gt; blank())), 0, calculate(DISTINCTCOUNT(ReportIDs[ReportID]), ReportIDs[2012Status] &lt;&gt; blank(), ReportIDs[2008Status] &lt;&gt; blank()));
-CREATE MEASURE 'ReportIDs'[Eligible Reports]=(calculate(DISTINCTCOUNT(ReportIDs[ReportID]), ReportIDs[Server] = "SQL2008SVR")) - [Retired Reports] - [Ineligible Reports];
+CREATE MEASURE 'ReportIDs'[Eligible Reports]=calculate(DISTINCTCOUNT(ReportIDs[ReportID]), ReportIDs[Server] = "SQL2008SVR", ( EligibleReports[Status] = "Outstanding" || EligibleReports[Status] = "Dev"));
 CREATE MEASURE 'ReportIDs'[Percentage of Eligible Reports Mapped]=calculate(if([Eligible Reports] = 0, 1, [Reports Mapped] / [Eligible Reports]));
 CREATE MEASURE 'ReportIDs'[Count of Reports on sql2008]=calculate(distinctcount(ReportIDs[ReportID]), ReportIDs[Server] = "SQL2008SVR");
 CREATE MEASURE 'ReportIDs'[Count of Reports on DWH-01]=calculate(distinctcount(ReportIDs[ReportID]), ReportIDs[Server] = "SVR-LIV-DWH-01");
@@ -4033,7 +4033,7 @@ CREATE MEASURE 'ReportIDs'[Count of New Reports]=if(isblank(calculate(countrows(
               <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:Locale="en-GB">
                 <xs:complexType>
                   <xs:choice minOccurs="0" maxOccurs="unbounded">
-                    <xs:element name="ReportIDs_21d66cf2-26c5-4f42-8f98-7f080ac0aaae" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="ReportIDs" msprop:DbTableName="ReportIDs" msprop:TableType="View" msprop:Description="ReportIDs" msprop:QueryDefinition="select &#xD;&#xA; cast(ReportID as numeric(10,2)) as 'ReportID',&#xD;&#xA; Server,&#xD;&#xA; ReportName,&#xD;&#xA; ReportCategory,&#xD;&#xA; coalesce([12Live], [12UAT], [12Dev]) [2012Status],&#xD;&#xA; coalesce([08Retired], [08Live]) [2008Status]&#xD;&#xA;&#xD;&#xA;  from Reporting.dw.ExecutionStatsNew">
+                    <xs:element name="ReportIDs_21d66cf2-26c5-4f42-8f98-7f080ac0aaae" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="ReportIDs" msprop:DbTableName="ReportIDs" msprop:TableType="View" msprop:Description="ReportIDs" msprop:QueryDefinition="select &#xD;&#xA; cast(ReportID as numeric(10,2)) as 'ReportID',&#xD;&#xA; Server,&#xD;&#xA; ReportName,&#xD;&#xA; ReportCategory,&#xD;&#xA; coalesce([12Live], [12UAT], [12Dev], [12Retired]) [2012Status],&#xD;&#xA; coalesce([08Retired], [08Live]) [2008Status]&#xD;&#xA;&#xD;&#xA;  from Reporting.dw.ExecutionStatsNew">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="ReportID" msprop:DbColumnName="ReportID" msprop:FriendlyName="ReportID" minOccurs="0">
