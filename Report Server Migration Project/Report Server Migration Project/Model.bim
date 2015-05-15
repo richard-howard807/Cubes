@@ -459,6 +459,11 @@
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>DataCompleted</Name>
                 </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>IDLinkConfirmed</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>IDLinkConfirmed</Name>
+                </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
@@ -906,6 +911,31 @@
                 <Source xsi:type="ColumnBinding">
                   <TableID>EligibleReports_5ac2d0f7-68b7-4949-8bec-94014fcbe202</TableID>
                   <ColumnID>DataCompleted</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>IDLinkConfirmed</ID>
+              <Name>IDLinkConfirmed</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>EligibleReports_5ac2d0f7-68b7-4949-8bec-94014fcbe202</TableID>
+                    <ColumnID>IDLinkConfirmed</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>EligibleReports_5ac2d0f7-68b7-4949-8bec-94014fcbe202</TableID>
+                  <ColumnID>IDLinkConfirmed</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
@@ -1903,6 +1933,9 @@
                 <Attribute>
                   <AttributeID>DataCompleted</AttributeID>
                 </Attribute>
+                <Attribute>
+                  <AttributeID>IDLinkConfirmed</AttributeID>
+                </Attribute>
               </Attributes>
             </Dimension>
             <Dimension>
@@ -2319,6 +2352,20 @@
                           <Source xsi:type="ColumnBinding">
                             <TableID>EligibleReports_5ac2d0f7-68b7-4949-8bec-94014fcbe202</TableID>
                             <ColumnID>DataCompleted</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>IDLinkConfirmed</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>EligibleReports_5ac2d0f7-68b7-4949-8bec-94014fcbe202</TableID>
+                            <ColumnID>IDLinkConfirmed</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -2941,6 +2988,20 @@
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>IDLinkConfirmed</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>EligibleReports_5ac2d0f7-68b7-4949-8bec-94014fcbe202</TableID>
+                            <ColumnID>IDLinkConfirmed</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
                 </Dimension>
@@ -3300,7 +3361,8 @@
       ,[Comments]
       ,[Recipient],
 case 
-when [Status] = ''  or Category = '' or Allocation = '' then null else 1 end  DataCompleted
+when [Status] = ''  or Category = '' or Allocation = '' then null else 1 end  DataCompleted,
+IDLinkConfirmed
  
   FROM [Reporting].[dbo].[DWHProgress]</QueryDefinition>
                   </Source>
@@ -4081,7 +4143,7 @@ CREATE MEASURE 'ReportIDs'[Count of New Reports]=if(isblank(calculate(countrows(
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="EligibleReports_5ac2d0f7-68b7-4949-8bec-94014fcbe202" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="EligibleReports" msprop:DbTableName="EligibleReports" msprop:TableType="View" msprop:Description="EligibleReports" msprop:QueryDefinition="SELECT[ID]&#xD;&#xA;      ,[Name]&#xD;&#xA;      ,cast([CreationDate] as date) CreationDate&#xD;&#xA;      ,[ModifiedDate]&#xD;&#xA;      ,[Status]&#xD;&#xA;      ,[Path]&#xD;&#xA;      ,[Category]&#xD;&#xA;      ,[ServerLocation]&#xD;&#xA;      ,[Allocation]&#xD;&#xA;      ,[Priority]&#xD;&#xA;      ,[Comments]&#xD;&#xA;      ,[Recipient],&#xD;&#xA;case &#xD;&#xA;when [Status] = ''  or Category = '' or Allocation = '' then null else 1 end  DataCompleted&#xD;&#xA; &#xD;&#xA;  FROM [Reporting].[dbo].[DWHProgress]">
+                    <xs:element name="EligibleReports_5ac2d0f7-68b7-4949-8bec-94014fcbe202" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="EligibleReports" msprop:DbTableName="EligibleReports" msprop:TableType="View" msprop:Description="EligibleReports" msprop:QueryDefinition="SELECT[ID]&#xD;&#xA;      ,[Name]&#xD;&#xA;      ,cast([CreationDate] as date) CreationDate&#xD;&#xA;      ,[ModifiedDate]&#xD;&#xA;      ,[Status]&#xD;&#xA;      ,[Path]&#xD;&#xA;      ,[Category]&#xD;&#xA;      ,[ServerLocation]&#xD;&#xA;      ,[Allocation]&#xD;&#xA;      ,[Priority]&#xD;&#xA;      ,[Comments]&#xD;&#xA;      ,[Recipient],&#xD;&#xA;case &#xD;&#xA;when [Status] = ''  or Category = '' or Allocation = '' then null else 1 end  DataCompleted,&#xD;&#xA;IDLinkConfirmed&#xD;&#xA; &#xD;&#xA;  FROM [Reporting].[dbo].[DWHProgress]">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="ID" msprop:DbColumnName="ID" msprop:FriendlyName="ID" type="xs:int" minOccurs="0" />
@@ -4145,6 +4207,7 @@ CREATE MEASURE 'ReportIDs'[Count of New Reports]=if(isblank(calculate(countrows(
                             </xs:simpleType>
                           </xs:element>
                           <xs:element name="DataCompleted" msprop:DbColumnName="DataCompleted" msprop:FriendlyName="DataCompleted" type="xs:int" minOccurs="0" />
+                          <xs:element name="IDLinkConfirmed" msprop:DbColumnName="IDLinkConfirmed" msprop:FriendlyName="IDLinkConfirmed" type="xs:int" minOccurs="0" />
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
