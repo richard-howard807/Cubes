@@ -4951,6 +4951,96 @@
             </Annotation>
             <Annotation>
               <Name>QueryEditorSerialization</Name>
+              <Value>&lt;?xml version="1.0" encoding="UTF-16"?&gt;&lt;Gemini xmlns="QueryEditorSerialization"&gt;&lt;AnnotationContent&gt;&lt;![CDATA[&lt;RSQueryCommandText&gt;select distinct
+h1.dim_fed_hierarchy_history_key as 'MatterFEDCodeID',
+e.displayemployeeid as 'MatterCascadeEmployeeID',
+e.payrollid as 'MatterPayrollID',
+h1.fed_code as 'MatterFEDCode',
+h1.name as 'MatterFEDName',
+e.forename as 'MatterFEDForename',
+e.surname as 'MatterFEDSurname',
+e4.workemail as 'MatterEmailAddress',
+j.locationidud as 'MatterFEDLocation',
+case when j.levelidud in ('Equity Partner','Fixed Share Partner','Silver Equity Partner') then 'Partner' else j.levelidud end as 'MatterGrade',
+h1.hierarchylevel2hist as 'MatterBusinessLine',
+h1.hierarchylevel3hist as 'MatterPracticeArea',
+h1.hierarchylevel4hist as 'MatterTeam',
+h1.reportingbcmname as 'MatterBCMName',
+e3.workemail as 'MatterBCMEmail',
+case when e3.payrollid = '' or e3.payrollid is null then e.displayemployeeid else e3.payrollid end AS 'MatterBCMPayrollID',
+CASE WHEN j3.levelidud IN ('Equity Partner','Silver Equity Partner','Fixed Share Partner') THEN RTRIM(h3.fed_code) ELSE e3.displayemployeeid END AS 'MatterBCMSpendvisionID',
+case when e.leaver = 0 then 'N' else 'Y' end as 'MatterLeaver',
+eMan.forename + ' ' + eMan.surname AS 'MatterManagerName',
+case when eMan.payrollid is null or eMan.payrollid = '' then eMan.displayemployeeid else eMan.payrollid end AS 'MatterManagerPayrollID',
+CASE WHEN jMan.levelidud IN ('Equity Partner','Silver Equity Partner','Fixed Share Partner') THEN RTRIM(hMan.fed_code) ELSE eMan.payrollid END AS 'MatterManagerSpendvisionID',
+e.windowsusername as 'MatterLogin',
+eBCM.knownas + ' ' + eBCM.surname as 'MatterBCMsBCM',
+CASE WHEN jBCM.levelidud IN ('Equity Partner','Silver Equity Partner','Fixed Share Partner') THEN RTRIM(hBCM.fed_code) ELSE eBCM.payrollid END AS 'MatterBCMBCMSpendvision',
+h1.dss_current_flag as 'MatterCurrentFlag'
+
+
+from
+red_dw.dbo.dim_fed_hierarchy_history h1 
+
+left join red_dw.dbo.ds_sh_employee e
+ on cast(e.employeeid as varchar(36)) = h1.employeeid
+ and e.dss_current_flag = 'Y'
+
+left join red_dw.dbo.ds_sh_employee_jobs j
+ on j.employeeid = h1.employeeid
+ and j.dss_current_flag = 'Y'
+ and j.sys_activejob = 1
+
+left join 
+	red_dw.dbo.load_cascade_employee e3
+  on e3.employeeid = h1.reportingbcmidud
+
+left join
+ red_dw.dbo.load_cascade_employee e4
+  on e4.employeeid = h1.employeeid 
+
+left join red_dw.dbo.ds_sh_employee_jobs j3
+ on j3.employeeid = h1.reportingbcmidud
+ and j3.dss_current_flag = 'Y'
+ and j3.sys_activejob = 1
+
+ left join red_dw.dbo.dim_fed_hierarchy_history h3
+	on h3.employeeid = j3.employeeid
+	 and h3.dss_current_flag = 'Y'
+	 and h3.activeud = 1
+
+left join red_dw.dbo.ds_sh_employee eMan
+ on cast(eMan.employeeid as varchar(36)) = h1.worksforemployeeid
+ and eMan.dss_current_flag = 'Y'
+
+ left join red_dw.dbo.ds_sh_employee_jobs jMan
+ on jMan.employeeid = eMan.employeeid
+ and jMan.dss_current_flag = 'Y'
+ and jMan.sys_activejob = 1
+
+left join red_dw.dbo.dim_fed_hierarchy_history hMan
+	on hMan.employeeid = jMan.employeeid
+	 and hMan.dss_current_flag = 'Y'
+	 and hMan.activeud = 1
+
+left join red_dw.dbo.ds_sh_employee eBCM
+ on cast(eBCM.employeeid as varchar(36)) = h1.reportingbcmidud
+ and eBCM.dss_current_flag = 'Y'
+
+ left join red_dw.dbo.ds_sh_employee_jobs jBCM
+ on jBCM.employeeid = eBCM.employeeid
+ and jBCM.dss_current_flag = 'Y'
+ and jBCM.sys_activejob = 1
+
+left join red_dw.dbo.dim_fed_hierarchy_history hBCM
+	on hBCM.employeeid = jBCM.employeeid
+	 and hBCM.dss_current_flag = 'Y'
+	 and hBCM.activeud = 1
+
+
+
+
+order by 1&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryCommandType&gt;&lt;RSQueryDesignState&gt;&lt;/RSQueryDesignState&gt;]]&gt;&lt;/AnnotationContent&gt;&lt;/Gemini&gt;</Value>
             </Annotation>
             <Annotation>
               <Name>IsQueryEditorUsed</Name>
@@ -5066,6 +5156,66 @@
                   <AttributeID>MatterBCMEmail</AttributeID>
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>MatterBCMEmail</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>MatterCascadeEmployeeID</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>MatterCascadeEmployeeID</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>MatterPayrollID</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>MatterPayrollID</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>MatterBCMPayrollID</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>MatterBCMPayrollID</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>MatterBCMSpendvisionID</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>MatterBCMSpendvisionID</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>MatterManagerName</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>MatterManagerName</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>MatterManagerPayrollID</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>MatterManagerPayrollID</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>MatterManagerSpendvisionID</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>MatterManagerSpendvisionID</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>MatterLogin</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>MatterLogin</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>MatterBCMsBCM</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>MatterBCMsBCM</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>MatterBCMBCMSpendvision</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>MatterBCMBCMSpendvision</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>MatterLeaverDate</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>MatterLeaverDate</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>MatterActiveUD</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>MatterActiveUD</Name>
                 </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
@@ -5442,6 +5592,306 @@
                 <Source xsi:type="ColumnBinding">
                   <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
                   <ColumnID>MatterBCMEmail</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>MatterCascadeEmployeeID</ID>
+              <Name>MatterCascadeEmployeeID</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                    <ColumnID>MatterCascadeEmployeeID</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                  <ColumnID>MatterCascadeEmployeeID</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>MatterPayrollID</ID>
+              <Name>MatterPayrollID</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                    <ColumnID>MatterPayrollID</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                  <ColumnID>MatterPayrollID</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>MatterBCMPayrollID</ID>
+              <Name>MatterBCMPayrollID</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                    <ColumnID>MatterBCMPayrollID</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                  <ColumnID>MatterBCMPayrollID</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>MatterBCMSpendvisionID</ID>
+              <Name>MatterBCMSpendvisionID</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                    <ColumnID>MatterBCMSpendvisionID</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                  <ColumnID>MatterBCMSpendvisionID</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>MatterManagerName</ID>
+              <Name>MatterManagerName</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                    <ColumnID>MatterManagerName</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                  <ColumnID>MatterManagerName</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>MatterManagerPayrollID</ID>
+              <Name>MatterManagerPayrollID</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                    <ColumnID>MatterManagerPayrollID</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                  <ColumnID>MatterManagerPayrollID</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>MatterManagerSpendvisionID</ID>
+              <Name>MatterManagerSpendvisionID</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                    <ColumnID>MatterManagerSpendvisionID</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                  <ColumnID>MatterManagerSpendvisionID</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>MatterLogin</ID>
+              <Name>MatterLogin</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                    <ColumnID>MatterLogin</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                  <ColumnID>MatterLogin</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>MatterBCMsBCM</ID>
+              <Name>MatterBCMsBCM</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                    <ColumnID>MatterBCMsBCM</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                  <ColumnID>MatterBCMsBCM</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>MatterBCMBCMSpendvision</ID>
+              <Name>MatterBCMBCMSpendvision</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                    <ColumnID>MatterBCMBCMSpendvision</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                  <ColumnID>MatterBCMBCMSpendvision</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>MatterLeaverDate</ID>
+              <Name>MatterLeaverDate</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Date</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                    <ColumnID>MatterLeaverDate</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                  <ColumnID>MatterLeaverDate</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>MatterActiveUD</ID>
+              <Name>MatterActiveUD</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Boolean</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                    <ColumnID>MatterActiveUD</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                  <ColumnID>MatterActiveUD</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
@@ -8670,6 +9120,42 @@
                 <Attribute>
                   <AttributeID>MatterBCMEmail</AttributeID>
                 </Attribute>
+                <Attribute>
+                  <AttributeID>MatterCascadeEmployeeID</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>MatterPayrollID</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>MatterBCMPayrollID</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>MatterBCMSpendvisionID</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>MatterManagerName</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>MatterManagerPayrollID</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>MatterManagerSpendvisionID</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>MatterLogin</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>MatterBCMsBCM</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>MatterBCMBCMSpendvision</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>MatterLeaverDate</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>MatterActiveUD</AttributeID>
+                </Attribute>
               </Attributes>
             </Dimension>
             <Dimension>
@@ -9674,6 +10160,174 @@
                           <Source xsi:type="ColumnBinding">
                             <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
                             <ColumnID>MatterBCMEmail</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterCascadeEmployeeID</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                            <ColumnID>MatterCascadeEmployeeID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterPayrollID</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                            <ColumnID>MatterPayrollID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterBCMPayrollID</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                            <ColumnID>MatterBCMPayrollID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterBCMSpendvisionID</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                            <ColumnID>MatterBCMSpendvisionID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterManagerName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                            <ColumnID>MatterManagerName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterManagerPayrollID</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                            <ColumnID>MatterManagerPayrollID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterManagerSpendvisionID</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                            <ColumnID>MatterManagerSpendvisionID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterLogin</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                            <ColumnID>MatterLogin</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterBCMsBCM</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                            <ColumnID>MatterBCMsBCM</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterBCMBCMSpendvision</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                            <ColumnID>MatterBCMBCMSpendvision</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterLeaverDate</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                            <ColumnID>MatterLeaverDate</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterActiveUD</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Boolean</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                            <ColumnID>MatterActiveUD</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -12494,6 +13148,174 @@ calendar_date = cast(getdate() - 1 as date))</QueryDefinition>
                           <Source xsi:type="ColumnBinding">
                             <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
                             <ColumnID>MatterBCMEmail</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterCascadeEmployeeID</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                            <ColumnID>MatterCascadeEmployeeID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterPayrollID</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                            <ColumnID>MatterPayrollID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterBCMPayrollID</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                            <ColumnID>MatterBCMPayrollID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterBCMSpendvisionID</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                            <ColumnID>MatterBCMSpendvisionID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterManagerName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                            <ColumnID>MatterManagerName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterManagerPayrollID</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                            <ColumnID>MatterManagerPayrollID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterManagerSpendvisionID</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                            <ColumnID>MatterManagerSpendvisionID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterLogin</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                            <ColumnID>MatterLogin</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterBCMsBCM</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                            <ColumnID>MatterBCMsBCM</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterBCMBCMSpendvision</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                            <ColumnID>MatterBCMBCMSpendvision</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterLeaverDate</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                            <ColumnID>MatterLeaverDate</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterActiveUD</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Boolean</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                            <ColumnID>MatterActiveUD</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -16474,6 +17296,174 @@ red_dw.dbo.dim_matter_worktype</QueryDefinition>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterCascadeEmployeeID</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                            <ColumnID>MatterCascadeEmployeeID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterPayrollID</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                            <ColumnID>MatterPayrollID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterBCMPayrollID</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                            <ColumnID>MatterBCMPayrollID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterBCMSpendvisionID</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                            <ColumnID>MatterBCMSpendvisionID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterManagerName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                            <ColumnID>MatterManagerName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterManagerPayrollID</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                            <ColumnID>MatterManagerPayrollID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterManagerSpendvisionID</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                            <ColumnID>MatterManagerSpendvisionID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterLogin</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                            <ColumnID>MatterLogin</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterBCMsBCM</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                            <ColumnID>MatterBCMsBCM</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterBCMBCMSpendvision</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                            <ColumnID>MatterBCMBCMSpendvision</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterLeaverDate</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                            <ColumnID>MatterLeaverDate</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterActiveUD</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Boolean</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                            <ColumnID>MatterActiveUD</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
                 </Dimension>
@@ -16491,16 +17481,10 @@ red_dw.dbo.dim_matter_worktype</QueryDefinition>
                     </Annotation>
                     <Annotation>
                       <Name>QueryEditorSerialization</Name>
-                    </Annotation>
-                    <Annotation>
-                      <Name>IsQueryEditorUsed</Name>
-                      <Value>True</Value>
-                    </Annotation>
-                  </Annotations>
-                  <Source xsi:type="QueryBinding">
-                    <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
-                    <QueryDefinition>select distinct
+                      <Value>&lt;?xml version="1.0" encoding="UTF-16"?&gt;&lt;Gemini xmlns="QueryEditorSerialization"&gt;&lt;AnnotationContent&gt;&lt;![CDATA[&lt;RSQueryCommandText&gt;select distinct
 h1.dim_fed_hierarchy_history_key as 'MatterFEDCodeID',
+e.displayemployeeid as 'MatterCascadeEmployeeID',
+e.payrollid as 'MatterPayrollID',
 h1.fed_code as 'MatterFEDCode',
 h1.name as 'MatterFEDName',
 e.forename as 'MatterFEDForename',
@@ -16513,7 +17497,15 @@ h1.hierarchylevel3hist as 'MatterPracticeArea',
 h1.hierarchylevel4hist as 'MatterTeam',
 h1.reportingbcmname as 'MatterBCMName',
 e3.workemail as 'MatterBCMEmail',
+case when e3.payrollid = '' or e3.payrollid is null then e.displayemployeeid else e3.payrollid end AS 'MatterBCMPayrollID',
+CASE WHEN j3.levelidud IN ('Equity Partner','Silver Equity Partner','Fixed Share Partner') THEN RTRIM(h3.fed_code) ELSE e3.displayemployeeid END AS 'MatterBCMSpendvisionID',
 case when e.leaver = 0 then 'N' else 'Y' end as 'MatterLeaver',
+eMan.forename + ' ' + eMan.surname AS 'MatterManagerName',
+case when eMan.payrollid is null or eMan.payrollid = '' then eMan.displayemployeeid else eMan.payrollid end AS 'MatterManagerPayrollID',
+CASE WHEN jMan.levelidud IN ('Equity Partner','Silver Equity Partner','Fixed Share Partner') THEN RTRIM(hMan.fed_code) ELSE eMan.payrollid END AS 'MatterManagerSpendvisionID',
+e.windowsusername as 'MatterLogin',
+eBCM.knownas + ' ' + eBCM.surname as 'MatterBCMsBCM',
+CASE WHEN jBCM.levelidud IN ('Equity Partner','Silver Equity Partner','Fixed Share Partner') THEN RTRIM(hBCM.fed_code) ELSE eBCM.payrollid END AS 'MatterBCMBCMSpendvision',
 h1.dss_current_flag as 'MatterCurrentFlag'
 
 
@@ -16529,13 +17521,151 @@ left join red_dw.dbo.ds_sh_employee_jobs j
  and j.dss_current_flag = 'Y'
  and j.sys_activejob = 1
 
-left join
+left join 
 	red_dw.dbo.load_cascade_employee e3
-		on e3.employeeid = h1.reportingbcmidud
+  on e3.employeeid = h1.reportingbcmidud
 
 left join
-	red_dw.dbo.load_cascade_employee e4
-		on e4.employeeid = h1.employeeid 
+ red_dw.dbo.load_cascade_employee e4
+  on e4.employeeid = h1.employeeid 
+
+left join red_dw.dbo.ds_sh_employee_jobs j3
+ on j3.employeeid = h1.reportingbcmidud
+ and j3.dss_current_flag = 'Y'
+ and j3.sys_activejob = 1
+
+ left join red_dw.dbo.dim_fed_hierarchy_history h3
+	on h3.employeeid = j3.employeeid
+	 and h3.dss_current_flag = 'Y'
+	 and h3.activeud = 1
+
+left join red_dw.dbo.ds_sh_employee eMan
+ on cast(eMan.employeeid as varchar(36)) = h1.worksforemployeeid
+ and eMan.dss_current_flag = 'Y'
+
+ left join red_dw.dbo.ds_sh_employee_jobs jMan
+ on jMan.employeeid = eMan.employeeid
+ and jMan.dss_current_flag = 'Y'
+ and jMan.sys_activejob = 1
+
+left join red_dw.dbo.dim_fed_hierarchy_history hMan
+	on hMan.employeeid = jMan.employeeid
+	 and hMan.dss_current_flag = 'Y'
+	 and hMan.activeud = 1
+
+left join red_dw.dbo.ds_sh_employee eBCM
+ on cast(eBCM.employeeid as varchar(36)) = h1.reportingbcmidud
+ and eBCM.dss_current_flag = 'Y'
+
+ left join red_dw.dbo.ds_sh_employee_jobs jBCM
+ on jBCM.employeeid = eBCM.employeeid
+ and jBCM.dss_current_flag = 'Y'
+ and jBCM.sys_activejob = 1
+
+left join red_dw.dbo.dim_fed_hierarchy_history hBCM
+	on hBCM.employeeid = jBCM.employeeid
+	 and hBCM.dss_current_flag = 'Y'
+	 and hBCM.activeud = 1
+
+
+
+
+order by 1&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryCommandType&gt;&lt;RSQueryDesignState&gt;&lt;/RSQueryDesignState&gt;]]&gt;&lt;/AnnotationContent&gt;&lt;/Gemini&gt;</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsQueryEditorUsed</Name>
+                      <Value>True</Value>
+                    </Annotation>
+                  </Annotations>
+                  <Source xsi:type="QueryBinding">
+                    <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
+                    <QueryDefinition>select distinct
+h1.dim_fed_hierarchy_history_key as 'MatterFEDCodeID',
+case when e.payrollid = '' or e.payrollid is null then e.displayemployeeid else e.payrollid end as 'MatterCascadeEmployeeID',
+e.payrollid as 'MatterPayrollID',
+h1.fed_code as 'MatterFEDCode',
+h1.name as 'MatterFEDName',
+e.forename as 'MatterFEDForename',
+e.surname as 'MatterFEDSurname',
+e4.workemail as 'MatterEmailAddress',
+j.locationidud as 'MatterFEDLocation',
+case when j.levelidud in ('Equity Partner','Fixed Share Partner','Silver Equity Partner') then 'Partner' else j.levelidud end as 'MatterGrade',
+h1.hierarchylevel2hist as 'MatterBusinessLine',
+h1.hierarchylevel3hist as 'MatterPracticeArea',
+h1.hierarchylevel4hist as 'MatterTeam',
+h1.reportingbcmname as 'MatterBCMName',
+e3.workemail as 'MatterBCMEmail',
+case when e3.payrollid = '' or e3.payrollid is null then e.displayemployeeid else e3.payrollid end AS 'MatterBCMPayrollID',
+CASE WHEN j3.levelidud IN ('Equity Partner','Silver Equity Partner','Fixed Share Partner') THEN RTRIM(h3.fed_code) ELSE e3.displayemployeeid END AS 'MatterBCMSpendvisionID',
+eMan.forename + ' ' + eMan.surname AS 'MatterManagerName',
+case when eMan.payrollid is null or eMan.payrollid = '' then eMan.displayemployeeid else eMan.payrollid end AS 'MatterManagerPayrollID',
+CASE WHEN jMan.levelidud IN ('Equity Partner','Silver Equity Partner','Fixed Share Partner') THEN RTRIM(hMan.fed_code) ELSE eMan.payrollid END AS 'MatterManagerSpendvisionID',
+eBCM.knownas + ' ' + eBCM.surname as 'MatterBCMsBCM',
+CASE WHEN jBCM.levelidud IN ('Equity Partner','Silver Equity Partner','Fixed Share Partner') THEN RTRIM(hBCM.fed_code) ELSE eBCM.payrollid END AS 'MatterBCMBCMSpendvision',
+case when e.leaver = 0 then 'N' else 'Y' end as 'MatterLeaver',
+e.leaverlastworkdate as 'MatterLeaverDate',
+e.windowsusername as 'MatterLogin',
+h1.dss_current_flag as 'MatterCurrentFlag',
+h1.activeud as 'MatterActiveUD'
+
+
+from
+red_dw.dbo.dim_fed_hierarchy_history h1 
+
+left join red_dw.dbo.ds_sh_employee e
+ on cast(e.employeeid as varchar(36)) = h1.employeeid
+ and e.dss_current_flag = 'Y'
+
+left join red_dw.dbo.ds_sh_employee_jobs j
+ on j.employeeid = h1.employeeid
+ and j.dss_current_flag = 'Y'
+ and j.sys_activejob = 1
+
+left join 
+	red_dw.dbo.load_cascade_employee e3
+  on e3.employeeid = h1.reportingbcmidud
+
+left join
+ red_dw.dbo.load_cascade_employee e4
+  on e4.employeeid = h1.employeeid 
+
+left join red_dw.dbo.ds_sh_employee_jobs j3
+ on j3.employeeid = h1.reportingbcmidud
+ and j3.dss_current_flag = 'Y'
+ and j3.sys_activejob = 1
+
+ left join red_dw.dbo.dim_fed_hierarchy_history h3
+	on h3.employeeid = j3.employeeid
+	 and h3.dss_current_flag = 'Y'
+	 and h3.activeud = 1
+
+left join red_dw.dbo.ds_sh_employee eMan
+ on cast(eMan.employeeid as varchar(36)) = h1.worksforemployeeid
+ and eMan.dss_current_flag = 'Y'
+
+ left join red_dw.dbo.ds_sh_employee_jobs jMan
+ on jMan.employeeid = eMan.employeeid
+ and jMan.dss_current_flag = 'Y'
+ and jMan.sys_activejob = 1
+
+left join red_dw.dbo.dim_fed_hierarchy_history hMan
+	on hMan.employeeid = jMan.employeeid
+	 and hMan.dss_current_flag = 'Y'
+	 and hMan.activeud = 1
+
+left join red_dw.dbo.ds_sh_employee eBCM
+ on cast(eBCM.employeeid as varchar(36)) = h1.reportingbcmidud
+ and eBCM.dss_current_flag = 'Y'
+
+ left join red_dw.dbo.ds_sh_employee_jobs jBCM
+ on jBCM.employeeid = eBCM.employeeid
+ and jBCM.dss_current_flag = 'Y'
+ and jBCM.sys_activejob = 1
+
+left join red_dw.dbo.dim_fed_hierarchy_history hBCM
+	on hBCM.employeeid = jBCM.employeeid
+	 and hBCM.dss_current_flag = 'Y'
+	 and hBCM.activeud = 1
 
 
 order by 1</QueryDefinition>
@@ -19525,6 +20655,174 @@ dim_date</QueryDefinition>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterCascadeEmployeeID</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                            <ColumnID>MatterCascadeEmployeeID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterPayrollID</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                            <ColumnID>MatterPayrollID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterBCMPayrollID</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                            <ColumnID>MatterBCMPayrollID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterBCMSpendvisionID</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                            <ColumnID>MatterBCMSpendvisionID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterManagerName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                            <ColumnID>MatterManagerName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterManagerPayrollID</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                            <ColumnID>MatterManagerPayrollID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterManagerSpendvisionID</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                            <ColumnID>MatterManagerSpendvisionID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterLogin</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                            <ColumnID>MatterLogin</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterBCMsBCM</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                            <ColumnID>MatterBCMsBCM</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterBCMBCMSpendvision</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                            <ColumnID>MatterBCMBCMSpendvision</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterLeaverDate</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                            <ColumnID>MatterLeaverDate</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterActiveUD</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Boolean</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                            <ColumnID>MatterActiveUD</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <IntermediateCubeDimensionID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</IntermediateCubeDimensionID>
                   <IntermediateGranularityAttributeID>FEDCodeID</IntermediateGranularityAttributeID>
@@ -22287,7 +23585,7 @@ CREATE MEASURE 'Bills'[TotalBillAmountOutstanding]=calculate(sum([AmountOutstand
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimMatterFEDHierarchy" msprop:DbTableName="dimMatterFEDHierarchy" msprop:TableType="View" msprop:Description="dimMatterFEDHierarchy" msprop:QueryDefinition="select distinct&#xD;&#xA;h1.dim_fed_hierarchy_history_key as 'MatterFEDCodeID',&#xD;&#xA;h1.fed_code as 'MatterFEDCode',&#xD;&#xA;h1.name as 'MatterFEDName',&#xD;&#xA;e.forename as 'MatterFEDForename',&#xD;&#xA;e.surname as 'MatterFEDSurname',&#xD;&#xA;e4.workemail as 'MatterEmailAddress',&#xD;&#xA;j.locationidud as 'MatterFEDLocation',&#xD;&#xA;case when j.levelidud in ('Equity Partner','Fixed Share Partner','Silver Equity Partner') then 'Partner' else j.levelidud end as 'MatterGrade',&#xD;&#xA;h1.hierarchylevel2hist as 'MatterBusinessLine',&#xD;&#xA;h1.hierarchylevel3hist as 'MatterPracticeArea',&#xD;&#xA;h1.hierarchylevel4hist as 'MatterTeam',&#xD;&#xA;h1.reportingbcmname as 'MatterBCMName',&#xD;&#xA;e3.workemail as 'MatterBCMEmail',&#xD;&#xA;case when e.leaver = 0 then 'N' else 'Y' end as 'MatterLeaver',&#xD;&#xA;h1.dss_current_flag as 'MatterCurrentFlag'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_fed_hierarchy_history h1 &#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.ds_sh_employee e&#xD;&#xA; on cast(e.employeeid as varchar(36)) = h1.employeeid&#xD;&#xA; and e.dss_current_flag = 'Y'&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.ds_sh_employee_jobs j&#xD;&#xA; on j.employeeid = h1.employeeid&#xD;&#xA; and j.dss_current_flag = 'Y'&#xD;&#xA; and j.sys_activejob = 1&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; red_dw.dbo.load_cascade_employee e3&#xD;&#xA;  on e3.employeeid = h1.reportingbcmidud&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; red_dw.dbo.load_cascade_employee e4&#xD;&#xA;  on e4.employeeid = h1.employeeid &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;order by 1">
+                    <xs:element name="dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimMatterFEDHierarchy" msprop:DbTableName="dimMatterFEDHierarchy" msprop:TableType="View" msprop:Description="dimMatterFEDHierarchy" msprop:QueryDefinition="select distinct&#xD;&#xA;h1.dim_fed_hierarchy_history_key as 'MatterFEDCodeID',&#xD;&#xA;case when e.payrollid = '' or e.payrollid is null then e.displayemployeeid else e.payrollid end as 'MatterCascadeEmployeeID',&#xD;&#xA;e.payrollid as 'MatterPayrollID',&#xD;&#xA;h1.fed_code as 'MatterFEDCode',&#xD;&#xA;h1.name as 'MatterFEDName',&#xD;&#xA;e.forename as 'MatterFEDForename',&#xD;&#xA;e.surname as 'MatterFEDSurname',&#xD;&#xA;e4.workemail as 'MatterEmailAddress',&#xD;&#xA;j.locationidud as 'MatterFEDLocation',&#xD;&#xA;case when j.levelidud in ('Equity Partner','Fixed Share Partner','Silver Equity Partner') then 'Partner' else j.levelidud end as 'MatterGrade',&#xD;&#xA;h1.hierarchylevel2hist as 'MatterBusinessLine',&#xD;&#xA;h1.hierarchylevel3hist as 'MatterPracticeArea',&#xD;&#xA;h1.hierarchylevel4hist as 'MatterTeam',&#xD;&#xA;h1.reportingbcmname as 'MatterBCMName',&#xD;&#xA;e3.workemail as 'MatterBCMEmail',&#xD;&#xA;case when e3.payrollid = '' or e3.payrollid is null then e.displayemployeeid else e3.payrollid end AS 'MatterBCMPayrollID',&#xD;&#xA;CASE WHEN j3.levelidud IN ('Equity Partner','Silver Equity Partner','Fixed Share Partner') THEN RTRIM(h3.fed_code) ELSE e3.displayemployeeid END AS 'MatterBCMSpendvisionID',&#xD;&#xA;eMan.forename + ' ' + eMan.surname AS 'MatterManagerName',&#xD;&#xA;case when eMan.payrollid is null or eMan.payrollid = '' then eMan.displayemployeeid else eMan.payrollid end AS 'MatterManagerPayrollID',&#xD;&#xA;CASE WHEN jMan.levelidud IN ('Equity Partner','Silver Equity Partner','Fixed Share Partner') THEN RTRIM(hMan.fed_code) ELSE eMan.payrollid END AS 'MatterManagerSpendvisionID',&#xD;&#xA;eBCM.knownas + ' ' + eBCM.surname as 'MatterBCMsBCM',&#xD;&#xA;CASE WHEN jBCM.levelidud IN ('Equity Partner','Silver Equity Partner','Fixed Share Partner') THEN RTRIM(hBCM.fed_code) ELSE eBCM.payrollid END AS 'MatterBCMBCMSpendvision',&#xD;&#xA;case when e.leaver = 0 then 'N' else 'Y' end as 'MatterLeaver',&#xD;&#xA;e.leaverlastworkdate as 'MatterLeaverDate',&#xD;&#xA;e.windowsusername as 'MatterLogin',&#xD;&#xA;h1.dss_current_flag as 'MatterCurrentFlag',&#xD;&#xA;h1.activeud as 'MatterActiveUD'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_fed_hierarchy_history h1 &#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.ds_sh_employee e&#xD;&#xA; on cast(e.employeeid as varchar(36)) = h1.employeeid&#xD;&#xA; and e.dss_current_flag = 'Y'&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.ds_sh_employee_jobs j&#xD;&#xA; on j.employeeid = h1.employeeid&#xD;&#xA; and j.dss_current_flag = 'Y'&#xD;&#xA; and j.sys_activejob = 1&#xD;&#xA;&#xD;&#xA;left join &#xD;&#xA; red_dw.dbo.load_cascade_employee e3&#xD;&#xA;  on e3.employeeid = h1.reportingbcmidud&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; red_dw.dbo.load_cascade_employee e4&#xD;&#xA;  on e4.employeeid = h1.employeeid &#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.ds_sh_employee_jobs j3&#xD;&#xA; on j3.employeeid = h1.reportingbcmidud&#xD;&#xA; and j3.dss_current_flag = 'Y'&#xD;&#xA; and j3.sys_activejob = 1&#xD;&#xA;&#xD;&#xA; left join red_dw.dbo.dim_fed_hierarchy_history h3&#xD;&#xA; on h3.employeeid = j3.employeeid&#xD;&#xA;  and h3.dss_current_flag = 'Y'&#xD;&#xA;  and h3.activeud = 1&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.ds_sh_employee eMan&#xD;&#xA; on cast(eMan.employeeid as varchar(36)) = h1.worksforemployeeid&#xD;&#xA; and eMan.dss_current_flag = 'Y'&#xD;&#xA;&#xD;&#xA; left join red_dw.dbo.ds_sh_employee_jobs jMan&#xD;&#xA; on jMan.employeeid = eMan.employeeid&#xD;&#xA; and jMan.dss_current_flag = 'Y'&#xD;&#xA; and jMan.sys_activejob = 1&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_fed_hierarchy_history hMan&#xD;&#xA; on hMan.employeeid = jMan.employeeid&#xD;&#xA;  and hMan.dss_current_flag = 'Y'&#xD;&#xA;  and hMan.activeud = 1&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.ds_sh_employee eBCM&#xD;&#xA; on cast(eBCM.employeeid as varchar(36)) = h1.reportingbcmidud&#xD;&#xA; and eBCM.dss_current_flag = 'Y'&#xD;&#xA;&#xD;&#xA; left join red_dw.dbo.ds_sh_employee_jobs jBCM&#xD;&#xA; on jBCM.employeeid = eBCM.employeeid&#xD;&#xA; and jBCM.dss_current_flag = 'Y'&#xD;&#xA; and jBCM.sys_activejob = 1&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_fed_hierarchy_history hBCM&#xD;&#xA; on hBCM.employeeid = jBCM.employeeid&#xD;&#xA;  and hBCM.dss_current_flag = 'Y'&#xD;&#xA;  and hBCM.activeud = 1&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;order by 1">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="MatterFEDCodeID" msprop:DbColumnName="MatterFEDCodeID" msprop:FriendlyName="MatterFEDCodeID" type="xs:int" minOccurs="0" />
@@ -22389,6 +23687,78 @@ CREATE MEASURE 'Bills'[TotalBillAmountOutstanding]=calculate(sum([AmountOutstand
                               </xs:restriction>
                             </xs:simpleType>
                           </xs:element>
+                          <xs:element name="MatterCascadeEmployeeID" msprop:DbColumnName="MatterCascadeEmployeeID" msprop:FriendlyName="MatterCascadeEmployeeID" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="MatterPayrollID" msprop:DbColumnName="MatterPayrollID" msprop:FriendlyName="MatterPayrollID" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="MatterBCMPayrollID" msprop:DbColumnName="MatterBCMPayrollID" msprop:FriendlyName="MatterBCMPayrollID" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="MatterBCMSpendvisionID" msprop:DbColumnName="MatterBCMSpendvisionID" msprop:FriendlyName="MatterBCMSpendvisionID" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="MatterManagerName" msprop:DbColumnName="MatterManagerName" msprop:FriendlyName="MatterManagerName" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="MatterManagerPayrollID" msprop:DbColumnName="MatterManagerPayrollID" msprop:FriendlyName="MatterManagerPayrollID" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="MatterManagerSpendvisionID" msprop:DbColumnName="MatterManagerSpendvisionID" msprop:FriendlyName="MatterManagerSpendvisionID" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="MatterLogin" msprop:DbColumnName="MatterLogin" msprop:FriendlyName="MatterLogin" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="MatterBCMsBCM" msprop:DbColumnName="MatterBCMsBCM" msprop:FriendlyName="MatterBCMsBCM" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="MatterBCMBCMSpendvision" msprop:DbColumnName="MatterBCMBCMSpendvision" msprop:FriendlyName="MatterBCMBCMSpendvision" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="MatterLeaverDate" msprop:DbColumnName="MatterLeaverDate" msprop:FriendlyName="MatterLeaverDate" type="xs:dateTime" minOccurs="0" />
+                          <xs:element name="MatterActiveUD" msprop:DbColumnName="MatterActiveUD" msprop:FriendlyName="MatterActiveUD" type="xs:boolean" minOccurs="0" />
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
