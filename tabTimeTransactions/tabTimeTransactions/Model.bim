@@ -3473,6 +3473,7 @@
           <Source xsi:type="DataSourceViewBinding">
             <DataSourceViewID>Sandbox</DataSourceViewID>
           </Source>
+          <Type>Time</Type>
           <UnknownMember valuens="ddl200_200">AutomaticNull</UnknownMember>
           <ErrorConfiguration>
             <KeyNotFound>IgnoreError</KeyNotFound>
@@ -3488,7 +3489,6 @@
               <ID>RowNumber</ID>
               <Name>RowNumber</Name>
               <Type valuens="ddl200_200">RowNumber</Type>
-              <Usage>Key</Usage>
               <KeyColumns>
                 <KeyColumn>
                   <DataType>Integer</DataType>
@@ -3509,11 +3509,6 @@
                   <Cardinality>One</Cardinality>
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>TransactionDateKey</Name>
-                </AttributeRelationship>
-                <AttributeRelationship>
-                  <AttributeID>TransactionDateDate</AttributeID>
-                  <OverrideBehavior>None</OverrideBehavior>
-                  <Name>TransactionDateDate</Name>
                 </AttributeRelationship>
                 <AttributeRelationship>
                   <AttributeID>TransactionDateDayInMonth</AttributeID>
@@ -3605,6 +3600,11 @@
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>TransactionDateFinancialPeriod</Name>
                 </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>TransactionDateFinancialDate</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>TransactionDateFinancialDate</Name>
+                </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
@@ -3637,11 +3637,12 @@
             <Attribute>
               <ID>TransactionDateDate</ID>
               <Name>TransactionDateDate</Name>
+              <Usage>Key</Usage>
               <KeyColumns>
                 <KeyColumn>
                   <DataType>Date</DataType>
                   <DataSize>-1</DataSize>
-                  <NullProcessing>Preserve</NullProcessing>
+                  <NullProcessing>Error</NullProcessing>
                   <Source xsi:type="ColumnBinding">
                     <TableID>dimDate_2680225e-8095-4471-8c2a-a5053eb922fc</TableID>
                     <ColumnID>TransactionDateDate</ColumnID>
@@ -3657,6 +3658,14 @@
                   <ColumnID>TransactionDateDate</ColumnID>
                 </Source>
               </NameColumn>
+              <AttributeRelationships>
+                <AttributeRelationship>
+                  <AttributeID>RowNumber</AttributeID>
+                  <Cardinality>One</Cardinality>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>RowNumber</Name>
+                </AttributeRelationship>
+              </AttributeRelationships>
               <OrderBy>Key</OrderBy>
             </Attribute>
             <Attribute>
@@ -4109,7 +4118,65 @@
               </NameColumn>
               <OrderBy>Key</OrderBy>
             </Attribute>
+            <Attribute>
+              <ID>TransactionDateFinancialDate</ID>
+              <Name>TransactionDateFinancialDate</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Date</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimDate_2680225e-8095-4471-8c2a-a5053eb922fc</TableID>
+                    <ColumnID>TransactionDateFinancialDate</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimDate_2680225e-8095-4471-8c2a-a5053eb922fc</TableID>
+                  <ColumnID>TransactionDateFinancialDate</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
           </Attributes>
+          <Hierarchies>
+            <Hierarchy>
+              <ID>TransactionDateFinancialHierarchy</ID>
+              <Name>TransactionDateFinancialHierarchy</Name>
+              <Levels>
+                <Level>
+                  <ID>TransactionDateFinancialDate</ID>
+                  <Name>TransactionDateFinancialDate</Name>
+                  <SourceAttributeID>TransactionDateFinancialDate</SourceAttributeID>
+                </Level>
+                <Level>
+                  <ID>TransactionDateFinancialWeek</ID>
+                  <Name>TransactionDateFinancialWeek</Name>
+                  <SourceAttributeID>TransactionDateFinancialWeek</SourceAttributeID>
+                </Level>
+                <Level>
+                  <ID>TransactionDateFinancialMonthNo</ID>
+                  <Name>TransactionDateFinancialMonthNo</Name>
+                  <SourceAttributeID>TransactionDateFinancialMonthNo</SourceAttributeID>
+                </Level>
+                <Level>
+                  <ID>TransactionDateFinancialQuarterNo</ID>
+                  <Name>TransactionDateFinancialQuarterNo</Name>
+                  <SourceAttributeID>TransactionDateFinancialQuarterNo</SourceAttributeID>
+                </Level>
+                <Level>
+                  <ID>TransactionDateFinancialYear</ID>
+                  <Name>TransactionDateFinancialYear</Name>
+                  <SourceAttributeID>TransactionDateFinancialYear</SourceAttributeID>
+                </Level>
+              </Levels>
+            </Hierarchy>
+          </Hierarchies>
           <ProactiveCaching>
             <SilenceInterval>-PT1S</SilenceInterval>
             <Latency>-PT1S</Latency>
@@ -7106,20 +7173,14 @@
           <Name>dimTimeTransactionTimeActivity</Name>
           <Annotations>
             <Annotation>
-              <Name>IsQueryEditorUsed</Name>
-              <Value>True</Value>
+              <Name>TableWidgetSerialization</Name>
             </Annotation>
             <Annotation>
               <Name>QueryEditorSerialization</Name>
             </Annotation>
             <Annotation>
-              <Name>TableWidgetSerialization</Name>
-            </Annotation>
-            <Annotation>
-              <Name>DataMarketWebBaseUrl</Name>
-            </Annotation>
-            <Annotation>
-              <Name>DataMarketWebQueryUrl</Name>
+              <Name>IsQueryEditorUsed</Name>
+              <Value>True</Value>
             </Annotation>
           </Annotations>
           <Source xsi:type="DataSourceViewBinding">
@@ -7166,6 +7227,11 @@
                   <AttributeID>TimeActivityDesc</AttributeID>
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>TimeActivityDesc</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>BusinessArea</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>BusinessArea</Name>
                 </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
@@ -7237,6 +7303,31 @@
                 <Source xsi:type="ColumnBinding">
                   <TableID>dimTimeTransactionTimeActivity_cf1cf901-9bbb-4762-a91a-310d6d22a230</TableID>
                   <ColumnID>TimeActivityDesc</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>BusinessArea</ID>
+              <Name>BusinessArea</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimTimeTransactionTimeActivity_cf1cf901-9bbb-4762-a91a-310d6d22a230</TableID>
+                    <ColumnID>BusinessArea</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimTimeTransactionTimeActivity_cf1cf901-9bbb-4762-a91a-310d6d22a230</TableID>
+                  <ColumnID>BusinessArea</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
@@ -11637,7 +11728,15 @@
                 <Attribute>
                   <AttributeID>TransactionDateFinancialPeriod</AttributeID>
                 </Attribute>
+                <Attribute>
+                  <AttributeID>TransactionDateFinancialDate</AttributeID>
+                </Attribute>
               </Attributes>
+              <Hierarchies>
+                <Hierarchy>
+                  <HierarchyID>TransactionDateFinancialHierarchy</HierarchyID>
+                </Hierarchy>
+              </Hierarchies>
             </Dimension>
             <Dimension>
               <ID>dimDateRunDate_a4fda0ef-3086-4664-ba87-54e4820b822b</ID>
@@ -11975,6 +12074,9 @@
                 </Attribute>
                 <Attribute>
                   <AttributeID>TimeActivityDesc</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>BusinessArea</AttributeID>
                 </Attribute>
               </Attributes>
             </Dimension>
@@ -16299,6 +16401,20 @@ branch_name is not null</QueryDefinition>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>BusinessArea</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimTimeTransactionTimeActivity_cf1cf901-9bbb-4762-a91a-310d6d22a230</TableID>
+                            <ColumnID>BusinessArea</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <IntermediateCubeDimensionID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</IntermediateCubeDimensionID>
                   <IntermediateGranularityAttributeID>TimeActivityCode</IntermediateGranularityAttributeID>
@@ -17181,6 +17297,20 @@ branch_name is not null</QueryDefinition>
                           <Source xsi:type="ColumnBinding">
                             <TableID>dimDate_2680225e-8095-4471-8c2a-a5053eb922fc</TableID>
                             <ColumnID>TransactionDateFinancialPeriod</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>TransactionDateFinancialDate</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDate_2680225e-8095-4471-8c2a-a5053eb922fc</TableID>
+                            <ColumnID>TransactionDateFinancialDate</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -21652,6 +21782,20 @@ red_dw.dbo.fact_all_time_activity</QueryDefinition>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>TransactionDateFinancialDate</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDate_2680225e-8095-4471-8c2a-a5053eb922fc</TableID>
+                            <ColumnID>TransactionDateFinancialDate</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
                 </Dimension>
@@ -21689,6 +21833,7 @@ cal_month_no as 'TransactionDateCalendarMonthNo',
 cal_month_name as 'TransactionDateCalendarMonthName',
 cal_quarter_no as 'TransactionDateCalendarQuarterNo',
 cal_year as 'TransactionDateCalendarYear',
+case when month(calendar_date) &gt; 4 then dateadd(month, -4, dateadd(year, 1, calendar_date)) else dateadd(month, 8, dateadd(year, 0, calendar_date)) end as 'TransactionDateFinancialDate',
 fin_week_in_year as 'TransactionDateFinancialWeek',
 fin_month_no as 'TransactionDateFinancialMonthNo',
 fin_month_name as 'TransactionDateFinancialMonthName',
@@ -23639,6 +23784,20 @@ order by 1</QueryDefinition>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>BusinessArea</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimTimeTransactionTimeActivity_cf1cf901-9bbb-4762-a91a-310d6d22a230</TableID>
+                            <ColumnID>BusinessArea</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
                 </Dimension>
@@ -23649,21 +23808,118 @@ order by 1</QueryDefinition>
                   <Name>dimTimeTransactionTimeActivity</Name>
                   <Annotations>
                     <Annotation>
-                      <Name>IsQueryEditorUsed</Name>
-                      <Value>True</Value>
+                      <Name>TableWidgetSerialization</Name>
+                    </Annotation>
+                    <Annotation>
+                      <Name>TableWidgetSourceTable</Name>
                     </Annotation>
                     <Annotation>
                       <Name>QueryEditorSerialization</Name>
                     </Annotation>
                     <Annotation>
-                      <Name>TableWidgetSerialization</Name>
+                      <Name>IsQueryEditorUsed</Name>
+                      <Value>True</Value>
                     </Annotation>
                   </Annotations>
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
                     <QueryDefinition>select distinct
 time_activity_code as 'TimeActivityCode',
-time_activity_descrn as 'TimeActivityDesc'
+time_activity_descrn as 'TimeActivityDesc',
+	case
+	 when time_activity_code = 	'1'	 then	'LearningAndDevelopment'
+	 when time_activity_code = 	'2'	 then	'Holiday'
+	 when time_activity_code = 	'3'	 then	'Sickness'
+	 when time_activity_code = 	'4'	 then	''
+	 when time_activity_code = 	'5'	 then	'Client'
+	 when time_activity_code = 	'6'	 then	'Client'
+	 when time_activity_code = 	'7'	 then	'LearningAndDevelopment'
+	 when time_activity_code = 	'8'	 then	'LearningAndDevelopment'
+	 when time_activity_code = 	'9'	 then	'LearningAndDevelopment'
+	 when time_activity_code = 	'10'	 then	'InternalBusinessProcess'
+	 when time_activity_code = 	'11'	 then	'Client'
+	 when time_activity_code = 	'12'	 then	'Client'
+	 when time_activity_code = 	'13'	 then	'Personal'
+	 when time_activity_code = 	'28'	 then	'Client'
+	 when time_activity_code = 	'73'	 then	'Client'
+	 when time_activity_code = 	'74'	 then	'Client'
+	 when time_activity_code = 	'75'	 then	'Client'
+	 when time_activity_code = 	'76'	 then	'Client'
+	 when time_activity_code = 	'77'	 then	'Client'
+	 when time_activity_code = 	'78'	 then	'Client'
+	 when time_activity_code = 	'79'	 then	'Client'
+	 when time_activity_code = 	'80'	 then	'Client'
+	 when time_activity_code = 	'81'	 then	'Client'
+	 when time_activity_code = 	'82'	 then	'Client'
+	 when time_activity_code = 	'83'	 then	'Client'
+	 when time_activity_code = 	'84'	 then	'Client'
+	 when time_activity_code = 	'85'	 then	'Client'
+	 when time_activity_code = 	'86'	 then	'Client'
+	 when time_activity_code = 	'87'	 then	'Client'
+	 when time_activity_code = 	'88'	 then	'Client'
+	 when time_activity_code = 	'89'	 then	'Client'
+	 when time_activity_code = 	'90'	 then	'Client'
+	 when time_activity_code = 	'91'	 then	'Client'
+	 when time_activity_code = 	'92'	 then	'Client'
+	 when time_activity_code = 	'114'	 then	''
+	 when time_activity_code = 	'93'	 then	''
+	 when time_activity_code = 	'94'	 then	'Client'
+	 when time_activity_code = 	'95'	 then	'Client'
+	 when time_activity_code = 	'96'	 then	'Client'
+	 when time_activity_code = 	'99'	 then	'Client'
+	 when time_activity_code = 	'100'	 then	'Client'
+	 when time_activity_code = 	'71'	 then	'Client'
+	 when time_activity_code = 	'103'	 then	'Client'
+	 when time_activity_code = 	'104'	 then	'Client'
+	 when time_activity_code = 	'105'	 then	'Client'
+	 when time_activity_code = 	'106'	 then	'Client'
+	 when time_activity_code = 	'108'	 then	'Client'
+	 when time_activity_code = 	'107'	 then	'Client'
+	 when time_activity_code = 	'109'	 then	'Client'
+	 when time_activity_code = 	'110'	 then	'Client'
+	 when time_activity_code = 	'113'	 then	'Client'
+	 when time_activity_code = 	'115'	 then	'Client'
+	 when time_activity_code = 	'116'	 then	'Client'
+	 when time_activity_code = 	'117'	 then	'Client'
+	 when time_activity_code = 	'118'	 then	'Client'
+	 when time_activity_code = 	'119'	 then	'Client'
+	 when time_activity_code = 	'132'	 then	'Client'
+	 when time_activity_code = 	'133'	 then	'Client'
+	 when time_activity_code = 	'134'	 then	'Client'
+	 when time_activity_code = 	'120'	 then	'Client'
+	 when time_activity_code = 	'121'	 then	'Client'
+	 when time_activity_code = 	'122'	 then	'Client'
+	 when time_activity_code = 	'123'	 then	'Client'
+	 when time_activity_code = 	'124'	 then	'Client'
+	 when time_activity_code = 	'125'	 then	'Client'
+	 when time_activity_code = 	'126'	 then	'Client'
+	 when time_activity_code = 	'127'	 then	'Client'
+	 when time_activity_code = 	'128'	 then	'Client'
+	 when time_activity_code = 	'129'	 then	'Client'
+	 when time_activity_code = 	'130'	 then	'Client'
+	 when time_activity_code = 	'131'	 then	'Client'
+	 when time_activity_code = 	'70'	 then	'Client'
+	 when time_activity_code = 	'72'	 then	'Client'
+	 when time_activity_code = 	'56'	 then	'Personal'
+	 when time_activity_code = 	'57'	 then	'InternalBusinessProcess'
+	 when time_activity_code = 	'58'	 then	'InternalBusinessProcess'
+	 when time_activity_code = 	'59'	 then	'InternalBusinessProcess'
+	 when time_activity_code = 	'97'	 then	'InternalBusinessProcess'
+	 when time_activity_code = 	'98'	 then	'InternalBusinessProcess'
+	 when time_activity_code = 	'101'	 then	'InternalBusinessProcess'
+	 when time_activity_code = 	'112'	 then	'InternalBusinessProcess'
+	 when time_activity_code = 	'60'	 then	'LearningAndDevelopment'
+	 when time_activity_code = 	'61'	 then	'LearningAndDevelopment'
+	 when time_activity_code = 	'62'	 then	'LearningAndDevelopment'
+	 when time_activity_code = 	'63'	 then	'LearningAndDevelopment'
+	 when time_activity_code = 	'64'	 then	'LearningAndDevelopment'
+	 when time_activity_code = 	'65'	 then	'LearningAndDevelopment'
+	 when time_activity_code = 	'66'	 then	'LearningAndDevelopment'
+	 when time_activity_code = 	'67'	 then	'LearningAndDevelopment'
+	 when time_activity_code = 	'68'	 then	'LearningAndDevelopment'
+	 when time_activity_code = 	'69'	 then	'LearningAndDevelopment'
+	 when time_activity_code = 	'102'	 then	'LearningAndDevelopment'
+end as 'BusinessArea'	
 
 
 from
@@ -28244,7 +28500,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimDate_2680225e-8095-4471-8c2a-a5053eb922fc" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimDateTransactionDate" msprop:DbTableName="dimDate" msprop:TableType="View" msprop:Description="dimDate" msprop:QueryDefinition="select&#xD;&#xA;dim_date_key as 'TransactionDateKey',&#xD;&#xA;calendar_date as 'TransactionDateDate',&#xD;&#xA;cal_day_in_month as 'TransactionDateDayInMonth',&#xD;&#xA;cal_day_in_year as 'TransactionDateDayInYear',&#xD;&#xA;cal_day_in_week_no as 'TransactionDateWeekdayNo',&#xD;&#xA;cal_day_in_week as 'TransactionDateWeekdayName',&#xD;&#xA;cal_week_in_year as 'TransactionDateCalendarWeek',&#xD;&#xA;cal_month_no as 'TransactionDateCalendarMonthNo',&#xD;&#xA;cal_month_name as 'TransactionDateCalendarMonthName',&#xD;&#xA;cal_quarter_no as 'TransactionDateCalendarQuarterNo',&#xD;&#xA;cal_year as 'TransactionDateCalendarYear',&#xD;&#xA;fin_week_in_year as 'TransactionDateFinancialWeek',&#xD;&#xA;fin_month_no as 'TransactionDateFinancialMonthNo',&#xD;&#xA;fin_month_name as 'TransactionDateFinancialMonthName',&#xD;&#xA;fin_quarter_no as 'TransactionDateFinancialQuarterNo',&#xD;&#xA;fin_year as 'TransactionDateFinancialYear',&#xD;&#xA;week_end_flag as 'TransactionDateWeekend',&#xD;&#xA;holiday_flag as 'TransactionDateHoliday',&#xD;&#xA;cal_month_name + '-' + right(cal_year, 2) as 'TransactionDateCalPeriod',&#xD;&#xA;fin_month_name + '-' + right(fin_year, 2) as 'TransactionDateFinancialPeriod'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;dim_date">
+                    <xs:element name="dimDate_2680225e-8095-4471-8c2a-a5053eb922fc" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimDateTransactionDate" msprop:DbTableName="dimDate" msprop:TableType="View" msprop:Description="dimDate" msprop:QueryDefinition="select&#xD;&#xA;dim_date_key as 'TransactionDateKey',&#xD;&#xA;calendar_date as 'TransactionDateDate',&#xD;&#xA;cal_day_in_month as 'TransactionDateDayInMonth',&#xD;&#xA;cal_day_in_year as 'TransactionDateDayInYear',&#xD;&#xA;cal_day_in_week_no as 'TransactionDateWeekdayNo',&#xD;&#xA;cal_day_in_week as 'TransactionDateWeekdayName',&#xD;&#xA;cal_week_in_year as 'TransactionDateCalendarWeek',&#xD;&#xA;cal_month_no as 'TransactionDateCalendarMonthNo',&#xD;&#xA;cal_month_name as 'TransactionDateCalendarMonthName',&#xD;&#xA;cal_quarter_no as 'TransactionDateCalendarQuarterNo',&#xD;&#xA;cal_year as 'TransactionDateCalendarYear',&#xD;&#xA;case when month(calendar_date) &gt; 4 then dateadd(month, -4, dateadd(year, 1, calendar_date)) else dateadd(month, 8, dateadd(year, 0, calendar_date)) end as 'TransactionDateFinancialDate',&#xD;&#xA;fin_week_in_year as 'TransactionDateFinancialWeek',&#xD;&#xA;fin_month_no as 'TransactionDateFinancialMonthNo',&#xD;&#xA;fin_month_name as 'TransactionDateFinancialMonthName',&#xD;&#xA;fin_quarter_no as 'TransactionDateFinancialQuarterNo',&#xD;&#xA;fin_year as 'TransactionDateFinancialYear',&#xD;&#xA;week_end_flag as 'TransactionDateWeekend',&#xD;&#xA;holiday_flag as 'TransactionDateHoliday',&#xD;&#xA;cal_month_name + '-' + right(cal_year, 2) as 'TransactionDateCalPeriod',&#xD;&#xA;fin_month_name + '-' + right(fin_year, 2) as 'TransactionDateFinancialPeriod'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;dim_date">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="TransactionDateKey" msprop:DbColumnName="TransactionDateKey" msprop:FriendlyName="TransactionDateKey" type="xs:int" minOccurs="0" />
@@ -28309,6 +28565,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                               </xs:restriction>
                             </xs:simpleType>
                           </xs:element>
+                          <xs:element name="TransactionDateFinancialDate" msprop:DbColumnName="TransactionDateFinancialDate" msprop:FriendlyName="TransactionDateFinancialDate" type="xs:dateTime" minOccurs="0" />
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
@@ -28647,7 +28904,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimTimeTransactionTimeActivity_cf1cf901-9bbb-4762-a91a-310d6d22a230" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimTimeTransactionTimeActivity" msprop:DbTableName="dimTimeTransactionTimeActivity" msprop:TableType="View" msprop:Description="dimTimeTransactionTimeActivity" msprop:QueryDefinition="select distinct&#xD;&#xA;time_activity_code as 'TimeActivityCode',&#xD;&#xA;time_activity_descrn as 'TimeActivityDesc'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;dim_all_time_activity">
+                    <xs:element name="dimTimeTransactionTimeActivity_cf1cf901-9bbb-4762-a91a-310d6d22a230" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimTimeTransactionTimeActivity" msprop:DbTableName="dimTimeTransactionTimeActivity" msprop:TableType="View" msprop:Description="dimTimeTransactionTimeActivity" msprop:QueryDefinition="select distinct&#xD;&#xA;time_activity_code as 'TimeActivityCode',&#xD;&#xA;time_activity_descrn as 'TimeActivityDesc',&#xD;&#xA; case&#xD;&#xA;  when time_activity_code =  '1'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '2'  then 'Holiday'&#xD;&#xA;  when time_activity_code =  '3'  then 'Sickness'&#xD;&#xA;  when time_activity_code =  '4'  then ''&#xD;&#xA;  when time_activity_code =  '5'  then 'Client'&#xD;&#xA;  when time_activity_code =  '6'  then 'Client'&#xD;&#xA;  when time_activity_code =  '7'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '8'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '9'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '10'  then 'InternalBusinessProcess'&#xD;&#xA;  when time_activity_code =  '11'  then 'Client'&#xD;&#xA;  when time_activity_code =  '12'  then 'Client'&#xD;&#xA;  when time_activity_code =  '13'  then 'Personal'&#xD;&#xA;  when time_activity_code =  '28'  then 'Client'&#xD;&#xA;  when time_activity_code =  '73'  then 'Client'&#xD;&#xA;  when time_activity_code =  '74'  then 'Client'&#xD;&#xA;  when time_activity_code =  '75'  then 'Client'&#xD;&#xA;  when time_activity_code =  '76'  then 'Client'&#xD;&#xA;  when time_activity_code =  '77'  then 'Client'&#xD;&#xA;  when time_activity_code =  '78'  then 'Client'&#xD;&#xA;  when time_activity_code =  '79'  then 'Client'&#xD;&#xA;  when time_activity_code =  '80'  then 'Client'&#xD;&#xA;  when time_activity_code =  '81'  then 'Client'&#xD;&#xA;  when time_activity_code =  '82'  then 'Client'&#xD;&#xA;  when time_activity_code =  '83'  then 'Client'&#xD;&#xA;  when time_activity_code =  '84'  then 'Client'&#xD;&#xA;  when time_activity_code =  '85'  then 'Client'&#xD;&#xA;  when time_activity_code =  '86'  then 'Client'&#xD;&#xA;  when time_activity_code =  '87'  then 'Client'&#xD;&#xA;  when time_activity_code =  '88'  then 'Client'&#xD;&#xA;  when time_activity_code =  '89'  then 'Client'&#xD;&#xA;  when time_activity_code =  '90'  then 'Client'&#xD;&#xA;  when time_activity_code =  '91'  then 'Client'&#xD;&#xA;  when time_activity_code =  '92'  then 'Client'&#xD;&#xA;  when time_activity_code =  '114'  then ''&#xD;&#xA;  when time_activity_code =  '93'  then ''&#xD;&#xA;  when time_activity_code =  '94'  then 'Client'&#xD;&#xA;  when time_activity_code =  '95'  then 'Client'&#xD;&#xA;  when time_activity_code =  '96'  then 'Client'&#xD;&#xA;  when time_activity_code =  '99'  then 'Client'&#xD;&#xA;  when time_activity_code =  '100'  then 'Client'&#xD;&#xA;  when time_activity_code =  '71'  then 'Client'&#xD;&#xA;  when time_activity_code =  '103'  then 'Client'&#xD;&#xA;  when time_activity_code =  '104'  then 'Client'&#xD;&#xA;  when time_activity_code =  '105'  then 'Client'&#xD;&#xA;  when time_activity_code =  '106'  then 'Client'&#xD;&#xA;  when time_activity_code =  '108'  then 'Client'&#xD;&#xA;  when time_activity_code =  '107'  then 'Client'&#xD;&#xA;  when time_activity_code =  '109'  then 'Client'&#xD;&#xA;  when time_activity_code =  '110'  then 'Client'&#xD;&#xA;  when time_activity_code =  '113'  then 'Client'&#xD;&#xA;  when time_activity_code =  '115'  then 'Client'&#xD;&#xA;  when time_activity_code =  '116'  then 'Client'&#xD;&#xA;  when time_activity_code =  '117'  then 'Client'&#xD;&#xA;  when time_activity_code =  '118'  then 'Client'&#xD;&#xA;  when time_activity_code =  '119'  then 'Client'&#xD;&#xA;  when time_activity_code =  '132'  then 'Client'&#xD;&#xA;  when time_activity_code =  '133'  then 'Client'&#xD;&#xA;  when time_activity_code =  '134'  then 'Client'&#xD;&#xA;  when time_activity_code =  '120'  then 'Client'&#xD;&#xA;  when time_activity_code =  '121'  then 'Client'&#xD;&#xA;  when time_activity_code =  '122'  then 'Client'&#xD;&#xA;  when time_activity_code =  '123'  then 'Client'&#xD;&#xA;  when time_activity_code =  '124'  then 'Client'&#xD;&#xA;  when time_activity_code =  '125'  then 'Client'&#xD;&#xA;  when time_activity_code =  '126'  then 'Client'&#xD;&#xA;  when time_activity_code =  '127'  then 'Client'&#xD;&#xA;  when time_activity_code =  '128'  then 'Client'&#xD;&#xA;  when time_activity_code =  '129'  then 'Client'&#xD;&#xA;  when time_activity_code =  '130'  then 'Client'&#xD;&#xA;  when time_activity_code =  '131'  then 'Client'&#xD;&#xA;  when time_activity_code =  '70'  then 'Client'&#xD;&#xA;  when time_activity_code =  '72'  then 'Client'&#xD;&#xA;  when time_activity_code =  '56'  then 'Personal'&#xD;&#xA;  when time_activity_code =  '57'  then 'InternalBusinessProcess'&#xD;&#xA;  when time_activity_code =  '58'  then 'InternalBusinessProcess'&#xD;&#xA;  when time_activity_code =  '59'  then 'InternalBusinessProcess'&#xD;&#xA;  when time_activity_code =  '97'  then 'InternalBusinessProcess'&#xD;&#xA;  when time_activity_code =  '98'  then 'InternalBusinessProcess'&#xD;&#xA;  when time_activity_code =  '101'  then 'InternalBusinessProcess'&#xD;&#xA;  when time_activity_code =  '112'  then 'InternalBusinessProcess'&#xD;&#xA;  when time_activity_code =  '60'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '61'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '62'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '63'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '64'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '65'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '66'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '67'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '68'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '69'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '102'  then 'LearningAndDevelopment'&#xD;&#xA;end as 'BusinessArea' &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;dim_all_time_activity">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="TimeActivityCode" msprop:DbColumnName="TimeActivityCode" msprop:FriendlyName="TimeActivityCode" minOccurs="0">
@@ -28658,6 +28915,13 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                             </xs:simpleType>
                           </xs:element>
                           <xs:element name="TimeActivityDesc" msprop:DbColumnName="TimeActivityDesc" msprop:FriendlyName="TimeActivityDesc" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="BusinessArea" msprop:DbColumnName="BusinessArea" msprop:FriendlyName="BusinessArea" minOccurs="0">
                             <xs:simpleType>
                               <xs:restriction base="xs:string">
                                 <xs:maxLength value="32768" />
