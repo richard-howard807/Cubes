@@ -6930,6 +6930,11 @@
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>TimeTransactionsBCMEmail</Name>
                 </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>TimeTransactionsFEDDisplay</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>TimeTransactionsFEDDisplay</Name>
+                </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
@@ -7155,6 +7160,31 @@
                 <Source xsi:type="ColumnBinding">
                   <TableID>dimFEDHierarchy_e077edfd-a3df-4415-9164-2f7aab15a75f</TableID>
                   <ColumnID>TimeTransactionsBCMEmail</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>TimeTransactionsFEDDisplay</ID>
+              <Name>TimeTransactionsFEDDisplay</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimFEDHierarchy_e077edfd-a3df-4415-9164-2f7aab15a75f</TableID>
+                    <ColumnID>TimeTransactionsFEDDisplay</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimFEDHierarchy_e077edfd-a3df-4415-9164-2f7aab15a75f</TableID>
+                  <ColumnID>TimeTransactionsFEDDisplay</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
@@ -12057,6 +12087,9 @@
                 </Attribute>
                 <Attribute>
                   <AttributeID>TimeTransactionsBCMEmail</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>TimeTransactionsFEDDisplay</AttributeID>
                 </Attribute>
               </Attributes>
             </Dimension>
@@ -18042,6 +18075,20 @@ branch_name is not null</QueryDefinition>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>TimeTransactionsFEDDisplay</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimFEDHierarchy_e077edfd-a3df-4415-9164-2f7aab15a75f</TableID>
+                            <ColumnID>TimeTransactionsFEDDisplay</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <IntermediateCubeDimensionID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</IntermediateCubeDimensionID>
                   <IntermediateGranularityAttributeID>FEDCodeID</IntermediateGranularityAttributeID>
@@ -23638,6 +23685,20 @@ dim_date</QueryDefinition>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>TimeTransactionsFEDDisplay</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimFEDHierarchy_e077edfd-a3df-4415-9164-2f7aab15a75f</TableID>
+                            <ColumnID>TimeTransactionsFEDDisplay</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
                 </Dimension>
@@ -23667,6 +23728,7 @@ dim_date</QueryDefinition>
 h1.dim_fed_hierarchy_history_key as 'TimeTransactionsFEDCodeID',
 h1.fed_code as 'TimeTransactionsFEDCode',
 h1.name as 'TimeTransactionsFEDName',
+h1.fed_code + ': ' + h1.name as 'TimeTransactionsFEDDisplay',
 e2.workemail as 'TimeTransactionsEmailAddress',
 h1.hierarchylevel2hist as 'TimeTransactionsBusinessLine',
 h1.hierarchylevel3hist as 'TimeTransactionsPracticeArea',
@@ -28862,7 +28924,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimFEDHierarchy_e077edfd-a3df-4415-9164-2f7aab15a75f" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimTimeTransactionsFEDHierarchy" msprop:DbTableName="dimFEDHierarchy" msprop:TableType="View" msprop:Description="dimFEDHierarchy" msprop:QueryDefinition="select distinct&#xD;&#xA;h1.dim_fed_hierarchy_history_key as 'TimeTransactionsFEDCodeID',&#xD;&#xA;h1.fed_code as 'TimeTransactionsFEDCode',&#xD;&#xA;h1.name as 'TimeTransactionsFEDName',&#xD;&#xA;e2.workemail as 'TimeTransactionsEmailAddress',&#xD;&#xA;h1.hierarchylevel2hist as 'TimeTransactionsBusinessLine',&#xD;&#xA;h1.hierarchylevel3hist as 'TimeTransactionsPracticeArea',&#xD;&#xA;h1.hierarchylevel4hist as 'TimeTransactionsTeam',&#xD;&#xA;h1.reportingbcmname as 'TimeTransactionsBCMName',&#xD;&#xA;e.workemail as 'TimeTransactionsBCMEmail'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_fed_hierarchy_history h1 &#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; red_dw.dbo.load_cascade_employee e&#xD;&#xA;  on e.employeeid = h1.reportingbcmidud&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; red_dw.dbo.load_cascade_employee e2&#xD;&#xA;  on e2.employeeid = h1.employeeid &#xD;&#xA;&#xD;&#xA;order by 1">
+                    <xs:element name="dimFEDHierarchy_e077edfd-a3df-4415-9164-2f7aab15a75f" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimTimeTransactionsFEDHierarchy" msprop:DbTableName="dimFEDHierarchy" msprop:TableType="View" msprop:Description="dimFEDHierarchy" msprop:QueryDefinition="select distinct&#xD;&#xA;h1.dim_fed_hierarchy_history_key as 'TimeTransactionsFEDCodeID',&#xD;&#xA;h1.fed_code as 'TimeTransactionsFEDCode',&#xD;&#xA;h1.name as 'TimeTransactionsFEDName',&#xD;&#xA;h1.fed_code + ': ' + h1.name as 'TimeTransactionsFEDDisplay',&#xD;&#xA;e2.workemail as 'TimeTransactionsEmailAddress',&#xD;&#xA;h1.hierarchylevel2hist as 'TimeTransactionsBusinessLine',&#xD;&#xA;h1.hierarchylevel3hist as 'TimeTransactionsPracticeArea',&#xD;&#xA;h1.hierarchylevel4hist as 'TimeTransactionsTeam',&#xD;&#xA;h1.reportingbcmname as 'TimeTransactionsBCMName',&#xD;&#xA;e.workemail as 'TimeTransactionsBCMEmail'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_fed_hierarchy_history h1 &#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; red_dw.dbo.load_cascade_employee e&#xD;&#xA;  on e.employeeid = h1.reportingbcmidud&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; red_dw.dbo.load_cascade_employee e2&#xD;&#xA;  on e2.employeeid = h1.employeeid &#xD;&#xA;&#xD;&#xA;order by 1">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="TimeTransactionsFEDCodeID" msprop:DbColumnName="TimeTransactionsFEDCodeID" msprop:FriendlyName="TimeTransactionsFEDCodeID" type="xs:int" minOccurs="0" />
@@ -28916,6 +28978,13 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                             </xs:simpleType>
                           </xs:element>
                           <xs:element name="TimeTransactionsBCMEmail" msprop:DbColumnName="TimeTransactionsBCMEmail" msprop:FriendlyName="TimeTransactionsBCMEmail" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="TimeTransactionsFEDDisplay" msprop:DbColumnName="TimeTransactionsFEDDisplay" msprop:FriendlyName="TimeTransactionsFEDDisplay" minOccurs="0">
                             <xs:simpleType>
                               <xs:restriction base="xs:string">
                                 <xs:maxLength value="32768" />
