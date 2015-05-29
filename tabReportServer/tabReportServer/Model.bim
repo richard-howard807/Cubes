@@ -4845,7 +4845,10 @@ left join [SVR-LIV-DWH-01].red_dw.dbo.dim_fed_hierarchy_history s
  and s.activeud = 1
  and s.dss_current_flag = 'Y'
  and (cast(e.employeeid as varchar(40)) != 'CEBFFAEE-B21F-499D-AA81-54D2DD2C2032')
- and (cast(e.employeeid as varchar(40)) != 'BB0176B7-653C-4692-9CF4-B1F3F26A5CE8')</QueryDefinition>
+ and (cast(e.employeeid as varchar(40)) != 'BB0176B7-653C-4692-9CF4-B1F3F26A5CE8')
+ and (cast(e.employeeid as varchar(40)) != '864CD99D-7BAB-452E-8E0C-0228729FB322')
+
+ order by 1</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
@@ -6999,7 +7002,7 @@ CREATE MEASURE 'dimReportCatalogue'[Percentage of Reports Completed]=if([LiveOn2
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimStaffMember_9cff4bd9-978d-42ca-bebe-57d3fb410088" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimStaffMember" msprop:DbTableName="dimStaffMember" msprop:TableType="View" msprop:Description="dimStaffMember" msprop:QueryDefinition="select distinct &#xD;&#xA;cast(e.employeeid as varchar(36)) as 'UserID',&#xD;&#xA;e.KnownAs as 'Forename',&#xD;&#xA;e.Surname,&#xD;&#xA;e.KnownAs + ' ' + e.Surname as 'FullName',&#xD;&#xA;'SBC\' + e.windowsusername as 'WindowsUserID',&#xD;&#xA;--j.JobTitle,&#xD;&#xA;--j.LocationIDUD as 'Location',&#xD;&#xA;s.hierarchylevel4hist as 'Team',&#xD;&#xA;s.hierarchylevel3hist as 'PracticeArea',&#xD;&#xA;s.hierarchylevel2hist as 'BusinessLine'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;[Cascade].dbo.Employee e&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join [SVR-LIV-DWH-01].red_dw.dbo.dim_fed_hierarchy_history s&#xD;&#xA; on s.employeeid = cast(e.EmployeeID as varchar(40))&#xD;&#xA; and s.activeud = 1&#xD;&#xA; and s.dss_current_flag = 'Y'&#xD;&#xA; and (cast(e.employeeid as varchar(40)) != 'CEBFFAEE-B21F-499D-AA81-54D2DD2C2032')&#xD;&#xA; and (cast(e.employeeid as varchar(40)) != 'BB0176B7-653C-4692-9CF4-B1F3F26A5CE8')">
+                    <xs:element name="dimStaffMember_9cff4bd9-978d-42ca-bebe-57d3fb410088" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimStaffMember" msprop:DbTableName="dimStaffMember" msprop:TableType="View" msprop:Description="dimStaffMember" msprop:QueryDefinition="select distinct &#xD;&#xA;cast(e.employeeid as varchar(36)) as 'UserID',&#xD;&#xA;e.KnownAs as 'Forename',&#xD;&#xA;e.Surname,&#xD;&#xA;e.KnownAs + ' ' + e.Surname as 'FullName',&#xD;&#xA;'SBC\' + e.windowsusername as 'WindowsUserID',&#xD;&#xA;--j.JobTitle,&#xD;&#xA;--j.LocationIDUD as 'Location',&#xD;&#xA;s.hierarchylevel4hist as 'Team',&#xD;&#xA;s.hierarchylevel3hist as 'PracticeArea',&#xD;&#xA;s.hierarchylevel2hist as 'BusinessLine'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;[Cascade].dbo.Employee e&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join [SVR-LIV-DWH-01].red_dw.dbo.dim_fed_hierarchy_history s&#xD;&#xA; on s.employeeid = cast(e.EmployeeID as varchar(40))&#xD;&#xA; and s.activeud = 1&#xD;&#xA; and s.dss_current_flag = 'Y'&#xD;&#xA; and (cast(e.employeeid as varchar(40)) != 'CEBFFAEE-B21F-499D-AA81-54D2DD2C2032')&#xD;&#xA; and (cast(e.employeeid as varchar(40)) != 'BB0176B7-653C-4692-9CF4-B1F3F26A5CE8')&#xD;&#xA; and (cast(e.employeeid as varchar(40)) != '864CD99D-7BAB-452E-8E0C-0228729FB322')&#xD;&#xA;&#xD;&#xA; order by 1">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="UserID" msprop:DbColumnName="UserID" msprop:FriendlyName="UserID" minOccurs="0">
