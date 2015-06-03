@@ -1837,20 +1837,14 @@ LEFT JOIN dim_fed_hierarchy_history AS fed
           <Name>dimDateBillDate</Name>
           <Annotations>
             <Annotation>
-              <Name>IsQueryEditorUsed</Name>
-              <Value>True</Value>
+              <Name>TableWidgetSerialization</Name>
             </Annotation>
             <Annotation>
               <Name>QueryEditorSerialization</Name>
             </Annotation>
             <Annotation>
-              <Name>TableWidgetSerialization</Name>
-            </Annotation>
-            <Annotation>
-              <Name>DataMarketWebBaseUrl</Name>
-            </Annotation>
-            <Annotation>
-              <Name>DataMarketWebQueryUrl</Name>
+              <Name>IsQueryEditorUsed</Name>
+              <Value>True</Value>
             </Annotation>
           </Annotations>
           <Source xsi:type="DataSourceViewBinding">
@@ -1977,11 +1971,6 @@ LEFT JOIN dim_fed_hierarchy_history AS fed
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>BillDateFinancialPeriod</Name>
                 </AttributeRelationship>
-                <AttributeRelationship>
-                  <AttributeID>BillDateDaysInMonth</AttributeID>
-                  <OverrideBehavior>None</OverrideBehavior>
-                  <Name>BillDateDaysInMonth</Name>
-                </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
@@ -2061,6 +2050,16 @@ LEFT JOIN dim_fed_hierarchy_history AS fed
                   <Cardinality>One</Cardinality>
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>RowNumber</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>BillDateFinancialDate</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>BillDateFinancialDate</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>BillDateCalPeriod</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>BillDateCalPeriod</Name>
                 </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
@@ -2662,25 +2661,16 @@ LEFT JOIN dim_fed_hierarchy_history AS fed
               <OrderBy>Key</OrderBy>
             </Attribute>
             <Attribute>
-              <Annotations>
-                <Annotation>
-                  <Name>Format</Name>
-                  <Value>
-                    <Format Format="General" xmlns="" />
-                  </Value>
-                </Annotation>
-              </Annotations>
-              <ID>BillDateDaysInMonth</ID>
-              <Name>BillDateDaysInMonth</Name>
+              <ID>BillDateFinancialDate</ID>
+              <Name>BillDateFinancialDate</Name>
               <KeyColumns>
                 <KeyColumn>
-                  <DataType>Integer</DataType>
+                  <DataType>Date</DataType>
                   <DataSize>-1</DataSize>
                   <NullProcessing>Preserve</NullProcessing>
-                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
                   <Source xsi:type="ColumnBinding">
                     <TableID>dimDateBillDate_a100c684-6a54-4154-9d81-bdf4b7fcd6d2</TableID>
-                    <ColumnID>BillDateDaysInMonth</ColumnID>
+                    <ColumnID>BillDateFinancialDate</ColumnID>
                   </Source>
                 </KeyColumn>
               </KeyColumns>
@@ -2688,10 +2678,34 @@ LEFT JOIN dim_fed_hierarchy_history AS fed
                 <DataType>WChar</DataType>
                 <DataSize>-1</DataSize>
                 <NullProcessing>ZeroOrBlank</NullProcessing>
-                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
                 <Source xsi:type="ColumnBinding">
                   <TableID>dimDateBillDate_a100c684-6a54-4154-9d81-bdf4b7fcd6d2</TableID>
-                  <ColumnID>BillDateDaysInMonth</ColumnID>
+                  <ColumnID>BillDateFinancialDate</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>BillDateCalPeriod</ID>
+              <Name>BillDateCalPeriod</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimDateBillDate_a100c684-6a54-4154-9d81-bdf4b7fcd6d2</TableID>
+                    <ColumnID>BillDateCalPeriod</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimDateBillDate_a100c684-6a54-4154-9d81-bdf4b7fcd6d2</TableID>
+                  <ColumnID>BillDateCalPeriod</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
@@ -3344,7 +3358,10 @@ LEFT JOIN dim_fed_hierarchy_history AS fed
                   <AttributeID>BillDateFinancialPeriod</AttributeID>
                 </Attribute>
                 <Attribute>
-                  <AttributeID>BillDateDaysInMonth</AttributeID>
+                  <AttributeID>BillDateFinancialDate</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>BillDateCalPeriod</AttributeID>
                 </Attribute>
               </Attributes>
             </Dimension>
@@ -4335,16 +4352,29 @@ LEFT JOIN dim_fed_hierarchy_history AS fed
                       </KeyColumns>
                     </Attribute>
                     <Attribute>
-                      <AttributeID>BillDateDaysInMonth</AttributeID>
+                      <AttributeID>BillDateFinancialDate</AttributeID>
                       <KeyColumns>
                         <KeyColumn>
-                          <DataType>Integer</DataType>
+                          <DataType>Date</DataType>
                           <DataSize>-1</DataSize>
                           <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
                           <Source xsi:type="ColumnBinding">
                             <TableID>dimDateBillDate_a100c684-6a54-4154-9d81-bdf4b7fcd6d2</TableID>
-                            <ColumnID>BillDateDaysInMonth</ColumnID>
+                            <ColumnID>BillDateFinancialDate</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BillDateCalPeriod</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateBillDate_a100c684-6a54-4154-9d81-bdf4b7fcd6d2</TableID>
+                            <ColumnID>BillDateCalPeriod</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -5090,16 +5120,29 @@ LEFT JOIN dim_fed_hierarchy_history AS fed
                       </KeyColumns>
                     </Attribute>
                     <Attribute>
-                      <AttributeID>BillDateDaysInMonth</AttributeID>
+                      <AttributeID>BillDateFinancialDate</AttributeID>
                       <KeyColumns>
                         <KeyColumn>
-                          <DataType>Integer</DataType>
+                          <DataType>Date</DataType>
                           <DataSize>-1</DataSize>
                           <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
                           <Source xsi:type="ColumnBinding">
                             <TableID>dimDateBillDate_a100c684-6a54-4154-9d81-bdf4b7fcd6d2</TableID>
-                            <ColumnID>BillDateDaysInMonth</ColumnID>
+                            <ColumnID>BillDateFinancialDate</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BillDateCalPeriod</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateBillDate_a100c684-6a54-4154-9d81-bdf4b7fcd6d2</TableID>
+                            <ColumnID>BillDateCalPeriod</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -5114,14 +5157,17 @@ LEFT JOIN dim_fed_hierarchy_history AS fed
                   <Name>dimDateBillDate</Name>
                   <Annotations>
                     <Annotation>
-                      <Name>IsQueryEditorUsed</Name>
-                      <Value>True</Value>
+                      <Name>TableWidgetSerialization</Name>
+                    </Annotation>
+                    <Annotation>
+                      <Name>TableWidgetSourceTable</Name>
                     </Annotation>
                     <Annotation>
                       <Name>QueryEditorSerialization</Name>
                     </Annotation>
                     <Annotation>
-                      <Name>TableWidgetSerialization</Name>
+                      <Name>IsQueryEditorUsed</Name>
+                      <Value>True</Value>
                     </Annotation>
                   </Annotations>
                   <Source xsi:type="QueryBinding">
@@ -5138,6 +5184,7 @@ cal_month_no as 'BillDateCalendarMonthNo',
 cal_month_name as 'BillDateCalendarMonthName',
 cal_quarter_no as 'BillDateCalendarQuarterNo',
 cal_year as 'BillDateCalendarYear',
+case when month(calendar_date) &gt; 4 then dateadd(month, -4, dateadd(year, 1, calendar_date)) else dateadd(month, 8, dateadd(year, 0, calendar_date)) end as 'BillDateFinancialDate',
 fin_week_in_year as 'BillDateFinancialWeek',
 fin_month_no as 'BillDateFinancialMonthNo',
 fin_month_name as 'BillDateFinancialMonthName',
@@ -5145,23 +5192,14 @@ fin_quarter_no as 'BillDateFinancialQuarterNo',
 fin_year as 'BillDateFinancialYear',
 week_end_flag as 'BillDateWeekend',
 holiday_flag as 'BillDateHoliday',
-fin_month_name + '-' + right(fin_year, 2) as 'BillDateFinancialPeriod',
-p.BillDateDaysInMonth
+cal_month_name + '-' + right(cal_year, 2) as 'BillDateCalPeriod',
+fin_month_name + '-' + right(fin_year, 2) as 'BillDateFinancialPeriod'
+
+
 
 
 from
-red_dw.dbo.dim_date
-
-left join (
- select 
-  fin_month_name + '-' + right(fin_year, 2) as 'BillDateFinancialPeriod',
-  max(cal_day_in_month) as 'BillDateDaysInMonth'
- from
-  red_dw.dbo.dim_date
- group by
-    fin_month_name + '-' + right(fin_year, 2) 
-  ) p
-   on p.BillDateFinancialPeriod = fin_month_name + '-' + right(fin_year, 2)</QueryDefinition>
+dim_date</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
@@ -6366,7 +6404,7 @@ CREATE MEASURE 'factKPI'[Sum of NewMatters]=SUM([NewMatters]);
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimDateBillDate_a100c684-6a54-4154-9d81-bdf4b7fcd6d2" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimDateBillDate" msprop:DbTableName="dimDateBillDate" msprop:TableType="View" msprop:Description="dimDateBillDate" msprop:QueryDefinition="select&#xD;&#xA;dim_date_key as 'BillDateKey',&#xD;&#xA;calendar_date as 'BillDateDate',&#xD;&#xA;cal_day_in_month as 'BillDateDayInMonth',&#xD;&#xA;cal_day_in_year as 'BillDateDayInYear',&#xD;&#xA;cal_day_in_week_no as 'BillDateWeekdayNo',&#xD;&#xA;cal_day_in_week as 'BillDateWeekdayName',&#xD;&#xA;cal_week_in_year as 'BillDateCalendarWeek',&#xD;&#xA;cal_month_no as 'BillDateCalendarMonthNo',&#xD;&#xA;cal_month_name as 'BillDateCalendarMonthName',&#xD;&#xA;cal_quarter_no as 'BillDateCalendarQuarterNo',&#xD;&#xA;cal_year as 'BillDateCalendarYear',&#xD;&#xA;fin_week_in_year as 'BillDateFinancialWeek',&#xD;&#xA;fin_month_no as 'BillDateFinancialMonthNo',&#xD;&#xA;fin_month_name as 'BillDateFinancialMonthName',&#xD;&#xA;fin_quarter_no as 'BillDateFinancialQuarterNo',&#xD;&#xA;fin_year as 'BillDateFinancialYear',&#xD;&#xA;week_end_flag as 'BillDateWeekend',&#xD;&#xA;holiday_flag as 'BillDateHoliday',&#xD;&#xA;fin_month_name + '-' + right(fin_year, 2) as 'BillDateFinancialPeriod',&#xD;&#xA;p.BillDateDaysInMonth&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_date&#xD;&#xA;&#xD;&#xA;left join (&#xD;&#xA; select &#xD;&#xA;  fin_month_name + '-' + right(fin_year, 2) as 'BillDateFinancialPeriod',&#xD;&#xA;  max(cal_day_in_month) as 'BillDateDaysInMonth'&#xD;&#xA; from&#xD;&#xA;  red_dw.dbo.dim_date&#xD;&#xA; group by&#xD;&#xA;    fin_month_name + '-' + right(fin_year, 2) &#xD;&#xA;  ) p&#xD;&#xA;   on p.BillDateFinancialPeriod = fin_month_name + '-' + right(fin_year, 2)">
+                    <xs:element name="dimDateBillDate_a100c684-6a54-4154-9d81-bdf4b7fcd6d2" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimDateBillDate" msprop:DbTableName="dimDateBillDate" msprop:TableType="View" msprop:Description="dimDateBillDate" msprop:QueryDefinition="select&#xD;&#xA;dim_date_key as 'BillDateKey',&#xD;&#xA;calendar_date as 'BillDateDate',&#xD;&#xA;cal_day_in_month as 'BillDateDayInMonth',&#xD;&#xA;cal_day_in_year as 'BillDateDayInYear',&#xD;&#xA;cal_day_in_week_no as 'BillDateWeekdayNo',&#xD;&#xA;cal_day_in_week as 'BillDateWeekdayName',&#xD;&#xA;cal_week_in_year as 'BillDateCalendarWeek',&#xD;&#xA;cal_month_no as 'BillDateCalendarMonthNo',&#xD;&#xA;cal_month_name as 'BillDateCalendarMonthName',&#xD;&#xA;cal_quarter_no as 'BillDateCalendarQuarterNo',&#xD;&#xA;cal_year as 'BillDateCalendarYear',&#xD;&#xA;case when month(calendar_date) &gt; 4 then dateadd(month, -4, dateadd(year, 1, calendar_date)) else dateadd(month, 8, dateadd(year, 0, calendar_date)) end as 'BillDateFinancialDate',&#xD;&#xA;fin_week_in_year as 'BillDateFinancialWeek',&#xD;&#xA;fin_month_no as 'BillDateFinancialMonthNo',&#xD;&#xA;fin_month_name as 'BillDateFinancialMonthName',&#xD;&#xA;fin_quarter_no as 'BillDateFinancialQuarterNo',&#xD;&#xA;fin_year as 'BillDateFinancialYear',&#xD;&#xA;week_end_flag as 'BillDateWeekend',&#xD;&#xA;holiday_flag as 'BillDateHoliday',&#xD;&#xA;cal_month_name + '-' + right(cal_year, 2) as 'BillDateCalPeriod',&#xD;&#xA;fin_month_name + '-' + right(fin_year, 2) as 'BillDateFinancialPeriod'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;dim_date">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="BillDateKey" msprop:DbColumnName="BillDateKey" msprop:FriendlyName="BillDateKey" type="xs:int" minOccurs="0" />
@@ -6424,7 +6462,14 @@ CREATE MEASURE 'factKPI'[Sum of NewMatters]=SUM([NewMatters]);
                               </xs:restriction>
                             </xs:simpleType>
                           </xs:element>
-                          <xs:element name="BillDateDaysInMonth" msprop:DbColumnName="BillDateDaysInMonth" msprop:FriendlyName="BillDateDaysInMonth" type="xs:int" minOccurs="0" />
+                          <xs:element name="BillDateFinancialDate" msprop:DbColumnName="BillDateFinancialDate" msprop:FriendlyName="BillDateFinancialDate" type="xs:dateTime" minOccurs="0" />
+                          <xs:element name="BillDateCalPeriod" msprop:DbColumnName="BillDateCalPeriod" msprop:FriendlyName="BillDateCalPeriod" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
