@@ -1856,6 +1856,7 @@ LEFT JOIN dim_fed_hierarchy_history AS fed
           <Source xsi:type="DataSourceViewBinding">
             <DataSourceViewID>Sandbox</DataSourceViewID>
           </Source>
+          <Type>Time</Type>
           <UnknownMember valuens="ddl200_200">AutomaticNull</UnknownMember>
           <ErrorConfiguration>
             <KeyNotFound>IgnoreError</KeyNotFound>
@@ -1870,7 +1871,6 @@ LEFT JOIN dim_fed_hierarchy_history AS fed
               <ID>RowNumber</ID>
               <Name>RowNumber</Name>
               <Type valuens="ddl200_200">RowNumber</Type>
-              <Usage>Key</Usage>
               <KeyColumns>
                 <KeyColumn>
                   <DataType>Integer</DataType>
@@ -1891,11 +1891,6 @@ LEFT JOIN dim_fed_hierarchy_history AS fed
                   <Cardinality>One</Cardinality>
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>BillDateKey</Name>
-                </AttributeRelationship>
-                <AttributeRelationship>
-                  <AttributeID>BillDateDate</AttributeID>
-                  <OverrideBehavior>None</OverrideBehavior>
-                  <Name>BillDateDate</Name>
                 </AttributeRelationship>
                 <AttributeRelationship>
                   <AttributeID>BillDateDayInMonth</AttributeID>
@@ -2037,11 +2032,12 @@ LEFT JOIN dim_fed_hierarchy_history AS fed
               </Annotations>
               <ID>BillDateDate</ID>
               <Name>BillDateDate</Name>
+              <Usage>Key</Usage>
               <KeyColumns>
                 <KeyColumn>
                   <DataType>Date</DataType>
                   <DataSize>-1</DataSize>
-                  <NullProcessing>Preserve</NullProcessing>
+                  <NullProcessing>Error</NullProcessing>
                   <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
                   <Source xsi:type="ColumnBinding">
                     <TableID>dimDateBillDate_a100c684-6a54-4154-9d81-bdf4b7fcd6d2</TableID>
@@ -2059,6 +2055,14 @@ LEFT JOIN dim_fed_hierarchy_history AS fed
                   <ColumnID>BillDateDate</ColumnID>
                 </Source>
               </NameColumn>
+              <AttributeRelationships>
+                <AttributeRelationship>
+                  <AttributeID>RowNumber</AttributeID>
+                  <Cardinality>One</Cardinality>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>RowNumber</Name>
+                </AttributeRelationship>
+              </AttributeRelationships>
               <OrderBy>Key</OrderBy>
               <ddl300_300:FormatString>General Date</ddl300_300:FormatString>
             </Attribute>
