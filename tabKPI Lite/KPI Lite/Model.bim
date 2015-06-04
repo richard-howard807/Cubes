@@ -5597,7 +5597,7 @@ CREATE MEASURE 'factKPI'[Recovery Rate]=if ([Sum of Billed Time] = 0, 0, ([Sum o
 CREATE MEASURE 'factKPI'[YTD Billed Time]=totalytd([Sum of Billed Time], dimDateBillDate[BillDateDate], "04-30");
 CREATE MEASURE 'factKPI'[YTD Recovery Rate]=if ([YTD Billed Time] = 0, 0, ([YTD Profit Costs] / ([YTD Billed Time] / 60 ) ) );
 CREATE MEASURE 'factKPI'[YTD Billed Time Budget Value]=totalytd([Sum of Billed Time Budget Value], dimDateBillDate[BillDateDate], "04-30");
-CREATE MEASURE 'factKPI'[YTD Recovery Rate Target]=if ([YTD Billed Time Budget Value] = 0, 0, ([YTD Billed Time Budget Value] / [YTD Target Profit Costs (Budget Balanced)]) );
+CREATE MEASURE 'factKPI'[YTD Recovery Rate Target]=if ([YTD Billed Time Budget Value] = 0, 0, ([YTD Target Profit Costs (Budget Balanced)] / [YTD Billed Time Budget Value] ));
 CREATE MEASURE 'factKPI'[Chargeable Hours Recorded]=[Sum of Chargeable Minutes Recorded] / 60;
 CREATE MEASURE 'factKPI'[YTD Chargeable Hours Recorded]=totalytd([Chargeable Hours Recorded], dimDateBillDate[BillDateDate], "04-30");
 CREATE MEASURE 'factKPI'[YTD Target Hours]=totalytd([Sum of Target Hours], dimDateBillDate[BillDateDate], "04-30");
