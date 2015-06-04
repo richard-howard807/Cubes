@@ -5708,6 +5708,7 @@ CREATE MEASURE 'factKPI'[% of YTD Zero Rate Hours Recorded vs Chargeable Hours]=
 CREATE MEASURE 'factKPI'[YTD New Matters]=totalytd([Sum of New Matters], dimDateBillDate[BillDateDate], "04-30");
 CREATE MEASURE 'factKPI'[Annual Target Profit Costs]=firstnonblank(factKPI[TargetProfitCostsYearTotal],1);
 CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=[Annual Target Profit Costs] - [Sum of Budget Balances];
+CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBalances],1);
 </Text>
                 </Command>
               </Commands>
@@ -6948,6 +6949,27 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=[Annual T
                     </Annotation>
                   </Annotations>
                   <CalculationReference>[Annual Target Profit Costs (Budget Balanced)]</CalculationReference>
+                  <CalculationType>Member</CalculationType>
+                  <FormatString>''</FormatString>
+                </CalculationProperty>
+                <CalculationProperty>
+                  <Annotations>
+                    <Annotation>
+                      <Name>Type</Name>
+                      <Value>User</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsPrivate</Name>
+                      <Value>False</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Format</Name>
+                      <Value>
+                        <Format Format="General" xmlns="" />
+                      </Value>
+                    </Annotation>
+                  </Annotations>
+                  <CalculationReference>[Annual Budget Balance]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
                 </CalculationProperty>
