@@ -5707,7 +5707,7 @@ CREATE MEASURE 'factKPI'[% of Zero Rate Hours Recorded vs Chargeable Hours]=if([
 CREATE MEASURE 'factKPI'[% of YTD Zero Rate Hours Recorded vs Chargeable Hours]=if([YTD Chargeable Hours Recorded] = 0, 0, [YTD Zero Rate Hours Recorded] / [YTD Chargeable Hours Recorded]);
 CREATE MEASURE 'factKPI'[YTD New Matters]=totalytd([Sum of New Matters], dimDateBillDate[BillDateDate], "04-30");
 CREATE MEASURE 'factKPI'[Annual Target Profit Costs]=firstnonblank(factKPI[TargetProfitCostsYearTotal],1);
-CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=[Annual Target Profit Costs] - [Annual Budget Balance];
+CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=[Annual Target Profit Costs] + [Annual Budget Balance];
 CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBalances],1);
 </Text>
                 </Command>
