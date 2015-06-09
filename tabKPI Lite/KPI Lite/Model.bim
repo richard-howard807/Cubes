@@ -2133,6 +2133,16 @@ LEFT JOIN dim_fed_hierarchy_history AS fed
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>BillDateCalPeriod</Name>
                 </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>BillDateStartOfFinancialYear</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>BillDateStartOfFinancialYear</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>BillDateEndOfFinancialYear</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>BillDateEndOfFinancialYear</Name>
+                </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
               <ddl300_300:FormatString>General Date</ddl300_300:FormatString>
@@ -2782,6 +2792,56 @@ LEFT JOIN dim_fed_hierarchy_history AS fed
               </NameColumn>
               <OrderBy>Key</OrderBy>
             </Attribute>
+            <Attribute>
+              <ID>BillDateStartOfFinancialYear</ID>
+              <Name>BillDateStartOfFinancialYear</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Date</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimDateBillDate_a100c684-6a54-4154-9d81-bdf4b7fcd6d2</TableID>
+                    <ColumnID>BillDateStartOfFinancialYear</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimDateBillDate_a100c684-6a54-4154-9d81-bdf4b7fcd6d2</TableID>
+                  <ColumnID>BillDateStartOfFinancialYear</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>BillDateEndOfFinancialYear</ID>
+              <Name>BillDateEndOfFinancialYear</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Date</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimDateBillDate_a100c684-6a54-4154-9d81-bdf4b7fcd6d2</TableID>
+                    <ColumnID>BillDateEndOfFinancialYear</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimDateBillDate_a100c684-6a54-4154-9d81-bdf4b7fcd6d2</TableID>
+                  <ColumnID>BillDateEndOfFinancialYear</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
           </Attributes>
           <ProactiveCaching>
             <SilenceInterval>-PT1S</SilenceInterval>
@@ -2796,20 +2856,14 @@ LEFT JOIN dim_fed_hierarchy_history AS fed
           <Name>dimFEDHierarchy</Name>
           <Annotations>
             <Annotation>
-              <Name>IsQueryEditorUsed</Name>
-              <Value>True</Value>
+              <Name>TableWidgetSerialization</Name>
             </Annotation>
             <Annotation>
               <Name>QueryEditorSerialization</Name>
             </Annotation>
             <Annotation>
-              <Name>TableWidgetSerialization</Name>
-            </Annotation>
-            <Annotation>
-              <Name>DataMarketWebBaseUrl</Name>
-            </Annotation>
-            <Annotation>
-              <Name>DataMarketWebQueryUrl</Name>
+              <Name>IsQueryEditorUsed</Name>
+              <Value>True</Value>
             </Annotation>
           </Annotations>
           <Source xsi:type="DataSourceViewBinding">
@@ -2890,6 +2944,11 @@ LEFT JOIN dim_fed_hierarchy_history AS fed
                   <AttributeID>BCMEmail</AttributeID>
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>BCMEmail</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>ActiveFEDCode</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>ActiveFEDCode</Name>
                 </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
@@ -3210,6 +3269,39 @@ LEFT JOIN dim_fed_hierarchy_history AS fed
               </NameColumn>
               <OrderBy>Key</OrderBy>
             </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>ActiveFEDCode</ID>
+              <Name>ActiveFEDCode</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>BigInt</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimFEDHierarchy_86f18818-36f0-4d66-9cf4-9df4bf512d69</TableID>
+                    <ColumnID>ActiveFEDCode</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimFEDHierarchy_86f18818-36f0-4d66-9cf4-9df4bf512d69</TableID>
+                  <ColumnID>ActiveFEDCode</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
           </Attributes>
           <ProactiveCaching>
             <SilenceInterval>-PT1S</SilenceInterval>
@@ -3444,6 +3536,12 @@ LEFT JOIN dim_fed_hierarchy_history AS fed
                 <Attribute>
                   <AttributeID>BillDateCalPeriod</AttributeID>
                 </Attribute>
+                <Attribute>
+                  <AttributeID>BillDateStartOfFinancialYear</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>BillDateEndOfFinancialYear</AttributeID>
+                </Attribute>
               </Attributes>
             </Dimension>
             <Dimension>
@@ -3481,6 +3579,9 @@ LEFT JOIN dim_fed_hierarchy_history AS fed
                 </Attribute>
                 <Attribute>
                   <AttributeID>BCMEmail</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>ActiveFEDCode</AttributeID>
                 </Attribute>
               </Attributes>
             </Dimension>
@@ -4497,6 +4598,34 @@ LEFT JOIN dim_fed_hierarchy_history AS fed
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>BillDateStartOfFinancialYear</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateBillDate_a100c684-6a54-4154-9d81-bdf4b7fcd6d2</TableID>
+                            <ColumnID>BillDateStartOfFinancialYear</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BillDateEndOfFinancialYear</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateBillDate_a100c684-6a54-4154-9d81-bdf4b7fcd6d2</TableID>
+                            <ColumnID>BillDateEndOfFinancialYear</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <IntermediateCubeDimensionID>factKPI_fd2eb13f-dad0-4070-82d8-08fb90a7a815</IntermediateCubeDimensionID>
                   <IntermediateGranularityAttributeID>dim_bill_date_key</IntermediateGranularityAttributeID>
@@ -4649,6 +4778,20 @@ LEFT JOIN dim_fed_hierarchy_history AS fed
                           <Source xsi:type="ColumnBinding">
                             <TableID>dimFEDHierarchy_86f18818-36f0-4d66-9cf4-9df4bf512d69</TableID>
                             <ColumnID>BCMEmail</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ActiveFEDCode</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimFEDHierarchy_86f18818-36f0-4d66-9cf4-9df4bf512d69</TableID>
+                            <ColumnID>ActiveFEDCode</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -5302,6 +5445,34 @@ LEFT JOIN (
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>BillDateStartOfFinancialYear</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateBillDate_a100c684-6a54-4154-9d81-bdf4b7fcd6d2</TableID>
+                            <ColumnID>BillDateStartOfFinancialYear</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BillDateEndOfFinancialYear</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateBillDate_a100c684-6a54-4154-9d81-bdf4b7fcd6d2</TableID>
+                            <ColumnID>BillDateEndOfFinancialYear</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
                 </Dimension>
@@ -5348,13 +5519,15 @@ datepart(year, case when month(calendar_date) &gt; 4 then dateadd(month, -4, dat
 week_end_flag as 'BillDateWeekend',
 holiday_flag as 'BillDateHoliday',
 cal_month_name + '-' + right(cal_year, 2) as 'BillDateCalPeriod',
-fin_month_name + '-' + right(fin_year, 2) as 'BillDateFinancialPeriod'
+fin_month_name + '-' + right(fin_year, 2) as 'BillDateFinancialPeriod',
+cast(case when dim_date_key = 0 then null else cast(datepart(year, case when month(calendar_date) &gt; 4 then dateadd(month, -4, dateadd(year, 1, calendar_date)) else dateadd(month, 8, dateadd(year, 0, calendar_date)) end) - 1 as varchar(4)) + '-05-01' end as datetime) as 'BillDateStartOfFinancialYear',
+cast(case when dim_date_key = 0 then null else cast(datepart(year, case when month(calendar_date) &gt; 4 then dateadd(month, -4, dateadd(year, 1, calendar_date)) else dateadd(month, 8, dateadd(year, 0, calendar_date)) end) as varchar(4)) + '-04-30' end as datetime) as 'BillDateEndOfFinancialYear'
 
 
 
 
 from
-dim_date</QueryDefinition>
+red_dw.dbo.dim_date</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
@@ -5558,6 +5731,20 @@ dim_date</QueryDefinition>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>ActiveFEDCode</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimFEDHierarchy_86f18818-36f0-4d66-9cf4-9df4bf512d69</TableID>
+                            <ColumnID>ActiveFEDCode</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
                 </Dimension>
@@ -5568,14 +5755,17 @@ dim_date</QueryDefinition>
                   <Name>dimFEDHierarchy</Name>
                   <Annotations>
                     <Annotation>
-                      <Name>IsQueryEditorUsed</Name>
-                      <Value>True</Value>
+                      <Name>TableWidgetSerialization</Name>
+                    </Annotation>
+                    <Annotation>
+                      <Name>TableWidgetSourceTable</Name>
                     </Annotation>
                     <Annotation>
                       <Name>QueryEditorSerialization</Name>
                     </Annotation>
                     <Annotation>
-                      <Name>TableWidgetSerialization</Name>
+                      <Name>IsQueryEditorUsed</Name>
+                      <Value>True</Value>
                     </Annotation>
                   </Annotations>
                   <Source xsi:type="QueryBinding">
@@ -5589,7 +5779,8 @@ h1.hierarchylevel2hist as 'BusinessLine',
 h1.hierarchylevel3hist as 'PracticeArea',
 h1.hierarchylevel4hist as 'Team',
 h1.reportingbcmname as 'BCMName',
-e.workemail as 'BCMEmail'
+e.workemail as 'BCMEmail',
+cast(h1.activeud as int) as 'ActiveFEDCode'
 
 
 from
@@ -7067,7 +7258,7 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimDateBillDate_a100c684-6a54-4154-9d81-bdf4b7fcd6d2" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimDateBillDate" msprop:DbTableName="dimDateBillDate" msprop:TableType="View" msprop:Description="dimDateBillDate" msprop:QueryDefinition="select&#xD;&#xA;dim_date_key as 'BillDateKey',&#xD;&#xA;calendar_date as 'BillDateDate',&#xD;&#xA;cal_day_in_month as 'BillDateDayInMonth',&#xD;&#xA;cal_day_in_year as 'BillDateDayInYear',&#xD;&#xA;cal_day_in_week_no as 'BillDateWeekdayNo',&#xD;&#xA;cal_day_in_week as 'BillDateWeekdayName',&#xD;&#xA;cal_week_in_year as 'BillDateCalendarWeek',&#xD;&#xA;cal_month_no as 'BillDateCalendarMonthNo',&#xD;&#xA;cal_month_name as 'BillDateCalendarMonthName',&#xD;&#xA;cal_quarter_no as 'BillDateCalendarQuarterNo',&#xD;&#xA;cal_year as 'BillDateCalendarYear',&#xD;&#xA;case when month(calendar_date) &gt; 4 then dateadd(month, -4, dateadd(year, 1, calendar_date)) else dateadd(month, 8, dateadd(year, 0, calendar_date)) end as 'BillDateFinancialDate',&#xD;&#xA;fin_week_in_year as 'BillDateFinancialWeek',&#xD;&#xA;fin_month_no as 'BillDateFinancialMonthNo',&#xD;&#xA;fin_month_name as 'BillDateFinancialMonthName',&#xD;&#xA;fin_quarter_no as 'BillDateFinancialQuarterNo',&#xD;&#xA;datepart(year, case when month(calendar_date) &gt; 4 then dateadd(month, -4, dateadd(year, 1, calendar_date)) else dateadd(month, 8, dateadd(year, 0, calendar_date)) end) as 'BilldateFinancialYear',&#xD;&#xA;week_end_flag as 'BillDateWeekend',&#xD;&#xA;holiday_flag as 'BillDateHoliday',&#xD;&#xA;cal_month_name + '-' + right(cal_year, 2) as 'BillDateCalPeriod',&#xD;&#xA;fin_month_name + '-' + right(fin_year, 2) as 'BillDateFinancialPeriod'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;dim_date">
+                    <xs:element name="dimDateBillDate_a100c684-6a54-4154-9d81-bdf4b7fcd6d2" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimDateBillDate" msprop:DbTableName="dimDateBillDate" msprop:TableType="View" msprop:Description="dimDateBillDate" msprop:QueryDefinition="select&#xD;&#xA;dim_date_key as 'BillDateKey',&#xD;&#xA;calendar_date as 'BillDateDate',&#xD;&#xA;cal_day_in_month as 'BillDateDayInMonth',&#xD;&#xA;cal_day_in_year as 'BillDateDayInYear',&#xD;&#xA;cal_day_in_week_no as 'BillDateWeekdayNo',&#xD;&#xA;cal_day_in_week as 'BillDateWeekdayName',&#xD;&#xA;cal_week_in_year as 'BillDateCalendarWeek',&#xD;&#xA;cal_month_no as 'BillDateCalendarMonthNo',&#xD;&#xA;cal_month_name as 'BillDateCalendarMonthName',&#xD;&#xA;cal_quarter_no as 'BillDateCalendarQuarterNo',&#xD;&#xA;cal_year as 'BillDateCalendarYear',&#xD;&#xA;case when month(calendar_date) &gt; 4 then dateadd(month, -4, dateadd(year, 1, calendar_date)) else dateadd(month, 8, dateadd(year, 0, calendar_date)) end as 'BillDateFinancialDate',&#xD;&#xA;fin_week_in_year as 'BillDateFinancialWeek',&#xD;&#xA;fin_month_no as 'BillDateFinancialMonthNo',&#xD;&#xA;fin_month_name as 'BillDateFinancialMonthName',&#xD;&#xA;fin_quarter_no as 'BillDateFinancialQuarterNo',&#xD;&#xA;datepart(year, case when month(calendar_date) &gt; 4 then dateadd(month, -4, dateadd(year, 1, calendar_date)) else dateadd(month, 8, dateadd(year, 0, calendar_date)) end) as 'BilldateFinancialYear',&#xD;&#xA;week_end_flag as 'BillDateWeekend',&#xD;&#xA;holiday_flag as 'BillDateHoliday',&#xD;&#xA;cal_month_name + '-' + right(cal_year, 2) as 'BillDateCalPeriod',&#xD;&#xA;fin_month_name + '-' + right(fin_year, 2) as 'BillDateFinancialPeriod',&#xD;&#xA;cast(case when dim_date_key = 0 then null else cast(datepart(year, case when month(calendar_date) &gt; 4 then dateadd(month, -4, dateadd(year, 1, calendar_date)) else dateadd(month, 8, dateadd(year, 0, calendar_date)) end) - 1 as varchar(4)) + '-05-01' end as datetime) as 'BillDateStartOfFinancialYear',&#xD;&#xA;cast(case when dim_date_key = 0 then null else cast(datepart(year, case when month(calendar_date) &gt; 4 then dateadd(month, -4, dateadd(year, 1, calendar_date)) else dateadd(month, 8, dateadd(year, 0, calendar_date)) end) as varchar(4)) + '-04-30' end as datetime) as 'BillDateEndOfFinancialYear'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_date">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="BillDateKey" msprop:DbColumnName="BillDateKey" msprop:FriendlyName="BillDateKey" type="xs:int" minOccurs="0" />
@@ -7133,10 +7324,12 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                               </xs:restriction>
                             </xs:simpleType>
                           </xs:element>
+                          <xs:element name="BillDateStartOfFinancialYear" msprop:DbColumnName="BillDateStartOfFinancialYear" msprop:FriendlyName="BillDateStartOfFinancialYear" type="xs:dateTime" minOccurs="0" />
+                          <xs:element name="BillDateEndOfFinancialYear" msprop:DbColumnName="BillDateEndOfFinancialYear" msprop:FriendlyName="BillDateEndOfFinancialYear" type="xs:dateTime" minOccurs="0" />
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimFEDHierarchy_86f18818-36f0-4d66-9cf4-9df4bf512d69" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimFEDHierarchy" msprop:DbTableName="dimFEDHierarchy" msprop:TableType="View" msprop:Description="dimFEDHierarchy" msprop:QueryDefinition="select distinct&#xD;&#xA;h1.dim_fed_hierarchy_history_key as 'FEDCodeID',&#xD;&#xA;h1.fed_code as 'FEDCode',&#xD;&#xA;h1.name as 'FEDName',&#xD;&#xA;e2.workemail as 'EmailAddress',&#xD;&#xA;h1.hierarchylevel2hist as 'BusinessLine',&#xD;&#xA;h1.hierarchylevel3hist as 'PracticeArea',&#xD;&#xA;h1.hierarchylevel4hist as 'Team',&#xD;&#xA;h1.reportingbcmname as 'BCMName',&#xD;&#xA;e.workemail as 'BCMEmail'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_fed_hierarchy_history h1 &#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; red_dw.dbo.load_cascade_employee e&#xD;&#xA;  on e.employeeid = h1.reportingbcmidud&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; red_dw.dbo.load_cascade_employee e2&#xD;&#xA;  on e2.employeeid = h1.employeeid &#xD;&#xA;&#xD;&#xA;order by 1">
+                    <xs:element name="dimFEDHierarchy_86f18818-36f0-4d66-9cf4-9df4bf512d69" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimFEDHierarchy" msprop:DbTableName="dimFEDHierarchy" msprop:TableType="View" msprop:Description="dimFEDHierarchy" msprop:QueryDefinition="select distinct&#xD;&#xA;h1.dim_fed_hierarchy_history_key as 'FEDCodeID',&#xD;&#xA;h1.fed_code as 'FEDCode',&#xD;&#xA;h1.name as 'FEDName',&#xD;&#xA;e2.workemail as 'EmailAddress',&#xD;&#xA;h1.hierarchylevel2hist as 'BusinessLine',&#xD;&#xA;h1.hierarchylevel3hist as 'PracticeArea',&#xD;&#xA;h1.hierarchylevel4hist as 'Team',&#xD;&#xA;h1.reportingbcmname as 'BCMName',&#xD;&#xA;e.workemail as 'BCMEmail',&#xD;&#xA;cast(h1.activeud as int) as 'ActiveFEDCode'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_fed_hierarchy_history h1 &#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; red_dw.dbo.load_cascade_employee e&#xD;&#xA;  on e.employeeid = h1.reportingbcmidud&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; red_dw.dbo.load_cascade_employee e2&#xD;&#xA;  on e2.employeeid = h1.employeeid &#xD;&#xA;&#xD;&#xA;order by 1">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="FEDCodeID" msprop:DbColumnName="FEDCodeID" msprop:FriendlyName="FEDCodeID" type="xs:int" minOccurs="0" />
@@ -7196,6 +7389,7 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                               </xs:restriction>
                             </xs:simpleType>
                           </xs:element>
+                          <xs:element name="ActiveFEDCode" msprop:DbColumnName="ActiveFEDCode" msprop:FriendlyName="ActiveFEDCode" type="xs:boolean" minOccurs="0" />
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
