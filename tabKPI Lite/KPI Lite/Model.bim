@@ -2148,6 +2148,11 @@ LEFT JOIN dim_fed_hierarchy_history AS fed
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>BillDateStartOfMonth</Name>
                 </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>BillDateEndOfMonth</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>BillDateEndOfMonth</Name>
+                </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
               <ddl300_300:FormatString>General Date</ddl300_300:FormatString>
@@ -2872,6 +2877,31 @@ LEFT JOIN dim_fed_hierarchy_history AS fed
               </NameColumn>
               <OrderBy>Key</OrderBy>
             </Attribute>
+            <Attribute>
+              <ID>BillDateEndOfMonth</ID>
+              <Name>BillDateEndOfMonth</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Date</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimDateBillDate_a100c684-6a54-4154-9d81-bdf4b7fcd6d2</TableID>
+                    <ColumnID>BillDateEndOfMonth</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimDateBillDate_a100c684-6a54-4154-9d81-bdf4b7fcd6d2</TableID>
+                  <ColumnID>BillDateEndOfMonth</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
           </Attributes>
           <ProactiveCaching>
             <SilenceInterval>-PT1S</SilenceInterval>
@@ -3574,6 +3604,9 @@ LEFT JOIN dim_fed_hierarchy_history AS fed
                 </Attribute>
                 <Attribute>
                   <AttributeID>BillDateStartOfMonth</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>BillDateEndOfMonth</AttributeID>
                 </Attribute>
               </Attributes>
             </Dimension>
@@ -4673,6 +4706,20 @@ LEFT JOIN dim_fed_hierarchy_history AS fed
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>BillDateEndOfMonth</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateBillDate_a100c684-6a54-4154-9d81-bdf4b7fcd6d2</TableID>
+                            <ColumnID>BillDateEndOfMonth</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <IntermediateCubeDimensionID>factKPI_fd2eb13f-dad0-4070-82d8-08fb90a7a815</IntermediateCubeDimensionID>
                   <IntermediateGranularityAttributeID>dim_bill_date_key</IntermediateGranularityAttributeID>
@@ -5534,6 +5581,20 @@ LEFT JOIN (
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>BillDateEndOfMonth</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateBillDate_a100c684-6a54-4154-9d81-bdf4b7fcd6d2</TableID>
+                            <ColumnID>BillDateEndOfMonth</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
                 </Dimension>
@@ -5583,7 +5644,8 @@ cal_month_name + '-' + right(cal_year, 2) as 'BillDateCalPeriod',
 fin_month_name + '-' + right(fin_year, 2) as 'BillDateFinancialPeriod',
 cast(case when dim_date_key = 0 then null else cast(datepart(year, case when month(calendar_date) &gt; 4 then dateadd(month, -4, dateadd(year, 1, calendar_date)) else dateadd(month, 8, dateadd(year, 0, calendar_date)) end) - 1 as varchar(4)) + '-05-01' end as datetime) as 'BillDateStartOfFinancialYear',
 cast(case when dim_date_key = 0 then null else cast(datepart(year, case when month(calendar_date) &gt; 4 then dateadd(month, -4, dateadd(year, 1, calendar_date)) else dateadd(month, 8, dateadd(year, 0, calendar_date)) end) as varchar(4)) + '-04-30' end as datetime) as 'BillDateEndOfFinancialYear',
-DATEADD(month, DATEDIFF(month, 0, calendar_date), 0) as 'BillDateStartOfMonth'
+DATEADD(month, DATEDIFF(month, 0, calendar_date), 0) as 'BillDateStartOfMonth',
+cast(case when dim_date_key = 0 then null else eomonth(calendar_date) end as datetime) as 'BillDateEndOfMonth'
 
 
 
@@ -7320,7 +7382,7 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimDateBillDate_a100c684-6a54-4154-9d81-bdf4b7fcd6d2" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimDateBillDate" msprop:DbTableName="dimDateBillDate" msprop:TableType="View" msprop:Description="dimDateBillDate" msprop:QueryDefinition="select&#xD;&#xA;dim_date_key as 'BillDateKey',&#xD;&#xA;calendar_date as 'BillDateDate',&#xD;&#xA;cal_day_in_month as 'BillDateDayInMonth',&#xD;&#xA;cal_day_in_year as 'BillDateDayInYear',&#xD;&#xA;cal_day_in_week_no as 'BillDateWeekdayNo',&#xD;&#xA;cal_day_in_week as 'BillDateWeekdayName',&#xD;&#xA;cal_week_in_year as 'BillDateCalendarWeek',&#xD;&#xA;cal_month_no as 'BillDateCalendarMonthNo',&#xD;&#xA;cal_month_name as 'BillDateCalendarMonthName',&#xD;&#xA;cal_quarter_no as 'BillDateCalendarQuarterNo',&#xD;&#xA;cal_year as 'BillDateCalendarYear',&#xD;&#xA;case when month(calendar_date) &gt; 4 then dateadd(month, -4, dateadd(year, 1, calendar_date)) else dateadd(month, 8, dateadd(year, 0, calendar_date)) end as 'BillDateFinancialDate',&#xD;&#xA;fin_week_in_year as 'BillDateFinancialWeek',&#xD;&#xA;fin_month_no as 'BillDateFinancialMonthNo',&#xD;&#xA;fin_month_name as 'BillDateFinancialMonthName',&#xD;&#xA;fin_quarter_no as 'BillDateFinancialQuarterNo',&#xD;&#xA;datepart(year, case when month(calendar_date) &gt; 4 then dateadd(month, -4, dateadd(year, 1, calendar_date)) else dateadd(month, 8, dateadd(year, 0, calendar_date)) end) as 'BilldateFinancialYear',&#xD;&#xA;week_end_flag as 'BillDateWeekend',&#xD;&#xA;holiday_flag as 'BillDateHoliday',&#xD;&#xA;cal_month_name + '-' + right(cal_year, 2) as 'BillDateCalPeriod',&#xD;&#xA;fin_month_name + '-' + right(fin_year, 2) as 'BillDateFinancialPeriod',&#xD;&#xA;cast(case when dim_date_key = 0 then null else cast(datepart(year, case when month(calendar_date) &gt; 4 then dateadd(month, -4, dateadd(year, 1, calendar_date)) else dateadd(month, 8, dateadd(year, 0, calendar_date)) end) - 1 as varchar(4)) + '-05-01' end as datetime) as 'BillDateStartOfFinancialYear',&#xD;&#xA;cast(case when dim_date_key = 0 then null else cast(datepart(year, case when month(calendar_date) &gt; 4 then dateadd(month, -4, dateadd(year, 1, calendar_date)) else dateadd(month, 8, dateadd(year, 0, calendar_date)) end) as varchar(4)) + '-04-30' end as datetime) as 'BillDateEndOfFinancialYear',&#xD;&#xA;DATEADD(month, DATEDIFF(month, 0, calendar_date), 0) as 'BillDateStartOfMonth'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_date">
+                    <xs:element name="dimDateBillDate_a100c684-6a54-4154-9d81-bdf4b7fcd6d2" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimDateBillDate" msprop:DbTableName="dimDateBillDate" msprop:TableType="View" msprop:Description="dimDateBillDate" msprop:QueryDefinition="select&#xD;&#xA;dim_date_key as 'BillDateKey',&#xD;&#xA;calendar_date as 'BillDateDate',&#xD;&#xA;cal_day_in_month as 'BillDateDayInMonth',&#xD;&#xA;cal_day_in_year as 'BillDateDayInYear',&#xD;&#xA;cal_day_in_week_no as 'BillDateWeekdayNo',&#xD;&#xA;cal_day_in_week as 'BillDateWeekdayName',&#xD;&#xA;cal_week_in_year as 'BillDateCalendarWeek',&#xD;&#xA;cal_month_no as 'BillDateCalendarMonthNo',&#xD;&#xA;cal_month_name as 'BillDateCalendarMonthName',&#xD;&#xA;cal_quarter_no as 'BillDateCalendarQuarterNo',&#xD;&#xA;cal_year as 'BillDateCalendarYear',&#xD;&#xA;case when month(calendar_date) &gt; 4 then dateadd(month, -4, dateadd(year, 1, calendar_date)) else dateadd(month, 8, dateadd(year, 0, calendar_date)) end as 'BillDateFinancialDate',&#xD;&#xA;fin_week_in_year as 'BillDateFinancialWeek',&#xD;&#xA;fin_month_no as 'BillDateFinancialMonthNo',&#xD;&#xA;fin_month_name as 'BillDateFinancialMonthName',&#xD;&#xA;fin_quarter_no as 'BillDateFinancialQuarterNo',&#xD;&#xA;datepart(year, case when month(calendar_date) &gt; 4 then dateadd(month, -4, dateadd(year, 1, calendar_date)) else dateadd(month, 8, dateadd(year, 0, calendar_date)) end) as 'BilldateFinancialYear',&#xD;&#xA;week_end_flag as 'BillDateWeekend',&#xD;&#xA;holiday_flag as 'BillDateHoliday',&#xD;&#xA;cal_month_name + '-' + right(cal_year, 2) as 'BillDateCalPeriod',&#xD;&#xA;fin_month_name + '-' + right(fin_year, 2) as 'BillDateFinancialPeriod',&#xD;&#xA;cast(case when dim_date_key = 0 then null else cast(datepart(year, case when month(calendar_date) &gt; 4 then dateadd(month, -4, dateadd(year, 1, calendar_date)) else dateadd(month, 8, dateadd(year, 0, calendar_date)) end) - 1 as varchar(4)) + '-05-01' end as datetime) as 'BillDateStartOfFinancialYear',&#xD;&#xA;cast(case when dim_date_key = 0 then null else cast(datepart(year, case when month(calendar_date) &gt; 4 then dateadd(month, -4, dateadd(year, 1, calendar_date)) else dateadd(month, 8, dateadd(year, 0, calendar_date)) end) as varchar(4)) + '-04-30' end as datetime) as 'BillDateEndOfFinancialYear',&#xD;&#xA;DATEADD(month, DATEDIFF(month, 0, calendar_date), 0) as 'BillDateStartOfMonth',&#xD;&#xA;cast(case when dim_date_key = 0 then null else eomonth(calendar_date) end as datetime) as 'BillDateEndOfMonth'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_date">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="BillDateKey" msprop:DbColumnName="BillDateKey" msprop:FriendlyName="BillDateKey" type="xs:int" minOccurs="0" />
@@ -7389,6 +7451,7 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                           <xs:element name="BillDateStartOfFinancialYear" msprop:DbColumnName="BillDateStartOfFinancialYear" msprop:FriendlyName="BillDateStartOfFinancialYear" type="xs:dateTime" minOccurs="0" />
                           <xs:element name="BillDateEndOfFinancialYear" msprop:DbColumnName="BillDateEndOfFinancialYear" msprop:FriendlyName="BillDateEndOfFinancialYear" type="xs:dateTime" minOccurs="0" />
                           <xs:element name="BillDateStartOfMonth" msprop:DbColumnName="BillDateStartOfMonth" msprop:FriendlyName="BillDateStartOfMonth" type="xs:dateTime" minOccurs="0" />
+                          <xs:element name="BillDateEndOfMonth" msprop:DbColumnName="BillDateEndOfMonth" msprop:FriendlyName="BillDateEndOfMonth" type="xs:dateTime" minOccurs="0" />
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
