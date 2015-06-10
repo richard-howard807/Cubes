@@ -2903,6 +2903,50 @@ LEFT JOIN dim_fed_hierarchy_history AS fed
               <OrderBy>Key</OrderBy>
             </Attribute>
           </Attributes>
+          <Hierarchies>
+            <Hierarchy>
+              <ID>CalendarDate</ID>
+              <Name>CalendarDate</Name>
+              <Levels>
+                <Level>
+                  <ID>BillDateCalendarYear</ID>
+                  <Name>BillDateCalendarYear</Name>
+                  <SourceAttributeID>BillDateCalendarYear</SourceAttributeID>
+                </Level>
+                <Level>
+                  <ID>BillDateCalendarQuarterNo</ID>
+                  <Name>BillDateCalendarQuarterNo</Name>
+                  <SourceAttributeID>BillDateCalendarQuarterNo</SourceAttributeID>
+                </Level>
+                <Level>
+                  <ID>BillDateCalPeriod</ID>
+                  <Name>BillDateCalPeriod</Name>
+                  <SourceAttributeID>BillDateCalPeriod</SourceAttributeID>
+                </Level>
+              </Levels>
+            </Hierarchy>
+            <Hierarchy>
+              <ID>FinancialDate</ID>
+              <Name>FinancialDate</Name>
+              <Levels>
+                <Level>
+                  <ID>BillDateFinancialYear</ID>
+                  <Name>BillDateFinancialYear</Name>
+                  <SourceAttributeID>BillDateFinancialYear</SourceAttributeID>
+                </Level>
+                <Level>
+                  <ID>BillDateFinancialQuarterNo</ID>
+                  <Name>BillDateFinancialQuarterNo</Name>
+                  <SourceAttributeID>BillDateFinancialQuarterNo</SourceAttributeID>
+                </Level>
+                <Level>
+                  <ID>BillDateFinancialPeriod</ID>
+                  <Name>BillDateFinancialPeriod</Name>
+                  <SourceAttributeID>BillDateFinancialPeriod</SourceAttributeID>
+                </Level>
+              </Levels>
+            </Hierarchy>
+          </Hierarchies>
           <ProactiveCaching>
             <SilenceInterval>-PT1S</SilenceInterval>
             <Latency>-PT1S</Latency>
@@ -3363,6 +3407,34 @@ LEFT JOIN dim_fed_hierarchy_history AS fed
               <OrderBy>Key</OrderBy>
             </Attribute>
           </Attributes>
+          <Hierarchies>
+            <Hierarchy>
+              <ID>Hierarchy</ID>
+              <Name>Hierarchy</Name>
+              <Levels>
+                <Level>
+                  <ID>BusinessLine</ID>
+                  <Name>BusinessLine</Name>
+                  <SourceAttributeID>BusinessLine</SourceAttributeID>
+                </Level>
+                <Level>
+                  <ID>PracticeArea</ID>
+                  <Name>PracticeArea</Name>
+                  <SourceAttributeID>PracticeArea</SourceAttributeID>
+                </Level>
+                <Level>
+                  <ID>Team</ID>
+                  <Name>Team</Name>
+                  <SourceAttributeID>Team</SourceAttributeID>
+                </Level>
+                <Level>
+                  <ID>FEDCode</ID>
+                  <Name>FEDCode</Name>
+                  <SourceAttributeID>FEDCode</SourceAttributeID>
+                </Level>
+              </Levels>
+            </Hierarchy>
+          </Hierarchies>
           <ProactiveCaching>
             <SilenceInterval>-PT1S</SilenceInterval>
             <Latency>-PT1S</Latency>
@@ -3609,6 +3681,14 @@ LEFT JOIN dim_fed_hierarchy_history AS fed
                   <AttributeID>BillDateEndOfMonth</AttributeID>
                 </Attribute>
               </Attributes>
+              <Hierarchies>
+                <Hierarchy>
+                  <HierarchyID>CalendarDate</HierarchyID>
+                </Hierarchy>
+                <Hierarchy>
+                  <HierarchyID>FinancialDate</HierarchyID>
+                </Hierarchy>
+              </Hierarchies>
             </Dimension>
             <Dimension>
               <ID>dimFEDHierarchy_86f18818-36f0-4d66-9cf4-9df4bf512d69</ID>
@@ -3650,6 +3730,11 @@ LEFT JOIN dim_fed_hierarchy_history AS fed
                   <AttributeID>ActiveFEDCode</AttributeID>
                 </Attribute>
               </Attributes>
+              <Hierarchies>
+                <Hierarchy>
+                  <HierarchyID>Hierarchy</HierarchyID>
+                </Hierarchy>
+              </Hierarchies>
             </Dimension>
           </Dimensions>
           <MeasureGroups>
