@@ -6417,7 +6417,7 @@ CREATE MEASURE 'factKPI'[Profit Costs]=SUM([ProfitCosts]);
 CREATE MEASURE 'factKPI'[Target Profit Costs]=SUM([TargetProfitCosts]);
 CREATE MEASURE 'factKPI'[Budget Balance]=SUM([BudgetBalances]);
 CREATE MEASURE 'factKPI'[Target Hours]=SUM([TargetHours]);
-CREATE MEASURE 'factKPI'[Sum of Billed Time Budget Value]=SUM([TimeBilledBudgetValue]);
+CREATE MEASURE 'factKPI'[Billed Time Target]=SUM([TimeBilledBudgetValue]);
 CREATE MEASURE 'factKPI'[Target Profit Costs - Team Level]=SUM([team_level_budget_value]);
 CREATE MEASURE 'factKPI'[Target Profit Costs - Practice Area Level]=SUM([practice_area_level_budget_value]);
 CREATE MEASURE 'factKPI'[Target Profit Costs - Business Line Level]=SUM([business_line_level_budget_value]);
@@ -6456,7 +6456,7 @@ CREATE MEASURE 'factKPI'[Billed Time]=SUM([billed]);
 CREATE MEASURE 'factKPI'[Recovery Rate]=if ([Billed Time] = 0, 0, ([Profit Costs] / ([Billed Time] / 60) ) );
 CREATE MEASURE 'factKPI'[YTD Billed Time]=totalytd([Billed Time], dimDateBillDate[BillDateDate], "04-30");
 CREATE MEASURE 'factKPI'[YTD Recovery Rate]=if ([YTD Billed Time] = 0, 0, ([YTD Profit Costs] / ([YTD Billed Time] / 60 ) ) );
-CREATE MEASURE 'factKPI'[YTD Billed Time Budget Value]=totalytd([Sum of Billed Time Budget Value], dimDateBillDate[BillDateDate], "04-30");
+CREATE MEASURE 'factKPI'[YTD Billed Time Budget Value]=totalytd([Billed Time Target], dimDateBillDate[BillDateDate], "04-30");
 CREATE MEASURE 'factKPI'[YTD Recovery Rate Target]=if ([YTD Billed Time Budget Value] = 0, 0, ([YTD Target Profit Costs (Budget Balanced)] / [YTD Billed Time Budget Value] ));
 CREATE MEASURE 'factKPI'[Chargeable Hours Recorded]=[Chargeable Minutes Recorded] / 60;
 CREATE MEASURE 'factKPI'[YTD Chargeable Hours Recorded]=totalytd([Chargeable Hours Recorded], dimDateBillDate[BillDateDate], "04-30");
@@ -6495,7 +6495,6 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                   <CalculationReference>[Billed Minutes]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -6517,7 +6516,6 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                   <CalculationReference>[Profit Costs]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -6539,7 +6537,6 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                   <CalculationReference>[Target Profit Costs]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -6561,7 +6558,6 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                   <CalculationReference>[Budget Balance]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -6583,7 +6579,6 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                   <CalculationReference>[Target Hours]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -6602,10 +6597,9 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                       </Value>
                     </Annotation>
                   </Annotations>
-                  <CalculationReference>[Sum of Billed Time Budget Value]</CalculationReference>
+                  <CalculationReference>[Billed Time Target]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -6627,7 +6621,6 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                   <CalculationReference>[Target Profit Costs - Team Level]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -6649,7 +6642,6 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                   <CalculationReference>[Target Profit Costs - Practice Area Level]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -6671,7 +6663,6 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                   <CalculationReference>[Target Profit Costs - Business Line Level]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -6693,7 +6684,6 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                   <CalculationReference>[Target Profit Costs - Firm Level]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -6715,7 +6705,6 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                   <CalculationReference>[Chargeable Minutes Recorded]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -6737,7 +6726,6 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                   <CalculationReference>[Time Cost Value]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -6759,7 +6747,6 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                   <CalculationReference>[Time Charge Value]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -6781,7 +6768,6 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                   <CalculationReference>[Overridden Time Charge Value]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -6803,7 +6789,6 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                   <CalculationReference>[Sum of time_billed_value]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -6825,7 +6810,6 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                   <CalculationReference>[Sum of durationholidaydays]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -6847,7 +6831,6 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                   <CalculationReference>[Sum of durationdays]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -6869,7 +6852,6 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                   <CalculationReference>[Sum of days_year_to_date]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -6891,7 +6873,6 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                   <CalculationReference>[Sum of baseentitlementdays]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -6913,7 +6894,6 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                   <CalculationReference>[Sum of newstarterdays]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -6935,7 +6915,6 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                   <CalculationReference>[Sum of manualadjustmentdays]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -6957,7 +6936,6 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                   <CalculationReference>[Sum of carrydays]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -6979,7 +6957,6 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                   <CalculationReference>[Sum of totalentitlementdays]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -7001,7 +6978,6 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                   <CalculationReference>[Sum of ptproratadays]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -7023,7 +6999,6 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                   <CalculationReference>[Sum of bhproratadays]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -7045,7 +7020,6 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                   <CalculationReference>[Sum of carrylostdays]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -7067,7 +7041,6 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                   <CalculationReference>[Sum of billed_minutes_recorded]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -7089,7 +7062,6 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                   <CalculationReference>[Sum of non_chargeable_minutes]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -7111,7 +7083,6 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                   <CalculationReference>[Sum of wip_minutes]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -7133,7 +7104,6 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                   <CalculationReference>[Sum of wip_value]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -7155,7 +7125,6 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                   <CalculationReference>[Sum of Zero Rate Minutes Recorded]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -7177,7 +7146,6 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                   <CalculationReference>[Sum of disbursement_balance]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -7199,7 +7167,6 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                   <CalculationReference>[Sum of open_practice_management]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -7221,7 +7188,6 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                   <CalculationReference>[Sum of open_case_management]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -7243,7 +7209,6 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                   <CalculationReference>[Sum of New Matters]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -7265,7 +7230,6 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                   <CalculationReference>[Target Profit Costs (Budget Balanced)]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -7287,7 +7251,6 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                   <CalculationReference>[YTD Profit Costs]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>YTD</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -7309,7 +7272,6 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                   <CalculationReference>[YTD Target Profit Costs (Budget Balanced)]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>YTD</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -7331,7 +7293,6 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                   <CalculationReference>[Monthly Budget Balance]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -7353,7 +7314,6 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                   <CalculationReference>[% of YTD Profit Costs vs YTD Target]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>YTD</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -7375,7 +7335,6 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                   <CalculationReference>[Billed Time]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -7397,7 +7356,6 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                   <CalculationReference>[Recovery Rate]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -7419,7 +7377,6 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                   <CalculationReference>[YTD Billed Time]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>YTD</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -7441,7 +7398,6 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                   <CalculationReference>[YTD Recovery Rate]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>YTD</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -7463,7 +7419,6 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                   <CalculationReference>[YTD Billed Time Budget Value]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>YTD</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -7485,7 +7440,6 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                   <CalculationReference>[YTD Recovery Rate Target]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>YTD</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -7507,7 +7461,6 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                   <CalculationReference>[Chargeable Hours Recorded]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -7529,7 +7482,6 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                   <CalculationReference>[YTD Chargeable Hours Recorded]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>YTD</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -7551,7 +7503,6 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                   <CalculationReference>[YTD Target Hours]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>YTD</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -7573,7 +7524,6 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                   <CalculationReference>[% of Chargeable Hours Target Achieved]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>YTD</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -7595,7 +7545,6 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                   <CalculationReference>[% of YTD Chargeable Hours Target Achieved]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>YTD</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -7617,7 +7566,6 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                   <CalculationReference>[YTD Zero Rate Hours Recorded]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>YTD</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -7639,7 +7587,6 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                   <CalculationReference>[Zero Rate Hours Recorded]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -7661,7 +7608,6 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                   <CalculationReference>[% of Zero Rate Hours Recorded vs Chargeable Hours]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -7683,7 +7629,6 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                   <CalculationReference>[% of YTD Zero Rate Hours Recorded vs Chargeable Hours]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>YTD</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -7705,7 +7650,6 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                   <CalculationReference>[YTD New Matters]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>YTD</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -7727,7 +7671,6 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                   <CalculationReference>[Annual Target Profit Costs]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Annual</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -7749,7 +7692,6 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                   <CalculationReference>[Annual Target Profit Costs (Budget Balanced)]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Annual</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -7771,7 +7713,6 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance]=firstnonblank(factKPI[BudgetBala
                   <CalculationReference>[Annual Budget Balance]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Annual</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <CalculationReference>Measures.[__No measures defined]</CalculationReference>
