@@ -6234,6 +6234,9 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
 						   );
 CREATE MEASURE 'factKPI'[Budget Balance]=[Annual Budget Balance] / 12;
 CREATE MEASURE 'factKPI'[YTD Budget Balance]=([Annual Budget Balance] / 12) * min(dimDateBillDate[BillDateFinancialMonthNo]);
+CREATE MEASURE 'factKPI'[Annual Profit Costs]=closingbalanceyear( factKPI[YTD Profit Costs],
+							dimDateBillDate[BillDateDate], "04-30"
+						   );
 </Text>
                 </Command>
               </Commands>
@@ -7363,6 +7366,27 @@ CREATE MEASURE 'factKPI'[YTD Budget Balance]=([Annual Budget Balance] / 12) * mi
                     </Annotation>
                   </Annotations>
                   <CalculationReference>[YTD Budget Balance]</CalculationReference>
+                  <CalculationType>Member</CalculationType>
+                  <FormatString>''</FormatString>
+                </CalculationProperty>
+                <CalculationProperty>
+                  <Annotations>
+                    <Annotation>
+                      <Name>Type</Name>
+                      <Value>User</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsPrivate</Name>
+                      <Value>False</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Format</Name>
+                      <Value>
+                        <Format Format="General" xmlns="" />
+                      </Value>
+                    </Annotation>
+                  </Annotations>
+                  <CalculationReference>[Annual Profit Costs]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
                 </CalculationProperty>
