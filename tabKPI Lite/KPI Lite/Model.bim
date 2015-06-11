@@ -6175,7 +6175,7 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
 
 CREATE MEASURE 'factKPI'[Billed Minutes]=SUM([billed_time]);
 CREATE MEASURE 'factKPI'[Profit Costs]=SUM([ProfitCosts]);
-CREATE MEASURE 'factKPI'[Budget Balance]=if([Hierarchy Level] = 4, 0, [Target Profit Costs - Team Level] - [Target Profit Costs] );
+CREATE MEASURE 'factKPI'[Budget Balance - Calculation Measure]=if([Hierarchy Level] = 4, 0, [Target Profit Costs - Team Level] - [Target Profit Costs] );
 CREATE MEASURE 'factKPI'[Target Hours]=SUM([TargetHours]);
 CREATE MEASURE 'factKPI'[Target Billed Time]=SUM([TimeBilledBudgetValue]);
 CREATE MEASURE 'factKPI'[Target Profit Costs - Team Level]=SUM([team_level_budget_value]) / 12;
@@ -6189,10 +6189,10 @@ CREATE MEASURE 'factKPI'[Overridden Time Charge Value]=SUM([overridden_time_char
 CREATE MEASURE 'factKPI'[Zero Rate Minutes Recorded]=SUM([zero_rate_minutes_recorded]);
 CREATE MEASURE 'factKPI'[Sum of New Matters]=SUM([NewMatters]);
 CREATE MEASURE 'factKPI'[Target Profit Costs - Calculation Measure (Budget Balanced)]=[Target Profit Costs] + [Budget Balance];
-CREATE MEASURE 'factKPI'[YTD Profit Costs]=totalytd([Profit Costs], dimDateBillDate[BillDateFinancialDate]);
-CREATE MEASURE 'factKPI'[YTD Target Profit Costs - Calculation Measure (Budget Balanced)]=totalytd([Target Profit Costs - Calculation Measure (Budget Balanced)], dimDateBillDate[BillDateDate], "04-30" );
-CREATE MEASURE 'factKPI'[YTD Budget Balance]=totalytd([Budget Balance], dimDateBillDate[BillDateDate], "04-30");
-CREATE MEASURE 'factKPI'[% of YTD Profit Costs vs YTD Target]=if([YTD Target Profit Costs (Budget Balanced)] = 0, 0, [YTD Profit Costs] / [YTD Target Profit Costs (Budget Balanced)]);
+CREATE MEASURE 'factKPI'[YTD Profit Costs]=totalytd([Profit Costs], dimDateBillDate[BillDateDate], "04-30");
+CREATE MEASURE 'factKPI'[YTD Target Profit Costs - Calculation Measure (Budget Balanced)]=totalytd([Target Profit Costs - Calculation Measure (Budget Balanced)], dimDateBillDate[BillDateDate], "04-30" ) + [Budget Balance] + [YTD Budget Balance];
+CREATE MEASURE 'factKPI'[YTD Budget Balance - Calculation Measure]=totalytd([Budget Balance - Calculation Measure], dimDateBillDate[BillDateDate], "04-30");
+CREATE MEASURE 'factKPI'[% of YTD Profit Costs vs YTD Target (Budget Balanced)]=if([YTD Target Profit Costs (Budget Balanced)] = 0, 0, [YTD Profit Costs] / [YTD Target Profit Costs (Budget Balanced)]);
 CREATE MEASURE 'factKPI'[Billed Time]=SUM([billed]);
 CREATE MEASURE 'factKPI'[Recovery Rate]=if ([Billed Time] = 0, 0, ([Profit Costs] / ([Billed Time] / 60) ) );
 CREATE MEASURE 'factKPI'[YTD Billed Time]=totalytd([Billed Time], dimDateBillDate[BillDateDate], "04-30");
@@ -6209,7 +6209,7 @@ CREATE MEASURE 'factKPI'[Zero Rate Hours Recorded]=[Zero Rate Minutes Recorded] 
 CREATE MEASURE 'factKPI'[% of Zero Rate Hours Recorded vs Chargeable Hours]=if([Chargeable Hours Recorded] = 0, 0, [Zero Rate Hours Recorded] / [Chargeable Hours Recorded]);
 CREATE MEASURE 'factKPI'[% of YTD Zero Rate Hours Recorded vs Chargeable Hours]=if([YTD Chargeable Hours Recorded] = 0, 0, [YTD Zero Rate Hours Recorded] / [YTD Chargeable Hours Recorded]);
 CREATE MEASURE 'factKPI'[YTD New Matters]=totalytd([Sum of New Matters], dimDateBillDate[BillDateDate], "04-30");
-CREATE MEASURE 'factKPI'[Annual Budget Balance]=closingbalanceyear( factKPI[YTD Budget Balance],
+CREATE MEASURE 'factKPI'[Annual Budget Balance]=closingbalanceyear( [YTD Budget Balance - Calculation Measure],
 							dimDateBillDate[BillDateDate], "04-30"
 						   );
 CREATE MEASURE 'factKPI'[Target Profit Costs]=sum([TargetProfitCosts]);
@@ -6228,10 +6228,12 @@ CREATE MEASURE 'factKPI'[Annual Budget Balance - Business Line Level]=[Budget Ba
 CREATE MEASURE 'factKPI'[YTD Target Profit Costs - Practice Area Level]=totalytd([Target Profit Costs - Practice Area Level], dimDateBillDate[BillDateDate], "04-30");
 CREATE MEASURE 'factKPI'[Annual Target Profit Costs - Practice Area Level]=[Target Profit Costs - Practice Area Level] * 12;
 CREATE MEASURE 'factKPI'[Target Profit Costs (Budget Balanced)]=[Target Profit Costs - Calculation Measure (Budget Balanced)] + [Budget Balance - Business Line Level];
-CREATE MEASURE 'factKPI'[YTD Target Profit Costs (Budget Balanced)]=totalytd([Target Profit Costs (Budget Balanced)], dimDateBillDate[BillDateDate], "04-30" );
+CREATE MEASURE 'factKPI'[YTD Target Profit Costs (Budget Balanced)]=totalytd([Target Profit Costs (Budget Balanced)], dimDateBillDate[BillDateDate], "04-30" ) + ( [YTD Budget Balance] - [Budget Balance] );
 CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingbalanceyear( [YTD Target Profit Costs (Budget Balanced)],
 							dimDateBillDate[BillDateDate], "04-30"
 						   );
+CREATE MEASURE 'factKPI'[Budget Balance]=[Annual Budget Balance] / 12;
+CREATE MEASURE 'factKPI'[YTD Budget Balance]=([Annual Budget Balance] / 12) * min(dimDateBillDate[BillDateFinancialMonthNo]);
 </Text>
                 </Command>
               </Commands>
@@ -6256,7 +6258,6 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
                   <CalculationReference>[Billed Minutes]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -6278,7 +6279,6 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
                   <CalculationReference>[Profit Costs]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -6288,7 +6288,7 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
                     </Annotation>
                     <Annotation>
                       <Name>IsPrivate</Name>
-                      <Value>False</Value>
+                      <Value>True</Value>
                     </Annotation>
                     <Annotation>
                       <Name>Format</Name>
@@ -6297,10 +6297,10 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
                       </Value>
                     </Annotation>
                   </Annotations>
-                  <CalculationReference>[Budget Balance]</CalculationReference>
+                  <CalculationReference>[Budget Balance - Calculation Measure]</CalculationReference>
                   <CalculationType>Member</CalculationType>
+                  <Visible>false</Visible>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -6322,7 +6322,6 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
                   <CalculationReference>[Target Hours]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -6344,7 +6343,6 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
                   <CalculationReference>[Target Billed Time]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -6354,7 +6352,7 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
                     </Annotation>
                     <Annotation>
                       <Name>IsPrivate</Name>
-                      <Value>False</Value>
+                      <Value>True</Value>
                     </Annotation>
                     <Annotation>
                       <Name>Format</Name>
@@ -6365,8 +6363,8 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
                   </Annotations>
                   <CalculationReference>[Target Profit Costs - Team Level]</CalculationReference>
                   <CalculationType>Member</CalculationType>
+                  <Visible>false</Visible>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -6376,7 +6374,7 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
                     </Annotation>
                     <Annotation>
                       <Name>IsPrivate</Name>
-                      <Value>False</Value>
+                      <Value>True</Value>
                     </Annotation>
                     <Annotation>
                       <Name>Format</Name>
@@ -6387,8 +6385,8 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
                   </Annotations>
                   <CalculationReference>[Target Profit Costs - Practice Area Level]</CalculationReference>
                   <CalculationType>Member</CalculationType>
+                  <Visible>false</Visible>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -6398,7 +6396,7 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
                     </Annotation>
                     <Annotation>
                       <Name>IsPrivate</Name>
-                      <Value>False</Value>
+                      <Value>True</Value>
                     </Annotation>
                     <Annotation>
                       <Name>Format</Name>
@@ -6409,8 +6407,8 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
                   </Annotations>
                   <CalculationReference>[Budget Balance - Business Line Level]</CalculationReference>
                   <CalculationType>Member</CalculationType>
+                  <Visible>false</Visible>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -6420,7 +6418,7 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
                     </Annotation>
                     <Annotation>
                       <Name>IsPrivate</Name>
-                      <Value>False</Value>
+                      <Value>True</Value>
                     </Annotation>
                     <Annotation>
                       <Name>Format</Name>
@@ -6431,8 +6429,8 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
                   </Annotations>
                   <CalculationReference>[Target Profit Costs - Firm Level]</CalculationReference>
                   <CalculationType>Member</CalculationType>
+                  <Visible>false</Visible>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -6454,7 +6452,6 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
                   <CalculationReference>[Chargeable Minutes Recorded]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -6476,7 +6473,6 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
                   <CalculationReference>[Time Cost Value]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -6498,7 +6494,6 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
                   <CalculationReference>[Time Charge Value]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -6520,7 +6515,6 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
                   <CalculationReference>[Overridden Time Charge Value]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -6542,7 +6536,6 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
                   <CalculationReference>[Zero Rate Minutes Recorded]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -6564,7 +6557,6 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
                   <CalculationReference>[Sum of New Matters]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -6608,7 +6600,6 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
                   <CalculationReference>[YTD Profit Costs]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>YTD</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -6640,7 +6631,7 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
                     </Annotation>
                     <Annotation>
                       <Name>IsPrivate</Name>
-                      <Value>False</Value>
+                      <Value>True</Value>
                     </Annotation>
                     <Annotation>
                       <Name>Format</Name>
@@ -6649,10 +6640,10 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
                       </Value>
                     </Annotation>
                   </Annotations>
-                  <CalculationReference>[YTD Budget Balance]</CalculationReference>
+                  <CalculationReference>[YTD Budget Balance - Calculation Measure]</CalculationReference>
                   <CalculationType>Member</CalculationType>
+                  <Visible>false</Visible>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>YTD</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -6671,10 +6662,9 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
                       </Value>
                     </Annotation>
                   </Annotations>
-                  <CalculationReference>[% of YTD Profit Costs vs YTD Target]</CalculationReference>
+                  <CalculationReference>[% of YTD Profit Costs vs YTD Target (Budget Balanced)]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>YTD</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -6696,7 +6686,6 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
                   <CalculationReference>[Billed Time]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -6718,7 +6707,6 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
                   <CalculationReference>[Recovery Rate]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -6740,7 +6728,6 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
                   <CalculationReference>[YTD Billed Time]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>YTD</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -6762,7 +6749,6 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
                   <CalculationReference>[YTD Recovery Rate]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>YTD</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -6784,7 +6770,6 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
                   <CalculationReference>[YTD Target Billed Time]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>YTD</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -6806,7 +6791,6 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
                   <CalculationReference>[YTD Target Recovery Rate]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>YTD</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -6828,7 +6812,6 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
                   <CalculationReference>[Chargeable Hours Recorded]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -6850,7 +6833,6 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
                   <CalculationReference>[YTD Chargeable Hours Recorded]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>YTD</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -6872,7 +6854,6 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
                   <CalculationReference>[YTD Target Hours]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>YTD</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -6894,7 +6875,6 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
                   <CalculationReference>[% of Chargeable Hours Target Achieved]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>YTD</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -6916,7 +6896,6 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
                   <CalculationReference>[% of YTD Chargeable Hours Target Achieved]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>YTD</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -6938,7 +6917,6 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
                   <CalculationReference>[YTD Zero Rate Hours Recorded]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>YTD</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -6960,7 +6938,6 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
                   <CalculationReference>[Zero Rate Hours Recorded]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -6982,7 +6959,6 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
                   <CalculationReference>[% of Zero Rate Hours Recorded vs Chargeable Hours]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -7004,7 +6980,6 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
                   <CalculationReference>[% of YTD Zero Rate Hours Recorded vs Chargeable Hours]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>YTD</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -7026,7 +7001,6 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
                   <CalculationReference>[YTD New Matters]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>YTD</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -7048,7 +7022,6 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
                   <CalculationReference>[Annual Budget Balance]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Annual</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -7070,7 +7043,6 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
                   <CalculationReference>[Target Profit Costs]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -7080,7 +7052,7 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
                     </Annotation>
                     <Annotation>
                       <Name>IsPrivate</Name>
-                      <Value>False</Value>
+                      <Value>True</Value>
                     </Annotation>
                     <Annotation>
                       <Name>Format</Name>
@@ -7091,8 +7063,8 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
                   </Annotations>
                   <CalculationReference>[YTD Target Profit Costs - Team Level]</CalculationReference>
                   <CalculationType>Member</CalculationType>
+                  <Visible>false</Visible>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>YTD</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -7102,7 +7074,7 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
                     </Annotation>
                     <Annotation>
                       <Name>IsPrivate</Name>
-                      <Value>False</Value>
+                      <Value>True</Value>
                     </Annotation>
                     <Annotation>
                       <Name>Format</Name>
@@ -7113,8 +7085,8 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
                   </Annotations>
                   <CalculationReference>[Annual Target Profit Costs - Team Level]</CalculationReference>
                   <CalculationType>Member</CalculationType>
+                  <Visible>false</Visible>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Annual</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -7179,7 +7151,6 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
                   <CalculationReference>[YTD Target Profit Costs]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>YTD</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -7201,7 +7172,6 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
                   <CalculationReference>[Annual Target Profit Costs]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Annual</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -7211,7 +7181,7 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
                     </Annotation>
                     <Annotation>
                       <Name>IsPrivate</Name>
-                      <Value>False</Value>
+                      <Value>True</Value>
                     </Annotation>
                     <Annotation>
                       <Name>Format</Name>
@@ -7222,8 +7192,8 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
                   </Annotations>
                   <CalculationReference>[YTD Budget Balance - Business Line Level]</CalculationReference>
                   <CalculationType>Member</CalculationType>
+                  <Visible>false</Visible>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>YTD</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -7233,7 +7203,7 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
                     </Annotation>
                     <Annotation>
                       <Name>IsPrivate</Name>
-                      <Value>False</Value>
+                      <Value>True</Value>
                     </Annotation>
                     <Annotation>
                       <Name>Format</Name>
@@ -7244,8 +7214,8 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
                   </Annotations>
                   <CalculationReference>[Annual Budget Balance - Business Line Level]</CalculationReference>
                   <CalculationType>Member</CalculationType>
+                  <Visible>false</Visible>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Annual</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -7255,7 +7225,7 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
                     </Annotation>
                     <Annotation>
                       <Name>IsPrivate</Name>
-                      <Value>False</Value>
+                      <Value>True</Value>
                     </Annotation>
                     <Annotation>
                       <Name>Format</Name>
@@ -7266,8 +7236,8 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
                   </Annotations>
                   <CalculationReference>[YTD Target Profit Costs - Practice Area Level]</CalculationReference>
                   <CalculationType>Member</CalculationType>
+                  <Visible>false</Visible>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>YTD</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -7277,7 +7247,7 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
                     </Annotation>
                     <Annotation>
                       <Name>IsPrivate</Name>
-                      <Value>False</Value>
+                      <Value>True</Value>
                     </Annotation>
                     <Annotation>
                       <Name>Format</Name>
@@ -7288,8 +7258,8 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
                   </Annotations>
                   <CalculationReference>[Annual Target Profit Costs - Practice Area Level]</CalculationReference>
                   <CalculationType>Member</CalculationType>
+                  <Visible>false</Visible>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Annual</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -7311,7 +7281,6 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
                   <CalculationReference>[Target Profit Costs (Budget Balanced)]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Monthly</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -7333,7 +7302,6 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
                   <CalculationReference>[YTD Target Profit Costs (Budget Balanced)]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>YTD</DisplayFolder>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
@@ -7355,7 +7323,48 @@ CREATE MEASURE 'factKPI'[Annual Target Profit Costs (Budget Balanced)]=closingba
                   <CalculationReference>[Annual Target Profit Costs (Budget Balanced)]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
-                  <DisplayFolder>Annual</DisplayFolder>
+                </CalculationProperty>
+                <CalculationProperty>
+                  <Annotations>
+                    <Annotation>
+                      <Name>Type</Name>
+                      <Value>User</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsPrivate</Name>
+                      <Value>False</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Format</Name>
+                      <Value>
+                        <Format Format="General" xmlns="" />
+                      </Value>
+                    </Annotation>
+                  </Annotations>
+                  <CalculationReference>[Budget Balance]</CalculationReference>
+                  <CalculationType>Member</CalculationType>
+                  <FormatString>''</FormatString>
+                </CalculationProperty>
+                <CalculationProperty>
+                  <Annotations>
+                    <Annotation>
+                      <Name>Type</Name>
+                      <Value>User</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsPrivate</Name>
+                      <Value>False</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Format</Name>
+                      <Value>
+                        <Format Format="General" xmlns="" />
+                      </Value>
+                    </Annotation>
+                  </Annotations>
+                  <CalculationReference>[YTD Budget Balance]</CalculationReference>
+                  <CalculationType>Member</CalculationType>
+                  <FormatString>''</FormatString>
                 </CalculationProperty>
                 <CalculationProperty>
                   <CalculationReference>Measures.[__No measures defined]</CalculationReference>
