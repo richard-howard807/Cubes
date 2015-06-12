@@ -656,6 +656,11 @@ LEFT JOIN dim_fed_hierarchy_history AS fed
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>TimeBilledBudgetValue</Name>
                 </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>Minutes Recorded</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>Minutes Recorded</Name>
+                </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
@@ -2002,6 +2007,31 @@ LEFT JOIN dim_fed_hierarchy_history AS fed
                 <Source xsi:type="ColumnBinding">
                   <TableID>factKPI_fd2eb13f-dad0-4070-82d8-08fb90a7a815</TableID>
                   <ColumnID>TimeBilledBudgetValue</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>Minutes Recorded</ID>
+              <Name>Minutes Recorded</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Double</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>factKPI_fd2eb13f-dad0-4070-82d8-08fb90a7a815</TableID>
+                    <ColumnID>Minutes_x0020_Recorded</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>factKPI_fd2eb13f-dad0-4070-82d8-08fb90a7a815</TableID>
+                  <ColumnID>Minutes_x0020_Recorded</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
@@ -3771,6 +3801,9 @@ LEFT JOIN dim_fed_hierarchy_history AS fed
                 <Attribute>
                   <AttributeID>TimeBilledBudgetValue</AttributeID>
                 </Attribute>
+                <Attribute>
+                  <AttributeID>Minutes Recorded</AttributeID>
+                </Attribute>
               </Attributes>
             </Dimension>
             <Dimension>
@@ -4544,6 +4577,20 @@ LEFT JOIN dim_fed_hierarchy_history AS fed
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>Minutes Recorded</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Double</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factKPI_fd2eb13f-dad0-4070-82d8-08fb90a7a815</TableID>
+                            <ColumnID>Minutes_x0020_Recorded</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
                 </Dimension>
@@ -5290,8 +5337,13 @@ else 0 end as TargetProfitCosts,
  r.open_practice_management,
  r.open_case_management,
  ISNULL(c.billed, 0) AS billed,
+ b.minutes_recorded as 'Minutes Recorded',
  new.NewMatters as 'NewMatters'
 FROM agg_kpi_monthly_rollup AS r
+
+left join agg_bill_activity_monthly_rollup b
+	on b.dim_bill_date_key = r.dim_bill_date_key
+	and b.dim_fed_hierarchy_history_key = r.dim_fed_hierarchy_history_key
 
 LEFT JOIN dim_fed_hierarchy_history AS fed
  ON fed.dim_fed_hierarchy_history_key = r.dim_fed_hierarchy_history_key
@@ -6173,7 +6225,6 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
 ----------------------------------------------------------
 
 
-CREATE MEASURE 'factKPI'[Billed Minutes]=SUM([billed_time]);
 CREATE MEASURE 'factKPI'[Profit Costs]=SUM([ProfitCosts]);
 CREATE MEASURE 'factKPI'[Budget Balance - Calculation Measure]=if([Hierarchy Level] = 4, 0, [Target Profit Costs - Team Level] - [Target Profit Costs] );
 CREATE MEASURE 'factKPI'[Target Hours]=SUM([TargetHours]);
@@ -6193,10 +6244,10 @@ CREATE MEASURE 'factKPI'[YTD Profit Costs]=totalytd([Profit Costs], dimDateBillD
 CREATE MEASURE 'factKPI'[YTD Target Profit Costs - Calculation Measure (Budget Balanced)]=totalytd([Target Profit Costs - Calculation Measure (Budget Balanced)], dimDateBillDate[BillDateDate], "04-30" ) + [Budget Balance] + [YTD Budget Balance];
 CREATE MEASURE 'factKPI'[YTD Budget Balance - Calculation Measure]=totalytd([Budget Balance - Calculation Measure], dimDateBillDate[BillDateDate], "04-30");
 CREATE MEASURE 'factKPI'[% of YTD Profit Costs vs YTD Target (Budget Balanced)]=if([YTD Target Profit Costs (Budget Balanced)] = 0, 0, [YTD Profit Costs] / [YTD Target Profit Costs (Budget Balanced)]);
-CREATE MEASURE 'factKPI'[Billed Time]=SUM([billed]);
-CREATE MEASURE 'factKPI'[Recovery Rate]=if ([Billed Time] = 0, 0, ([Profit Costs] / ([Billed Time] / 60) ) );
-CREATE MEASURE 'factKPI'[YTD Billed Time]=totalytd([Billed Time], dimDateBillDate[BillDateDate], "04-30");
-CREATE MEASURE 'factKPI'[YTD Recovery Rate]=if ([YTD Billed Time] = 0, 0, ([YTD Profit Costs] / ([YTD Billed Time] / 60 ) ) );
+CREATE MEASURE 'factKPI'[Billed Minutes]=SUM([billed]);
+CREATE MEASURE 'factKPI'[Recovery Rate]=if ([Billed Hours] = 0, 0, ([Profit Costs] / ([Billed Hours] ) ) );
+CREATE MEASURE 'factKPI'[YTD Billed Minutes]=totalytd([Billed Minutes], dimDateBillDate[BillDateDate], "04-30");
+CREATE MEASURE 'factKPI'[YTD Recovery Rate]=if ([YTD Billed Hours] = 0, 0, ([YTD Profit Costs] / ([YTD Billed Hours]  ) ) );
 CREATE MEASURE 'factKPI'[YTD Target Billed Time]=totalytd([Target Billed Time], dimDateBillDate[BillDateDate], "04-30");
 CREATE MEASURE 'factKPI'[YTD Target Recovery Rate]=if ([YTD Target Billed Time] = 0, 0, ([YTD Target Profit Costs (Budget Balanced)] / [YTD Target Billed Time] ));
 CREATE MEASURE 'factKPI'[Chargeable Hours Recorded]=[Chargeable Minutes Recorded] / 60;
@@ -6237,31 +6288,28 @@ CREATE MEASURE 'factKPI'[YTD Budget Balance]=([Annual Budget Balance] / 12) * mi
 CREATE MEASURE 'factKPI'[Annual Profit Costs]=closingbalanceyear( factKPI[YTD Profit Costs],
 							dimDateBillDate[BillDateDate], "04-30"
 						   );
+CREATE MEASURE 'factKPI'[% of Annual Profit Costs vs Annual Target (Budget Balanced)]=if([Annual Target Profit Costs (Budget Balanced)] = 0, 0, [Annual Profit Costs] / [Annual Target Profit Costs (Budget Balanced)]);
+CREATE MEASURE 'factKPI'[% of YTD Profit Costs vs Annual Target (Budget Balanced)]=if([Annual Target Profit Costs (Budget Balanced)] = 0, 0, [YTD Profit Costs] / [Annual Target Profit Costs (Budget Balanced)]);
+CREATE MEASURE 'factKPI'[Annual Billed Minutes]=closingbalanceyear( [YTD Billed Minutes],
+							dimDateBillDate[BillDateDate], "04-30"
+						   );
+CREATE MEASURE 'factKPI'[Billed Hours]=SUM([billed]) / 60;
+CREATE MEASURE 'factKPI'[YTD Billed Hours]=totalytd([Billed Hours], dimDateBillDate[BillDateDate], "04-30");
+CREATE MEASURE 'factKPI'[Annual Billed Hours]=closingbalanceyear( [YTD Billed Hours],
+							dimDateBillDate[BillDateDate], "04-30"
+						   );
+CREATE MEASURE 'factKPI'[Billed Minutes Test]=sum([Minutes Recorded]);
+CREATE MEASURE 'factKPI'[Billed Hours Test]=[Billed Minutes Test] / 60;
+CREATE MEASURE 'factKPI'[Target Recovery Rate]=if ([Target Billed Time] = 0, 0, ([Target Profit Costs (Budget Balanced)] / [Target Billed Time] ));
+CREATE MEASURE 'factKPI'[Annual Recovery Rate]=if ([Annual Billed Hours] = 0, 0, ([Annual Profit Costs] / ([Annual Billed Hours]  ) ) );
+CREATE MEASURE 'factKPI'[Annual Target Billed Time]=closingbalanceyear( [YTD Target Billed Time],
+							dimDateBillDate[BillDateDate], "04-30"
+						   );
+CREATE MEASURE 'factKPI'[Annual Target Recovery Rate]=if ([Annual Target Billed Time] = 0, 0, ([Annual Target Profit Costs (Budget Balanced)] / [Annual Target Billed Time] ));
 </Text>
                 </Command>
               </Commands>
               <CalculationProperties>
-                <CalculationProperty>
-                  <Annotations>
-                    <Annotation>
-                      <Name>Type</Name>
-                      <Value>User</Value>
-                    </Annotation>
-                    <Annotation>
-                      <Name>IsPrivate</Name>
-                      <Value>False</Value>
-                    </Annotation>
-                    <Annotation>
-                      <Name>Format</Name>
-                      <Value>
-                        <Format Format="General" xmlns="" />
-                      </Value>
-                    </Annotation>
-                  </Annotations>
-                  <CalculationReference>[Billed Minutes]</CalculationReference>
-                  <CalculationType>Member</CalculationType>
-                  <FormatString>''</FormatString>
-                </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
                     <Annotation>
@@ -6686,7 +6734,7 @@ CREATE MEASURE 'factKPI'[Annual Profit Costs]=closingbalanceyear( factKPI[YTD Pr
                       </Value>
                     </Annotation>
                   </Annotations>
-                  <CalculationReference>[Billed Time]</CalculationReference>
+                  <CalculationReference>[Billed Minutes]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
                 </CalculationProperty>
@@ -6728,7 +6776,7 @@ CREATE MEASURE 'factKPI'[Annual Profit Costs]=closingbalanceyear( factKPI[YTD Pr
                       </Value>
                     </Annotation>
                   </Annotations>
-                  <CalculationReference>[YTD Billed Time]</CalculationReference>
+                  <CalculationReference>[YTD Billed Minutes]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
                 </CalculationProperty>
@@ -7391,6 +7439,258 @@ CREATE MEASURE 'factKPI'[Annual Profit Costs]=closingbalanceyear( factKPI[YTD Pr
                   <FormatString>''</FormatString>
                 </CalculationProperty>
                 <CalculationProperty>
+                  <Annotations>
+                    <Annotation>
+                      <Name>Type</Name>
+                      <Value>User</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsPrivate</Name>
+                      <Value>False</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Format</Name>
+                      <Value>
+                        <Format Format="General" xmlns="" />
+                      </Value>
+                    </Annotation>
+                  </Annotations>
+                  <CalculationReference>[% of Annual Profit Costs vs Annual Target (Budget Balanced)]</CalculationReference>
+                  <CalculationType>Member</CalculationType>
+                  <FormatString>''</FormatString>
+                </CalculationProperty>
+                <CalculationProperty>
+                  <Annotations>
+                    <Annotation>
+                      <Name>Type</Name>
+                      <Value>User</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsPrivate</Name>
+                      <Value>False</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Format</Name>
+                      <Value>
+                        <Format Format="General" xmlns="" />
+                      </Value>
+                    </Annotation>
+                  </Annotations>
+                  <CalculationReference>[% of YTD Profit Costs vs Annual Target (Budget Balanced)]</CalculationReference>
+                  <CalculationType>Member</CalculationType>
+                  <FormatString>''</FormatString>
+                </CalculationProperty>
+                <CalculationProperty>
+                  <Annotations>
+                    <Annotation>
+                      <Name>Type</Name>
+                      <Value>User</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsPrivate</Name>
+                      <Value>False</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Format</Name>
+                      <Value>
+                        <Format Format="General" xmlns="" />
+                      </Value>
+                    </Annotation>
+                  </Annotations>
+                  <CalculationReference>[Annual Billed Minutes]</CalculationReference>
+                  <CalculationType>Member</CalculationType>
+                  <FormatString>''</FormatString>
+                </CalculationProperty>
+                <CalculationProperty>
+                  <Annotations>
+                    <Annotation>
+                      <Name>Type</Name>
+                      <Value>User</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsPrivate</Name>
+                      <Value>False</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Format</Name>
+                      <Value>
+                        <Format Format="General" xmlns="" />
+                      </Value>
+                    </Annotation>
+                  </Annotations>
+                  <CalculationReference>[Billed Hours]</CalculationReference>
+                  <CalculationType>Member</CalculationType>
+                  <FormatString>''</FormatString>
+                </CalculationProperty>
+                <CalculationProperty>
+                  <Annotations>
+                    <Annotation>
+                      <Name>Type</Name>
+                      <Value>User</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsPrivate</Name>
+                      <Value>False</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Format</Name>
+                      <Value>
+                        <Format Format="General" xmlns="" />
+                      </Value>
+                    </Annotation>
+                  </Annotations>
+                  <CalculationReference>[YTD Billed Hours]</CalculationReference>
+                  <CalculationType>Member</CalculationType>
+                  <FormatString>''</FormatString>
+                </CalculationProperty>
+                <CalculationProperty>
+                  <Annotations>
+                    <Annotation>
+                      <Name>Type</Name>
+                      <Value>User</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsPrivate</Name>
+                      <Value>False</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Format</Name>
+                      <Value>
+                        <Format Format="General" xmlns="" />
+                      </Value>
+                    </Annotation>
+                  </Annotations>
+                  <CalculationReference>[Annual Billed Hours]</CalculationReference>
+                  <CalculationType>Member</CalculationType>
+                  <FormatString>''</FormatString>
+                </CalculationProperty>
+                <CalculationProperty>
+                  <Annotations>
+                    <Annotation>
+                      <Name>Type</Name>
+                      <Value>User</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsPrivate</Name>
+                      <Value>False</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Format</Name>
+                      <Value>
+                        <Format Format="General" xmlns="" />
+                      </Value>
+                    </Annotation>
+                  </Annotations>
+                  <CalculationReference>[Billed Minutes Test]</CalculationReference>
+                  <CalculationType>Member</CalculationType>
+                  <FormatString>''</FormatString>
+                </CalculationProperty>
+                <CalculationProperty>
+                  <Annotations>
+                    <Annotation>
+                      <Name>Type</Name>
+                      <Value>User</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsPrivate</Name>
+                      <Value>False</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Format</Name>
+                      <Value>
+                        <Format Format="General" xmlns="" />
+                      </Value>
+                    </Annotation>
+                  </Annotations>
+                  <CalculationReference>[Billed Hours Test]</CalculationReference>
+                  <CalculationType>Member</CalculationType>
+                  <FormatString>''</FormatString>
+                </CalculationProperty>
+                <CalculationProperty>
+                  <Annotations>
+                    <Annotation>
+                      <Name>Type</Name>
+                      <Value>User</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsPrivate</Name>
+                      <Value>False</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Format</Name>
+                      <Value>
+                        <Format Format="General" xmlns="" />
+                      </Value>
+                    </Annotation>
+                  </Annotations>
+                  <CalculationReference>[Target Recovery Rate]</CalculationReference>
+                  <CalculationType>Member</CalculationType>
+                  <FormatString>''</FormatString>
+                </CalculationProperty>
+                <CalculationProperty>
+                  <Annotations>
+                    <Annotation>
+                      <Name>Type</Name>
+                      <Value>User</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsPrivate</Name>
+                      <Value>False</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Format</Name>
+                      <Value>
+                        <Format Format="General" xmlns="" />
+                      </Value>
+                    </Annotation>
+                  </Annotations>
+                  <CalculationReference>[Annual Recovery Rate]</CalculationReference>
+                  <CalculationType>Member</CalculationType>
+                  <FormatString>''</FormatString>
+                </CalculationProperty>
+                <CalculationProperty>
+                  <Annotations>
+                    <Annotation>
+                      <Name>Type</Name>
+                      <Value>User</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsPrivate</Name>
+                      <Value>False</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Format</Name>
+                      <Value>
+                        <Format Format="General" xmlns="" />
+                      </Value>
+                    </Annotation>
+                  </Annotations>
+                  <CalculationReference>[Annual Target Billed Time]</CalculationReference>
+                  <CalculationType>Member</CalculationType>
+                  <FormatString>''</FormatString>
+                </CalculationProperty>
+                <CalculationProperty>
+                  <Annotations>
+                    <Annotation>
+                      <Name>Type</Name>
+                      <Value>User</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsPrivate</Name>
+                      <Value>False</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Format</Name>
+                      <Value>
+                        <Format Format="General" xmlns="" />
+                      </Value>
+                    </Annotation>
+                  </Annotations>
+                  <CalculationReference>[Annual Target Recovery Rate]</CalculationReference>
+                  <CalculationType>Member</CalculationType>
+                  <FormatString>''</FormatString>
+                </CalculationProperty>
+                <CalculationProperty>
                   <CalculationReference>Measures.[__No measures defined]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <Visible>false</Visible>
@@ -7436,7 +7736,7 @@ CREATE MEASURE 'factKPI'[Annual Profit Costs]=closingbalanceyear( factKPI[YTD Pr
               <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:Locale="en-GB">
                 <xs:complexType>
                   <xs:choice minOccurs="0" maxOccurs="unbounded">
-                    <xs:element name="factKPI_fd2eb13f-dad0-4070-82d8-08fb90a7a815" msdata:Locale="" msprop:DataSourceID="837ec213-a5e3-43b3-b32e-a5227e5f43b6" msprop:IsLogical="True" msprop:FriendlyName="factKPI" msprop:DbTableName="factKPI" msprop:TableType="View" msprop:Description="factKPI" msprop:QueryDefinition="select&#xD;&#xA;r.dim_bill_date_key,&#xD;&#xA; r.dim_fed_hierarchy_history_key,&#xD;&#xA; r.billed_time,&#xD;&#xA; r.bill_amount AS ProfitCosts,&#xD;&#xA;case&#xD;&#xA;when fed.display_name = 'Budget Balance' &#xD;&#xA;--  and fed.hierarchylevel3hist is not null&#xD;&#xA; then 0 &#xD;&#xA;when fed.hierarchylevel3hist is not null and fed.display_name != 'Budget Balance' then r.fed_level_budget_value &#xD;&#xA;else 0 end as TargetProfitCosts,&#xD;&#xA; r.fed_level_minute_value AS 'TargetHours',&#xD;&#xA; r.fed_level_tb_budget_value as 'TimeBilledBudgetValue',&#xD;&#xA; r.team_level_budget_value,&#xD;&#xA; r.practice_area_level_budget_value,&#xD;&#xA; r.business_line_level_budget_value,&#xD;&#xA; r.firm_level_budget_value,&#xD;&#xA; r.chargeable_minutes_recorded,&#xD;&#xA; r.time_cost_value,&#xD;&#xA; r.time_charge_value,&#xD;&#xA; r.overridden_time_charge_value,&#xD;&#xA; r.actual_time_recorded_value,&#xD;&#xA; r.time_billed_value,&#xD;&#xA; r.durationholidaydays,&#xD;&#xA; r.durationdays,&#xD;&#xA; r.days_year_to_date,&#xD;&#xA; r.baseentitlementdays,&#xD;&#xA; r.newstarterdays,&#xD;&#xA; r.manualadjustmentdays,&#xD;&#xA; r.carrydays,&#xD;&#xA; r.totalentitlementdays,&#xD;&#xA; r.ptproratadays,&#xD;&#xA; r.bhproratadays,&#xD;&#xA; r.carrylostdays,&#xD;&#xA; r.billed_minutes_recorded,&#xD;&#xA; r.non_chargeable_minutes,&#xD;&#xA; r.wip_minutes,&#xD;&#xA; r.wip_value,&#xD;&#xA; r.dss_update_time,&#xD;&#xA; r.zero_rate_minutes_recorded,&#xD;&#xA; r.disbursement_balance,&#xD;&#xA; r.open_practice_management,&#xD;&#xA; r.open_case_management,&#xD;&#xA; ISNULL(c.billed, 0) AS billed,&#xD;&#xA; new.NewMatters as 'NewMatters'&#xD;&#xA;FROM agg_kpi_monthly_rollup AS r&#xD;&#xA;&#xD;&#xA;LEFT JOIN dim_fed_hierarchy_history AS fed&#xD;&#xA; ON fed.dim_fed_hierarchy_history_key = r.dim_fed_hierarchy_history_key&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_date d&#xD;&#xA; on d.dim_date_key = r.dim_bill_date_key&#xD;&#xA;&#xD;&#xA;LEFT JOIN (&#xD;&#xA; SELECT date2.dim_date_key,&#xD;&#xA;  f.dim_fed_hierarchy_history_key,&#xD;&#xA;  SUM(f.minutes_recorded) * - 1 AS billed&#xD;&#xA; FROM fact_all_time_activity AS f&#xD;&#xA; LEFT JOIN dim_all_time_activity AS d&#xD;&#xA;  ON d.dim_all_time_activity_key = f.dim_all_time_activity_key&#xD;&#xA; LEFT JOIN dim_fed_hierarchy_history AS fed&#xD;&#xA;  ON fed.dim_fed_hierarchy_history_key = f.dim_fed_hierarchy_history_key&#xD;&#xA; LEFT JOIN dim_date AS [date]&#xD;&#xA;  ON [date].dim_date_key = f.dim_transaction_date_key&#xD;&#xA; LEFT JOIN dim_date AS date2&#xD;&#xA;  ON DATEADD([month], DATEDIFF([month], 0, [date].calendar_date), 0) = date2.calendar_date&#xD;&#xA; WHERE (&#xD;&#xA;   d.time_activity_code IN (&#xD;&#xA;    'Bill',&#xD;&#xA;    'Abmt'&#xD;&#xA;    )&#xD;&#xA;   )&#xD;&#xA; GROUP BY DATEPART([month], [date].calendar_date),&#xD;&#xA;  DATEPART([year], [date].calendar_date),&#xD;&#xA;  DATEADD([month], DATEDIFF([month], 0, [date].calendar_date), 0),&#xD;&#xA;  date2.dim_date_key,&#xD;&#xA;  f.dim_fed_hierarchy_history_key&#xD;&#xA; ) AS c&#xD;&#xA; ON c.dim_date_key = r.dim_bill_date_key&#xD;&#xA;  AND c.dim_fed_hierarchy_history_key = r.dim_fed_hierarchy_history_key&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;LEFT JOIN (&#xD;&#xA; SELECT d2.dim_date_key,&#xD;&#xA;  f.fed_code,&#xD;&#xA;  COUNT(m.dim_matter_header_key) AS NewMatters&#xD;&#xA; FROM fact_matter_summary AS m&#xD;&#xA; INNER JOIN dim_date AS d&#xD;&#xA;  ON d.calendar_date = m.date_opened_case_management&#xD;&#xA; LEFT JOIN dim_date AS d2&#xD;&#xA;  ON DATEADD([month], DATEDIFF([month], 0, d.calendar_date), 0) = d2.calendar_date&#xD;&#xA; LEFT JOIN dim_fed_hierarchy_history AS f&#xD;&#xA;  ON f.dim_fed_hierarchy_history_key = m.dim_fed_hierarchy_history_key&#xD;&#xA; WHERE (&#xD;&#xA;   m.fin_month = (&#xD;&#xA;    SELECT fin_month&#xD;&#xA;    FROM dim_date&#xD;&#xA;    WHERE (calendar_date = CAST(GETDATE() - 1 AS DATE))&#xD;&#xA;    )&#xD;&#xA;   )&#xD;&#xA; GROUP BY d2.dim_date_key,&#xD;&#xA;  f.fed_code&#xD;&#xA; ) AS new&#xD;&#xA; ON new.dim_date_key = r.dim_bill_date_key&#xD;&#xA;  AND new.fed_code = fed.fed_code&#xD;&#xA;  and fed.dss_current_flag = 'Y'">
+                    <xs:element name="factKPI_fd2eb13f-dad0-4070-82d8-08fb90a7a815" msdata:Locale="" msprop:DataSourceID="837ec213-a5e3-43b3-b32e-a5227e5f43b6" msprop:IsLogical="True" msprop:FriendlyName="factKPI" msprop:DbTableName="factKPI" msprop:TableType="View" msprop:Description="factKPI" msprop:QueryDefinition="select&#xD;&#xA;r.dim_bill_date_key,&#xD;&#xA; r.dim_fed_hierarchy_history_key,&#xD;&#xA; r.billed_time,&#xD;&#xA; r.bill_amount AS ProfitCosts,&#xD;&#xA;case&#xD;&#xA;when fed.display_name = 'Budget Balance' &#xD;&#xA;--  and fed.hierarchylevel3hist is not null&#xD;&#xA; then 0 &#xD;&#xA;when fed.hierarchylevel3hist is not null and fed.display_name != 'Budget Balance' then r.fed_level_budget_value &#xD;&#xA;else 0 end as TargetProfitCosts,&#xD;&#xA; r.fed_level_minute_value AS 'TargetHours',&#xD;&#xA; r.fed_level_tb_budget_value as 'TimeBilledBudgetValue',&#xD;&#xA; r.team_level_budget_value,&#xD;&#xA; r.practice_area_level_budget_value,&#xD;&#xA; r.business_line_level_budget_value,&#xD;&#xA; r.firm_level_budget_value,&#xD;&#xA; r.chargeable_minutes_recorded,&#xD;&#xA; r.time_cost_value,&#xD;&#xA; r.time_charge_value,&#xD;&#xA; r.overridden_time_charge_value,&#xD;&#xA; r.actual_time_recorded_value,&#xD;&#xA; r.time_billed_value,&#xD;&#xA; r.durationholidaydays,&#xD;&#xA; r.durationdays,&#xD;&#xA; r.days_year_to_date,&#xD;&#xA; r.baseentitlementdays,&#xD;&#xA; r.newstarterdays,&#xD;&#xA; r.manualadjustmentdays,&#xD;&#xA; r.carrydays,&#xD;&#xA; r.totalentitlementdays,&#xD;&#xA; r.ptproratadays,&#xD;&#xA; r.bhproratadays,&#xD;&#xA; r.carrylostdays,&#xD;&#xA; r.billed_minutes_recorded,&#xD;&#xA; r.non_chargeable_minutes,&#xD;&#xA; r.wip_minutes,&#xD;&#xA; r.wip_value,&#xD;&#xA; r.dss_update_time,&#xD;&#xA; r.zero_rate_minutes_recorded,&#xD;&#xA; r.disbursement_balance,&#xD;&#xA; r.open_practice_management,&#xD;&#xA; r.open_case_management,&#xD;&#xA; ISNULL(c.billed, 0) AS billed,&#xD;&#xA; b.minutes_recorded as 'Minutes Recorded',&#xD;&#xA; new.NewMatters as 'NewMatters'&#xD;&#xA;FROM agg_kpi_monthly_rollup AS r&#xD;&#xA;&#xD;&#xA;left join agg_bill_activity_monthly_rollup b&#xD;&#xA; on b.dim_bill_date_key = r.dim_bill_date_key&#xD;&#xA; and b.dim_fed_hierarchy_history_key = r.dim_fed_hierarchy_history_key&#xD;&#xA;&#xD;&#xA;LEFT JOIN dim_fed_hierarchy_history AS fed&#xD;&#xA; ON fed.dim_fed_hierarchy_history_key = r.dim_fed_hierarchy_history_key&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_date d&#xD;&#xA; on d.dim_date_key = r.dim_bill_date_key&#xD;&#xA;&#xD;&#xA;LEFT JOIN (&#xD;&#xA; SELECT date2.dim_date_key,&#xD;&#xA;  f.dim_fed_hierarchy_history_key,&#xD;&#xA;  SUM(f.minutes_recorded) * - 1 AS billed&#xD;&#xA; FROM fact_all_time_activity AS f&#xD;&#xA; LEFT JOIN dim_all_time_activity AS d&#xD;&#xA;  ON d.dim_all_time_activity_key = f.dim_all_time_activity_key&#xD;&#xA; LEFT JOIN dim_fed_hierarchy_history AS fed&#xD;&#xA;  ON fed.dim_fed_hierarchy_history_key = f.dim_fed_hierarchy_history_key&#xD;&#xA; LEFT JOIN dim_date AS [date]&#xD;&#xA;  ON [date].dim_date_key = f.dim_transaction_date_key&#xD;&#xA; LEFT JOIN dim_date AS date2&#xD;&#xA;  ON DATEADD([month], DATEDIFF([month], 0, [date].calendar_date), 0) = date2.calendar_date&#xD;&#xA; WHERE (&#xD;&#xA;   d.time_activity_code IN (&#xD;&#xA;    'Bill',&#xD;&#xA;    'Abmt'&#xD;&#xA;    )&#xD;&#xA;   )&#xD;&#xA; GROUP BY DATEPART([month], [date].calendar_date),&#xD;&#xA;  DATEPART([year], [date].calendar_date),&#xD;&#xA;  DATEADD([month], DATEDIFF([month], 0, [date].calendar_date), 0),&#xD;&#xA;  date2.dim_date_key,&#xD;&#xA;  f.dim_fed_hierarchy_history_key&#xD;&#xA; ) AS c&#xD;&#xA; ON c.dim_date_key = r.dim_bill_date_key&#xD;&#xA;  AND c.dim_fed_hierarchy_history_key = r.dim_fed_hierarchy_history_key&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;LEFT JOIN (&#xD;&#xA; SELECT d2.dim_date_key,&#xD;&#xA;  f.fed_code,&#xD;&#xA;  COUNT(m.dim_matter_header_key) AS NewMatters&#xD;&#xA; FROM fact_matter_summary AS m&#xD;&#xA; INNER JOIN dim_date AS d&#xD;&#xA;  ON d.calendar_date = m.date_opened_case_management&#xD;&#xA; LEFT JOIN dim_date AS d2&#xD;&#xA;  ON DATEADD([month], DATEDIFF([month], 0, d.calendar_date), 0) = d2.calendar_date&#xD;&#xA; LEFT JOIN dim_fed_hierarchy_history AS f&#xD;&#xA;  ON f.dim_fed_hierarchy_history_key = m.dim_fed_hierarchy_history_key&#xD;&#xA; WHERE (&#xD;&#xA;   m.fin_month = (&#xD;&#xA;    SELECT fin_month&#xD;&#xA;    FROM dim_date&#xD;&#xA;    WHERE (calendar_date = CAST(GETDATE() - 1 AS DATE))&#xD;&#xA;    )&#xD;&#xA;   )&#xD;&#xA; GROUP BY d2.dim_date_key,&#xD;&#xA;  f.fed_code&#xD;&#xA; ) AS new&#xD;&#xA; ON new.dim_date_key = r.dim_bill_date_key&#xD;&#xA;  AND new.fed_code = fed.fed_code&#xD;&#xA;  and fed.dss_current_flag = 'Y'">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="dim_bill_date_key" msprop:DbColumnName="dim_bill_date_key" msprop:FriendlyName="dim_bill_date_key" type="xs:int" minOccurs="0" />
@@ -7478,6 +7778,7 @@ CREATE MEASURE 'factKPI'[Annual Profit Costs]=closingbalanceyear( factKPI[YTD Pr
                           <xs:element name="NewMatters" msprop:DbColumnName="NewMatters" msprop:FriendlyName="NewMatters" type="xs:int" minOccurs="0" />
                           <xs:element name="billed" msprop:DbColumnName="billed" msprop:FriendlyName="billed" type="xs:decimal" minOccurs="0" />
                           <xs:element name="TimeBilledBudgetValue" msprop:DbColumnName="TimeBilledBudgetValue" msprop:FriendlyName="TimeBilledBudgetValue" type="xs:decimal" minOccurs="0" />
+                          <xs:element name="Minutes_x0020_Recorded" msprop:DbColumnName="Minutes Recorded" msprop:FriendlyName="Minutes Recorded" type="xs:decimal" minOccurs="0" />
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
