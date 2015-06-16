@@ -761,7 +761,7 @@
       <LastSchemaUpdate>2015-04-24T08:49:02.343333Z</LastSchemaUpdate>
       <Commands>
         <Command>
-          <Text> /*
+          <Text>/*
                 The CALCULATE command controls the aggregation of leaf cells in the cube.
                 If the CALCULATE command is deleted or modified, the data within the cube is affected.
                 You should edit this command only if you manually specify how the cube is aggregated.
@@ -1090,7 +1090,21 @@
                 [Measures].[YTD Chargeable Minutes] / 60,
                 FORMAT_STRING = "#,##0.00;-#,##0.00", 
                 VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup'; 
-            </Text>
+				
+				CREATE MEMBER CURRENTCUBE.[Measures].[Annual Chargeable Hours]
+                AS sum(
+                ([Dim Bill Date].[Hierarchy].Parent),
+                Measures.[YTD Chargeable Hours]
+                ), 
+                FORMAT_STRING = "#,##0.00;-#,##0.00", 
+                VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';  
+
+                CREATE MEMBER CURRENTCUBE.[Measures].[Annual Chargeable Minutes]
+                AS Measures.[Annual Chargeable Hours] / 60,
+                
+                FORMAT_STRING = "#,##0.00;-#,##0.00", 
+                VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';  
+</Text>
         </Command>
       </Commands>
     </MdxScript>
