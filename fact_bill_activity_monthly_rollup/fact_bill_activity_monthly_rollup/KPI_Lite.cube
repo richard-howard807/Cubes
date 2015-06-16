@@ -828,13 +828,13 @@
                 VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';          
 
                 CREATE MEMBER CURRENTCUBE.[Measures].[YTD Recovery Rate]
-                AS iif([Measures].[YTD Billed Hours] = 0, null, [Measures].[YTD Profit Costs] / [Measures].[YTD Billed Hours]), 
+                AS iif([Measures].[YTD Billed Hours] = 0, 0, [Measures].[YTD Profit Costs] / [Measures].[YTD Billed Hours]), 
                 FORMAT_STRING = "Currency", 
                 VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';          
 
 
                 CREATE MEMBER CURRENTCUBE.[Measures].[YTD Target Recovery Rate]
-                AS iif([Measures].[YTD Billed Budget] = 0, null, [Measures].[YTD Budget] / [Measures].[YTD Billed Budget]), 
+                AS iif([Measures].[YTD Billed Budget] = 0, 0, [Measures].[YTD Budget] / [Measures].[YTD Billed Budget]), 
                 FORMAT_STRING = "Currency", 
                 VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';          
                 
@@ -877,12 +877,12 @@
                 ), 
                 FORMAT_STRING = "Currency", 
                 VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';  
-				
-				create member CurrentCube.[Measures].[Business Line Level Budget Value]
-				as 
-				[Measures].[Annual Business Line Level Budget Value] / 12,
+                
+                create member CurrentCube.[Measures].[Business Line Level Budget Value]
+                as 
+                [Measures].[Annual Business Line Level Budget Value] / 12,
                 FORMAT_STRING = "Currency", 
-                VISIBLE = 1 ,  DISPLAY_FOLDER = 'Monthly' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';  				
+                VISIBLE = 1 ,  DISPLAY_FOLDER = 'Monthly' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';               
 
                 CREATE MEMBER CURRENTCUBE.[Measures].[YTD Business Line Level Budget Value]
                 AS sum(
@@ -929,7 +929,7 @@
                 
 
                 CREATE MEMBER CURRENTCUBE.[Measures].[Percentage of Chargeable Hours Target Achieved]
-                AS iif(([Measures].[Chargeable Hours Recorded] = 0 and [Measures].[Target Hours] = 0) or [Measures].[Target Hours] = 0, null,
+                AS iif(([Measures].[Chargeable Hours Recorded] = 0 and [Measures].[Target Hours] = 0) or [Measures].[Target Hours] = 0, 0,
                 [Measures].[Chargeable Hours Recorded] / [Measures].[Target Hours]
                 ),
                 FORMAT_STRING = "Percent",
@@ -942,13 +942,13 @@
 
 
                 CREATE MEMBER CURRENTCUBE.[Measures].[Recovery Rate]
-                AS iif([Measures].[Billed Hours] = 0, null, [Measures].[Profit Costs] / [Measures].[Billed Hours]), 
+                AS iif([Measures].[Billed Hours] = 0, 0, [Measures].[Profit Costs] / [Measures].[Billed Hours]), 
                 FORMAT_STRING = "Currency", 
                 VISIBLE = 1 ,  DISPLAY_FOLDER = 'Monthly' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';          
 
 
                 CREATE MEMBER CURRENTCUBE.[Measures].[Percentage of Profit Costs Target Achieved]
-                AS iif(([Measures].[Profit Costs] = 0 and [Measures].[Target Profit Costs] = 0) or [Measures].[Target Profit Costs] = 0, null,
+                AS iif(([Measures].[Profit Costs] = 0 and [Measures].[Target Profit Costs] = 0) or [Measures].[Target Profit Costs] = 0, 0,
                 [Measures].[Profit Costs] / [Measures].[Target Profit Costs]
                 ), 
                 FORMAT_STRING = "Percent", 
@@ -1049,7 +1049,7 @@
 
 
                 create member CurrentCube.[Measures].[YTD Percentage of Profit Costs Target Achieved] 
-                AS iif(([Measures].[YTD Profit Costs] = 0 and [Measures].[YTD Target Profit Costs (Budget Balanced)] = 0) or [Measures].[YTD Target Profit Costs (Budget Balanced)] = 0, null,
+                AS iif(([Measures].[YTD Profit Costs] = 0 and [Measures].[YTD Target Profit Costs (Budget Balanced)] = 0) or [Measures].[YTD Target Profit Costs (Budget Balanced)] = 0, 0,
                 [Measures].[YTD Profit Costs] / [Measures].[YTD Target Profit Costs (Budget Balanced)]
                 ), 
                 FORMAT_STRING = "Percent", 
@@ -1057,7 +1057,7 @@
 
 
                 create member CurrentCube.[Measures].[Annual Percentage of Profit Costs Target Achieved] 
-                AS iif(([Measures].[Annual Profit Costs] = 0 and [Measures].[Annual Target Profit Costs (Budget Balanced)] = 0) or [Measures].[Annual Target Profit Costs (Budget Balanced)] = 0, null,
+                AS iif(([Measures].[Annual Profit Costs] = 0 and [Measures].[Annual Target Profit Costs (Budget Balanced)] = 0) or [Measures].[Annual Target Profit Costs (Budget Balanced)] = 0, 0,
                 [Measures].[Annual Profit Costs] / [Measures].[Annual Target Profit Costs (Budget Balanced)]
                 ), 
                 FORMAT_STRING = "Percent", 
@@ -1065,7 +1065,7 @@
 
 
                 create member CurrentCube.[Measures].[YTD Percentage of Annual Profit Costs Target Achieved] 
-                AS iif(([Measures].[YTD Profit Costs] = 0 and [Measures].[Annual Target Profit Costs (Budget Balanced)] = 0) or [Measures].[Annual Target Profit Costs (Budget Balanced)] = 0, null,
+                AS iif(([Measures].[YTD Profit Costs] = 0 and [Measures].[Annual Target Profit Costs (Budget Balanced)] = 0) or [Measures].[Annual Target Profit Costs (Budget Balanced)] = 0, 0,
                 [Measures].[YTD Profit Costs] / [Measures].[Annual Target Profit Costs (Budget Balanced)]
                 ), 
                 FORMAT_STRING = "Percent", 
@@ -1087,7 +1087,7 @@
                 [Measures].[YTD Chargeable Minutes] / 60,
                 FORMAT_STRING = "#,##0.00;-#,##0.00", 
                 VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup'; 
-			</Text>
+            </Text>
         </Command>
       </Commands>
     </MdxScript>
