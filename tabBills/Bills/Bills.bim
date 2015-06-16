@@ -8049,6 +8049,11 @@ order by 1&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryC
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>BillXBCMEmail</Name>
                 </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>BillXDisplayName</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>BillXDisplayName</Name>
+                </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
@@ -8343,6 +8348,31 @@ order by 1&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryC
                 <Source xsi:type="ColumnBinding">
                   <TableID>dimBillXFEDHierarchy_cd7ebd06-20e5-4f3a-9c2e-7a2110dd736d</TableID>
                   <ColumnID>BillXBCMEmail</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>BillXDisplayName</ID>
+              <Name>BillXDisplayName</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimBillXFEDHierarchy_cd7ebd06-20e5-4f3a-9c2e-7a2110dd736d</TableID>
+                    <ColumnID>BillXDisplayName</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimBillXFEDHierarchy_cd7ebd06-20e5-4f3a-9c2e-7a2110dd736d</TableID>
+                  <ColumnID>BillXDisplayName</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
@@ -9332,6 +9362,9 @@ order by 1&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryC
                 </Attribute>
                 <Attribute>
                   <AttributeID>BillXBCMEmail</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>BillXDisplayName</AttributeID>
                 </Attribute>
               </Attributes>
             </Dimension>
@@ -22052,6 +22085,20 @@ dim_date</QueryDefinition>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>BillXDisplayName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimBillXFEDHierarchy_cd7ebd06-20e5-4f3a-9c2e-7a2110dd736d</TableID>
+                            <ColumnID>BillXDisplayName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <IntermediateCubeDimensionID>BillExtension_f335d257-da82-45f9-8729-a19aea809c40</IntermediateCubeDimensionID>
                   <IntermediateGranularityAttributeID>BillXFeeEarner</IntermediateGranularityAttributeID>
@@ -22289,6 +22336,20 @@ red_dw.dbo.fact_bill_activity</QueryDefinition>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>BillXDisplayName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimBillXFEDHierarchy_cd7ebd06-20e5-4f3a-9c2e-7a2110dd736d</TableID>
+                            <ColumnID>BillXDisplayName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
                 </Dimension>
@@ -22318,6 +22379,7 @@ red_dw.dbo.fact_bill_activity</QueryDefinition>
 h1.dim_fed_hierarchy_history_key as 'BillXFEDCodeID',
 h1.fed_code as 'BillXFEDCode',
 h1.name as 'BillXFEDName',
+h1.display_name as 'BillXDisplayName',
 e2.workemail as 'BillXEmailAddress',
 h1.hierarchylevel2hist as 'BillXBusinessLine',
 h1.hierarchylevel3hist as 'BillXPracticeArea',
@@ -22330,12 +22392,12 @@ from
 red_dw.dbo.dim_fed_hierarchy_history h1 
 
 left join
-	red_dw.dbo.load_cascade_employee e
-		on e.employeeid = h1.reportingbcmidud
+ red_dw.dbo.load_cascade_employee e
+  on e.employeeid = h1.reportingbcmidud
 
 left join
-	red_dw.dbo.load_cascade_employee e2
-		on e2.employeeid = h1.employeeid 
+ red_dw.dbo.load_cascade_employee e2
+  on e2.employeeid = h1.employeeid 
 
 order by 1</QueryDefinition>
                   </Source>
@@ -23766,7 +23828,7 @@ CREATE MEASURE 'Bills'[TotalBillAmountOutstanding]=calculate(sum([AmountOutstand
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimBillXFEDHierarchy_cd7ebd06-20e5-4f3a-9c2e-7a2110dd736d" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimBillXFEDHierarchy" msprop:DbTableName="dimBillXFEDHierarchy" msprop:TableType="View" msprop:Description="dimBillXFEDHierarchy" msprop:QueryDefinition="select distinct&#xD;&#xA;h1.dim_fed_hierarchy_history_key as 'BillXFEDCodeID',&#xD;&#xA;h1.fed_code as 'BillXFEDCode',&#xD;&#xA;h1.name as 'BillXFEDName',&#xD;&#xA;e2.workemail as 'BillXEmailAddress',&#xD;&#xA;h1.hierarchylevel2hist as 'BillXBusinessLine',&#xD;&#xA;h1.hierarchylevel3hist as 'BillXPracticeArea',&#xD;&#xA;h1.hierarchylevel4hist as 'BillXTeam',&#xD;&#xA;h1.reportingbcmname as 'BillXBCMName',&#xD;&#xA;e.workemail as 'BillXBCMEmail'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_fed_hierarchy_history h1 &#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; red_dw.dbo.load_cascade_employee e&#xD;&#xA;  on e.employeeid = h1.reportingbcmidud&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; red_dw.dbo.load_cascade_employee e2&#xD;&#xA;  on e2.employeeid = h1.employeeid &#xD;&#xA;&#xD;&#xA;order by 1">
+                    <xs:element name="dimBillXFEDHierarchy_cd7ebd06-20e5-4f3a-9c2e-7a2110dd736d" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimBillXFEDHierarchy" msprop:DbTableName="dimBillXFEDHierarchy" msprop:TableType="View" msprop:Description="dimBillXFEDHierarchy" msprop:QueryDefinition="select distinct&#xD;&#xA;h1.dim_fed_hierarchy_history_key as 'BillXFEDCodeID',&#xD;&#xA;h1.fed_code as 'BillXFEDCode',&#xD;&#xA;h1.name as 'BillXFEDName',&#xD;&#xA;h1.display_name as 'BillXDisplayName',&#xD;&#xA;e2.workemail as 'BillXEmailAddress',&#xD;&#xA;h1.hierarchylevel2hist as 'BillXBusinessLine',&#xD;&#xA;h1.hierarchylevel3hist as 'BillXPracticeArea',&#xD;&#xA;h1.hierarchylevel4hist as 'BillXTeam',&#xD;&#xA;h1.reportingbcmname as 'BillXBCMName',&#xD;&#xA;e.workemail as 'BillXBCMEmail'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_fed_hierarchy_history h1 &#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; red_dw.dbo.load_cascade_employee e&#xD;&#xA;  on e.employeeid = h1.reportingbcmidud&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; red_dw.dbo.load_cascade_employee e2&#xD;&#xA;  on e2.employeeid = h1.employeeid &#xD;&#xA;&#xD;&#xA;order by 1">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="BillXFEDCodeID" msprop:DbColumnName="BillXFEDCodeID" msprop:FriendlyName="BillXFEDCodeID" type="xs:int" minOccurs="0" />
@@ -23820,6 +23882,13 @@ CREATE MEASURE 'Bills'[TotalBillAmountOutstanding]=calculate(sum([AmountOutstand
                             </xs:simpleType>
                           </xs:element>
                           <xs:element name="BillXBCMEmail" msprop:DbColumnName="BillXBCMEmail" msprop:FriendlyName="BillXBCMEmail" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="BillXDisplayName" msprop:DbColumnName="BillXDisplayName" msprop:FriendlyName="BillXDisplayName" minOccurs="0">
                             <xs:simpleType>
                               <xs:restriction base="xs:string">
                                 <xs:maxLength value="32768" />
