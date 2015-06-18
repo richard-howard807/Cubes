@@ -1110,7 +1110,8 @@ VISIBLE = 1 ,  DISPLAY_FOLDER = 'Monthly' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi
                iif(
 		               [Measures].[YTD Profit Costs] &lt;&gt; 0
 				        or  [Measures].[Annual Target Profit Costs (Budget Balanced)] &lt;&gt; 0
-				        or  [Measures].[Annual Budget Balance] &lt;&gt; 0,
+				        or  [Measures].[Annual Budget Balance] &lt;&gt; 0
+                        or  [Measures].[Target Hours] &lt;&gt; 0,
 				        [Measures].[Billed Hours],
 				        0
 			          ),
@@ -1119,9 +1120,10 @@ VISIBLE = 1 ,  DISPLAY_FOLDER = 'Monthly' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi
 
                 create member CurrentCube.[Measures].[Billed Budget New] as
                        iif(
-		                       [Measures].[YTD Profit Costs] &lt;&gt; 0
+		                            [Measures].[YTD Profit Costs] &lt;&gt; 0
 				                or  [Measures].[Annual Target Profit Costs (Budget Balanced)] &lt;&gt; 0
-				                or  [Measures].[Annual Budget Balance] &lt;&gt; 0,
+				                or  [Measures].[Annual Budget Balance] &lt;&gt; 0
+                                or  [Measures].[Target Hours] &lt;&gt; 0,
 				                [Measures].[Target Hours],
 				                0
 			                  ),
