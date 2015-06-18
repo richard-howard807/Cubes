@@ -1104,7 +1104,48 @@ VISIBLE = 1 ,  DISPLAY_FOLDER = 'Monthly' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi
                 AS Measures.[Annual Chargeable Hours] / 60,
                 
                 FORMAT_STRING = "#,##0.00;-#,##0.00", 
-                VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup'; </Text>
+                VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup'; 
+
+                create member CurrentCube.[Measures].[Billed Hours New] as
+               iif(
+		               [Measures].[YTD Profit Costs] &lt;&gt; 0
+				        or  [Measures].[Annual Target Profit Costs (Budget Balanced)] &lt;&gt; 0
+				        or  [Measures].[Annual Budget Balance] &lt;&gt; 0,
+				        [Measures].[Billed Hours],
+				        0
+			          ),
+                FORMAT_STRING = "#,##0.00;-#,##0.00", 
+                VISIBLE = 0 ,  DISPLAY_FOLDER = 'Monthly' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup'; 
+
+                create member CurrentCube.[Measures].[Billed Budget New] as
+                       iif(
+		                       [Measures].[YTD Profit Costs] &lt;&gt; 0
+				                or  [Measures].[Annual Target Profit Costs (Budget Balanced)] &lt;&gt; 0
+				                or  [Measures].[Annual Budget Balance] &lt;&gt; 0,
+				                [Measures].[Target Hours],
+				                0
+			                  ),
+                FORMAT_STRING = "#,##0.00;-#,##0.00", 
+                VISIBLE = 0 ,  DISPLAY_FOLDER = 'Monthly' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup'; 
+
+               create member CurrentCube.[Measures].[YTD Billed Hours New]   as
+                sum(     ytd(
+                              [Dim Bill Date].[Hierarchy].currentmember),
+                              [Measures].[Billed Hours New]
+                           ),
+                FORMAT_STRING = "#,##0.00;-#,##0.00", 
+                VISIBLE = 0 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup'; 
+
+               create member CurrentCube.[Measures].[YTD Billed Budget New]   as
+                sum(     ytd(
+                              [Dim Bill Date].[Hierarchy].currentmember),
+                              [Measures].[Billed Budget New]
+                           ),
+                FORMAT_STRING = "#,##0.00;-#,##0.00", 
+                VISIBLE = 0 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup'; 
+
+
+</Text>
         </Command>
       </Commands>
     </MdxScript>
