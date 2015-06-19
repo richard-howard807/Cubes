@@ -692,6 +692,42 @@
           </Source>
           <DisplayFolder>Monthly</DisplayFolder>
         </Measure>
+        <Measure dwd:design-time-name="6da7913a-22e2-4d4f-a53a-70c404be1f44">
+          <ID>New Matters</ID>
+          <Name>New Matters</Name>
+          <Source dwd:design-time-name="ee984c9c-4636-427e-890a-23ed2c833795">
+            <DataType>Integer</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="c66c0a5c-8ca2-4f02-bc59-190530f21a83">
+              <TableID>dbo_agg_kpi_monthly_rollup</TableID>
+              <ColumnID>NewMatters</ColumnID>
+            </Source>
+          </Source>
+          <DisplayFolder>Monthly</DisplayFolder>
+        </Measure>
+        <Measure dwd:design-time-name="9034bd4e-df20-4da3-bed7-c271c5f9791f">
+          <ID>Billed Hours</ID>
+          <Name>Billed Hours</Name>
+          <Source dwd:design-time-name="50c67f5f-549c-4861-8057-dd7566701ebb">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="de8598b9-7dc2-4fa0-80a0-61ac4cabf5e5">
+              <TableID>dbo_agg_kpi_monthly_rollup</TableID>
+              <ColumnID>Billed_x0020_Hours</ColumnID>
+            </Source>
+          </Source>
+          <DisplayFolder>Monthly</DisplayFolder>
+        </Measure>
+        <Measure dwd:design-time-name="fceebcbf-034a-400a-b3d1-063000bec0f5">
+          <ID>Zero Rate Hours Recorded</ID>
+          <Name>Zero Rate Hours Recorded</Name>
+          <Source dwd:design-time-name="d63b2218-4133-4d4d-8c70-2ef9f0a551f7">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="0f296481-f252-403f-bbb3-cfb1910a6659">
+              <TableID>dbo_agg_kpi_monthly_rollup</TableID>
+              <ColumnID>Zero_x0020_Rate_x0020_Hours_x0020_Recorded</ColumnID>
+            </Source>
+          </Source>
+          <DisplayFolder>Monthly</DisplayFolder>
+        </Measure>
       </Measures>
       <StorageMode>Molap</StorageMode>
       <EstimatedRows>162863</EstimatedRows>
@@ -952,6 +988,15 @@ VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Mon
                 FORMAT_STRING = "Currency", 
                 VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';    
 
+                CREATE MEMBER CURRENTCUBE.[Measures].[YTD New Matters]
+                AS sum (
+                YTD (
+                [Dim Bill Date].[Hierarchy].CurrentMember),
+                Measures.[New Matters]
+                ), 
+                VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';    
+
+
 
                 create member CurrentCube.[Measures].[YTD Percentage of Profit Costs Target Achieved] 
                 AS iif(([Measures].[YTD Profit Costs] = 0 and [Measures].[YTD Target Profit Costs (Budget Balanced)] = 0) or [Measures].[YTD Target Profit Costs (Budget Balanced)] = 0, 0,
@@ -1142,12 +1187,6 @@ VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Mon
                 ), 
                 FORMAT_STRING = "Percent", 
                 VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';      
-
-                create member CurrentCube.[Measures].[Billed Hours] as
-                Measures.[Billed Minutes] / 60,
-                FORMAT_STRING = "#,##0.00;-#,##0.00", 
-                non_empty_behavior = [Billed Minutes],
-                VISIBLE = 1 ,  DISPLAY_FOLDER = 'Monthly' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';   
 				
 				CREATE MEMBER CURRENTCUBE.[Measures].[Annual Chargeable Hours]
                 AS sum(
@@ -1186,13 +1225,7 @@ VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Mon
 			                  ),
                 FORMAT_STRING = "#,##0.00;-#,##0.00", 
                 VISIBLE = 0 ,  DISPLAY_FOLDER = 'Monthly' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';  
-
-
-                create member CurrentCube.[Measures].[Zero Rate Hours Recorded] as
-                [Measures].[Zero Rate Minutes Recorded] / 60,
-                FORMAT_STRING = "#,##0.00;-#,##0.00", 
-                non_empty_behavior = [Measures].[Zero Rate Minutes Recorded],
-                VISIBLE = 1 ,  DISPLAY_FOLDER = 'Monthly' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup'; </Text>
+</Text>
         </Command>
       </Commands>
     </MdxScript>
