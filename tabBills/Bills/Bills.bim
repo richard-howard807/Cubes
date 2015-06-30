@@ -5202,6 +5202,11 @@ order by 1&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryC
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>MatterActiveUD</Name>
                 </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>MatterFEDDisplayName</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>MatterFEDDisplayName</Name>
+                </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
@@ -5802,6 +5807,31 @@ order by 1&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryC
                 <Source xsi:type="ColumnBinding">
                   <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
                   <ColumnID>MatterActiveUD</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>MatterFEDDisplayName</ID>
+              <Name>MatterFEDDisplayName</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                    <ColumnID>MatterFEDDisplayName</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                  <ColumnID>MatterFEDDisplayName</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
@@ -9117,6 +9147,9 @@ order by 1&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryC
                 <Attribute>
                   <AttributeID>MatterActiveUD</AttributeID>
                 </Attribute>
+                <Attribute>
+                  <AttributeID>MatterFEDDisplayName</AttributeID>
+                </Attribute>
               </Attributes>
             </Dimension>
             <Dimension>
@@ -10253,6 +10286,20 @@ order by 1&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryC
                           <Source xsi:type="ColumnBinding">
                             <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
                             <ColumnID>MatterActiveUD</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterFEDDisplayName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                            <ColumnID>MatterFEDDisplayName</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -13213,6 +13260,20 @@ calendar_date = cast(getdate() - 1 as date))</QueryDefinition>
                           <Source xsi:type="ColumnBinding">
                             <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
                             <ColumnID>MatterActiveUD</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterFEDDisplayName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                            <ColumnID>MatterFEDDisplayName</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -17333,6 +17394,20 @@ red_dw.dbo.dim_matter_worktype</QueryDefinition>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterFEDDisplayName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                            <ColumnID>MatterFEDDisplayName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
                 </Dimension>
@@ -17454,6 +17529,7 @@ e.displayemployeeid as 'MatterCascadeEmployeeID',
 case when e.payrollid = '' or e.payrollid is null then e.displayemployeeid else e.payrollid end as 'MatterPayrollID',
 h1.fed_code as 'MatterFEDCode',
 h1.name as 'MatterFEDName',
+h1.display_name as 'MatterFEDDisplayName',
 e.forename as 'MatterFEDForename',
 e.surname as 'MatterFEDSurname',
 e4.workemail as 'MatterEmailAddress',
@@ -20654,6 +20730,20 @@ dim_date</QueryDefinition>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterFEDDisplayName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                            <ColumnID>MatterFEDDisplayName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <IntermediateCubeDimensionID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</IntermediateCubeDimensionID>
                   <IntermediateGranularityAttributeID>FEDCodeID</IntermediateGranularityAttributeID>
@@ -23459,7 +23549,7 @@ CREATE MEASURE 'Bills'[TotalBillAmountOutstanding]=calculate(sum([AmountOutstand
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimMatterFEDHierarchy" msprop:DbTableName="dimMatterFEDHierarchy" msprop:TableType="View" msprop:Description="dimMatterFEDHierarchy" msprop:QueryDefinition="select distinct&#xD;&#xA;h1.dim_fed_hierarchy_history_key as 'MatterFEDCodeID',&#xD;&#xA;e.displayemployeeid as 'MatterCascadeEmployeeID',&#xD;&#xA;case when e.payrollid = '' or e.payrollid is null then e.displayemployeeid else e.payrollid end as 'MatterPayrollID',&#xD;&#xA;h1.fed_code as 'MatterFEDCode',&#xD;&#xA;h1.name as 'MatterFEDName',&#xD;&#xA;e.forename as 'MatterFEDForename',&#xD;&#xA;e.surname as 'MatterFEDSurname',&#xD;&#xA;e4.workemail as 'MatterEmailAddress',&#xD;&#xA;j.locationidud as 'MatterFEDLocation',&#xD;&#xA;case when j.levelidud in ('Equity Partner','Fixed Share Partner','Silver Equity Partner') then 'Partner' else j.levelidud end as 'MatterGrade',&#xD;&#xA;h1.hierarchylevel2hist as 'MatterBusinessLine',&#xD;&#xA;h1.hierarchylevel3hist as 'MatterPracticeArea',&#xD;&#xA;h1.hierarchylevel4hist as 'MatterTeam',&#xD;&#xA;h1.reportingbcmname as 'MatterBCMName',&#xD;&#xA;e3.workemail as 'MatterBCMEmail',&#xD;&#xA;case when e3.payrollid = '' or e3.payrollid is null then e.displayemployeeid else e3.payrollid end AS 'MatterBCMPayrollID',&#xD;&#xA;eMan.forename + ' ' + eMan.surname AS 'MatterManagerName',&#xD;&#xA;case when eMan.payrollid is null or eMan.payrollid = '' then eMan.displayemployeeid else eMan.payrollid end AS 'MatterManagerPayrollID',&#xD;&#xA;eBCM.knownas + ' ' + eBCM.surname as 'MatterBCMsBCM',&#xD;&#xA;case when e.leaver = 0 then 'N' else 'Y' end as 'MatterLeaver',&#xD;&#xA;e.leaverlastworkdate as 'MatterLeaverDate',&#xD;&#xA;e.windowsusername as 'MatterLogin',&#xD;&#xA;h1.dss_current_flag as 'MatterCurrentFlag',&#xD;&#xA;h1.activeud as 'MatterActiveUD'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_fed_hierarchy_history h1 &#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.ds_sh_employee e&#xD;&#xA; on cast(e.employeeid as varchar(36)) = h1.employeeid&#xD;&#xA; and e.dss_current_flag = 'Y'&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.ds_sh_employee_jobs j&#xD;&#xA; on j.employeeid = h1.employeeid&#xD;&#xA; and j.dss_current_flag = 'Y'&#xD;&#xA; and j.sys_activejob = 1&#xD;&#xA;&#xD;&#xA;left join &#xD;&#xA; red_dw.dbo.load_cascade_employee e3&#xD;&#xA;  on e3.employeeid = h1.reportingbcmidud&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; red_dw.dbo.load_cascade_employee e4&#xD;&#xA;  on e4.employeeid = h1.employeeid &#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.ds_sh_employee_jobs j3&#xD;&#xA; on j3.employeeid = h1.reportingbcmidud&#xD;&#xA; and j3.dss_current_flag = 'Y'&#xD;&#xA; and j3.sys_activejob = 1&#xD;&#xA;&#xD;&#xA; left join red_dw.dbo.dim_fed_hierarchy_history h3&#xD;&#xA; on h3.employeeid = j3.employeeid&#xD;&#xA;  and h3.dss_current_flag = 'Y'&#xD;&#xA;  and h3.activeud = 1&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.ds_sh_employee eMan&#xD;&#xA; on cast(eMan.employeeid as varchar(36)) = h1.worksforemployeeid&#xD;&#xA; and eMan.dss_current_flag = 'Y'&#xD;&#xA;&#xD;&#xA; left join red_dw.dbo.ds_sh_employee_jobs jMan&#xD;&#xA; on jMan.employeeid = eMan.employeeid&#xD;&#xA; and jMan.dss_current_flag = 'Y'&#xD;&#xA; and jMan.sys_activejob = 1&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_fed_hierarchy_history hMan&#xD;&#xA; on hMan.employeeid = jMan.employeeid&#xD;&#xA;  and hMan.dss_current_flag = 'Y'&#xD;&#xA;  and hMan.activeud = 1&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.ds_sh_employee eBCM&#xD;&#xA; on cast(eBCM.employeeid as varchar(36)) = h1.reportingbcmidud&#xD;&#xA; and eBCM.dss_current_flag = 'Y'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;order by 1">
+                    <xs:element name="dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimMatterFEDHierarchy" msprop:DbTableName="dimMatterFEDHierarchy" msprop:TableType="View" msprop:Description="dimMatterFEDHierarchy" msprop:QueryDefinition="select distinct&#xD;&#xA;h1.dim_fed_hierarchy_history_key as 'MatterFEDCodeID',&#xD;&#xA;e.displayemployeeid as 'MatterCascadeEmployeeID',&#xD;&#xA;case when e.payrollid = '' or e.payrollid is null then e.displayemployeeid else e.payrollid end as 'MatterPayrollID',&#xD;&#xA;h1.fed_code as 'MatterFEDCode',&#xD;&#xA;h1.name as 'MatterFEDName',&#xD;&#xA;h1.display_name as 'MatterFEDDisplayName',&#xD;&#xA;e.forename as 'MatterFEDForename',&#xD;&#xA;e.surname as 'MatterFEDSurname',&#xD;&#xA;e4.workemail as 'MatterEmailAddress',&#xD;&#xA;j.locationidud as 'MatterFEDLocation',&#xD;&#xA;case when j.levelidud in ('Equity Partner','Fixed Share Partner','Silver Equity Partner') then 'Partner' else j.levelidud end as 'MatterGrade',&#xD;&#xA;h1.hierarchylevel2hist as 'MatterBusinessLine',&#xD;&#xA;h1.hierarchylevel3hist as 'MatterPracticeArea',&#xD;&#xA;h1.hierarchylevel4hist as 'MatterTeam',&#xD;&#xA;h1.reportingbcmname as 'MatterBCMName',&#xD;&#xA;e3.workemail as 'MatterBCMEmail',&#xD;&#xA;case when e3.payrollid = '' or e3.payrollid is null then e.displayemployeeid else e3.payrollid end AS 'MatterBCMPayrollID',&#xD;&#xA;eMan.forename + ' ' + eMan.surname AS 'MatterManagerName',&#xD;&#xA;case when eMan.payrollid is null or eMan.payrollid = '' then eMan.displayemployeeid else eMan.payrollid end AS 'MatterManagerPayrollID',&#xD;&#xA;eBCM.knownas + ' ' + eBCM.surname as 'MatterBCMsBCM',&#xD;&#xA;case when e.leaver = 0 then 'N' else 'Y' end as 'MatterLeaver',&#xD;&#xA;e.leaverlastworkdate as 'MatterLeaverDate',&#xD;&#xA;e.windowsusername as 'MatterLogin',&#xD;&#xA;h1.dss_current_flag as 'MatterCurrentFlag',&#xD;&#xA;h1.activeud as 'MatterActiveUD'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_fed_hierarchy_history h1 &#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.ds_sh_employee e&#xD;&#xA; on cast(e.employeeid as varchar(36)) = h1.employeeid&#xD;&#xA; and e.dss_current_flag = 'Y'&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.ds_sh_employee_jobs j&#xD;&#xA; on j.employeeid = h1.employeeid&#xD;&#xA; and j.dss_current_flag = 'Y'&#xD;&#xA; and j.sys_activejob = 1&#xD;&#xA;&#xD;&#xA;left join &#xD;&#xA; red_dw.dbo.load_cascade_employee e3&#xD;&#xA;  on e3.employeeid = h1.reportingbcmidud&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; red_dw.dbo.load_cascade_employee e4&#xD;&#xA;  on e4.employeeid = h1.employeeid &#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.ds_sh_employee_jobs j3&#xD;&#xA; on j3.employeeid = h1.reportingbcmidud&#xD;&#xA; and j3.dss_current_flag = 'Y'&#xD;&#xA; and j3.sys_activejob = 1&#xD;&#xA;&#xD;&#xA; left join red_dw.dbo.dim_fed_hierarchy_history h3&#xD;&#xA; on h3.employeeid = j3.employeeid&#xD;&#xA;  and h3.dss_current_flag = 'Y'&#xD;&#xA;  and h3.activeud = 1&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.ds_sh_employee eMan&#xD;&#xA; on cast(eMan.employeeid as varchar(36)) = h1.worksforemployeeid&#xD;&#xA; and eMan.dss_current_flag = 'Y'&#xD;&#xA;&#xD;&#xA; left join red_dw.dbo.ds_sh_employee_jobs jMan&#xD;&#xA; on jMan.employeeid = eMan.employeeid&#xD;&#xA; and jMan.dss_current_flag = 'Y'&#xD;&#xA; and jMan.sys_activejob = 1&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_fed_hierarchy_history hMan&#xD;&#xA; on hMan.employeeid = jMan.employeeid&#xD;&#xA;  and hMan.dss_current_flag = 'Y'&#xD;&#xA;  and hMan.activeud = 1&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.ds_sh_employee eBCM&#xD;&#xA; on cast(eBCM.employeeid as varchar(36)) = h1.reportingbcmidud&#xD;&#xA; and eBCM.dss_current_flag = 'Y'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;order by 1">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="MatterFEDCodeID" msprop:DbColumnName="MatterFEDCodeID" msprop:FriendlyName="MatterFEDCodeID" type="xs:int" minOccurs="0" />
@@ -23612,6 +23702,13 @@ CREATE MEASURE 'Bills'[TotalBillAmountOutstanding]=calculate(sum([AmountOutstand
                           </xs:element>
                           <xs:element name="MatterLeaverDate" msprop:DbColumnName="MatterLeaverDate" msprop:FriendlyName="MatterLeaverDate" type="xs:dateTime" minOccurs="0" />
                           <xs:element name="MatterActiveUD" msprop:DbColumnName="MatterActiveUD" msprop:FriendlyName="MatterActiveUD" type="xs:boolean" minOccurs="0" />
+                          <xs:element name="MatterFEDDisplayName" msprop:DbColumnName="MatterFEDDisplayName" msprop:FriendlyName="MatterFEDDisplayName" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
