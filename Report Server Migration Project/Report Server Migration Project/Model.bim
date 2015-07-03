@@ -2770,7 +2770,7 @@
  ReportName,
  ReportCategory,
  coalesce([12Live], [12UAT], [12Dev], [12Retired]) [2012Status],
- coalesce([08Retired], [08Live],case when [12Live] is null and [12UAT] is null and [12Retired] is null and [08Live] is null and [08Retired] is null and [Server] = 'SQL2008SVR' then '08UAT/Dev' end) [2008Status]
+ coalesce([08Retired], [08Live]) [2008Status]
 
   from Reporting.dw.ExecutionStatsNew</QueryDefinition>
                   </Source>
@@ -4157,7 +4157,7 @@ CREATE MEASURE 'ReportIDs'[Count of New Reports]=if(isblank(calculate(countrows(
               <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:Locale="en-GB">
                 <xs:complexType>
                   <xs:choice minOccurs="0" maxOccurs="unbounded">
-                    <xs:element name="ReportIDs_21d66cf2-26c5-4f42-8f98-7f080ac0aaae" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="ReportIDs" msprop:DbTableName="ReportIDs" msprop:TableType="View" msprop:Description="ReportIDs" msprop:QueryDefinition="select &#xD;&#xA; cast(ReportID as numeric(10,2)) as 'ReportID',&#xD;&#xA; Server,&#xD;&#xA; ReportName,&#xD;&#xA; ReportCategory,&#xD;&#xA; coalesce([12Live], [12UAT], [12Dev], [12Retired]) [2012Status],&#xD;&#xA; coalesce([08Retired], [08Live],case when [12Live] is null and [12UAT] is null and [12Retired] is null and [08Live] is null and [08Retired] is null and [Server] = 'SQL2008SVR' then '08UAT/Dev' end) [2008Status]&#xD;&#xA;&#xD;&#xA;  from Reporting.dw.ExecutionStatsNew">
+                    <xs:element name="ReportIDs_21d66cf2-26c5-4f42-8f98-7f080ac0aaae" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="ReportIDs" msprop:DbTableName="ReportIDs" msprop:TableType="View" msprop:Description="ReportIDs" msprop:QueryDefinition="select &#xD;&#xA; cast(ReportID as numeric(10,2)) as 'ReportID',&#xD;&#xA; Server,&#xD;&#xA; ReportName,&#xD;&#xA; ReportCategory,&#xD;&#xA; coalesce([12Live], [12UAT], [12Dev], [12Retired]) [2012Status],&#xD;&#xA; coalesce([08Retired], [08Live]) [2008Status]&#xD;&#xA;&#xD;&#xA;  from Reporting.dw.ExecutionStatsNew">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="ReportID" msprop:DbColumnName="ReportID" msprop:FriendlyName="ReportID" minOccurs="0">
