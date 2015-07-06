@@ -545,12 +545,8 @@ LEFT JOIN dim_fed_hierarchy_history AS fed
                   <Name>CurrentMatters</Name>
                 </AttributeRelationship>
                 <AttributeRelationship>
-                  <AttributeID>FinalBill</AttributeID>
-                  <OverrideBehavior>None</OverrideBehavior>
-                  <Name>FinalBill</Name>
-                </AttributeRelationship>
-                <AttributeRelationship>
                   <AttributeID>PK</AttributeID>
+                  <Cardinality>One</Cardinality>
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>PK</Name>
                 </AttributeRelationship>
@@ -889,38 +885,13 @@ LEFT JOIN dim_fed_hierarchy_history AS fed
               <OrderBy>Key</OrderBy>
             </Attribute>
             <Attribute>
-              <ID>FinalBill</ID>
-              <Name>FinalBill</Name>
-              <KeyColumns>
-                <KeyColumn>
-                  <DataType>Integer</DataType>
-                  <DataSize>-1</DataSize>
-                  <NullProcessing>Preserve</NullProcessing>
-                  <Source xsi:type="ColumnBinding">
-                    <TableID>factKPI_fd2eb13f-dad0-4070-82d8-08fb90a7a815</TableID>
-                    <ColumnID>FinalBill</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-              <NameColumn>
-                <DataType>WChar</DataType>
-                <DataSize>-1</DataSize>
-                <NullProcessing>ZeroOrBlank</NullProcessing>
-                <Source xsi:type="ColumnBinding">
-                  <TableID>factKPI_fd2eb13f-dad0-4070-82d8-08fb90a7a815</TableID>
-                  <ColumnID>FinalBill</ColumnID>
-                </Source>
-              </NameColumn>
-              <OrderBy>Key</OrderBy>
-            </Attribute>
-            <Attribute>
               <ID>PK</ID>
               <Name>PK</Name>
               <KeyColumns>
                 <KeyColumn>
                   <DataType>WChar</DataType>
                   <DataSize>32768</DataSize>
-                  <NullProcessing>Preserve</NullProcessing>
+                  <NullProcessing>Error</NullProcessing>
                   <Source xsi:type="ColumnBinding">
                     <TableID>factKPI_fd2eb13f-dad0-4070-82d8-08fb90a7a815</TableID>
                     <ColumnID>PK</ColumnID>
@@ -972,29 +943,6 @@ LEFT JOIN dim_fed_hierarchy_history AS fed
             <Source xsi:type="ProactiveCachingInheritedBinding" />
           </ProactiveCaching>
           <ddl300_300:Relationships>
-            <ddl300_300:Relationship>
-              <ID>06e85dcf-0de7-41c2-a374-44331cd6d756</ID>
-              <ddl300_300:FromRelationshipEnd>
-                <ddl300_300:Multiplicity>Many</ddl300_300:Multiplicity>
-                <ddl300:VisualizationProperties />
-                <DimensionID>factKPI_fd2eb13f-dad0-4070-82d8-08fb90a7a815</DimensionID>
-                <Attributes>
-                  <Attribute>
-                    <AttributeID>PK</AttributeID>
-                  </Attribute>
-                </Attributes>
-              </ddl300_300:FromRelationshipEnd>
-              <ddl300_300:ToRelationshipEnd>
-                <ddl300_300:Multiplicity>One</ddl300_300:Multiplicity>
-                <ddl300:VisualizationProperties />
-                <DimensionID>Bills_ad75372b-9ec7-443b-b434-e5634541a4c9</DimensionID>
-                <Attributes>
-                  <Attribute>
-                    <AttributeID>PK</AttributeID>
-                  </Attribute>
-                </Attributes>
-              </ddl300_300:ToRelationshipEnd>
-            </ddl300_300:Relationship>
             <ddl300_300:Relationship>
               <ID>d5468ef5-96a4-4eea-afb4-7c7471558006</ID>
               <ddl300_300:FromRelationshipEnd>
@@ -1676,7 +1624,6 @@ LEFT JOIN dim_fed_hierarchy_history AS fed
                 </AttributeRelationship>
                 <AttributeRelationship>
                   <AttributeID>PK</AttributeID>
-                  <Cardinality>One</Cardinality>
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>PK</Name>
                 </AttributeRelationship>
@@ -2146,7 +2093,6 @@ LEFT JOIN dim_fed_hierarchy_history AS fed
                 <KeyColumn>
                   <DataType>WChar</DataType>
                   <DataSize>32768</DataSize>
-                  <NullProcessing>Error</NullProcessing>
                   <Source xsi:type="ColumnBinding">
                     <TableID>Bills_ad75372b-9ec7-443b-b434-e5634541a4c9</TableID>
                     <ColumnID>PK</ColumnID>
@@ -2172,6 +2118,54 @@ LEFT JOIN dim_fed_hierarchy_history AS fed
             <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
             <Source xsi:type="ProactiveCachingInheritedBinding" />
           </ProactiveCaching>
+          <ddl300_300:Relationships>
+            <ddl300_300:Relationship>
+              <ID>01abf24d-5e3f-4e97-9e85-6e2464bacab9</ID>
+              <ddl300_300:FromRelationshipEnd>
+                <ddl300_300:Multiplicity>Many</ddl300_300:Multiplicity>
+                <ddl300:VisualizationProperties />
+                <DimensionID>Bills_ad75372b-9ec7-443b-b434-e5634541a4c9</DimensionID>
+                <Attributes>
+                  <Attribute>
+                    <AttributeID>fin_month</AttributeID>
+                  </Attribute>
+                </Attributes>
+              </ddl300_300:FromRelationshipEnd>
+              <ddl300_300:ToRelationshipEnd>
+                <ddl300_300:Multiplicity>One</ddl300_300:Multiplicity>
+                <ddl300:VisualizationProperties />
+                <DimensionID>dimDate_a0cf4cd8-025b-48ca-bae4-56cb7c971d00</DimensionID>
+                <Attributes>
+                  <Attribute>
+                    <AttributeID>fin_month</AttributeID>
+                  </Attribute>
+                </Attributes>
+              </ddl300_300:ToRelationshipEnd>
+            </ddl300_300:Relationship>
+            <ddl300_300:Relationship>
+              <ID>1a69ae15-aff8-40ce-9f69-10cbded10c4b</ID>
+              <ddl300_300:FromRelationshipEnd>
+                <ddl300_300:Multiplicity>Many</ddl300_300:Multiplicity>
+                <ddl300:VisualizationProperties />
+                <DimensionID>Bills_ad75372b-9ec7-443b-b434-e5634541a4c9</DimensionID>
+                <Attributes>
+                  <Attribute>
+                    <AttributeID>PK</AttributeID>
+                  </Attribute>
+                </Attributes>
+              </ddl300_300:FromRelationshipEnd>
+              <ddl300_300:ToRelationshipEnd>
+                <ddl300_300:Multiplicity>One</ddl300_300:Multiplicity>
+                <ddl300:VisualizationProperties />
+                <DimensionID>factKPI_fd2eb13f-dad0-4070-82d8-08fb90a7a815</DimensionID>
+                <Attributes>
+                  <Attribute>
+                    <AttributeID>PK</AttributeID>
+                  </Attribute>
+                </Attributes>
+              </ddl300_300:ToRelationshipEnd>
+            </ddl300_300:Relationship>
+          </ddl300_300:Relationships>
         </Dimension>
         <Dimension>
           <ID>dimDate_a0cf4cd8-025b-48ca-bae4-56cb7c971d00</ID>
@@ -2927,6 +2921,393 @@ LEFT JOIN dim_fed_hierarchy_history AS fed
             <Source xsi:type="ProactiveCachingInheritedBinding" />
           </ProactiveCaching>
         </Dimension>
+        <Dimension>
+          <ID>Time_a4ad8ecb-e030-4764-8469-f26a3c1f59f0</ID>
+          <Name>Time</Name>
+          <Annotations>
+            <Annotation>
+              <Name>IsQueryEditorUsed</Name>
+              <Value>True</Value>
+            </Annotation>
+            <Annotation>
+              <Name>QueryEditorSerialization</Name>
+            </Annotation>
+            <Annotation>
+              <Name>TableWidgetSerialization</Name>
+            </Annotation>
+            <Annotation>
+              <Name>DataMarketWebBaseUrl</Name>
+            </Annotation>
+            <Annotation>
+              <Name>DataMarketWebQueryUrl</Name>
+            </Annotation>
+          </Annotations>
+          <Source xsi:type="DataSourceViewBinding">
+            <DataSourceViewID>Sandbox</DataSourceViewID>
+          </Source>
+          <UnknownMember valuens="ddl200_200">AutomaticNull</UnknownMember>
+          <ErrorConfiguration>
+            <KeyNotFound>IgnoreError</KeyNotFound>
+            <KeyDuplicate>ReportAndStop</KeyDuplicate>
+            <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+          </ErrorConfiguration>
+          <StorageMode valuens="ddl200_200">InMemory</StorageMode>
+          <Language>2057</Language>
+          <UnknownMemberName>Unknown</UnknownMemberName>
+          <Attributes>
+            <Attribute>
+              <ID>RowNumber</ID>
+              <Name>RowNumber</Name>
+              <Type valuens="ddl200_200">RowNumber</Type>
+              <Usage>Key</Usage>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>4</DataSize>
+                  <NullProcessing>Error</NullProcessing>
+                  <Source xsi:type="ddl200_200:RowNumberBinding" />
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>4</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ddl200_200:RowNumberBinding" />
+              </NameColumn>
+              <AttributeRelationships>
+                <AttributeRelationship>
+                  <AttributeID>PK</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>PK</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>dim_matter_header_key</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>dim_matter_header_key</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>minutes_recorded</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>minutes_recorded</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>hourly_charge_rate</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>hourly_charge_rate</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>time_cost_value</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>time_cost_value</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>time_charge_value</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>time_charge_value</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>overridden_time_charge_value</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>overridden_time_charge_value</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>actual_time_recorded_value</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>actual_time_recorded_value</Name>
+                </AttributeRelationship>
+              </AttributeRelationships>
+              <OrderBy>Key</OrderBy>
+              <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="Text" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>PK</ID>
+              <Name>PK</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>Time_a4ad8ecb-e030-4764-8469-f26a3c1f59f0</TableID>
+                    <ColumnID>PK</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>Time_a4ad8ecb-e030-4764-8469-f26a3c1f59f0</TableID>
+                  <ColumnID>PK</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>dim_matter_header_key</ID>
+              <Name>dim_matter_header_key</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>Time_a4ad8ecb-e030-4764-8469-f26a3c1f59f0</TableID>
+                    <ColumnID>dim_matter_header_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>Time_a4ad8ecb-e030-4764-8469-f26a3c1f59f0</TableID>
+                  <ColumnID>dim_matter_header_key</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>minutes_recorded</ID>
+              <Name>minutes_recorded</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Double</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>Time_a4ad8ecb-e030-4764-8469-f26a3c1f59f0</TableID>
+                    <ColumnID>minutes_recorded</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>Time_a4ad8ecb-e030-4764-8469-f26a3c1f59f0</TableID>
+                  <ColumnID>minutes_recorded</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>hourly_charge_rate</ID>
+              <Name>hourly_charge_rate</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Double</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>Time_a4ad8ecb-e030-4764-8469-f26a3c1f59f0</TableID>
+                    <ColumnID>hourly_charge_rate</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>Time_a4ad8ecb-e030-4764-8469-f26a3c1f59f0</TableID>
+                  <ColumnID>hourly_charge_rate</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>time_cost_value</ID>
+              <Name>time_cost_value</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Double</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>Time_a4ad8ecb-e030-4764-8469-f26a3c1f59f0</TableID>
+                    <ColumnID>time_cost_value</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>Time_a4ad8ecb-e030-4764-8469-f26a3c1f59f0</TableID>
+                  <ColumnID>time_cost_value</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>time_charge_value</ID>
+              <Name>time_charge_value</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Double</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>Time_a4ad8ecb-e030-4764-8469-f26a3c1f59f0</TableID>
+                    <ColumnID>time_charge_value</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>Time_a4ad8ecb-e030-4764-8469-f26a3c1f59f0</TableID>
+                  <ColumnID>time_charge_value</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>overridden_time_charge_value</ID>
+              <Name>overridden_time_charge_value</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Double</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>Time_a4ad8ecb-e030-4764-8469-f26a3c1f59f0</TableID>
+                    <ColumnID>overridden_time_charge_value</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>Time_a4ad8ecb-e030-4764-8469-f26a3c1f59f0</TableID>
+                  <ColumnID>overridden_time_charge_value</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>actual_time_recorded_value</ID>
+              <Name>actual_time_recorded_value</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Double</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>Time_a4ad8ecb-e030-4764-8469-f26a3c1f59f0</TableID>
+                    <ColumnID>actual_time_recorded_value</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>Time_a4ad8ecb-e030-4764-8469-f26a3c1f59f0</TableID>
+                  <ColumnID>actual_time_recorded_value</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+          </Attributes>
+          <ProactiveCaching>
+            <SilenceInterval>-PT1S</SilenceInterval>
+            <Latency>-PT1S</Latency>
+            <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+            <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+            <Source xsi:type="ProactiveCachingInheritedBinding" />
+          </ProactiveCaching>
+        </Dimension>
       </Dimensions>
       <Cubes>
         <Cube>
@@ -2987,9 +3368,6 @@ LEFT JOIN dim_fed_hierarchy_history AS fed
                 </Attribute>
                 <Attribute>
                   <AttributeID>CurrentMatters</AttributeID>
-                </Attribute>
-                <Attribute>
-                  <AttributeID>FinalBill</AttributeID>
                 </Attribute>
                 <Attribute>
                   <AttributeID>PK</AttributeID>
@@ -3160,6 +3538,41 @@ LEFT JOIN dim_fed_hierarchy_history AS fed
                 </Attribute>
                 <Attribute>
                   <AttributeID>BillDateEndOfMonth</AttributeID>
+                </Attribute>
+              </Attributes>
+            </Dimension>
+            <Dimension>
+              <ID>Time_a4ad8ecb-e030-4764-8469-f26a3c1f59f0</ID>
+              <Name>Time</Name>
+              <DimensionID>Time_a4ad8ecb-e030-4764-8469-f26a3c1f59f0</DimensionID>
+              <Attributes>
+                <Attribute>
+                  <AttributeID>RowNumber</AttributeID>
+                  <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>PK</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>dim_matter_header_key</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>minutes_recorded</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>hourly_charge_rate</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>time_cost_value</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>time_charge_value</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>overridden_time_charge_value</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>actual_time_recorded_value</AttributeID>
                 </Attribute>
               </Attributes>
             </Dimension>
@@ -3391,20 +3804,6 @@ LEFT JOIN dim_fed_hierarchy_history AS fed
                       </KeyColumns>
                     </Attribute>
                     <Attribute>
-                      <AttributeID>FinalBill</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>factKPI_fd2eb13f-dad0-4070-82d8-08fb90a7a815</TableID>
-                            <ColumnID>FinalBill</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
                       <AttributeID>PK</AttributeID>
                       <KeyColumns>
                         <KeyColumn>
@@ -3434,236 +3833,6 @@ LEFT JOIN dim_fed_hierarchy_history AS fed
                     </Attribute>
                   </Attributes>
                   <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
-                </Dimension>
-                <Dimension xsi:type="ReferenceMeasureGroupDimension">
-                  <CubeDimensionID>Bills_ad75372b-9ec7-443b-b434-e5634541a4c9</CubeDimensionID>
-                  <Attributes>
-                    <Attribute>
-                      <AttributeID>RowNumber</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>4</DataSize>
-                          <NullProcessing>Error</NullProcessing>
-                          <Source xsi:type="ddl200_200:RowNumberBinding" />
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>fin_month</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>Bills_ad75372b-9ec7-443b-b434-e5634541a4c9</TableID>
-                            <ColumnID>fin_month</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>dim_matter_header_key</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>Bills_ad75372b-9ec7-443b-b434-e5634541a4c9</TableID>
-                            <ColumnID>dim_matter_header_key</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>billed_time</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Double</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>Bills_ad75372b-9ec7-443b-b434-e5634541a4c9</TableID>
-                            <ColumnID>billed_time</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>bill_amount</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Double</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>Bills_ad75372b-9ec7-443b-b434-e5634541a4c9</TableID>
-                            <ColumnID>bill_amount</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>bill_total</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Double</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>Bills_ad75372b-9ec7-443b-b434-e5634541a4c9</TableID>
-                            <ColumnID>bill_total</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>fees_total</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Double</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>Bills_ad75372b-9ec7-443b-b434-e5634541a4c9</TableID>
-                            <ColumnID>fees_total</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>payed_disbursement</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Double</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>Bills_ad75372b-9ec7-443b-b434-e5634541a4c9</TableID>
-                            <ColumnID>payed_disbursement</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>unpaid_disbursement</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Double</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>Bills_ad75372b-9ec7-443b-b434-e5634541a4c9</TableID>
-                            <ColumnID>unpaid_disbursement</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>administration_charges</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Double</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>Bills_ad75372b-9ec7-443b-b434-e5634541a4c9</TableID>
-                            <ColumnID>administration_charges</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>vat_amount</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Double</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>Bills_ad75372b-9ec7-443b-b434-e5634541a4c9</TableID>
-                            <ColumnID>vat_amount</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>payed_amount</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Double</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>Bills_ad75372b-9ec7-443b-b434-e5634541a4c9</TableID>
-                            <ColumnID>payed_amount</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>payed_amount_in_currency</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Double</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>Bills_ad75372b-9ec7-443b-b434-e5634541a4c9</TableID>
-                            <ColumnID>payed_amount_in_currency</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>bill_total_in_currency</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Double</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>Bills_ad75372b-9ec7-443b-b434-e5634541a4c9</TableID>
-                            <ColumnID>bill_total_in_currency</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>PK</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Error</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>Bills_ad75372b-9ec7-443b-b434-e5634541a4c9</TableID>
-                            <ColumnID>PK</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                      <Type>Granularity</Type>
-                    </Attribute>
-                  </Attributes>
-                  <IntermediateCubeDimensionID>factKPI_fd2eb13f-dad0-4070-82d8-08fb90a7a815</IntermediateCubeDimensionID>
-                  <IntermediateGranularityAttributeID>PK</IntermediateGranularityAttributeID>
-                  <Materialization>Regular</Materialization>
-                  <ddl300:RelationshipID>06e85dcf-0de7-41c2-a374-44331cd6d756</ddl300:RelationshipID>
                 </Dimension>
                 <Dimension xsi:type="ReferenceMeasureGroupDimension">
                   <CubeDimensionID>dimFEDHierarchy_86f18818-36f0-4d66-9cf4-9df4bf512d69</CubeDimensionID>
@@ -4265,8 +4434,7 @@ sum(number_bills_matter) as 'NumberOfBillsRaised',
 sum(unbilled_time) as 'UnbilledTime',
 count(case when [open].fin_month = f.fin_month then 1 else null end) as 'NewMattersOpened',
 count(case when closed.fin_month = f.fin_month then 1 else null end) as 'MattersClosed',
-count(distinct case when f.date_closed_practice_management is null then f.dim_matter_header_key else null end) as 'CurrentMatters',
-count(case when bD.bill_flag = 'f' and f.date_closed_practice_management is null then b.dim_matter_header_key else null end) as 'FinalBill'
+count(distinct case when f.date_closed_practice_management is null then f.dim_matter_header_key else null end) as 'CurrentMatters'
 
 
 from
@@ -4284,11 +4452,6 @@ left join red_dw.dbo.dim_date closed
 left join red_dw.dbo.dim_client c
  on c.dim_client_key = f.dim_client_key
 
-left join red_dw.dbo.fact_bill_activity b
-on b.dim_matter_header_key = f.dim_matter_header_key
-
-left join red_dw.dbo.dim_bill bD
- on bD.dim_bill_key = b.dim_bill_key
 
 
 where
@@ -4862,6 +5025,693 @@ order by 1</QueryDefinition>
                   </Attributes>
                   <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
                 </Dimension>
+                <Dimension xsi:type="ReferenceMeasureGroupDimension">
+                  <CubeDimensionID>factKPI_fd2eb13f-dad0-4070-82d8-08fb90a7a815</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>RowNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>4</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ddl200_200:RowNumberBinding" />
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_matter_header_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factKPI_fd2eb13f-dad0-4070-82d8-08fb90a7a815</TableID>
+                            <ColumnID>dim_matter_header_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>FEDCodeID</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factKPI_fd2eb13f-dad0-4070-82d8-08fb90a7a815</TableID>
+                            <ColumnID>FEDCodeID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DisbursementBalance</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Double</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factKPI_fd2eb13f-dad0-4070-82d8-08fb90a7a815</TableID>
+                            <ColumnID>DisbursementBalance</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientAccountBalance</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Double</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factKPI_fd2eb13f-dad0-4070-82d8-08fb90a7a815</TableID>
+                            <ColumnID>ClientAccountBalance</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>UnpaidBillsBalance</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Double</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factKPI_fd2eb13f-dad0-4070-82d8-08fb90a7a815</TableID>
+                            <ColumnID>UnpaidBillsBalance</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>WIPBalance</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Double</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factKPI_fd2eb13f-dad0-4070-82d8-08fb90a7a815</TableID>
+                            <ColumnID>WIPBalance</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>CostsToDate</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Double</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factKPI_fd2eb13f-dad0-4070-82d8-08fb90a7a815</TableID>
+                            <ColumnID>CostsToDate</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>TotalTimeBilled</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Double</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factKPI_fd2eb13f-dad0-4070-82d8-08fb90a7a815</TableID>
+                            <ColumnID>TotalTimeBilled</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>NumberOfBillsRaised</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factKPI_fd2eb13f-dad0-4070-82d8-08fb90a7a815</TableID>
+                            <ColumnID>NumberOfBillsRaised</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>UnbilledTime</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factKPI_fd2eb13f-dad0-4070-82d8-08fb90a7a815</TableID>
+                            <ColumnID>UnbilledTime</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>NewMattersOpened</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factKPI_fd2eb13f-dad0-4070-82d8-08fb90a7a815</TableID>
+                            <ColumnID>NewMattersOpened</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MattersClosed</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factKPI_fd2eb13f-dad0-4070-82d8-08fb90a7a815</TableID>
+                            <ColumnID>MattersClosed</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>CurrentMatters</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factKPI_fd2eb13f-dad0-4070-82d8-08fb90a7a815</TableID>
+                            <ColumnID>CurrentMatters</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>PK</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factKPI_fd2eb13f-dad0-4070-82d8-08fb90a7a815</TableID>
+                            <ColumnID>PK</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>fin_month</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factKPI_fd2eb13f-dad0-4070-82d8-08fb90a7a815</TableID>
+                            <ColumnID>fin_month</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                  </Attributes>
+                  <IntermediateCubeDimensionID>Bills_ad75372b-9ec7-443b-b434-e5634541a4c9</IntermediateCubeDimensionID>
+                  <IntermediateGranularityAttributeID>PK</IntermediateGranularityAttributeID>
+                  <Materialization>Regular</Materialization>
+                  <ddl300:RelationshipID>1a69ae15-aff8-40ce-9f69-10cbded10c4b</ddl300:RelationshipID>
+                </Dimension>
+                <Dimension xsi:type="ReferenceMeasureGroupDimension">
+                  <CubeDimensionID>dimFEDHierarchy_86f18818-36f0-4d66-9cf4-9df4bf512d69</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>RowNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>4</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ddl200_200:RowNumberBinding" />
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>FEDCodeID</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimFEDHierarchy_86f18818-36f0-4d66-9cf4-9df4bf512d69</TableID>
+                            <ColumnID>FEDCodeID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>FEDCode</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimFEDHierarchy_86f18818-36f0-4d66-9cf4-9df4bf512d69</TableID>
+                            <ColumnID>FEDCode</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>FEDName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimFEDHierarchy_86f18818-36f0-4d66-9cf4-9df4bf512d69</TableID>
+                            <ColumnID>FEDName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>EmailAddress</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimFEDHierarchy_86f18818-36f0-4d66-9cf4-9df4bf512d69</TableID>
+                            <ColumnID>EmailAddress</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BusinessLine</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimFEDHierarchy_86f18818-36f0-4d66-9cf4-9df4bf512d69</TableID>
+                            <ColumnID>BusinessLine</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>PracticeArea</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimFEDHierarchy_86f18818-36f0-4d66-9cf4-9df4bf512d69</TableID>
+                            <ColumnID>PracticeArea</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>Team</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimFEDHierarchy_86f18818-36f0-4d66-9cf4-9df4bf512d69</TableID>
+                            <ColumnID>Team</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BCMName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimFEDHierarchy_86f18818-36f0-4d66-9cf4-9df4bf512d69</TableID>
+                            <ColumnID>BCMName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BCMEmail</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimFEDHierarchy_86f18818-36f0-4d66-9cf4-9df4bf512d69</TableID>
+                            <ColumnID>BCMEmail</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ActiveFEDCode</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimFEDHierarchy_86f18818-36f0-4d66-9cf4-9df4bf512d69</TableID>
+                            <ColumnID>ActiveFEDCode</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DisplayName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimFEDHierarchy_86f18818-36f0-4d66-9cf4-9df4bf512d69</TableID>
+                            <ColumnID>DisplayName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                  </Attributes>
+                  <IntermediateCubeDimensionID>factKPI_fd2eb13f-dad0-4070-82d8-08fb90a7a815</IntermediateCubeDimensionID>
+                  <IntermediateGranularityAttributeID>FEDCodeID</IntermediateGranularityAttributeID>
+                </Dimension>
+                <Dimension xsi:type="ReferenceMeasureGroupDimension">
+                  <CubeDimensionID>dimDate_a0cf4cd8-025b-48ca-bae4-56cb7c971d00</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>RowNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>4</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ddl200_200:RowNumberBinding" />
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BillDateDate</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDate_a0cf4cd8-025b-48ca-bae4-56cb7c971d00</TableID>
+                            <ColumnID>BillDateDate</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BillDateCalendarMonthNo</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDate_a0cf4cd8-025b-48ca-bae4-56cb7c971d00</TableID>
+                            <ColumnID>BillDateCalendarMonthNo</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BillDateCalendarMonthName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDate_a0cf4cd8-025b-48ca-bae4-56cb7c971d00</TableID>
+                            <ColumnID>BillDateCalendarMonthName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BillDateCalendarQuarterNo</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDate_a0cf4cd8-025b-48ca-bae4-56cb7c971d00</TableID>
+                            <ColumnID>BillDateCalendarQuarterNo</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BillDateCalendarYear</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDate_a0cf4cd8-025b-48ca-bae4-56cb7c971d00</TableID>
+                            <ColumnID>BillDateCalendarYear</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BillDateFinancialDate</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDate_a0cf4cd8-025b-48ca-bae4-56cb7c971d00</TableID>
+                            <ColumnID>BillDateFinancialDate</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>fin_month</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDate_a0cf4cd8-025b-48ca-bae4-56cb7c971d00</TableID>
+                            <ColumnID>fin_month</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BillDateFinancialMonthNo</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDate_a0cf4cd8-025b-48ca-bae4-56cb7c971d00</TableID>
+                            <ColumnID>BillDateFinancialMonthNo</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BillDateFinancialMonthName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDate_a0cf4cd8-025b-48ca-bae4-56cb7c971d00</TableID>
+                            <ColumnID>BillDateFinancialMonthName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BillDateFinancialQuarterNo</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDate_a0cf4cd8-025b-48ca-bae4-56cb7c971d00</TableID>
+                            <ColumnID>BillDateFinancialQuarterNo</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BilldateFinancialYear</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDate_a0cf4cd8-025b-48ca-bae4-56cb7c971d00</TableID>
+                            <ColumnID>BilldateFinancialYear</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BillDateCalPeriod</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDate_a0cf4cd8-025b-48ca-bae4-56cb7c971d00</TableID>
+                            <ColumnID>BillDateCalPeriod</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BillDateFinancialPeriod</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDate_a0cf4cd8-025b-48ca-bae4-56cb7c971d00</TableID>
+                            <ColumnID>BillDateFinancialPeriod</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BillDateStartOfFinancialYear</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDate_a0cf4cd8-025b-48ca-bae4-56cb7c971d00</TableID>
+                            <ColumnID>BillDateStartOfFinancialYear</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BillDateEndOfFinancialYear</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDate_a0cf4cd8-025b-48ca-bae4-56cb7c971d00</TableID>
+                            <ColumnID>BillDateEndOfFinancialYear</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BillDateStartOfMonth</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDate_a0cf4cd8-025b-48ca-bae4-56cb7c971d00</TableID>
+                            <ColumnID>BillDateStartOfMonth</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BillDateEndOfMonth</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDate_a0cf4cd8-025b-48ca-bae4-56cb7c971d00</TableID>
+                            <ColumnID>BillDateEndOfMonth</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                  </Attributes>
+                  <IntermediateCubeDimensionID>factKPI_fd2eb13f-dad0-4070-82d8-08fb90a7a815</IntermediateCubeDimensionID>
+                  <IntermediateGranularityAttributeID>fin_month</IntermediateGranularityAttributeID>
+                </Dimension>
               </Dimensions>
               <Partitions>
                 <Partition>
@@ -5308,6 +6158,236 @@ fin_month</QueryDefinition>
                 <Source xsi:type="ProactiveCachingInheritedBinding" />
               </ProactiveCaching>
             </MeasureGroup>
+            <MeasureGroup>
+              <ID>Time_a4ad8ecb-e030-4764-8469-f26a3c1f59f0</ID>
+              <Name>Time</Name>
+              <Measures>
+                <Measure>
+                  <ID>Time_a4ad8ecb-e030-4764-8469-f26a3c1f59f0</ID>
+                  <Name>_Count Time</Name>
+                  <AggregateFunction>Count</AggregateFunction>
+                  <DataType>BigInt</DataType>
+                  <Source>
+                    <DataType>BigInt</DataType>
+                    <DataSize>8</DataSize>
+                    <Source xsi:type="RowBinding">
+                      <TableID>Time_a4ad8ecb-e030-4764-8469-f26a3c1f59f0</TableID>
+                    </Source>
+                  </Source>
+                  <Visible>false</Visible>
+                </Measure>
+              </Measures>
+              <StorageMode valuens="ddl200_200">InMemory</StorageMode>
+              <ErrorConfiguration>
+                <KeyNotFound>IgnoreError</KeyNotFound>
+                <KeyDuplicate>ReportAndStop</KeyDuplicate>
+                <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+              </ErrorConfiguration>
+              <ProcessingMode>Regular</ProcessingMode>
+              <Dimensions>
+                <Dimension xsi:type="DegenerateMeasureGroupDimension">
+                  <CubeDimensionID>Time_a4ad8ecb-e030-4764-8469-f26a3c1f59f0</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>RowNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>Time</TableID>
+                            <ColumnID>RowNumber</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>PK</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>Time_a4ad8ecb-e030-4764-8469-f26a3c1f59f0</TableID>
+                            <ColumnID>PK</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_matter_header_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>Time_a4ad8ecb-e030-4764-8469-f26a3c1f59f0</TableID>
+                            <ColumnID>dim_matter_header_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>minutes_recorded</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Double</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>Time_a4ad8ecb-e030-4764-8469-f26a3c1f59f0</TableID>
+                            <ColumnID>minutes_recorded</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>hourly_charge_rate</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Double</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>Time_a4ad8ecb-e030-4764-8469-f26a3c1f59f0</TableID>
+                            <ColumnID>hourly_charge_rate</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>time_cost_value</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Double</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>Time_a4ad8ecb-e030-4764-8469-f26a3c1f59f0</TableID>
+                            <ColumnID>time_cost_value</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>time_charge_value</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Double</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>Time_a4ad8ecb-e030-4764-8469-f26a3c1f59f0</TableID>
+                            <ColumnID>time_charge_value</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>overridden_time_charge_value</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Double</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>Time_a4ad8ecb-e030-4764-8469-f26a3c1f59f0</TableID>
+                            <ColumnID>overridden_time_charge_value</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>actual_time_recorded_value</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Double</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>Time_a4ad8ecb-e030-4764-8469-f26a3c1f59f0</TableID>
+                            <ColumnID>actual_time_recorded_value</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                  </Attributes>
+                  <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
+                </Dimension>
+              </Dimensions>
+              <Partitions>
+                <Partition>
+                  <ID>Time_a4ad8ecb-e030-4764-8469-f26a3c1f59f0</ID>
+                  <Name>Time</Name>
+                  <Annotations>
+                    <Annotation>
+                      <Name>IsQueryEditorUsed</Name>
+                      <Value>True</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>QueryEditorSerialization</Name>
+                    </Annotation>
+                    <Annotation>
+                      <Name>TableWidgetSerialization</Name>
+                    </Annotation>
+                  </Annotations>
+                  <Source xsi:type="QueryBinding">
+                    <DataSourceID>837ec213-a5e3-43b3-b32e-a5227e5f43b6</DataSourceID>
+                    <QueryDefinition>select
+cast(m.fin_month as varchar(10)) + cast(m.dim_matter_header_key as varchar(10)) as 'PK',
+a.dim_matter_header_key,
+--dim_transaction_date_key,
+sum(minutes_recorded) as 'minutes_recorded',
+sum(hourly_charge_rate) as 'hourly_charge_rate',
+sum(time_cost_value) as 'time_cost_value',
+sum(time_charge_value) as 'time_charge_value',
+sum(overridden_time_charge_value) as 'overridden_time_charge_value',
+sum(actual_time_recorded_value) as 'actual_time_recorded_value'
+
+from
+red_dw.dbo.fact_all_time_activity a
+
+left join red_dw.dbo.fact_matter_summary m
+	on m.dim_matter_header_key = a.dim_matter_header_key
+
+group by
+cast(m.fin_month as varchar(10)) + cast(m.dim_matter_header_key as varchar(10)),
+a.dim_matter_header_key</QueryDefinition>
+                  </Source>
+                  <StorageMode valuens="ddl200_200">InMemory</StorageMode>
+                  <ProcessingMode>Regular</ProcessingMode>
+                  <ErrorConfiguration>
+                    <KeyNotFound>IgnoreError</KeyNotFound>
+                    <KeyDuplicate>ReportAndStop</KeyDuplicate>
+                    <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+                  </ErrorConfiguration>
+                  <ProactiveCaching>
+                    <SilenceInterval>-PT1S</SilenceInterval>
+                    <Latency>-PT1S</Latency>
+                    <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+                    <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+                    <Source xsi:type="ProactiveCachingInheritedBinding" />
+                  </ProactiveCaching>
+                </Partition>
+              </Partitions>
+              <ProactiveCaching>
+                <SilenceInterval>-PT1S</SilenceInterval>
+                <Latency>-PT1S</Latency>
+                <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+                <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+                <Source xsi:type="ProactiveCachingInheritedBinding" />
+              </ProactiveCaching>
+            </MeasureGroup>
           </MeasureGroups>
           <Source>
             <DataSourceViewID>Sandbox</DataSourceViewID>
@@ -5339,8 +6419,7 @@ CREATE MEASURE 'Matters'[Sum of UnbilledTime]=SUM([UnbilledTime]);
 CREATE MEASURE 'Matters'[Sum of NewMattersOpened]=SUM([NewMattersOpened]);
 CREATE MEASURE 'Matters'[Sum of MattersClosed]=SUM([MattersClosed]);
 CREATE MEASURE 'Matters'[Sum of CurrentMatters]=SUM([CurrentMatters]);
-CREATE MEASURE 'Matters'[Sum of FinalBill]=SUM([FinalBill]);
-CREATE MEASURE 'Bills'[Sum of billed_time]=SUM([billed_time]);
+CREATE MEASURE 'Bills'[Sum of billed_time]=calculate(SUM([billed_time]), dimDate);
 CREATE MEASURE 'Bills'[Sum of bill_amount]=SUM([bill_amount]);
 CREATE MEASURE 'Bills'[Sum of bill_total]=SUM([bill_total]);
 CREATE MEASURE 'Bills'[Sum of fees_total]=SUM([fees_total]);
@@ -5351,6 +6430,12 @@ CREATE MEASURE 'Bills'[Sum of vat_amount]=SUM([vat_amount]);
 CREATE MEASURE 'Bills'[Sum of payed_amount]=SUM([payed_amount]);
 CREATE MEASURE 'Bills'[Sum of payed_amount_in_currency]=SUM([payed_amount_in_currency]);
 CREATE MEASURE 'Bills'[Sum of bill_total_in_currency]=SUM([bill_total_in_currency]);
+CREATE MEASURE 'Time'[Sum of minutes_recorded]=SUM([minutes_recorded]);
+CREATE MEASURE 'Time'[Sum of hourly_charge_rate]=SUM([hourly_charge_rate]);
+CREATE MEASURE 'Time'[Sum of time_cost_value]=SUM([time_cost_value]);
+CREATE MEASURE 'Time'[Sum of time_charge_value]=SUM([time_charge_value]);
+CREATE MEASURE 'Time'[Sum of overridden_time_charge_value]=SUM([overridden_time_charge_value]);
+CREATE MEASURE 'Time'[Sum of actual_time_recorded_value]=SUM([actual_time_recorded_value]);
 </Text>
                 </Command>
               </Commands>
@@ -5603,27 +6688,6 @@ CREATE MEASURE 'Bills'[Sum of bill_total_in_currency]=SUM([bill_total_in_currenc
                       </Value>
                     </Annotation>
                   </Annotations>
-                  <CalculationReference>[Sum of FinalBill]</CalculationReference>
-                  <CalculationType>Member</CalculationType>
-                  <FormatString>''</FormatString>
-                </CalculationProperty>
-                <CalculationProperty>
-                  <Annotations>
-                    <Annotation>
-                      <Name>Type</Name>
-                      <Value>User</Value>
-                    </Annotation>
-                    <Annotation>
-                      <Name>IsPrivate</Name>
-                      <Value>False</Value>
-                    </Annotation>
-                    <Annotation>
-                      <Name>Format</Name>
-                      <Value>
-                        <Format Format="General" xmlns="" />
-                      </Value>
-                    </Annotation>
-                  </Annotations>
                   <CalculationReference>[Sum of billed_time]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
@@ -5839,6 +6903,132 @@ CREATE MEASURE 'Bills'[Sum of bill_total_in_currency]=SUM([bill_total_in_currenc
                   <FormatString>''</FormatString>
                 </CalculationProperty>
                 <CalculationProperty>
+                  <Annotations>
+                    <Annotation>
+                      <Name>Type</Name>
+                      <Value>User</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsPrivate</Name>
+                      <Value>False</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Format</Name>
+                      <Value>
+                        <Format Format="General" xmlns="" />
+                      </Value>
+                    </Annotation>
+                  </Annotations>
+                  <CalculationReference>[Sum of minutes_recorded]</CalculationReference>
+                  <CalculationType>Member</CalculationType>
+                  <FormatString>''</FormatString>
+                </CalculationProperty>
+                <CalculationProperty>
+                  <Annotations>
+                    <Annotation>
+                      <Name>Type</Name>
+                      <Value>User</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsPrivate</Name>
+                      <Value>False</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Format</Name>
+                      <Value>
+                        <Format Format="General" xmlns="" />
+                      </Value>
+                    </Annotation>
+                  </Annotations>
+                  <CalculationReference>[Sum of hourly_charge_rate]</CalculationReference>
+                  <CalculationType>Member</CalculationType>
+                  <FormatString>''</FormatString>
+                </CalculationProperty>
+                <CalculationProperty>
+                  <Annotations>
+                    <Annotation>
+                      <Name>Type</Name>
+                      <Value>User</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsPrivate</Name>
+                      <Value>False</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Format</Name>
+                      <Value>
+                        <Format Format="General" xmlns="" />
+                      </Value>
+                    </Annotation>
+                  </Annotations>
+                  <CalculationReference>[Sum of time_cost_value]</CalculationReference>
+                  <CalculationType>Member</CalculationType>
+                  <FormatString>''</FormatString>
+                </CalculationProperty>
+                <CalculationProperty>
+                  <Annotations>
+                    <Annotation>
+                      <Name>Type</Name>
+                      <Value>User</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsPrivate</Name>
+                      <Value>False</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Format</Name>
+                      <Value>
+                        <Format Format="General" xmlns="" />
+                      </Value>
+                    </Annotation>
+                  </Annotations>
+                  <CalculationReference>[Sum of time_charge_value]</CalculationReference>
+                  <CalculationType>Member</CalculationType>
+                  <FormatString>''</FormatString>
+                </CalculationProperty>
+                <CalculationProperty>
+                  <Annotations>
+                    <Annotation>
+                      <Name>Type</Name>
+                      <Value>User</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsPrivate</Name>
+                      <Value>False</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Format</Name>
+                      <Value>
+                        <Format Format="General" xmlns="" />
+                      </Value>
+                    </Annotation>
+                  </Annotations>
+                  <CalculationReference>[Sum of overridden_time_charge_value]</CalculationReference>
+                  <CalculationType>Member</CalculationType>
+                  <FormatString>''</FormatString>
+                </CalculationProperty>
+                <CalculationProperty>
+                  <Annotations>
+                    <Annotation>
+                      <Name>Type</Name>
+                      <Value>User</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsPrivate</Name>
+                      <Value>False</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Format</Name>
+                      <Value>
+                        <Format Format="General" xmlns="" />
+                      </Value>
+                    </Annotation>
+                  </Annotations>
+                  <CalculationReference>[Sum of actual_time_recorded_value]</CalculationReference>
+                  <CalculationType>Member</CalculationType>
+                  <FormatString>''</FormatString>
+                </CalculationProperty>
+                <CalculationProperty>
                   <CalculationReference>Measures.[__No measures defined]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <Visible>false</Visible>
@@ -5884,7 +7074,7 @@ CREATE MEASURE 'Bills'[Sum of bill_total_in_currency]=SUM([bill_total_in_currenc
               <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:Locale="en-GB">
                 <xs:complexType>
                   <xs:choice minOccurs="0" maxOccurs="unbounded">
-                    <xs:element name="factKPI_fd2eb13f-dad0-4070-82d8-08fb90a7a815" msdata:Locale="" msprop:DataSourceID="837ec213-a5e3-43b3-b32e-a5227e5f43b6" msprop:IsLogical="True" msprop:FriendlyName="Matters" msprop:DbTableName="factKPI" msprop:TableType="View" msprop:Description="factKPI" msprop:QueryDefinition="select distinct &#xD;&#xA;cast(f.fin_month as varchar(10)) + cast(f.dim_matter_header_key as varchar(10)) as 'PK',&#xD;&#xA;f.fin_month,&#xD;&#xA;f.dim_matter_header_key,&#xD;&#xA;f.dim_fed_hierarchy_history_key as 'FEDCodeID',&#xD;&#xA;sum(disbursement_balance) as 'DisbursementBalance',&#xD;&#xA;sum(client_account_balance_of_matter) as 'ClientAccountBalance',&#xD;&#xA;sum(unpaid_bill_balance) as 'UnpaidBillsBalance',&#xD;&#xA;sum(wip_balance) as 'WIPBalance',&#xD;&#xA;sum(costs_to_date) as 'CostsToDate',&#xD;&#xA;sum(time_billed) as 'TotalTimeBilled',&#xD;&#xA;sum(number_bills_matter) as 'NumberOfBillsRaised',&#xD;&#xA;sum(unbilled_time) as 'UnbilledTime',&#xD;&#xA;count(case when [open].fin_month = f.fin_month then 1 else null end) as 'NewMattersOpened',&#xD;&#xA;count(case when closed.fin_month = f.fin_month then 1 else null end) as 'MattersClosed',&#xD;&#xA;count(distinct case when f.date_closed_practice_management is null then f.dim_matter_header_key else null end) as 'CurrentMatters',&#xD;&#xA;count(case when bD.bill_flag = 'f' and f.date_closed_practice_management is null then b.dim_matter_header_key else null end) as 'FinalBill'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_matter_summary f&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_matter_header d&#xD;&#xA; on d.dim_matter_header_key = f.dim_matter_header_key&#xD;&#xA; &#xD;&#xA;left join red_dw.dbo.dim_date [open]&#xD;&#xA; on [open].calendar_date = f.date_opened_practice_management &#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_date closed&#xD;&#xA; on closed.calendar_date = f.date_closed_practice_management &#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_client c&#xD;&#xA; on c.dim_client_key = f.dim_client_key&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.fact_bill_activity b&#xD;&#xA;on b.dim_matter_header_key = f.dim_matter_header_key&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_bill bD&#xD;&#xA; on bD.dim_bill_key = b.dim_bill_key&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;f.dim_matter_header_key &gt; 0&#xD;&#xA;and f.matter_number != 'ML'&#xD;&#xA;and c.client_code not in ('00030645', '00121614')&#xD;&#xA;&#xD;&#xA;group by&#xD;&#xA;f.fin_month,&#xD;&#xA;f.dim_matter_header_key,&#xD;&#xA;f.dim_fed_hierarchy_history_key">
+                    <xs:element name="factKPI_fd2eb13f-dad0-4070-82d8-08fb90a7a815" msdata:Locale="" msprop:DataSourceID="837ec213-a5e3-43b3-b32e-a5227e5f43b6" msprop:IsLogical="True" msprop:FriendlyName="Matters" msprop:DbTableName="factKPI" msprop:TableType="View" msprop:Description="factKPI" msprop:QueryDefinition="select distinct &#xD;&#xA;cast(f.fin_month as varchar(10)) + cast(f.dim_matter_header_key as varchar(10)) as 'PK',&#xD;&#xA;f.fin_month,&#xD;&#xA;f.dim_matter_header_key,&#xD;&#xA;f.dim_fed_hierarchy_history_key as 'FEDCodeID',&#xD;&#xA;sum(disbursement_balance) as 'DisbursementBalance',&#xD;&#xA;sum(client_account_balance_of_matter) as 'ClientAccountBalance',&#xD;&#xA;sum(unpaid_bill_balance) as 'UnpaidBillsBalance',&#xD;&#xA;sum(wip_balance) as 'WIPBalance',&#xD;&#xA;sum(costs_to_date) as 'CostsToDate',&#xD;&#xA;sum(time_billed) as 'TotalTimeBilled',&#xD;&#xA;sum(number_bills_matter) as 'NumberOfBillsRaised',&#xD;&#xA;sum(unbilled_time) as 'UnbilledTime',&#xD;&#xA;count(case when [open].fin_month = f.fin_month then 1 else null end) as 'NewMattersOpened',&#xD;&#xA;count(case when closed.fin_month = f.fin_month then 1 else null end) as 'MattersClosed',&#xD;&#xA;count(distinct case when f.date_closed_practice_management is null then f.dim_matter_header_key else null end) as 'CurrentMatters'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_matter_summary f&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_matter_header d&#xD;&#xA; on d.dim_matter_header_key = f.dim_matter_header_key&#xD;&#xA; &#xD;&#xA;left join red_dw.dbo.dim_date [open]&#xD;&#xA; on [open].calendar_date = f.date_opened_practice_management &#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_date closed&#xD;&#xA; on closed.calendar_date = f.date_closed_practice_management &#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_client c&#xD;&#xA; on c.dim_client_key = f.dim_client_key&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;f.dim_matter_header_key &gt; 0&#xD;&#xA;and f.matter_number != 'ML'&#xD;&#xA;and c.client_code not in ('00030645', '00121614')&#xD;&#xA;&#xD;&#xA;group by&#xD;&#xA;f.fin_month,&#xD;&#xA;f.dim_matter_header_key,&#xD;&#xA;f.dim_fed_hierarchy_history_key">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="dim_matter_header_key" msprop:DbColumnName="dim_matter_header_key" msprop:FriendlyName="dim_matter_header_key" type="xs:int" minOccurs="0" />
@@ -5900,7 +7090,6 @@ CREATE MEASURE 'Bills'[Sum of bill_total_in_currency]=SUM([bill_total_in_currenc
                           <xs:element name="NewMattersOpened" msprop:DbColumnName="NewMattersOpened" msprop:FriendlyName="NewMattersOpened" type="xs:int" minOccurs="0" />
                           <xs:element name="MattersClosed" msprop:DbColumnName="MattersClosed" msprop:FriendlyName="MattersClosed" type="xs:int" minOccurs="0" />
                           <xs:element name="CurrentMatters" msprop:DbColumnName="CurrentMatters" msprop:FriendlyName="CurrentMatters" type="xs:int" minOccurs="0" />
-                          <xs:element name="FinalBill" msprop:DbColumnName="FinalBill" msprop:FriendlyName="FinalBill" type="xs:int" minOccurs="0" />
                           <xs:element name="PK" msprop:DbColumnName="PK" msprop:FriendlyName="PK" minOccurs="0">
                             <xs:simpleType>
                               <xs:restriction base="xs:string">
@@ -6053,6 +7242,26 @@ CREATE MEASURE 'Bills'[Sum of bill_total_in_currency]=SUM([bill_total_in_currenc
                           <xs:element name="BillDateEndOfFinancialYear" msprop:DbColumnName="BillDateEndOfFinancialYear" msprop:FriendlyName="BillDateEndOfFinancialYear" type="xs:dateTime" minOccurs="0" />
                           <xs:element name="BillDateStartOfMonth" msprop:DbColumnName="BillDateStartOfMonth" msprop:FriendlyName="BillDateStartOfMonth" type="xs:dateTime" minOccurs="0" />
                           <xs:element name="BillDateEndOfMonth" msprop:DbColumnName="BillDateEndOfMonth" msprop:FriendlyName="BillDateEndOfMonth" type="xs:dateTime" minOccurs="0" />
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Time_a4ad8ecb-e030-4764-8469-f26a3c1f59f0" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="Time" msprop:DbTableName="Time" msprop:TableType="View" msprop:Description="Time" msprop:QueryDefinition="select&#xD;&#xA;cast(m.fin_month as varchar(10)) + cast(m.dim_matter_header_key as varchar(10)) as 'PK',&#xD;&#xA;a.dim_matter_header_key,&#xD;&#xA;--dim_transaction_date_key,&#xD;&#xA;sum(minutes_recorded) as 'minutes_recorded',&#xD;&#xA;sum(hourly_charge_rate) as 'hourly_charge_rate',&#xD;&#xA;sum(time_cost_value) as 'time_cost_value',&#xD;&#xA;sum(time_charge_value) as 'time_charge_value',&#xD;&#xA;sum(overridden_time_charge_value) as 'overridden_time_charge_value',&#xD;&#xA;sum(actual_time_recorded_value) as 'actual_time_recorded_value'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_all_time_activity a&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.fact_matter_summary m&#xD;&#xA; on m.dim_matter_header_key = a.dim_matter_header_key&#xD;&#xA;&#xD;&#xA;group by&#xD;&#xA;cast(m.fin_month as varchar(10)) + cast(m.dim_matter_header_key as varchar(10)),&#xD;&#xA;a.dim_matter_header_key">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="PK" msprop:DbColumnName="PK" msprop:FriendlyName="PK" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="dim_matter_header_key" msprop:DbColumnName="dim_matter_header_key" msprop:FriendlyName="dim_matter_header_key" type="xs:int" minOccurs="0" />
+                          <xs:element name="minutes_recorded" msprop:DbColumnName="minutes_recorded" msprop:FriendlyName="minutes_recorded" type="xs:decimal" minOccurs="0" />
+                          <xs:element name="hourly_charge_rate" msprop:DbColumnName="hourly_charge_rate" msprop:FriendlyName="hourly_charge_rate" type="xs:decimal" minOccurs="0" />
+                          <xs:element name="time_cost_value" msprop:DbColumnName="time_cost_value" msprop:FriendlyName="time_cost_value" type="xs:decimal" minOccurs="0" />
+                          <xs:element name="time_charge_value" msprop:DbColumnName="time_charge_value" msprop:FriendlyName="time_charge_value" type="xs:decimal" minOccurs="0" />
+                          <xs:element name="overridden_time_charge_value" msprop:DbColumnName="overridden_time_charge_value" msprop:FriendlyName="overridden_time_charge_value" type="xs:decimal" minOccurs="0" />
+                          <xs:element name="actual_time_recorded_value" msprop:DbColumnName="actual_time_recorded_value" msprop:FriendlyName="actual_time_recorded_value" type="xs:decimal" minOccurs="0" />
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
