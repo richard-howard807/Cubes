@@ -2092,6 +2092,29 @@ LEFT JOIN dim_fed_hierarchy_history AS fed
                 </Attributes>
               </ddl300_300:ToRelationshipEnd>
             </ddl300_300:Relationship>
+            <ddl300_300:Relationship>
+              <ID>46c17044-a663-49cc-ad54-99adbbec04a2</ID>
+              <ddl300_300:FromRelationshipEnd>
+                <ddl300_300:Multiplicity>Many</ddl300_300:Multiplicity>
+                <ddl300:VisualizationProperties />
+                <DimensionID>Bills_ad75372b-9ec7-443b-b434-e5634541a4c9</DimensionID>
+                <Attributes>
+                  <Attribute>
+                    <AttributeID>BillDaysBandingKey</AttributeID>
+                  </Attribute>
+                </Attributes>
+              </ddl300_300:FromRelationshipEnd>
+              <ddl300_300:ToRelationshipEnd>
+                <ddl300_300:Multiplicity>One</ddl300_300:Multiplicity>
+                <ddl300:VisualizationProperties />
+                <DimensionID>dimDaysBanding_e8043b85-cca3-4345-9cf8-8742125da12e</DimensionID>
+                <Attributes>
+                  <Attribute>
+                    <AttributeID>Number</AttributeID>
+                  </Attribute>
+                </Attributes>
+              </ddl300_300:ToRelationshipEnd>
+            </ddl300_300:Relationship>
           </ddl300_300:Relationships>
         </Dimension>
         <Dimension>
@@ -2848,6 +2871,194 @@ LEFT JOIN dim_fed_hierarchy_history AS fed
             <Source xsi:type="ProactiveCachingInheritedBinding" />
           </ProactiveCaching>
         </Dimension>
+        <Dimension>
+          <ID>dimDaysBanding_e8043b85-cca3-4345-9cf8-8742125da12e</ID>
+          <Name>dimDaysBanding</Name>
+          <Annotations>
+            <Annotation>
+              <Name>IsQueryEditorUsed</Name>
+              <Value>True</Value>
+            </Annotation>
+            <Annotation>
+              <Name>QueryEditorSerialization</Name>
+            </Annotation>
+            <Annotation>
+              <Name>TableWidgetSerialization</Name>
+            </Annotation>
+            <Annotation>
+              <Name>DataMarketWebBaseUrl</Name>
+            </Annotation>
+            <Annotation>
+              <Name>DataMarketWebQueryUrl</Name>
+            </Annotation>
+          </Annotations>
+          <Source xsi:type="DataSourceViewBinding">
+            <DataSourceViewID>Sandbox</DataSourceViewID>
+          </Source>
+          <UnknownMember valuens="ddl200_200">AutomaticNull</UnknownMember>
+          <ErrorConfiguration>
+            <KeyNotFound>IgnoreError</KeyNotFound>
+            <KeyDuplicate>ReportAndStop</KeyDuplicate>
+            <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+          </ErrorConfiguration>
+          <StorageMode valuens="ddl200_200">InMemory</StorageMode>
+          <Language>2057</Language>
+          <UnknownMemberName>Unknown</UnknownMemberName>
+          <Attributes>
+            <Attribute>
+              <ID>RowNumber</ID>
+              <Name>RowNumber</Name>
+              <Type valuens="ddl200_200">RowNumber</Type>
+              <Usage>Key</Usage>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>4</DataSize>
+                  <NullProcessing>Error</NullProcessing>
+                  <Source xsi:type="ddl200_200:RowNumberBinding" />
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>4</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ddl200_200:RowNumberBinding" />
+              </NameColumn>
+              <AttributeRelationships>
+                <AttributeRelationship>
+                  <AttributeID>Number</AttributeID>
+                  <Cardinality>One</Cardinality>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>Number</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>DebtAgeBanding</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>DebtAgeBanding</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>ClientAgedDebtBanding</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>ClientAgedDebtBanding</Name>
+                </AttributeRelationship>
+              </AttributeRelationships>
+              <OrderBy>Key</OrderBy>
+              <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>Number</ID>
+              <Name>Number</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>BigInt</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Error</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimDaysBanding_e8043b85-cca3-4345-9cf8-8742125da12e</TableID>
+                    <ColumnID>Number</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimDaysBanding_e8043b85-cca3-4345-9cf8-8742125da12e</TableID>
+                  <ColumnID>Number</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="Text" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>DebtAgeBanding</ID>
+              <Name>DebtAgeBanding</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimDaysBanding_e8043b85-cca3-4345-9cf8-8742125da12e</TableID>
+                    <ColumnID>DebtAgeBanding</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimDaysBanding_e8043b85-cca3-4345-9cf8-8742125da12e</TableID>
+                  <ColumnID>DebtAgeBanding</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="Text" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>ClientAgedDebtBanding</ID>
+              <Name>ClientAgedDebtBanding</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimDaysBanding_e8043b85-cca3-4345-9cf8-8742125da12e</TableID>
+                    <ColumnID>ClientAgedDebtBanding</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimDaysBanding_e8043b85-cca3-4345-9cf8-8742125da12e</TableID>
+                  <ColumnID>ClientAgedDebtBanding</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+          </Attributes>
+          <ProactiveCaching>
+            <SilenceInterval>-PT1S</SilenceInterval>
+            <Latency>-PT1S</Latency>
+            <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+            <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+            <Source xsi:type="ProactiveCachingInheritedBinding" />
+          </ProactiveCaching>
+        </Dimension>
       </Dimensions>
       <Cubes>
         <Cube>
@@ -3075,6 +3286,26 @@ LEFT JOIN dim_fed_hierarchy_history AS fed
                 </Attribute>
                 <Attribute>
                   <AttributeID>BillDateEndOfMonth</AttributeID>
+                </Attribute>
+              </Attributes>
+            </Dimension>
+            <Dimension>
+              <ID>dimDaysBanding_e8043b85-cca3-4345-9cf8-8742125da12e</ID>
+              <Name>dimDaysBanding</Name>
+              <DimensionID>dimDaysBanding_e8043b85-cca3-4345-9cf8-8742125da12e</DimensionID>
+              <Attributes>
+                <Attribute>
+                  <AttributeID>RowNumber</AttributeID>
+                  <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Number</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>DebtAgeBanding</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>ClientAgedDebtBanding</AttributeID>
                 </Attribute>
               </Attributes>
             </Dimension>
@@ -5198,6 +5429,72 @@ order by 1</QueryDefinition>
                   <IntermediateCubeDimensionID>factKPI_fd2eb13f-dad0-4070-82d8-08fb90a7a815</IntermediateCubeDimensionID>
                   <IntermediateGranularityAttributeID>fin_month</IntermediateGranularityAttributeID>
                 </Dimension>
+                <Dimension xsi:type="ReferenceMeasureGroupDimension">
+                  <CubeDimensionID>dimDaysBanding_e8043b85-cca3-4345-9cf8-8742125da12e</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>RowNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>4</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ddl200_200:RowNumberBinding" />
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>Number</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDaysBanding_e8043b85-cca3-4345-9cf8-8742125da12e</TableID>
+                            <ColumnID>Number</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DebtAgeBanding</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDaysBanding_e8043b85-cca3-4345-9cf8-8742125da12e</TableID>
+                            <ColumnID>DebtAgeBanding</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientAgedDebtBanding</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDaysBanding_e8043b85-cca3-4345-9cf8-8742125da12e</TableID>
+                            <ColumnID>ClientAgedDebtBanding</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                  </Attributes>
+                  <IntermediateCubeDimensionID>Bills_ad75372b-9ec7-443b-b434-e5634541a4c9</IntermediateCubeDimensionID>
+                  <IntermediateGranularityAttributeID>BillDaysBandingKey</IntermediateGranularityAttributeID>
+                  <Materialization>Regular</Materialization>
+                  <ddl300:RelationshipID>46c17044-a663-49cc-ad54-99adbbec04a2</ddl300:RelationshipID>
+                </Dimension>
               </Dimensions>
               <Partitions>
                 <Partition>
@@ -5629,6 +5926,176 @@ cal_day_in_month = 1
 
 order by 
 fin_month</QueryDefinition>
+                  </Source>
+                  <StorageMode valuens="ddl200_200">InMemory</StorageMode>
+                  <ProcessingMode>Regular</ProcessingMode>
+                  <ErrorConfiguration>
+                    <KeyNotFound>IgnoreError</KeyNotFound>
+                    <KeyDuplicate>ReportAndStop</KeyDuplicate>
+                    <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+                  </ErrorConfiguration>
+                  <ProactiveCaching>
+                    <SilenceInterval>-PT1S</SilenceInterval>
+                    <Latency>-PT1S</Latency>
+                    <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+                    <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+                    <Source xsi:type="ProactiveCachingInheritedBinding" />
+                  </ProactiveCaching>
+                </Partition>
+              </Partitions>
+              <ProactiveCaching>
+                <SilenceInterval>-PT1S</SilenceInterval>
+                <Latency>-PT1S</Latency>
+                <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+                <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+                <Source xsi:type="ProactiveCachingInheritedBinding" />
+              </ProactiveCaching>
+            </MeasureGroup>
+            <MeasureGroup>
+              <ID>dimDaysBanding_e8043b85-cca3-4345-9cf8-8742125da12e</ID>
+              <Name>dimDaysBanding</Name>
+              <Measures>
+                <Measure>
+                  <ID>dimDaysBanding_e8043b85-cca3-4345-9cf8-8742125da12e</ID>
+                  <Name>_Count dimDaysBanding</Name>
+                  <AggregateFunction>Count</AggregateFunction>
+                  <DataType>BigInt</DataType>
+                  <Source>
+                    <DataType>BigInt</DataType>
+                    <DataSize>8</DataSize>
+                    <Source xsi:type="RowBinding">
+                      <TableID>dimDaysBanding_e8043b85-cca3-4345-9cf8-8742125da12e</TableID>
+                    </Source>
+                  </Source>
+                  <Visible>false</Visible>
+                </Measure>
+              </Measures>
+              <StorageMode valuens="ddl200_200">InMemory</StorageMode>
+              <ErrorConfiguration>
+                <KeyNotFound>IgnoreError</KeyNotFound>
+                <KeyDuplicate>ReportAndStop</KeyDuplicate>
+                <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+              </ErrorConfiguration>
+              <ProcessingMode>Regular</ProcessingMode>
+              <Dimensions>
+                <Dimension xsi:type="DegenerateMeasureGroupDimension">
+                  <CubeDimensionID>dimDaysBanding_e8043b85-cca3-4345-9cf8-8742125da12e</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>RowNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDaysBanding</TableID>
+                            <ColumnID>RowNumber</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>Number</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDaysBanding_e8043b85-cca3-4345-9cf8-8742125da12e</TableID>
+                            <ColumnID>Number</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DebtAgeBanding</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDaysBanding_e8043b85-cca3-4345-9cf8-8742125da12e</TableID>
+                            <ColumnID>DebtAgeBanding</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientAgedDebtBanding</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDaysBanding_e8043b85-cca3-4345-9cf8-8742125da12e</TableID>
+                            <ColumnID>ClientAgedDebtBanding</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                  </Attributes>
+                  <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
+                </Dimension>
+              </Dimensions>
+              <Partitions>
+                <Partition>
+                  <ID>dimDaysBanding_e8043b85-cca3-4345-9cf8-8742125da12e</ID>
+                  <Name>dimDaysBanding</Name>
+                  <Annotations>
+                    <Annotation>
+                      <Name>IsQueryEditorUsed</Name>
+                      <Value>True</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>QueryEditorSerialization</Name>
+                    </Annotation>
+                    <Annotation>
+                      <Name>TableWidgetSerialization</Name>
+                    </Annotation>
+                  </Annotations>
+                  <Source xsi:type="QueryBinding">
+                    <DataSourceID>837ec213-a5e3-43b3-b32e-a5227e5f43b6</DataSourceID>
+                    <QueryDefinition>select 
+  n as 'Number',
+  case when n between 0 and 30 then '0 - 30 Days'
+  when n between 31 and 90 then '31 - 90 Days'
+  when n between 91 and 180 then '91 - 180 Days'
+  when n between 181 and 270 then '181 - 270 Days'
+  when n between 271 and 360 then '271 - 360 Days'
+  when n between 361 and 720 then '361 - 720 Days'
+  when n &gt; 710 then 'Over 720 Days' end as 'DebtAgeBanding',
+  case when n between 0 and 30 then '0 - 30 Days'
+  when n between 31 and 45 then '31 - 45 Days'
+  when n between 46 and 60 then '46 - 60 Days'
+  when n between 61 and 90 then '61 - 90 Days'
+  when n between 91 and 120 then '91 - 120 Days'
+  when n between 121 and 180 then '121 - 180 Days'
+  when n between 181 and 270 then '181 - 270 Days'
+  when n between 271 and 360 then '271 - 360 Days'
+  when n &gt; 360 then 'Over 360 Days' end as 'ClientAgedDebtBanding'
+
+
+  from (
+  select 
+  top 100000
+  row_number() over(order by t1.number) as n
+  
+  
+  from 
+  master..spt_values t1   
+  CROSS JOIN master..spt_values t2
+
+  ) tbl
+  union
+  select 0, '0 - 30 Days', '0 - 30 Days'
+
+  order by 1</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
@@ -6375,6 +6842,27 @@ CREATE MEASURE 'Bills'[Sum of bill_total_in_currency]=SUM([bill_total_in_currenc
                           <xs:element name="BillDateEndOfFinancialYear" msprop:DbColumnName="BillDateEndOfFinancialYear" msprop:FriendlyName="BillDateEndOfFinancialYear" type="xs:dateTime" minOccurs="0" />
                           <xs:element name="BillDateStartOfMonth" msprop:DbColumnName="BillDateStartOfMonth" msprop:FriendlyName="BillDateStartOfMonth" type="xs:dateTime" minOccurs="0" />
                           <xs:element name="BillDateEndOfMonth" msprop:DbColumnName="BillDateEndOfMonth" msprop:FriendlyName="BillDateEndOfMonth" type="xs:dateTime" minOccurs="0" />
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="dimDaysBanding_e8043b85-cca3-4345-9cf8-8742125da12e" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimDaysBanding" msprop:DbTableName="dimDaysBanding" msprop:TableType="View" msprop:Description="dimDaysBanding" msprop:QueryDefinition="select &#xD;&#xA;  n as 'Number',&#xD;&#xA;  case when n between 0 and 30 then '0 - 30 Days'&#xD;&#xA;  when n between 31 and 90 then '31 - 90 Days'&#xD;&#xA;  when n between 91 and 180 then '91 - 180 Days'&#xD;&#xA;  when n between 181 and 270 then '181 - 270 Days'&#xD;&#xA;  when n between 271 and 360 then '271 - 360 Days'&#xD;&#xA;  when n between 361 and 720 then '361 - 720 Days'&#xD;&#xA;  when n &gt; 710 then 'Over 720 Days' end as 'DebtAgeBanding',&#xD;&#xA;  case when n between 0 and 30 then '0 - 30 Days'&#xD;&#xA;  when n between 31 and 45 then '31 - 45 Days'&#xD;&#xA;  when n between 46 and 60 then '46 - 60 Days'&#xD;&#xA;  when n between 61 and 90 then '61 - 90 Days'&#xD;&#xA;  when n between 91 and 120 then '91 - 120 Days'&#xD;&#xA;  when n between 121 and 180 then '121 - 180 Days'&#xD;&#xA;  when n between 181 and 270 then '181 - 270 Days'&#xD;&#xA;  when n between 271 and 360 then '271 - 360 Days'&#xD;&#xA;  when n &gt; 360 then 'Over 360 Days' end as 'ClientAgedDebtBanding'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;  from (&#xD;&#xA;  select &#xD;&#xA;  top 100000&#xD;&#xA;  row_number() over(order by t1.number) as n&#xD;&#xA;  &#xD;&#xA;  &#xD;&#xA;  from &#xD;&#xA;  master..spt_values t1   &#xD;&#xA;  CROSS JOIN master..spt_values t2&#xD;&#xA;&#xD;&#xA;  ) tbl&#xD;&#xA;  union&#xD;&#xA;  select 0, '0 - 30 Days', '0 - 30 Days'&#xD;&#xA;&#xD;&#xA;  order by 1">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Number" msprop:DbColumnName="Number" msprop:FriendlyName="Number" type="xs:long" minOccurs="0" />
+                          <xs:element name="DebtAgeBanding" msprop:DbColumnName="DebtAgeBanding" msprop:FriendlyName="DebtAgeBanding" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="ClientAgedDebtBanding" msprop:DbColumnName="ClientAgedDebtBanding" msprop:FriendlyName="ClientAgedDebtBanding" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
