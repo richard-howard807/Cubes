@@ -139,20 +139,8 @@
         <Attribute dwd:design-time-name="04a00b0d-94bc-42c0-bf3c-a8fee3546007">
           <AttributeID>Dim Bill Date Key</AttributeID>
         </Attribute>
-        <Attribute dwd:design-time-name="f1fee3c9-acf3-4148-b293-a28c2001941b">
-          <AttributeID>Bill Date</AttributeID>
-        </Attribute>
-        <Attribute dwd:design-time-name="ca312e68-36f3-4227-907e-25e0bb92d327">
-          <AttributeID>Bill Cal Day In Week No</AttributeID>
-        </Attribute>
         <Attribute dwd:design-time-name="ad4bea04-dd44-4820-bbc6-b4af2da269c2">
           <AttributeID>Bill Cal Day In Month</AttributeID>
-        </Attribute>
-        <Attribute dwd:design-time-name="76497e47-2a42-45cd-a300-5e7c761e1414">
-          <AttributeID>Bill Cal Day In Year</AttributeID>
-        </Attribute>
-        <Attribute dwd:design-time-name="b8fc895f-0897-4fd2-96dc-ed4476defdef">
-          <AttributeID>Bill Cal Week In Year</AttributeID>
         </Attribute>
         <Attribute dwd:design-time-name="9d13d02a-944b-4bed-8dc6-6cb9f129c1d5">
           <AttributeID>Bill Cal Month</AttributeID>
@@ -162,24 +150,6 @@
         </Attribute>
         <Attribute dwd:design-time-name="d696da02-c836-41c3-84c6-edc4c65a3e67">
           <AttributeID>Bill Cal Year</AttributeID>
-        </Attribute>
-        <Attribute dwd:design-time-name="745afda4-641a-4ab4-8c5f-bd3e56b167eb">
-          <AttributeID>Bill Financial Date</AttributeID>
-        </Attribute>
-        <Attribute dwd:design-time-name="c410ecd6-cdcb-43dd-9373-51396aff80ae">
-          <AttributeID>Bill Fin Day In Week</AttributeID>
-        </Attribute>
-        <Attribute dwd:design-time-name="be8cab38-1a3a-438e-b733-1a84ef80b8e7">
-          <AttributeID>Bill Fin Day In Month</AttributeID>
-        </Attribute>
-        <Attribute dwd:design-time-name="805f9210-0acb-4554-880d-4287acddab36">
-          <AttributeID>Bill Fin Day In Year</AttributeID>
-        </Attribute>
-        <Attribute dwd:design-time-name="f3e16eda-db51-4cdb-9c01-3a61e0197cbd">
-          <AttributeID>Bill Fin Week In Month</AttributeID>
-        </Attribute>
-        <Attribute dwd:design-time-name="8fd549c6-f7b9-4b06-ab24-eb7d646b5427">
-          <AttributeID>Bill Fin Week In Year</AttributeID>
         </Attribute>
         <Attribute dwd:design-time-name="a7dc3866-7ed2-4786-94c9-3adaaf30edd9">
           <AttributeID>Bill Fin Month No</AttributeID>
@@ -217,18 +187,6 @@
         <Attribute dwd:design-time-name="32cff883-0828-499a-b004-3bc5d2baac63">
           <AttributeID>Activeud</AttributeID>
         </Attribute>
-        <Attribute dwd:design-time-name="65506838-cf85-48da-8735-7c3166e90d31">
-          <AttributeID>Jobtitle</AttributeID>
-        </Attribute>
-        <Attribute dwd:design-time-name="f27ea825-e654-4dde-83ad-1eeecf372ea2">
-          <AttributeID>Linemanagername</AttributeID>
-        </Attribute>
-        <Attribute dwd:design-time-name="3da08f9b-7028-444f-998b-14de4de9bb33">
-          <AttributeID>Reportingbcmname</AttributeID>
-        </Attribute>
-        <Attribute dwd:design-time-name="e1cfd2a8-fff7-4f2c-9f41-09fbab0a9943">
-          <AttributeID>Worksforname</AttributeID>
-        </Attribute>
         <Attribute dwd:design-time-name="49aa081f-f24a-4953-89ee-21ee75904b2f">
           <AttributeID>Display Name</AttributeID>
         </Attribute>
@@ -249,24 +207,6 @@
         </Attribute>
         <Attribute dwd:design-time-name="9c94bf0c-79ee-400c-be08-ceb987bb29dd">
           <AttributeID>Hierarchylevel6hist</AttributeID>
-        </Attribute>
-        <Attribute dwd:design-time-name="7deb1317-47ad-48eb-8bd8-d3fc0fd047ed">
-          <AttributeID>Hierarchylevel1</AttributeID>
-        </Attribute>
-        <Attribute dwd:design-time-name="89361130-3335-436b-bf6a-352cf277edc3">
-          <AttributeID>Hierarchylevel2</AttributeID>
-        </Attribute>
-        <Attribute dwd:design-time-name="fd79b682-b6bc-487e-ba02-8cdb0c73ce3b">
-          <AttributeID>Hierarchylevel3</AttributeID>
-        </Attribute>
-        <Attribute dwd:design-time-name="bb524434-2153-4c9e-b52d-c8c78855185c">
-          <AttributeID>Hierarchylevel4</AttributeID>
-        </Attribute>
-        <Attribute dwd:design-time-name="fdf07882-10ea-4356-b1c5-3002633b0ba6">
-          <AttributeID>Hierarchylevel5</AttributeID>
-        </Attribute>
-        <Attribute dwd:design-time-name="1c493396-5ec5-4366-a3d2-361d237c14a8">
-          <AttributeID>Hierarchylevel6</AttributeID>
         </Attribute>
         <Attribute dwd:design-time-name="aa3d6385-39c0-49f3-be9e-b0301316d52c">
           <AttributeID>Dss Current Flag</AttributeID>
@@ -752,7 +692,7 @@
                 If the CALCULATE command is deleted or modified, the data within the cube is affected.
                 You should edit this command only if you manually specify how the cube is aggregated.
                 */
-                CALCULATE;                
+                CALCULATE;                 
                 CREATE MEMBER CURRENTCUBE.[Measures].[YTD Billed Budget]
                 AS sum(
                 YTD([Dim Bill Date].[Hierarchy].CurrentMember),
@@ -760,7 +700,7 @@
                 ),
                 FORMAT_STRING = "#,##0.00;-#,##0.00",
 				non_empty_behavior = [Fed Level Tb Budget Value],
-                VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                
+                VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                 
 
 
                 CREATE MEMBER CURRENTCUBE.[Measures].[YTD Profit Costs]
@@ -770,7 +710,7 @@
                 ), 
 				non_empty_behavior = [Profit Costs],
                 FORMAT_STRING = "Currency", 
-                VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                
+                VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                 
 
 
                 CREATE MEMBER CURRENTCUBE.[Measures].[YTD Budget]
@@ -780,7 +720,7 @@
                       ), 
                 FORMAT_STRING = "#,##0.00;-#,##0.00", 
 				non_empty_behavior = [Target Profit Costs],
-                VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                
+                VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                 
 
 
                 CREATE MEMBER CURRENTCUBE.[Measures].[YTD Chargeable Minutes]
@@ -789,7 +729,7 @@
                 Measures.[Chargeable Minutes Recorded]
                 ),
 				non_empty_behavior = [Chargeable Minutes Recorded],
-                VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                
+                VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                 
 
 
                 CREATE MEMBER CURRENTCUBE.[Measures].[YTD Target Hours]
@@ -799,7 +739,7 @@
                 ),
                 FORMAT_STRING = "#,##0.00;-#,##0.00",
 				non_empty_behavior = [Target Hours],
-                VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                
+                VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                 
                 
 
                 CREATE MEMBER CURRENTCUBE.[Measures].[YTD Non Chargeable Minutes]
@@ -810,7 +750,7 @@
                 ),
                 FORMAT_STRING = "#,##0.00;-#,##0.00",
 				non_empty_behavior = [Non Chargeable Minutes],
-                VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                
+                VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                 
                 
 
                 CREATE MEMBER CURRENTCUBE.[Measures].[YTD Billed Minutes]
@@ -821,7 +761,7 @@
                 ),
                 FORMAT_STRING = "#,##0.00;-#,##0.00",
 				non_empty_behavior = [Billed Minutes],
-                VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                
+                VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                 
 
                 CREATE MEMBER CURRENTCUBE.[Measures].[YTD Billed Minutes Recorded]
                 AS sum(
@@ -831,7 +771,7 @@
                 ),
                 FORMAT_STRING = "#,##0.00;-#,##0.00",
 				non_empty_behavior = [Billed Minutes Recorded],
-                VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';   
+                VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';    
 
                 CREATE MEMBER CURRENTCUBE.[Measures].[YTD Billed Hours Recorded]
                 AS sum(
@@ -841,18 +781,18 @@
                 ),
                 FORMAT_STRING = "#,##0.00;-#,##0.00",
 				non_empty_behavior = [Billed Hours Recorded],
-                VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';   
+                VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';    
 
                 CREATE MEMBER CURRENTCUBE.[Measures].[YTD Recovery Rate]
  AS iif([Measures].[YTD Billed Hours Recorded] = 0, 0, [Measures].[YTD Profit Costs] / [Measures].[YTD Billed Hours Recorded]), 
 FORMAT_STRING = "Currency", 
-VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup'  ;                
+VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                 
 
 
                 CREATE MEMBER CURRENTCUBE.[Measures].[YTD Target Recovery Rate]
                 AS iif([Measures].[YTD Billed Budget] = 0, 0, [Measures].[YTD Target Profit Costs] / [Measures].[YTD Billed Budget]), 
                 FORMAT_STRING = "Currency", 
-                VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                
+                VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                 
                 
 
                 CREATE MEMBER CURRENTCUBE.[Measures].[YTD Target Profit Costs - Team Level]
@@ -863,7 +803,7 @@ VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Mon
                 ), 
 				non_empty_behavior = [Annual Target Profit Costs - Team Level],
                 FORMAT_STRING = "Currency", 
-                VISIBLE = 0 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                
+                VISIBLE = 0 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                 
                 
 
                 CREATE MEMBER CURRENTCUBE.[Measures].[YTD Budget Balance (Calculation Measure)]
@@ -873,7 +813,7 @@ VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Mon
                 Measures.[Budget Balance (Calculation Measure)]
                 ), 
                 FORMAT_STRING = "Currency", 
-                VISIBLE = 0 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                
+                VISIBLE = 0 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                 
                 
 
                 CREATE MEMBER CURRENTCUBE.[Measures].[YTD Target Profit Costs]
@@ -883,7 +823,7 @@ VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Mon
                 Measures.[Target Profit Costs]
                 ), 
                 FORMAT_STRING = "Currency", 
-                VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                
+                VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                 
 
 
                 CREATE MEMBER CURRENTCUBE.[Measures].[YTD Budget Balance]
@@ -893,7 +833,7 @@ VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Mon
                 Measures.[Budget Balance]
                 ), 
                 FORMAT_STRING = "Currency", 
-                VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';      
+                VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';       
 
   
                 CREATE MEMBER CURRENTCUBE.[Measures].[YTD Percentage of YTD Chargeable Hours Target Achieved]
@@ -901,7 +841,7 @@ VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Mon
                 [Measures].[YTD Chargeable Hours] / [Measures].[YTD Target Hours]
                 ), 
 FORMAT_STRING = "Percent", 
-VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                     
+VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                      
 
                 CREATE MEMBER CURRENTCUBE.[Measures].[YTD Business Line Level Budget Value]
                 AS sum(
@@ -910,7 +850,7 @@ VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Mon
                 Measures.[Business Line Level Budget Value]
                 ), 
                 FORMAT_STRING = "Currency", 
-                VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';      
+                VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';       
 
 
                create member CurrentCube.[Measures].[YTD Zero Rate Hours Recorded]   as
@@ -920,19 +860,19 @@ VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Mon
                            ),
                 FORMAT_STRING = "#,##0.00;-#,##0.00", 
                 non_empty_behavior = [Zero Rate Minutes Recorded],
-                VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';          
+                VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';           
 
 
                 create member CurrentCube.[Measures].[YTD Billed Hours] as
                 [Measures].[YTD Billed Minutes] / 60,
                 FORMAT_STRING = "#,##0.00;-#,##0.00", 
-                VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';          
+                VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';           
 
 
                 create member CurrentCube.[Measures].[YTD Chargeable Hours] as
                 [Measures].[YTD Chargeable Minutes] / 60,
                 FORMAT_STRING = "#,##0.00;-#,##0.00", 
-                VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                
+                VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                 
 
 
                 CREATE MEMBER CURRENTCUBE.[Measures].[YTD Target Profit Costs (Budget Balanced)]
@@ -942,7 +882,7 @@ VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Mon
                 Measures.[Target Profit Costs (Budget Balanced)]
                 ), 
                 FORMAT_STRING = "Currency", 
-                VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';        
+                VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';         
 
                 CREATE MEMBER CURRENTCUBE.[Measures].[YTD New Matters]
                 AS sum (
@@ -950,7 +890,7 @@ VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Mon
                 [Dim Bill Date].[Hierarchy].CurrentMember),
                 Measures.[New Matters]
                 ), 
-                VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';        
+                VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';         
 
 
 
@@ -959,7 +899,7 @@ VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Mon
                 [Measures].[YTD Profit Costs] / [Measures].[YTD Target Profit Costs (Budget Balanced)]
                 ), 
                 FORMAT_STRING = "Percent", 
-                VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';          
+                VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';           
 
 
                 create member CurrentCube.[Measures].[YTD Percentage of Annual Profit Costs Target Achieved] 
@@ -967,7 +907,7 @@ VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Mon
                 [Measures].[YTD Profit Costs] / [Measures].[Annual Target Profit Costs (Budget Balanced)]
                 ), 
                 FORMAT_STRING = "Percent", 
-                VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                     
+                VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                      
 
                 
                 create member CurrentCube.[Measures].[Business Line Level Budget Value]
@@ -975,7 +915,7 @@ VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Mon
                 [Measures].[Annual Business Line Level Budget Value] / 12,
                 FORMAT_STRING = "Currency", 
                 VISIBLE = 1 ,  DISPLAY_FOLDER = 'Monthly' , non_empty_behavior = [Annual Business Line Level Budget Value],
-                ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';        
+                ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';         
 
                 CREATE MEMBER CURRENTCUBE.[Measures].[Annual Holidays Taken] as
                 sum(
@@ -983,7 +923,7 @@ VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Mon
                 Measures.[Durationdays]
                 ),
                 FORMAT_STRING = "#,##0.00;-#,##0.00",
-                VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                
+                VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                 
                 
 
                 CREATE MEMBER CURRENTCUBE.[Measures].[Annual Holidays Remaining]
@@ -992,7 +932,7 @@ VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Mon
                 Measures.[Durationdays]
                 ), 
 FORMAT_STRING = "#,##0.00;-#,##0.00", 
-VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                
+VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                 
                 
 
                 CREATE MEMBER CURRENTCUBE.[Measures].[Annual Target Hours]
@@ -1001,7 +941,7 @@ VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi 
                 Measures.[Target Hours]
                 ),
                 FORMAT_STRING = "#,##0.00;-#,##0.00",
-                VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                
+                VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                 
 
                 
                 CREATE MEMBER CURRENTCUBE.[Measures].[Annual Billed Minutes Recorded]
@@ -1011,7 +951,7 @@ VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi 
                 ),
                 FORMAT_STRING = "#,##0.00;-#,##0.00",
                 non_empty_behavior = [Billed Minutes Recorded],
-                VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                
+                VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                 
 
                 CREATE MEMBER CURRENTCUBE.[Measures].[Annual Billed Hours Recorded]
                 AS sum(
@@ -1020,22 +960,21 @@ VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi 
                 ),
                 FORMAT_STRING = "#,##0.00;-#,##0.00",
                 non_empty_behavior = [Billed Hours Recorded],
-                VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                
+                VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                 
 
                 CREATE MEMBER CURRENTCUBE.[Measures].[Chargeable Hours Recorded]
                 AS sum(
                 [Measures].[Chargeable Minutes Recorded]
                 ) / 60,
                 FORMAT_STRING = "#,##0.00;-#,##0.00",
-                VISIBLE = 1 ,  DISPLAY_FOLDER = 'Monthly' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                
+                VISIBLE = 1 ,  DISPLAY_FOLDER = 'Monthly' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                 
                 
 
                 CREATE MEMBER CURRENTCUBE.[Measures].[Percentage of Chargeable Hours Target Achieved]
-                AS iif(([Measures].[Chargeable Hours Recorded] = 0 and [Measures].[Target Hours] = 0) or [Measures].[Target Hours] = 0, 0,
-                [Measures].[Chargeable Hours Recorded] / [Measures].[Target Hours]
-                ),
-                FORMAT_STRING = "Percent",
-                VISIBLE = 1 ,  DISPLAY_FOLDER = 'Monthly' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';      
+ AS [Measures].[Chargeable Hours Recorded] / [Measures].[Target Hours], 
+FORMAT_STRING = "Percent", 
+NON_EMPTY_BEHAVIOR = { [Target Hours] }, 
+VISIBLE = 1 ,  DISPLAY_FOLDER = 'Monthly' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup'  ;       
 
                 
                 create member CurrentCube.[Measures].[YTD Percentage of Zero Rate Time vs YTD Chargeable Time] as
@@ -1043,47 +982,33 @@ VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi 
                         [Measures].[YTD Zero Rate Hours Recorded] / [Measures].[YTD Chargeable Hours]
                    ),
                 FORMAT_STRING = "Percent", 
-                VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                
+                VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                 
 
 
                 CREATE MEMBER CURRENTCUBE.[Measures].[Username]
                 AS username,
-                VISIBLE = 1;                
+                VISIBLE = 1;                 
 
 
                 CREATE MEMBER CURRENTCUBE.[Measures].[Recovery Rate]
- AS iif([Measures].[Billed Hours Recorded] = 0, 0,
-                    [Measures].[Profit Costs] / [Measures].[Billed Hours Recorded]), 
+ AS [Measures].[Profit Costs] / [Measures].[Billed Hours Recorded], 
 FORMAT_STRING = "Currency", 
 NON_EMPTY_BEHAVIOR = [Billed Minutes], 
-VISIBLE = 1 ,  DISPLAY_FOLDER = 'Monthly' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup'  ;                
+VISIBLE = 1 ,  DISPLAY_FOLDER = 'Monthly' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup'  ;                 
 
 
                 CREATE MEMBER CURRENTCUBE.[Measures].[Percentage of Profit Costs Target Achieved]
-                AS iif(([Measures].[Profit Costs] = 0 and [Measures].[Target Profit Costs] = 0) or [Measures].[Target Profit Costs] = 0, 0,
-                [Measures].[Profit Costs] / [Measures].[Target Profit Costs]
-                ), 
-                FORMAT_STRING = "Percent", 
-                non_empty_behavior = [Profit Costs],
-                VISIBLE = 1 ,  DISPLAY_FOLDER = 'Monthly' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';          
- 
-
-                CREATE MEMBER CURRENTCUBE.[Measures].[Today]
-                AS vba!str(vba!DatePart("yyyy", vba!Now()))
-
-                + "-" + vba!str(vba!format(vba!Month(vba!Now()), "0#"))
-
-                + "-" + vba!str(vba!format((vba!DatePart("d", vba!Now())), "0#"))
-
-                + vba!str("T00:00:00"),
-                VISIBLE = 1;         
+ AS [Measures].[Profit Costs] / [Measures].[Target Profit Costs], 
+FORMAT_STRING = "Percent", 
+NON_EMPTY_BEHAVIOR = { [Target Profit Costs] }, 
+VISIBLE = 1 ,  DISPLAY_FOLDER = 'Monthly' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup'  ;          
 
 
                 CREATE MEMBER CURRENTCUBE.[Measures].[Target Profit Costs - Team Level]
                 AS sum([Measures].[Annual Target Profit Costs - Team Level]) / 12, 
                 FORMAT_STRING = "Currency", 
                 non_empty_behavior = [Annual Target Profit Costs - Team Level],
-                VISIBLE = 0 ,  DISPLAY_FOLDER = 'Monthly' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';        
+                VISIBLE = 0 ,  DISPLAY_FOLDER = 'Monthly' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';         
                 
 
                 CREATE MEMBER CURRENTCUBE.[Measures].[Annual Budget Balance (Calculation Measure)]
@@ -1092,13 +1017,13 @@ VISIBLE = 1 ,  DISPLAY_FOLDER = 'Monthly' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi
                   [Annual Target Profit Costs - Team Level] - [Annual Target Profit Costs]), 
                 FORMAT_STRING = "Currency", 
                 non_empty_behavior = [Target Profit Costs],
-                VISIBLE = 0 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                
+                VISIBLE = 0 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                 
 
 
                 CREATE MEMBER CURRENTCUBE.[Measures].[Budget Balance (Calculation Measure)]
                 AS [Measures].[Annual Budget Balance (Calculation Measure)] / 12, 
                 FORMAT_STRING = "Currency", 
-                VISIBLE = 0 , display_folder = 'Monthly', ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                
+                VISIBLE = 0 , display_folder = 'Monthly', ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                 
 
 
                 CREATE MEMBER CURRENTCUBE.[Measures].[Annual Budget Balance]
@@ -1107,13 +1032,13 @@ VISIBLE = 1 ,  DISPLAY_FOLDER = 'Monthly' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi
                 [Measures].[Annual Budget Balance (Calculation Measure)]
                 ), 
                 FORMAT_STRING = "Currency", 
-                VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                
+                VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                 
 
 
                 CREATE MEMBER CURRENTCUBE.[Measures].[Budget Balance]
                 AS [Measures].[Annual Budget Balance] / 12, 
                 FORMAT_STRING = "Currency", 
-                VISIBLE = 1 ,  DISPLAY_FOLDER = 'Monthly' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                
+                VISIBLE = 1 ,  DISPLAY_FOLDER = 'Monthly' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                 
 
 
                 CREATE MEMBER CURRENTCUBE.[Measures].[Annual Target Profit Costs]
@@ -1123,26 +1048,26 @@ VISIBLE = 1 ,  DISPLAY_FOLDER = 'Monthly' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi
                 ), 
                 FORMAT_STRING = "Currency", 
                 non_empty_behavior = [Target Profit Costs],
-                VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                
+                VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                 
 
 
                 CREATE MEMBER CURRENTCUBE.[Measures].[Target Profit Costs (Calculation Measure)]
                 AS sum([Measures].[Target Profit Costs]) + sum([Measures].[Budget Balance (Calculation Measure)]), 
                 FORMAT_STRING = "Currency", 
-                VISIBLE = 0 ,  DISPLAY_FOLDER = 'Monthly' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                
+                VISIBLE = 0 ,  DISPLAY_FOLDER = 'Monthly' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                 
 
 
                 CREATE MEMBER CURRENTCUBE.[Measures].[Target Profit Costs (Budget Balanced)]
                 AS [Measures].[Target Profit Costs (Calculation Measure)] + ([Annual Business Line Level Budget Value] / 12), 
                 FORMAT_STRING = "Currency", 
-                VISIBLE = 1 ,  DISPLAY_FOLDER = 'Monthly' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                
+                VISIBLE = 1 ,  DISPLAY_FOLDER = 'Monthly' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                 
 
 
                 CREATE MEMBER CURRENTCUBE.[Measures].[Annual Target Profit Costs (Budget Balanced)]
                 AS 
                 (Measures.[Annual Target Profit Costs] + Measures.[Annual Budget Balance (Calculation Measure)]) + [Annual Business Line Level Budget Value],
                 FORMAT_STRING = "Currency", 
-                VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                
+                VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                 
 
 
                 CREATE MEMBER CURRENTCUBE.[Measures].[Annual Profit Costs]
@@ -1152,7 +1077,7 @@ VISIBLE = 1 ,  DISPLAY_FOLDER = 'Monthly' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi
                 ), 
                 FORMAT_STRING = "Currency", 
                 non_empty_behavior = [Profit Costs],
-                VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';          
+                VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';           
 
 
                 create member CurrentCube.[Measures].[Annual Percentage of Profit Costs Target Achieved] 
@@ -1160,7 +1085,7 @@ VISIBLE = 1 ,  DISPLAY_FOLDER = 'Monthly' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi
                 [Measures].[Annual Profit Costs] / [Measures].[Annual Target Profit Costs (Budget Balanced)]
                 ), 
                 FORMAT_STRING = "Percent", 
-                VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';          
+                VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';           
 				
 				CREATE MEMBER CURRENTCUBE.[Measures].[Annual Chargeable Hours]
                 AS sum(
@@ -1168,13 +1093,13 @@ VISIBLE = 1 ,  DISPLAY_FOLDER = 'Monthly' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi
                 Measures.[YTD Chargeable Hours]
                 ), 
                 FORMAT_STRING = "#,##0.00;-#,##0.00", 
-                VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';        
+                VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';         
 
                 CREATE MEMBER CURRENTCUBE.[Measures].[Annual Chargeable Minutes]
                 AS Measures.[Annual Chargeable Hours] / 60,
                 
                 FORMAT_STRING = "#,##0.00;-#,##0.00", 
-                VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';   
+                VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';    
 CREATE MEMBER CURRENTCUBE.[Measures].[Annual Average Chargeable Hours]
  AS iif([Measures].[YTD Target Hours] = 0, 0, 
 	(avg([Measures].[YTD Chargeable Hours]) / avg([Measures].[YTD Target Hours])) * 
