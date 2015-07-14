@@ -97,6 +97,11 @@
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>2008Status</Name>
                 </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>CreatedBy</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>CreatedBy</Name>
+                </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
@@ -307,6 +312,31 @@
                 <Source xsi:type="ColumnBinding">
                   <TableID>ReportIDs_21d66cf2-26c5-4f42-8f98-7f080ac0aaae</TableID>
                   <ColumnID>_x0032_008Status</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>CreatedBy</ID>
+              <Name>CreatedBy</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>ReportIDs_21d66cf2-26c5-4f42-8f98-7f080ac0aaae</TableID>
+                    <ColumnID>CreatedBy</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>ReportIDs_21d66cf2-26c5-4f42-8f98-7f080ac0aaae</TableID>
+                  <ColumnID>CreatedBy</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
@@ -1913,6 +1943,9 @@
                 <Attribute>
                   <AttributeID>2008Status</AttributeID>
                 </Attribute>
+                <Attribute>
+                  <AttributeID>CreatedBy</AttributeID>
+                </Attribute>
               </Attributes>
             </Dimension>
             <Dimension>
@@ -2173,6 +2206,20 @@
                           <Source xsi:type="ColumnBinding">
                             <TableID>ReportIDs_21d66cf2-26c5-4f42-8f98-7f080ac0aaae</TableID>
                             <ColumnID>_x0032_008Status</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>CreatedBy</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>ReportIDs_21d66cf2-26c5-4f42-8f98-7f080ac0aaae</TableID>
+                            <ColumnID>CreatedBy</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -2770,7 +2817,8 @@
  ReportName,
  ReportCategory,
  coalesce([12Live], [12UAT], [12Dev], [12Retired]) [2012Status],
- coalesce([08Retired], [08Live]) [2008Status]
+ coalesce([08Retired], [08Live]) [2008Status],
+CreatedBy
 
   from Reporting.dw.ExecutionStatsNew</QueryDefinition>
                   </Source>
@@ -4157,7 +4205,7 @@ CREATE MEASURE 'ReportIDs'[Count of New Reports]=if(isblank(calculate(countrows(
               <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:Locale="en-GB">
                 <xs:complexType>
                   <xs:choice minOccurs="0" maxOccurs="unbounded">
-                    <xs:element name="ReportIDs_21d66cf2-26c5-4f42-8f98-7f080ac0aaae" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="ReportIDs" msprop:DbTableName="ReportIDs" msprop:TableType="View" msprop:Description="ReportIDs" msprop:QueryDefinition="select &#xD;&#xA; cast(ReportID as numeric(10,2)) as 'ReportID',&#xD;&#xA; Server,&#xD;&#xA; ReportName,&#xD;&#xA; ReportCategory,&#xD;&#xA; coalesce([12Live], [12UAT], [12Dev], [12Retired]) [2012Status],&#xD;&#xA; coalesce([08Retired], [08Live]) [2008Status]&#xD;&#xA;&#xD;&#xA;  from Reporting.dw.ExecutionStatsNew">
+                    <xs:element name="ReportIDs_21d66cf2-26c5-4f42-8f98-7f080ac0aaae" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="ReportIDs" msprop:DbTableName="ReportIDs" msprop:TableType="View" msprop:Description="ReportIDs" msprop:QueryDefinition="select &#xD;&#xA; cast(ReportID as numeric(10,2)) as 'ReportID',&#xD;&#xA; Server,&#xD;&#xA; ReportName,&#xD;&#xA; ReportCategory,&#xD;&#xA; coalesce([12Live], [12UAT], [12Dev], [12Retired]) [2012Status],&#xD;&#xA; coalesce([08Retired], [08Live]) [2008Status],&#xD;&#xA;CreatedBy&#xD;&#xA;&#xD;&#xA;  from Reporting.dw.ExecutionStatsNew">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="ReportID" msprop:DbColumnName="ReportID" msprop:FriendlyName="ReportID" minOccurs="0">
@@ -4196,6 +4244,13 @@ CREATE MEASURE 'ReportIDs'[Count of New Reports]=if(isblank(calculate(countrows(
                             </xs:simpleType>
                           </xs:element>
                           <xs:element name="_x0032_008Status" msprop:DbColumnName="2008Status" msprop:FriendlyName="2008Status" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="CreatedBy" msprop:DbColumnName="CreatedBy" msprop:FriendlyName="CreatedBy" minOccurs="0">
                             <xs:simpleType>
                               <xs:restriction base="xs:string">
                                 <xs:maxLength value="32768" />
