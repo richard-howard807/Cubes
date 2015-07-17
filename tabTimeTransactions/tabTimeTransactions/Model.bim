@@ -2416,9 +2416,9 @@
                   <Name>source_system_id</Name>
                 </AttributeRelationship>
                 <AttributeRelationship>
-                  <AttributeID>ReportingExclusions</AttributeID>
+                  <AttributeID>ReportingExclusion</AttributeID>
                   <OverrideBehavior>None</OverrideBehavior>
-                  <Name>ReportingExclusions</Name>
+                  <Name>ReportingExclusion</Name>
                 </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
@@ -2916,8 +2916,8 @@
               <OrderBy>Key</OrderBy>
             </Attribute>
             <Attribute>
-              <ID>ReportingExclusions</ID>
-              <Name>ReportingExclusions</Name>
+              <ID>ReportingExclusion</ID>
+              <Name>ReportingExclusion</Name>
               <KeyColumns>
                 <KeyColumn>
                   <DataType>Integer</DataType>
@@ -2925,7 +2925,7 @@
                   <NullProcessing>Preserve</NullProcessing>
                   <Source xsi:type="ColumnBinding">
                     <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
-                    <ColumnID>ReportingExclusions</ColumnID>
+                    <ColumnID>ReportingExclusion</ColumnID>
                   </Source>
                 </KeyColumn>
               </KeyColumns>
@@ -2935,7 +2935,7 @@
                 <NullProcessing>ZeroOrBlank</NullProcessing>
                 <Source xsi:type="ColumnBinding">
                   <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
-                  <ColumnID>ReportingExclusions</ColumnID>
+                  <ColumnID>ReportingExclusion</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
@@ -10989,7 +10989,7 @@
                   <AttributeID>source_system_id</AttributeID>
                 </Attribute>
                 <Attribute>
-                  <AttributeID>ReportingExclusions</AttributeID>
+                  <AttributeID>ReportingExclusion</AttributeID>
                 </Attribute>
               </Attributes>
             </Dimension>
@@ -11977,11 +11977,11 @@
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
                     <QueryDefinition>SELECT distinct
-c.client_code as 'ClientCode',
-c.client_name as 'ClientName',
-c.client_group_name as 'ClientGroupName',
-c.client_partner_name as 'ClientPartnerName',
-c.client_partner_code as 'ClientPartnerCode',
+c.client_code ClientCode,
+c.client_name ClientName,
+c.client_group_name ClientGroupName,
+c.client_partner_name ClientPartnerName,
+c.client_partner_code ClientPartnerCode,
 case
 when cc.cx_data = 'SGO' then 'Stephen Gorman'
 when cc.cx_data = 'KWA' then 'Keith Walters'
@@ -11996,12 +11996,12 @@ when cc.cx_data = 'MWN' then 'Michelle Wilson'
 when cc.cx_data = 'NMB' then 'Natalie Cooney'
 when cc.cx_data = 'DIA' then 'Diane Robinson'
 else cc.cx_data
-end as 'CreditControllerName',
-RTRIM(ds_descrn) AS 'SectorName',
+end CreditControllerName,
+RTRIM(ds_descrn) SectorName,
   CASE WHEN crm.cx_data = 1 THEN 'Patron'
    WHEN crm.cx_data = 2 THEN 'Star' 
    WHEN crm.cx_data is null then null 
-   ELSE 'Rising Star' END AS 'CRMStatus'
+   ELSE 'Rising Star' END CRMStatus
 
 
  FROM 
@@ -15633,7 +15633,7 @@ branch_name is not null</QueryDefinition>
                       </KeyColumns>
                     </Attribute>
                     <Attribute>
-                      <AttributeID>ReportingExclusions</AttributeID>
+                      <AttributeID>ReportingExclusion</AttributeID>
                       <KeyColumns>
                         <KeyColumn>
                           <DataType>Integer</DataType>
@@ -15641,7 +15641,7 @@ branch_name is not null</QueryDefinition>
                           <NullProcessing>Preserve</NullProcessing>
                           <Source xsi:type="ColumnBinding">
                             <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
-                            <ColumnID>ReportingExclusions</ColumnID>
+                            <ColumnID>ReportingExclusion</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -19470,19 +19470,19 @@ cast(a.dss_update_time as date) &gt;
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
                     <QueryDefinition>select 
-a.dim_all_time_activity_key as 'TransactionID',
-c.client_code as 'ClientCode',
-f.dim_matter_header_key as 'MatterID',
+a.dim_all_time_activity_key TransactionID,
+c.client_code ClientCode,
+f.dim_matter_header_key MatterID,
 f.matter_number,
 f.client_code,
 f.source_system_id,
-a.dim_bill_key as 'BillID',
-a.time_type as 'ChargeableTimeCode',
-a.dim_fed_hierarchy_history_key as 'FEDCodeID',
-a.dim_transaction_date_key as 'TransactionDate',
-a.minutes_recorded as 'MinutesRecorded',
-a.hourly_charge_rate as 'ChargeRate',
-a.time_charge_value as 'timeChargeValue',
+a.dim_bill_key BillID,
+a.time_type ChargeableTimeCode,
+a.dim_fed_hierarchy_history_key FEDCodeID,
+a.dim_transaction_date_key TransactionDate,
+a.minutes_recorded MinutesRecorded,
+a.hourly_charge_rate ChargeRate,
+a.time_charge_value timeChargeValue,
 case 
 when t.time_activity_code != 'W/O'
 and t.bill_number = 'xxxxxxxx'
@@ -19496,12 +19496,12 @@ and t.time_activity_code not in ('Bill','Abmt')
  then 'Billed'
 when a.time_type = 'NC' 
  then 'Non Chargeable Time'
- else 'Transferred'  end as 'TransactionType',  t.reporting_exclusions as 'ReportingExclusions', 
-n.td_textln as 'Narrative',
-t.time_activity_code as 'TimeActivityCode',
-t.rate_code as 'RateCode' ,
-t.matter_stage_descrn as 'StageDesc',
-datediff(d, d3.calendar_date, getdate()) as 'TransactionAgeDays' 
+ else 'Transferred'  end TransactionType',  t.reporting_exclusions ReportingExclusions',
+n.td_textln Narrative,
+t.time_activity_code TimeActivityCode,
+t.rate_code RateCode,
+t.matter_stage_descrn StageDesc,
+datediff(d, d3.calendar_date, getdate()) TransactionAgeDays
 
 from
 [SVR-LIV-DWH-01].red_dw.dbo.fact_all_time_activity a
@@ -19667,19 +19667,19 @@ cast(a.dss_update_time as date) &gt;
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
                     <QueryDefinition>select 
-a.dim_all_time_activity_key as 'TransactionID',
-c.client_code as 'ClientCode',
-f.dim_matter_header_key as 'MatterID',
+a.dim_all_time_activity_key TransactionID,
+c.client_code ClientCode,
+f.dim_matter_header_key MatterID,
 f.matter_number,
 f.client_code,
 f.source_system_id,
-a.dim_bill_key as 'BillID',
-a.time_type as 'ChargeableTimeCode',
-a.dim_fed_hierarchy_history_key as 'FEDCodeID',
-a.dim_transaction_date_key as 'TransactionDate',
-a.minutes_recorded as 'MinutesRecorded',
-a.hourly_charge_rate as 'ChargeRate',
-a.time_charge_value as 'timeChargeValue',
+a.dim_bill_key BillID,
+a.time_type ChargeableTimeCode,
+a.dim_fed_hierarchy_history_key FEDCodeID,
+a.dim_transaction_date_key TransactionDate,
+a.minutes_recorded MinutesRecorded,
+a.hourly_charge_rate ChargeRate,
+a.time_charge_value timeChargeValue,
 case 
 when t.time_activity_code != 'W/O'
 and t.bill_number = 'xxxxxxxx'
@@ -19693,12 +19693,12 @@ and t.time_activity_code not in ('Bill','Abmt')
  then 'Billed'
 when a.time_type = 'NC' 
  then 'Non Chargeable Time'
- else 'Transferred'  end as 'TransactionType',  t.reporting_exclusions as 'ReportingExclusions', 
-n.td_textln as 'Narrative',
-t.time_activity_code as 'TimeActivityCode',
-t.rate_code as 'RateCode' ,
-t.matter_stage_descrn as 'StageDesc',
-datediff(d, d3.calendar_date, getdate()) as 'TransactionAgeDays' 
+ else 'Transferred'  end TransactionType',  t.reporting_exclusions ReportingExclusions',
+n.td_textln Narrative,
+t.time_activity_code TimeActivityCode,
+t.rate_code RateCode,
+t.matter_stage_descrn StageDesc,
+datediff(d, d3.calendar_date, getdate()) TransactionAgeDays
 
 from
 [SVR-LIV-DWH-01].red_dw.dbo.fact_all_time_activity a
@@ -19742,7 +19742,7 @@ calendar_date = cast(getdate() -1 as date))
 
 
 where
-d4.cal_year &lt; 2015</QueryDefinition>
+d4.cal_year&lt; 2015</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
@@ -20387,27 +20387,27 @@ red_dw.dbo.fact_all_time_activity</QueryDefinition>
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
                     <QueryDefinition>select
-dim_date_key as 'TransactionDateKey',
-calendar_date as 'TransactionDateDate',
-cal_day_in_month as 'TransactionDateDayInMonth',
-cal_day_in_year as 'TransactionDateDayInYear',
-cal_day_in_week_no as 'TransactionDateWeekdayNo',
-cal_day_in_week as 'TransactionDateWeekdayName',
-cal_week_in_year as 'TransactionDateCalendarWeek',
-cal_month_no as 'TransactionDateCalendarMonthNo',
-cal_month_name as 'TransactionDateCalendarMonthName',
-cal_quarter_no as 'TransactionDateCalendarQuarterNo',
-cal_year as 'TransactionDateCalendarYear',
-case when month(calendar_date) &gt; 4 then dateadd(month, -4, dateadd(year, 1, calendar_date)) else dateadd(month, 8, dateadd(year, 0, calendar_date)) end as 'TransactionDateFinancialDate',
-fin_week_in_year as 'TransactionDateFinancialWeek',
-fin_month_no as 'TransactionDateFinancialMonthNo',
-fin_month_name as 'TransactionDateFinancialMonthName',
-fin_quarter_no as 'TransactionDateFinancialQuarterNo',
-fin_year as 'TransactionDateFinancialYear',
-week_end_flag as 'TransactionDateWeekend',
-holiday_flag as 'TransactionDateHoliday',
-cal_month_name + '-' + right(cal_year, 2) as 'TransactionDateCalPeriod',
-fin_month_name + '-' + right(fin_year, 2) as 'TransactionDateFinancialPeriod'
+dim_date_key TransactionDateKey,
+calendar_date TransactionDateDate,
+cal_day_in_month TransactionDateDayInMonth,
+cal_day_in_year TransactionDateDayInYear,
+cal_day_in_week_no TransactionDateWeekdayNo,
+cal_day_in_week TransactionDateWeekdayName,
+cal_week_in_year TransactionDateCalendarWeek,
+cal_month_no TransactionDateCalendarMonthNo,
+cal_month_name TransactionDateCalendarMonthName,
+cal_quarter_no TransactionDateCalendarQuarterNo,
+cal_year TransactionDateCalendarYear,
+case when month(calendar_date) &gt; 4 then dateadd(month, -4, dateadd(year, 1, calendar_date)) else dateadd(month, 8, dateadd(year, 0, calendar_date)) end TransactionDateFinancialDate,
+fin_week_in_year TransactionDateFinancialWeek,
+fin_month_no TransactionDateFinancialMonthNo,
+fin_month_name TransactionDateFinancialMonthName,
+fin_quarter_no TransactionDateFinancialQuarterNo,
+fin_year TransactionDateFinancialYear,
+week_end_flag TransactionDateWeekend,
+holiday_flag TransactionDateHoliday,
+cal_month_name + '-' + right(cal_year, 2) TransactionDateCalPeriod,
+fin_month_name + '-' + right(fin_year, 2) TransactionDateFinancialPeriod
 
 
 
@@ -21871,18 +21871,18 @@ dim_date</QueryDefinition>
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
                     <QueryDefinition>select distinct
-h1.dim_fed_hierarchy_history_key as 'TimeTransactionsFEDCodeID',
-h1.fed_code as 'TimeTransactionsFEDCode',
-h1.name as 'TimeTransactionsFEDName',
-h1.display_name as 'TimeTransactionsDisplayName',
-e2.workemail as 'TimeTransactionsEmailAddress',
-case when j.levelidud in ('Equity Partner','Fixed Share Partner','Silver Equity Partner') then 'Partner' else j.levelidud end as 'TimeTransactionsGrade',
-h1.hierarchylevel2hist as 'TimeTransactionsBusinessLine',
-h1.hierarchylevel3hist as 'TimeTransactionsPracticeArea',
-h1.hierarchylevel4hist as 'TimeTransactionsTeam',
-h1.reportingbcmname as 'TimeTransactionsBCMName',
-e.workemail as 'TimeTransactionsBCMEmail',
-h1.activeud as 'TimeTransactionsActiveUD'
+h1.dim_fed_hierarchy_history_key TimeTransactionsFEDCodeID,
+h1.fed_code TimeTransactionsFEDCode,
+h1.name TimeTransactionsFEDName,
+h1.display_name TimeTransactionsDisplayName,
+e2.workemail TimeTransactionsEmailAddress,
+case when j.levelidud in ('Equity Partner','Fixed Share Partner','Silver Equity Partner') then 'Partner' else j.levelidud end TimeTransactionsGrade,
+h1.hierarchylevel2hist TimeTransactionsBusinessLine,
+h1.hierarchylevel3hist TimeTransactionsPracticeArea,
+h1.hierarchylevel4hist TimeTransactionsTeam,
+h1.reportingbcmname TimeTransactionsBCMName,
+e.workemail TimeTransactionsBCMEmail,
+h1.activeud TimeTransactionsActiveUD
 
 
 from
@@ -21899,9 +21899,7 @@ left join red_dw.dbo.ds_sh_employee_jobs j
 
 left join
  red_dw.dbo.load_cascade_employee e2
-  on e2.employeeid = h1.employeeid 
-
-order by 1</QueryDefinition>
+  on e2.employeeid = h1.employeeid</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
@@ -23091,21 +23089,21 @@ red_dw.dbo.dim_matter_worktype</QueryDefinition>
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
                     <QueryDefinition>select distinct
-h1.dim_fed_hierarchy_history_key as 'MatterFEDCodeID',
-h1.fed_code as 'MatterFEDCode',
-h1.name as 'MatterFEDName',
-e.forename as 'MatterFEDForename',
-e.surname as 'MatterFEDSurname',
-e4.workemail as 'MatterEmailAddress',
-j.locationidud as 'MatterFEDLocation',
-case when j.levelidud in ('Equity Partner','Fixed Share Partner','Silver Equity Partner') then 'Partner' else j.levelidud end as 'MatterGrade',
-h1.hierarchylevel2hist as 'MatterBusinessLine',
-h1.hierarchylevel3hist as 'MatterPracticeArea',
-h1.hierarchylevel4hist as 'MatterTeam',
-h1.reportingbcmname as 'MatterBCMName',
-e3.workemail as 'MatterBCMEmail',
-case when e.leaver = 0 then 'N' else 'Y' end as 'MatterLeaver',
-h1.dss_current_flag as 'MatterCurrentFlag'
+h1.dim_fed_hierarchy_history_key MatterFEDCodeID,
+h1.fed_code MatterFEDCode,
+h1.name MatterFEDName,
+e.forename MatterFEDForename,
+e.surname MatterFEDSurname,
+e4.workemail MatterEmailAddress,
+j.locationidud MatterFEDLocation,
+case when j.levelidud in ('Equity Partner','Fixed Share Partner','Silver Equity Partner') then 'Partner' else j.levelidud end MatterGrade,
+h1.hierarchylevel2hist MatterBusinessLine,
+h1.hierarchylevel3hist MatterPracticeArea,
+h1.hierarchylevel4hist MatterTeam,
+h1.reportingbcmname MatterBCMName,
+e3.workemail MatterBCMEmail,
+case when e.leaver = 0 then 'N' else 'Y' end MatterLeaver,
+h1.dss_current_flag MatterCurrentFlag
 
 
 from
@@ -23126,10 +23124,7 @@ left join
 
 left join
  red_dw.dbo.load_cascade_employee e4
-  on e4.employeeid = h1.employeeid 
-
-
-order by 1</QueryDefinition>
+  on e4.employeeid = h1.employeeid</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
@@ -26364,7 +26359,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
               <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:Locale="en-US">
                 <xs:complexType>
                   <xs:choice minOccurs="0" maxOccurs="unbounded">
-                    <xs:element name="dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimClient" msprop:DbTableName="dimClient" msprop:TableType="View" msprop:Description="dimClient" msprop:QueryDefinition="SELECT distinct&#xD;&#xA;c.client_code as 'ClientCode',&#xD;&#xA;c.client_name as 'ClientName',&#xD;&#xA;c.client_group_name as 'ClientGroupName',&#xD;&#xA;c.client_partner_name as 'ClientPartnerName',&#xD;&#xA;c.client_partner_code as 'ClientPartnerCode',&#xD;&#xA;case&#xD;&#xA;when cc.cx_data = 'SGO' then 'Stephen Gorman'&#xD;&#xA;when cc.cx_data = 'KWA' then 'Keith Walters'&#xD;&#xA;when cc.cx_data = 'LIL' then 'Linda Lewis'&#xD;&#xA;when cc.cx_data = 'JWO' then 'Jemma Woodworth'&#xD;&#xA;when cc.cx_data = 'AEV' then 'Alun Evans'&#xD;&#xA;when cc.cx_data = 'JEV' then 'Joanne Sawkins'&#xD;&#xA;when cc.cx_data = 'KEL1' then 'Kelly Ryan'&#xD;&#xA;when cc.cx_data = 'JZD' then 'Julie Dootson'&#xD;&#xA;when cc.cx_data = 'JTUR' then 'Jocelyn Turner'&#xD;&#xA;when cc.cx_data = 'MWN' then 'Michelle Wilson'&#xD;&#xA;when cc.cx_data = 'NMB' then 'Natalie Cooney'&#xD;&#xA;when cc.cx_data = 'DIA' then 'Diane Robinson'&#xD;&#xA;else cc.cx_data&#xD;&#xA;end as 'CreditControllerName',&#xD;&#xA;RTRIM(ds_descrn) AS 'SectorName',&#xD;&#xA;  CASE WHEN crm.cx_data = 1 THEN 'Patron'&#xD;&#xA;   WHEN crm.cx_data = 2 THEN 'Star' &#xD;&#xA;   WHEN crm.cx_data is null then null &#xD;&#xA;   ELSE 'Rising Star' END AS 'CRMStatus'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA; FROM &#xD;&#xA;[dim_client] c&#xD;&#xA;&#xD;&#xA;inner join fact_matter_summary a&#xD;&#xA; on a.dim_client_key = c.dim_client_key&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join sql2008svr.axxia01.dbo.caclextn  as cc&#xD;&#xA; on c.client_code = cc.cx_accode&#xD;&#xA; and cc.cx_colnum = '5'&#xD;&#xA;&#xD;&#xA;left join sql2008svr.axxia01.dbo.caclextn s&#xD;&#xA; on s.cx_accode = c.client_code&#xD;&#xA; and s.cx_colnum = '102'&#xD;&#xA;left join axxia01.dbo.cadescrp AS cadescrp WITH (NOLOCK) ON s.cx_data = ds_reckey AND ds_rectyp = 'XX'&#xD;&#xA;&#xD;&#xA;left join sql2008svr.axxia01.dbo.caclextn crm&#xD;&#xA; on crm.cx_accode = c.client_code&#xD;&#xA; and crm.cx_colnum = '101'">
+                    <xs:element name="dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimClient" msprop:DbTableName="dimClient" msprop:TableType="View" msprop:Description="dimClient" msprop:QueryDefinition="SELECT distinct&#xD;&#xA;c.client_code ClientCode,&#xD;&#xA;c.client_name ClientName,&#xD;&#xA;c.client_group_name ClientGroupName,&#xD;&#xA;c.client_partner_name ClientPartnerName,&#xD;&#xA;c.client_partner_code ClientPartnerCode,&#xD;&#xA;case&#xD;&#xA;when cc.cx_data = 'SGO' then 'Stephen Gorman'&#xD;&#xA;when cc.cx_data = 'KWA' then 'Keith Walters'&#xD;&#xA;when cc.cx_data = 'LIL' then 'Linda Lewis'&#xD;&#xA;when cc.cx_data = 'JWO' then 'Jemma Woodworth'&#xD;&#xA;when cc.cx_data = 'AEV' then 'Alun Evans'&#xD;&#xA;when cc.cx_data = 'JEV' then 'Joanne Sawkins'&#xD;&#xA;when cc.cx_data = 'KEL1' then 'Kelly Ryan'&#xD;&#xA;when cc.cx_data = 'JZD' then 'Julie Dootson'&#xD;&#xA;when cc.cx_data = 'JTUR' then 'Jocelyn Turner'&#xD;&#xA;when cc.cx_data = 'MWN' then 'Michelle Wilson'&#xD;&#xA;when cc.cx_data = 'NMB' then 'Natalie Cooney'&#xD;&#xA;when cc.cx_data = 'DIA' then 'Diane Robinson'&#xD;&#xA;else cc.cx_data&#xD;&#xA;end CreditControllerName,&#xD;&#xA;RTRIM(ds_descrn) SectorName,&#xD;&#xA;  CASE WHEN crm.cx_data = 1 THEN 'Patron'&#xD;&#xA;   WHEN crm.cx_data = 2 THEN 'Star' &#xD;&#xA;   WHEN crm.cx_data is null then null &#xD;&#xA;   ELSE 'Rising Star' END CRMStatus&#xD;&#xA;&#xD;&#xA;&#xD;&#xA; FROM &#xD;&#xA;[dim_client] c&#xD;&#xA;&#xD;&#xA;inner join fact_matter_summary a&#xD;&#xA; on a.dim_client_key = c.dim_client_key&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join sql2008svr.axxia01.dbo.caclextn  as cc&#xD;&#xA; on c.client_code = cc.cx_accode&#xD;&#xA; and cc.cx_colnum = '5'&#xD;&#xA;&#xD;&#xA;left join sql2008svr.axxia01.dbo.caclextn s&#xD;&#xA; on s.cx_accode = c.client_code&#xD;&#xA; and s.cx_colnum = '102'&#xD;&#xA;left join axxia01.dbo.cadescrp AS cadescrp WITH (NOLOCK) ON s.cx_data = ds_reckey AND ds_rectyp = 'XX'&#xD;&#xA;&#xD;&#xA;left join sql2008svr.axxia01.dbo.caclextn crm&#xD;&#xA; on crm.cx_accode = c.client_code&#xD;&#xA; and crm.cx_colnum = '101'">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="ClientCode" msprop:DbColumnName="ClientCode" msprop:FriendlyName="ClientCode" minOccurs="0">
@@ -26582,7 +26577,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="TimeTransactions" msprop:DbTableName="factMainTable" msprop:TableType="View" msprop:Description="factMainTable" msprop:QueryDefinition="select &#xD;&#xA;a.dim_all_time_activity_key as 'TransactionID',&#xD;&#xA;c.client_code as 'ClientCode',&#xD;&#xA;f.dim_matter_header_key as 'MatterID',&#xD;&#xA;f.matter_number,&#xD;&#xA;f.client_code,&#xD;&#xA;f.source_system_id,&#xD;&#xA;a.dim_bill_key as 'BillID',&#xD;&#xA;a.time_type as 'ChargeableTimeCode',&#xD;&#xA;a.dim_fed_hierarchy_history_key as 'FEDCodeID',&#xD;&#xA;a.dim_transaction_date_key as 'TransactionDate',&#xD;&#xA;a.minutes_recorded as 'MinutesRecorded',&#xD;&#xA;a.hourly_charge_rate as 'ChargeRate',&#xD;&#xA;a.time_charge_value as 'timeChargeValue',&#xD;&#xA;&#xD;&#xA;case &#xD;&#xA;when t.time_activity_code != 'W/O'&#xD;&#xA;and t.bill_number = 'xxxxxxxx'&#xD;&#xA; then 'Written Off'&#xD;&#xA;when t.time_activity_code = 'W/O'&#xD;&#xA; then 'Written Off Transaction'&#xD;&#xA;when t.bill_number = ''&#xD;&#xA; and left(c.client_code, 2) != 'SB'&#xD;&#xA; then 'Unbilled'&#xD;&#xA;when t.bill_number = ''&#xD;&#xA; and left(c.client_code, 2) = 'SB'&#xD;&#xA; then 'Springboard'&#xD;&#xA;when a.dim_bill_key &gt; 0&#xD;&#xA;and t.time_activity_code not in ('Bill','Abmt')&#xD;&#xA; then 'Billed'&#xD;&#xA;when a.time_type = 'NC' &#xD;&#xA; then 'Non Chargeable Time'&#xD;&#xA;else 'Transferred'&#xD;&#xA;end as 'TransactionType',&#xD;&#xA;n.td_textln as 'Narrative',&#xD;&#xA;t.time_activity_code as 'TimeActivityCode',&#xD;&#xA;t.rate_code as 'RateCode' ,&#xD;&#xA;t.matter_stage_descrn as 'StageDesc',&#xD;&#xA;datediff(d, d3.calendar_date, getdate()) as 'TransactionAgeDays',&#xD;&#xA;t.reporting_exclusions as 'ReportingExclusions'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;[SVR-LIV-DWH-01].red_dw.dbo.fact_all_time_activity a&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_client c&#xD;&#xA; on c.dim_client_key = a.dim_client_key&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; [SVR-LIV-DWH-01].red_dw.dbo.dim_all_time_activity t&#xD;&#xA;  on a.dim_all_time_activity_key = t.dim_all_time_activity_key&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; [SVR-LIV-DWH-01].red_dw.dbo.dim_time_narratives n&#xD;&#xA;   on n.dim_time_narratives_key = a.dim_time_narratives_key&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_matter_header d2&#xD;&#xA; on d2.dim_matter_header_key = a.dim_matter_header_key&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.fact_matter_summary f&#xD;&#xA; on  d2.client_code = f.client_code &#xD;&#xA; and d2.matter_number = f.matter_number&#xD;&#xA; and d2.source_system_id = f.source_system_id&#xD;&#xA; and f.fin_month = (&#xD;&#xA;select &#xD;&#xA;fin_month&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_date&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;calendar_date = cast(getdate() - 1 as date)) &#xD;&#xA;&#xD;&#xA; left join red_dw.dbo.dim_date d3&#xD;&#xA; on d3.dim_date_key = a.dim_transaction_date_key&#xD;&#xA;&#xD;&#xA; left join red_dw.dbo.dim_date d4&#xD;&#xA; on d4.dim_date_key = a.dim_run_date_key">
+                    <xs:element name="factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="TimeTransactions" msprop:DbTableName="factMainTable" msprop:TableType="View" msprop:Description="factMainTable" msprop:QueryDefinition="select &#xD;&#xA;a.dim_all_time_activity_key TransactionID,&#xD;&#xA;c.client_code ClientCode,&#xD;&#xA;f.dim_matter_header_key MatterID,&#xD;&#xA;f.matter_number,&#xD;&#xA;f.client_code,&#xD;&#xA;f.source_system_id,&#xD;&#xA;a.dim_bill_key BillID,&#xD;&#xA;a.time_type ChargeableTimeCode,&#xD;&#xA;a.dim_fed_hierarchy_history_key FEDCodeID,&#xD;&#xA;a.dim_transaction_date_key TransactionDate,&#xD;&#xA;a.minutes_recorded MinutesRecorded,&#xD;&#xA;a.hourly_charge_rate ChargeRate,&#xD;&#xA;a.time_charge_value timeChargeValue,&#xD;&#xA;&#xD;&#xA;case &#xD;&#xA;when t.time_activity_code != 'W/O'&#xD;&#xA;and t.bill_number = 'xxxxxxxx'&#xD;&#xA; then 'Written Off'&#xD;&#xA;when t.time_activity_code = 'W/O'&#xD;&#xA; then 'Written Off Transaction'&#xD;&#xA;when t.bill_number = ''&#xD;&#xA; and left(c.client_code, 2) != 'SB'&#xD;&#xA; then 'Unbilled'&#xD;&#xA;when t.bill_number = ''&#xD;&#xA; and left(c.client_code, 2) = 'SB'&#xD;&#xA; then 'Springboard'&#xD;&#xA;when a.dim_bill_key &gt; 0&#xD;&#xA;and t.time_activity_code not in ('Bill','Abmt')&#xD;&#xA; then 'Billed'&#xD;&#xA;when a.time_type = 'NC' &#xD;&#xA; then 'Non Chargeable Time'&#xD;&#xA;else 'Transferred'&#xD;&#xA;end TransactionType,&#xD;&#xA;n.td_textln Narrative,&#xD;&#xA;t.time_activity_code TimeActivityCode,&#xD;&#xA;t.rate_code RateCode,&#xD;&#xA;t.matter_stage_descrn StageDesc,&#xD;&#xA;datediff(d, d3.calendar_date, getdate()) TransactionAgeDays,&#xD;&#xA;t.reporting_exclusions ReportingExclusion&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;[SVR-LIV-DWH-01].red_dw.dbo.fact_all_time_activity a&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_client c&#xD;&#xA; on c.dim_client_key = a.dim_client_key&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; [SVR-LIV-DWH-01].red_dw.dbo.dim_all_time_activity t&#xD;&#xA;  on a.dim_all_time_activity_key = t.dim_all_time_activity_key&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; [SVR-LIV-DWH-01].red_dw.dbo.dim_time_narratives n&#xD;&#xA;   on n.dim_time_narratives_key = a.dim_time_narratives_key&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_matter_header d2&#xD;&#xA; on d2.dim_matter_header_key = a.dim_matter_header_key&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.fact_matter_summary f&#xD;&#xA; on  d2.client_code = f.client_code &#xD;&#xA; and d2.matter_number = f.matter_number&#xD;&#xA; and d2.source_system_id = f.source_system_id&#xD;&#xA; and f.fin_month = (&#xD;&#xA;select &#xD;&#xA;fin_month&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_date&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;calendar_date = cast(getdate() - 1 as date)) &#xD;&#xA;&#xD;&#xA; left join red_dw.dbo.dim_date d3&#xD;&#xA; on d3.dim_date_key = a.dim_transaction_date_key&#xD;&#xA;&#xD;&#xA; left join red_dw.dbo.dim_date d4&#xD;&#xA; on d4.dim_date_key = a.dim_run_date_key">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="BillID" msprop:DbColumnName="BillID" msprop:FriendlyName="BillID" type="xs:int" minOccurs="0" />
@@ -26652,7 +26647,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                             </xs:simpleType>
                           </xs:element>
                           <xs:element name="source_system_id" msprop:DbColumnName="source_system_id" msprop:FriendlyName="source_system_id" type="xs:int" minOccurs="0" />
-                          <xs:element name="ReportingExclusions" msprop:DbColumnName="ReportingExclusions" msprop:FriendlyName="ReportingExclusions" type="xs:int" minOccurs="0" />
+                          <xs:element name="ReportingExclusion" msprop:DbColumnName="ReportingExclusion" msprop:FriendlyName="ReportingExclusion" type="xs:int" minOccurs="0" />
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
@@ -26696,7 +26691,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimDate_2680225e-8095-4471-8c2a-a5053eb922fc" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimDateTransactionDate" msprop:DbTableName="dimDate" msprop:TableType="View" msprop:Description="dimDate" msprop:QueryDefinition="select&#xD;&#xA;dim_date_key as 'TransactionDateKey',&#xD;&#xA;calendar_date as 'TransactionDateDate',&#xD;&#xA;cal_day_in_month as 'TransactionDateDayInMonth',&#xD;&#xA;cal_day_in_year as 'TransactionDateDayInYear',&#xD;&#xA;cal_day_in_week_no as 'TransactionDateWeekdayNo',&#xD;&#xA;cal_day_in_week as 'TransactionDateWeekdayName',&#xD;&#xA;cal_week_in_year as 'TransactionDateCalendarWeek',&#xD;&#xA;cal_month_no as 'TransactionDateCalendarMonthNo',&#xD;&#xA;cal_month_name as 'TransactionDateCalendarMonthName',&#xD;&#xA;cal_quarter_no as 'TransactionDateCalendarQuarterNo',&#xD;&#xA;cal_year as 'TransactionDateCalendarYear',&#xD;&#xA;case when month(calendar_date) &gt; 4 then dateadd(month, -4, dateadd(year, 1, calendar_date)) else dateadd(month, 8, dateadd(year, 0, calendar_date)) end as 'TransactionDateFinancialDate',&#xD;&#xA;fin_week_in_year as 'TransactionDateFinancialWeek',&#xD;&#xA;fin_month_no as 'TransactionDateFinancialMonthNo',&#xD;&#xA;fin_month_name as 'TransactionDateFinancialMonthName',&#xD;&#xA;fin_quarter_no as 'TransactionDateFinancialQuarterNo',&#xD;&#xA;fin_year as 'TransactionDateFinancialYear',&#xD;&#xA;week_end_flag as 'TransactionDateWeekend',&#xD;&#xA;holiday_flag as 'TransactionDateHoliday',&#xD;&#xA;cal_month_name + '-' + right(cal_year, 2) as 'TransactionDateCalPeriod',&#xD;&#xA;fin_month_name + '-' + right(fin_year, 2) as 'TransactionDateFinancialPeriod'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;dim_date">
+                    <xs:element name="dimDate_2680225e-8095-4471-8c2a-a5053eb922fc" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimDateTransactionDate" msprop:DbTableName="dimDate" msprop:TableType="View" msprop:Description="dimDate" msprop:QueryDefinition="select&#xD;&#xA;dim_date_key TransactionDateKey,&#xD;&#xA;calendar_date TransactionDateDate,&#xD;&#xA;cal_day_in_month TransactionDateDayInMonth,&#xD;&#xA;cal_day_in_year TransactionDateDayInYear,&#xD;&#xA;cal_day_in_week_no TransactionDateWeekdayNo,&#xD;&#xA;cal_day_in_week TransactionDateWeekdayName,&#xD;&#xA;cal_week_in_year TransactionDateCalendarWeek,&#xD;&#xA;cal_month_no TransactionDateCalendarMonthNo,&#xD;&#xA;cal_month_name TransactionDateCalendarMonthName,&#xD;&#xA;cal_quarter_no TransactionDateCalendarQuarterNo,&#xD;&#xA;cal_year TransactionDateCalendarYear,&#xD;&#xA;case when month(calendar_date) &gt; 4 then dateadd(month, -4, dateadd(year, 1, calendar_date)) else dateadd(month, 8, dateadd(year, 0, calendar_date)) end TransactionDateFinancialDate,&#xD;&#xA;fin_week_in_year TransactionDateFinancialWeek,&#xD;&#xA;fin_month_no TransactionDateFinancialMonthNo,&#xD;&#xA;fin_month_name TransactionDateFinancialMonthName,&#xD;&#xA;fin_quarter_no TransactionDateFinancialQuarterNo,&#xD;&#xA;fin_year TransactionDateFinancialYear,&#xD;&#xA;week_end_flag TransactionDateWeekend,&#xD;&#xA;holiday_flag TransactionDateHoliday,&#xD;&#xA;cal_month_name + '-' + right(cal_year, 2) TransactionDateCalPeriod,&#xD;&#xA;fin_month_name + '-' + right(fin_year, 2) TransactionDateFinancialPeriod&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;dim_date">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="TransactionDateKey" msprop:DbColumnName="TransactionDateKey" msprop:FriendlyName="TransactionDateKey" type="xs:int" minOccurs="0" />
@@ -26969,7 +26964,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimFEDHierarchy_e077edfd-a3df-4415-9164-2f7aab15a75f" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimTimeTransactionsFEDHierarchy" msprop:DbTableName="dimFEDHierarchy" msprop:TableType="View" msprop:Description="dimFEDHierarchy" msprop:QueryDefinition="select distinct&#xD;&#xA;h1.dim_fed_hierarchy_history_key as 'TimeTransactionsFEDCodeID',&#xD;&#xA;h1.fed_code as 'TimeTransactionsFEDCode',&#xD;&#xA;h1.name as 'TimeTransactionsFEDName',&#xD;&#xA;h1.display_name as 'TimeTransactionsDisplayName',&#xD;&#xA;e2.workemail as 'TimeTransactionsEmailAddress',&#xD;&#xA;case when j.levelidud in ('Equity Partner','Fixed Share Partner','Silver Equity Partner') then 'Partner' else j.levelidud end as 'TimeTransactionsGrade',&#xD;&#xA;h1.hierarchylevel2hist as 'TimeTransactionsBusinessLine',&#xD;&#xA;h1.hierarchylevel3hist as 'TimeTransactionsPracticeArea',&#xD;&#xA;h1.hierarchylevel4hist as 'TimeTransactionsTeam',&#xD;&#xA;h1.reportingbcmname as 'TimeTransactionsBCMName',&#xD;&#xA;e.workemail as 'TimeTransactionsBCMEmail',&#xD;&#xA;h1.activeud as 'TimeTransactionsActiveUD'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_fed_hierarchy_history h1 &#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; red_dw.dbo.load_cascade_employee e&#xD;&#xA;  on e.employeeid = h1.reportingbcmidud&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.ds_sh_employee_jobs j&#xD;&#xA; on j.employeeid = h1.employeeid&#xD;&#xA; and j.dss_current_flag = 'Y'&#xD;&#xA; and j.sys_activejob = 1&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; red_dw.dbo.load_cascade_employee e2&#xD;&#xA;  on e2.employeeid = h1.employeeid &#xD;&#xA;&#xD;&#xA;order by 1">
+                    <xs:element name="dimFEDHierarchy_e077edfd-a3df-4415-9164-2f7aab15a75f" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimTimeTransactionsFEDHierarchy" msprop:DbTableName="dimFEDHierarchy" msprop:TableType="View" msprop:Description="dimFEDHierarchy" msprop:QueryDefinition="select distinct&#xD;&#xA;h1.dim_fed_hierarchy_history_key TimeTransactionsFEDCodeID,&#xD;&#xA;h1.fed_code TimeTransactionsFEDCode,&#xD;&#xA;h1.name TimeTransactionsFEDName,&#xD;&#xA;h1.display_name TimeTransactionsDisplayName,&#xD;&#xA;e2.workemail TimeTransactionsEmailAddress,&#xD;&#xA;case when j.levelidud in ('Equity Partner','Fixed Share Partner','Silver Equity Partner') then 'Partner' else j.levelidud end TimeTransactionsGrade,&#xD;&#xA;h1.hierarchylevel2hist TimeTransactionsBusinessLine,&#xD;&#xA;h1.hierarchylevel3hist TimeTransactionsPracticeArea,&#xD;&#xA;h1.hierarchylevel4hist TimeTransactionsTeam,&#xD;&#xA;h1.reportingbcmname TimeTransactionsBCMName,&#xD;&#xA;e.workemail TimeTransactionsBCMEmail,&#xD;&#xA;h1.activeud TimeTransactionsActiveUD&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_fed_hierarchy_history h1 &#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; red_dw.dbo.load_cascade_employee e&#xD;&#xA;  on e.employeeid = h1.reportingbcmidud&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.ds_sh_employee_jobs j&#xD;&#xA; on j.employeeid = h1.employeeid&#xD;&#xA; and j.dss_current_flag = 'Y'&#xD;&#xA; and j.sys_activejob = 1&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; red_dw.dbo.load_cascade_employee e2&#xD;&#xA;  on e2.employeeid = h1.employeeid">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="TimeTransactionsFEDCodeID" msprop:DbColumnName="TimeTransactionsFEDCodeID" msprop:FriendlyName="TimeTransactionsFEDCodeID" type="xs:int" minOccurs="0" />
@@ -27168,7 +27163,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimMatterFEDHierarchy" msprop:DbTableName="dimMatterFEDHierarchy" msprop:TableType="View" msprop:Description="dimMatterFEDHierarchy" msprop:QueryDefinition="select distinct&#xD;&#xA;h1.dim_fed_hierarchy_history_key as 'MatterFEDCodeID',&#xD;&#xA;h1.fed_code as 'MatterFEDCode',&#xD;&#xA;h1.name as 'MatterFEDName',&#xD;&#xA;e.forename as 'MatterFEDForename',&#xD;&#xA;e.surname as 'MatterFEDSurname',&#xD;&#xA;e4.workemail as 'MatterEmailAddress',&#xD;&#xA;j.locationidud as 'MatterFEDLocation',&#xD;&#xA;case when j.levelidud in ('Equity Partner','Fixed Share Partner','Silver Equity Partner') then 'Partner' else j.levelidud end as 'MatterGrade',&#xD;&#xA;h1.hierarchylevel2hist as 'MatterBusinessLine',&#xD;&#xA;h1.hierarchylevel3hist as 'MatterPracticeArea',&#xD;&#xA;h1.hierarchylevel4hist as 'MatterTeam',&#xD;&#xA;h1.reportingbcmname as 'MatterBCMName',&#xD;&#xA;e3.workemail as 'MatterBCMEmail',&#xD;&#xA;case when e.leaver = 0 then 'N' else 'Y' end as 'MatterLeaver',&#xD;&#xA;h1.dss_current_flag as 'MatterCurrentFlag'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_fed_hierarchy_history h1 &#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.ds_sh_employee e&#xD;&#xA; on cast(e.employeeid as varchar(36)) = h1.employeeid&#xD;&#xA; and e.dss_current_flag = 'Y'&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.ds_sh_employee_jobs j&#xD;&#xA; on j.employeeid = h1.employeeid&#xD;&#xA; and j.dss_current_flag = 'Y'&#xD;&#xA; and j.sys_activejob = 1&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; red_dw.dbo.load_cascade_employee e3&#xD;&#xA;  on e3.employeeid = h1.reportingbcmidud&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; red_dw.dbo.load_cascade_employee e4&#xD;&#xA;  on e4.employeeid = h1.employeeid &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;order by 1">
+                    <xs:element name="dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimMatterFEDHierarchy" msprop:DbTableName="dimMatterFEDHierarchy" msprop:TableType="View" msprop:Description="dimMatterFEDHierarchy" msprop:QueryDefinition="select distinct&#xD;&#xA;h1.dim_fed_hierarchy_history_key MatterFEDCodeID,&#xD;&#xA;h1.fed_code MatterFEDCode,&#xD;&#xA;h1.name MatterFEDName,&#xD;&#xA;e.forename MatterFEDForename,&#xD;&#xA;e.surname MatterFEDSurname,&#xD;&#xA;e4.workemail MatterEmailAddress,&#xD;&#xA;j.locationidud MatterFEDLocation,&#xD;&#xA;case when j.levelidud in ('Equity Partner','Fixed Share Partner','Silver Equity Partner') then 'Partner' else j.levelidud end MatterGrade,&#xD;&#xA;h1.hierarchylevel2hist MatterBusinessLine,&#xD;&#xA;h1.hierarchylevel3hist MatterPracticeArea,&#xD;&#xA;h1.hierarchylevel4hist MatterTeam,&#xD;&#xA;h1.reportingbcmname MatterBCMName,&#xD;&#xA;e3.workemail MatterBCMEmail,&#xD;&#xA;case when e.leaver = 0 then 'N' else 'Y' end MatterLeaver,&#xD;&#xA;h1.dss_current_flag MatterCurrentFlag&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_fed_hierarchy_history h1 &#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.ds_sh_employee e&#xD;&#xA; on cast(e.employeeid as varchar(36)) = h1.employeeid&#xD;&#xA; and e.dss_current_flag = 'Y'&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.ds_sh_employee_jobs j&#xD;&#xA; on j.employeeid = h1.employeeid&#xD;&#xA; and j.dss_current_flag = 'Y'&#xD;&#xA; and j.sys_activejob = 1&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; red_dw.dbo.load_cascade_employee e3&#xD;&#xA;  on e3.employeeid = h1.reportingbcmidud&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; red_dw.dbo.load_cascade_employee e4&#xD;&#xA;  on e4.employeeid = h1.employeeid">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="MatterFEDCodeID" msprop:DbColumnName="MatterFEDCodeID" msprop:FriendlyName="MatterFEDCodeID" type="xs:int" minOccurs="0" />
@@ -27543,6 +27538,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
           </Schema>
         </DataSourceView>
       </DataSourceViews>
+      <ddl300_300:DirectQueryMode>InMemoryWithDirectQuery</ddl300_300:DirectQueryMode>
     </Database>
   </ObjectDefinition>
 </Alter>
