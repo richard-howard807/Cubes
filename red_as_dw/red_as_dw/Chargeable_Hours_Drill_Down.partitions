@@ -4,31 +4,101 @@
     <MeasureGroup>
       <ID>Fact Chargeable Time Activity</ID>
       <Partitions>
-        <Partition dwd:design-time-name="1ff21986-53a5-4f6d-b66c-b1cda4ec9352">
-          <ID>Fact Chargeable Time Activity</ID>
-          <Name>Fact Chargeable Time Activity</Name>
+        <Partition dwd:design-time-name="42d6155a-d6bc-437d-8f27-3aa33108142c">
+          <ID>Fact Chargeable Time Activity Pre 20101231</ID>
+          <Name>Fact Chargeable Time Activity Pre 20101231</Name>
           <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
           <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
           <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
           <State>Unprocessed</State>
-          <Source xsi:type="DsvTableBinding" dwd:design-time-name="4c3e658f-ab44-4515-9c3c-67bc603e71da">
-            <DataSourceViewID>Chargeable_Hours</DataSourceViewID>
-            <TableID>dbo_fact_chargeable_time_activity</TableID>
+          <Source xsi:type="QueryBinding" dwd:design-time-name="bb9369e5-b35d-4d50-8828-debb44b94dce">
+            <DataSourceID>Red_dw</DataSourceID>
+            <QueryDefinition>SELECT [dbo].[fact_chargeable_time_activity].[dim_bill_key],[dbo].[fact_chargeable_time_activity].[dim_transaction_date_key],[dbo].[fact_chargeable_time_activity].[dim_fed_hierarchy_history_key],[dbo].[fact_chargeable_time_activity].[dim_time_activity_key],[dbo].[fact_chargeable_time_activity].[source_system_id],[dbo].[fact_chargeable_time_activity].[transaction_sequence_number],[dbo].[fact_chargeable_time_activity].[time_activity_code],[dbo].[fact_chargeable_time_activity].[minutes_recorded],[dbo].[fact_chargeable_time_activity].[hourly_charge_rate],[dbo].[fact_chargeable_time_activity].[time_charge_value],[dbo].[fact_chargeable_time_activity].[actual_time_recorded_value],[dbo].[fact_chargeable_time_activity].[dss_update_time],[dbo].[fact_chargeable_time_activity].[zero_rate_minutes_recorded],[dbo].[fact_chargeable_time_activity].[dim_matter_header_curr_key],[dbo].[fact_chargeable_time_activity].[dim_gl_date_key],[dbo].[fact_chargeable_time_activity].[dim_client_key]
+		FROM [dbo].[fact_chargeable_time_activity]
+		WHERE [dim_transaction_date_key]&lt;= 20101231</QueryDefinition>
           </Source>
           <StorageMode>Molap</StorageMode>
           <CurrentStorageMode>Molap</CurrentStorageMode>
           <ProcessingMode>Regular</ProcessingMode>
-          <EstimatedRows>33396794</EstimatedRows>
+          <ProactiveCaching dwd:design-time-name="22a454d4-1f8d-4e23-a39b-c8a51ff68fb1">
+            <SilenceInterval>-PT1S</SilenceInterval>
+            <Latency>-PT1S</Latency>
+            <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+            <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+            <AggregationStorage>MolapOnly</AggregationStorage>
+            <Source xsi:type="ProactiveCachingInheritedBinding" dwd:design-time-name="4166a5b7-6552-4ef0-b519-84baeab111ef">
+              <NotificationTechnique>Server</NotificationTechnique>
+            </Source>
+          </ProactiveCaching>
+          <EstimatedRows>22197097</EstimatedRows>
+          <AggregationDesignID>AggregationDesign 1</AggregationDesignID>
+        </Partition>
+        <Partition dwd:design-time-name="d540ea7a-742c-4372-8142-e26ed3a1ebdb">
+          <ID>Fact Chargeable Time Activity 2011-2013</ID>
+          <Name>Fact Chargeable Time Activity 2011-2013</Name>
+          <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+          <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+          <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+          <State>Unprocessed</State>
+          <Source xsi:type="QueryBinding" dwd:design-time-name="68c5c24f-aee3-4025-bc9d-fcfd5b4450bf">
+            <DataSourceID>Red_dw</DataSourceID>
+            <QueryDefinition>SELECT [dbo].[fact_chargeable_time_activity].[dim_bill_key],[dbo].[fact_chargeable_time_activity].[dim_transaction_date_key],[dbo].[fact_chargeable_time_activity].[dim_fed_hierarchy_history_key],[dbo].[fact_chargeable_time_activity].[dim_time_activity_key],[dbo].[fact_chargeable_time_activity].[source_system_id],[dbo].[fact_chargeable_time_activity].[transaction_sequence_number],[dbo].[fact_chargeable_time_activity].[time_activity_code],[dbo].[fact_chargeable_time_activity].[minutes_recorded],[dbo].[fact_chargeable_time_activity].[hourly_charge_rate],[dbo].[fact_chargeable_time_activity].[time_charge_value],[dbo].[fact_chargeable_time_activity].[actual_time_recorded_value],[dbo].[fact_chargeable_time_activity].[dss_update_time],[dbo].[fact_chargeable_time_activity].[zero_rate_minutes_recorded],[dbo].[fact_chargeable_time_activity].[dim_matter_header_curr_key],[dbo].[fact_chargeable_time_activity].[dim_gl_date_key],[dbo].[fact_chargeable_time_activity].[dim_client_key]
+		FROM [dbo].[fact_chargeable_time_activity]
+		WHERE [dim_transaction_date_key] &gt;= 20110101 and [dim_transaction_date_key] &lt;= 20131231</QueryDefinition>
+          </Source>
+          <StorageMode>Molap</StorageMode>
+          <CurrentStorageMode>Molap</CurrentStorageMode>
+          <ProcessingMode>Regular</ProcessingMode>
+          <ProactiveCaching dwd:design-time-name="0379013c-c599-46c8-9eaa-ca47f382e14b">
+            <SilenceInterval>-PT1S</SilenceInterval>
+            <Latency>-PT1S</Latency>
+            <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+            <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+            <AggregationStorage>MolapOnly</AggregationStorage>
+            <Source xsi:type="ProactiveCachingInheritedBinding" dwd:design-time-name="c930f973-5394-4793-bc6a-bbf93d3caea3">
+              <NotificationTechnique>Server</NotificationTechnique>
+            </Source>
+          </ProactiveCaching>
+          <EstimatedRows>7344667</EstimatedRows>
           <AggregationDesignID>AggregationDesign</AggregationDesignID>
+        </Partition>
+        <Partition dwd:design-time-name="b050debe-700e-4c40-a55e-d7a735118bd7">
+          <ID>Fact Chargeable Time Activity 2014 Onwards</ID>
+          <Name>Fact Chargeable Time Activity 2014 Onwards</Name>
+          <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+          <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+          <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+          <State>Unprocessed</State>
+          <Source xsi:type="QueryBinding" dwd:design-time-name="df6a10da-3b0c-4172-a377-5d21f2ff19dc">
+            <DataSourceID>Red_dw</DataSourceID>
+            <QueryDefinition>SELECT [dbo].[fact_chargeable_time_activity].[dim_bill_key],[dbo].[fact_chargeable_time_activity].[dim_transaction_date_key],[dbo].[fact_chargeable_time_activity].[dim_fed_hierarchy_history_key],[dbo].[fact_chargeable_time_activity].[dim_time_activity_key],[dbo].[fact_chargeable_time_activity].[source_system_id],[dbo].[fact_chargeable_time_activity].[transaction_sequence_number],[dbo].[fact_chargeable_time_activity].[time_activity_code],[dbo].[fact_chargeable_time_activity].[minutes_recorded],[dbo].[fact_chargeable_time_activity].[hourly_charge_rate],[dbo].[fact_chargeable_time_activity].[time_charge_value],[dbo].[fact_chargeable_time_activity].[actual_time_recorded_value],[dbo].[fact_chargeable_time_activity].[dss_update_time],[dbo].[fact_chargeable_time_activity].[zero_rate_minutes_recorded],[dbo].[fact_chargeable_time_activity].[dim_matter_header_curr_key],[dbo].[fact_chargeable_time_activity].[dim_gl_date_key],[dbo].[fact_chargeable_time_activity].[dim_client_key]
+		FROM [dbo].[fact_chargeable_time_activity]
+		WHERE [dim_transaction_date_key] &gt;= 20140101</QueryDefinition>
+          </Source>
+          <StorageMode>Molap</StorageMode>
+          <CurrentStorageMode>Molap</CurrentStorageMode>
+          <ProcessingMode>Regular</ProcessingMode>
+          <ProactiveCaching dwd:design-time-name="db421dc0-3adf-4a28-8cac-c754fe730f28">
+            <SilenceInterval>-PT1S</SilenceInterval>
+            <Latency>-PT1S</Latency>
+            <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+            <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+            <AggregationStorage>MolapOnly</AggregationStorage>
+            <Source xsi:type="ProactiveCachingInheritedBinding" dwd:design-time-name="1b9f1bd9-27bd-4f6b-89f8-6ffa2671ba69">
+              <NotificationTechnique>Server</NotificationTechnique>
+            </Source>
+          </ProactiveCaching>
+          <EstimatedRows>3855030</EstimatedRows>
+          <AggregationDesignID>AggregationDesign 2</AggregationDesignID>
         </Partition>
       </Partitions>
       <AggregationDesigns>
         <AggregationDesign>
-          <ID>AggregationDesign</ID>
-          <Name>AggregationDesign</Name>
-          <CreatedTimestamp>2015-07-18T09:12:44.166667Z</CreatedTimestamp>
-          <LastSchemaUpdate>2015-07-18T09:12:44.166667Z</LastSchemaUpdate>
-          <EstimatedRows>33396794</EstimatedRows>
+          <ID>AggregationDesign 1</ID>
+          <Name>AggregationDesign 1</Name>
+          <CreatedTimestamp>2015-07-18T09:49:28.69Z</CreatedTimestamp>
+          <LastSchemaUpdate>2015-07-18T09:49:28.69Z</LastSchemaUpdate>
+          <EstimatedRows>22197097</EstimatedRows>
           <Dimensions>
             <Dimension>
               <CubeDimensionID>Dim Time Activity</CubeDimensionID>
@@ -485,11 +555,202 @@
                 </Attribute>
               </Attributes>
             </Dimension>
+            <Dimension>
+              <CubeDimensionID>Dim Bill</CubeDimensionID>
+              <Attributes>
+                <Attribute>
+                  <AttributeID>Dim Bill Key</AttributeID>
+                  <EstimatedCount>1233228</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Bill Number</AttributeID>
+                  <EstimatedCount>1233228</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Bill Sequence</AttributeID>
+                  <EstimatedCount>1233215</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Record Type</AttributeID>
+                  <EstimatedCount>3</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Bill Flag</AttributeID>
+                  <EstimatedCount>3</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Bill Address</AttributeID>
+                  <EstimatedCount>272428</EstimatedCount>
+                </Attribute>
+              </Attributes>
+            </Dimension>
+            <Dimension>
+              <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+              <Attributes>
+                <Attribute>
+                  <AttributeID>Dim Fed Hierarchy History Key</AttributeID>
+                  <EstimatedCount>25781</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Jobtitle</AttributeID>
+                  <EstimatedCount>294</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Linemanagername</AttributeID>
+                  <EstimatedCount>1</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Reportingbcmname</AttributeID>
+                  <EstimatedCount>326</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Worksforname</AttributeID>
+                  <EstimatedCount>339</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Display Name</AttributeID>
+                  <EstimatedCount>6734</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Hierarchylevel1hist</AttributeID>
+                  <EstimatedCount>2</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Hierarchylevel2hist</AttributeID>
+                  <EstimatedCount>10</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Hierarchylevel3hist</AttributeID>
+                  <EstimatedCount>90</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Hierarchylevel4hist</AttributeID>
+                  <EstimatedCount>512</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Hierarchylevel5hist</AttributeID>
+                  <EstimatedCount>664</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Hierarchylevel6hist</AttributeID>
+                  <EstimatedCount>664</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Hierarchylevel1</AttributeID>
+                  <EstimatedCount>2</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Hierarchylevel2</AttributeID>
+                  <EstimatedCount>7</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Hierarchylevel3</AttributeID>
+                  <EstimatedCount>49</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Hierarchylevel4</AttributeID>
+                  <EstimatedCount>246</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Hierarchylevel5</AttributeID>
+                  <EstimatedCount>117</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Hierarchylevel6</AttributeID>
+                  <EstimatedCount>1</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Dss Current Flag</AttributeID>
+                  <EstimatedCount>2</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Activeud</AttributeID>
+                  <EstimatedCount>2</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Fed Code</AttributeID>
+                  <EstimatedCount>3685</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Fed Hierarchy Business Key</AttributeID>
+                  <EstimatedCount>4292</EstimatedCount>
+                </Attribute>
+              </Attributes>
+            </Dimension>
           </Dimensions>
           <Aggregations>
             <Aggregation>
               <ID>Aggregation 0</ID>
               <Name>Aggregation 0</Name>
+              <Dimensions>
+                <Dimension>
+                  <CubeDimensionID>Dim Time Activity</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Transaction Date</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Header Current</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Client</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Gl Date</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Bill</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Dim Fed Hierarchy History Key</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+              </Dimensions>
+            </Aggregation>
+            <Aggregation>
+              <ID>Aggregation 1</ID>
+              <Name>Aggregation 1</Name>
+              <Dimensions>
+                <Dimension>
+                  <CubeDimensionID>Dim Time Activity</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Transaction Date</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Transaction Fin Year</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Header Current</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Client</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Gl Date</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Bill</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Hierarchylevel6hist</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+              </Dimensions>
+            </Aggregation>
+            <Aggregation>
+              <ID>Aggregation 2</ID>
+              <Name>Aggregation 2</Name>
               <Dimensions>
                 <Dimension>
                   <CubeDimensionID>Dim Time Activity</CubeDimensionID>
@@ -512,36 +773,26 @@
                   <CubeDimensionID>Dim Gl Date</CubeDimensionID>
                   <Attributes>
                     <Attribute>
-                      <AttributeID>Gl Fin Period</AttributeID>
+                      <AttributeID>Gl Fin Year</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Bill</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Hierarchylevel1hist</AttributeID>
                     </Attribute>
                   </Attributes>
                 </Dimension>
               </Dimensions>
             </Aggregation>
             <Aggregation>
-              <ID>Aggregation 1</ID>
-              <Name>Aggregation 1</Name>
-              <Dimensions>
-                <Dimension>
-                  <CubeDimensionID>Dim Time Activity</CubeDimensionID>
-                </Dimension>
-                <Dimension>
-                  <CubeDimensionID>Dim Transaction Date</CubeDimensionID>
-                </Dimension>
-                <Dimension>
-                  <CubeDimensionID>Dim Matter Header Current</CubeDimensionID>
-                </Dimension>
-                <Dimension>
-                  <CubeDimensionID>Dim Client</CubeDimensionID>
-                </Dimension>
-                <Dimension>
-                  <CubeDimensionID>Dim Gl Date</CubeDimensionID>
-                </Dimension>
-              </Dimensions>
-            </Aggregation>
-            <Aggregation>
-              <ID>Aggregation 2</ID>
-              <Name>Aggregation 2</Name>
+              <ID>Aggregation 3</ID>
+              <Name>Aggregation 3</Name>
               <Dimensions>
                 <Dimension>
                   <CubeDimensionID>Dim Time Activity</CubeDimensionID>
@@ -550,7 +801,7 @@
                   <CubeDimensionID>Dim Transaction Date</CubeDimensionID>
                   <Attributes>
                     <Attribute>
-                      <AttributeID>Dim Transaction Date Key</AttributeID>
+                      <AttributeID>Transaction Fin Year</AttributeID>
                     </Attribute>
                   </Attributes>
                 </Dimension>
@@ -562,12 +813,28 @@
                 </Dimension>
                 <Dimension>
                   <CubeDimensionID>Dim Gl Date</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Gl Fin Period</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Bill</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Hierarchylevel1hist</AttributeID>
+                    </Attribute>
+                  </Attributes>
                 </Dimension>
               </Dimensions>
             </Aggregation>
             <Aggregation>
-              <ID>Aggregation 3</ID>
-              <Name>Aggregation 3</Name>
+              <ID>Aggregation 4</ID>
+              <Name>Aggregation 4</Name>
               <Dimensions>
                 <Dimension>
                   <CubeDimensionID>Dim Time Activity</CubeDimensionID>
@@ -589,31 +856,16 @@
                     </Attribute>
                   </Attributes>
                 </Dimension>
-              </Dimensions>
-            </Aggregation>
-            <Aggregation>
-              <ID>Aggregation 4</ID>
-              <Name>Aggregation 4</Name>
-              <Dimensions>
                 <Dimension>
-                  <CubeDimensionID>Dim Time Activity</CubeDimensionID>
+                  <CubeDimensionID>Dim Bill</CubeDimensionID>
                 </Dimension>
                 <Dimension>
-                  <CubeDimensionID>Dim Transaction Date</CubeDimensionID>
-                </Dimension>
-                <Dimension>
-                  <CubeDimensionID>Dim Matter Header Current</CubeDimensionID>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
                   <Attributes>
                     <Attribute>
-                      <AttributeID>Dim Matter Header Curr Key</AttributeID>
+                      <AttributeID>Hierarchylevel2hist</AttributeID>
                     </Attribute>
                   </Attributes>
-                </Dimension>
-                <Dimension>
-                  <CubeDimensionID>Dim Client</CubeDimensionID>
-                </Dimension>
-                <Dimension>
-                  <CubeDimensionID>Dim Gl Date</CubeDimensionID>
                 </Dimension>
               </Dimensions>
             </Aggregation>
@@ -626,20 +878,31 @@
                 </Dimension>
                 <Dimension>
                   <CubeDimensionID>Dim Transaction Date</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Dim Transaction Date Key</AttributeID>
+                    </Attribute>
+                  </Attributes>
                 </Dimension>
                 <Dimension>
                   <CubeDimensionID>Dim Matter Header Current</CubeDimensionID>
                 </Dimension>
                 <Dimension>
                   <CubeDimensionID>Dim Client</CubeDimensionID>
-                  <Attributes>
-                    <Attribute>
-                      <AttributeID>Dim Client Key</AttributeID>
-                    </Attribute>
-                  </Attributes>
                 </Dimension>
                 <Dimension>
                   <CubeDimensionID>Dim Gl Date</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Bill</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Hierarchylevel2hist</AttributeID>
+                    </Attribute>
+                  </Attributes>
                 </Dimension>
               </Dimensions>
             </Aggregation>
@@ -667,6 +930,17 @@
                     </Attribute>
                   </Attributes>
                 </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Bill</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Hierarchylevel6hist</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
               </Dimensions>
             </Aggregation>
             <Aggregation>
@@ -678,11 +952,6 @@
                 </Dimension>
                 <Dimension>
                   <CubeDimensionID>Dim Transaction Date</CubeDimensionID>
-                  <Attributes>
-                    <Attribute>
-                      <AttributeID>Transaction Fin Period</AttributeID>
-                    </Attribute>
-                  </Attributes>
                 </Dimension>
                 <Dimension>
                   <CubeDimensionID>Dim Matter Header Current</CubeDimensionID>
@@ -692,6 +961,17 @@
                 </Dimension>
                 <Dimension>
                   <CubeDimensionID>Dim Gl Date</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Bill</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Hierarchylevel2hist</AttributeID>
+                    </Attribute>
+                  </Attributes>
                 </Dimension>
               </Dimensions>
             </Aggregation>
@@ -706,7 +986,7 @@
                   <CubeDimensionID>Dim Transaction Date</CubeDimensionID>
                   <Attributes>
                     <Attribute>
-                      <AttributeID>Dim Transaction Date Key</AttributeID>
+                      <AttributeID>Transaction Fin Year</AttributeID>
                     </Attribute>
                   </Attributes>
                 </Dimension>
@@ -718,9 +998,15 @@
                 </Dimension>
                 <Dimension>
                   <CubeDimensionID>Dim Gl Date</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Bill</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
                   <Attributes>
                     <Attribute>
-                      <AttributeID>Gl Fin Year</AttributeID>
+                      <AttributeID>Hierarchylevel2hist</AttributeID>
                     </Attribute>
                   </Attributes>
                 </Dimension>
@@ -751,7 +1037,18 @@
                   <CubeDimensionID>Dim Gl Date</CubeDimensionID>
                   <Attributes>
                     <Attribute>
-                      <AttributeID>Dim Gl Date Key</AttributeID>
+                      <AttributeID>Gl Fin Year</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Bill</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Hierarchylevel3hist</AttributeID>
                     </Attribute>
                   </Attributes>
                 </Dimension>
@@ -760,6 +1057,43 @@
             <Aggregation>
               <ID>Aggregation a</ID>
               <Name>Aggregation a</Name>
+              <Dimensions>
+                <Dimension>
+                  <CubeDimensionID>Dim Time Activity</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Transaction Date</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Header Current</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Client</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Gl Date</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Gl Fin Period</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Bill</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Hierarchylevel1hist</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+              </Dimensions>
+            </Aggregation>
+            <Aggregation>
+              <ID>Aggregation b</ID>
+              <Name>Aggregation b</Name>
               <Dimensions>
                 <Dimension>
                   <CubeDimensionID>Dim Time Activity</CubeDimensionID>
@@ -780,17 +1114,865 @@
                 </Dimension>
                 <Dimension>
                   <CubeDimensionID>Dim Gl Date</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Bill</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+                </Dimension>
+              </Dimensions>
+            </Aggregation>
+            <Aggregation>
+              <ID>Aggregation c</ID>
+              <Name>Aggregation c</Name>
+              <Dimensions>
+                <Dimension>
+                  <CubeDimensionID>Dim Time Activity</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Transaction Date</CubeDimensionID>
                   <Attributes>
                     <Attribute>
-                      <AttributeID>Gl Fin Year</AttributeID>
+                      <AttributeID>Transaction Fin Period</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Header Current</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Client</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Gl Date</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Bill</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Hierarchylevel4hist</AttributeID>
                     </Attribute>
                   </Attributes>
                 </Dimension>
               </Dimensions>
             </Aggregation>
             <Aggregation>
-              <ID>Aggregation b</ID>
-              <Name>Aggregation b</Name>
+              <ID>Aggregation d</ID>
+              <Name>Aggregation d</Name>
+              <Dimensions>
+                <Dimension>
+                  <CubeDimensionID>Dim Time Activity</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Transaction Date</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Header Current</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Client</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Gl Date</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Gl Fin Year</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Bill</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Hierarchylevel3hist</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+              </Dimensions>
+            </Aggregation>
+          </Aggregations>
+        </AggregationDesign>
+        <AggregationDesign>
+          <ID>AggregationDesign</ID>
+          <Name>AggregationDesign</Name>
+          <CreatedTimestamp>2015-07-18T09:20:26.416667Z</CreatedTimestamp>
+          <LastSchemaUpdate>2015-07-18T09:50:36.86Z</LastSchemaUpdate>
+          <EstimatedRows>7344667</EstimatedRows>
+          <Dimensions>
+            <Dimension>
+              <CubeDimensionID>Dim Time Activity</CubeDimensionID>
+              <Attributes>
+                <Attribute>
+                  <AttributeID>Dim Time Activity Key</AttributeID>
+                  <EstimatedCount>36349930</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Time Activity Code</AttributeID>
+                  <EstimatedCount>193</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Time Activity Descrn</AttributeID>
+                  <EstimatedCount>199</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Batch Number</AttributeID>
+                  <EstimatedCount>212193</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Additional Description Indicator</AttributeID>
+                  <EstimatedCount>3</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Rate Code</AttributeID>
+                  <EstimatedCount>176</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Hourly Charge Rate</AttributeID>
+                  <EstimatedCount>1899</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Bill Number</AttributeID>
+                  <EstimatedCount>857940</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Number Of Items</AttributeID>
+                  <EstimatedCount>60</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Matter Identifier</AttributeID>
+                  <EstimatedCount>435817</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Financial Year Period Of Posting Date</AttributeID>
+                  <EstimatedCount>292</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Billed Or Written Off</AttributeID>
+                  <EstimatedCount>93</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Type Of Activity</AttributeID>
+                  <EstimatedCount>4</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Time Type</AttributeID>
+                  <EstimatedCount>5</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Department</AttributeID>
+                  <EstimatedCount>39</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Matter Stage Descrn</AttributeID>
+                  <EstimatedCount>52</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Matter Stage</AttributeID>
+                  <EstimatedCount>52</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>All Chargeable Time</AttributeID>
+                  <EstimatedCount>2</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transferred Time Files</AttributeID>
+                  <EstimatedCount>2</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Written Off Transaction</AttributeID>
+                  <EstimatedCount>2</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Written Off Record</AttributeID>
+                  <EstimatedCount>2</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Billed Record</AttributeID>
+                  <EstimatedCount>2</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Unbilled Record</AttributeID>
+                  <EstimatedCount>2</EstimatedCount>
+                </Attribute>
+              </Attributes>
+            </Dimension>
+            <Dimension>
+              <CubeDimensionID>Dim Transaction Date</CubeDimensionID>
+              <Attributes>
+                <Attribute>
+                  <AttributeID>Dim Transaction Date Key</AttributeID>
+                  <EstimatedCount>21635</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transaction Calendar Date</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transaction Cal Day In Week</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transaction Cal Day In Week No</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transaction Cal Day In Month</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transaction Cal Day In Year</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transaction Cal Week In Year</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transaction Cal Month No</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transaction Cal Month</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transaction Cal Month Name</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transaction Cal Quarter No</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transaction Cal Quarter</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transaction Cal Year</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transaction Financial Date</AttributeID>
+                  <EstimatedCount>21634</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transaction Fin Day In Week</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transaction Fin Day In Week No</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transaction Fin Day In Month</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transaction Fin Day In Year</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transaction Fin Week In Month</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transaction Fin Week In Year</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transaction Fin Month No</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transaction Fin Month</AttributeID>
+                  <EstimatedCount>712</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transaction Fin Month Name</AttributeID>
+                  <EstimatedCount>12</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transaction Fin Period</AttributeID>
+                  <EstimatedCount>711</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transaction Fin Quarter No</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transaction Fin Quarter</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transaction Fin Year</AttributeID>
+                  <EstimatedCount>61</EstimatedCount>
+                </Attribute>
+              </Attributes>
+            </Dimension>
+            <Dimension>
+              <CubeDimensionID>Dim Matter Header Current</CubeDimensionID>
+              <Attributes>
+                <Attribute>
+                  <AttributeID>Client Code</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Matter Number</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Effective Start Date</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Effective End Date</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Current Flag</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Deleted Flag Cmatgrp</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Deleted Flag Camatter</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Deleted Flag Cashdr</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Date Opened Matter</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Date Closed Matter</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Work Source Code</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Work Source Name</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Matter Id Camatgrp</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Bank Code Office</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Bank Name Office</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Bank Code Client</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Bank Name Client</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Currency Code</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Currency Name</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Matter Id Camatter</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Case Type Code</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Case Type Name</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Date Opened Case</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Date Closed Case</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Acting For</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Case Group Code</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Case Group Name</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Case Public Desc1</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Case Id</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Dim Matter Header Curr Key</AttributeID>
+                  <EstimatedCount>807043</EstimatedCount>
+                </Attribute>
+              </Attributes>
+            </Dimension>
+            <Dimension>
+              <CubeDimensionID>Dim Client</CubeDimensionID>
+              <Attributes>
+                <Attribute>
+                  <AttributeID>Dim Client Key</AttributeID>
+                  <EstimatedCount>834780</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Client Code</AttributeID>
+                  <EstimatedCount>834780</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Effective Start Date</AttributeID>
+                  <EstimatedCount>1</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Effective End Date</AttributeID>
+                  <EstimatedCount>1</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Current Flag</AttributeID>
+                  <EstimatedCount>2</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Client Name</AttributeID>
+                  <EstimatedCount>834780</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Client Group Name</AttributeID>
+                  <EstimatedCount>167</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Client Partner Name</AttributeID>
+                  <EstimatedCount>482</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Contact Salutation</AttributeID>
+                  <EstimatedCount>834780</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Contact Name</AttributeID>
+                  <EstimatedCount>834780</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Address Type</AttributeID>
+                  <EstimatedCount>8</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Addresse</AttributeID>
+                  <EstimatedCount>834780</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Address Line 1</AttributeID>
+                  <EstimatedCount>834780</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Address Line 2</AttributeID>
+                  <EstimatedCount>834780</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Address Line 3</AttributeID>
+                  <EstimatedCount>834780</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Address Line 4</AttributeID>
+                  <EstimatedCount>834780</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Postcode</AttributeID>
+                  <EstimatedCount>834780</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Phone Number</AttributeID>
+                  <EstimatedCount>834780</EstimatedCount>
+                </Attribute>
+              </Attributes>
+            </Dimension>
+            <Dimension>
+              <CubeDimensionID>Dim Gl Date</CubeDimensionID>
+              <Attributes>
+                <Attribute>
+                  <AttributeID>Dim Gl Date Key</AttributeID>
+                  <EstimatedCount>21636</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Gl Calendar Date</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Gl Cal Day In Week</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Gl Cal Day In Week No</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Gl Cal Day In Month</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Gl Cal Day In Year</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Gl Cal Week In Year</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Gl Cal Month No</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Gl Cal Month</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Gl Cal Month Name</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Gl Cal Quarter No</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Gl Cal Quarter</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Gl Cal Year</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Gl Fin Day In Week</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Gl Fin Day In Week No</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Gl Fin Day In Month</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Gl Fin Day In Year</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Gl Fin Week In Month</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Gl Fin Week In Year</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Gl Fin Month No</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Gl Fin Month</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Gl Fin Month Display</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Gl Fin Month Name</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Gl Fin Period</AttributeID>
+                  <EstimatedCount>711</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Gl Fin Quarter No</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Gl Fin Quarter</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Gl Fin Year</AttributeID>
+                  <EstimatedCount>61</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Gl Financial Date</AttributeID>
+                  <EstimatedCount>21635</EstimatedCount>
+                </Attribute>
+              </Attributes>
+            </Dimension>
+            <Dimension>
+              <CubeDimensionID>Dim Bill</CubeDimensionID>
+              <Attributes>
+                <Attribute>
+                  <AttributeID>Dim Bill Key</AttributeID>
+                  <EstimatedCount>1233228</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Bill Number</AttributeID>
+                  <EstimatedCount>1233228</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Bill Sequence</AttributeID>
+                  <EstimatedCount>1233215</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Record Type</AttributeID>
+                  <EstimatedCount>3</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Bill Flag</AttributeID>
+                  <EstimatedCount>3</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Bill Address</AttributeID>
+                  <EstimatedCount>272428</EstimatedCount>
+                </Attribute>
+              </Attributes>
+            </Dimension>
+            <Dimension>
+              <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+              <Attributes>
+                <Attribute>
+                  <AttributeID>Dim Fed Hierarchy History Key</AttributeID>
+                  <EstimatedCount>25781</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Jobtitle</AttributeID>
+                  <EstimatedCount>294</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Linemanagername</AttributeID>
+                  <EstimatedCount>1</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Reportingbcmname</AttributeID>
+                  <EstimatedCount>326</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Worksforname</AttributeID>
+                  <EstimatedCount>339</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Display Name</AttributeID>
+                  <EstimatedCount>6734</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Hierarchylevel1hist</AttributeID>
+                  <EstimatedCount>2</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Hierarchylevel2hist</AttributeID>
+                  <EstimatedCount>10</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Hierarchylevel3hist</AttributeID>
+                  <EstimatedCount>90</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Hierarchylevel4hist</AttributeID>
+                  <EstimatedCount>512</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Hierarchylevel5hist</AttributeID>
+                  <EstimatedCount>664</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Hierarchylevel6hist</AttributeID>
+                  <EstimatedCount>664</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Hierarchylevel1</AttributeID>
+                  <EstimatedCount>2</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Hierarchylevel2</AttributeID>
+                  <EstimatedCount>7</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Hierarchylevel3</AttributeID>
+                  <EstimatedCount>49</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Hierarchylevel4</AttributeID>
+                  <EstimatedCount>246</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Hierarchylevel5</AttributeID>
+                  <EstimatedCount>117</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Hierarchylevel6</AttributeID>
+                  <EstimatedCount>1</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Dss Current Flag</AttributeID>
+                  <EstimatedCount>2</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Activeud</AttributeID>
+                  <EstimatedCount>2</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Fed Code</AttributeID>
+                  <EstimatedCount>3685</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Fed Hierarchy Business Key</AttributeID>
+                  <EstimatedCount>4292</EstimatedCount>
+                </Attribute>
+              </Attributes>
+            </Dimension>
+          </Dimensions>
+          <Aggregations>
+            <Aggregation>
+              <ID>Aggregation 0</ID>
+              <Name>Aggregation 0</Name>
+              <Dimensions>
+                <Dimension>
+                  <CubeDimensionID>Dim Time Activity</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Transaction Date</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Header Current</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Client</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Gl Date</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Bill</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Dim Fed Hierarchy History Key</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+              </Dimensions>
+            </Aggregation>
+            <Aggregation>
+              <ID>Aggregation 1</ID>
+              <Name>Aggregation 1</Name>
+              <Dimensions>
+                <Dimension>
+                  <CubeDimensionID>Dim Time Activity</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Transaction Date</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Dim Transaction Date Key</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Header Current</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Client</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Gl Date</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Bill</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Hierarchylevel1hist</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+              </Dimensions>
+            </Aggregation>
+            <Aggregation>
+              <ID>Aggregation 2</ID>
+              <Name>Aggregation 2</Name>
+              <Dimensions>
+                <Dimension>
+                  <CubeDimensionID>Dim Time Activity</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Transaction Date</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Header Current</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Client</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Gl Date</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Dim Gl Date Key</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Bill</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Hierarchylevel1hist</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+              </Dimensions>
+            </Aggregation>
+            <Aggregation>
+              <ID>Aggregation 3</ID>
+              <Name>Aggregation 3</Name>
+              <Dimensions>
+                <Dimension>
+                  <CubeDimensionID>Dim Time Activity</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Transaction Date</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Transaction Fin Year</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Header Current</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Client</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Gl Date</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Gl Fin Year</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Bill</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Hierarchylevel2hist</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+              </Dimensions>
+            </Aggregation>
+            <Aggregation>
+              <ID>Aggregation 4</ID>
+              <Name>Aggregation 4</Name>
+              <Dimensions>
+                <Dimension>
+                  <CubeDimensionID>Dim Time Activity</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Transaction Date</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Transaction Fin Year</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Header Current</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Client</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Gl Date</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Bill</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Hierarchylevel2hist</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+              </Dimensions>
+            </Aggregation>
+            <Aggregation>
+              <ID>Aggregation 5</ID>
+              <Name>Aggregation 5</Name>
               <Dimensions>
                 <Dimension>
                   <CubeDimensionID>Dim Time Activity</CubeDimensionID>
@@ -817,11 +1999,22 @@
                     </Attribute>
                   </Attributes>
                 </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Bill</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Hierarchylevel1hist</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
               </Dimensions>
             </Aggregation>
             <Aggregation>
-              <ID>Aggregation c</ID>
-              <Name>Aggregation c</Name>
+              <ID>Aggregation 6</ID>
+              <Name>Aggregation 6</Name>
               <Dimensions>
                 <Dimension>
                   <CubeDimensionID>Dim Time Activity</CubeDimensionID>
@@ -830,7 +2023,49 @@
                   <CubeDimensionID>Dim Transaction Date</CubeDimensionID>
                   <Attributes>
                     <Attribute>
-                      <AttributeID>Transaction Fin Year</AttributeID>
+                      <AttributeID>Transaction Fin Period</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Header Current</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Client</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Gl Date</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Gl Fin Year</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Bill</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Hierarchylevel1hist</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+              </Dimensions>
+            </Aggregation>
+            <Aggregation>
+              <ID>Aggregation 7</ID>
+              <Name>Aggregation 7</Name>
+              <Dimensions>
+                <Dimension>
+                  <CubeDimensionID>Dim Time Activity</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Transaction Date</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Transaction Fin Period</AttributeID>
                     </Attribute>
                   </Attributes>
                 </Dimension>
@@ -843,11 +2078,827 @@
                 <Dimension>
                   <CubeDimensionID>Dim Gl Date</CubeDimensionID>
                 </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Bill</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Hierarchylevel6hist</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
               </Dimensions>
             </Aggregation>
             <Aggregation>
-              <ID>Aggregation d</ID>
-              <Name>Aggregation d</Name>
+              <ID>Aggregation 8</ID>
+              <Name>Aggregation 8</Name>
+              <Dimensions>
+                <Dimension>
+                  <CubeDimensionID>Dim Time Activity</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Transaction Date</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Header Current</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Client</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Gl Date</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Gl Fin Period</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Bill</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Hierarchylevel6hist</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+              </Dimensions>
+            </Aggregation>
+            <Aggregation>
+              <ID>Aggregation 9</ID>
+              <Name>Aggregation 9</Name>
+              <Dimensions>
+                <Dimension>
+                  <CubeDimensionID>Dim Time Activity</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Transaction Date</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Header Current</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Client</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Gl Date</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Gl Fin Year</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Bill</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Hierarchylevel1hist</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+              </Dimensions>
+            </Aggregation>
+            <Aggregation>
+              <ID>Aggregation a</ID>
+              <Name>Aggregation a</Name>
+              <Dimensions>
+                <Dimension>
+                  <CubeDimensionID>Dim Time Activity</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Transaction Date</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Header Current</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Client</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Gl Date</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Gl Fin Year</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Bill</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Hierarchylevel3hist</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+              </Dimensions>
+            </Aggregation>
+          </Aggregations>
+        </AggregationDesign>
+        <AggregationDesign>
+          <ID>AggregationDesign 2</ID>
+          <Name>AggregationDesign 2</Name>
+          <CreatedTimestamp>2015-07-18T09:51:34.143333Z</CreatedTimestamp>
+          <LastSchemaUpdate>2015-07-18T09:51:34.143333Z</LastSchemaUpdate>
+          <EstimatedRows>3855030</EstimatedRows>
+          <Dimensions>
+            <Dimension>
+              <CubeDimensionID>Dim Time Activity</CubeDimensionID>
+              <Attributes>
+                <Attribute>
+                  <AttributeID>Dim Time Activity Key</AttributeID>
+                  <EstimatedCount>36349930</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Time Activity Code</AttributeID>
+                  <EstimatedCount>193</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Time Activity Descrn</AttributeID>
+                  <EstimatedCount>199</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Batch Number</AttributeID>
+                  <EstimatedCount>212193</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Additional Description Indicator</AttributeID>
+                  <EstimatedCount>3</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Rate Code</AttributeID>
+                  <EstimatedCount>176</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Hourly Charge Rate</AttributeID>
+                  <EstimatedCount>1899</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Bill Number</AttributeID>
+                  <EstimatedCount>857940</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Number Of Items</AttributeID>
+                  <EstimatedCount>60</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Matter Identifier</AttributeID>
+                  <EstimatedCount>435817</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Financial Year Period Of Posting Date</AttributeID>
+                  <EstimatedCount>292</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Billed Or Written Off</AttributeID>
+                  <EstimatedCount>93</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Type Of Activity</AttributeID>
+                  <EstimatedCount>4</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Time Type</AttributeID>
+                  <EstimatedCount>5</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Department</AttributeID>
+                  <EstimatedCount>39</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Matter Stage Descrn</AttributeID>
+                  <EstimatedCount>52</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Matter Stage</AttributeID>
+                  <EstimatedCount>52</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>All Chargeable Time</AttributeID>
+                  <EstimatedCount>2</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transferred Time Files</AttributeID>
+                  <EstimatedCount>2</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Written Off Transaction</AttributeID>
+                  <EstimatedCount>2</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Written Off Record</AttributeID>
+                  <EstimatedCount>2</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Billed Record</AttributeID>
+                  <EstimatedCount>2</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Unbilled Record</AttributeID>
+                  <EstimatedCount>2</EstimatedCount>
+                </Attribute>
+              </Attributes>
+            </Dimension>
+            <Dimension>
+              <CubeDimensionID>Dim Transaction Date</CubeDimensionID>
+              <Attributes>
+                <Attribute>
+                  <AttributeID>Dim Transaction Date Key</AttributeID>
+                  <EstimatedCount>21635</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transaction Calendar Date</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transaction Cal Day In Week</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transaction Cal Day In Week No</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transaction Cal Day In Month</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transaction Cal Day In Year</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transaction Cal Week In Year</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transaction Cal Month No</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transaction Cal Month</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transaction Cal Month Name</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transaction Cal Quarter No</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transaction Cal Quarter</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transaction Cal Year</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transaction Financial Date</AttributeID>
+                  <EstimatedCount>21634</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transaction Fin Day In Week</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transaction Fin Day In Week No</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transaction Fin Day In Month</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transaction Fin Day In Year</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transaction Fin Week In Month</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transaction Fin Week In Year</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transaction Fin Month No</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transaction Fin Month</AttributeID>
+                  <EstimatedCount>712</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transaction Fin Month Name</AttributeID>
+                  <EstimatedCount>12</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transaction Fin Period</AttributeID>
+                  <EstimatedCount>711</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transaction Fin Quarter No</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transaction Fin Quarter</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Transaction Fin Year</AttributeID>
+                  <EstimatedCount>61</EstimatedCount>
+                </Attribute>
+              </Attributes>
+            </Dimension>
+            <Dimension>
+              <CubeDimensionID>Dim Matter Header Current</CubeDimensionID>
+              <Attributes>
+                <Attribute>
+                  <AttributeID>Client Code</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Matter Number</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Effective Start Date</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Effective End Date</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Current Flag</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Deleted Flag Cmatgrp</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Deleted Flag Camatter</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Deleted Flag Cashdr</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Date Opened Matter</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Date Closed Matter</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Work Source Code</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Work Source Name</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Matter Id Camatgrp</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Bank Code Office</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Bank Name Office</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Bank Code Client</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Bank Name Client</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Currency Code</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Currency Name</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Matter Id Camatter</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Case Type Code</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Case Type Name</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Date Opened Case</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Date Closed Case</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Acting For</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Case Group Code</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Case Group Name</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Case Public Desc1</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Case Id</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Dim Matter Header Curr Key</AttributeID>
+                  <EstimatedCount>807043</EstimatedCount>
+                </Attribute>
+              </Attributes>
+            </Dimension>
+            <Dimension>
+              <CubeDimensionID>Dim Client</CubeDimensionID>
+              <Attributes>
+                <Attribute>
+                  <AttributeID>Dim Client Key</AttributeID>
+                  <EstimatedCount>834780</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Client Code</AttributeID>
+                  <EstimatedCount>834780</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Effective Start Date</AttributeID>
+                  <EstimatedCount>1</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Effective End Date</AttributeID>
+                  <EstimatedCount>1</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Current Flag</AttributeID>
+                  <EstimatedCount>2</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Client Name</AttributeID>
+                  <EstimatedCount>834780</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Client Group Name</AttributeID>
+                  <EstimatedCount>167</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Client Partner Name</AttributeID>
+                  <EstimatedCount>482</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Contact Salutation</AttributeID>
+                  <EstimatedCount>834780</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Contact Name</AttributeID>
+                  <EstimatedCount>834780</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Address Type</AttributeID>
+                  <EstimatedCount>8</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Addresse</AttributeID>
+                  <EstimatedCount>834780</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Address Line 1</AttributeID>
+                  <EstimatedCount>834780</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Address Line 2</AttributeID>
+                  <EstimatedCount>834780</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Address Line 3</AttributeID>
+                  <EstimatedCount>834780</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Address Line 4</AttributeID>
+                  <EstimatedCount>834780</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Postcode</AttributeID>
+                  <EstimatedCount>834780</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Phone Number</AttributeID>
+                  <EstimatedCount>834780</EstimatedCount>
+                </Attribute>
+              </Attributes>
+            </Dimension>
+            <Dimension>
+              <CubeDimensionID>Dim Gl Date</CubeDimensionID>
+              <Attributes>
+                <Attribute>
+                  <AttributeID>Dim Gl Date Key</AttributeID>
+                  <EstimatedCount>21636</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Gl Calendar Date</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Gl Cal Day In Week</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Gl Cal Day In Week No</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Gl Cal Day In Month</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Gl Cal Day In Year</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Gl Cal Week In Year</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Gl Cal Month No</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Gl Cal Month</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Gl Cal Month Name</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Gl Cal Quarter No</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Gl Cal Quarter</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Gl Cal Year</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Gl Fin Day In Week</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Gl Fin Day In Week No</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Gl Fin Day In Month</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Gl Fin Day In Year</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Gl Fin Week In Month</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Gl Fin Week In Year</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Gl Fin Month No</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Gl Fin Month</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Gl Fin Month Display</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Gl Fin Month Name</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Gl Fin Period</AttributeID>
+                  <EstimatedCount>711</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Gl Fin Quarter No</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Gl Fin Quarter</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Gl Fin Year</AttributeID>
+                  <EstimatedCount>61</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Gl Financial Date</AttributeID>
+                  <EstimatedCount>21635</EstimatedCount>
+                </Attribute>
+              </Attributes>
+            </Dimension>
+            <Dimension>
+              <CubeDimensionID>Dim Bill</CubeDimensionID>
+              <Attributes>
+                <Attribute>
+                  <AttributeID>Dim Bill Key</AttributeID>
+                  <EstimatedCount>1233228</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Bill Number</AttributeID>
+                  <EstimatedCount>1233228</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Bill Sequence</AttributeID>
+                  <EstimatedCount>1233215</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Record Type</AttributeID>
+                  <EstimatedCount>3</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Bill Flag</AttributeID>
+                  <EstimatedCount>3</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Bill Address</AttributeID>
+                  <EstimatedCount>272428</EstimatedCount>
+                </Attribute>
+              </Attributes>
+            </Dimension>
+            <Dimension>
+              <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+              <Attributes>
+                <Attribute>
+                  <AttributeID>Dim Fed Hierarchy History Key</AttributeID>
+                  <EstimatedCount>25781</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Jobtitle</AttributeID>
+                  <EstimatedCount>294</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Linemanagername</AttributeID>
+                  <EstimatedCount>1</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Reportingbcmname</AttributeID>
+                  <EstimatedCount>326</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Worksforname</AttributeID>
+                  <EstimatedCount>339</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Display Name</AttributeID>
+                  <EstimatedCount>6734</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Hierarchylevel1hist</AttributeID>
+                  <EstimatedCount>2</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Hierarchylevel2hist</AttributeID>
+                  <EstimatedCount>10</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Hierarchylevel3hist</AttributeID>
+                  <EstimatedCount>90</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Hierarchylevel4hist</AttributeID>
+                  <EstimatedCount>512</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Hierarchylevel5hist</AttributeID>
+                  <EstimatedCount>664</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Hierarchylevel6hist</AttributeID>
+                  <EstimatedCount>664</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Hierarchylevel1</AttributeID>
+                  <EstimatedCount>2</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Hierarchylevel2</AttributeID>
+                  <EstimatedCount>7</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Hierarchylevel3</AttributeID>
+                  <EstimatedCount>49</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Hierarchylevel4</AttributeID>
+                  <EstimatedCount>246</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Hierarchylevel5</AttributeID>
+                  <EstimatedCount>117</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Hierarchylevel6</AttributeID>
+                  <EstimatedCount>1</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Dss Current Flag</AttributeID>
+                  <EstimatedCount>2</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Activeud</AttributeID>
+                  <EstimatedCount>2</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Fed Code</AttributeID>
+                  <EstimatedCount>3685</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Fed Hierarchy Business Key</AttributeID>
+                  <EstimatedCount>4292</EstimatedCount>
+                </Attribute>
+              </Attributes>
+            </Dimension>
+          </Dimensions>
+          <Aggregations>
+            <Aggregation>
+              <ID>Aggregation 0</ID>
+              <Name>Aggregation 0</Name>
+              <Dimensions>
+                <Dimension>
+                  <CubeDimensionID>Dim Time Activity</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Transaction Date</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Header Current</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Client</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Gl Date</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Bill</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Hierarchylevel2hist</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+              </Dimensions>
+            </Aggregation>
+            <Aggregation>
+              <ID>Aggregation 1</ID>
+              <Name>Aggregation 1</Name>
+              <Dimensions>
+                <Dimension>
+                  <CubeDimensionID>Dim Time Activity</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Transaction Date</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Header Current</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Client</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Gl Date</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Gl Fin Period</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Bill</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Hierarchylevel2hist</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+              </Dimensions>
+            </Aggregation>
+            <Aggregation>
+              <ID>Aggregation 2</ID>
+              <Name>Aggregation 2</Name>
+              <Dimensions>
+                <Dimension>
+                  <CubeDimensionID>Dim Time Activity</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Transaction Date</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Transaction Fin Period</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Header Current</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Client</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Gl Date</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Bill</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Hierarchylevel2hist</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+              </Dimensions>
+            </Aggregation>
+            <Aggregation>
+              <ID>Aggregation 3</ID>
+              <Name>Aggregation 3</Name>
               <Dimensions>
                 <Dimension>
                   <CubeDimensionID>Dim Time Activity</CubeDimensionID>
@@ -874,11 +2925,54 @@
                     </Attribute>
                   </Attributes>
                 </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Bill</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Hierarchylevel1hist</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
               </Dimensions>
             </Aggregation>
             <Aggregation>
-              <ID>Aggregation e</ID>
-              <Name>Aggregation e</Name>
+              <ID>Aggregation 4</ID>
+              <Name>Aggregation 4</Name>
+              <Dimensions>
+                <Dimension>
+                  <CubeDimensionID>Dim Time Activity</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Transaction Date</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Header Current</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Client</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Gl Date</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Bill</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Display Name</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+              </Dimensions>
+            </Aggregation>
+            <Aggregation>
+              <ID>Aggregation 5</ID>
+              <Name>Aggregation 5</Name>
               <Dimensions>
                 <Dimension>
                   <CubeDimensionID>Dim Time Activity</CubeDimensionID>
@@ -899,6 +2993,86 @@
                       <AttributeID>Gl Fin Year</AttributeID>
                     </Attribute>
                   </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Bill</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Hierarchylevel6hist</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+              </Dimensions>
+            </Aggregation>
+            <Aggregation>
+              <ID>Aggregation 6</ID>
+              <Name>Aggregation 6</Name>
+              <Dimensions>
+                <Dimension>
+                  <CubeDimensionID>Dim Time Activity</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Transaction Date</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Transaction Fin Year</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Header Current</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Client</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Gl Date</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Bill</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Hierarchylevel6hist</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+              </Dimensions>
+            </Aggregation>
+            <Aggregation>
+              <ID>Aggregation 7</ID>
+              <Name>Aggregation 7</Name>
+              <Dimensions>
+                <Dimension>
+                  <CubeDimensionID>Dim Time Activity</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Transaction Date</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Dim Transaction Date Key</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Header Current</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Client</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Gl Date</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Bill</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
                 </Dimension>
               </Dimensions>
             </Aggregation>
