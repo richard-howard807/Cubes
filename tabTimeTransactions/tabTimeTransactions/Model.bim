@@ -7321,20 +7321,14 @@
           <Name>dimBillFinalOrInterim</Name>
           <Annotations>
             <Annotation>
-              <Name>IsQueryEditorUsed</Name>
-              <Value>True</Value>
+              <Name>TableWidgetSerialization</Name>
             </Annotation>
             <Annotation>
               <Name>QueryEditorSerialization</Name>
             </Annotation>
             <Annotation>
-              <Name>TableWidgetSerialization</Name>
-            </Annotation>
-            <Annotation>
-              <Name>DataMarketWebBaseUrl</Name>
-            </Annotation>
-            <Annotation>
-              <Name>DataMarketWebQueryUrl</Name>
+              <Name>IsQueryEditorUsed</Name>
+              <Value>True</Value>
             </Annotation>
           </Annotations>
           <Source xsi:type="DataSourceViewBinding">
@@ -7470,20 +7464,14 @@
           <Name>dimWorkType</Name>
           <Annotations>
             <Annotation>
-              <Name>IsQueryEditorUsed</Name>
-              <Value>True</Value>
+              <Name>TableWidgetSerialization</Name>
             </Annotation>
             <Annotation>
               <Name>QueryEditorSerialization</Name>
             </Annotation>
             <Annotation>
-              <Name>TableWidgetSerialization</Name>
-            </Annotation>
-            <Annotation>
-              <Name>DataMarketWebBaseUrl</Name>
-            </Annotation>
-            <Annotation>
-              <Name>DataMarketWebQueryUrl</Name>
+              <Name>IsQueryEditorUsed</Name>
+              <Value>True</Value>
             </Annotation>
           </Annotations>
           <Source xsi:type="DataSourceViewBinding">
@@ -8132,20 +8120,14 @@
           <Name>dimMatterGroup</Name>
           <Annotations>
             <Annotation>
-              <Name>IsQueryEditorUsed</Name>
-              <Value>True</Value>
+              <Name>TableWidgetSerialization</Name>
             </Annotation>
             <Annotation>
               <Name>QueryEditorSerialization</Name>
             </Annotation>
             <Annotation>
-              <Name>TableWidgetSerialization</Name>
-            </Annotation>
-            <Annotation>
-              <Name>DataMarketWebBaseUrl</Name>
-            </Annotation>
-            <Annotation>
-              <Name>DataMarketWebQueryUrl</Name>
+              <Name>IsQueryEditorUsed</Name>
+              <Value>True</Value>
             </Annotation>
           </Annotations>
           <Source xsi:type="DataSourceViewBinding">
@@ -9037,20 +9019,14 @@
           <Name>dimDateLastTime</Name>
           <Annotations>
             <Annotation>
-              <Name>IsQueryEditorUsed</Name>
-              <Value>True</Value>
+              <Name>TableWidgetSerialization</Name>
             </Annotation>
             <Annotation>
               <Name>QueryEditorSerialization</Name>
             </Annotation>
             <Annotation>
-              <Name>TableWidgetSerialization</Name>
-            </Annotation>
-            <Annotation>
-              <Name>DataMarketWebBaseUrl</Name>
-            </Annotation>
-            <Annotation>
-              <Name>DataMarketWebQueryUrl</Name>
+              <Name>IsQueryEditorUsed</Name>
+              <Value>True</Value>
             </Annotation>
           </Annotations>
           <Source xsi:type="DataSourceViewBinding">
@@ -15137,22 +15113,22 @@ and f.dim_matter_header_key &gt; 0</QueryDefinition>
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
                     <QueryDefinition>select distinct
-f.dim_bill_key as 'BillID',
-f.bill_number as 'BillNumber',
+f.dim_bill_key BillID,
+f.bill_number BillNumber,
 upper(d.record_type) as  'BillTypeCode',
-d.bill_flag as 'BillFinalOrInterimCode',
-f.dim_last_pay_date_key as 'BillLastPaymentDate',
-f.dim_bill_date_key as 'BillDate',
-f.bill_total as 'BillAmount',
-f.fees_total as 'FeeValue',
-f.paid_disbursements as 'DisbursementsPaid',
-f.unpaid_disbursements as 'DisbursementsUnpaid',
-f.admin_charges_total as 'AdministrationCharges',
-f.vat_amount as 'VATAmount',
-f.amount_paid as 'AmountPaid',
-f.bill_total - f.amount_paid as 'AmountOutstanding',
-case when f.amount_paid = f.bill_total then 'Paid' else cast(datediff(day,cast( cast(f.dim_bill_date_key as varchar(10)) as date), getdate()) as varchar(10)) end as 'BillAgeDays',
-d.outstanding_flag as 'OpenItem'
+d.bill_flag BillFinalOrInterimCode,
+f.dim_last_pay_date_key BillLastPaymentDate,
+f.dim_bill_date_key BillDate,
+f.bill_total BillAmount,
+f.fees_total FeeValue,
+f.paid_disbursements DisbursementsPaid,
+f.unpaid_disbursements DisbursementsUnpaid,
+f.admin_charges_total AdministrationCharges,
+f.vat_amount VATAmount,
+f.amount_paid AmountPaid,
+f.bill_total - f.amount_paid AmountOutstanding,
+case when f.amount_paid = f.bill_total then 'Paid' else cast(datediff(day,cast( cast(f.dim_bill_date_key as varchar(10)) as date), getdate()) as varchar(10)) end BillAgeDays,
+d.outstanding_flag OpenItem
 
 from
 red_dw.dbo.fact_bill f
@@ -15286,8 +15262,8 @@ f.dim_bill_key &gt; 0</QueryDefinition>
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
                     <QueryDefinition>select distinct
-branch_code as 'BranchCode',
-branch_name as 'BranchDesc'
+branch_code BranchCode,
+branch_name BranchDesc
 
 from
 red_dw.dbo.dim_matter_header
@@ -19860,8 +19836,8 @@ d4.cal_year&lt; 2015</QueryDefinition>
                     <QueryDefinition>select distinct
 case when bill_record_type = 'Bill' then 'B'
  when bill_record_type = 'Abatement' then 'A'
- end as 'BillTypeCode',
-bill_record_type as 'BillTypeDesc'
+ end BillTypeCode,
+bill_record_type BillTypeDesc
  
 from
 red_dw.dbo.fact_bill_activity</QueryDefinition>
@@ -19989,10 +19965,10 @@ red_dw.dbo.fact_bill_activity</QueryDefinition>
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
                     <QueryDefinition>select distinct
-time_type as 'TimeTransactionTimeTypeCode',
+time_type TimeTransactionTimeTypeCode,
 case when time_type = 'NC' then 'Non Chargeable Time'
  when time_type = 'TM' then 'Chargeable Time'
- end as 'TimeTransactionTimeTypeDesc'
+ end TimeTransactionTimeTypeDesc
 
 from
 red_dw.dbo.fact_all_time_activity</QueryDefinition>
@@ -20785,26 +20761,26 @@ dim_date</QueryDefinition>
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
                     <QueryDefinition>select
-dim_date_key as 'BillDateKey',
-calendar_date as 'BillDateDate',
-cal_day_in_month as 'BillDateDayInMonth',
-cal_day_in_year as 'BillDateDayInYear',
-cal_day_in_week_no as 'BillDateWeekdayNo',
-cal_day_in_week as 'BillDateWeekdayName',
-cal_week_in_year as 'BillDateCalendarWeek',
-cal_month_no as 'BillDateCalendarMonthNo',
-cal_month_name as 'BillDateCalendarMonthName',
-cal_quarter_no as 'BillDateCalendarQuarterNo',
-cal_year as 'BillDateCalendarYear',
-fin_week_in_year as 'BillDateFinancialWeek',
-fin_month_no as 'BillDateFinancialMonthNo',
-fin_month_name as 'BillDateFinancialMonthName',
-fin_quarter_no as 'BillDateFinancialQuarterNo',
-fin_year as 'BillDateFinancialYear',
-week_end_flag as 'BillDateWeekend',
-holiday_flag as 'BillDateHoliday',
-cal_month_name + '-' + right(cal_year, 2) as 'BillDateCalPeriod',
-fin_month_name + '-' + right(fin_year, 2) as 'BillDateFinancialPeriod'
+dim_date_key BillDateKey,
+calendar_date BillDateDate,
+cal_day_in_month BillDateDayInMonth,
+cal_day_in_year BillDateDayInYear,
+cal_day_in_week_no BillDateWeekdayNo,
+cal_day_in_week BillDateWeekdayName,
+cal_week_in_year BillDateCalendarWeek,
+cal_month_no BillDateCalendarMonthNo,
+cal_month_name BillDateCalendarMonthName,
+cal_quarter_no BillDateCalendarQuarterNo,
+cal_year BillDateCalendarYear,
+fin_week_in_year BillDateFinancialWeek,
+fin_month_no BillDateFinancialMonthNo,
+fin_month_name BillDateFinancialMonthName,
+fin_quarter_no BillDateFinancialQuarterNo,
+fin_year BillDateFinancialYear,
+week_end_flag BillDateWeekend,
+holiday_flag BillDateHoliday,
+cal_month_name + '-' + right(cal_year, 2) BillDateCalPeriod,
+fin_month_name + '-' + right(fin_year, 2) BillDateFinancialPeriod
 
 
 
@@ -21184,26 +21160,26 @@ dim_date</QueryDefinition>
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
                     <QueryDefinition>select
-dim_date_key as 'DateMatterOpenedKey',
-calendar_date as 'DateMatterOpenedDate',
-cal_day_in_month as 'DateMatterOpenedDayInMonth',
-cal_day_in_year as 'DateMatterOpenedDayInYear',
-cal_day_in_week_no as 'DateMatterOpenedWeekdayNo',
-cal_day_in_week as 'DateMatterOpenedWeekdayName',
-cal_week_in_year as 'DateMatterOpenedCalendarWeek',
-cal_month_no as 'DateMatterOpenedCalendarMonthNo',
-cal_month_name as 'DateMatterOpenedCalendarMonthName',
-cal_quarter_no as 'DateMatterOpenedCalendarQuarterNo',
-cal_year as 'DateMatterOpenedCalendarYear',
-fin_week_in_year as 'DateMatterOpenedFinancialWeek',
-fin_month_no as 'DateMatterOpenedFinancialMonthNo',
-fin_month_name as 'DateMatterOpenedFinancialMonthName',
-fin_quarter_no as 'DateMatterOpenedFinancialQuarterNo',
-fin_year as 'DateMatterOpenedFinancialYear',
-week_end_flag as 'DateMatterOpenedWeekend',
-holiday_flag as 'DateMatterOpenedHoliday',
-cal_month_name + '-' + right(cal_year, 2) as 'DateMatterOpenedCalPeriod',
-fin_month_name + '-' + right(fin_year, 2) as 'DateMatterOpenedFinancialPeriod'
+dim_date_key DateMatterOpenedKey,
+calendar_date DateMatterOpenedDate,
+cal_day_in_month DateMatterOpenedDayInMonth,
+cal_day_in_year DateMatterOpenedDayInYear,
+cal_day_in_week_no DateMatterOpenedWeekdayNo,
+cal_day_in_week DateMatterOpenedWeekdayName,
+cal_week_in_year DateMatterOpenedCalendarWeek,
+cal_month_no DateMatterOpenedCalendarMonthNo,
+cal_month_name DateMatterOpenedCalendarMonthName,
+cal_quarter_no DateMatterOpenedCalendarQuarterNo,
+cal_year DateMatterOpenedCalendarYear,
+fin_week_in_year DateMatterOpenedFinancialWeek,
+fin_month_no DateMatterOpenedFinancialMonthNo,
+fin_month_name DateMatterOpenedFinancialMonthName,
+fin_quarter_no DateMatterOpenedFinancialQuarterNo,
+fin_year DateMatterOpenedFinancialYear,
+week_end_flag DateMatterOpenedWeekend,
+holiday_flag DateMatterOpenedHoliday,
+cal_month_name + '-' + right(cal_year, 2) DateMatterOpenedCalPeriod,
+fin_month_name + '-' + right(fin_year, 2) DateMatterOpenedFinancialPeriod
 
 from
 dim_date</QueryDefinition>
@@ -21581,26 +21557,26 @@ dim_date</QueryDefinition>
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
                     <QueryDefinition>select
-dim_date_key as 'DateMatterClosedKey',
-calendar_date as 'DateMatterClosedDate',
-cal_day_in_month as 'DateMatterClosedDayInMonth',
-cal_day_in_year as 'DateMatterClosedDayInYear',
-cal_day_in_week_no as 'DateMatterClosedWeekdayNo',
-cal_day_in_week as 'DateMatterClosedWeekdayName',
-cal_week_in_year as 'DateMatterClosedCalendarWeek',
-cal_month_no as 'DateMatterClosedCalendarMonthNo',
-cal_month_name as 'DateMatterClosedCalendarMonthName',
-cal_quarter_no as 'DateMatterClosedCalendarQuarterNo',
-cal_year as 'DateMatterClosedCalendarYear',
-fin_week_in_year as 'DateMatterClosedFinancialWeek',
-fin_month_no as 'DateMatterClosedFinancialMonthNo',
-fin_month_name as 'DateMatterClosedFinancialMonthName',
-fin_quarter_no as 'DateMatterClosedFinancialQuarterNo',
-fin_year as 'DateMatterClosedFinancialYear',
-week_end_flag as 'DateMatterClosedWeekend',
-holiday_flag as 'DateMatterClosedHoliday',
-cal_month_name + '-' + right(cal_year, 2) as 'DateMatterClosedCalPeriod',
-fin_month_name + '-' + right(fin_year, 2) as 'DateMatterClosedFinancialPeriod'
+dim_date_key DateMatterClosedKey,
+calendar_date DateMatterClosedDate,
+cal_day_in_month DateMatterClosedDayInMonth,
+cal_day_in_year DateMatterClosedDayInYear,
+cal_day_in_week_no DateMatterClosedWeekdayNo,
+cal_day_in_week DateMatterClosedWeekdayName,
+cal_week_in_year DateMatterClosedCalendarWeek,
+cal_month_no DateMatterClosedCalendarMonthNo,
+cal_month_name DateMatterClosedCalendarMonthName,
+cal_quarter_no DateMatterClosedCalendarQuarterNo,
+cal_year DateMatterClosedCalendarYear,
+fin_week_in_year DateMatterClosedFinancialWeek,
+fin_month_no DateMatterClosedFinancialMonthNo,
+fin_month_name DateMatterClosedFinancialMonthName,
+fin_quarter_no DateMatterClosedFinancialQuarterNo,
+fin_year DateMatterClosedFinancialYear,
+week_end_flag DateMatterClosedWeekend,
+holiday_flag DateMatterClosedHoliday,
+cal_month_name + '-' + right(cal_year, 2) DateMatterClosedCalPeriod,
+fin_month_name + '-' + right(fin_year, 2) DateMatterClosedFinancialPeriod
 
 
 
@@ -22035,8 +22011,8 @@ left join
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
                     <QueryDefinition>select distinct
-time_activity_code as 'TimeActivityCode',
-time_activity_descrn as 'TimeActivityDesc',
+time_activity_code TimeActivityCode,
+time_activity_descrn TimeActivityDesc,
  case
   when time_activity_code =  '1'  then 'LearningAndDevelopment'
   when time_activity_code =  '2'  then 'Holiday'
@@ -22130,27 +22106,27 @@ time_activity_descrn as 'TimeActivityDesc',
   when time_activity_code =  '68'  then 'LearningAndDevelopment'
   when time_activity_code =  '69'  then 'LearningAndDevelopment'
   when time_activity_code =  '102'  then 'LearningAndDevelopment'
-when time_activity_code = 'IS1' 	then	'Project'
-when time_activity_code = 'IS10' 	then	'Project'
-when time_activity_code = 'IS11' 	then	'Project'
-when time_activity_code = 'IS12' 	then	'Project'
-when time_activity_code = 'IS13' 	then	'Project'
-when time_activity_code = 'IS14' 	then	'Project'
-when time_activity_code = 'IS15' 	then	'Project'
-when time_activity_code = 'IS16' 	then	'Project'
-when time_activity_code = 'IS17' 	then	'Project'
-when time_activity_code = 'IS18' 	then	'Project'
-when time_activity_code = 'IS19' 	then	'Project'
-when time_activity_code = 'IS2' 	then	'Project'
-when time_activity_code = 'IS20' 	then	'Project'
-when time_activity_code = 'IS3' 	then	'Project'
-when time_activity_code = 'IS4' 	then	'Project'
-when time_activity_code = 'IS5' 	then	'Project'
-when time_activity_code = 'IS6' 	then	'Project'
-when time_activity_code = 'IS7' 	then	'Project'
-when time_activity_code = 'IS8' 	then	'Project'
-when time_activity_code = 'IS9' 	then	'Project'
-end as 'BusinessArea' 
+when time_activity_code = 'IS1'  then 'Project'
+when time_activity_code = 'IS10'  then 'Project'
+when time_activity_code = 'IS11'  then 'Project'
+when time_activity_code = 'IS12'  then 'Project'
+when time_activity_code = 'IS13'  then 'Project'
+when time_activity_code = 'IS14'  then 'Project'
+when time_activity_code = 'IS15'  then 'Project'
+when time_activity_code = 'IS16'  then 'Project'
+when time_activity_code = 'IS17'  then 'Project'
+when time_activity_code = 'IS18'  then 'Project'
+when time_activity_code = 'IS19'  then 'Project'
+when time_activity_code = 'IS2'  then 'Project'
+when time_activity_code = 'IS20'  then 'Project'
+when time_activity_code = 'IS3'  then 'Project'
+when time_activity_code = 'IS4'  then 'Project'
+when time_activity_code = 'IS5'  then 'Project'
+when time_activity_code = 'IS6'  then 'Project'
+when time_activity_code = 'IS7'  then 'Project'
+when time_activity_code = 'IS8'  then 'Project'
+when time_activity_code = 'IS9'  then 'Project'
+end BusinessArea
 
 
 from
@@ -22501,24 +22477,24 @@ dim_all_time_activity</QueryDefinition>
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
                     <QueryDefinition>select
-dim_date_key as 'DateBillLastPaymentKey',
-calendar_date as 'DateBillLastPaymentDate',
-cal_day_in_month as 'DateBillLastPaymentDayInMonth',
-cal_day_in_year as 'DateBillLastPaymentDayInYear',
-cal_day_in_week_no as 'DateBillLastPaymentWeekdayNo',
-cal_day_in_week as 'DateBillLastPaymentWeekdayName',
-cal_week_in_year as 'DateBillLastPaymentCalendarWeek',
-cal_month_no as 'DateBillLastPaymentCalendarMonthNo',
-cal_month_name as 'DateBillLastPaymentCalendarMonthName',
-cal_quarter_no as 'DateBillLastPaymentCalendarQuarterNo',
-cal_year as 'DateBillLastPaymentCalendarYear',
-fin_week_in_year as 'DateBillLastPaymentFinancialWeek',
-fin_month_no as 'DateBillLastPaymentFinancialMonthNo',
-fin_month_name as 'DateBillLastPaymentFinancialMonthName',
-fin_quarter_no as 'DateBillLastPaymentFinancialQuarterNo',
-fin_year as 'DateBillLastPaymentFinancialYear',
-week_end_flag as 'DateBillLastPaymentWeekend',
-holiday_flag as 'DateBillLastPaymentHoliday'
+dim_date_key DateBillLastPaymentKey,
+calendar_date DateBillLastPaymentDate,
+cal_day_in_month DateBillLastPaymentDayInMonth,
+cal_day_in_year DateBillLastPaymentDayInYear,
+cal_day_in_week_no DateBillLastPaymentWeekdayNo,
+cal_day_in_week DateBillLastPaymentWeekdayName,
+cal_week_in_year DateBillLastPaymentCalendarWeek,
+cal_month_no DateBillLastPaymentCalendarMonthNo,
+cal_month_name DateBillLastPaymentCalendarMonthName,
+cal_quarter_no DateBillLastPaymentCalendarQuarterNo,
+cal_year DateBillLastPaymentCalendarYear,
+fin_week_in_year DateBillLastPaymentFinancialWeek,
+fin_month_no DateBillLastPaymentFinancialMonthNo,
+fin_month_name DateBillLastPaymentFinancialMonthName,
+fin_quarter_no DateBillLastPaymentFinancialQuarterNo,
+fin_year DateBillLastPaymentFinancialYear,
+week_end_flag DateBillLastPaymentWeekend,
+holiday_flag DateBillLastPaymentHoliday
 
 
 
@@ -22632,23 +22608,26 @@ dim_date</QueryDefinition>
                   <Name>dimBillFinalOrInterim</Name>
                   <Annotations>
                     <Annotation>
-                      <Name>IsQueryEditorUsed</Name>
-                      <Value>True</Value>
+                      <Name>TableWidgetSerialization</Name>
+                    </Annotation>
+                    <Annotation>
+                      <Name>TableWidgetSourceTable</Name>
                     </Annotation>
                     <Annotation>
                       <Name>QueryEditorSerialization</Name>
                     </Annotation>
                     <Annotation>
-                      <Name>TableWidgetSerialization</Name>
+                      <Name>IsQueryEditorUsed</Name>
+                      <Value>True</Value>
                     </Annotation>
                   </Annotations>
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
                     <QueryDefinition>select distinct
-bill_flag as 'BillFinalOrInterimCode',
+bill_flag BillFinalOrInterimCode,
 case when bill_flag = 'f' then 'Final'
  when bill_flag = 'i' then 'Interim'
- end as 'BillFinalOrInterimDesc'
+ end BillFinalOrInterimDesc
   
 from
 red_dw.dbo.dim_bill
@@ -22764,21 +22743,24 @@ and bill_flag != ''</QueryDefinition>
                   <Name>dimWorkType</Name>
                   <Annotations>
                     <Annotation>
-                      <Name>IsQueryEditorUsed</Name>
-                      <Value>True</Value>
+                      <Name>TableWidgetSerialization</Name>
+                    </Annotation>
+                    <Annotation>
+                      <Name>TableWidgetSourceTable</Name>
                     </Annotation>
                     <Annotation>
                       <Name>QueryEditorSerialization</Name>
                     </Annotation>
                     <Annotation>
-                      <Name>TableWidgetSerialization</Name>
+                      <Name>IsQueryEditorUsed</Name>
+                      <Value>True</Value>
                     </Annotation>
                   </Annotations>
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
                     <QueryDefinition>select
-work_type_code as 'WorkTypeCode',
-work_type_name as 'WorkTypeDesc'
+work_type_code WorkTypeCode,
+work_type_name as WorkTypeDesc
 
 from
 red_dw.dbo.dim_matter_worktype</QueryDefinition>
@@ -23230,21 +23212,24 @@ left join
                   <Name>dimMatterGroup</Name>
                   <Annotations>
                     <Annotation>
-                      <Name>IsQueryEditorUsed</Name>
-                      <Value>True</Value>
+                      <Name>TableWidgetSerialization</Name>
+                    </Annotation>
+                    <Annotation>
+                      <Name>TableWidgetSourceTable</Name>
                     </Annotation>
                     <Annotation>
                       <Name>QueryEditorSerialization</Name>
                     </Annotation>
                     <Annotation>
-                      <Name>TableWidgetSerialization</Name>
+                      <Name>IsQueryEditorUsed</Name>
+                      <Value>True</Value>
                     </Annotation>
                   </Annotations>
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
                     <QueryDefinition>SELECT 
-matter_group_code as 'MatterGroupCode',
-matter_group_name as 'MatterGroupDesc'
+matter_group_code MatterGroupCode,
+matter_group_name as MatterGroupDesc
       
 FROM 
 red_dw.dbo.dim_matter_group</QueryDefinition>
@@ -23384,9 +23369,9 @@ red_dw.dbo.dim_matter_group</QueryDefinition>
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
                     <QueryDefinition>SELECT distinct
-c.client_code as 'MatterClientCode',
-c.client_name as 'MatterClientName',
-c.client_group_name as 'MatterClientGroupName'
+c.client_code MatterClientCode,
+c.client_name MatterClientName,
+c.client_group_name MatterClientGroupName
 
  FROM 
 [dim_client] c
@@ -23739,24 +23724,24 @@ inner join fact_matter_summary a
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
                     <QueryDefinition>select
-dim_date_key as 'LastBillKey',
-calendar_date as 'LastBillDate',
-cal_day_in_month as 'LastBillDayInMonth',
-cal_day_in_year as 'LastBillDayInYear',
-cal_day_in_week_no as 'LastBillWeekdayNo',
-cal_day_in_week as 'LastBillWeekdayName',
-cal_week_in_year as 'LastBillCalendarWeek',
-cal_month_no as 'LastBillCalendarMonthNo',
-cal_month_name as 'LastBillCalendarMonthName',
-cal_quarter_no as 'LastBillCalendarQuarterNo',
-cal_year as 'LastBillCalendarYear',
-fin_week_in_year as 'LastBillFinancialWeek',
-fin_month_no as 'LastBillFinancialMonthNo',
-fin_month_name as 'LastBillFinancialMonthName',
-fin_quarter_no as 'LastBillFinancialQuarterNo',
-fin_year as 'LastBillFinancialYear',
-week_end_flag as 'LastBillWeekend',
-holiday_flag as 'LastBillHoliday'
+dim_date_key LastBillKey,
+calendar_date LastBillDate,
+cal_day_in_month LastBillDayInMonth,
+cal_day_in_year LastBillDayInYear,
+cal_day_in_week_no LastBillWeekdayNo,
+cal_day_in_week LastBillWeekdayName,
+cal_week_in_year LastBillCalendarWeek,
+cal_month_no LastBillCalendarMonthNo,
+cal_month_name LastBillCalendarMonthName,
+cal_quarter_no LastBillCalendarQuarterNo,
+cal_year LastBillCalendarYear,
+fin_week_in_year LastBillFinancialWeek,
+fin_month_no LastBillFinancialMonthNo,
+fin_month_name LastBillFinancialMonthName,
+fin_quarter_no LastBillFinancialQuarterNo,
+fin_year LastBillFinancialYear,
+week_end_flag LastBillWeekend,
+holiday_flag LastBillHoliday
 
 
 
@@ -24110,37 +24095,40 @@ dim_date</QueryDefinition>
                   <Name>dimDateLastTime</Name>
                   <Annotations>
                     <Annotation>
-                      <Name>IsQueryEditorUsed</Name>
-                      <Value>True</Value>
+                      <Name>TableWidgetSerialization</Name>
+                    </Annotation>
+                    <Annotation>
+                      <Name>TableWidgetSourceTable</Name>
                     </Annotation>
                     <Annotation>
                       <Name>QueryEditorSerialization</Name>
                     </Annotation>
                     <Annotation>
-                      <Name>TableWidgetSerialization</Name>
+                      <Name>IsQueryEditorUsed</Name>
+                      <Value>True</Value>
                     </Annotation>
                   </Annotations>
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
                     <QueryDefinition>select
-dim_date_key as 'LastTimeKey',
-calendar_date as 'LastTimeDate',
-cal_day_in_month as 'LastTimeDayInMonth',
-cal_day_in_year as 'LastTimeDayInYear',
-cal_day_in_week_no as 'LastTimeWeekdayNo',
-cal_day_in_week as 'LastTimeWeekdayName',
-cal_week_in_year as 'LastTimeCalendarWeek',
-cal_month_no as 'LastTimeCalendarMonthNo',
-cal_month_name as 'LastTimeCalendarMonthName',
-cal_quarter_no as 'LastTimeCalendarQuarterNo',
-cal_year as 'LastTimeCalendarYear',
-fin_week_in_year as 'LastTimeFinancialWeek',
-fin_month_no as 'LastTimeFinancialMonthNo',
-fin_month_name as 'LastTimeFinancialMonthName',
-fin_quarter_no as 'LastTimeFinancialQuarterNo',
-fin_year as 'LastTimeFinancialYear',
-week_end_flag as 'LastTimeWeekend',
-holiday_flag as 'LastTimeHoliday'
+dim_date_key LastTimeKey,
+calendar_date LastTimeDate,
+cal_day_in_month LastTimeDayInMonth,
+cal_day_in_year LastTimeDayInYear,
+cal_day_in_week_no LastTimeWeekdayNo,
+cal_day_in_week LastTimeWeekdayName,
+cal_week_in_year LastTimeCalendarWeek,
+cal_month_no LastTimeCalendarMonthNo,
+cal_month_name LastTimeCalendarMonthName,
+cal_quarter_no LastTimeCalendarQuarterNo,
+cal_year LastTimeCalendarYear,
+fin_week_in_year LastTimeFinancialWeek,
+fin_month_no LastTimeFinancialMonthNo,
+fin_month_name LastTimeFinancialMonthName,
+fin_quarter_no LastTimeFinancialQuarterNo,
+fin_year LastTimeFinancialYear,
+week_end_flag LastTimeWeekend,
+holiday_flag LastTimeHoliday
 
 
 
@@ -24298,14 +24286,14 @@ dim_date</QueryDefinition>
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
                     <QueryDefinition>select 
-  n as 'Number',
+  n Number,
   case when n between 0 and 30 then '0 - 30 Days'
   when n between 31 and 90 then '31 - 90 Days'
   when n between 91 and 180 then '91 - 180 Days'
   when n between 181 and 270 then '181 - 270 Days'
   when n between 271 and 360 then '271 - 360 Days'
   when n between 361 and 720 then '361 - 720 Days'
-  when n &gt; 710 then 'Over 720 Days' end as 'TransactionAgeBanding',
+  when n &gt; 710 then 'Over 720 Days' end TransactionAgeBanding,
   
   case when n between 0 and 60 then 'Current'
   when n between 61 and 90 then '61 - 90 Days'
@@ -24313,21 +24301,21 @@ dim_date</QueryDefinition>
   when n between 181 and 270 then '181 - 270 Days'
   when n between 271 and 360 then '271 - 360 Days'
   when n between 361 and 720 then '361 - 720 Days'
-  when n &gt; 710 then 'Greater than 720 Days' end as 'KPIUnbilledTimeBanding',
+  when n &gt; 710 then 'Greater than 720 Days' end KPIUnbilledTimeBanding,
   case when n between 0 and 60 then 1
   when n between 61 and 90 then 2
   when n between 91 and 180 then 3
   when n between 181 and 270 then 4
   when n between 271 and 360 then 5
   when n between 361 and 720 then 6
-  when n &gt; 710 then 7 end as 'KPIUnbilledTimeOrder'
+  when n &gt; 710 then 7 end KPIUnbilledTimeOrder
 
 
 
   from (
   select 
   top 100000
-  row_number() over(order by t1.number) as n
+  row_number() over(order by t1.number) n
   
   
   from 
@@ -25564,10 +25552,10 @@ dim_date</QueryDefinition>
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
                     <QueryDefinition>select
-bill_number as 'BillXBillNumber',
-dim_fed_hierarchy_history_key as 'BillXFeeEarner',
-bill_amount as 'BillXBillAmount',
-billed_time as 'BillXTimeBilled'
+bill_number BillXBillNumber,
+dim_fed_hierarchy_history_key BillXFeeEarner,
+bill_amount BillXBillAmount,
+billed_time BillXTimeBilled
 
 from
 red_dw.dbo.fact_bill_activity</QueryDefinition>
@@ -25798,15 +25786,15 @@ red_dw.dbo.fact_bill_activity</QueryDefinition>
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
                     <QueryDefinition>select distinct
-h1.dim_fed_hierarchy_history_key as 'BillXFEDCodeID',
-h1.fed_code as 'BillXFEDCode',
-h1.name as 'BillXFEDName',
-e2.workemail as 'BillXEmailAddress',
-h1.hierarchylevel2hist as 'BillXBusinessLine',
-h1.hierarchylevel3hist as 'BillXPracticeArea',
-h1.hierarchylevel4hist as 'BillXTeam',
-h1.reportingbcmname as 'BillXBCMName',
-e.workemail as 'BillXBCMEmail'
+h1.dim_fed_hierarchy_history_key BillXFEDCodeID,
+h1.fed_code BillXFEDCode,
+h1.name BillXFEDName,
+e2.workemail BillXEmailAddress,
+h1.hierarchylevel2hist BillXBusinessLine,
+h1.hierarchylevel3hist BillXPracticeArea,
+h1.hierarchylevel4hist BillXTeam,
+h1.reportingbcmname BillXBCMName,
+e.workemail BillXBCMEmail
 
 
 from
@@ -26502,7 +26490,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="Bill" msprop:DbTableName="factBill" msprop:TableType="View" msprop:Description="factBill" msprop:QueryDefinition="select distinct&#xD;&#xA;f.dim_bill_key as 'BillID',&#xD;&#xA;f.bill_number as 'BillNumber',&#xD;&#xA;upper(d.record_type) as  'BillTypeCode',&#xD;&#xA;d.bill_flag as 'BillFinalOrInterimCode',&#xD;&#xA;f.dim_last_pay_date_key as 'BillLastPaymentDate',&#xD;&#xA;f.dim_bill_date_key as 'BillDate',&#xD;&#xA;f.bill_total as 'BillAmount',&#xD;&#xA;f.fees_total as 'FeeValue',&#xD;&#xA;f.paid_disbursements as 'DisbursementsPaid',&#xD;&#xA;f.unpaid_disbursements as 'DisbursementsUnpaid',&#xD;&#xA;f.admin_charges_total as 'AdministrationCharges',&#xD;&#xA;f.vat_amount as 'VATAmount',&#xD;&#xA;f.amount_paid as 'AmountPaid',&#xD;&#xA;f.bill_total - f.amount_paid as 'AmountOutstanding',&#xD;&#xA;case when f.amount_paid = f.bill_total then 'Paid' else cast(datediff(day,cast( cast(f.dim_bill_date_key as varchar(10)) as date), getdate()) as varchar(10)) end as 'BillAgeDays',&#xD;&#xA;d.outstanding_flag as 'OpenItem'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_bill f&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; red_dw.dbo.dim_bill d&#xD;&#xA;  on d.dim_bill_key = f.dim_bill_key&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_matter_header d2&#xD;&#xA; on d2.client_code = f.client_code&#xD;&#xA;and d2.matter_number = f.matter_number&#xD;&#xA;and d2.source_system_id = f.source_system_id&#xD;&#xA;and d2.current_flag = 'Y'&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;f.dim_bill_key &gt; 0">
+                    <xs:element name="factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="Bill" msprop:DbTableName="factBill" msprop:TableType="View" msprop:Description="factBill" msprop:QueryDefinition="select distinct&#xD;&#xA;f.dim_bill_key BillID,&#xD;&#xA;f.bill_number BillNumber,&#xD;&#xA;upper(d.record_type) as  'BillTypeCode',&#xD;&#xA;d.bill_flag BillFinalOrInterimCode,&#xD;&#xA;f.dim_last_pay_date_key BillLastPaymentDate,&#xD;&#xA;f.dim_bill_date_key BillDate,&#xD;&#xA;f.bill_total BillAmount,&#xD;&#xA;f.fees_total FeeValue,&#xD;&#xA;f.paid_disbursements DisbursementsPaid,&#xD;&#xA;f.unpaid_disbursements DisbursementsUnpaid,&#xD;&#xA;f.admin_charges_total AdministrationCharges,&#xD;&#xA;f.vat_amount VATAmount,&#xD;&#xA;f.amount_paid AmountPaid,&#xD;&#xA;f.bill_total - f.amount_paid AmountOutstanding,&#xD;&#xA;case when f.amount_paid = f.bill_total then 'Paid' else cast(datediff(day,cast( cast(f.dim_bill_date_key as varchar(10)) as date), getdate()) as varchar(10)) end BillAgeDays,&#xD;&#xA;d.outstanding_flag OpenItem&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_bill f&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; red_dw.dbo.dim_bill d&#xD;&#xA;  on d.dim_bill_key = f.dim_bill_key&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_matter_header d2&#xD;&#xA; on d2.client_code = f.client_code&#xD;&#xA;and d2.matter_number = f.matter_number&#xD;&#xA;and d2.source_system_id = f.source_system_id&#xD;&#xA;and d2.current_flag = 'Y'&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;f.dim_bill_key &gt; 0">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="BillDate" msprop:DbColumnName="BillDate" msprop:FriendlyName="BillDate" type="xs:int" minOccurs="0" />
@@ -26554,7 +26542,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimBranch_6fd44d6b-acaf-4a45-9bb8-1f4af8f84c53" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimBranch" msprop:DbTableName="dimBranch" msprop:TableType="View" msprop:Description="dimBranch" msprop:QueryDefinition="select distinct&#xD;&#xA;branch_code as 'BranchCode',&#xD;&#xA;branch_name as 'BranchDesc'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_matter_header&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;branch_name is not null">
+                    <xs:element name="dimBranch_6fd44d6b-acaf-4a45-9bb8-1f4af8f84c53" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimBranch" msprop:DbTableName="dimBranch" msprop:TableType="View" msprop:Description="dimBranch" msprop:QueryDefinition="select distinct&#xD;&#xA;branch_code BranchCode,&#xD;&#xA;branch_name BranchDesc&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_matter_header&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;branch_name is not null">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="BranchCode" msprop:DbColumnName="BranchCode" msprop:FriendlyName="BranchCode" minOccurs="0">
@@ -26648,7 +26636,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimBillRecordType_87655b43-7ca3-458f-b9b5-f185be6f155f" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimBillType" msprop:DbTableName="dimBillRecordType" msprop:TableType="View" msprop:Description="dimBillRecordType" msprop:QueryDefinition="select distinct&#xD;&#xA;case when bill_record_type = 'Bill' then 'B'&#xD;&#xA; when bill_record_type = 'Abatement' then 'A'&#xD;&#xA; end as 'BillTypeCode',&#xD;&#xA;bill_record_type as 'BillTypeDesc'&#xD;&#xA; &#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_bill_activity">
+                    <xs:element name="dimBillRecordType_87655b43-7ca3-458f-b9b5-f185be6f155f" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimBillType" msprop:DbTableName="dimBillRecordType" msprop:TableType="View" msprop:Description="dimBillRecordType" msprop:QueryDefinition="select distinct&#xD;&#xA;case when bill_record_type = 'Bill' then 'B'&#xD;&#xA; when bill_record_type = 'Abatement' then 'A'&#xD;&#xA; end BillTypeCode,&#xD;&#xA;bill_record_type BillTypeDesc&#xD;&#xA; &#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_bill_activity">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="BillTypeCode" msprop:DbColumnName="BillTypeCode" msprop:FriendlyName="BillTypeCode" minOccurs="0">
@@ -26668,7 +26656,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimTimeTransactionTimeType_b143b586-63c5-4482-a0af-8ed4f80b7a5f" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimTimeTransactionTimeType" msprop:DbTableName="dimTimeTransactionTimeType" msprop:TableType="View" msprop:Description="dimTimeTransactionTimeType" msprop:QueryDefinition="select distinct&#xD;&#xA;time_type as 'TimeTransactionTimeTypeCode',&#xD;&#xA;case when time_type = 'NC' then 'Non Chargeable Time'&#xD;&#xA; when time_type = 'TM' then 'Chargeable Time'&#xD;&#xA; end as 'TimeTransactionTimeTypeDesc'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_all_time_activity">
+                    <xs:element name="dimTimeTransactionTimeType_b143b586-63c5-4482-a0af-8ed4f80b7a5f" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimTimeTransactionTimeType" msprop:DbTableName="dimTimeTransactionTimeType" msprop:TableType="View" msprop:Description="dimTimeTransactionTimeType" msprop:QueryDefinition="select distinct&#xD;&#xA;time_type TimeTransactionTimeTypeCode,&#xD;&#xA;case when time_type = 'NC' then 'Non Chargeable Time'&#xD;&#xA; when time_type = 'TM' then 'Chargeable Time'&#xD;&#xA; end TimeTransactionTimeTypeDesc&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_all_time_activity">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="TimeTransactionTimeTypeCode" msprop:DbColumnName="TimeTransactionTimeTypeCode" msprop:FriendlyName="TimeTransactionTimeTypeCode" minOccurs="0">
@@ -26757,7 +26745,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimDateBillDate_5d487121-6f04-420b-b2c5-aaac44ffc60f" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimDateBillDate" msprop:DbTableName="dimDateBillDate" msprop:TableType="View" msprop:Description="dimDateBillDate" msprop:QueryDefinition="select&#xD;&#xA;dim_date_key as 'BillDateKey',&#xD;&#xA;calendar_date as 'BillDateDate',&#xD;&#xA;cal_day_in_month as 'BillDateDayInMonth',&#xD;&#xA;cal_day_in_year as 'BillDateDayInYear',&#xD;&#xA;cal_day_in_week_no as 'BillDateWeekdayNo',&#xD;&#xA;cal_day_in_week as 'BillDateWeekdayName',&#xD;&#xA;cal_week_in_year as 'BillDateCalendarWeek',&#xD;&#xA;cal_month_no as 'BillDateCalendarMonthNo',&#xD;&#xA;cal_month_name as 'BillDateCalendarMonthName',&#xD;&#xA;cal_quarter_no as 'BillDateCalendarQuarterNo',&#xD;&#xA;cal_year as 'BillDateCalendarYear',&#xD;&#xA;fin_week_in_year as 'BillDateFinancialWeek',&#xD;&#xA;fin_month_no as 'BillDateFinancialMonthNo',&#xD;&#xA;fin_month_name as 'BillDateFinancialMonthName',&#xD;&#xA;fin_quarter_no as 'BillDateFinancialQuarterNo',&#xD;&#xA;fin_year as 'BillDateFinancialYear',&#xD;&#xA;week_end_flag as 'BillDateWeekend',&#xD;&#xA;holiday_flag as 'BillDateHoliday',&#xD;&#xA;cal_month_name + '-' + right(cal_year, 2) as 'BillDateCalPeriod',&#xD;&#xA;fin_month_name + '-' + right(fin_year, 2) as 'BillDateFinancialPeriod'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;dim_date">
+                    <xs:element name="dimDateBillDate_5d487121-6f04-420b-b2c5-aaac44ffc60f" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimDateBillDate" msprop:DbTableName="dimDateBillDate" msprop:TableType="View" msprop:Description="dimDateBillDate" msprop:QueryDefinition="select&#xD;&#xA;dim_date_key BillDateKey,&#xD;&#xA;calendar_date BillDateDate,&#xD;&#xA;cal_day_in_month BillDateDayInMonth,&#xD;&#xA;cal_day_in_year BillDateDayInYear,&#xD;&#xA;cal_day_in_week_no BillDateWeekdayNo,&#xD;&#xA;cal_day_in_week BillDateWeekdayName,&#xD;&#xA;cal_week_in_year BillDateCalendarWeek,&#xD;&#xA;cal_month_no BillDateCalendarMonthNo,&#xD;&#xA;cal_month_name BillDateCalendarMonthName,&#xD;&#xA;cal_quarter_no BillDateCalendarQuarterNo,&#xD;&#xA;cal_year BillDateCalendarYear,&#xD;&#xA;fin_week_in_year BillDateFinancialWeek,&#xD;&#xA;fin_month_no BillDateFinancialMonthNo,&#xD;&#xA;fin_month_name BillDateFinancialMonthName,&#xD;&#xA;fin_quarter_no BillDateFinancialQuarterNo,&#xD;&#xA;fin_year BillDateFinancialYear,&#xD;&#xA;week_end_flag BillDateWeekend,&#xD;&#xA;holiday_flag BillDateHoliday,&#xD;&#xA;cal_month_name + '-' + right(cal_year, 2) BillDateCalPeriod,&#xD;&#xA;fin_month_name + '-' + right(fin_year, 2) BillDateFinancialPeriod&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;dim_date">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="BillDateKey" msprop:DbColumnName="BillDateKey" msprop:FriendlyName="BillDateKey" type="xs:int" minOccurs="0" />
@@ -26825,7 +26813,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimDateMatterOpened_866fdd20-c0be-47a9-9ff2-e0c3a5aa9443" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimDateMatterOpened" msprop:DbTableName="dimDateMatterOpened" msprop:TableType="View" msprop:Description="dimDateMatterOpened" msprop:QueryDefinition="select&#xD;&#xA;dim_date_key as 'DateMatterOpenedKey',&#xD;&#xA;calendar_date as 'DateMatterOpenedDate',&#xD;&#xA;cal_day_in_month as 'DateMatterOpenedDayInMonth',&#xD;&#xA;cal_day_in_year as 'DateMatterOpenedDayInYear',&#xD;&#xA;cal_day_in_week_no as 'DateMatterOpenedWeekdayNo',&#xD;&#xA;cal_day_in_week as 'DateMatterOpenedWeekdayName',&#xD;&#xA;cal_week_in_year as 'DateMatterOpenedCalendarWeek',&#xD;&#xA;cal_month_no as 'DateMatterOpenedCalendarMonthNo',&#xD;&#xA;cal_month_name as 'DateMatterOpenedCalendarMonthName',&#xD;&#xA;cal_quarter_no as 'DateMatterOpenedCalendarQuarterNo',&#xD;&#xA;cal_year as 'DateMatterOpenedCalendarYear',&#xD;&#xA;fin_week_in_year as 'DateMatterOpenedFinancialWeek',&#xD;&#xA;fin_month_no as 'DateMatterOpenedFinancialMonthNo',&#xD;&#xA;fin_month_name as 'DateMatterOpenedFinancialMonthName',&#xD;&#xA;fin_quarter_no as 'DateMatterOpenedFinancialQuarterNo',&#xD;&#xA;fin_year as 'DateMatterOpenedFinancialYear',&#xD;&#xA;week_end_flag as 'DateMatterOpenedWeekend',&#xD;&#xA;holiday_flag as 'DateMatterOpenedHoliday',&#xD;&#xA;cal_month_name + '-' + right(cal_year, 2) as 'DateMatterOpenedCalPeriod',&#xD;&#xA;fin_month_name + '-' + right(fin_year, 2) as 'DateMatterOpenedFinancialPeriod'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;dim_date">
+                    <xs:element name="dimDateMatterOpened_866fdd20-c0be-47a9-9ff2-e0c3a5aa9443" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimDateMatterOpened" msprop:DbTableName="dimDateMatterOpened" msprop:TableType="View" msprop:Description="dimDateMatterOpened" msprop:QueryDefinition="select&#xD;&#xA;dim_date_key DateMatterOpenedKey,&#xD;&#xA;calendar_date DateMatterOpenedDate,&#xD;&#xA;cal_day_in_month DateMatterOpenedDayInMonth,&#xD;&#xA;cal_day_in_year DateMatterOpenedDayInYear,&#xD;&#xA;cal_day_in_week_no DateMatterOpenedWeekdayNo,&#xD;&#xA;cal_day_in_week DateMatterOpenedWeekdayName,&#xD;&#xA;cal_week_in_year DateMatterOpenedCalendarWeek,&#xD;&#xA;cal_month_no DateMatterOpenedCalendarMonthNo,&#xD;&#xA;cal_month_name DateMatterOpenedCalendarMonthName,&#xD;&#xA;cal_quarter_no DateMatterOpenedCalendarQuarterNo,&#xD;&#xA;cal_year DateMatterOpenedCalendarYear,&#xD;&#xA;fin_week_in_year DateMatterOpenedFinancialWeek,&#xD;&#xA;fin_month_no DateMatterOpenedFinancialMonthNo,&#xD;&#xA;fin_month_name DateMatterOpenedFinancialMonthName,&#xD;&#xA;fin_quarter_no DateMatterOpenedFinancialQuarterNo,&#xD;&#xA;fin_year DateMatterOpenedFinancialYear,&#xD;&#xA;week_end_flag DateMatterOpenedWeekend,&#xD;&#xA;holiday_flag DateMatterOpenedHoliday,&#xD;&#xA;cal_month_name + '-' + right(cal_year, 2) DateMatterOpenedCalPeriod,&#xD;&#xA;fin_month_name + '-' + right(fin_year, 2) DateMatterOpenedFinancialPeriod&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;dim_date">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="DateMatterOpenedKey" msprop:DbColumnName="DateMatterOpenedKey" msprop:FriendlyName="DateMatterOpenedKey" type="xs:int" minOccurs="0" />
@@ -26893,7 +26881,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimDateMatterClosed_ab636a6a-d3cd-4638-9aaf-bddf26883940" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimDateMatterClosed" msprop:DbTableName="dimDateMatterClosed" msprop:TableType="View" msprop:Description="dimDateMatterClosed" msprop:QueryDefinition="select&#xD;&#xA;dim_date_key as 'DateMatterClosedKey',&#xD;&#xA;calendar_date as 'DateMatterClosedDate',&#xD;&#xA;cal_day_in_month as 'DateMatterClosedDayInMonth',&#xD;&#xA;cal_day_in_year as 'DateMatterClosedDayInYear',&#xD;&#xA;cal_day_in_week_no as 'DateMatterClosedWeekdayNo',&#xD;&#xA;cal_day_in_week as 'DateMatterClosedWeekdayName',&#xD;&#xA;cal_week_in_year as 'DateMatterClosedCalendarWeek',&#xD;&#xA;cal_month_no as 'DateMatterClosedCalendarMonthNo',&#xD;&#xA;cal_month_name as 'DateMatterClosedCalendarMonthName',&#xD;&#xA;cal_quarter_no as 'DateMatterClosedCalendarQuarterNo',&#xD;&#xA;cal_year as 'DateMatterClosedCalendarYear',&#xD;&#xA;fin_week_in_year as 'DateMatterClosedFinancialWeek',&#xD;&#xA;fin_month_no as 'DateMatterClosedFinancialMonthNo',&#xD;&#xA;fin_month_name as 'DateMatterClosedFinancialMonthName',&#xD;&#xA;fin_quarter_no as 'DateMatterClosedFinancialQuarterNo',&#xD;&#xA;fin_year as 'DateMatterClosedFinancialYear',&#xD;&#xA;week_end_flag as 'DateMatterClosedWeekend',&#xD;&#xA;holiday_flag as 'DateMatterClosedHoliday',&#xD;&#xA;cal_month_name + '-' + right(cal_year, 2) as 'DateMatterClosedCalPeriod',&#xD;&#xA;fin_month_name + '-' + right(fin_year, 2) as 'DateMatterClosedFinancialPeriod'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;dim_date">
+                    <xs:element name="dimDateMatterClosed_ab636a6a-d3cd-4638-9aaf-bddf26883940" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimDateMatterClosed" msprop:DbTableName="dimDateMatterClosed" msprop:TableType="View" msprop:Description="dimDateMatterClosed" msprop:QueryDefinition="select&#xD;&#xA;dim_date_key DateMatterClosedKey,&#xD;&#xA;calendar_date DateMatterClosedDate,&#xD;&#xA;cal_day_in_month DateMatterClosedDayInMonth,&#xD;&#xA;cal_day_in_year DateMatterClosedDayInYear,&#xD;&#xA;cal_day_in_week_no DateMatterClosedWeekdayNo,&#xD;&#xA;cal_day_in_week DateMatterClosedWeekdayName,&#xD;&#xA;cal_week_in_year DateMatterClosedCalendarWeek,&#xD;&#xA;cal_month_no DateMatterClosedCalendarMonthNo,&#xD;&#xA;cal_month_name DateMatterClosedCalendarMonthName,&#xD;&#xA;cal_quarter_no DateMatterClosedCalendarQuarterNo,&#xD;&#xA;cal_year DateMatterClosedCalendarYear,&#xD;&#xA;fin_week_in_year DateMatterClosedFinancialWeek,&#xD;&#xA;fin_month_no DateMatterClosedFinancialMonthNo,&#xD;&#xA;fin_month_name DateMatterClosedFinancialMonthName,&#xD;&#xA;fin_quarter_no DateMatterClosedFinancialQuarterNo,&#xD;&#xA;fin_year DateMatterClosedFinancialYear,&#xD;&#xA;week_end_flag DateMatterClosedWeekend,&#xD;&#xA;holiday_flag DateMatterClosedHoliday,&#xD;&#xA;cal_month_name + '-' + right(cal_year, 2) DateMatterClosedCalPeriod,&#xD;&#xA;fin_month_name + '-' + right(fin_year, 2) DateMatterClosedFinancialPeriod&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;dim_date">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="DateMatterClosedKey" msprop:DbColumnName="DateMatterClosedKey" msprop:FriendlyName="DateMatterClosedKey" type="xs:int" minOccurs="0" />
@@ -27039,7 +27027,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimTimeTransactionTimeActivity_cf1cf901-9bbb-4762-a91a-310d6d22a230" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimTimeTransactionTimeActivity" msprop:DbTableName="dimTimeTransactionTimeActivity" msprop:TableType="View" msprop:Description="dimTimeTransactionTimeActivity" msprop:QueryDefinition="select distinct&#xD;&#xA;time_activity_code as 'TimeActivityCode',&#xD;&#xA;time_activity_descrn as 'TimeActivityDesc',&#xD;&#xA; case&#xD;&#xA;  when time_activity_code =  '1'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '2'  then 'Holiday'&#xD;&#xA;  when time_activity_code =  '3'  then 'Sickness'&#xD;&#xA;  when time_activity_code =  '4'  then ''&#xD;&#xA;  when time_activity_code =  '5'  then 'Client'&#xD;&#xA;  when time_activity_code =  '6'  then 'Client'&#xD;&#xA;  when time_activity_code =  '7'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '8'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '9'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '10'  then 'InternalBusinessProcess'&#xD;&#xA;  when time_activity_code =  '11'  then 'Client'&#xD;&#xA;  when time_activity_code =  '12'  then 'Client'&#xD;&#xA;  when time_activity_code =  '13'  then 'Personal'&#xD;&#xA;  when time_activity_code =  '28'  then 'Client'&#xD;&#xA;  when time_activity_code =  '73'  then 'Client'&#xD;&#xA;  when time_activity_code =  '74'  then 'Client'&#xD;&#xA;  when time_activity_code =  '75'  then 'Client'&#xD;&#xA;  when time_activity_code =  '76'  then 'Client'&#xD;&#xA;  when time_activity_code =  '77'  then 'Client'&#xD;&#xA;  when time_activity_code =  '78'  then 'Client'&#xD;&#xA;  when time_activity_code =  '79'  then 'Client'&#xD;&#xA;  when time_activity_code =  '80'  then 'Client'&#xD;&#xA;  when time_activity_code =  '81'  then 'Client'&#xD;&#xA;  when time_activity_code =  '82'  then 'Client'&#xD;&#xA;  when time_activity_code =  '83'  then 'Client'&#xD;&#xA;  when time_activity_code =  '84'  then 'Client'&#xD;&#xA;  when time_activity_code =  '85'  then 'Client'&#xD;&#xA;  when time_activity_code =  '86'  then 'Client'&#xD;&#xA;  when time_activity_code =  '87'  then 'Client'&#xD;&#xA;  when time_activity_code =  '88'  then 'Client'&#xD;&#xA;  when time_activity_code =  '89'  then 'Client'&#xD;&#xA;  when time_activity_code =  '90'  then 'Client'&#xD;&#xA;  when time_activity_code =  '91'  then 'Client'&#xD;&#xA;  when time_activity_code =  '92'  then 'Client'&#xD;&#xA;  when time_activity_code =  '114'  then ''&#xD;&#xA;  when time_activity_code =  '93'  then ''&#xD;&#xA;  when time_activity_code =  '94'  then 'Client'&#xD;&#xA;  when time_activity_code =  '95'  then 'Client'&#xD;&#xA;  when time_activity_code =  '96'  then 'Client'&#xD;&#xA;  when time_activity_code =  '99'  then 'Client'&#xD;&#xA;  when time_activity_code =  '100'  then 'Client'&#xD;&#xA;  when time_activity_code =  '71'  then 'Client'&#xD;&#xA;  when time_activity_code =  '103'  then 'Client'&#xD;&#xA;  when time_activity_code =  '104'  then 'Client'&#xD;&#xA;  when time_activity_code =  '105'  then 'Client'&#xD;&#xA;  when time_activity_code =  '106'  then 'Client'&#xD;&#xA;  when time_activity_code =  '108'  then 'Client'&#xD;&#xA;  when time_activity_code =  '107'  then 'Client'&#xD;&#xA;  when time_activity_code =  '109'  then 'Client'&#xD;&#xA;  when time_activity_code =  '110'  then 'Client'&#xD;&#xA;  when time_activity_code =  '113'  then 'Client'&#xD;&#xA;  when time_activity_code =  '115'  then 'Client'&#xD;&#xA;  when time_activity_code =  '116'  then 'Client'&#xD;&#xA;  when time_activity_code =  '117'  then 'Client'&#xD;&#xA;  when time_activity_code =  '118'  then 'Client'&#xD;&#xA;  when time_activity_code =  '119'  then 'Client'&#xD;&#xA;  when time_activity_code =  '132'  then 'Client'&#xD;&#xA;  when time_activity_code =  '133'  then 'Client'&#xD;&#xA;  when time_activity_code =  '134'  then 'Client'&#xD;&#xA;  when time_activity_code =  '120'  then 'Client'&#xD;&#xA;  when time_activity_code =  '121'  then 'Client'&#xD;&#xA;  when time_activity_code =  '122'  then 'Client'&#xD;&#xA;  when time_activity_code =  '123'  then 'Client'&#xD;&#xA;  when time_activity_code =  '124'  then 'Client'&#xD;&#xA;  when time_activity_code =  '125'  then 'Client'&#xD;&#xA;  when time_activity_code =  '126'  then 'Client'&#xD;&#xA;  when time_activity_code =  '127'  then 'Client'&#xD;&#xA;  when time_activity_code =  '128'  then 'Client'&#xD;&#xA;  when time_activity_code =  '129'  then 'Client'&#xD;&#xA;  when time_activity_code =  '130'  then 'Client'&#xD;&#xA;  when time_activity_code =  '131'  then 'Client'&#xD;&#xA;  when time_activity_code =  '70'  then 'Client'&#xD;&#xA;  when time_activity_code =  '72'  then 'Client'&#xD;&#xA;  when time_activity_code =  '56'  then 'Personal'&#xD;&#xA;  when time_activity_code =  '57'  then 'InternalBusinessProcess'&#xD;&#xA;  when time_activity_code =  '58'  then 'InternalBusinessProcess'&#xD;&#xA;  when time_activity_code =  '59'  then 'InternalBusinessProcess'&#xD;&#xA;  when time_activity_code =  '97'  then 'InternalBusinessProcess'&#xD;&#xA;  when time_activity_code =  '98'  then 'InternalBusinessProcess'&#xD;&#xA;  when time_activity_code =  '101'  then 'InternalBusinessProcess'&#xD;&#xA;  when time_activity_code =  '112'  then 'InternalBusinessProcess'&#xD;&#xA;  when time_activity_code =  '60'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '61'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '62'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '63'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '64'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '65'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '66'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '67'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '68'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '69'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '102'  then 'LearningAndDevelopment'&#xD;&#xA;when time_activity_code = 'IS1'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS10'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS11'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS12'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS13'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS14'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS15'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS16'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS17'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS18'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS19'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS2'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS20'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS3'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS4'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS5'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS6'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS7'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS8'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS9'  then 'Project'&#xD;&#xA;end as 'BusinessArea' &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;dim_all_time_activity">
+                    <xs:element name="dimTimeTransactionTimeActivity_cf1cf901-9bbb-4762-a91a-310d6d22a230" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimTimeTransactionTimeActivity" msprop:DbTableName="dimTimeTransactionTimeActivity" msprop:TableType="View" msprop:Description="dimTimeTransactionTimeActivity" msprop:QueryDefinition="select distinct&#xD;&#xA;time_activity_code TimeActivityCode,&#xD;&#xA;time_activity_descrn TimeActivityDesc,&#xD;&#xA; case&#xD;&#xA;  when time_activity_code =  '1'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '2'  then 'Holiday'&#xD;&#xA;  when time_activity_code =  '3'  then 'Sickness'&#xD;&#xA;  when time_activity_code =  '4'  then ''&#xD;&#xA;  when time_activity_code =  '5'  then 'Client'&#xD;&#xA;  when time_activity_code =  '6'  then 'Client'&#xD;&#xA;  when time_activity_code =  '7'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '8'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '9'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '10'  then 'InternalBusinessProcess'&#xD;&#xA;  when time_activity_code =  '11'  then 'Client'&#xD;&#xA;  when time_activity_code =  '12'  then 'Client'&#xD;&#xA;  when time_activity_code =  '13'  then 'Personal'&#xD;&#xA;  when time_activity_code =  '28'  then 'Client'&#xD;&#xA;  when time_activity_code =  '73'  then 'Client'&#xD;&#xA;  when time_activity_code =  '74'  then 'Client'&#xD;&#xA;  when time_activity_code =  '75'  then 'Client'&#xD;&#xA;  when time_activity_code =  '76'  then 'Client'&#xD;&#xA;  when time_activity_code =  '77'  then 'Client'&#xD;&#xA;  when time_activity_code =  '78'  then 'Client'&#xD;&#xA;  when time_activity_code =  '79'  then 'Client'&#xD;&#xA;  when time_activity_code =  '80'  then 'Client'&#xD;&#xA;  when time_activity_code =  '81'  then 'Client'&#xD;&#xA;  when time_activity_code =  '82'  then 'Client'&#xD;&#xA;  when time_activity_code =  '83'  then 'Client'&#xD;&#xA;  when time_activity_code =  '84'  then 'Client'&#xD;&#xA;  when time_activity_code =  '85'  then 'Client'&#xD;&#xA;  when time_activity_code =  '86'  then 'Client'&#xD;&#xA;  when time_activity_code =  '87'  then 'Client'&#xD;&#xA;  when time_activity_code =  '88'  then 'Client'&#xD;&#xA;  when time_activity_code =  '89'  then 'Client'&#xD;&#xA;  when time_activity_code =  '90'  then 'Client'&#xD;&#xA;  when time_activity_code =  '91'  then 'Client'&#xD;&#xA;  when time_activity_code =  '92'  then 'Client'&#xD;&#xA;  when time_activity_code =  '114'  then ''&#xD;&#xA;  when time_activity_code =  '93'  then ''&#xD;&#xA;  when time_activity_code =  '94'  then 'Client'&#xD;&#xA;  when time_activity_code =  '95'  then 'Client'&#xD;&#xA;  when time_activity_code =  '96'  then 'Client'&#xD;&#xA;  when time_activity_code =  '99'  then 'Client'&#xD;&#xA;  when time_activity_code =  '100'  then 'Client'&#xD;&#xA;  when time_activity_code =  '71'  then 'Client'&#xD;&#xA;  when time_activity_code =  '103'  then 'Client'&#xD;&#xA;  when time_activity_code =  '104'  then 'Client'&#xD;&#xA;  when time_activity_code =  '105'  then 'Client'&#xD;&#xA;  when time_activity_code =  '106'  then 'Client'&#xD;&#xA;  when time_activity_code =  '108'  then 'Client'&#xD;&#xA;  when time_activity_code =  '107'  then 'Client'&#xD;&#xA;  when time_activity_code =  '109'  then 'Client'&#xD;&#xA;  when time_activity_code =  '110'  then 'Client'&#xD;&#xA;  when time_activity_code =  '113'  then 'Client'&#xD;&#xA;  when time_activity_code =  '115'  then 'Client'&#xD;&#xA;  when time_activity_code =  '116'  then 'Client'&#xD;&#xA;  when time_activity_code =  '117'  then 'Client'&#xD;&#xA;  when time_activity_code =  '118'  then 'Client'&#xD;&#xA;  when time_activity_code =  '119'  then 'Client'&#xD;&#xA;  when time_activity_code =  '132'  then 'Client'&#xD;&#xA;  when time_activity_code =  '133'  then 'Client'&#xD;&#xA;  when time_activity_code =  '134'  then 'Client'&#xD;&#xA;  when time_activity_code =  '120'  then 'Client'&#xD;&#xA;  when time_activity_code =  '121'  then 'Client'&#xD;&#xA;  when time_activity_code =  '122'  then 'Client'&#xD;&#xA;  when time_activity_code =  '123'  then 'Client'&#xD;&#xA;  when time_activity_code =  '124'  then 'Client'&#xD;&#xA;  when time_activity_code =  '125'  then 'Client'&#xD;&#xA;  when time_activity_code =  '126'  then 'Client'&#xD;&#xA;  when time_activity_code =  '127'  then 'Client'&#xD;&#xA;  when time_activity_code =  '128'  then 'Client'&#xD;&#xA;  when time_activity_code =  '129'  then 'Client'&#xD;&#xA;  when time_activity_code =  '130'  then 'Client'&#xD;&#xA;  when time_activity_code =  '131'  then 'Client'&#xD;&#xA;  when time_activity_code =  '70'  then 'Client'&#xD;&#xA;  when time_activity_code =  '72'  then 'Client'&#xD;&#xA;  when time_activity_code =  '56'  then 'Personal'&#xD;&#xA;  when time_activity_code =  '57'  then 'InternalBusinessProcess'&#xD;&#xA;  when time_activity_code =  '58'  then 'InternalBusinessProcess'&#xD;&#xA;  when time_activity_code =  '59'  then 'InternalBusinessProcess'&#xD;&#xA;  when time_activity_code =  '97'  then 'InternalBusinessProcess'&#xD;&#xA;  when time_activity_code =  '98'  then 'InternalBusinessProcess'&#xD;&#xA;  when time_activity_code =  '101'  then 'InternalBusinessProcess'&#xD;&#xA;  when time_activity_code =  '112'  then 'InternalBusinessProcess'&#xD;&#xA;  when time_activity_code =  '60'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '61'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '62'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '63'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '64'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '65'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '66'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '67'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '68'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '69'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '102'  then 'LearningAndDevelopment'&#xD;&#xA;when time_activity_code = 'IS1'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS10'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS11'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS12'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS13'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS14'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS15'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS16'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS17'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS18'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS19'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS2'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS20'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS3'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS4'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS5'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS6'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS7'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS8'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS9'  then 'Project'&#xD;&#xA;end BusinessArea&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;dim_all_time_activity">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="TimeActivityCode" msprop:DbColumnName="TimeActivityCode" msprop:FriendlyName="TimeActivityCode" minOccurs="0">
@@ -27066,7 +27054,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimDateBillLastPayment" msprop:DbTableName="dimDateBillLastPaymentDate" msprop:TableType="View" msprop:Description="dimDateBillLastPaymentDate" msprop:QueryDefinition="select&#xD;&#xA;dim_date_key as 'DateBillLastPaymentKey',&#xD;&#xA;calendar_date as 'DateBillLastPaymentDate',&#xD;&#xA;cal_day_in_month as 'DateBillLastPaymentDayInMonth',&#xD;&#xA;cal_day_in_year as 'DateBillLastPaymentDayInYear',&#xD;&#xA;cal_day_in_week_no as 'DateBillLastPaymentWeekdayNo',&#xD;&#xA;cal_day_in_week as 'DateBillLastPaymentWeekdayName',&#xD;&#xA;cal_week_in_year as 'DateBillLastPaymentCalendarWeek',&#xD;&#xA;cal_month_no as 'DateBillLastPaymentCalendarMonthNo',&#xD;&#xA;cal_month_name as 'DateBillLastPaymentCalendarMonthName',&#xD;&#xA;cal_quarter_no as 'DateBillLastPaymentCalendarQuarterNo',&#xD;&#xA;cal_year as 'DateBillLastPaymentCalendarYear',&#xD;&#xA;fin_week_in_year as 'DateBillLastPaymentFinancialWeek',&#xD;&#xA;fin_month_no as 'DateBillLastPaymentFinancialMonthNo',&#xD;&#xA;fin_month_name as 'DateBillLastPaymentFinancialMonthName',&#xD;&#xA;fin_quarter_no as 'DateBillLastPaymentFinancialQuarterNo',&#xD;&#xA;fin_year as 'DateBillLastPaymentFinancialYear',&#xD;&#xA;week_end_flag as 'DateBillLastPaymentWeekend',&#xD;&#xA;holiday_flag as 'DateBillLastPaymentHoliday'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;dim_date">
+                    <xs:element name="dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimDateBillLastPayment" msprop:DbTableName="dimDateBillLastPaymentDate" msprop:TableType="View" msprop:Description="dimDateBillLastPaymentDate" msprop:QueryDefinition="select&#xD;&#xA;dim_date_key DateBillLastPaymentKey,&#xD;&#xA;calendar_date DateBillLastPaymentDate,&#xD;&#xA;cal_day_in_month DateBillLastPaymentDayInMonth,&#xD;&#xA;cal_day_in_year DateBillLastPaymentDayInYear,&#xD;&#xA;cal_day_in_week_no DateBillLastPaymentWeekdayNo,&#xD;&#xA;cal_day_in_week DateBillLastPaymentWeekdayName,&#xD;&#xA;cal_week_in_year DateBillLastPaymentCalendarWeek,&#xD;&#xA;cal_month_no DateBillLastPaymentCalendarMonthNo,&#xD;&#xA;cal_month_name DateBillLastPaymentCalendarMonthName,&#xD;&#xA;cal_quarter_no DateBillLastPaymentCalendarQuarterNo,&#xD;&#xA;cal_year DateBillLastPaymentCalendarYear,&#xD;&#xA;fin_week_in_year DateBillLastPaymentFinancialWeek,&#xD;&#xA;fin_month_no DateBillLastPaymentFinancialMonthNo,&#xD;&#xA;fin_month_name DateBillLastPaymentFinancialMonthName,&#xD;&#xA;fin_quarter_no DateBillLastPaymentFinancialQuarterNo,&#xD;&#xA;fin_year DateBillLastPaymentFinancialYear,&#xD;&#xA;week_end_flag DateBillLastPaymentWeekend,&#xD;&#xA;holiday_flag DateBillLastPaymentHoliday&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;dim_date">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="DateBillLastPaymentKey" msprop:DbColumnName="DateBillLastPaymentKey" msprop:FriendlyName="DateBillLastPaymentKey" type="xs:int" minOccurs="0" />
@@ -27120,7 +27108,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimBillFinalOrInterim_2ff2c4c4-389e-4d83-8fc9-fb979ef2a896" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimBillFinalOrInterim" msprop:DbTableName="dimBillFinalOrInterim" msprop:TableType="View" msprop:Description="dimBillFinalOrInterim" msprop:QueryDefinition="select distinct&#xD;&#xA;bill_flag as 'BillFinalOrInterimCode',&#xD;&#xA;case when bill_flag = 'f' then 'Final'&#xD;&#xA; when bill_flag = 'i' then 'Interim'&#xD;&#xA; end as 'BillFinalOrInterimDesc'&#xD;&#xA;  &#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_bill&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;bill_flag is not null&#xD;&#xA;and bill_flag != ''">
+                    <xs:element name="dimBillFinalOrInterim_2ff2c4c4-389e-4d83-8fc9-fb979ef2a896" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimBillFinalOrInterim" msprop:DbTableName="dimBillFinalOrInterim" msprop:TableType="View" msprop:Description="dimBillFinalOrInterim" msprop:QueryDefinition="select distinct&#xD;&#xA;bill_flag BillFinalOrInterimCode,&#xD;&#xA;case when bill_flag = 'f' then 'Final'&#xD;&#xA; when bill_flag = 'i' then 'Interim'&#xD;&#xA; end BillFinalOrInterimDesc&#xD;&#xA;  &#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_bill&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;bill_flag is not null&#xD;&#xA;and bill_flag != ''">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="BillFinalOrInterimCode" msprop:DbColumnName="BillFinalOrInterimCode" msprop:FriendlyName="BillFinalOrInterimCode" minOccurs="0">
@@ -27140,7 +27128,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimWorkType_8bd61155-060a-4cc0-ae78-5ed96ec74177" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimWorkType" msprop:DbTableName="dimWorkType" msprop:TableType="View" msprop:Description="dimWorkType" msprop:QueryDefinition="select&#xD;&#xA;work_type_code as 'WorkTypeCode',&#xD;&#xA;work_type_name as 'WorkTypeDesc'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_matter_worktype">
+                    <xs:element name="dimWorkType_8bd61155-060a-4cc0-ae78-5ed96ec74177" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimWorkType" msprop:DbTableName="dimWorkType" msprop:TableType="View" msprop:Description="dimWorkType" msprop:QueryDefinition="select&#xD;&#xA;work_type_code WorkTypeCode,&#xD;&#xA;work_type_name as WorkTypeDesc&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_matter_worktype">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="WorkTypeCode" msprop:DbColumnName="WorkTypeCode" msprop:FriendlyName="WorkTypeCode" minOccurs="0">
@@ -27265,7 +27253,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimMatterGroup_a1fa978a-d7bc-444c-a040-0879c3086dad" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimMatterGroup" msprop:DbTableName="dimMatterGroup" msprop:TableType="View" msprop:Description="dimMatterGroup" msprop:QueryDefinition="SELECT &#xD;&#xA;matter_group_code as 'MatterGroupCode',&#xD;&#xA;matter_group_name as 'MatterGroupDesc'&#xD;&#xA;      &#xD;&#xA;FROM &#xD;&#xA;red_dw.dbo.dim_matter_group">
+                    <xs:element name="dimMatterGroup_a1fa978a-d7bc-444c-a040-0879c3086dad" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimMatterGroup" msprop:DbTableName="dimMatterGroup" msprop:TableType="View" msprop:Description="dimMatterGroup" msprop:QueryDefinition="SELECT &#xD;&#xA;matter_group_code MatterGroupCode,&#xD;&#xA;matter_group_name as MatterGroupDesc&#xD;&#xA;      &#xD;&#xA;FROM &#xD;&#xA;red_dw.dbo.dim_matter_group">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="MatterGroupCode" msprop:DbColumnName="MatterGroupCode" msprop:FriendlyName="MatterGroupCode" minOccurs="0">
@@ -27285,7 +27273,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimClientMatter_efa9a451-b17b-4f91-8fea-de6ec489402f" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimMatterClient" msprop:DbTableName="dimClientMatter" msprop:TableType="View" msprop:Description="dimClientMatter" msprop:QueryDefinition="SELECT distinct&#xD;&#xA;c.client_code as 'MatterClientCode',&#xD;&#xA;c.client_name as 'MatterClientName',&#xD;&#xA;c.client_group_name as 'MatterClientGroupName'&#xD;&#xA;&#xD;&#xA; FROM &#xD;&#xA;[dim_client] c&#xD;&#xA;&#xD;&#xA;inner join fact_matter_summary a&#xD;&#xA; on a.dim_client_key = c.dim_client_key">
+                    <xs:element name="dimClientMatter_efa9a451-b17b-4f91-8fea-de6ec489402f" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimMatterClient" msprop:DbTableName="dimClientMatter" msprop:TableType="View" msprop:Description="dimClientMatter" msprop:QueryDefinition="SELECT distinct&#xD;&#xA;c.client_code MatterClientCode,&#xD;&#xA;c.client_name MatterClientName,&#xD;&#xA;c.client_group_name MatterClientGroupName&#xD;&#xA;&#xD;&#xA; FROM &#xD;&#xA;[dim_client] c&#xD;&#xA;&#xD;&#xA;inner join fact_matter_summary a&#xD;&#xA; on a.dim_client_key = c.dim_client_key">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="MatterClientCode" msprop:DbColumnName="MatterClientCode" msprop:FriendlyName="MatterClientCode" minOccurs="0">
@@ -27312,7 +27300,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimDateLastBill_25ad1174-db1d-4f13-b00b-a3e687a23c0f" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimDateLastBill" msprop:DbTableName="dimDateLastBill" msprop:TableType="View" msprop:Description="dimDateLastBill" msprop:QueryDefinition="select&#xD;&#xA;dim_date_key as 'LastBillKey',&#xD;&#xA;calendar_date as 'LastBillDate',&#xD;&#xA;cal_day_in_month as 'LastBillDayInMonth',&#xD;&#xA;cal_day_in_year as 'LastBillDayInYear',&#xD;&#xA;cal_day_in_week_no as 'LastBillWeekdayNo',&#xD;&#xA;cal_day_in_week as 'LastBillWeekdayName',&#xD;&#xA;cal_week_in_year as 'LastBillCalendarWeek',&#xD;&#xA;cal_month_no as 'LastBillCalendarMonthNo',&#xD;&#xA;cal_month_name as 'LastBillCalendarMonthName',&#xD;&#xA;cal_quarter_no as 'LastBillCalendarQuarterNo',&#xD;&#xA;cal_year as 'LastBillCalendarYear',&#xD;&#xA;fin_week_in_year as 'LastBillFinancialWeek',&#xD;&#xA;fin_month_no as 'LastBillFinancialMonthNo',&#xD;&#xA;fin_month_name as 'LastBillFinancialMonthName',&#xD;&#xA;fin_quarter_no as 'LastBillFinancialQuarterNo',&#xD;&#xA;fin_year as 'LastBillFinancialYear',&#xD;&#xA;week_end_flag as 'LastBillWeekend',&#xD;&#xA;holiday_flag as 'LastBillHoliday'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;dim_date">
+                    <xs:element name="dimDateLastBill_25ad1174-db1d-4f13-b00b-a3e687a23c0f" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimDateLastBill" msprop:DbTableName="dimDateLastBill" msprop:TableType="View" msprop:Description="dimDateLastBill" msprop:QueryDefinition="select&#xD;&#xA;dim_date_key LastBillKey,&#xD;&#xA;calendar_date LastBillDate,&#xD;&#xA;cal_day_in_month LastBillDayInMonth,&#xD;&#xA;cal_day_in_year LastBillDayInYear,&#xD;&#xA;cal_day_in_week_no LastBillWeekdayNo,&#xD;&#xA;cal_day_in_week LastBillWeekdayName,&#xD;&#xA;cal_week_in_year LastBillCalendarWeek,&#xD;&#xA;cal_month_no LastBillCalendarMonthNo,&#xD;&#xA;cal_month_name LastBillCalendarMonthName,&#xD;&#xA;cal_quarter_no LastBillCalendarQuarterNo,&#xD;&#xA;cal_year LastBillCalendarYear,&#xD;&#xA;fin_week_in_year LastBillFinancialWeek,&#xD;&#xA;fin_month_no LastBillFinancialMonthNo,&#xD;&#xA;fin_month_name LastBillFinancialMonthName,&#xD;&#xA;fin_quarter_no LastBillFinancialQuarterNo,&#xD;&#xA;fin_year LastBillFinancialYear,&#xD;&#xA;week_end_flag LastBillWeekend,&#xD;&#xA;holiday_flag LastBillHoliday&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;dim_date">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="LastBillKey" msprop:DbColumnName="LastBillKey" msprop:FriendlyName="LastBillKey" type="xs:int" minOccurs="0" />
@@ -27366,7 +27354,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimDateLastTime_55a93974-a33e-4f88-9351-43b631401c1e" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimDateLastTime" msprop:DbTableName="dimDateLastTime" msprop:TableType="View" msprop:Description="dimDateLastTime" msprop:QueryDefinition="select&#xD;&#xA;dim_date_key as 'LastTimeKey',&#xD;&#xA;calendar_date as 'LastTimeDate',&#xD;&#xA;cal_day_in_month as 'LastTimeDayInMonth',&#xD;&#xA;cal_day_in_year as 'LastTimeDayInYear',&#xD;&#xA;cal_day_in_week_no as 'LastTimeWeekdayNo',&#xD;&#xA;cal_day_in_week as 'LastTimeWeekdayName',&#xD;&#xA;cal_week_in_year as 'LastTimeCalendarWeek',&#xD;&#xA;cal_month_no as 'LastTimeCalendarMonthNo',&#xD;&#xA;cal_month_name as 'LastTimeCalendarMonthName',&#xD;&#xA;cal_quarter_no as 'LastTimeCalendarQuarterNo',&#xD;&#xA;cal_year as 'LastTimeCalendarYear',&#xD;&#xA;fin_week_in_year as 'LastTimeFinancialWeek',&#xD;&#xA;fin_month_no as 'LastTimeFinancialMonthNo',&#xD;&#xA;fin_month_name as 'LastTimeFinancialMonthName',&#xD;&#xA;fin_quarter_no as 'LastTimeFinancialQuarterNo',&#xD;&#xA;fin_year as 'LastTimeFinancialYear',&#xD;&#xA;week_end_flag as 'LastTimeWeekend',&#xD;&#xA;holiday_flag as 'LastTimeHoliday'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;dim_date">
+                    <xs:element name="dimDateLastTime_55a93974-a33e-4f88-9351-43b631401c1e" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimDateLastTime" msprop:DbTableName="dimDateLastTime" msprop:TableType="View" msprop:Description="dimDateLastTime" msprop:QueryDefinition="select&#xD;&#xA;dim_date_key LastTimeKey,&#xD;&#xA;calendar_date LastTimeDate,&#xD;&#xA;cal_day_in_month LastTimeDayInMonth,&#xD;&#xA;cal_day_in_year LastTimeDayInYear,&#xD;&#xA;cal_day_in_week_no LastTimeWeekdayNo,&#xD;&#xA;cal_day_in_week LastTimeWeekdayName,&#xD;&#xA;cal_week_in_year LastTimeCalendarWeek,&#xD;&#xA;cal_month_no LastTimeCalendarMonthNo,&#xD;&#xA;cal_month_name LastTimeCalendarMonthName,&#xD;&#xA;cal_quarter_no LastTimeCalendarQuarterNo,&#xD;&#xA;cal_year LastTimeCalendarYear,&#xD;&#xA;fin_week_in_year LastTimeFinancialWeek,&#xD;&#xA;fin_month_no LastTimeFinancialMonthNo,&#xD;&#xA;fin_month_name LastTimeFinancialMonthName,&#xD;&#xA;fin_quarter_no LastTimeFinancialQuarterNo,&#xD;&#xA;fin_year LastTimeFinancialYear,&#xD;&#xA;week_end_flag LastTimeWeekend,&#xD;&#xA;holiday_flag LastTimeHoliday&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;dim_date">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="LastTimeKey" msprop:DbColumnName="LastTimeKey" msprop:FriendlyName="LastTimeKey" type="xs:int" minOccurs="0" />
@@ -27420,7 +27408,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="DaysBanding_a0bb1990-5adf-49c9-8dd2-ce75361b1478" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimDaysBanding" msprop:DbTableName="DaysBanding" msprop:TableType="View" msprop:Description="DaysBanding" msprop:QueryDefinition="select &#xD;&#xA;  n as 'Number',&#xD;&#xA;  case when n between 0 and 30 then '0 - 30 Days'&#xD;&#xA;  when n between 31 and 90 then '31 - 90 Days'&#xD;&#xA;  when n between 91 and 180 then '91 - 180 Days'&#xD;&#xA;  when n between 181 and 270 then '181 - 270 Days'&#xD;&#xA;  when n between 271 and 360 then '271 - 360 Days'&#xD;&#xA;  when n between 361 and 720 then '361 - 720 Days'&#xD;&#xA;  when n &gt; 710 then 'Over 720 Days' end as 'TransactionAgeBanding',&#xD;&#xA;  &#xD;&#xA;  case when n between 0 and 60 then 'Current'&#xD;&#xA;  when n between 61 and 90 then '61 - 90 Days'&#xD;&#xA;  when n between 91 and 180 then '91 - 180 Days'&#xD;&#xA;  when n between 181 and 270 then '181 - 270 Days'&#xD;&#xA;  when n between 271 and 360 then '271 - 360 Days'&#xD;&#xA;  when n between 361 and 720 then '361 - 720 Days'&#xD;&#xA;  when n &gt; 710 then 'Greater than 720 Days' end as 'KPIUnbilledTimeBanding',&#xD;&#xA;  case when n between 0 and 60 then 1&#xD;&#xA;  when n between 61 and 90 then 2&#xD;&#xA;  when n between 91 and 180 then 3&#xD;&#xA;  when n between 181 and 270 then 4&#xD;&#xA;  when n between 271 and 360 then 5&#xD;&#xA;  when n between 361 and 720 then 6&#xD;&#xA;  when n &gt; 710 then 7 end as 'KPIUnbilledTimeOrder'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;  from (&#xD;&#xA;  select &#xD;&#xA;  top 100000&#xD;&#xA;  row_number() over(order by t1.number) as n&#xD;&#xA;  &#xD;&#xA;  &#xD;&#xA;  from &#xD;&#xA;  master..spt_values t1   &#xD;&#xA;  CROSS JOIN master..spt_values t2&#xD;&#xA;&#xD;&#xA;  ) tbl&#xD;&#xA;  union&#xD;&#xA;  select 0, '0 - 30 Days', 'Current', 1&#xD;&#xA;&#xD;&#xA;  order by 1">
+                    <xs:element name="DaysBanding_a0bb1990-5adf-49c9-8dd2-ce75361b1478" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimDaysBanding" msprop:DbTableName="DaysBanding" msprop:TableType="View" msprop:Description="DaysBanding" msprop:QueryDefinition="select &#xD;&#xA;  n Number,&#xD;&#xA;  case when n between 0 and 30 then '0 - 30 Days'&#xD;&#xA;  when n between 31 and 90 then '31 - 90 Days'&#xD;&#xA;  when n between 91 and 180 then '91 - 180 Days'&#xD;&#xA;  when n between 181 and 270 then '181 - 270 Days'&#xD;&#xA;  when n between 271 and 360 then '271 - 360 Days'&#xD;&#xA;  when n between 361 and 720 then '361 - 720 Days'&#xD;&#xA;  when n &gt; 710 then 'Over 720 Days' end TransactionAgeBanding,&#xD;&#xA;  &#xD;&#xA;  case when n between 0 and 60 then 'Current'&#xD;&#xA;  when n between 61 and 90 then '61 - 90 Days'&#xD;&#xA;  when n between 91 and 180 then '91 - 180 Days'&#xD;&#xA;  when n between 181 and 270 then '181 - 270 Days'&#xD;&#xA;  when n between 271 and 360 then '271 - 360 Days'&#xD;&#xA;  when n between 361 and 720 then '361 - 720 Days'&#xD;&#xA;  when n &gt; 710 then 'Greater than 720 Days' end KPIUnbilledTimeBanding,&#xD;&#xA;  case when n between 0 and 60 then 1&#xD;&#xA;  when n between 61 and 90 then 2&#xD;&#xA;  when n between 91 and 180 then 3&#xD;&#xA;  when n between 181 and 270 then 4&#xD;&#xA;  when n between 271 and 360 then 5&#xD;&#xA;  when n between 361 and 720 then 6&#xD;&#xA;  when n &gt; 710 then 7 end KPIUnbilledTimeOrder&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;  from (&#xD;&#xA;  select &#xD;&#xA;  top 100000&#xD;&#xA;  row_number() over(order by t1.number) n&#xD;&#xA;  &#xD;&#xA;  &#xD;&#xA;  from &#xD;&#xA;  master..spt_values t1   &#xD;&#xA;  CROSS JOIN master..spt_values t2&#xD;&#xA;&#xD;&#xA;  ) tbl&#xD;&#xA;  union&#xD;&#xA;  select 0, '0 - 30 Days', 'Current', 1&#xD;&#xA;&#xD;&#xA;  order by 1">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="Number" msprop:DbColumnName="Number" msprop:FriendlyName="Number" type="xs:long" minOccurs="0" />
@@ -27442,7 +27430,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="BillExtension_f9cf1452-de25-4f55-8f1a-9e59d04c98dc" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="BillExtension" msprop:DbTableName="BillExtension" msprop:TableType="View" msprop:Description="BillExtension" msprop:QueryDefinition="select&#xD;&#xA;bill_number as 'BillXBillNumber',&#xD;&#xA;dim_fed_hierarchy_history_key as 'BillXFeeEarner',&#xD;&#xA;bill_amount as 'BillXBillAmount',&#xD;&#xA;billed_time as 'BillXTimeBilled'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_bill_activity">
+                    <xs:element name="BillExtension_f9cf1452-de25-4f55-8f1a-9e59d04c98dc" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="BillExtension" msprop:DbTableName="BillExtension" msprop:TableType="View" msprop:Description="BillExtension" msprop:QueryDefinition="select&#xD;&#xA;bill_number BillXBillNumber,&#xD;&#xA;dim_fed_hierarchy_history_key BillXFeeEarner,&#xD;&#xA;bill_amount BillXBillAmount,&#xD;&#xA;billed_time BillXTimeBilled&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_bill_activity">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="BillXBillNumber" msprop:DbColumnName="BillXBillNumber" msprop:FriendlyName="BillXBillNumber" minOccurs="0">
@@ -27464,7 +27452,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimBillXFEDHierarchy_1b7a28ed-c996-42e4-bec8-629be1efde7c" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimBillXFEDHierarchy" msprop:DbTableName="dimBillXFEDHierarchy" msprop:TableType="View" msprop:Description="dimBillXFEDHierarchy" msprop:QueryDefinition="select distinct&#xD;&#xA;h1.dim_fed_hierarchy_history_key as 'BillXFEDCodeID',&#xD;&#xA;h1.fed_code as 'BillXFEDCode',&#xD;&#xA;h1.name as 'BillXFEDName',&#xD;&#xA;e2.workemail as 'BillXEmailAddress',&#xD;&#xA;h1.hierarchylevel2hist as 'BillXBusinessLine',&#xD;&#xA;h1.hierarchylevel3hist as 'BillXPracticeArea',&#xD;&#xA;h1.hierarchylevel4hist as 'BillXTeam',&#xD;&#xA;h1.reportingbcmname as 'BillXBCMName',&#xD;&#xA;e.workemail as 'BillXBCMEmail'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_fed_hierarchy_history h1 &#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; red_dw.dbo.load_cascade_employee e&#xD;&#xA;  on e.employeeid = h1.reportingbcmidud&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; red_dw.dbo.load_cascade_employee e2&#xD;&#xA;  on e2.employeeid = h1.employeeid &#xD;&#xA;&#xD;&#xA;order by 1">
+                    <xs:element name="dimBillXFEDHierarchy_1b7a28ed-c996-42e4-bec8-629be1efde7c" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimBillXFEDHierarchy" msprop:DbTableName="dimBillXFEDHierarchy" msprop:TableType="View" msprop:Description="dimBillXFEDHierarchy" msprop:QueryDefinition="select distinct&#xD;&#xA;h1.dim_fed_hierarchy_history_key BillXFEDCodeID,&#xD;&#xA;h1.fed_code BillXFEDCode,&#xD;&#xA;h1.name BillXFEDName,&#xD;&#xA;e2.workemail BillXEmailAddress,&#xD;&#xA;h1.hierarchylevel2hist BillXBusinessLine,&#xD;&#xA;h1.hierarchylevel3hist BillXPracticeArea,&#xD;&#xA;h1.hierarchylevel4hist BillXTeam,&#xD;&#xA;h1.reportingbcmname BillXBCMName,&#xD;&#xA;e.workemail BillXBCMEmail&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_fed_hierarchy_history h1 &#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; red_dw.dbo.load_cascade_employee e&#xD;&#xA;  on e.employeeid = h1.reportingbcmidud&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; red_dw.dbo.load_cascade_employee e2&#xD;&#xA;  on e2.employeeid = h1.employeeid &#xD;&#xA;&#xD;&#xA;order by 1">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="BillXFEDCodeID" msprop:DbColumnName="BillXFEDCodeID" msprop:FriendlyName="BillXFEDCodeID" type="xs:int" minOccurs="0" />
@@ -27535,7 +27523,6 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
           </Schema>
         </DataSourceView>
       </DataSourceViews>
-      <ddl300_300:DirectQueryMode>InMemoryWithDirectQuery</ddl300_300:DirectQueryMode>
     </Database>
   </ObjectDefinition>
 </Alter>
