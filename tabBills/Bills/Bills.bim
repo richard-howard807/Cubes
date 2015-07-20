@@ -22784,6 +22784,8 @@ CREATE MEASURE 'Matters'[TotalCostsToDate]=sum([CostsToDate]);
 CREATE MEASURE 'Matters'[TotalNumberOfBillsRaised]=sum([NumberOfBillsRaised]);
 CREATE MEASURE 'Matters'[TotalUnbilledTime]=sum([UnbilledTime]);
 CREATE MEASURE 'Bills'[TotalBillAmountOutstanding]=calculate(sum([AmountOutstanding]), Bills[OpenItem] = "Y");
+CREATE MEASURE 'BillExtension'[TotalBillXAmount]=SUM([BillXBillAmount]);
+CREATE MEASURE 'BillExtension'[TotalBillXTimeBilled]=SUM([BillXTimeBilled]);
 </Text>
                 </Command>
               </Commands>
@@ -23142,6 +23144,48 @@ CREATE MEASURE 'Bills'[TotalBillAmountOutstanding]=calculate(sum([AmountOutstand
                     </Annotation>
                   </Annotations>
                   <CalculationReference>[TotalBillAmountOutstanding]</CalculationReference>
+                  <CalculationType>Member</CalculationType>
+                  <FormatString>''</FormatString>
+                </CalculationProperty>
+                <CalculationProperty>
+                  <Annotations>
+                    <Annotation>
+                      <Name>Type</Name>
+                      <Value>User</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsPrivate</Name>
+                      <Value>False</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Format</Name>
+                      <Value>
+                        <Format Format="General" xmlns="" />
+                      </Value>
+                    </Annotation>
+                  </Annotations>
+                  <CalculationReference>[TotalBillXAmount]</CalculationReference>
+                  <CalculationType>Member</CalculationType>
+                  <FormatString>''</FormatString>
+                </CalculationProperty>
+                <CalculationProperty>
+                  <Annotations>
+                    <Annotation>
+                      <Name>Type</Name>
+                      <Value>User</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsPrivate</Name>
+                      <Value>False</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Format</Name>
+                      <Value>
+                        <Format Format="General" xmlns="" />
+                      </Value>
+                    </Annotation>
+                  </Annotations>
+                  <CalculationReference>[TotalBillXTimeBilled]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
                 </CalculationProperty>
