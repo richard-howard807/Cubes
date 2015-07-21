@@ -1557,6 +1557,11 @@
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>OpenItem</Name>
                 </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>BillRank</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>BillRank</Name>
+                </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
@@ -2041,6 +2046,31 @@
                 <Source xsi:type="ColumnBinding">
                   <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
                   <ColumnID>OpenItem</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>BillRank</ID>
+              <Name>BillRank</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>BigInt</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
+                    <ColumnID>BillRank</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
+                  <ColumnID>BillRank</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
@@ -6606,6 +6636,11 @@
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>BusinessArea</Name>
                 </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>ZurichActivityDesc</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>ZurichActivityDesc</Name>
+                </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
@@ -6701,6 +6736,31 @@
                 <Source xsi:type="ColumnBinding">
                   <TableID>dimTimeTransactionTimeActivity_cf1cf901-9bbb-4762-a91a-310d6d22a230</TableID>
                   <ColumnID>BusinessArea</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>ZurichActivityDesc</ID>
+              <Name>ZurichActivityDesc</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimTimeTransactionTimeActivity_cf1cf901-9bbb-4762-a91a-310d6d22a230</TableID>
+                    <ColumnID>ZurichActivityDesc</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimTimeTransactionTimeActivity_cf1cf901-9bbb-4762-a91a-310d6d22a230</TableID>
+                  <ColumnID>ZurichActivityDesc</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
@@ -10897,6 +10957,9 @@
                 <Attribute>
                   <AttributeID>OpenItem</AttributeID>
                 </Attribute>
+                <Attribute>
+                  <AttributeID>BillRank</AttributeID>
+                </Attribute>
               </Attributes>
             </Dimension>
             <Dimension>
@@ -11383,6 +11446,9 @@
                 </Attribute>
                 <Attribute>
                   <AttributeID>BusinessArea</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>ZurichActivityDesc</AttributeID>
                 </Attribute>
               </Attributes>
             </Dimension>
@@ -14444,6 +14510,20 @@ d.matter_number</QueryDefinition>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>BillRank</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
+                            <ColumnID>BillRank</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
                 </Dimension>
@@ -15158,18 +15238,27 @@ f.vat_amount as 'VATAmount',
 f.amount_paid as 'AmountPaid',
 f.bill_total - f.amount_paid as 'AmountOutstanding',
 case when f.amount_paid = f.bill_total then 'Paid' else cast(datediff(day,cast( cast(f.dim_bill_date_key as varchar(10)) as date), getdate()) as varchar(10)) end as 'BillAgeDays',
-d.outstanding_flag as 'OpenItem'
+d.outstanding_flag as 'OpenItem',
+billrank.BillRank
 
 from
 red_dw.dbo.fact_bill f
+
+left join (
+select
+dim_bill_key,
+row_number() over ( partition by dim_client_key, dim_matter_header_curr_key order by dim_bill_date_key) as 'BillRank'
+
+from
+red_dw.dbo.fact_bill) billrank on billrank.dim_bill_key = f.dim_bill_key
 
 left join
  red_dw.dbo.dim_bill d
   on d.dim_bill_key = f.dim_bill_key
 
 left join 
-	red_dw.dbo.dim_client c
-		on c.dim_client_key = f.dim_client_key
+ red_dw.dbo.dim_client c
+  on c.dim_client_key = f.dim_client_key
 
 left join red_dw.dbo.dim_matter_header d2
  on d2.client_code = f.client_code
@@ -15712,6 +15801,20 @@ branch_name is not null</QueryDefinition>
                           <Source xsi:type="ColumnBinding">
                             <TableID>dimTimeTransactionTimeActivity_cf1cf901-9bbb-4762-a91a-310d6d22a230</TableID>
                             <ColumnID>BusinessArea</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ZurichActivityDesc</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimTimeTransactionTimeActivity_cf1cf901-9bbb-4762-a91a-310d6d22a230</TableID>
+                            <ColumnID>ZurichActivityDesc</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -18612,6 +18715,20 @@ branch_name is not null</QueryDefinition>
                           <Source xsi:type="ColumnBinding">
                             <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
                             <ColumnID>OpenItem</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BillRank</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
+                            <ColumnID>BillRank</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -22022,6 +22139,20 @@ order by 1</QueryDefinition>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>ZurichActivityDesc</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimTimeTransactionTimeActivity_cf1cf901-9bbb-4762-a91a-310d6d22a230</TableID>
+                            <ColumnID>ZurichActivityDesc</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
                 </Dimension>
@@ -22143,27 +22274,34 @@ time_activity_descrn as 'TimeActivityDesc',
   when time_activity_code =  '68'  then 'LearningAndDevelopment'
   when time_activity_code =  '69'  then 'LearningAndDevelopment'
   when time_activity_code =  '102'  then 'LearningAndDevelopment'
-when time_activity_code = 'IS1' 	then	'Project'
-when time_activity_code = 'IS10' 	then	'Project'
-when time_activity_code = 'IS11' 	then	'Project'
-when time_activity_code = 'IS12' 	then	'Project'
-when time_activity_code = 'IS13' 	then	'Project'
-when time_activity_code = 'IS14' 	then	'Project'
-when time_activity_code = 'IS15' 	then	'Project'
-when time_activity_code = 'IS16' 	then	'Project'
-when time_activity_code = 'IS17' 	then	'Project'
-when time_activity_code = 'IS18' 	then	'Project'
-when time_activity_code = 'IS19' 	then	'Project'
-when time_activity_code = 'IS2' 	then	'Project'
-when time_activity_code = 'IS20' 	then	'Project'
-when time_activity_code = 'IS3' 	then	'Project'
-when time_activity_code = 'IS4' 	then	'Project'
-when time_activity_code = 'IS5' 	then	'Project'
-when time_activity_code = 'IS6' 	then	'Project'
-when time_activity_code = 'IS7' 	then	'Project'
-when time_activity_code = 'IS8' 	then	'Project'
-when time_activity_code = 'IS9' 	then	'Project'
-end as 'BusinessArea' 
+when time_activity_code = 'IS1'  then 'Project'
+when time_activity_code = 'IS10'  then 'Project'
+when time_activity_code = 'IS11'  then 'Project'
+when time_activity_code = 'IS12'  then 'Project'
+when time_activity_code = 'IS13'  then 'Project'
+when time_activity_code = 'IS14'  then 'Project'
+when time_activity_code = 'IS15'  then 'Project'
+when time_activity_code = 'IS16'  then 'Project'
+when time_activity_code = 'IS17'  then 'Project'
+when time_activity_code = 'IS18'  then 'Project'
+when time_activity_code = 'IS19'  then 'Project'
+when time_activity_code = 'IS2'  then 'Project'
+when time_activity_code = 'IS20'  then 'Project'
+when time_activity_code = 'IS3'  then 'Project'
+when time_activity_code = 'IS4'  then 'Project'
+when time_activity_code = 'IS5'  then 'Project'
+when time_activity_code = 'IS6'  then 'Project'
+when time_activity_code = 'IS7'  then 'Project'
+when time_activity_code = 'IS8'  then 'Project'
+when time_activity_code = 'IS9'  then 'Project'
+end as 'BusinessArea' ,
+case 
+when time_activity_code IN ('0011','0012','0013','A122') then 'Travel'
+when time_activity_code IN ('0024') then 'Z Investigation'
+when time_activity_code IN ('0030') then 'Z Investigation Travel'
+when time_activity_code IN ('0022','A123') then 'Waiting'
+else 'All Other' End as ZurichActivityDesc
+
 
 
 from
@@ -24733,6 +24871,20 @@ dim_date</QueryDefinition>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>BillRank</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
+                            <ColumnID>BillRank</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <IntermediateCubeDimensionID>BillExtension_f9cf1452-de25-4f55-8f1a-9e59d04c98dc</IntermediateCubeDimensionID>
                   <IntermediateGranularityAttributeID>BillXBillNumber</IntermediateGranularityAttributeID>
@@ -26524,7 +26676,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="Bill" msprop:DbTableName="factBill" msprop:TableType="View" msprop:Description="factBill" msprop:QueryDefinition="select distinct&#xD;&#xA;f.dim_bill_key as 'BillID',&#xD;&#xA;f.bill_number as 'BillNumber',&#xD;&#xA;upper(d.record_type) as  'BillTypeCode',&#xD;&#xA;d.bill_flag as 'BillFinalOrInterimCode',&#xD;&#xA;f.dim_last_pay_date_key as 'BillLastPaymentDate',&#xD;&#xA;f.dim_bill_date_key as 'BillDate',&#xD;&#xA;f.bill_total as 'BillAmount',&#xD;&#xA;f.fees_total as 'FeeValue',&#xD;&#xA;f.paid_disbursements as 'DisbursementsPaid',&#xD;&#xA;f.unpaid_disbursements as 'DisbursementsUnpaid',&#xD;&#xA;f.admin_charges_total as 'AdministrationCharges',&#xD;&#xA;f.vat_amount as 'VATAmount',&#xD;&#xA;f.amount_paid as 'AmountPaid',&#xD;&#xA;f.bill_total - f.amount_paid as 'AmountOutstanding',&#xD;&#xA;case when f.amount_paid = f.bill_total then 'Paid' else cast(datediff(day,cast( cast(f.dim_bill_date_key as varchar(10)) as date), getdate()) as varchar(10)) end as 'BillAgeDays',&#xD;&#xA;d.outstanding_flag as 'OpenItem'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_bill f&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; red_dw.dbo.dim_bill d&#xD;&#xA;  on d.dim_bill_key = f.dim_bill_key&#xD;&#xA;&#xD;&#xA;left join &#xD;&#xA; red_dw.dbo.dim_client c&#xD;&#xA;  on c.dim_client_key = f.dim_client_key&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_matter_header d2&#xD;&#xA; on d2.client_code = f.client_code&#xD;&#xA;and d2.matter_number = f.matter_number&#xD;&#xA;and d2.source_system_id = f.source_system_id&#xD;&#xA;and d2.current_flag = 'Y'&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;f.dim_bill_key &gt; 0&#xD;&#xA;and c.client_group_name = 'Zurich'">
+                    <xs:element name="factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="Bill" msprop:DbTableName="factBill" msprop:TableType="View" msprop:Description="factBill" msprop:QueryDefinition="select distinct&#xD;&#xA;f.dim_bill_key as 'BillID',&#xD;&#xA;f.bill_number as 'BillNumber',&#xD;&#xA;upper(d.record_type) as  'BillTypeCode',&#xD;&#xA;d.bill_flag as 'BillFinalOrInterimCode',&#xD;&#xA;f.dim_last_pay_date_key as 'BillLastPaymentDate',&#xD;&#xA;f.dim_bill_date_key as 'BillDate',&#xD;&#xA;f.bill_total as 'BillAmount',&#xD;&#xA;f.fees_total as 'FeeValue',&#xD;&#xA;f.paid_disbursements as 'DisbursementsPaid',&#xD;&#xA;f.unpaid_disbursements as 'DisbursementsUnpaid',&#xD;&#xA;f.admin_charges_total as 'AdministrationCharges',&#xD;&#xA;f.vat_amount as 'VATAmount',&#xD;&#xA;f.amount_paid as 'AmountPaid',&#xD;&#xA;f.bill_total - f.amount_paid as 'AmountOutstanding',&#xD;&#xA;case when f.amount_paid = f.bill_total then 'Paid' else cast(datediff(day,cast( cast(f.dim_bill_date_key as varchar(10)) as date), getdate()) as varchar(10)) end as 'BillAgeDays',&#xD;&#xA;d.outstanding_flag as 'OpenItem',&#xD;&#xA;billrank.BillRank&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_bill f&#xD;&#xA;&#xD;&#xA;left join (&#xD;&#xA;select&#xD;&#xA;dim_bill_key,&#xD;&#xA;row_number() over ( partition by dim_client_key, dim_matter_header_curr_key order by dim_bill_date_key) as 'BillRank'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_bill) billrank on billrank.dim_bill_key = f.dim_bill_key&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; red_dw.dbo.dim_bill d&#xD;&#xA;  on d.dim_bill_key = f.dim_bill_key&#xD;&#xA;&#xD;&#xA;left join &#xD;&#xA; red_dw.dbo.dim_client c&#xD;&#xA;  on c.dim_client_key = f.dim_client_key&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_matter_header d2&#xD;&#xA; on d2.client_code = f.client_code&#xD;&#xA;and d2.matter_number = f.matter_number&#xD;&#xA;and d2.source_system_id = f.source_system_id&#xD;&#xA;and d2.current_flag = 'Y'&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;f.dim_bill_key &gt; 0&#xD;&#xA;and c.client_group_name = 'Zurich'">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="BillDate" msprop:DbColumnName="BillDate" msprop:FriendlyName="BillDate" type="xs:int" minOccurs="0" />
@@ -26573,6 +26725,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                               </xs:restriction>
                             </xs:simpleType>
                           </xs:element>
+                          <xs:element name="BillRank" msprop:DbColumnName="BillRank" msprop:FriendlyName="BillRank" type="xs:long" minOccurs="0" />
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
@@ -27061,7 +27214,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimTimeTransactionTimeActivity_cf1cf901-9bbb-4762-a91a-310d6d22a230" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimTimeTransactionTimeActivity" msprop:DbTableName="dimTimeTransactionTimeActivity" msprop:TableType="View" msprop:Description="dimTimeTransactionTimeActivity" msprop:QueryDefinition="select distinct&#xD;&#xA;time_activity_code as 'TimeActivityCode',&#xD;&#xA;time_activity_descrn as 'TimeActivityDesc',&#xD;&#xA; case&#xD;&#xA;  when time_activity_code =  '1'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '2'  then 'Holiday'&#xD;&#xA;  when time_activity_code =  '3'  then 'Sickness'&#xD;&#xA;  when time_activity_code =  '4'  then ''&#xD;&#xA;  when time_activity_code =  '5'  then 'Client'&#xD;&#xA;  when time_activity_code =  '6'  then 'Client'&#xD;&#xA;  when time_activity_code =  '7'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '8'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '9'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '10'  then 'InternalBusinessProcess'&#xD;&#xA;  when time_activity_code =  '11'  then 'Client'&#xD;&#xA;  when time_activity_code =  '12'  then 'Client'&#xD;&#xA;  when time_activity_code =  '13'  then 'Personal'&#xD;&#xA;  when time_activity_code =  '28'  then 'Client'&#xD;&#xA;  when time_activity_code =  '73'  then 'Client'&#xD;&#xA;  when time_activity_code =  '74'  then 'Client'&#xD;&#xA;  when time_activity_code =  '75'  then 'Client'&#xD;&#xA;  when time_activity_code =  '76'  then 'Client'&#xD;&#xA;  when time_activity_code =  '77'  then 'Client'&#xD;&#xA;  when time_activity_code =  '78'  then 'Client'&#xD;&#xA;  when time_activity_code =  '79'  then 'Client'&#xD;&#xA;  when time_activity_code =  '80'  then 'Client'&#xD;&#xA;  when time_activity_code =  '81'  then 'Client'&#xD;&#xA;  when time_activity_code =  '82'  then 'Client'&#xD;&#xA;  when time_activity_code =  '83'  then 'Client'&#xD;&#xA;  when time_activity_code =  '84'  then 'Client'&#xD;&#xA;  when time_activity_code =  '85'  then 'Client'&#xD;&#xA;  when time_activity_code =  '86'  then 'Client'&#xD;&#xA;  when time_activity_code =  '87'  then 'Client'&#xD;&#xA;  when time_activity_code =  '88'  then 'Client'&#xD;&#xA;  when time_activity_code =  '89'  then 'Client'&#xD;&#xA;  when time_activity_code =  '90'  then 'Client'&#xD;&#xA;  when time_activity_code =  '91'  then 'Client'&#xD;&#xA;  when time_activity_code =  '92'  then 'Client'&#xD;&#xA;  when time_activity_code =  '114'  then ''&#xD;&#xA;  when time_activity_code =  '93'  then ''&#xD;&#xA;  when time_activity_code =  '94'  then 'Client'&#xD;&#xA;  when time_activity_code =  '95'  then 'Client'&#xD;&#xA;  when time_activity_code =  '96'  then 'Client'&#xD;&#xA;  when time_activity_code =  '99'  then 'Client'&#xD;&#xA;  when time_activity_code =  '100'  then 'Client'&#xD;&#xA;  when time_activity_code =  '71'  then 'Client'&#xD;&#xA;  when time_activity_code =  '103'  then 'Client'&#xD;&#xA;  when time_activity_code =  '104'  then 'Client'&#xD;&#xA;  when time_activity_code =  '105'  then 'Client'&#xD;&#xA;  when time_activity_code =  '106'  then 'Client'&#xD;&#xA;  when time_activity_code =  '108'  then 'Client'&#xD;&#xA;  when time_activity_code =  '107'  then 'Client'&#xD;&#xA;  when time_activity_code =  '109'  then 'Client'&#xD;&#xA;  when time_activity_code =  '110'  then 'Client'&#xD;&#xA;  when time_activity_code =  '113'  then 'Client'&#xD;&#xA;  when time_activity_code =  '115'  then 'Client'&#xD;&#xA;  when time_activity_code =  '116'  then 'Client'&#xD;&#xA;  when time_activity_code =  '117'  then 'Client'&#xD;&#xA;  when time_activity_code =  '118'  then 'Client'&#xD;&#xA;  when time_activity_code =  '119'  then 'Client'&#xD;&#xA;  when time_activity_code =  '132'  then 'Client'&#xD;&#xA;  when time_activity_code =  '133'  then 'Client'&#xD;&#xA;  when time_activity_code =  '134'  then 'Client'&#xD;&#xA;  when time_activity_code =  '120'  then 'Client'&#xD;&#xA;  when time_activity_code =  '121'  then 'Client'&#xD;&#xA;  when time_activity_code =  '122'  then 'Client'&#xD;&#xA;  when time_activity_code =  '123'  then 'Client'&#xD;&#xA;  when time_activity_code =  '124'  then 'Client'&#xD;&#xA;  when time_activity_code =  '125'  then 'Client'&#xD;&#xA;  when time_activity_code =  '126'  then 'Client'&#xD;&#xA;  when time_activity_code =  '127'  then 'Client'&#xD;&#xA;  when time_activity_code =  '128'  then 'Client'&#xD;&#xA;  when time_activity_code =  '129'  then 'Client'&#xD;&#xA;  when time_activity_code =  '130'  then 'Client'&#xD;&#xA;  when time_activity_code =  '131'  then 'Client'&#xD;&#xA;  when time_activity_code =  '70'  then 'Client'&#xD;&#xA;  when time_activity_code =  '72'  then 'Client'&#xD;&#xA;  when time_activity_code =  '56'  then 'Personal'&#xD;&#xA;  when time_activity_code =  '57'  then 'InternalBusinessProcess'&#xD;&#xA;  when time_activity_code =  '58'  then 'InternalBusinessProcess'&#xD;&#xA;  when time_activity_code =  '59'  then 'InternalBusinessProcess'&#xD;&#xA;  when time_activity_code =  '97'  then 'InternalBusinessProcess'&#xD;&#xA;  when time_activity_code =  '98'  then 'InternalBusinessProcess'&#xD;&#xA;  when time_activity_code =  '101'  then 'InternalBusinessProcess'&#xD;&#xA;  when time_activity_code =  '112'  then 'InternalBusinessProcess'&#xD;&#xA;  when time_activity_code =  '60'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '61'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '62'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '63'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '64'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '65'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '66'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '67'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '68'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '69'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '102'  then 'LearningAndDevelopment'&#xD;&#xA;when time_activity_code = 'IS1'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS10'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS11'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS12'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS13'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS14'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS15'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS16'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS17'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS18'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS19'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS2'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS20'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS3'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS4'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS5'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS6'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS7'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS8'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS9'  then 'Project'&#xD;&#xA;end as 'BusinessArea' &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;dim_all_time_activity">
+                    <xs:element name="dimTimeTransactionTimeActivity_cf1cf901-9bbb-4762-a91a-310d6d22a230" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimTimeTransactionTimeActivity" msprop:DbTableName="dimTimeTransactionTimeActivity" msprop:TableType="View" msprop:Description="dimTimeTransactionTimeActivity" msprop:QueryDefinition="select distinct&#xD;&#xA;time_activity_code as 'TimeActivityCode',&#xD;&#xA;time_activity_descrn as 'TimeActivityDesc',&#xD;&#xA; case&#xD;&#xA;  when time_activity_code =  '1'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '2'  then 'Holiday'&#xD;&#xA;  when time_activity_code =  '3'  then 'Sickness'&#xD;&#xA;  when time_activity_code =  '4'  then ''&#xD;&#xA;  when time_activity_code =  '5'  then 'Client'&#xD;&#xA;  when time_activity_code =  '6'  then 'Client'&#xD;&#xA;  when time_activity_code =  '7'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '8'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '9'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '10'  then 'InternalBusinessProcess'&#xD;&#xA;  when time_activity_code =  '11'  then 'Client'&#xD;&#xA;  when time_activity_code =  '12'  then 'Client'&#xD;&#xA;  when time_activity_code =  '13'  then 'Personal'&#xD;&#xA;  when time_activity_code =  '28'  then 'Client'&#xD;&#xA;  when time_activity_code =  '73'  then 'Client'&#xD;&#xA;  when time_activity_code =  '74'  then 'Client'&#xD;&#xA;  when time_activity_code =  '75'  then 'Client'&#xD;&#xA;  when time_activity_code =  '76'  then 'Client'&#xD;&#xA;  when time_activity_code =  '77'  then 'Client'&#xD;&#xA;  when time_activity_code =  '78'  then 'Client'&#xD;&#xA;  when time_activity_code =  '79'  then 'Client'&#xD;&#xA;  when time_activity_code =  '80'  then 'Client'&#xD;&#xA;  when time_activity_code =  '81'  then 'Client'&#xD;&#xA;  when time_activity_code =  '82'  then 'Client'&#xD;&#xA;  when time_activity_code =  '83'  then 'Client'&#xD;&#xA;  when time_activity_code =  '84'  then 'Client'&#xD;&#xA;  when time_activity_code =  '85'  then 'Client'&#xD;&#xA;  when time_activity_code =  '86'  then 'Client'&#xD;&#xA;  when time_activity_code =  '87'  then 'Client'&#xD;&#xA;  when time_activity_code =  '88'  then 'Client'&#xD;&#xA;  when time_activity_code =  '89'  then 'Client'&#xD;&#xA;  when time_activity_code =  '90'  then 'Client'&#xD;&#xA;  when time_activity_code =  '91'  then 'Client'&#xD;&#xA;  when time_activity_code =  '92'  then 'Client'&#xD;&#xA;  when time_activity_code =  '114'  then ''&#xD;&#xA;  when time_activity_code =  '93'  then ''&#xD;&#xA;  when time_activity_code =  '94'  then 'Client'&#xD;&#xA;  when time_activity_code =  '95'  then 'Client'&#xD;&#xA;  when time_activity_code =  '96'  then 'Client'&#xD;&#xA;  when time_activity_code =  '99'  then 'Client'&#xD;&#xA;  when time_activity_code =  '100'  then 'Client'&#xD;&#xA;  when time_activity_code =  '71'  then 'Client'&#xD;&#xA;  when time_activity_code =  '103'  then 'Client'&#xD;&#xA;  when time_activity_code =  '104'  then 'Client'&#xD;&#xA;  when time_activity_code =  '105'  then 'Client'&#xD;&#xA;  when time_activity_code =  '106'  then 'Client'&#xD;&#xA;  when time_activity_code =  '108'  then 'Client'&#xD;&#xA;  when time_activity_code =  '107'  then 'Client'&#xD;&#xA;  when time_activity_code =  '109'  then 'Client'&#xD;&#xA;  when time_activity_code =  '110'  then 'Client'&#xD;&#xA;  when time_activity_code =  '113'  then 'Client'&#xD;&#xA;  when time_activity_code =  '115'  then 'Client'&#xD;&#xA;  when time_activity_code =  '116'  then 'Client'&#xD;&#xA;  when time_activity_code =  '117'  then 'Client'&#xD;&#xA;  when time_activity_code =  '118'  then 'Client'&#xD;&#xA;  when time_activity_code =  '119'  then 'Client'&#xD;&#xA;  when time_activity_code =  '132'  then 'Client'&#xD;&#xA;  when time_activity_code =  '133'  then 'Client'&#xD;&#xA;  when time_activity_code =  '134'  then 'Client'&#xD;&#xA;  when time_activity_code =  '120'  then 'Client'&#xD;&#xA;  when time_activity_code =  '121'  then 'Client'&#xD;&#xA;  when time_activity_code =  '122'  then 'Client'&#xD;&#xA;  when time_activity_code =  '123'  then 'Client'&#xD;&#xA;  when time_activity_code =  '124'  then 'Client'&#xD;&#xA;  when time_activity_code =  '125'  then 'Client'&#xD;&#xA;  when time_activity_code =  '126'  then 'Client'&#xD;&#xA;  when time_activity_code =  '127'  then 'Client'&#xD;&#xA;  when time_activity_code =  '128'  then 'Client'&#xD;&#xA;  when time_activity_code =  '129'  then 'Client'&#xD;&#xA;  when time_activity_code =  '130'  then 'Client'&#xD;&#xA;  when time_activity_code =  '131'  then 'Client'&#xD;&#xA;  when time_activity_code =  '70'  then 'Client'&#xD;&#xA;  when time_activity_code =  '72'  then 'Client'&#xD;&#xA;  when time_activity_code =  '56'  then 'Personal'&#xD;&#xA;  when time_activity_code =  '57'  then 'InternalBusinessProcess'&#xD;&#xA;  when time_activity_code =  '58'  then 'InternalBusinessProcess'&#xD;&#xA;  when time_activity_code =  '59'  then 'InternalBusinessProcess'&#xD;&#xA;  when time_activity_code =  '97'  then 'InternalBusinessProcess'&#xD;&#xA;  when time_activity_code =  '98'  then 'InternalBusinessProcess'&#xD;&#xA;  when time_activity_code =  '101'  then 'InternalBusinessProcess'&#xD;&#xA;  when time_activity_code =  '112'  then 'InternalBusinessProcess'&#xD;&#xA;  when time_activity_code =  '60'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '61'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '62'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '63'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '64'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '65'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '66'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '67'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '68'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '69'  then 'LearningAndDevelopment'&#xD;&#xA;  when time_activity_code =  '102'  then 'LearningAndDevelopment'&#xD;&#xA;when time_activity_code = 'IS1'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS10'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS11'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS12'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS13'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS14'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS15'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS16'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS17'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS18'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS19'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS2'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS20'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS3'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS4'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS5'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS6'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS7'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS8'  then 'Project'&#xD;&#xA;when time_activity_code = 'IS9'  then 'Project'&#xD;&#xA;end as 'BusinessArea' ,&#xD;&#xA;case &#xD;&#xA;when time_activity_code IN ('0011','0012','0013','A122') then 'Travel'&#xD;&#xA;when time_activity_code IN ('0024') then 'Z Investigation'&#xD;&#xA;when time_activity_code IN ('0030') then 'Z Investigation Travel'&#xD;&#xA;when time_activity_code IN ('0022','A123') then 'Waiting'&#xD;&#xA;else 'All Other' End as ZurichActivityDesc&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;dim_all_time_activity">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="TimeActivityCode" msprop:DbColumnName="TimeActivityCode" msprop:FriendlyName="TimeActivityCode" minOccurs="0">
@@ -27079,6 +27232,13 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                             </xs:simpleType>
                           </xs:element>
                           <xs:element name="BusinessArea" msprop:DbColumnName="BusinessArea" msprop:FriendlyName="BusinessArea" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="ZurichActivityDesc" msprop:DbColumnName="ZurichActivityDesc" msprop:FriendlyName="ZurichActivityDesc" minOccurs="0">
                             <xs:simpleType>
                               <xs:restriction base="xs:string">
                                 <xs:maxLength value="32768" />
