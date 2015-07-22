@@ -507,6 +507,11 @@
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>LastTimeDate</Name>
                 </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>dim_matter_header_curr_key</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>dim_matter_header_curr_key</Name>
+                </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
@@ -1208,6 +1213,31 @@
               <OrderBy>Key</OrderBy>
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
             </Attribute>
+            <Attribute>
+              <ID>dim_matter_header_curr_key</ID>
+              <Name>dim_matter_header_curr_key</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                    <ColumnID>dim_matter_header_curr_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                  <ColumnID>dim_matter_header_curr_key</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
           </Attributes>
           <ProactiveCaching>
             <SilenceInterval>-PT1S</SilenceInterval>
@@ -1561,6 +1591,11 @@
                   <AttributeID>BillRank</AttributeID>
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>BillRank</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>MatterID</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>MatterID</Name>
                 </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
@@ -2071,6 +2106,31 @@
                 <Source xsi:type="ColumnBinding">
                   <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
                   <ColumnID>BillRank</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>MatterID</ID>
+              <Name>MatterID</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
+                    <ColumnID>MatterID</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
+                  <ColumnID>MatterID</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
@@ -10894,6 +10954,9 @@
                   <AttributeID>LastTimeDate</AttributeID>
                   <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
                 </Attribute>
+                <Attribute>
+                  <AttributeID>dim_matter_header_curr_key</AttributeID>
+                </Attribute>
               </Attributes>
             </Dimension>
             <Dimension>
@@ -10959,6 +11022,9 @@
                 </Attribute>
                 <Attribute>
                   <AttributeID>BillRank</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>MatterID</AttributeID>
                 </Attribute>
               </Attributes>
             </Dimension>
@@ -12501,6 +12567,20 @@ left join sql2008svr.axxia01.dbo.caclextn crm
                           <Source xsi:type="ColumnBinding">
                             <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
                             <ColumnID>LastTimeDate</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_matter_header_curr_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                            <ColumnID>dim_matter_header_curr_key</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -14140,6 +14220,7 @@ left join sql2008svr.axxia01.dbo.caclextn crm
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
                     <QueryDefinition>select distinct 
+cur.dim_matter_header_curr_key,
 f.dim_matter_header_key as 'MatterID',
 f.dim_fed_hierarchy_history_key as 'FEDCodeID',
 d.matter_group_code as 'MatterGroupCode',
@@ -14175,6 +14256,11 @@ left join red_dw.dbo.dim_client c
 
 left join red_dw.dbo.dim_matter_header d
  on d.dim_matter_header_key = f.dim_matter_header_key
+
+left join red_dw.dbo.dim_matter_header_current cur
+	on cur.dim_client_key = f.dim_client_key
+	and cur.matter_number = f.matter_number
+	and cur.source_system_id = f.source_system_id
  
   
 left join red_dw.dbo.dim_date date1
@@ -14520,6 +14606,20 @@ d.matter_number</QueryDefinition>
                           <Source xsi:type="ColumnBinding">
                             <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
                             <ColumnID>BillRank</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterID</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
+                            <ColumnID>MatterID</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -15223,6 +15323,7 @@ d.matter_number</QueryDefinition>
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
                     <QueryDefinition>select distinct
+f.dim_matter_header_curr_key as MatterID,
 f.dim_bill_key as 'BillID',
 f.bill_number as 'BillNumber',
 upper(d.record_type) as  'BillTypeCode',
@@ -15247,7 +15348,7 @@ red_dw.dbo.fact_bill f
 left join (
 select
 dim_bill_key,
-row_number() over ( partition by dim_client_key, dim_matter_header_curr_key order by dim_bill_date_key) as 'BillRank'
+row_number() over ( partition by dim_client_key, dim_matter_header_curr_key order by dim_bill_date_key desc) as 'BillRank'
 
 from
 red_dw.dbo.fact_bill) billrank on billrank.dim_bill_key = f.dim_bill_key
@@ -16232,6 +16333,20 @@ branch_name is not null</QueryDefinition>
                           <Source xsi:type="ColumnBinding">
                             <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
                             <ColumnID>LastTimeDate</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_matter_header_curr_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                            <ColumnID>dim_matter_header_curr_key</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -18729,6 +18844,20 @@ branch_name is not null</QueryDefinition>
                           <Source xsi:type="ColumnBinding">
                             <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
                             <ColumnID>BillRank</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterID</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
+                            <ColumnID>MatterID</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -24885,6 +25014,20 @@ dim_date</QueryDefinition>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterID</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
+                            <ColumnID>MatterID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <IntermediateCubeDimensionID>BillExtension_f9cf1452-de25-4f55-8f1a-9e59d04c98dc</IntermediateCubeDimensionID>
                   <IntermediateGranularityAttributeID>BillXBillNumber</IntermediateGranularityAttributeID>
@@ -26592,7 +26735,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="Matter" msprop:DbTableName="factMatter" msprop:TableType="View" msprop:Description="factMatter" msprop:QueryDefinition="select distinct &#xD;&#xA;f.dim_matter_header_key as 'MatterID',&#xD;&#xA;f.dim_fed_hierarchy_history_key as 'FEDCodeID',&#xD;&#xA;d.matter_group_code as 'MatterGroupCode',&#xD;&#xA;d.branch_code as 'BranchCode',&#xD;&#xA;d.work_type_code as 'WorkTypeCode',&#xD;&#xA;d.department_code as 'DepartmentCode',&#xD;&#xA;d.fed_code_partner_hist as 'PartnerCode',&#xD;&#xA;d.matter_number as 'MatterNumber',&#xD;&#xA;c.client_code as 'ClientNumber',&#xD;&#xA;d.namkey_camatgrp as 'MatterDesc',&#xD;&#xA;date1.dim_date_key as 'DateMatterOpen',&#xD;&#xA;date2.dim_date_key as 'DateMatterClosed',&#xD;&#xA;datediff(day, d.date_opened_case, isnull(d.date_closed_case, getdate())) as 'AgeOfMatterDays',&#xD;&#xA;disbursement_balance as 'DisbursementBalance',&#xD;&#xA;client_account_balance_of_matter as 'ClientAccountBalance',&#xD;&#xA;unpaid_bill_balance as 'UnpaidBillsBalance',&#xD;&#xA;wip_balance as 'WIPBalance',&#xD;&#xA;costs_to_date as 'CostsToDate',&#xD;&#xA;time_billed as 'TotalTimeBilled',&#xD;&#xA;number_bills_matter as 'NumberOfBillsRaised',&#xD;&#xA;unbilled_time as 'UnbilledTime',&#xD;&#xA;case when d.case_id is null then 'No' else 'Yes' end as 'HasRecordInCashdr',&#xD;&#xA;lastbill.LastBillDate,&#xD;&#xA;lasttime.LastTimeDate &#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_matter_summary f&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_client c&#xD;&#xA; on c.dim_client_key = f.dim_client_key&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_matter_header d&#xD;&#xA; on d.dim_matter_header_key = f.dim_matter_header_key&#xD;&#xA; &#xD;&#xA;  &#xD;&#xA;left join red_dw.dbo.dim_date date1&#xD;&#xA; on date1.calendar_date = d.date_opened_case&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_date date2&#xD;&#xA; on date2.calendar_date = isnull(d.date_closed_case, '1753-01-01 00:00:00.000')&#xD;&#xA;&#xD;&#xA;left join (&#xD;&#xA;  select client_code,matter_number, max(dim_bill_date_key) as 'LastBillDate' from red_dw.dbo.fact_bill&#xD;&#xA;  group by client_code,matter_number ) lastbill &#xD;&#xA;  on  c.client_code = lastbill.client_code&#xD;&#xA;  and f.matter_number = lastbill.matter_number&#xD;&#xA;&#xD;&#xA;left join (&#xD;&#xA;  select dim_client_key,m.matter_number , max(dim_transaction_date_key) as 'LastTimeDate' from red_dw.dbo.fact_all_time_activity a left join red_dw.dbo.dim_matter_header m on m.dim_matter_header_key = a.dim_matter_header_key&#xD;&#xA;  group by dim_client_key, m.matter_number) lasttime &#xD;&#xA;  on  f.dim_client_key = lasttime.dim_client_key&#xD;&#xA;  and f.matter_number = lasttime.matter_number&#xD;&#xA;&#xD;&#xA; &#xD;&#xA;where&#xD;&#xA; f.fin_month = (&#xD;&#xA;select &#xD;&#xA;fin_month&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_date&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;calendar_date = cast(getdate() - 1 as date))&#xD;&#xA;and f.dim_matter_header_key &gt; 0&#xD;&#xA;and c.client_group_name = 'Zurich'&#xD;&#xA;order by&#xD;&#xA;d.matter_number">
+                    <xs:element name="factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="Matter" msprop:DbTableName="factMatter" msprop:TableType="View" msprop:Description="factMatter" msprop:QueryDefinition="select distinct &#xD;&#xA;cur.dim_matter_header_curr_key,&#xD;&#xA;f.dim_matter_header_key as 'MatterID',&#xD;&#xA;f.dim_fed_hierarchy_history_key as 'FEDCodeID',&#xD;&#xA;d.matter_group_code as 'MatterGroupCode',&#xD;&#xA;d.branch_code as 'BranchCode',&#xD;&#xA;d.work_type_code as 'WorkTypeCode',&#xD;&#xA;d.department_code as 'DepartmentCode',&#xD;&#xA;d.fed_code_partner_hist as 'PartnerCode',&#xD;&#xA;d.matter_number as 'MatterNumber',&#xD;&#xA;c.client_code as 'ClientNumber',&#xD;&#xA;d.namkey_camatgrp as 'MatterDesc',&#xD;&#xA;date1.dim_date_key as 'DateMatterOpen',&#xD;&#xA;date2.dim_date_key as 'DateMatterClosed',&#xD;&#xA;datediff(day, d.date_opened_case, isnull(d.date_closed_case, getdate())) as 'AgeOfMatterDays',&#xD;&#xA;disbursement_balance as 'DisbursementBalance',&#xD;&#xA;client_account_balance_of_matter as 'ClientAccountBalance',&#xD;&#xA;unpaid_bill_balance as 'UnpaidBillsBalance',&#xD;&#xA;wip_balance as 'WIPBalance',&#xD;&#xA;costs_to_date as 'CostsToDate',&#xD;&#xA;time_billed as 'TotalTimeBilled',&#xD;&#xA;number_bills_matter as 'NumberOfBillsRaised',&#xD;&#xA;unbilled_time as 'UnbilledTime',&#xD;&#xA;case when d.case_id is null then 'No' else 'Yes' end as 'HasRecordInCashdr',&#xD;&#xA;lastbill.LastBillDate,&#xD;&#xA;lasttime.LastTimeDate &#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_matter_summary f&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_client c&#xD;&#xA; on c.dim_client_key = f.dim_client_key&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_matter_header d&#xD;&#xA; on d.dim_matter_header_key = f.dim_matter_header_key&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_matter_header_current cur&#xD;&#xA; on cur.dim_client_key = f.dim_client_key&#xD;&#xA; and cur.matter_number = f.matter_number&#xD;&#xA; and cur.source_system_id = f.source_system_id&#xD;&#xA; &#xD;&#xA;  &#xD;&#xA;left join red_dw.dbo.dim_date date1&#xD;&#xA; on date1.calendar_date = d.date_opened_case&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_date date2&#xD;&#xA; on date2.calendar_date = isnull(d.date_closed_case, '1753-01-01 00:00:00.000')&#xD;&#xA;&#xD;&#xA;left join (&#xD;&#xA;  select client_code,matter_number, max(dim_bill_date_key) as 'LastBillDate' from red_dw.dbo.fact_bill&#xD;&#xA;  group by client_code,matter_number ) lastbill &#xD;&#xA;  on  c.client_code = lastbill.client_code&#xD;&#xA;  and f.matter_number = lastbill.matter_number&#xD;&#xA;&#xD;&#xA;left join (&#xD;&#xA;  select dim_client_key,m.matter_number , max(dim_transaction_date_key) as 'LastTimeDate' from red_dw.dbo.fact_all_time_activity a left join red_dw.dbo.dim_matter_header m on m.dim_matter_header_key = a.dim_matter_header_key&#xD;&#xA;  group by dim_client_key, m.matter_number) lasttime &#xD;&#xA;  on  f.dim_client_key = lasttime.dim_client_key&#xD;&#xA;  and f.matter_number = lasttime.matter_number&#xD;&#xA;&#xD;&#xA; &#xD;&#xA;where&#xD;&#xA; f.fin_month = (&#xD;&#xA;select &#xD;&#xA;fin_month&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_date&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;calendar_date = cast(getdate() - 1 as date))&#xD;&#xA;and f.dim_matter_header_key &gt; 0&#xD;&#xA;and c.client_group_name = 'Zurich'&#xD;&#xA;order by&#xD;&#xA;d.matter_number">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="MatterID" msprop:DbColumnName="MatterID" msprop:FriendlyName="MatterID" type="xs:int" minOccurs="0" />
@@ -26673,10 +26816,11 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                           <xs:element name="AgeOfMatterDays" msprop:DbColumnName="AgeOfMatterDays" msprop:FriendlyName="AgeOfMatterDays" type="xs:int" minOccurs="0" />
                           <xs:element name="LastBillDate" msprop:DbColumnName="LastBillDate" msprop:FriendlyName="LastBillDate" type="xs:int" minOccurs="0" />
                           <xs:element name="LastTimeDate" msprop:DbColumnName="LastTimeDate" msprop:FriendlyName="LastTimeDate" type="xs:int" minOccurs="0" />
+                          <xs:element name="dim_matter_header_curr_key" msprop:DbColumnName="dim_matter_header_curr_key" msprop:FriendlyName="dim_matter_header_curr_key" type="xs:int" minOccurs="0" />
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="Bill" msprop:DbTableName="factBill" msprop:TableType="View" msprop:Description="factBill" msprop:QueryDefinition="select distinct&#xD;&#xA;f.dim_bill_key as 'BillID',&#xD;&#xA;f.bill_number as 'BillNumber',&#xD;&#xA;upper(d.record_type) as  'BillTypeCode',&#xD;&#xA;d.bill_flag as 'BillFinalOrInterimCode',&#xD;&#xA;f.dim_last_pay_date_key as 'BillLastPaymentDate',&#xD;&#xA;f.dim_bill_date_key as 'BillDate',&#xD;&#xA;f.bill_total as 'BillAmount',&#xD;&#xA;f.fees_total as 'FeeValue',&#xD;&#xA;f.paid_disbursements as 'DisbursementsPaid',&#xD;&#xA;f.unpaid_disbursements as 'DisbursementsUnpaid',&#xD;&#xA;f.admin_charges_total as 'AdministrationCharges',&#xD;&#xA;f.vat_amount as 'VATAmount',&#xD;&#xA;f.amount_paid as 'AmountPaid',&#xD;&#xA;f.bill_total - f.amount_paid as 'AmountOutstanding',&#xD;&#xA;case when f.amount_paid = f.bill_total then 'Paid' else cast(datediff(day,cast( cast(f.dim_bill_date_key as varchar(10)) as date), getdate()) as varchar(10)) end as 'BillAgeDays',&#xD;&#xA;d.outstanding_flag as 'OpenItem',&#xD;&#xA;billrank.BillRank&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_bill f&#xD;&#xA;&#xD;&#xA;left join (&#xD;&#xA;select&#xD;&#xA;dim_bill_key,&#xD;&#xA;row_number() over ( partition by dim_client_key, dim_matter_header_curr_key order by dim_bill_date_key) as 'BillRank'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_bill) billrank on billrank.dim_bill_key = f.dim_bill_key&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; red_dw.dbo.dim_bill d&#xD;&#xA;  on d.dim_bill_key = f.dim_bill_key&#xD;&#xA;&#xD;&#xA;left join &#xD;&#xA; red_dw.dbo.dim_client c&#xD;&#xA;  on c.dim_client_key = f.dim_client_key&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_matter_header d2&#xD;&#xA; on d2.client_code = f.client_code&#xD;&#xA;and d2.matter_number = f.matter_number&#xD;&#xA;and d2.source_system_id = f.source_system_id&#xD;&#xA;and d2.current_flag = 'Y'&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;f.dim_bill_key &gt; 0&#xD;&#xA;and c.client_group_name = 'Zurich'">
+                    <xs:element name="factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="Bill" msprop:DbTableName="factBill" msprop:TableType="View" msprop:Description="factBill" msprop:QueryDefinition="select distinct&#xD;&#xA;f.dim_matter_header_curr_key as MatterID,&#xD;&#xA;f.dim_bill_key as 'BillID',&#xD;&#xA;f.bill_number as 'BillNumber',&#xD;&#xA;upper(d.record_type) as  'BillTypeCode',&#xD;&#xA;d.bill_flag as 'BillFinalOrInterimCode',&#xD;&#xA;f.dim_last_pay_date_key as 'BillLastPaymentDate',&#xD;&#xA;f.dim_bill_date_key as 'BillDate',&#xD;&#xA;f.bill_total as 'BillAmount',&#xD;&#xA;f.fees_total as 'FeeValue',&#xD;&#xA;f.paid_disbursements as 'DisbursementsPaid',&#xD;&#xA;f.unpaid_disbursements as 'DisbursementsUnpaid',&#xD;&#xA;f.admin_charges_total as 'AdministrationCharges',&#xD;&#xA;f.vat_amount as 'VATAmount',&#xD;&#xA;f.amount_paid as 'AmountPaid',&#xD;&#xA;f.bill_total - f.amount_paid as 'AmountOutstanding',&#xD;&#xA;case when f.amount_paid = f.bill_total then 'Paid' else cast(datediff(day,cast( cast(f.dim_bill_date_key as varchar(10)) as date), getdate()) as varchar(10)) end as 'BillAgeDays',&#xD;&#xA;d.outstanding_flag as 'OpenItem',&#xD;&#xA;billrank.BillRank&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_bill f&#xD;&#xA;&#xD;&#xA;left join (&#xD;&#xA;select&#xD;&#xA;dim_bill_key,&#xD;&#xA;row_number() over ( partition by dim_client_key, dim_matter_header_curr_key order by dim_bill_date_key desc) as 'BillRank'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_bill) billrank on billrank.dim_bill_key = f.dim_bill_key&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; red_dw.dbo.dim_bill d&#xD;&#xA;  on d.dim_bill_key = f.dim_bill_key&#xD;&#xA;&#xD;&#xA;left join &#xD;&#xA; red_dw.dbo.dim_client c&#xD;&#xA;  on c.dim_client_key = f.dim_client_key&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_matter_header d2&#xD;&#xA; on d2.client_code = f.client_code&#xD;&#xA;and d2.matter_number = f.matter_number&#xD;&#xA;and d2.source_system_id = f.source_system_id&#xD;&#xA;and d2.current_flag = 'Y'&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;f.dim_bill_key &gt; 0&#xD;&#xA;and c.client_group_name = 'Zurich'">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="BillDate" msprop:DbColumnName="BillDate" msprop:FriendlyName="BillDate" type="xs:int" minOccurs="0" />
@@ -26726,6 +26870,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                             </xs:simpleType>
                           </xs:element>
                           <xs:element name="BillRank" msprop:DbColumnName="BillRank" msprop:FriendlyName="BillRank" type="xs:long" minOccurs="0" />
+                          <xs:element name="MatterID" msprop:DbColumnName="MatterID" msprop:FriendlyName="MatterID" type="xs:int" minOccurs="0" />
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
