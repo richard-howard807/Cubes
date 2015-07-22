@@ -1162,6 +1162,11 @@
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>BillAgeDays</Name>
                 </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>BillRank</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>BillRank</Name>
+                </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
@@ -1646,6 +1651,31 @@
                 <Source xsi:type="ColumnBinding">
                   <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
                   <ColumnID>BillAgeDays</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>BillRank</ID>
+              <Name>BillRank</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>BigInt</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
+                    <ColumnID>BillRank</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
+                  <ColumnID>BillRank</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
@@ -6997,6 +7027,9 @@ order by 1&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryC
                 <Attribute>
                   <AttributeID>BillAgeDays</AttributeID>
                 </Attribute>
+                <Attribute>
+                  <AttributeID>BillRank</AttributeID>
+                </Attribute>
               </Attributes>
             </Dimension>
             <Dimension>
@@ -9430,6 +9463,20 @@ and c.client_group_name = 'Zurich'</QueryDefinition>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>BillRank</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
+                            <ColumnID>BillRank</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
                 </Dimension>
@@ -11670,7 +11717,7 @@ and c.client_group_name = 'Zurich'</QueryDefinition>
                     <QueryDefinition>select distinct
 f.bill_number as 'BillNumber',
 upper(d.record_type) as  'BillTypeCode',
-f.dim_matter_header_curr_key as 'MatterID',
+m.dim_matter_header_key as 'MatterID',
 d.bill_flag as 'BillFinalOrInterimCode',
 f.dim_last_pay_date_key as 'BillLastPaymentDate',
 f.dim_bill_date_key as 'BillDate',
@@ -11683,7 +11730,8 @@ f.vat_amount as 'VATAmount',
 f.amount_paid as 'AmountPaid',
 amount_outstanding as 'AmountOutstanding',
 case when f.amount_paid = f.bill_total then 0 else cast(datediff(day,cast( cast(f.dim_bill_date_key as varchar(10)) as date), getdate()) as numeric(10,2))  end as 'BillAgeDays',
-d.outstanding_flag as 'OpenItem'
+d.outstanding_flag as 'OpenItem',
+billrank.BillRank
 
 from
 red_dw.dbo.fact_bill f
@@ -11691,6 +11739,21 @@ red_dw.dbo.fact_bill f
 inner join red_dw.dbo.dim_client c
 	on  c.dim_client_key	= f.dim_client_key
 	and c.client_group_name = 'Zurich'
+
+left join red_dw.dbo.dim_matter_header m
+	on m.client_code       = f.client_code
+	and m.matter_number    = f.matter_number
+	and m.source_system_id = f.source_system_id
+	and m.current_flag	   = 'Y'
+
+
+left join (
+select
+dim_bill_key,
+row_number() over ( partition by dim_client_key, dim_matter_header_curr_key order by dim_bill_date_key desc) as 'BillRank'
+
+from
+red_dw.dbo.fact_bill) billrank on billrank.dim_bill_key = f.dim_bill_key
 
 left join
  red_dw.dbo.dim_bill d
@@ -15078,6 +15141,20 @@ c.client_group_name = 'Zurich'</QueryDefinition>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>BillRank</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
+                            <ColumnID>BillRank</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <IntermediateCubeDimensionID>BillExtension_f335d257-da82-45f9-8729-a19aea809c40</IntermediateCubeDimensionID>
                   <IntermediateGranularityAttributeID>BillXBillNumber</IntermediateGranularityAttributeID>
@@ -18352,7 +18429,7 @@ CREATE MEASURE 'BillExtension'[TotalBillXTimeBilled]=SUM([BillXTimeBilled]);
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="Bills" msprop:DbTableName="factBill" msprop:TableType="View" msprop:Description="factBill" msprop:QueryDefinition="select distinct&#xD;&#xA;f.bill_number as 'BillNumber',&#xD;&#xA;upper(d.record_type) as  'BillTypeCode',&#xD;&#xA;f.dim_matter_header_curr_key as 'MatterID',&#xD;&#xA;d.bill_flag as 'BillFinalOrInterimCode',&#xD;&#xA;f.dim_last_pay_date_key as 'BillLastPaymentDate',&#xD;&#xA;f.dim_bill_date_key as 'BillDate',&#xD;&#xA;f.bill_total as 'BillAmount',&#xD;&#xA;f.fees_total as 'FeeValue',&#xD;&#xA;f.paid_disbursements as 'DisbursementsPaid',&#xD;&#xA;f.unpaid_disbursements as 'DisbursementsUnpaid',&#xD;&#xA;f.admin_charges_total as 'AdministrationCharges',&#xD;&#xA;f.vat_amount as 'VATAmount',&#xD;&#xA;f.amount_paid as 'AmountPaid',&#xD;&#xA;amount_outstanding as 'AmountOutstanding',&#xD;&#xA;case when f.amount_paid = f.bill_total then 0 else cast(datediff(day,cast( cast(f.dim_bill_date_key as varchar(10)) as date), getdate()) as numeric(10,2))  end as 'BillAgeDays',&#xD;&#xA;d.outstanding_flag as 'OpenItem'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_bill f&#xD;&#xA;&#xD;&#xA;inner join red_dw.dbo.dim_client c&#xD;&#xA; on  c.dim_client_key = f.dim_client_key&#xD;&#xA; and c.client_group_name = 'Zurich'&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; red_dw.dbo.dim_bill d&#xD;&#xA;  on d.dim_bill_key = f.dim_bill_key">
+                    <xs:element name="factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="Bills" msprop:DbTableName="factBill" msprop:TableType="View" msprop:Description="factBill" msprop:QueryDefinition="select distinct&#xD;&#xA;f.bill_number as 'BillNumber',&#xD;&#xA;upper(d.record_type) as  'BillTypeCode',&#xD;&#xA;m.dim_matter_header_key as 'MatterID',&#xD;&#xA;d.bill_flag as 'BillFinalOrInterimCode',&#xD;&#xA;f.dim_last_pay_date_key as 'BillLastPaymentDate',&#xD;&#xA;f.dim_bill_date_key as 'BillDate',&#xD;&#xA;f.bill_total as 'BillAmount',&#xD;&#xA;f.fees_total as 'FeeValue',&#xD;&#xA;f.paid_disbursements as 'DisbursementsPaid',&#xD;&#xA;f.unpaid_disbursements as 'DisbursementsUnpaid',&#xD;&#xA;f.admin_charges_total as 'AdministrationCharges',&#xD;&#xA;f.vat_amount as 'VATAmount',&#xD;&#xA;f.amount_paid as 'AmountPaid',&#xD;&#xA;amount_outstanding as 'AmountOutstanding',&#xD;&#xA;case when f.amount_paid = f.bill_total then 0 else cast(datediff(day,cast( cast(f.dim_bill_date_key as varchar(10)) as date), getdate()) as numeric(10,2))  end as 'BillAgeDays',&#xD;&#xA;d.outstanding_flag as 'OpenItem',&#xD;&#xA;billrank.BillRank&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_bill f&#xD;&#xA;&#xD;&#xA;inner join red_dw.dbo.dim_client c&#xD;&#xA; on  c.dim_client_key = f.dim_client_key&#xD;&#xA; and c.client_group_name = 'Zurich'&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_matter_header m&#xD;&#xA; on m.client_code       = f.client_code&#xD;&#xA; and m.matter_number    = f.matter_number&#xD;&#xA; and m.source_system_id = f.source_system_id&#xD;&#xA; and m.current_flag    = 'Y'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join (&#xD;&#xA;select&#xD;&#xA;dim_bill_key,&#xD;&#xA;row_number() over ( partition by dim_client_key, dim_matter_header_curr_key order by dim_bill_date_key desc) as 'BillRank'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_bill) billrank on billrank.dim_bill_key = f.dim_bill_key&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; red_dw.dbo.dim_bill d&#xD;&#xA;  on d.dim_bill_key = f.dim_bill_key">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="BillDate" msprop:DbColumnName="BillDate" msprop:FriendlyName="BillDate" type="xs:int" minOccurs="0" />
@@ -18395,6 +18472,7 @@ CREATE MEASURE 'BillExtension'[TotalBillXTimeBilled]=SUM([BillXTimeBilled]);
                             </xs:simpleType>
                           </xs:element>
                           <xs:element name="BillAgeDays" msprop:DbColumnName="BillAgeDays" msprop:FriendlyName="BillAgeDays" type="xs:decimal" minOccurs="0" />
+                          <xs:element name="BillRank" msprop:DbColumnName="BillRank" msprop:FriendlyName="BillRank" type="xs:long" minOccurs="0" />
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
