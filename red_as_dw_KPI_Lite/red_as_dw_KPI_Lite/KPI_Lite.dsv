@@ -31,7 +31,7 @@
             <Name>_ALL_TABLES_</Name>
             <DiagramLayout>
               <dds>
-                <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="12" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-7511" scrolltop="706" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="32967" y="16642" backcolor="16777215" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="1" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+                <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="12" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-7511" scrolltop="706" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="29580" y="20135" backcolor="16777215" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="1" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
                   <font>
                     <ddsxmlobjectstreamwrapper binary="01000000900144420100065461686f6d61" />
                   </font>
@@ -131,12 +131,11 @@
       <xs:element name="Red_x0020_Dw" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:design-time-name="0f63422d-2ec7-4381-9ec0-594506068947">
         <xs:complexType>
           <xs:choice minOccurs="0" maxOccurs="unbounded">
-            <xs:element name="dbo_agg_kpi_monthly_rollup" msprop:design-time-name="123bd5b8-4a08-4660-a9d7-74605c6d6859" msprop:IsLogical="True" msprop:FriendlyName="agg_kpi_monthly_rollup" msprop:DbTableName="agg_kpi_monthly_rollup" msprop:TableType="View" msprop:QueryDefinition="SELECT        r.dim_bill_date_key, r.dim_fed_hierarchy_history_key, r.billed_time, r.billed_time / 60 AS 'Billed Hours', r.bill_amount AS ProfitCosts, &#xD;&#xA;                         CASE WHEN fed.display_name = 'Budget Balance' THEN 0 WHEN fed.hierarchylevel3hist IS NOT NULL AND &#xD;&#xA;                         fed.display_name != 'Budget Balance' THEN r.fed_level_budget_value ELSE 0 END AS TargetProfitCosts, r.fed_level_minute_value AS 'TargetHours', &#xD;&#xA;                         r.fed_level_tb_budget_value AS 'TimeBilledBudgetValue', r.team_level_budget_value, r.practice_area_level_budget_value, r.business_line_level_budget_value, &#xD;&#xA;                         r.firm_level_budget_value, r.chargeable_minutes_recorded, r.time_charge_value, r.actual_time_recorded_value, r.durationholidaydays, r.durationdays, &#xD;&#xA;                         r.days_year_to_date, r.baseentitlementdays, r.newstarterdays, r.manualadjustmentdays, r.carrydays, r.totalentitlementdays, r.ptproratadays, r.bhproratadays, &#xD;&#xA;                         r.carrylostdays, r.billed_minutes_recorded, r.billed_minutes_recorded / 60 AS 'Billed Hours Recorded', r.non_chargeable_minutes, r.wip_minutes, r.wip_value, &#xD;&#xA;                         r.dss_update_time, r.zero_rate_minutes_recorded, r.zero_rate_minutes_recorded / 60 AS 'Zero Rate Hours Recorded', r.disbursement_balance, &#xD;&#xA;                         r.open_practice_management, r.open_case_management, ISNULL(c.billed, 0) AS billed, new.NewMatters&#xD;&#xA;FROM            agg_kpi_monthly_rollup AS r LEFT OUTER JOIN&#xD;&#xA;                         dim_fed_hierarchy_history AS fed ON fed.dim_fed_hierarchy_history_key = r.dim_fed_hierarchy_history_key LEFT OUTER JOIN&#xD;&#xA;                         dim_date AS d ON d.dim_date_key = r.dim_bill_date_key LEFT OUTER JOIN&#xD;&#xA;                             (SELECT        date2.dim_date_key, f.dim_fed_hierarchy_history_key, SUM(f.minutes_recorded) * - 1 AS billed&#xD;&#xA;                               FROM            fact_all_time_activity AS f LEFT OUTER JOIN&#xD;&#xA;                                                         dim_all_time_activity AS d ON d.dim_all_time_activity_key = f.dim_all_time_activity_key LEFT OUTER JOIN&#xD;&#xA;                                                         dim_fed_hierarchy_history AS fed ON fed.dim_fed_hierarchy_history_key = f.dim_fed_hierarchy_history_key LEFT OUTER JOIN&#xD;&#xA;                                                         dim_date AS [date] ON [date].dim_date_key = f.dim_transaction_date_key LEFT OUTER JOIN&#xD;&#xA;                                                         dim_date AS date2 ON DATEADD([month], DATEDIFF([month], 0, [date].calendar_date), 0) = date2.calendar_date&#xD;&#xA;                               WHERE        (d.time_activity_code IN ('Bill', 'Abmt'))&#xD;&#xA;                               GROUP BY DATEPART([month], [date].calendar_date), DATEPART([year], [date].calendar_date), DATEADD([month], DATEDIFF([month], 0, [date].calendar_date), 0), &#xD;&#xA;                                                         date2.dim_date_key, f.dim_fed_hierarchy_history_key) AS c ON c.dim_date_key = r.dim_bill_date_key AND &#xD;&#xA;                         c.dim_fed_hierarchy_history_key = r.dim_fed_hierarchy_history_key LEFT OUTER JOIN&#xD;&#xA;                             (SELECT        d2.dim_date_key, m.dim_fed_hierarchy_history_key, COUNT(m.dim_matter_header_key) AS NewMatters&#xD;&#xA;                               FROM            fact_matter_summary AS m INNER JOIN&#xD;&#xA;                                                         dim_date AS d ON d.calendar_date = m.date_opened_case_management LEFT OUTER JOIN&#xD;&#xA;                                                         dim_date AS d2 ON DATEADD([month], DATEDIFF([month], 0, d.calendar_date), 0) = d2.calendar_date LEFT OUTER JOIN&#xD;&#xA;                                                         dim_fed_hierarchy_history AS f ON f.dim_fed_hierarchy_history_key = m.dim_fed_hierarchy_history_key&#xD;&#xA;                               WHERE        (m.fin_month =&#xD;&#xA;                                                             (SELECT        fin_month&#xD;&#xA;                                                               FROM            dim_date&#xD;&#xA;                                                               WHERE        (calendar_date = CAST(GETDATE() - 1 AS DATE)))) AND (f.display_name &lt;&gt; 'Budget Balance')&#xD;&#xA;                               GROUP BY d2.dim_date_key, m.dim_fed_hierarchy_history_key) AS new ON new.dim_date_key = r.dim_bill_date_key AND &#xD;&#xA;                         new.dim_fed_hierarchy_history_key = fed.dim_fed_hierarchy_history_key AND fed.dss_current_flag = 'Y'" msprop:QueryBuilder="SpecificQueryBuilder">
+            <xs:element name="dbo_agg_kpi_monthly_rollup" msprop:design-time-name="123bd5b8-4a08-4660-a9d7-74605c6d6859" msprop:IsLogical="True" msprop:FriendlyName="agg_kpi_monthly_rollup" msprop:DbTableName="agg_kpi_monthly_rollup" msprop:TableType="View" msprop:QueryDefinition="SELECT        r.dim_bill_date_key, r.dim_fed_hierarchy_history_key, r.bill_amount AS ProfitCosts, &#xD;&#xA;                         CASE WHEN fed.display_name = 'Budget Balance' THEN 0 WHEN fed.hierarchylevel3hist IS NOT NULL AND &#xD;&#xA;                         fed.display_name != 'Budget Balance' THEN r.fed_level_budget_value ELSE 0 END AS TargetProfitCosts, r.fed_level_minute_value AS 'TargetHours', &#xD;&#xA;                         r.fed_level_tb_budget_value AS 'TimeBilledBudgetValue', r.team_level_budget_value, r.practice_area_level_budget_value, r.business_line_level_budget_value, &#xD;&#xA;                         r.firm_level_budget_value, r.chargeable_minutes_recorded, r.time_charge_value, r.actual_time_recorded_value, r.durationholidaydays, r.durationdays, &#xD;&#xA;                         r.days_year_to_date, r.baseentitlementdays, r.newstarterdays, r.manualadjustmentdays, r.carrydays, r.totalentitlementdays, r.ptproratadays, r.bhproratadays, &#xD;&#xA;                         r.carrylostdays, r.billed_minutes_recorded, r.billed_minutes_recorded / 60 AS 'Billed Hours Recorded', r.non_chargeable_minutes, r.wip_minutes, r.wip_value, &#xD;&#xA;                         r.dss_update_time, r.zero_rate_minutes_recorded, r.zero_rate_minutes_recorded / 60 AS 'Zero Rate Hours Recorded', r.disbursement_balance, &#xD;&#xA;                         r.open_practice_management, r.open_case_management, new.NewMatters&#xD;&#xA;FROM            agg_kpi_monthly_rollup AS r LEFT OUTER JOIN&#xD;&#xA;                         dim_fed_hierarchy_history AS fed ON fed.dim_fed_hierarchy_history_key = r.dim_fed_hierarchy_history_key LEFT OUTER JOIN&#xD;&#xA;                         dim_date AS d ON d.dim_date_key = r.dim_bill_date_key LEFT OUTER JOIN&#xD;&#xA;                             (SELECT        d2.dim_date_key, m.dim_fed_hierarchy_history_key, COUNT(m.dim_matter_header_key) AS NewMatters&#xD;&#xA;                               FROM            fact_matter_summary AS m INNER JOIN&#xD;&#xA;                                                         dim_date AS d ON d.calendar_date = m.date_opened_case_management LEFT OUTER JOIN&#xD;&#xA;                                                         dim_date AS d2 ON DATEADD([month], DATEDIFF([month], 0, d.calendar_date), 0) = d2.calendar_date LEFT OUTER JOIN&#xD;&#xA;                                                         dim_fed_hierarchy_history AS f ON f.dim_fed_hierarchy_history_key = m.dim_fed_hierarchy_history_key&#xD;&#xA;                               WHERE        (m.fin_month =&#xD;&#xA;                                                             (SELECT        fin_month&#xD;&#xA;                                                               FROM            dim_date&#xD;&#xA;                                                               WHERE        (calendar_date = CAST(GETDATE() - 1 AS DATE)))) AND (f.display_name &lt;&gt; 'Budget Balance')&#xD;&#xA;                               GROUP BY d2.dim_date_key, m.dim_fed_hierarchy_history_key) AS new ON new.dim_date_key = r.dim_bill_date_key AND &#xD;&#xA;                         new.dim_fed_hierarchy_history_key = fed.dim_fed_hierarchy_history_key AND fed.dss_current_flag = 'Y'" msprop:QueryBuilder="SpecificQueryBuilder">
               <xs:complexType>
                 <xs:sequence>
                   <xs:element name="dim_bill_date_key" msprop:design-time-name="5b9b6883-8100-423e-bd62-2e1f13e9dfbf" msprop:DbColumnName="dim_bill_date_key" msprop:FriendlyName="dim_bill_date_key" type="xs:int" minOccurs="0" />
                   <xs:element name="dim_fed_hierarchy_history_key" msprop:design-time-name="c1ac1b28-89be-4a82-beae-88bc57172f57" msprop:DbColumnName="dim_fed_hierarchy_history_key" msprop:FriendlyName="dim_fed_hierarchy_history_key" type="xs:int" minOccurs="0" />
-                  <xs:element name="billed_time" msprop:design-time-name="cd5f0298-3d66-4249-84e3-5fa3aabaf40f" msprop:DbColumnName="billed_time" msprop:FriendlyName="billed_time" type="xs:decimal" minOccurs="0" />
                   <xs:element name="team_level_budget_value" msprop:design-time-name="00469150-10e6-495d-8f12-1c2a4cef40e5" msprop:DbColumnName="team_level_budget_value" msprop:FriendlyName="team_level_budget_value" type="xs:decimal" minOccurs="0" />
                   <xs:element name="practice_area_level_budget_value" msprop:design-time-name="2b4c86fc-80cd-4f77-b969-f08f2c5ae76d" msprop:DbColumnName="practice_area_level_budget_value" msprop:FriendlyName="practice_area_level_budget_value" type="xs:decimal" minOccurs="0" />
                   <xs:element name="business_line_level_budget_value" msprop:design-time-name="9c69f17c-3d45-4bc1-abd2-01c8c979d1d7" msprop:DbColumnName="business_line_level_budget_value" msprop:FriendlyName="business_line_level_budget_value" type="xs:decimal" minOccurs="0" />
@@ -158,21 +157,19 @@
                   <xs:element name="non_chargeable_minutes" msprop:design-time-name="66e91913-80cb-4af2-a1e9-a3dcb0cc7f91" msprop:DbColumnName="non_chargeable_minutes" msprop:FriendlyName="non_chargeable_minutes" type="xs:int" minOccurs="0" />
                   <xs:element name="wip_value" msprop:design-time-name="841c0068-1ff5-423e-a4c6-822083b9ddaa" msprop:DbColumnName="wip_value" msprop:FriendlyName="wip_value" type="xs:decimal" minOccurs="0" />
                   <xs:element name="dss_update_time" msprop:design-time-name="5d24525a-4376-4574-9c8c-064c5ed3d6b2" msprop:DbColumnName="dss_update_time" msprop:FriendlyName="dss_update_time" type="xs:dateTime" minOccurs="0" />
-                  <xs:element name="billed_minutes_recorded" msprop:DbColumnName="billed_minutes_recorded" msprop:design-time-name="63dc1b3a-6176-48f6-8967-7dd1222bbf11" type="xs:decimal" minOccurs="0" />
-                  <xs:element name="wip_minutes" msprop:DbColumnName="wip_minutes" msprop:design-time-name="d3a77752-47f1-449f-8f83-ca186136b1fa" type="xs:int" minOccurs="0" />
-                  <xs:element name="zero_rate_minutes_recorded" msprop:DbColumnName="zero_rate_minutes_recorded" msprop:design-time-name="d80db989-bb30-42c8-9ad3-7e829f50aa83" type="xs:decimal" minOccurs="0" />
-                  <xs:element name="disbursement_balance" msprop:DbColumnName="disbursement_balance" msprop:design-time-name="03ee65f9-0f71-4198-9b51-126f92ad8998" type="xs:decimal" minOccurs="0" />
-                  <xs:element name="open_practice_management" msprop:DbColumnName="open_practice_management" msprop:design-time-name="9b6f2bac-5ec5-490d-a61a-f2bbcb3c21ff" type="xs:int" minOccurs="0" />
-                  <xs:element name="open_case_management" msprop:DbColumnName="open_case_management" msprop:design-time-name="559cf1b1-cc20-4f13-9a9e-e56e46ab3d84" type="xs:int" minOccurs="0" />
-                  <xs:element name="billed" msprop:DbColumnName="billed" msprop:design-time-name="5114b339-0889-4421-9a68-f223eddfb45b" type="xs:decimal" minOccurs="0" />
-                  <xs:element name="ProfitCosts" msprop:DbColumnName="ProfitCosts" msprop:design-time-name="a4f70836-cc57-4d96-9f2f-ca0b3fb6245f" type="xs:decimal" minOccurs="0" />
-                  <xs:element name="TargetProfitCosts" msprop:DbColumnName="TargetProfitCosts" msprop:design-time-name="248dea61-041d-435a-9720-70c7026e7ef8" type="xs:decimal" minOccurs="0" />
-                  <xs:element name="TargetHours" msprop:DbColumnName="TargetHours" msprop:design-time-name="f5e46f9d-48d8-4344-ace6-a56dbfb96f00" type="xs:decimal" minOccurs="0" />
-                  <xs:element name="TimeBilledBudgetValue" msprop:DbColumnName="TimeBilledBudgetValue" msprop:design-time-name="bb503355-0641-45e7-b8cd-4e9d19557916" type="xs:decimal" minOccurs="0" />
-                  <xs:element name="NewMatters" msprop:DbColumnName="NewMatters" msprop:design-time-name="3f009015-f3f0-4f72-9bf8-a773fc8ee9dc" type="xs:int" minOccurs="0" />
-                  <xs:element name="Billed_x0020_Hours" msprop:DbColumnName="Billed Hours" msprop:design-time-name="21e5d216-588d-4d02-8d6c-b19195dd4fed" type="xs:decimal" minOccurs="0" />
-                  <xs:element name="Zero_x0020_Rate_x0020_Hours_x0020_Recorded" msprop:DbColumnName="Zero Rate Hours Recorded" msprop:design-time-name="d69babc3-c029-4ea3-a10b-0c592f4d5a49" type="xs:decimal" minOccurs="0" />
-                  <xs:element name="Billed_x0020_Hours_x0020_Recorded" msprop:DbColumnName="Billed Hours Recorded" msprop:design-time-name="20681795-d06d-4e93-a192-eae1154630fc" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="billed_minutes_recorded" msprop:design-time-name="63dc1b3a-6176-48f6-8967-7dd1222bbf11" msprop:DbColumnName="billed_minutes_recorded" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="wip_minutes" msprop:design-time-name="d3a77752-47f1-449f-8f83-ca186136b1fa" msprop:DbColumnName="wip_minutes" type="xs:int" minOccurs="0" />
+                  <xs:element name="zero_rate_minutes_recorded" msprop:design-time-name="d80db989-bb30-42c8-9ad3-7e829f50aa83" msprop:DbColumnName="zero_rate_minutes_recorded" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="disbursement_balance" msprop:design-time-name="03ee65f9-0f71-4198-9b51-126f92ad8998" msprop:DbColumnName="disbursement_balance" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="open_practice_management" msprop:design-time-name="9b6f2bac-5ec5-490d-a61a-f2bbcb3c21ff" msprop:DbColumnName="open_practice_management" type="xs:int" minOccurs="0" />
+                  <xs:element name="open_case_management" msprop:design-time-name="559cf1b1-cc20-4f13-9a9e-e56e46ab3d84" msprop:DbColumnName="open_case_management" type="xs:int" minOccurs="0" />
+                  <xs:element name="ProfitCosts" msprop:design-time-name="a4f70836-cc57-4d96-9f2f-ca0b3fb6245f" msprop:DbColumnName="ProfitCosts" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="TargetProfitCosts" msprop:design-time-name="248dea61-041d-435a-9720-70c7026e7ef8" msprop:DbColumnName="TargetProfitCosts" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="TargetHours" msprop:design-time-name="f5e46f9d-48d8-4344-ace6-a56dbfb96f00" msprop:DbColumnName="TargetHours" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="TimeBilledBudgetValue" msprop:design-time-name="bb503355-0641-45e7-b8cd-4e9d19557916" msprop:DbColumnName="TimeBilledBudgetValue" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="NewMatters" msprop:design-time-name="3f009015-f3f0-4f72-9bf8-a773fc8ee9dc" msprop:DbColumnName="NewMatters" type="xs:int" minOccurs="0" />
+                  <xs:element name="Zero_x0020_Rate_x0020_Hours_x0020_Recorded" msprop:design-time-name="d69babc3-c029-4ea3-a10b-0c592f4d5a49" msprop:DbColumnName="Zero Rate Hours Recorded" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="Billed_x0020_Hours_x0020_Recorded" msprop:design-time-name="20681795-d06d-4e93-a192-eae1154630fc" msprop:DbColumnName="Billed Hours Recorded" type="xs:decimal" minOccurs="0" />
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
@@ -374,54 +371,54 @@
                     </xs:simpleType>
                   </xs:element>
                   <xs:element name="dss_version" msprop:design-time-name="00bc8db4-2b4f-4fb5-8c49-3b3e951b2e90" msprop:DbColumnName="dss_version" msprop:FriendlyName="dss_version" type="xs:int" minOccurs="0" />
-                  <xs:element name="hierarchynodehistnorm" msprop:DbColumnName="hierarchynodehistnorm" msprop:design-time-name="18754317-eec4-499c-97a2-ab03aa49996f" type="xs:long" minOccurs="0" />
-                  <xs:element name="hierarchylevel1histnorm" msprop:DbColumnName="hierarchylevel1histnorm" msprop:design-time-name="c8664628-b554-4827-ac89-61ab71889804" minOccurs="0">
+                  <xs:element name="hierarchynodehistnorm" msprop:design-time-name="18754317-eec4-499c-97a2-ab03aa49996f" msprop:DbColumnName="hierarchynodehistnorm" type="xs:long" minOccurs="0" />
+                  <xs:element name="hierarchylevel1histnorm" msprop:design-time-name="c8664628-b554-4827-ac89-61ab71889804" msprop:DbColumnName="hierarchylevel1histnorm" minOccurs="0">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
                         <xs:maxLength value="50" />
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
-                  <xs:element name="hierarchylevel2histnorm" msprop:DbColumnName="hierarchylevel2histnorm" msprop:design-time-name="474b064d-3936-4462-9a22-da4288d4949a" minOccurs="0">
+                  <xs:element name="hierarchylevel2histnorm" msprop:design-time-name="474b064d-3936-4462-9a22-da4288d4949a" msprop:DbColumnName="hierarchylevel2histnorm" minOccurs="0">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
                         <xs:maxLength value="50" />
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
-                  <xs:element name="hierarchylevel3histnorm" msprop:DbColumnName="hierarchylevel3histnorm" msprop:design-time-name="e53fb081-af9f-488c-8fb6-0a13e4e8d309" minOccurs="0">
+                  <xs:element name="hierarchylevel3histnorm" msprop:design-time-name="e53fb081-af9f-488c-8fb6-0a13e4e8d309" msprop:DbColumnName="hierarchylevel3histnorm" minOccurs="0">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
                         <xs:maxLength value="50" />
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
-                  <xs:element name="hierarchylevel4histnorm" msprop:DbColumnName="hierarchylevel4histnorm" msprop:design-time-name="a55e0fb8-b7f9-4597-a950-fa01fbad1642" minOccurs="0">
+                  <xs:element name="hierarchylevel4histnorm" msprop:design-time-name="a55e0fb8-b7f9-4597-a950-fa01fbad1642" msprop:DbColumnName="hierarchylevel4histnorm" minOccurs="0">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
                         <xs:maxLength value="50" />
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
-                  <xs:element name="hierarchylevel5histnorm" msprop:DbColumnName="hierarchylevel5histnorm" msprop:design-time-name="8ae15cd5-a97e-423e-90cb-6161b8714281" minOccurs="0">
+                  <xs:element name="hierarchylevel5histnorm" msprop:design-time-name="8ae15cd5-a97e-423e-90cb-6161b8714281" msprop:DbColumnName="hierarchylevel5histnorm" minOccurs="0">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
                         <xs:maxLength value="50" />
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
-                  <xs:element name="hierarchylevel6histnorm" msprop:DbColumnName="hierarchylevel6histnorm" msprop:design-time-name="74a29f23-894f-498d-b605-b86cb6b004a8" minOccurs="0">
+                  <xs:element name="hierarchylevel6histnorm" msprop:design-time-name="74a29f23-894f-498d-b605-b86cb6b004a8" msprop:DbColumnName="hierarchylevel6histnorm" minOccurs="0">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
                         <xs:maxLength value="50" />
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
-                  <xs:element name="fte" msprop:DbColumnName="fte" msprop:design-time-name="937f1136-d6e7-40ee-97fd-70bf9f19c6e4" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="fte" msprop:design-time-name="937f1136-d6e7-40ee-97fd-70bf9f19c6e4" msprop:DbColumnName="fte" type="xs:decimal" minOccurs="0" />
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
-            <xs:element name="dbo_dim_bill_date" msprop:design-time-name="7da1d493-21d0-49e4-a800-e04497c1d336" msprop:DbTableName="dim_bill_date" msprop:TableType="View" msprop:DbSchemaName="dbo" msprop:FriendlyName="dim_bill_date">
+            <xs:element name="dbo_dim_bill_date" msprop:design-time-name="7da1d493-21d0-49e4-a800-e04497c1d336" msprop:FriendlyName="dim_bill_date" msprop:DbSchemaName="dbo" msprop:DbTableName="dim_bill_date" msprop:TableType="View">
               <xs:complexType>
                 <xs:sequence>
                   <xs:element name="dim_bill_date_key" msprop:design-time-name="195b2e8d-61f1-4288-b61e-b57ae89350b2" msprop:DbColumnName="dim_bill_date_key" msprop:FriendlyName="dim_bill_date_key" type="xs:int" />
