@@ -1237,7 +1237,11 @@ VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi 
  AS iif([Measures].[Billed Hours Recorded] = 0, 0, [Measures].[Profit Costs] / [Measures].[Billed Hours Recorded]), 
 FORMAT_STRING = "Currency", 
 NON_EMPTY_BEHAVIOR = { [Billed Minutes Recorded] }, 
-VISIBLE = 1 ,  DISPLAY_FOLDER = 'Monthly' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                          
+VISIBLE = 1 ,  DISPLAY_FOLDER = 'Monthly' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup'; 
+CREATE MEMBER CURRENTCUBE.[Measures].[Target Recovery Rate]
+ AS iif([Measures].[Target Billed Hours] = 0, 0, [Measures].[Target Profit Costs (Budget Balanced)] / [Measures].[Target Billed Hours]), 
+FORMAT_STRING = "Currency", 
+VISIBLE = 1 ,  DISPLAY_FOLDER = 'Monthly' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup'  ;                          
 
 
                 CREATE MEMBER CURRENTCUBE.[Measures].[Percentage of Profit Costs Target Achieved]
