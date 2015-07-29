@@ -8,7 +8,7 @@
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
       <Value>
         <dds xmlns="">
-          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="3" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-2732" scrolltop="-2871" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="4577" y="22648" backcolor="16185078" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="3" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-2732" scrolltop="-2871" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="9922" y="18812" backcolor="16777215" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
             <font>
               <ddsxmlobjectstreamwrapper binary="01000000900144420100065461686f6d61" />
             </font>
@@ -247,12 +247,23 @@
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
   </Attributes>
-  <ProactiveCaching dwd:design-time-name="270b39a8-87aa-4b50-b7a6-72851e07dfb7">
-    <SilenceInterval>-PT1S</SilenceInterval>
+  <ProactiveCaching dwd:design-time-name="03d99061-165f-486a-b532-294e76c4ef7a">
+    <SilenceInterval>PT10S</SilenceInterval>
     <Latency>-PT1S</Latency>
-    <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+    <SilenceOverrideInterval>PT10M</SilenceOverrideInterval>
     <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
-    <Source xsi:type="ProactiveCachingInheritedBinding" dwd:design-time-name="27d0295c-4887-431e-8faf-90e2cdc842fb" />
+    <Enabled>true</Enabled>
+    <OnlineMode>OnCacheComplete</OnlineMode>
+    <AggregationStorage>MolapOnly</AggregationStorage>
+    <Source xsi:type="ProactiveCachingTablesBinding" dwd:design-time-name="78773caf-d44d-4931-8cb5-49b7918d1da2">
+      <NotificationTechnique>Server</NotificationTechnique>
+      <TableNotifications>
+        <TableNotification>
+          <DbTableName>dim_bill</DbTableName>
+          <DbSchemaName>dbo</DbSchemaName>
+        </TableNotification>
+      </TableNotifications>
+    </Source>
   </ProactiveCaching>
   <ddl300:ProcessingState>Unprocessed</ddl300:ProcessingState>
 </Dimension>
