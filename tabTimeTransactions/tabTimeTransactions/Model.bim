@@ -65,6 +65,7 @@
               <AttributeRelationships>
                 <AttributeRelationship>
                   <AttributeID>ClientCode</AttributeID>
+                  <Cardinality>One</Cardinality>
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>ClientCode</Name>
                 </AttributeRelationship>
@@ -103,6 +104,12 @@
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>ClientPartnerCode</Name>
                 </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>ClientID</AttributeID>
+                  <Cardinality>One</Cardinality>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>ClientID</Name>
+                </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
@@ -122,6 +129,7 @@
                 <KeyColumn>
                   <DataType>WChar</DataType>
                   <DataSize>32768</DataSize>
+                  <NullProcessing>Error</NullProcessing>
                   <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
                   <Source xsi:type="ColumnBinding">
                     <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
@@ -325,6 +333,32 @@
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>ClientID</ID>
+              <Name>ClientID</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Error</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
+                    <ColumnID>ClientID</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
+                  <ColumnID>ClientID</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+              <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
             </Attribute>
           </Attributes>
           <ProactiveCaching>
@@ -2364,11 +2398,6 @@
                   <Name>ChargeableTimeCode</Name>
                 </AttributeRelationship>
                 <AttributeRelationship>
-                  <AttributeID>Narrative</AttributeID>
-                  <OverrideBehavior>None</OverrideBehavior>
-                  <Name>Narrative</Name>
-                </AttributeRelationship>
-                <AttributeRelationship>
                   <AttributeID>TransactionID</AttributeID>
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>TransactionID</Name>
@@ -2384,11 +2413,6 @@
                   <Name>MatterID</Name>
                 </AttributeRelationship>
                 <AttributeRelationship>
-                  <AttributeID>ClientCode</AttributeID>
-                  <OverrideBehavior>None</OverrideBehavior>
-                  <Name>ClientCode</Name>
-                </AttributeRelationship>
-                <AttributeRelationship>
                   <AttributeID>StageDesc</AttributeID>
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>StageDesc</Name>
@@ -2399,24 +2423,19 @@
                   <Name>TransactionAgeDays</Name>
                 </AttributeRelationship>
                 <AttributeRelationship>
-                  <AttributeID>matter_number</AttributeID>
+                  <AttributeID>ClientID</AttributeID>
                   <OverrideBehavior>None</OverrideBehavior>
-                  <Name>matter_number</Name>
+                  <Name>ClientID</Name>
                 </AttributeRelationship>
                 <AttributeRelationship>
-                  <AttributeID>client_code</AttributeID>
+                  <AttributeID>NarrativeID</AttributeID>
                   <OverrideBehavior>None</OverrideBehavior>
-                  <Name>client_code</Name>
+                  <Name>NarrativeID</Name>
                 </AttributeRelationship>
                 <AttributeRelationship>
-                  <AttributeID>source_system_id</AttributeID>
+                  <AttributeID>ReportingExclusions</AttributeID>
                   <OverrideBehavior>None</OverrideBehavior>
-                  <Name>source_system_id</Name>
-                </AttributeRelationship>
-                <AttributeRelationship>
-                  <AttributeID>ReportingExclusion</AttributeID>
-                  <OverrideBehavior>None</OverrideBehavior>
-                  <Name>ReportingExclusion</Name>
+                  <Name>ReportingExclusions</Name>
                 </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
@@ -2663,31 +2682,6 @@
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
             </Attribute>
             <Attribute>
-              <ID>Narrative</ID>
-              <Name>Narrative</Name>
-              <KeyColumns>
-                <KeyColumn>
-                  <DataType>WChar</DataType>
-                  <DataSize>32768</DataSize>
-                  <NullProcessing>Preserve</NullProcessing>
-                  <Source xsi:type="ColumnBinding">
-                    <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
-                    <ColumnID>Narrative</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-              <NameColumn>
-                <DataType>WChar</DataType>
-                <DataSize>32768</DataSize>
-                <NullProcessing>ZeroOrBlank</NullProcessing>
-                <Source xsi:type="ColumnBinding">
-                  <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
-                  <ColumnID>Narrative</ColumnID>
-                </Source>
-              </NameColumn>
-              <OrderBy>Key</OrderBy>
-            </Attribute>
-            <Attribute>
               <ID>TransactionID</ID>
               <Name>TransactionID</Name>
               <KeyColumns>
@@ -2764,31 +2758,6 @@
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
             </Attribute>
             <Attribute>
-              <ID>ClientCode</ID>
-              <Name>ClientCode</Name>
-              <KeyColumns>
-                <KeyColumn>
-                  <DataType>WChar</DataType>
-                  <DataSize>32768</DataSize>
-                  <NullProcessing>Preserve</NullProcessing>
-                  <Source xsi:type="ColumnBinding">
-                    <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
-                    <ColumnID>ClientCode</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-              <NameColumn>
-                <DataType>WChar</DataType>
-                <DataSize>32768</DataSize>
-                <NullProcessing>ZeroOrBlank</NullProcessing>
-                <Source xsi:type="ColumnBinding">
-                  <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
-                  <ColumnID>ClientCode</ColumnID>
-                </Source>
-              </NameColumn>
-              <OrderBy>Key</OrderBy>
-            </Attribute>
-            <Attribute>
               <ID>StageDesc</ID>
               <Name>StageDesc</Name>
               <KeyColumns>
@@ -2839,58 +2808,8 @@
               <OrderBy>Key</OrderBy>
             </Attribute>
             <Attribute>
-              <ID>matter_number</ID>
-              <Name>matter_number</Name>
-              <KeyColumns>
-                <KeyColumn>
-                  <DataType>WChar</DataType>
-                  <DataSize>32768</DataSize>
-                  <NullProcessing>Preserve</NullProcessing>
-                  <Source xsi:type="ColumnBinding">
-                    <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
-                    <ColumnID>matter_number</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-              <NameColumn>
-                <DataType>WChar</DataType>
-                <DataSize>32768</DataSize>
-                <NullProcessing>ZeroOrBlank</NullProcessing>
-                <Source xsi:type="ColumnBinding">
-                  <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
-                  <ColumnID>matter_number</ColumnID>
-                </Source>
-              </NameColumn>
-              <OrderBy>Key</OrderBy>
-            </Attribute>
-            <Attribute>
-              <ID>client_code</ID>
-              <Name>client_code</Name>
-              <KeyColumns>
-                <KeyColumn>
-                  <DataType>WChar</DataType>
-                  <DataSize>32768</DataSize>
-                  <NullProcessing>Preserve</NullProcessing>
-                  <Source xsi:type="ColumnBinding">
-                    <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
-                    <ColumnID>client_code</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-              <NameColumn>
-                <DataType>WChar</DataType>
-                <DataSize>32768</DataSize>
-                <NullProcessing>ZeroOrBlank</NullProcessing>
-                <Source xsi:type="ColumnBinding">
-                  <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
-                  <ColumnID>client_code</ColumnID>
-                </Source>
-              </NameColumn>
-              <OrderBy>Key</OrderBy>
-            </Attribute>
-            <Attribute>
-              <ID>source_system_id</ID>
-              <Name>source_system_id</Name>
+              <ID>ClientID</ID>
+              <Name>ClientID</Name>
               <KeyColumns>
                 <KeyColumn>
                   <DataType>Integer</DataType>
@@ -2898,7 +2817,7 @@
                   <NullProcessing>Preserve</NullProcessing>
                   <Source xsi:type="ColumnBinding">
                     <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
-                    <ColumnID>source_system_id</ColumnID>
+                    <ColumnID>ClientID</ColumnID>
                   </Source>
                 </KeyColumn>
               </KeyColumns>
@@ -2908,14 +2827,14 @@
                 <NullProcessing>ZeroOrBlank</NullProcessing>
                 <Source xsi:type="ColumnBinding">
                   <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
-                  <ColumnID>source_system_id</ColumnID>
+                  <ColumnID>ClientID</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
             </Attribute>
             <Attribute>
-              <ID>ReportingExclusion</ID>
-              <Name>ReportingExclusion</Name>
+              <ID>NarrativeID</ID>
+              <Name>NarrativeID</Name>
               <KeyColumns>
                 <KeyColumn>
                   <DataType>Integer</DataType>
@@ -2923,7 +2842,7 @@
                   <NullProcessing>Preserve</NullProcessing>
                   <Source xsi:type="ColumnBinding">
                     <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
-                    <ColumnID>ReportingExclusion</ColumnID>
+                    <ColumnID>NarrativeID</ColumnID>
                   </Source>
                 </KeyColumn>
               </KeyColumns>
@@ -2933,7 +2852,33 @@
                 <NullProcessing>ZeroOrBlank</NullProcessing>
                 <Source xsi:type="ColumnBinding">
                   <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
-                  <ColumnID>ReportingExclusion</ColumnID>
+                  <ColumnID>NarrativeID</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+              <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+            </Attribute>
+            <Attribute>
+              <ID>ReportingExclusions</ID>
+              <Name>ReportingExclusions</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
+                    <ColumnID>ReportingExclusions</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
+                  <ColumnID>ReportingExclusions</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
@@ -3104,6 +3049,52 @@
                 <Attributes>
                   <Attribute>
                     <AttributeID>Number</AttributeID>
+                  </Attribute>
+                </Attributes>
+              </ddl300_300:ToRelationshipEnd>
+            </ddl300_300:Relationship>
+            <ddl300_300:Relationship>
+              <ID>28f39d71-e3eb-4461-a383-c7e4c4837380</ID>
+              <ddl300_300:FromRelationshipEnd>
+                <ddl300_300:Multiplicity>Many</ddl300_300:Multiplicity>
+                <ddl300:VisualizationProperties />
+                <DimensionID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</DimensionID>
+                <Attributes>
+                  <Attribute>
+                    <AttributeID>ClientID</AttributeID>
+                  </Attribute>
+                </Attributes>
+              </ddl300_300:FromRelationshipEnd>
+              <ddl300_300:ToRelationshipEnd>
+                <ddl300_300:Multiplicity>One</ddl300_300:Multiplicity>
+                <ddl300:VisualizationProperties />
+                <DimensionID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</DimensionID>
+                <Attributes>
+                  <Attribute>
+                    <AttributeID>ClientID</AttributeID>
+                  </Attribute>
+                </Attributes>
+              </ddl300_300:ToRelationshipEnd>
+            </ddl300_300:Relationship>
+            <ddl300_300:Relationship>
+              <ID>0399cc37-dd5c-4173-9943-7af624616ed1</ID>
+              <ddl300_300:FromRelationshipEnd>
+                <ddl300_300:Multiplicity>Many</ddl300_300:Multiplicity>
+                <ddl300:VisualizationProperties />
+                <DimensionID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</DimensionID>
+                <Attributes>
+                  <Attribute>
+                    <AttributeID>NarrativeID</AttributeID>
+                  </Attribute>
+                </Attributes>
+              </ddl300_300:FromRelationshipEnd>
+              <ddl300_300:ToRelationshipEnd>
+                <ddl300_300:Multiplicity>One</ddl300_300:Multiplicity>
+                <ddl300:VisualizationProperties />
+                <DimensionID>dimTimeNarrative_f7aaa709-9ede-4b2b-9541-55bd8bffab32</DimensionID>
+                <Attributes>
+                  <Attribute>
+                    <AttributeID>TimeNarrativeID</AttributeID>
                   </Attribute>
                 </Attributes>
               </ddl300_300:ToRelationshipEnd>
@@ -10638,6 +10629,156 @@
             <Source xsi:type="ProactiveCachingInheritedBinding" />
           </ProactiveCaching>
         </Dimension>
+        <Dimension>
+          <ID>dimTimeNarrative_f7aaa709-9ede-4b2b-9541-55bd8bffab32</ID>
+          <Name>dimTimeNarrative</Name>
+          <Annotations>
+            <Annotation>
+              <Name>IsQueryEditorUsed</Name>
+              <Value>True</Value>
+            </Annotation>
+            <Annotation>
+              <Name>QueryEditorSerialization</Name>
+            </Annotation>
+            <Annotation>
+              <Name>TableWidgetSerialization</Name>
+            </Annotation>
+            <Annotation>
+              <Name>DataMarketWebBaseUrl</Name>
+            </Annotation>
+            <Annotation>
+              <Name>DataMarketWebQueryUrl</Name>
+            </Annotation>
+          </Annotations>
+          <Source xsi:type="DataSourceViewBinding">
+            <DataSourceViewID>Sandbox</DataSourceViewID>
+          </Source>
+          <UnknownMember valuens="ddl200_200">AutomaticNull</UnknownMember>
+          <ErrorConfiguration>
+            <KeyNotFound>IgnoreError</KeyNotFound>
+            <KeyDuplicate>ReportAndStop</KeyDuplicate>
+            <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+          </ErrorConfiguration>
+          <StorageMode valuens="ddl200_200">InMemory</StorageMode>
+          <Language>1033</Language>
+          <Collation>Latin1_General_CS_AS</Collation>
+          <UnknownMemberName>Unknown</UnknownMemberName>
+          <Attributes>
+            <Attribute>
+              <ID>RowNumber</ID>
+              <Name>RowNumber</Name>
+              <Type valuens="ddl200_200">RowNumber</Type>
+              <Usage>Key</Usage>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>4</DataSize>
+                  <NullProcessing>Error</NullProcessing>
+                  <Source xsi:type="ddl200_200:RowNumberBinding" />
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>4</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ddl200_200:RowNumberBinding" />
+              </NameColumn>
+              <AttributeRelationships>
+                <AttributeRelationship>
+                  <AttributeID>TimeNarrativeID</AttributeID>
+                  <Cardinality>One</Cardinality>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>TimeNarrativeID</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>TimeNarrative</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>TimeNarrative</Name>
+                </AttributeRelationship>
+              </AttributeRelationships>
+              <OrderBy>Key</OrderBy>
+              <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>TimeNarrativeID</ID>
+              <Name>TimeNarrativeID</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Error</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimTimeNarrative_f7aaa709-9ede-4b2b-9541-55bd8bffab32</TableID>
+                    <ColumnID>TimeNarrativeID</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimTimeNarrative_f7aaa709-9ede-4b2b-9541-55bd8bffab32</TableID>
+                  <ColumnID>TimeNarrativeID</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+              <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="Text" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>TimeNarrative</ID>
+              <Name>TimeNarrative</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimTimeNarrative_f7aaa709-9ede-4b2b-9541-55bd8bffab32</TableID>
+                    <ColumnID>TimeNarrative</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimTimeNarrative_f7aaa709-9ede-4b2b-9541-55bd8bffab32</TableID>
+                  <ColumnID>TimeNarrative</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+          </Attributes>
+          <ProactiveCaching>
+            <SilenceInterval>-PT1S</SilenceInterval>
+            <Latency>-PT1S</Latency>
+            <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+            <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+            <Source xsi:type="ProactiveCachingInheritedBinding" />
+          </ProactiveCaching>
+        </Dimension>
       </Dimensions>
       <Cubes>
         <Cube>
@@ -10684,6 +10825,10 @@
                 </Attribute>
                 <Attribute>
                   <AttributeID>ClientPartnerCode</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>ClientID</AttributeID>
+                  <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
                 </Attribute>
               </Attributes>
             </Dimension>
@@ -10899,9 +11044,6 @@
                   <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
                 </Attribute>
                 <Attribute>
-                  <AttributeID>Narrative</AttributeID>
-                </Attribute>
-                <Attribute>
                   <AttributeID>TransactionID</AttributeID>
                 </Attribute>
                 <Attribute>
@@ -10912,25 +11054,20 @@
                   <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
                 </Attribute>
                 <Attribute>
-                  <AttributeID>ClientCode</AttributeID>
-                </Attribute>
-                <Attribute>
                   <AttributeID>StageDesc</AttributeID>
                 </Attribute>
                 <Attribute>
                   <AttributeID>TransactionAgeDays</AttributeID>
                 </Attribute>
                 <Attribute>
-                  <AttributeID>matter_number</AttributeID>
+                  <AttributeID>ClientID</AttributeID>
                 </Attribute>
                 <Attribute>
-                  <AttributeID>client_code</AttributeID>
+                  <AttributeID>NarrativeID</AttributeID>
+                  <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
                 </Attribute>
                 <Attribute>
-                  <AttributeID>source_system_id</AttributeID>
-                </Attribute>
-                <Attribute>
-                  <AttributeID>ReportingExclusion</AttributeID>
+                  <AttributeID>ReportingExclusions</AttributeID>
                 </Attribute>
               </Attributes>
             </Dimension>
@@ -11733,6 +11870,24 @@
                 </Attribute>
               </Attributes>
             </Dimension>
+            <Dimension>
+              <ID>dimTimeNarrative_f7aaa709-9ede-4b2b-9541-55bd8bffab32</ID>
+              <Name>dimTimeNarrative</Name>
+              <DimensionID>dimTimeNarrative_f7aaa709-9ede-4b2b-9541-55bd8bffab32</DimensionID>
+              <Attributes>
+                <Attribute>
+                  <AttributeID>RowNumber</AttributeID>
+                  <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>TimeNarrativeID</AttributeID>
+                  <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>TimeNarrative</AttributeID>
+                </Attribute>
+              </Attributes>
+            </Dimension>
           </Dimensions>
           <MeasureGroups>
             <MeasureGroup>
@@ -11892,6 +12047,20 @@
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientID</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
+                            <ColumnID>ClientID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
                 </Dimension>
@@ -11918,6 +12087,7 @@
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
                     <QueryDefinition>SELECT distinct
+c.dim_client_key as 'ClientID',
 c.client_code ClientCode,
 c.client_name ClientName,
 c.client_group_name ClientGroupName,
@@ -15431,20 +15601,6 @@ branch_name is not null</QueryDefinition>
                       </KeyColumns>
                     </Attribute>
                     <Attribute>
-                      <AttributeID>Narrative</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
-                            <ColumnID>Narrative</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
                       <AttributeID>TransactionID</AttributeID>
                       <KeyColumns>
                         <KeyColumn>
@@ -15487,20 +15643,6 @@ branch_name is not null</QueryDefinition>
                       </KeyColumns>
                     </Attribute>
                     <Attribute>
-                      <AttributeID>ClientCode</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
-                            <ColumnID>ClientCode</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
                       <AttributeID>StageDesc</AttributeID>
                       <KeyColumns>
                         <KeyColumn>
@@ -15529,35 +15671,7 @@ branch_name is not null</QueryDefinition>
                       </KeyColumns>
                     </Attribute>
                     <Attribute>
-                      <AttributeID>matter_number</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
-                            <ColumnID>matter_number</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>client_code</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
-                            <ColumnID>client_code</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>source_system_id</AttributeID>
+                      <AttributeID>ClientID</AttributeID>
                       <KeyColumns>
                         <KeyColumn>
                           <DataType>Integer</DataType>
@@ -15565,13 +15679,13 @@ branch_name is not null</QueryDefinition>
                           <NullProcessing>Preserve</NullProcessing>
                           <Source xsi:type="ColumnBinding">
                             <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
-                            <ColumnID>source_system_id</ColumnID>
+                            <ColumnID>ClientID</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
                     <Attribute>
-                      <AttributeID>ReportingExclusion</AttributeID>
+                      <AttributeID>NarrativeID</AttributeID>
                       <KeyColumns>
                         <KeyColumn>
                           <DataType>Integer</DataType>
@@ -15579,7 +15693,21 @@ branch_name is not null</QueryDefinition>
                           <NullProcessing>Preserve</NullProcessing>
                           <Source xsi:type="ColumnBinding">
                             <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
-                            <ColumnID>ReportingExclusion</ColumnID>
+                            <ColumnID>NarrativeID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ReportingExclusions</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
+                            <ColumnID>ReportingExclusions</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -19161,11 +19289,211 @@ branch_name is not null</QueryDefinition>
                   <IntermediateCubeDimensionID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</IntermediateCubeDimensionID>
                   <IntermediateGranularityAttributeID>BillLastPaymentDate</IntermediateGranularityAttributeID>
                 </Dimension>
+                <Dimension xsi:type="ReferenceMeasureGroupDimension">
+                  <CubeDimensionID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>RowNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>4</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ddl200_200:RowNumberBinding" />
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientCode</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
+                            <ColumnID>ClientCode</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
+                            <ColumnID>ClientName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientGroupName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
+                            <ColumnID>ClientGroupName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientPartnerName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
+                            <ColumnID>ClientPartnerName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>CreditControllerName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
+                            <ColumnID>CreditControllerName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>SectorName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
+                            <ColumnID>SectorName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>CRMStatus</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
+                            <ColumnID>CRMStatus</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientPartnerCode</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
+                            <ColumnID>ClientPartnerCode</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientID</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
+                            <ColumnID>ClientID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                  </Attributes>
+                  <IntermediateCubeDimensionID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</IntermediateCubeDimensionID>
+                  <IntermediateGranularityAttributeID>ClientID</IntermediateGranularityAttributeID>
+                  <Materialization>Regular</Materialization>
+                  <ddl300:RelationshipID>28f39d71-e3eb-4461-a383-c7e4c4837380</ddl300:RelationshipID>
+                </Dimension>
+                <Dimension xsi:type="ReferenceMeasureGroupDimension">
+                  <CubeDimensionID>dimTimeNarrative_f7aaa709-9ede-4b2b-9541-55bd8bffab32</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>RowNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>4</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ddl200_200:RowNumberBinding" />
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>TimeNarrativeID</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimTimeNarrative_f7aaa709-9ede-4b2b-9541-55bd8bffab32</TableID>
+                            <ColumnID>TimeNarrativeID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>TimeNarrative</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimTimeNarrative_f7aaa709-9ede-4b2b-9541-55bd8bffab32</TableID>
+                            <ColumnID>TimeNarrative</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                  </Attributes>
+                  <IntermediateCubeDimensionID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</IntermediateCubeDimensionID>
+                  <IntermediateGranularityAttributeID>NarrativeID</IntermediateGranularityAttributeID>
+                  <Materialization>Regular</Materialization>
+                  <ddl300:RelationshipID>0399cc37-dd5c-4173-9943-7af624616ed1</ddl300:RelationshipID>
+                </Dimension>
               </Dimensions>
               <Partitions>
                 <Partition>
-                  <ID>TimeTransactions_d77bf007-2afb-4c9d-a8ba-a774cafe8911</ID>
-                  <Name>TimeTransactions_2015</Name>
+                  <ID>TimeTransactions_c3cf5e39-e61e-4aec-9bf2-d0177cbde778</ID>
+                  <Name>TimeTransactions</Name>
                   <Annotations>
                     <Annotation>
                       <Name>TableWidgetSerialization</Name>
@@ -19274,18 +19602,17 @@ cast(a.dss_update_time as date) &gt;
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
                     <QueryDefinition>select 
 a.dim_all_time_activity_key TransactionID,
-c.client_code ClientCode,
+c.dim_client_key ClientID,
 f.dim_matter_header_key MatterID,
-f.matter_number,
-f.client_code,
-f.source_system_id,
 a.dim_bill_key BillID,
+a.dim_time_narratives_key NarrativeID,
 a.time_type ChargeableTimeCode,
 a.dim_fed_hierarchy_history_key FEDCodeID,
 a.dim_transaction_date_key TransactionDate,
 a.minutes_recorded MinutesRecorded,
 a.hourly_charge_rate ChargeRate,
 a.time_charge_value timeChargeValue,
+
 case 
 when t.time_activity_code != 'W/O'
 and t.bill_number = 'xxxxxxxx'
@@ -19293,18 +19620,25 @@ and t.bill_number = 'xxxxxxxx'
 when t.time_activity_code = 'W/O'
  then 'Written Off Transaction'
 when t.bill_number = ''
+ and left(c.client_code, 2) != 'SB'
  then 'Unbilled'
+when t.bill_number = ''
+ and left(c.client_code, 2) = 'SB'
+ then 'Springboard'
 when a.dim_bill_key &gt; 0
 and t.time_activity_code not in ('Bill','Abmt')
  then 'Billed'
 when a.time_type = 'NC' 
  then 'Non Chargeable Time'
- else 'Transferred'  end TransactionType',  t.reporting_exclusions ReportingExclusions',
-n.td_textln Narrative,
+else 'Transferred'
+end TransactionType,
+
+--n.td_textln Narrative,
 t.time_activity_code TimeActivityCode,
 t.rate_code RateCode,
 t.matter_stage_descrn StageDesc,
-datediff(d, d3.calendar_date, getdate()) TransactionAgeDays
+datediff(d, d3.calendar_date, getdate()) TransactionAgeDays,
+t.reporting_exclusions ReportingExclusions 
 
 from
 [SVR-LIV-DWH-01].red_dw.dbo.fact_all_time_activity a
@@ -19316,9 +19650,9 @@ left join
  [SVR-LIV-DWH-01].red_dw.dbo.dim_all_time_activity t
   on a.dim_all_time_activity_key = t.dim_all_time_activity_key
 
-left join
- [SVR-LIV-DWH-01].red_dw.dbo.dim_time_narratives n
-   on n.dim_time_narratives_key = a.dim_time_narratives_key
+--left join
+-- [SVR-LIV-DWH-01].red_dw.dbo.dim_time_narratives n
+--   on n.dim_time_narratives_key = a.dim_time_narratives_key
 
 
 left join red_dw.dbo.dim_matter_header d2
@@ -19338,17 +19672,10 @@ from
 red_dw.dbo.dim_date
 
 where
-calendar_date = cast(getdate() -1 as date)) 
+calendar_date = cast(getdate() - 1 as date)) 
 
  left join red_dw.dbo.dim_date d3
-	on d3.dim_date_key = a.dim_transaction_date_key
-
- left join red_dw.dbo.dim_date d4
-	on d4.dim_date_key = a.dim_run_date_key
-
-
-where
-d4.cal_year = 2015</QueryDefinition>
+ on d3.dim_date_key = a.dim_transaction_date_key</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
@@ -19359,204 +19686,6 @@ d4.cal_year = 2015</QueryDefinition>
                     <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
                     <Source xsi:type="ProactiveCachingInheritedBinding" />
                   </ProactiveCaching>
-                </Partition>
-                <Partition>
-                  <ID>TimeTransactions_a8b773cf-a276-48a9-a06f-8b4c649c7e80</ID>
-                  <Name>TimeTransactions_old</Name>
-                  <Annotations>
-                    <Annotation>
-                      <Name>TableWidgetSerialization</Name>
-                    </Annotation>
-                    <Annotation>
-                      <Name>TableWidgetSourceTable</Name>
-                    </Annotation>
-                    <Annotation>
-                      <Name>QueryEditorSerialization</Name>
-                      <Value>&lt;?xml version="1.0" encoding="UTF-16"?&gt;&lt;Gemini xmlns="QueryEditorSerialization"&gt;&lt;AnnotationContent&gt;&lt;![CDATA[&lt;RSQueryCommandText&gt;select  
-tbl.TransactionID,
-c.client_code as 'ClientCode',
-f.dim_matter_header_key as 'MatterID',
-a.dim_bill_key as 'BillID',
-a.time_type as 'ChargeableTimeCode',
-a.dim_fed_hierarchy_history_key as 'FEDCodeID',
-a.dim_transaction_date_key as 'TransactionDate',
-a.dim_run_date_key as 'RunDate',
-a.minutes_recorded as 'MinutesRecorded',
-a.time_cost_value as 'ValueOfTimeRecorded',
-a.hourly_charge_rate as 'ChargeRate',
-a.time_charge_value as 'timeChargeValue',
-a.overridden_time_charge_value as 'OverriddenTimeChargeValue',
-case 
-when t.time_activity_code != 'W/O'
-and t.bill_number = 'xxxxxxxx'
- then 'Written Off'
-when t.time_activity_code = 'W/O'
- then 'Written Off Transaction'
-when t.bill_number = ''
- then 'Unbilled'
-when a.dim_bill_key &gt; 0
-and t.time_activity_code not in ('Bill','Abmt')
- then 'Billed'
-when a.time_type = 'NC' 
- then 'Non Chargeable Time'
-end as 'TransactionType',
-n.td_textln as 'Narrative',
-t.time_activity_code as 'TimeActivityCode',
-t.rate_code as 'RateCode' ,
-t.matter_stage_descrn as 'StageDesc'
-
-
-
-from
-[SVR-LIV-DWH-01].red_dw.dbo.fact_all_time_activity a
-
-left join red_dw.dbo.dim_client c
- on c.dim_client_key = a.dim_client_key
-
-left join
- [SVR-LIV-DWH-01].red_dw.dbo.dim_all_time_activity t
-  on a.dim_all_time_activity_key = t.dim_all_time_activity_key
-
-left join
- [SVR-LIV-DWH-01].red_dw.dbo.dim_time_narratives n
-   on n.dim_time_narratives_key = a.dim_time_narratives_key
-
-
-left join red_dw.dbo.dim_matter_header d2
- on d2.dim_matter_header_key = a.dim_matter_header_key
-
-
-
-left join red_dw.dbo.fact_matter_summary f
-  on d2.client_code = f.client_code 
- and d2.matter_number = f.matter_number
- and f.source_system_id = d2.source_system_id
-
- 
-
-
-
-left join (
- select
- a.dim_all_time_activity_key,
- a.dim_client_key, 
- a.dim_matter_header_key, 
- a.time_type,
- row_number() over (partition by a.dim_client_key, a.dim_matter_header_key, a.time_type order by a.transaction_sequence_number) as 'TransactionID'
-
- from
- red_dw.dbo.fact_all_time_activity a
-) tbl on tbl.dim_all_time_activity_key = a.dim_all_time_activity_key
-
-where
-cast(a.dss_update_time as date) &gt; 
-
-	(
-	select top 1
-	cast(dss_update_time as date) 
-
-	from
-	red_dw.dbo.fact_all_time_activity
-
-	order by
-	cast(dss_update_time as date)
-	)&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryCommandType&gt;&lt;RSQueryDesignState&gt;&lt;/RSQueryDesignState&gt;]]&gt;&lt;/AnnotationContent&gt;&lt;/Gemini&gt;</Value>
-                    </Annotation>
-                    <Annotation>
-                      <Name>IsQueryEditorUsed</Name>
-                      <Value>True</Value>
-                    </Annotation>
-                  </Annotations>
-                  <Source xsi:type="QueryBinding">
-                    <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
-                    <QueryDefinition>select 
-a.dim_all_time_activity_key TransactionID,
-c.client_code ClientCode,
-f.dim_matter_header_key MatterID,
-f.matter_number,
-f.client_code,
-f.source_system_id,
-a.dim_bill_key BillID,
-a.time_type ChargeableTimeCode,
-a.dim_fed_hierarchy_history_key FEDCodeID,
-a.dim_transaction_date_key TransactionDate,
-a.minutes_recorded MinutesRecorded,
-a.hourly_charge_rate ChargeRate,
-a.time_charge_value timeChargeValue,
-case 
-when t.time_activity_code != 'W/O'
-and t.bill_number = 'xxxxxxxx'
- then 'Written Off'
-when t.time_activity_code = 'W/O'
- then 'Written Off Transaction'
-when t.bill_number = ''
- then 'Unbilled'
-when a.dim_bill_key &gt; 0
-and t.time_activity_code not in ('Bill','Abmt')
- then 'Billed'
-when a.time_type = 'NC' 
- then 'Non Chargeable Time'
- else 'Transferred'  end TransactionType',  t.reporting_exclusions ReportingExclusions',
-n.td_textln Narrative,
-t.time_activity_code TimeActivityCode,
-t.rate_code RateCode,
-t.matter_stage_descrn StageDesc,
-datediff(d, d3.calendar_date, getdate()) TransactionAgeDays
-
-from
-[SVR-LIV-DWH-01].red_dw.dbo.fact_all_time_activity a
-
-left join red_dw.dbo.dim_client c
- on c.dim_client_key = a.dim_client_key
-
-left join
- [SVR-LIV-DWH-01].red_dw.dbo.dim_all_time_activity t
-  on a.dim_all_time_activity_key = t.dim_all_time_activity_key
-
-left join
- [SVR-LIV-DWH-01].red_dw.dbo.dim_time_narratives n
-   on n.dim_time_narratives_key = a.dim_time_narratives_key
-
-
-left join red_dw.dbo.dim_matter_header d2
- on d2.dim_matter_header_key = a.dim_matter_header_key
-
-
-
-left join red_dw.dbo.fact_matter_summary f
- on  d2.client_code = f.client_code 
- and d2.matter_number = f.matter_number
- and d2.source_system_id = f.source_system_id
- and f.fin_month = (
-select 
-fin_month
-
-from
-red_dw.dbo.dim_date
-
-where
-calendar_date = cast(getdate() -1 as date)) 
-
- left join red_dw.dbo.dim_date d3
-	on d3.dim_date_key = a.dim_transaction_date_key
-
- left join red_dw.dbo.dim_date d4
-	on d4.dim_date_key = a.dim_run_date_key
-
-
-where
-d4.cal_year&lt; 2015</QueryDefinition>
-                  </Source>
-                  <StorageMode valuens="ddl200_200">InMemory</StorageMode>
-                  <ProcessingMode>Regular</ProcessingMode>
-                  <ProactiveCaching>
-                    <SilenceInterval>-PT1S</SilenceInterval>
-                    <Latency>-PT1S</Latency>
-                    <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
-                    <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
-                    <Source xsi:type="ProactiveCachingInheritedBinding" />
-                  </ProactiveCaching>
-                  <ddl300_300:DirectQueryUsage>InMemoryOnly</ddl300_300:DirectQueryUsage>
                 </Partition>
               </Partitions>
               <ProactiveCaching>
@@ -25663,6 +25792,132 @@ order by 1</QueryDefinition>
                 <Source xsi:type="ProactiveCachingInheritedBinding" />
               </ProactiveCaching>
             </MeasureGroup>
+            <MeasureGroup>
+              <ID>dimTimeNarrative_f7aaa709-9ede-4b2b-9541-55bd8bffab32</ID>
+              <Name>dimTimeNarrative</Name>
+              <Measures>
+                <Measure>
+                  <ID>dimTimeNarrative_f7aaa709-9ede-4b2b-9541-55bd8bffab32</ID>
+                  <Name>_Count dimTimeNarrative</Name>
+                  <AggregateFunction>Count</AggregateFunction>
+                  <DataType>BigInt</DataType>
+                  <Source>
+                    <DataType>BigInt</DataType>
+                    <DataSize>8</DataSize>
+                    <Source xsi:type="RowBinding">
+                      <TableID>dimTimeNarrative_f7aaa709-9ede-4b2b-9541-55bd8bffab32</TableID>
+                    </Source>
+                  </Source>
+                  <Visible>false</Visible>
+                </Measure>
+              </Measures>
+              <StorageMode valuens="ddl200_200">InMemory</StorageMode>
+              <ErrorConfiguration>
+                <KeyNotFound>IgnoreError</KeyNotFound>
+                <KeyDuplicate>ReportAndStop</KeyDuplicate>
+                <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+              </ErrorConfiguration>
+              <ProcessingMode>Regular</ProcessingMode>
+              <Dimensions>
+                <Dimension xsi:type="DegenerateMeasureGroupDimension">
+                  <CubeDimensionID>dimTimeNarrative_f7aaa709-9ede-4b2b-9541-55bd8bffab32</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>RowNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimTimeNarrative</TableID>
+                            <ColumnID>RowNumber</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>TimeNarrativeID</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimTimeNarrative_f7aaa709-9ede-4b2b-9541-55bd8bffab32</TableID>
+                            <ColumnID>TimeNarrativeID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>TimeNarrative</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimTimeNarrative_f7aaa709-9ede-4b2b-9541-55bd8bffab32</TableID>
+                            <ColumnID>TimeNarrative</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                  </Attributes>
+                  <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
+                </Dimension>
+              </Dimensions>
+              <Partitions>
+                <Partition>
+                  <ID>dimTimeNarrative_f7aaa709-9ede-4b2b-9541-55bd8bffab32</ID>
+                  <Name>dimTimeNarrative</Name>
+                  <Annotations>
+                    <Annotation>
+                      <Name>IsQueryEditorUsed</Name>
+                      <Value>True</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>QueryEditorSerialization</Name>
+                    </Annotation>
+                    <Annotation>
+                      <Name>TableWidgetSerialization</Name>
+                    </Annotation>
+                  </Annotations>
+                  <Source xsi:type="QueryBinding">
+                    <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
+                    <QueryDefinition>select 
+dim_time_narratives_key as 'TimeNarrativeID',
+td_textln as 'TimeNarrative'
+
+from
+red_dw.dbo.dim_time_narratives</QueryDefinition>
+                  </Source>
+                  <StorageMode valuens="ddl200_200">InMemory</StorageMode>
+                  <ProcessingMode>Regular</ProcessingMode>
+                  <ErrorConfiguration>
+                    <KeyNotFound>IgnoreError</KeyNotFound>
+                    <KeyDuplicate>ReportAndStop</KeyDuplicate>
+                    <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+                  </ErrorConfiguration>
+                  <ProactiveCaching>
+                    <SilenceInterval>-PT1S</SilenceInterval>
+                    <Latency>-PT1S</Latency>
+                    <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+                    <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+                    <Source xsi:type="ProactiveCachingInheritedBinding" />
+                  </ProactiveCaching>
+                </Partition>
+              </Partitions>
+              <ProactiveCaching>
+                <SilenceInterval>-PT1S</SilenceInterval>
+                <Latency>-PT1S</Latency>
+                <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+                <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+                <Source xsi:type="ProactiveCachingInheritedBinding" />
+              </ProactiveCaching>
+            </MeasureGroup>
           </MeasureGroups>
           <Source>
             <DataSourceViewID>Sandbox</DataSourceViewID>
@@ -26173,7 +26428,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
               <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:Locale="en-US">
                 <xs:complexType>
                   <xs:choice minOccurs="0" maxOccurs="unbounded">
-                    <xs:element name="dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimClient" msprop:DbTableName="dimClient" msprop:TableType="View" msprop:Description="dimClient" msprop:QueryDefinition="SELECT distinct&#xD;&#xA;c.client_code ClientCode,&#xD;&#xA;c.client_name ClientName,&#xD;&#xA;c.client_group_name ClientGroupName,&#xD;&#xA;c.client_partner_name ClientPartnerName,&#xD;&#xA;c.client_partner_code ClientPartnerCode,&#xD;&#xA;case&#xD;&#xA;when cc.cx_data = 'SGO' then 'Stephen Gorman'&#xD;&#xA;when cc.cx_data = 'KWA' then 'Keith Walters'&#xD;&#xA;when cc.cx_data = 'LIL' then 'Linda Lewis'&#xD;&#xA;when cc.cx_data = 'JWO' then 'Jemma Woodworth'&#xD;&#xA;when cc.cx_data = 'AEV' then 'Alun Evans'&#xD;&#xA;when cc.cx_data = 'JEV' then 'Joanne Sawkins'&#xD;&#xA;when cc.cx_data = 'KEL1' then 'Kelly Ryan'&#xD;&#xA;when cc.cx_data = 'JZD' then 'Julie Dootson'&#xD;&#xA;when cc.cx_data = 'JTUR' then 'Jocelyn Turner'&#xD;&#xA;when cc.cx_data = 'MWN' then 'Michelle Wilson'&#xD;&#xA;when cc.cx_data = 'NMB' then 'Natalie Cooney'&#xD;&#xA;when cc.cx_data = 'DIA' then 'Diane Robinson'&#xD;&#xA;else cc.cx_data&#xD;&#xA;end CreditControllerName,&#xD;&#xA;RTRIM(ds_descrn) SectorName,&#xD;&#xA;  CASE WHEN crm.cx_data = 1 THEN 'Patron'&#xD;&#xA;   WHEN crm.cx_data = 2 THEN 'Star' &#xD;&#xA;   WHEN crm.cx_data is null then null &#xD;&#xA;   ELSE 'Rising Star' END CRMStatus&#xD;&#xA;&#xD;&#xA;&#xD;&#xA; FROM &#xD;&#xA;[dim_client] c&#xD;&#xA;&#xD;&#xA;inner join fact_matter_summary a&#xD;&#xA; on a.dim_client_key = c.dim_client_key&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join sql2008svr.axxia01.dbo.caclextn  as cc&#xD;&#xA; on c.client_code = cc.cx_accode&#xD;&#xA; and cc.cx_colnum = '5'&#xD;&#xA;&#xD;&#xA;left join sql2008svr.axxia01.dbo.caclextn s&#xD;&#xA; on s.cx_accode = c.client_code&#xD;&#xA; and s.cx_colnum = '102'&#xD;&#xA;left join axxia01.dbo.cadescrp AS cadescrp WITH (NOLOCK) ON s.cx_data = ds_reckey AND ds_rectyp = 'XX'&#xD;&#xA;&#xD;&#xA;left join sql2008svr.axxia01.dbo.caclextn crm&#xD;&#xA; on crm.cx_accode = c.client_code&#xD;&#xA; and crm.cx_colnum = '101'">
+                    <xs:element name="dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimClient" msprop:DbTableName="dimClient" msprop:TableType="View" msprop:Description="dimClient" msprop:QueryDefinition="SELECT distinct&#xD;&#xA;c.dim_client_key as 'ClientID',&#xD;&#xA;c.client_code ClientCode,&#xD;&#xA;c.client_name ClientName,&#xD;&#xA;c.client_group_name ClientGroupName,&#xD;&#xA;c.client_partner_name ClientPartnerName,&#xD;&#xA;c.client_partner_code ClientPartnerCode,&#xD;&#xA;case&#xD;&#xA;when cc.cx_data = 'SGO' then 'Stephen Gorman'&#xD;&#xA;when cc.cx_data = 'KWA' then 'Keith Walters'&#xD;&#xA;when cc.cx_data = 'LIL' then 'Linda Lewis'&#xD;&#xA;when cc.cx_data = 'JWO' then 'Jemma Woodworth'&#xD;&#xA;when cc.cx_data = 'AEV' then 'Alun Evans'&#xD;&#xA;when cc.cx_data = 'JEV' then 'Joanne Sawkins'&#xD;&#xA;when cc.cx_data = 'KEL1' then 'Kelly Ryan'&#xD;&#xA;when cc.cx_data = 'JZD' then 'Julie Dootson'&#xD;&#xA;when cc.cx_data = 'JTUR' then 'Jocelyn Turner'&#xD;&#xA;when cc.cx_data = 'MWN' then 'Michelle Wilson'&#xD;&#xA;when cc.cx_data = 'NMB' then 'Natalie Cooney'&#xD;&#xA;when cc.cx_data = 'DIA' then 'Diane Robinson'&#xD;&#xA;else cc.cx_data&#xD;&#xA;end CreditControllerName,&#xD;&#xA;RTRIM(ds_descrn) SectorName,&#xD;&#xA;  CASE WHEN crm.cx_data = 1 THEN 'Patron'&#xD;&#xA;   WHEN crm.cx_data = 2 THEN 'Star' &#xD;&#xA;   WHEN crm.cx_data is null then null &#xD;&#xA;   ELSE 'Rising Star' END CRMStatus&#xD;&#xA;&#xD;&#xA;&#xD;&#xA; FROM &#xD;&#xA;[dim_client] c&#xD;&#xA;&#xD;&#xA;inner join fact_matter_summary a&#xD;&#xA; on a.dim_client_key = c.dim_client_key&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join sql2008svr.axxia01.dbo.caclextn  as cc&#xD;&#xA; on c.client_code = cc.cx_accode&#xD;&#xA; and cc.cx_colnum = '5'&#xD;&#xA;&#xD;&#xA;left join sql2008svr.axxia01.dbo.caclextn s&#xD;&#xA; on s.cx_accode = c.client_code&#xD;&#xA; and s.cx_colnum = '102'&#xD;&#xA;left join axxia01.dbo.cadescrp AS cadescrp WITH (NOLOCK) ON s.cx_data = ds_reckey AND ds_rectyp = 'XX'&#xD;&#xA;&#xD;&#xA;left join sql2008svr.axxia01.dbo.caclextn crm&#xD;&#xA; on crm.cx_accode = c.client_code&#xD;&#xA; and crm.cx_colnum = '101'">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="ClientCode" msprop:DbColumnName="ClientCode" msprop:FriendlyName="ClientCode" minOccurs="0">
@@ -26232,6 +26487,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                               </xs:restriction>
                             </xs:simpleType>
                           </xs:element>
+                          <xs:element name="ClientID" msprop:DbColumnName="ClientID" msprop:FriendlyName="ClientID" type="xs:int" minOccurs="0" />
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
@@ -26391,7 +26647,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="TimeTransactions" msprop:DbTableName="factMainTable" msprop:TableType="View" msprop:Description="factMainTable" msprop:QueryDefinition="select &#xD;&#xA;a.dim_all_time_activity_key TransactionID,&#xD;&#xA;c.client_code ClientCode,&#xD;&#xA;f.dim_matter_header_key MatterID,&#xD;&#xA;f.matter_number,&#xD;&#xA;f.client_code,&#xD;&#xA;f.source_system_id,&#xD;&#xA;a.dim_bill_key BillID,&#xD;&#xA;a.time_type ChargeableTimeCode,&#xD;&#xA;a.dim_fed_hierarchy_history_key FEDCodeID,&#xD;&#xA;a.dim_transaction_date_key TransactionDate,&#xD;&#xA;a.minutes_recorded MinutesRecorded,&#xD;&#xA;a.hourly_charge_rate ChargeRate,&#xD;&#xA;a.time_charge_value timeChargeValue,&#xD;&#xA;&#xD;&#xA;case &#xD;&#xA;when t.time_activity_code != 'W/O'&#xD;&#xA;and t.bill_number = 'xxxxxxxx'&#xD;&#xA; then 'Written Off'&#xD;&#xA;when t.time_activity_code = 'W/O'&#xD;&#xA; then 'Written Off Transaction'&#xD;&#xA;when t.bill_number = ''&#xD;&#xA; and left(c.client_code, 2) != 'SB'&#xD;&#xA; then 'Unbilled'&#xD;&#xA;when t.bill_number = ''&#xD;&#xA; and left(c.client_code, 2) = 'SB'&#xD;&#xA; then 'Springboard'&#xD;&#xA;when a.dim_bill_key &gt; 0&#xD;&#xA;and t.time_activity_code not in ('Bill','Abmt')&#xD;&#xA; then 'Billed'&#xD;&#xA;when a.time_type = 'NC' &#xD;&#xA; then 'Non Chargeable Time'&#xD;&#xA;else 'Transferred'&#xD;&#xA;end TransactionType,&#xD;&#xA;n.td_textln Narrative,&#xD;&#xA;t.time_activity_code TimeActivityCode,&#xD;&#xA;t.rate_code RateCode,&#xD;&#xA;t.matter_stage_descrn StageDesc,&#xD;&#xA;datediff(d, d3.calendar_date, getdate()) TransactionAgeDays,&#xD;&#xA;t.reporting_exclusions ReportingExclusion&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;[SVR-LIV-DWH-01].red_dw.dbo.fact_all_time_activity a&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_client c&#xD;&#xA; on c.dim_client_key = a.dim_client_key&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; [SVR-LIV-DWH-01].red_dw.dbo.dim_all_time_activity t&#xD;&#xA;  on a.dim_all_time_activity_key = t.dim_all_time_activity_key&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; [SVR-LIV-DWH-01].red_dw.dbo.dim_time_narratives n&#xD;&#xA;   on n.dim_time_narratives_key = a.dim_time_narratives_key&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_matter_header d2&#xD;&#xA; on d2.dim_matter_header_key = a.dim_matter_header_key&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.fact_matter_summary f&#xD;&#xA; on  d2.client_code = f.client_code &#xD;&#xA; and d2.matter_number = f.matter_number&#xD;&#xA; and d2.source_system_id = f.source_system_id&#xD;&#xA; and f.fin_month = (&#xD;&#xA;select &#xD;&#xA;fin_month&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_date&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;calendar_date = cast(getdate() - 1 as date)) &#xD;&#xA;&#xD;&#xA; left join red_dw.dbo.dim_date d3&#xD;&#xA; on d3.dim_date_key = a.dim_transaction_date_key&#xD;&#xA;&#xD;&#xA; left join red_dw.dbo.dim_date d4&#xD;&#xA; on d4.dim_date_key = a.dim_run_date_key">
+                    <xs:element name="factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="TimeTransactions" msprop:DbTableName="factMainTable" msprop:TableType="View" msprop:Description="factMainTable" msprop:QueryDefinition="select &#xD;&#xA;a.dim_all_time_activity_key TransactionID,&#xD;&#xA;c.dim_client_key ClientID,&#xD;&#xA;f.dim_matter_header_key MatterID,&#xD;&#xA;a.dim_bill_key BillID,&#xD;&#xA;a.dim_time_narratives_key NarrativeID,&#xD;&#xA;a.time_type ChargeableTimeCode,&#xD;&#xA;a.dim_fed_hierarchy_history_key FEDCodeID,&#xD;&#xA;a.dim_transaction_date_key TransactionDate,&#xD;&#xA;a.minutes_recorded MinutesRecorded,&#xD;&#xA;a.hourly_charge_rate ChargeRate,&#xD;&#xA;a.time_charge_value timeChargeValue,&#xD;&#xA;&#xD;&#xA;case &#xD;&#xA;when t.time_activity_code != 'W/O'&#xD;&#xA;and t.bill_number = 'xxxxxxxx'&#xD;&#xA; then 'Written Off'&#xD;&#xA;when t.time_activity_code = 'W/O'&#xD;&#xA; then 'Written Off Transaction'&#xD;&#xA;when t.bill_number = ''&#xD;&#xA; and left(c.client_code, 2) != 'SB'&#xD;&#xA; then 'Unbilled'&#xD;&#xA;when t.bill_number = ''&#xD;&#xA; and left(c.client_code, 2) = 'SB'&#xD;&#xA; then 'Springboard'&#xD;&#xA;when a.dim_bill_key &gt; 0&#xD;&#xA;and t.time_activity_code not in ('Bill','Abmt')&#xD;&#xA; then 'Billed'&#xD;&#xA;when a.time_type = 'NC' &#xD;&#xA; then 'Non Chargeable Time'&#xD;&#xA;else 'Transferred'&#xD;&#xA;end TransactionType,&#xD;&#xA;&#xD;&#xA;--n.td_textln Narrative,&#xD;&#xA;t.time_activity_code TimeActivityCode,&#xD;&#xA;t.rate_code RateCode,&#xD;&#xA;t.matter_stage_descrn StageDesc,&#xD;&#xA;datediff(d, d3.calendar_date, getdate()) TransactionAgeDays,&#xD;&#xA;t.reporting_exclusions ReportingExclusions&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;[SVR-LIV-DWH-01].red_dw.dbo.fact_all_time_activity a&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_client c&#xD;&#xA; on c.dim_client_key = a.dim_client_key&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; [SVR-LIV-DWH-01].red_dw.dbo.dim_all_time_activity t&#xD;&#xA;  on a.dim_all_time_activity_key = t.dim_all_time_activity_key&#xD;&#xA;&#xD;&#xA;--left join&#xD;&#xA;-- [SVR-LIV-DWH-01].red_dw.dbo.dim_time_narratives n&#xD;&#xA;--   on n.dim_time_narratives_key = a.dim_time_narratives_key&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_matter_header d2&#xD;&#xA; on d2.dim_matter_header_key = a.dim_matter_header_key&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.fact_matter_summary f&#xD;&#xA; on  d2.client_code = f.client_code &#xD;&#xA; and d2.matter_number = f.matter_number&#xD;&#xA; and d2.source_system_id = f.source_system_id&#xD;&#xA; and f.fin_month = (&#xD;&#xA;select &#xD;&#xA;fin_month&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_date&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;calendar_date = cast(getdate() - 1 as date)) &#xD;&#xA;&#xD;&#xA; left join red_dw.dbo.dim_date d3&#xD;&#xA; on d3.dim_date_key = a.dim_transaction_date_key">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="BillID" msprop:DbColumnName="BillID" msprop:FriendlyName="BillID" type="xs:int" minOccurs="0" />
@@ -26415,13 +26671,6 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                               </xs:restriction>
                             </xs:simpleType>
                           </xs:element>
-                          <xs:element name="Narrative" msprop:DbColumnName="Narrative" msprop:FriendlyName="Narrative" minOccurs="0">
-                            <xs:simpleType>
-                              <xs:restriction base="xs:string">
-                                <xs:maxLength value="32768" />
-                              </xs:restriction>
-                            </xs:simpleType>
-                          </xs:element>
                           <xs:element name="TransactionID" msprop:DbColumnName="TransactionID" msprop:FriendlyName="TransactionID" type="xs:long" minOccurs="0" />
                           <xs:element name="TransactionType" msprop:DbColumnName="TransactionType" msprop:FriendlyName="TransactionType" minOccurs="0">
                             <xs:simpleType>
@@ -26431,13 +26680,6 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                             </xs:simpleType>
                           </xs:element>
                           <xs:element name="MatterID" msprop:DbColumnName="MatterID" msprop:FriendlyName="MatterID" type="xs:int" minOccurs="0" />
-                          <xs:element name="ClientCode" msprop:DbColumnName="ClientCode" msprop:FriendlyName="ClientCode" minOccurs="0">
-                            <xs:simpleType>
-                              <xs:restriction base="xs:string">
-                                <xs:maxLength value="32768" />
-                              </xs:restriction>
-                            </xs:simpleType>
-                          </xs:element>
                           <xs:element name="StageDesc" msprop:DbColumnName="StageDesc" msprop:FriendlyName="StageDesc" minOccurs="0">
                             <xs:simpleType>
                               <xs:restriction base="xs:string">
@@ -26446,22 +26688,9 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                             </xs:simpleType>
                           </xs:element>
                           <xs:element name="TransactionAgeDays" msprop:DbColumnName="TransactionAgeDays" msprop:FriendlyName="TransactionAgeDays" type="xs:int" minOccurs="0" />
-                          <xs:element name="matter_number" msprop:DbColumnName="matter_number" msprop:FriendlyName="matter_number" minOccurs="0">
-                            <xs:simpleType>
-                              <xs:restriction base="xs:string">
-                                <xs:maxLength value="32768" />
-                              </xs:restriction>
-                            </xs:simpleType>
-                          </xs:element>
-                          <xs:element name="client_code" msprop:DbColumnName="client_code" msprop:FriendlyName="client_code" minOccurs="0">
-                            <xs:simpleType>
-                              <xs:restriction base="xs:string">
-                                <xs:maxLength value="32768" />
-                              </xs:restriction>
-                            </xs:simpleType>
-                          </xs:element>
-                          <xs:element name="source_system_id" msprop:DbColumnName="source_system_id" msprop:FriendlyName="source_system_id" type="xs:int" minOccurs="0" />
-                          <xs:element name="ReportingExclusion" msprop:DbColumnName="ReportingExclusion" msprop:FriendlyName="ReportingExclusion" type="xs:int" minOccurs="0" />
+                          <xs:element name="ClientID" msprop:DbColumnName="ClientID" msprop:FriendlyName="ClientID" type="xs:int" minOccurs="0" />
+                          <xs:element name="NarrativeID" msprop:DbColumnName="NarrativeID" msprop:FriendlyName="NarrativeID" type="xs:int" minOccurs="0" />
+                          <xs:element name="ReportingExclusions" msprop:DbColumnName="ReportingExclusions" msprop:FriendlyName="ReportingExclusions" type="xs:int" minOccurs="0" />
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
@@ -27329,6 +27558,20 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                             </xs:simpleType>
                           </xs:element>
                           <xs:element name="BillXBCMEmail" msprop:DbColumnName="BillXBCMEmail" msprop:FriendlyName="BillXBCMEmail" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="dimTimeNarrative_f7aaa709-9ede-4b2b-9541-55bd8bffab32" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimTimeNarrative" msprop:DbTableName="dimTimeNarrative" msprop:TableType="View" msprop:Description="dimTimeNarrative" msprop:QueryDefinition="select &#xD;&#xA;dim_time_narratives_key as 'TimeNarrativeID',&#xD;&#xA;td_textln as 'TimeNarrative'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_time_narratives">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="TimeNarrativeID" msprop:DbColumnName="TimeNarrativeID" msprop:FriendlyName="TimeNarrativeID" type="xs:int" minOccurs="0" />
+                          <xs:element name="TimeNarrative" msprop:DbColumnName="TimeNarrative" msprop:FriendlyName="TimeNarrative" minOccurs="0">
                             <xs:simpleType>
                               <xs:restriction base="xs:string">
                                 <xs:maxLength value="32768" />
