@@ -6239,6 +6239,31 @@ order by 1&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryC
             <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
             <Source xsi:type="ProactiveCachingInheritedBinding" />
           </ProactiveCaching>
+          <ddl300_300:Relationships>
+            <ddl300_300:Relationship>
+              <ID>a9dc7290-856b-46f1-899e-b01f207304a1</ID>
+              <ddl300_300:FromRelationshipEnd>
+                <ddl300_300:Multiplicity>Many</ddl300_300:Multiplicity>
+                <ddl300:VisualizationProperties />
+                <DimensionID>dimClientMatter_efa9a451-b17b-4f91-8fea-de6ec489402f</DimensionID>
+                <Attributes>
+                  <Attribute>
+                    <AttributeID>ClientPartnerCode</AttributeID>
+                  </Attribute>
+                </Attributes>
+              </ddl300_300:FromRelationshipEnd>
+              <ddl300_300:ToRelationshipEnd>
+                <ddl300_300:Multiplicity>One</ddl300_300:Multiplicity>
+                <ddl300:VisualizationProperties />
+                <DimensionID>dimClientPartnerFEDHierarchy_d9fff473-25ec-434c-a5a6-65ccb404fc0c</DimensionID>
+                <Attributes>
+                  <Attribute>
+                    <AttributeID>ClientPartnerFEDCode</AttributeID>
+                  </Attribute>
+                </Attributes>
+              </ddl300_300:ToRelationshipEnd>
+            </ddl300_300:Relationship>
+          </ddl300_300:Relationships>
         </Dimension>
         <Dimension>
           <ID>dimDateLastBill_25ad1174-db1d-4f13-b00b-a3e687a23c0f</ID>
@@ -8642,6 +8667,309 @@ order by 1&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryC
             <Source xsi:type="ProactiveCachingInheritedBinding" />
           </ProactiveCaching>
         </Dimension>
+        <Dimension>
+          <ID>dimClientPartnerFEDHierarchy_d9fff473-25ec-434c-a5a6-65ccb404fc0c</ID>
+          <Name>dimClientPartnerFEDHierarchy</Name>
+          <Annotations>
+            <Annotation>
+              <Name>TableWidgetSerialization</Name>
+            </Annotation>
+            <Annotation>
+              <Name>QueryEditorSerialization</Name>
+            </Annotation>
+            <Annotation>
+              <Name>IsQueryEditorUsed</Name>
+              <Value>True</Value>
+            </Annotation>
+          </Annotations>
+          <Source xsi:type="DataSourceViewBinding">
+            <DataSourceViewID>Sandbox</DataSourceViewID>
+          </Source>
+          <UnknownMember valuens="ddl200_200">AutomaticNull</UnknownMember>
+          <ErrorConfiguration>
+            <KeyNotFound>IgnoreError</KeyNotFound>
+            <KeyDuplicate>ReportAndStop</KeyDuplicate>
+            <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+          </ErrorConfiguration>
+          <StorageMode valuens="ddl200_200">InMemory</StorageMode>
+          <Language>1033</Language>
+          <Collation>Latin1_General_CS_AS</Collation>
+          <UnknownMemberName>Unknown</UnknownMemberName>
+          <Attributes>
+            <Attribute>
+              <ID>RowNumber</ID>
+              <Name>RowNumber</Name>
+              <Type valuens="ddl200_200">RowNumber</Type>
+              <Usage>Key</Usage>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>4</DataSize>
+                  <NullProcessing>Error</NullProcessing>
+                  <Source xsi:type="ddl200_200:RowNumberBinding" />
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>4</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ddl200_200:RowNumberBinding" />
+              </NameColumn>
+              <AttributeRelationships>
+                <AttributeRelationship>
+                  <AttributeID>ClientPartnerDisplayName</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>ClientPartnerDisplayName</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>ClientPartnerFEDCode</AttributeID>
+                  <Cardinality>One</Cardinality>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>ClientPartnerFEDCode</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>ClientPartnerBusinessLine</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>ClientPartnerBusinessLine</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>ClientPartnerPracticeArea</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>ClientPartnerPracticeArea</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>ClientPartnerTeam</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>ClientPartnerTeam</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>ClientPartnerSubteam</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>ClientPartnerSubteam</Name>
+                </AttributeRelationship>
+              </AttributeRelationships>
+              <OrderBy>Key</OrderBy>
+              <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="Text" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>ClientPartnerDisplayName</ID>
+              <Name>ClientPartnerDisplayName</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimClientPartnerFEDHierarchy_d9fff473-25ec-434c-a5a6-65ccb404fc0c</TableID>
+                    <ColumnID>ClientPartnerDisplayName</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimClientPartnerFEDHierarchy_d9fff473-25ec-434c-a5a6-65ccb404fc0c</TableID>
+                  <ColumnID>ClientPartnerDisplayName</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="Text" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>ClientPartnerFEDCode</ID>
+              <Name>ClientPartnerFEDCode</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Error</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimClientPartnerFEDHierarchy_d9fff473-25ec-434c-a5a6-65ccb404fc0c</TableID>
+                    <ColumnID>ClientPartnerFEDCode</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimClientPartnerFEDHierarchy_d9fff473-25ec-434c-a5a6-65ccb404fc0c</TableID>
+                  <ColumnID>ClientPartnerFEDCode</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="Text" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>ClientPartnerBusinessLine</ID>
+              <Name>ClientPartnerBusinessLine</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimClientPartnerFEDHierarchy_d9fff473-25ec-434c-a5a6-65ccb404fc0c</TableID>
+                    <ColumnID>ClientPartnerBusinessLine</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimClientPartnerFEDHierarchy_d9fff473-25ec-434c-a5a6-65ccb404fc0c</TableID>
+                  <ColumnID>ClientPartnerBusinessLine</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="Text" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>ClientPartnerPracticeArea</ID>
+              <Name>ClientPartnerPracticeArea</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimClientPartnerFEDHierarchy_d9fff473-25ec-434c-a5a6-65ccb404fc0c</TableID>
+                    <ColumnID>ClientPartnerPracticeArea</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimClientPartnerFEDHierarchy_d9fff473-25ec-434c-a5a6-65ccb404fc0c</TableID>
+                  <ColumnID>ClientPartnerPracticeArea</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="Text" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>ClientPartnerTeam</ID>
+              <Name>ClientPartnerTeam</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimClientPartnerFEDHierarchy_d9fff473-25ec-434c-a5a6-65ccb404fc0c</TableID>
+                    <ColumnID>ClientPartnerTeam</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimClientPartnerFEDHierarchy_d9fff473-25ec-434c-a5a6-65ccb404fc0c</TableID>
+                  <ColumnID>ClientPartnerTeam</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="Text" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>ClientPartnerSubteam</ID>
+              <Name>ClientPartnerSubteam</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimClientPartnerFEDHierarchy_d9fff473-25ec-434c-a5a6-65ccb404fc0c</TableID>
+                    <ColumnID>ClientPartnerSubteam</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimClientPartnerFEDHierarchy_d9fff473-25ec-434c-a5a6-65ccb404fc0c</TableID>
+                  <ColumnID>ClientPartnerSubteam</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+          </Attributes>
+          <ProactiveCaching>
+            <SilenceInterval>-PT1S</SilenceInterval>
+            <Latency>-PT1S</Latency>
+            <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+            <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+            <Source xsi:type="ProactiveCachingInheritedBinding" />
+          </ProactiveCaching>
+        </Dimension>
       </Dimensions>
       <Cubes>
         <Cube>
@@ -9509,6 +9837,35 @@ order by 1&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryC
                 </Attribute>
                 <Attribute>
                   <AttributeID>SectorName</AttributeID>
+                </Attribute>
+              </Attributes>
+            </Dimension>
+            <Dimension>
+              <ID>dimClientPartnerFEDHierarchy_d9fff473-25ec-434c-a5a6-65ccb404fc0c</ID>
+              <Name>dimClientPartnerFEDHierarchy</Name>
+              <DimensionID>dimClientPartnerFEDHierarchy_d9fff473-25ec-434c-a5a6-65ccb404fc0c</DimensionID>
+              <Attributes>
+                <Attribute>
+                  <AttributeID>RowNumber</AttributeID>
+                  <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>ClientPartnerDisplayName</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>ClientPartnerFEDCode</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>ClientPartnerBusinessLine</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>ClientPartnerPracticeArea</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>ClientPartnerTeam</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>ClientPartnerSubteam</AttributeID>
                 </Attribute>
               </Attributes>
             </Dimension>
@@ -11723,6 +12080,115 @@ order by 1&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryC
                   <IntermediateGranularityAttributeID>ClientNumber</IntermediateGranularityAttributeID>
                   <Materialization>Regular</Materialization>
                   <ddl300:RelationshipID>1055dd6a-8888-4156-9dab-41cb07faa764</ddl300:RelationshipID>
+                </Dimension>
+                <Dimension xsi:type="ReferenceMeasureGroupDimension">
+                  <CubeDimensionID>dimClientPartnerFEDHierarchy_d9fff473-25ec-434c-a5a6-65ccb404fc0c</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>RowNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>4</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ddl200_200:RowNumberBinding" />
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientPartnerDisplayName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClientPartnerFEDHierarchy_d9fff473-25ec-434c-a5a6-65ccb404fc0c</TableID>
+                            <ColumnID>ClientPartnerDisplayName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientPartnerFEDCode</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClientPartnerFEDHierarchy_d9fff473-25ec-434c-a5a6-65ccb404fc0c</TableID>
+                            <ColumnID>ClientPartnerFEDCode</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientPartnerBusinessLine</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClientPartnerFEDHierarchy_d9fff473-25ec-434c-a5a6-65ccb404fc0c</TableID>
+                            <ColumnID>ClientPartnerBusinessLine</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientPartnerPracticeArea</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClientPartnerFEDHierarchy_d9fff473-25ec-434c-a5a6-65ccb404fc0c</TableID>
+                            <ColumnID>ClientPartnerPracticeArea</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientPartnerTeam</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClientPartnerFEDHierarchy_d9fff473-25ec-434c-a5a6-65ccb404fc0c</TableID>
+                            <ColumnID>ClientPartnerTeam</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientPartnerSubteam</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClientPartnerFEDHierarchy_d9fff473-25ec-434c-a5a6-65ccb404fc0c</TableID>
+                            <ColumnID>ClientPartnerSubteam</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                  </Attributes>
+                  <IntermediateCubeDimensionID>dimClientMatter_efa9a451-b17b-4f91-8fea-de6ec489402f</IntermediateCubeDimensionID>
+                  <IntermediateGranularityAttributeID>ClientPartnerCode</IntermediateGranularityAttributeID>
                 </Dimension>
               </Dimensions>
               <Partitions>
@@ -15064,6 +15530,115 @@ and f.dim_matter_header_key &gt; 0</QueryDefinition>
                   <IntermediateCubeDimensionID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</IntermediateCubeDimensionID>
                   <IntermediateGranularityAttributeID>ClientNumber</IntermediateGranularityAttributeID>
                 </Dimension>
+                <Dimension xsi:type="ReferenceMeasureGroupDimension">
+                  <CubeDimensionID>dimClientPartnerFEDHierarchy_d9fff473-25ec-434c-a5a6-65ccb404fc0c</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>RowNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>4</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ddl200_200:RowNumberBinding" />
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientPartnerDisplayName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClientPartnerFEDHierarchy_d9fff473-25ec-434c-a5a6-65ccb404fc0c</TableID>
+                            <ColumnID>ClientPartnerDisplayName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientPartnerFEDCode</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClientPartnerFEDHierarchy_d9fff473-25ec-434c-a5a6-65ccb404fc0c</TableID>
+                            <ColumnID>ClientPartnerFEDCode</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientPartnerBusinessLine</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClientPartnerFEDHierarchy_d9fff473-25ec-434c-a5a6-65ccb404fc0c</TableID>
+                            <ColumnID>ClientPartnerBusinessLine</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientPartnerPracticeArea</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClientPartnerFEDHierarchy_d9fff473-25ec-434c-a5a6-65ccb404fc0c</TableID>
+                            <ColumnID>ClientPartnerPracticeArea</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientPartnerTeam</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClientPartnerFEDHierarchy_d9fff473-25ec-434c-a5a6-65ccb404fc0c</TableID>
+                            <ColumnID>ClientPartnerTeam</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientPartnerSubteam</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClientPartnerFEDHierarchy_d9fff473-25ec-434c-a5a6-65ccb404fc0c</TableID>
+                            <ColumnID>ClientPartnerSubteam</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                  </Attributes>
+                  <IntermediateCubeDimensionID>dimClientMatter_efa9a451-b17b-4f91-8fea-de6ec489402f</IntermediateCubeDimensionID>
+                  <IntermediateGranularityAttributeID>ClientPartnerCode</IntermediateGranularityAttributeID>
+                </Dimension>
               </Dimensions>
               <Partitions>
                 <Partition>
@@ -17976,6 +18551,117 @@ order by 1</QueryDefinition>
                     </Attribute>
                   </Attributes>
                   <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
+                </Dimension>
+                <Dimension xsi:type="ReferenceMeasureGroupDimension">
+                  <CubeDimensionID>dimClientPartnerFEDHierarchy_d9fff473-25ec-434c-a5a6-65ccb404fc0c</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>RowNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>4</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ddl200_200:RowNumberBinding" />
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientPartnerDisplayName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClientPartnerFEDHierarchy_d9fff473-25ec-434c-a5a6-65ccb404fc0c</TableID>
+                            <ColumnID>ClientPartnerDisplayName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientPartnerFEDCode</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClientPartnerFEDHierarchy_d9fff473-25ec-434c-a5a6-65ccb404fc0c</TableID>
+                            <ColumnID>ClientPartnerFEDCode</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientPartnerBusinessLine</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClientPartnerFEDHierarchy_d9fff473-25ec-434c-a5a6-65ccb404fc0c</TableID>
+                            <ColumnID>ClientPartnerBusinessLine</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientPartnerPracticeArea</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClientPartnerFEDHierarchy_d9fff473-25ec-434c-a5a6-65ccb404fc0c</TableID>
+                            <ColumnID>ClientPartnerPracticeArea</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientPartnerTeam</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClientPartnerFEDHierarchy_d9fff473-25ec-434c-a5a6-65ccb404fc0c</TableID>
+                            <ColumnID>ClientPartnerTeam</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientPartnerSubteam</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClientPartnerFEDHierarchy_d9fff473-25ec-434c-a5a6-65ccb404fc0c</TableID>
+                            <ColumnID>ClientPartnerSubteam</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                  </Attributes>
+                  <IntermediateCubeDimensionID>dimClientMatter_efa9a451-b17b-4f91-8fea-de6ec489402f</IntermediateCubeDimensionID>
+                  <IntermediateGranularityAttributeID>ClientPartnerCode</IntermediateGranularityAttributeID>
+                  <Materialization>Regular</Materialization>
+                  <ddl300:RelationshipID>a9dc7290-856b-46f1-899e-b01f207304a1</ddl300:RelationshipID>
                 </Dimension>
               </Dimensions>
               <Partitions>
@@ -22432,6 +23118,115 @@ dim_date</QueryDefinition>
                   <IntermediateCubeDimensionID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</IntermediateCubeDimensionID>
                   <IntermediateGranularityAttributeID>ClientNumber</IntermediateGranularityAttributeID>
                 </Dimension>
+                <Dimension xsi:type="ReferenceMeasureGroupDimension">
+                  <CubeDimensionID>dimClientPartnerFEDHierarchy_d9fff473-25ec-434c-a5a6-65ccb404fc0c</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>RowNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>4</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ddl200_200:RowNumberBinding" />
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientPartnerDisplayName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClientPartnerFEDHierarchy_d9fff473-25ec-434c-a5a6-65ccb404fc0c</TableID>
+                            <ColumnID>ClientPartnerDisplayName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientPartnerFEDCode</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClientPartnerFEDHierarchy_d9fff473-25ec-434c-a5a6-65ccb404fc0c</TableID>
+                            <ColumnID>ClientPartnerFEDCode</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientPartnerBusinessLine</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClientPartnerFEDHierarchy_d9fff473-25ec-434c-a5a6-65ccb404fc0c</TableID>
+                            <ColumnID>ClientPartnerBusinessLine</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientPartnerPracticeArea</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClientPartnerFEDHierarchy_d9fff473-25ec-434c-a5a6-65ccb404fc0c</TableID>
+                            <ColumnID>ClientPartnerPracticeArea</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientPartnerTeam</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClientPartnerFEDHierarchy_d9fff473-25ec-434c-a5a6-65ccb404fc0c</TableID>
+                            <ColumnID>ClientPartnerTeam</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientPartnerSubteam</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClientPartnerFEDHierarchy_d9fff473-25ec-434c-a5a6-65ccb404fc0c</TableID>
+                            <ColumnID>ClientPartnerSubteam</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                  </Attributes>
+                  <IntermediateCubeDimensionID>dimClientMatter_efa9a451-b17b-4f91-8fea-de6ec489402f</IntermediateCubeDimensionID>
+                  <IntermediateGranularityAttributeID>ClientPartnerCode</IntermediateGranularityAttributeID>
+                </Dimension>
               </Dimensions>
               <Partitions>
                 <Partition>
@@ -22870,6 +23665,203 @@ inner join red_dw.dbo.fact_matter_summary b
  where
  calendar_date = cast(getdate() as date))
 and b.dim_matter_header_key &gt; 0</QueryDefinition>
+                  </Source>
+                  <StorageMode valuens="ddl200_200">InMemory</StorageMode>
+                  <ProcessingMode>Regular</ProcessingMode>
+                  <ErrorConfiguration>
+                    <KeyNotFound>IgnoreError</KeyNotFound>
+                    <KeyDuplicate>ReportAndStop</KeyDuplicate>
+                    <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+                  </ErrorConfiguration>
+                  <ProactiveCaching>
+                    <SilenceInterval>-PT1S</SilenceInterval>
+                    <Latency>-PT1S</Latency>
+                    <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+                    <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+                    <Source xsi:type="ProactiveCachingInheritedBinding" />
+                  </ProactiveCaching>
+                </Partition>
+              </Partitions>
+              <ProactiveCaching>
+                <SilenceInterval>-PT1S</SilenceInterval>
+                <Latency>-PT1S</Latency>
+                <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+                <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+                <Source xsi:type="ProactiveCachingInheritedBinding" />
+              </ProactiveCaching>
+            </MeasureGroup>
+            <MeasureGroup>
+              <ID>dimClientPartnerFEDHierarchy_d9fff473-25ec-434c-a5a6-65ccb404fc0c</ID>
+              <Name>dimClientPartnerFEDHierarchy</Name>
+              <Measures>
+                <Measure>
+                  <ID>dimClientPartnerFEDHierarchy_d9fff473-25ec-434c-a5a6-65ccb404fc0c</ID>
+                  <Name>_Count dimClientPartnerFEDHierarchy</Name>
+                  <AggregateFunction>Count</AggregateFunction>
+                  <DataType>BigInt</DataType>
+                  <Source>
+                    <DataType>BigInt</DataType>
+                    <DataSize>8</DataSize>
+                    <Source xsi:type="RowBinding">
+                      <TableID>dimClientPartnerFEDHierarchy_d9fff473-25ec-434c-a5a6-65ccb404fc0c</TableID>
+                    </Source>
+                  </Source>
+                  <Visible>false</Visible>
+                </Measure>
+              </Measures>
+              <StorageMode valuens="ddl200_200">InMemory</StorageMode>
+              <ErrorConfiguration>
+                <KeyNotFound>IgnoreError</KeyNotFound>
+                <KeyDuplicate>ReportAndStop</KeyDuplicate>
+                <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+              </ErrorConfiguration>
+              <ProcessingMode>Regular</ProcessingMode>
+              <Dimensions>
+                <Dimension xsi:type="DegenerateMeasureGroupDimension">
+                  <CubeDimensionID>dimClientPartnerFEDHierarchy_d9fff473-25ec-434c-a5a6-65ccb404fc0c</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>RowNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClientPartnerFEDHierarchy</TableID>
+                            <ColumnID>RowNumber</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientPartnerDisplayName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClientPartnerFEDHierarchy_d9fff473-25ec-434c-a5a6-65ccb404fc0c</TableID>
+                            <ColumnID>ClientPartnerDisplayName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientPartnerFEDCode</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClientPartnerFEDHierarchy_d9fff473-25ec-434c-a5a6-65ccb404fc0c</TableID>
+                            <ColumnID>ClientPartnerFEDCode</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientPartnerBusinessLine</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClientPartnerFEDHierarchy_d9fff473-25ec-434c-a5a6-65ccb404fc0c</TableID>
+                            <ColumnID>ClientPartnerBusinessLine</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientPartnerPracticeArea</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClientPartnerFEDHierarchy_d9fff473-25ec-434c-a5a6-65ccb404fc0c</TableID>
+                            <ColumnID>ClientPartnerPracticeArea</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientPartnerTeam</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClientPartnerFEDHierarchy_d9fff473-25ec-434c-a5a6-65ccb404fc0c</TableID>
+                            <ColumnID>ClientPartnerTeam</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientPartnerSubteam</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClientPartnerFEDHierarchy_d9fff473-25ec-434c-a5a6-65ccb404fc0c</TableID>
+                            <ColumnID>ClientPartnerSubteam</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                  </Attributes>
+                  <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
+                </Dimension>
+              </Dimensions>
+              <Partitions>
+                <Partition>
+                  <ID>dimClientPartnerFEDHierarchy_d9fff473-25ec-434c-a5a6-65ccb404fc0c</ID>
+                  <Name>dimClientPartnerFEDHierarchy</Name>
+                  <Annotations>
+                    <Annotation>
+                      <Name>TableWidgetSerialization</Name>
+                    </Annotation>
+                    <Annotation>
+                      <Name>TableWidgetSourceTable</Name>
+                    </Annotation>
+                    <Annotation>
+                      <Name>QueryEditorSerialization</Name>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsQueryEditorUsed</Name>
+                      <Value>True</Value>
+                    </Annotation>
+                  </Annotations>
+                  <Source xsi:type="QueryBinding">
+                    <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
+                    <QueryDefinition>select distinct
+display_name as 'ClientPartnerDisplayName',
+fed_code as 'ClientPartnerFEDCode',
+hierarchylevel2hist as 'ClientPartnerBusinessLine',
+hierarchylevel3hist as 'ClientPartnerPracticeArea',
+hierarchylevel4hist as 'ClientPartnerTeam',
+hierarchylevel5hist as 'ClientPartnerSubteam'
+
+from dim_fed_hierarchy_history f
+
+inner join red_dw.dbo.dim_client c
+	on c.client_partner_code = f.fed_code
+
+where dss_current_flag = 'Y' and fed_code != 'Unknown'</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
@@ -24313,6 +25305,54 @@ CREATE MEASURE 'BillExtension'[ProfitCostsRank]=if(not(isblank([TotalBillXAmount
                         <xs:sequence>
                           <xs:element name="MatterID" msprop:DbColumnName="MatterID" msprop:FriendlyName="MatterID" type="xs:int" minOccurs="0" />
                           <xs:element name="SectorName" msprop:DbColumnName="SectorName" msprop:FriendlyName="SectorName" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="dimClientPartnerFEDHierarchy_d9fff473-25ec-434c-a5a6-65ccb404fc0c" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimClientPartnerFEDHierarchy" msprop:DbTableName="dimClientPartnerFEDHierarchy" msprop:TableType="View" msprop:Description="dimClientPartnerFEDHierarchy" msprop:QueryDefinition="select distinct&#xD;&#xA;display_name as 'ClientPartnerDisplayName',&#xD;&#xA;fed_code as 'ClientPartnerFEDCode',&#xD;&#xA;hierarchylevel2hist as 'ClientPartnerBusinessLine',&#xD;&#xA;hierarchylevel3hist as 'ClientPartnerPracticeArea',&#xD;&#xA;hierarchylevel4hist as 'ClientPartnerTeam',&#xD;&#xA;hierarchylevel5hist as 'ClientPartnerSubteam'&#xD;&#xA;&#xD;&#xA;from dim_fed_hierarchy_history f&#xD;&#xA;&#xD;&#xA;inner join red_dw.dbo.dim_client c&#xD;&#xA; on c.client_partner_code = f.fed_code&#xD;&#xA;&#xD;&#xA;where dss_current_flag = 'Y' and fed_code != 'Unknown'">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="ClientPartnerDisplayName" msprop:DbColumnName="ClientPartnerDisplayName" msprop:FriendlyName="ClientPartnerDisplayName" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="ClientPartnerFEDCode" msprop:DbColumnName="ClientPartnerFEDCode" msprop:FriendlyName="ClientPartnerFEDCode" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="ClientPartnerBusinessLine" msprop:DbColumnName="ClientPartnerBusinessLine" msprop:FriendlyName="ClientPartnerBusinessLine" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="ClientPartnerPracticeArea" msprop:DbColumnName="ClientPartnerPracticeArea" msprop:FriendlyName="ClientPartnerPracticeArea" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="ClientPartnerTeam" msprop:DbColumnName="ClientPartnerTeam" msprop:FriendlyName="ClientPartnerTeam" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="ClientPartnerSubteam" msprop:DbColumnName="ClientPartnerSubteam" msprop:FriendlyName="ClientPartnerSubteam" minOccurs="0">
                             <xs:simpleType>
                               <xs:restriction base="xs:string">
                                 <xs:maxLength value="32768" />
