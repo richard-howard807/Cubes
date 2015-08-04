@@ -2446,7 +2446,7 @@
                 <Annotation>
                   <Name>Format</Name>
                   <Value>
-                    <Format Format="General" xmlns="" />
+                    <Format Format="NumberWhole" xmlns="" />
                   </Value>
                 </Annotation>
               </Annotations>
@@ -2476,6 +2476,7 @@
               </NameColumn>
               <OrderBy>Key</OrderBy>
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+              <ddl300_300:FormatString>0</ddl300_300:FormatString>
             </Attribute>
             <Attribute>
               <ID>TransactionDate</ID>
@@ -10634,20 +10635,14 @@
           <Name>dimTimeNarrative</Name>
           <Annotations>
             <Annotation>
-              <Name>IsQueryEditorUsed</Name>
-              <Value>True</Value>
+              <Name>TableWidgetSerialization</Name>
             </Annotation>
             <Annotation>
               <Name>QueryEditorSerialization</Name>
             </Annotation>
             <Annotation>
-              <Name>TableWidgetSerialization</Name>
-            </Annotation>
-            <Annotation>
-              <Name>DataMarketWebBaseUrl</Name>
-            </Annotation>
-            <Annotation>
-              <Name>DataMarketWebQueryUrl</Name>
+              <Name>IsQueryEditorUsed</Name>
+              <Value>True</Value>
             </Annotation>
           </Annotations>
           <Source xsi:type="DataSourceViewBinding">
@@ -25875,24 +25870,31 @@ order by 1</QueryDefinition>
                   <Name>dimTimeNarrative</Name>
                   <Annotations>
                     <Annotation>
-                      <Name>IsQueryEditorUsed</Name>
-                      <Value>True</Value>
+                      <Name>TableWidgetSerialization</Name>
+                    </Annotation>
+                    <Annotation>
+                      <Name>TableWidgetSourceTable</Name>
                     </Annotation>
                     <Annotation>
                       <Name>QueryEditorSerialization</Name>
                     </Annotation>
                     <Annotation>
-                      <Name>TableWidgetSerialization</Name>
+                      <Name>IsQueryEditorUsed</Name>
+                      <Value>True</Value>
                     </Annotation>
                   </Annotations>
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
-                    <QueryDefinition>select 
+                    <QueryDefinition>select
 dim_time_narratives_key as 'TimeNarrativeID',
 td_textln as 'TimeNarrative'
 
 from
-red_dw.dbo.dim_time_narratives</QueryDefinition>
+red_dw.dbo.dim_time_narratives nar
+
+
+where
+dim_time_narratives_key in ( select dim_time_narratives_key from fact_all_time_activity )</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
@@ -27567,7 +27569,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimTimeNarrative_f7aaa709-9ede-4b2b-9541-55bd8bffab32" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimTimeNarrative" msprop:DbTableName="dimTimeNarrative" msprop:TableType="View" msprop:Description="dimTimeNarrative" msprop:QueryDefinition="select &#xD;&#xA;dim_time_narratives_key as 'TimeNarrativeID',&#xD;&#xA;td_textln as 'TimeNarrative'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_time_narratives">
+                    <xs:element name="dimTimeNarrative_f7aaa709-9ede-4b2b-9541-55bd8bffab32" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimTimeNarrative" msprop:DbTableName="dimTimeNarrative" msprop:TableType="View" msprop:Description="dimTimeNarrative" msprop:QueryDefinition="select&#xD;&#xA;dim_time_narratives_key as 'TimeNarrativeID',&#xD;&#xA;td_textln as 'TimeNarrative'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_time_narratives nar&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;dim_time_narratives_key in ( select dim_time_narratives_key from fact_all_time_activity )">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="TimeNarrativeID" msprop:DbColumnName="TimeNarrativeID" msprop:FriendlyName="TimeNarrativeID" type="xs:int" minOccurs="0" />
