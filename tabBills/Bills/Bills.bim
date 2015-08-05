@@ -2387,6 +2387,18 @@
               <OrderBy>Key</OrderBy>
             </Attribute>
             <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="DateTimeCustom" xmlns="">
+                      <DateTimes>
+                        <DateTime LCID="2057" Group="ShortDate" FormatString="dd/MM/yy" />
+                      </DateTimes>
+                    </Format>
+                  </Value>
+                </Annotation>
+              </Annotations>
               <ID>BillDateDate</ID>
               <Name>BillDateDate</Name>
               <KeyColumns>
@@ -2410,6 +2422,7 @@
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
+              <ddl300_300:FormatString>dd/MM/yy</ddl300_300:FormatString>
             </Attribute>
             <Attribute>
               <ID>BillDateDayInMonth</ID>
@@ -2834,7 +2847,8 @@
                   <ColumnID>BillDateFinancialPeriod</ColumnID>
                 </Source>
               </NameColumn>
-              <OrderBy>Key</OrderBy>
+              <OrderBy>AttributeKey</OrderBy>
+              <OrderByAttributeID>BillDateFinancialMonthNo</OrderByAttributeID>
             </Attribute>
             <Attribute>
               <ID>BillDateDaysInMonth</ID>
@@ -2862,6 +2876,29 @@
               <OrderBy>Key</OrderBy>
             </Attribute>
           </Attributes>
+          <Hierarchies>
+            <Hierarchy>
+              <ID>FinancialDate</ID>
+              <Name>FinancialDate</Name>
+              <Levels>
+                <Level>
+                  <ID>BillDateFinancialYear</ID>
+                  <Name>BillDateFinancialYear</Name>
+                  <SourceAttributeID>BillDateFinancialYear</SourceAttributeID>
+                </Level>
+                <Level>
+                  <ID>BillDateFinancialPeriod</ID>
+                  <Name>BillDateFinancialPeriod</Name>
+                  <SourceAttributeID>BillDateFinancialPeriod</SourceAttributeID>
+                </Level>
+                <Level>
+                  <ID>BillDateDate</ID>
+                  <Name>BillDateDate</Name>
+                  <SourceAttributeID>BillDateDate</SourceAttributeID>
+                </Level>
+              </Levels>
+            </Hierarchy>
+          </Hierarchies>
           <ProactiveCaching>
             <SilenceInterval>-PT1S</SilenceInterval>
             <Latency>-PT1S</Latency>
@@ -9251,6 +9288,11 @@ order by 1&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryC
                   <AttributeID>BillDateDaysInMonth</AttributeID>
                 </Attribute>
               </Attributes>
+              <Hierarchies>
+                <Hierarchy>
+                  <HierarchyID>FinancialDate</HierarchyID>
+                </Hierarchy>
+              </Hierarchies>
             </Dimension>
             <Dimension>
               <ID>dimDateMatterOpened_866fdd20-c0be-47a9-9ff2-e0c3a5aa9443</ID>
