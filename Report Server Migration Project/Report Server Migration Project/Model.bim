@@ -8,11 +8,11 @@
       <Name>SemanticModel</Name>
       <Annotations>
         <Annotation>
-          <Name>SandboxVersion</Name>
-          <Value>SQL11_Denali</Value>
+          <Name>ClientCompatibilityLevel</Name>
+          <Value>300</Value>
         </Annotation>
       </Annotations>
-      <ddl200:CompatibilityLevel>1100</ddl200:CompatibilityLevel>
+      <ddl200:CompatibilityLevel>1103</ddl200:CompatibilityLevel>
       <ddl200_200:StorageEngineUsed>InMemory</ddl200_200:StorageEngineUsed>
       <Language>2057</Language>
       <DataSourceImpersonationInfo>
@@ -3937,16 +3937,188 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
 
 
 CREATE MEASURE 'ReportIDs'[Report IDs Needed]=countblank([ReportID]);
+</Text>
+                  <Annotations>
+                    <Annotation>
+                      <Name>FullName</Name>
+                      <Value>Report IDs Needed</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Table</Name>
+                      <Value>ReportIDs</Value>
+                    </Annotation>
+                  </Annotations>
+                </Command>
+                <Command>
+                  <Text>----------------------------------------------------------
+-- PowerPivot measures command (do not modify manually) --
+----------------------------------------------------------
+
+
 CREATE MEASURE 'ReportIDs'[Count of Reports]=countrows(ReportIDs);
+</Text>
+                  <Annotations>
+                    <Annotation>
+                      <Name>FullName</Name>
+                      <Value>Count of Reports</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Table</Name>
+                      <Value>ReportIDs</Value>
+                    </Annotation>
+                  </Annotations>
+                </Command>
+                <Command>
+                  <Text>----------------------------------------------------------
+-- PowerPivot measures command (do not modify manually) --
+----------------------------------------------------------
+
+
 CREATE MEASURE 'ReportIDs'[Reports Mapped]=if(isblank(calculate(DISTINCTCOUNT(ReportIDs[ReportID]), ReportIDs[2012Status] &lt;&gt; blank(), ReportIDs[2008Status] &lt;&gt; blank())), 0, calculate(DISTINCTCOUNT(ReportIDs[ReportID]), ReportIDs[2012Status] &lt;&gt; blank(), ReportIDs[2008Status] &lt;&gt; blank()));
+</Text>
+                  <Annotations>
+                    <Annotation>
+                      <Name>FullName</Name>
+                      <Value>Reports Mapped</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Table</Name>
+                      <Value>ReportIDs</Value>
+                    </Annotation>
+                  </Annotations>
+                </Command>
+                <Command>
+                  <Text>----------------------------------------------------------
+-- PowerPivot measures command (do not modify manually) --
+----------------------------------------------------------
+
+
 CREATE MEASURE 'ReportIDs'[Eligible Reports]=calculate(DISTINCTCOUNT(ReportIDs[ReportID]), ReportIDs[Server] = "SQL2008SVR", ( EligibleReports[Status] &lt;&gt; "Ineligible" ), (EligibleReports[Status] &lt;&gt; "Retired"));
+</Text>
+                  <Annotations>
+                    <Annotation>
+                      <Name>FullName</Name>
+                      <Value>Eligible Reports</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Table</Name>
+                      <Value>ReportIDs</Value>
+                    </Annotation>
+                  </Annotations>
+                </Command>
+                <Command>
+                  <Text>----------------------------------------------------------
+-- PowerPivot measures command (do not modify manually) --
+----------------------------------------------------------
+
+
 CREATE MEASURE 'ReportIDs'[Percentage of Eligible Reports Mapped]=calculate(if([Eligible Reports] = 0, 1, [Reports Mapped] / [Eligible Reports]));
+</Text>
+                  <Annotations>
+                    <Annotation>
+                      <Name>FullName</Name>
+                      <Value>Percentage of Eligible Reports Mapped</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Table</Name>
+                      <Value>ReportIDs</Value>
+                    </Annotation>
+                  </Annotations>
+                </Command>
+                <Command>
+                  <Text>----------------------------------------------------------
+-- PowerPivot measures command (do not modify manually) --
+----------------------------------------------------------
+
+
 CREATE MEASURE 'ReportIDs'[Count of Reports on sql2008]=calculate(distinctcount(ReportIDs[ReportID]), ReportIDs[Server] = "SQL2008SVR");
+</Text>
+                  <Annotations>
+                    <Annotation>
+                      <Name>FullName</Name>
+                      <Value>Count of Reports on sql2008</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Table</Name>
+                      <Value>ReportIDs</Value>
+                    </Annotation>
+                  </Annotations>
+                </Command>
+                <Command>
+                  <Text>----------------------------------------------------------
+-- PowerPivot measures command (do not modify manually) --
+----------------------------------------------------------
+
+
 CREATE MEASURE 'ReportIDs'[Count of Reports on DWH-01]=calculate(distinctcount(ReportIDs[ReportID]), ReportIDs[Server] = "SVR-LIV-DWH-01");
+</Text>
+                  <Annotations>
+                    <Annotation>
+                      <Name>FullName</Name>
+                      <Value>Count of Reports on DWH-01</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Table</Name>
+                      <Value>ReportIDs</Value>
+                    </Annotation>
+                  </Annotations>
+                </Command>
+                <Command>
+                  <Text>----------------------------------------------------------
+-- PowerPivot measures command (do not modify manually) --
+----------------------------------------------------------
+
+
 CREATE MEASURE 'ReportIDs'[Ineligible Reports]=if(isblank(calculate(DISTINCTCOUNT(ReportIDs[ReportID]), EligibleReports[Status] = "Ineligible")), 0, calculate(DISTINCTCOUNT(ReportIDs[ReportID]), EligibleReports[Status] = "Ineligible"));
+</Text>
+                  <Annotations>
+                    <Annotation>
+                      <Name>FullName</Name>
+                      <Value>Ineligible Reports</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Table</Name>
+                      <Value>ReportIDs</Value>
+                    </Annotation>
+                  </Annotations>
+                </Command>
+                <Command>
+                  <Text>----------------------------------------------------------
+-- PowerPivot measures command (do not modify manually) --
+----------------------------------------------------------
+
+
 CREATE MEASURE 'ReportIDs'[Retired Reports]=if(isblank(calculate(DISTINCTCOUNT(ReportIDs[ReportID]), EligibleReports[Status] = "Retired")), 0, calculate(DISTINCTCOUNT(ReportIDs[ReportID]), EligibleReports[Status] = "Retired"));
+</Text>
+                  <Annotations>
+                    <Annotation>
+                      <Name>FullName</Name>
+                      <Value>Retired Reports</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Table</Name>
+                      <Value>ReportIDs</Value>
+                    </Annotation>
+                  </Annotations>
+                </Command>
+                <Command>
+                  <Text>----------------------------------------------------------
+-- PowerPivot measures command (do not modify manually) --
+----------------------------------------------------------
+
+
 CREATE MEASURE 'ReportIDs'[Count of New Reports]=if(isblank(calculate(countrows(ReportIDs), ReportIDs[2012Status] &lt;&gt; blank(), ReportIDs[2008Status] = blank())), 0, calculate(countrows(ReportIDs), ReportIDs[2012Status] &lt;&gt; blank(), ReportIDs[2008Status] = blank()));
 </Text>
+                  <Annotations>
+                    <Annotation>
+                      <Name>FullName</Name>
+                      <Value>Count of New Reports</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Table</Name>
+                      <Value>ReportIDs</Value>
+                    </Annotation>
+                  </Annotations>
                 </Command>
               </Commands>
               <CalculationProperties>
@@ -4053,7 +4225,7 @@ CREATE MEASURE 'ReportIDs'[Count of New Reports]=if(isblank(calculate(countrows(
                   </Annotations>
                   <CalculationReference>[Percentage of Eligible Reports Mapped]</CalculationReference>
                   <CalculationType>Member</CalculationType>
-                  <FormatString>'0.00 %;-0.00 %;0.00 %'</FormatString>
+                  <FormatString>'0.00%;-0.00%;0.00%'</FormatString>
                 </CalculationProperty>
                 <CalculationProperty>
                   <Annotations>
