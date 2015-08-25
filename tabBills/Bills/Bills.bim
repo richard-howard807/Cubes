@@ -190,6 +190,11 @@
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>DepartmentID</Name>
                 </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>FileClosedStatus</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>FileClosedStatus</Name>
+                </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
@@ -882,6 +887,31 @@
                 <Source xsi:type="ColumnBinding">
                   <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
                   <ColumnID>DepartmentID</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>FileClosedStatus</ID>
+              <Name>FileClosedStatus</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                    <ColumnID>FileClosedStatus</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                  <ColumnID>FileClosedStatus</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
@@ -9370,6 +9400,9 @@ order by 1&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryC
                 <Attribute>
                   <AttributeID>DepartmentID</AttributeID>
                 </Attribute>
+                <Attribute>
+                  <AttributeID>FileClosedStatus</AttributeID>
+                </Attribute>
               </Attributes>
             </Dimension>
             <Dimension>
@@ -10590,6 +10623,20 @@ order by 1&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryC
                           <Source xsi:type="ColumnBinding">
                             <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
                             <ColumnID>DepartmentID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>FileClosedStatus</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                            <ColumnID>FileClosedStatus</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -12651,7 +12698,12 @@ number_bills_matter NumberOfBillsRaised,
 unbilled_time UnbilledTime,
 case when d.case_id is null then 'No' else 'Yes' end HasRecordInCashdr,
 lastbill.LastBillDate,
-lasttime.LastTimeDate 
+lasttime.LastTimeDate ,
+case when 
+date_closed_case_management is not null
+and date_closed_practice_management is null
+then 'OpenInArtiionClosedInFED' else null end as 'FileClosedStatus'
+
 from
 red_dw.dbo.fact_matter_summary f
 
@@ -15753,6 +15805,20 @@ and f.dim_matter_header_key &gt; 0</QueryDefinition>
                           <Source xsi:type="ColumnBinding">
                             <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
                             <ColumnID>DepartmentID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>FileClosedStatus</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                            <ColumnID>FileClosedStatus</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -23024,6 +23090,20 @@ dim_date</QueryDefinition>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>FileClosedStatus</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                            <ColumnID>FileClosedStatus</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <IntermediateCubeDimensionID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</IntermediateCubeDimensionID>
                   <IntermediateGranularityAttributeID>MatterID</IntermediateGranularityAttributeID>
@@ -25462,7 +25542,7 @@ CREATE MEASURE 'BillExtension'[ProfitCostsRank]=if(not(isblank([TotalBillXAmount
               <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:Locale="en-US">
                 <xs:complexType>
                   <xs:choice minOccurs="0" maxOccurs="unbounded">
-                    <xs:element name="factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="Matters" msprop:DbTableName="factMatter" msprop:TableType="View" msprop:Description="factMatter" msprop:QueryDefinition="select distinct &#xD;&#xA;f.dim_matter_header_curr_key MatterID,&#xD;&#xA;f.dim_fed_hierarchy_history_key FEDCodeID,&#xD;&#xA;d.dim_matter_group_key MatterGroupID,&#xD;&#xA;d.dim_matter_branch_key BranchID,&#xD;&#xA;d.dim_matter_worktype_key WorkTypeID,&#xD;&#xA;d.dim_department_key DepartmentID,&#xD;&#xA;d.fed_code_partner PartnerCode,&#xD;&#xA;d.matter_number MatterNumber,&#xD;&#xA;d.dim_client_key ClientID,&#xD;&#xA;d.case_public_desc1 MatterDesc,&#xD;&#xA;date1.dim_date_key DateMatterOpen,&#xD;&#xA;date2.dim_date_key DateMatterClosed,&#xD;&#xA;datediff(day, d.date_opened_case, isnull(d.date_closed_case, getdate())) AgeOfMatterDays,&#xD;&#xA;disbursement_balance DisbursementBalance,&#xD;&#xA;client_account_balance_of_matter ClientAccountBalance,&#xD;&#xA;unpaid_bill_balance UnpaidBillsBalance,&#xD;&#xA;wip_balance WIPBalance,&#xD;&#xA;costs_to_date CostsToDate,&#xD;&#xA;time_billed TotalTimeBilled,&#xD;&#xA;number_bills_matter NumberOfBillsRaised,&#xD;&#xA;unbilled_time UnbilledTime,&#xD;&#xA;case when d.case_id is null then 'No' else 'Yes' end HasRecordInCashdr,&#xD;&#xA;lastbill.LastBillDate,&#xD;&#xA;lasttime.LastTimeDate &#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_matter_summary f&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;inner join red_dw.dbo.dim_matter_header_current d&#xD;&#xA; on d.dim_matter_header_curr_key = f.dim_matter_header_curr_key&#xD;&#xA; &#xD;&#xA;  &#xD;&#xA;left join red_dw.dbo.dim_date date1&#xD;&#xA; on date1.calendar_date = d.date_opened_case&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_date date2&#xD;&#xA; on date2.calendar_date = isnull(d.date_closed_case, '1753-01-01 00:00:00.000')&#xD;&#xA;&#xD;&#xA;left join (&#xD;&#xA;  select dim_matter_header_curr_key, max(dim_bill_date_key) LastBillDate from red_dw.dbo.fact_bill&#xD;&#xA;  group by dim_matter_header_curr_key) lastbill &#xD;&#xA;  on f.dim_matter_header_curr_key = lastbill.dim_matter_header_curr_key&#xD;&#xA;&#xD;&#xA;left join (&#xD;&#xA;  select dim_matter_header_curr_key, max(dim_transaction_date_key) LastTimeDate &#xD;&#xA;  from red_dw.dbo.fact_all_time_activity a &#xD;&#xA;  group by dim_matter_header_curr_key) lasttime &#xD;&#xA;  on lasttime.dim_matter_header_curr_key = f.dim_matter_header_curr_key&#xD;&#xA;  &#xD;&#xA; &#xD;&#xA; &#xD;&#xA;where&#xD;&#xA; f.fin_month = (&#xD;&#xA;select &#xD;&#xA;fin_month&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_date&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;calendar_date = cast(getdate() - 1 as date))&#xD;&#xA;and f.dim_matter_header_key &gt; 0">
+                    <xs:element name="factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="Matters" msprop:DbTableName="factMatter" msprop:TableType="View" msprop:Description="factMatter" msprop:QueryDefinition="select distinct &#xD;&#xA;f.dim_matter_header_curr_key MatterID,&#xD;&#xA;f.dim_fed_hierarchy_history_key FEDCodeID,&#xD;&#xA;d.dim_matter_group_key MatterGroupID,&#xD;&#xA;d.dim_matter_branch_key BranchID,&#xD;&#xA;d.dim_matter_worktype_key WorkTypeID,&#xD;&#xA;d.dim_department_key DepartmentID,&#xD;&#xA;d.fed_code_partner PartnerCode,&#xD;&#xA;d.matter_number MatterNumber,&#xD;&#xA;d.dim_client_key ClientID,&#xD;&#xA;d.case_public_desc1 MatterDesc,&#xD;&#xA;date1.dim_date_key DateMatterOpen,&#xD;&#xA;date2.dim_date_key DateMatterClosed,&#xD;&#xA;datediff(day, d.date_opened_case, isnull(d.date_closed_case, getdate())) AgeOfMatterDays,&#xD;&#xA;disbursement_balance DisbursementBalance,&#xD;&#xA;client_account_balance_of_matter ClientAccountBalance,&#xD;&#xA;unpaid_bill_balance UnpaidBillsBalance,&#xD;&#xA;wip_balance WIPBalance,&#xD;&#xA;costs_to_date CostsToDate,&#xD;&#xA;time_billed TotalTimeBilled,&#xD;&#xA;number_bills_matter NumberOfBillsRaised,&#xD;&#xA;unbilled_time UnbilledTime,&#xD;&#xA;case when d.case_id is null then 'No' else 'Yes' end HasRecordInCashdr,&#xD;&#xA;lastbill.LastBillDate,&#xD;&#xA;lasttime.LastTimeDate ,&#xD;&#xA;case when &#xD;&#xA;date_closed_case_management is not null&#xD;&#xA;and date_closed_practice_management is null&#xD;&#xA;then 'OpenInArtiionClosedInFED' else null end as 'FileClosedStatus'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_matter_summary f&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;inner join red_dw.dbo.dim_matter_header_current d&#xD;&#xA; on d.dim_matter_header_curr_key = f.dim_matter_header_curr_key&#xD;&#xA; &#xD;&#xA;  &#xD;&#xA;left join red_dw.dbo.dim_date date1&#xD;&#xA; on date1.calendar_date = d.date_opened_case&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_date date2&#xD;&#xA; on date2.calendar_date = isnull(d.date_closed_case, '1753-01-01 00:00:00.000')&#xD;&#xA;&#xD;&#xA;left join (&#xD;&#xA;  select dim_matter_header_curr_key, max(dim_bill_date_key) LastBillDate from red_dw.dbo.fact_bill&#xD;&#xA;  group by dim_matter_header_curr_key) lastbill &#xD;&#xA;  on f.dim_matter_header_curr_key = lastbill.dim_matter_header_curr_key&#xD;&#xA;&#xD;&#xA;left join (&#xD;&#xA;  select dim_matter_header_curr_key, max(dim_transaction_date_key) LastTimeDate &#xD;&#xA;  from red_dw.dbo.fact_all_time_activity a &#xD;&#xA;  group by dim_matter_header_curr_key) lasttime &#xD;&#xA;  on lasttime.dim_matter_header_curr_key = f.dim_matter_header_curr_key&#xD;&#xA;  &#xD;&#xA; &#xD;&#xA; &#xD;&#xA;where&#xD;&#xA; f.fin_month = (&#xD;&#xA;select &#xD;&#xA;fin_month&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_date&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;calendar_date = cast(getdate() - 1 as date))&#xD;&#xA;and f.dim_matter_header_key &gt; 0">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="MatterID" msprop:DbColumnName="MatterID" msprop:FriendlyName="MatterID" type="xs:int" minOccurs="0" />
@@ -25513,6 +25593,13 @@ CREATE MEASURE 'BillExtension'[ProfitCostsRank]=if(not(isblank([TotalBillXAmount
                           <xs:element name="BranchID" msprop:DbColumnName="BranchID" msprop:FriendlyName="BranchID" type="xs:int" minOccurs="0" />
                           <xs:element name="WorkTypeID" msprop:DbColumnName="WorkTypeID" msprop:FriendlyName="WorkTypeID" type="xs:int" minOccurs="0" />
                           <xs:element name="DepartmentID" msprop:DbColumnName="DepartmentID" msprop:FriendlyName="DepartmentID" type="xs:int" minOccurs="0" />
+                          <xs:element name="FileClosedStatus" msprop:DbColumnName="FileClosedStatus" msprop:FriendlyName="FileClosedStatus" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
