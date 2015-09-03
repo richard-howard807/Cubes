@@ -8,7 +8,7 @@
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
       <Value>
         <dds xmlns="">
-          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="3" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-1713" scrolltop="-1945" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="14817" y="18812" backcolor="16777215" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="3" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-1713" scrolltop="-1945" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="10980" y="13361" backcolor="16777215" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
             <font>
               <ddsxmlobjectstreamwrapper binary="01000000900144420100065461686f6d61" />
             </font>
@@ -90,6 +90,9 @@
   <Source xsi:type="DataSourceViewBinding" dwd:design-time-name="57312217-7acf-4873-8694-53d720952d86">
     <DataSourceViewID>Chargeable_Hours</DataSourceViewID>
   </Source>
+  <ErrorConfiguration dwd:design-time-name="08131267-fb8d-4a8f-82d5-d1f1ddc93787">
+    <KeyDuplicate>ReportAndStop</KeyDuplicate>
+  </ErrorConfiguration>
   <CurrentStorageMode>Molap</CurrentStorageMode>
   <Language>1033</Language>
   <Collation>Latin1_General_CI_AS</Collation>
@@ -99,12 +102,11 @@
       <ID>Matter Number</ID>
       <Name>Matter Number</Name>
       <KeyColumns>
-        <KeyColumn dwd:design-time-name="e02a2a98-7adf-4342-8ae2-4751857d27c9">
-          <DataType>WChar</DataType>
-          <DataSize>8</DataSize>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="3ffbed69-262a-4310-9046-5e9e3b866583">
+        <KeyColumn dwd:design-time-name="a83b70c3-90b0-4f22-aa46-a874a20fffd8">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="67d6e314-aea8-4bb9-a345-a0a7635eea6b">
             <TableID>dbo_dim_matter_header</TableID>
-            <ColumnID>matter_number</ColumnID>
+            <ColumnID>dim_matter_header_curr_key</ColumnID>
           </Source>
         </KeyColumn>
       </KeyColumns>
@@ -124,12 +126,11 @@
       <ID>Case Public Desc1</ID>
       <Name>Case Public Desc1</Name>
       <KeyColumns>
-        <KeyColumn dwd:design-time-name="b0292eb7-0179-4654-800d-78a303b957c1">
-          <DataType>WChar</DataType>
-          <DataSize>60</DataSize>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="0241cd06-cc7f-495a-913a-baf85aa0562b">
+        <KeyColumn dwd:design-time-name="1fe125db-5b75-445c-87df-854fc8c20e8f">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="cb6afec4-b70c-4699-8dc1-4c7bb79865f4">
             <TableID>dbo_dim_matter_header</TableID>
-            <ColumnID>case_public_desc1</ColumnID>
+            <ColumnID>dim_matter_header_curr_key</ColumnID>
           </Source>
         </KeyColumn>
       </KeyColumns>
@@ -177,6 +178,7 @@
           <Name>Fed Code Partner</Name>
         </AttributeRelationship>
       </AttributeRelationships>
+      <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
@@ -184,13 +186,11 @@
       <ID>Fed Code Fee Earner</ID>
       <Name>Fed Code Fee Earner</Name>
       <KeyColumns>
-        <KeyColumn dwd:design-time-name="43c94a9c-cad9-43fd-8fd1-d13d93eb8770">
-          <DataType>WChar</DataType>
-          <DataSize>4</DataSize>
-          <Collation>Latin1_General_CS_AS</Collation>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="56647aa0-ff75-4809-a8e4-6a3fd2f73043">
+        <KeyColumn dwd:design-time-name="f0e705c0-2f37-4cf4-aa1b-828717f5ed5d">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="7203fc2d-4c7b-4ef0-98d3-a3f8b0d480de">
             <TableID>dbo_dim_matter_header</TableID>
-            <ColumnID>fed_code_fee_earner</ColumnID>
+            <ColumnID>dim_matter_header_curr_key</ColumnID>
           </Source>
         </KeyColumn>
       </KeyColumns>
@@ -201,12 +201,11 @@
       <ID>Fed Code Partner</ID>
       <Name>Fed Code Partner</Name>
       <KeyColumns>
-        <KeyColumn dwd:design-time-name="a29ecf10-c52e-4cc2-a24c-6df21f7b1804">
-          <DataType>WChar</DataType>
-          <DataSize>4</DataSize>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="b70e46f3-73ea-436d-96a0-315716271d75">
+        <KeyColumn dwd:design-time-name="01c14e4f-4eca-46bf-aaf6-938815586d49">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="0a247caf-f6c8-476e-9bdd-0023034fe43b">
             <TableID>dbo_dim_matter_header</TableID>
-            <ColumnID>fed_code_partner</ColumnID>
+            <ColumnID>dim_matter_header_curr_key</ColumnID>
           </Source>
         </KeyColumn>
       </KeyColumns>
