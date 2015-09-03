@@ -6,16 +6,16 @@
       <Partitions>
         <Partition dwd:design-time-name="42d6155a-d6bc-437d-8f27-3aa33108142c">
           <ID>Fact Chargeable Time Activity Pre 20101231</ID>
-          <Name>Fact Chargeable Time Activity Pre 20101231</Name>
+          <Name>Fact Chargeable Time Activity 2008-2011</Name>
           <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
           <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
           <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
           <State>Unprocessed</State>
-          <Source xsi:type="QueryBinding" dwd:design-time-name="bb9369e5-b35d-4d50-8828-debb44b94dce">
+          <Source xsi:type="QueryBinding" dwd:design-time-name="7b812378-f652-4966-bfe3-5568b8a48263">
             <DataSourceID>Red_dw</DataSourceID>
             <QueryDefinition>SELECT [dbo].[fact_chargeable_time_activity].[dim_bill_key],[dbo].[fact_chargeable_time_activity].[dim_transaction_date_key],[dbo].[fact_chargeable_time_activity].[dim_fed_hierarchy_history_key],[dbo].[fact_chargeable_time_activity].[dim_time_activity_key],[dbo].[fact_chargeable_time_activity].[source_system_id],[dbo].[fact_chargeable_time_activity].[transaction_sequence_number],[dbo].[fact_chargeable_time_activity].[time_activity_code],[dbo].[fact_chargeable_time_activity].[minutes_recorded],[dbo].[fact_chargeable_time_activity].[hourly_charge_rate],[dbo].[fact_chargeable_time_activity].[time_charge_value],[dbo].[fact_chargeable_time_activity].[actual_time_recorded_value],[dbo].[fact_chargeable_time_activity].[dss_update_time],[dbo].[fact_chargeable_time_activity].[zero_rate_minutes_recorded],[dbo].[fact_chargeable_time_activity].[dim_matter_header_curr_key],[dbo].[fact_chargeable_time_activity].[dim_gl_date_key],[dbo].[fact_chargeable_time_activity].[dim_client_key]
 		FROM [dbo].[fact_chargeable_time_activity]
-		WHERE [dim_transaction_date_key]&lt;= 20101231</QueryDefinition>
+		WHERE [dim_transaction_date_key] &gt;= 20080101                                                                                                                    and [dim_transaction_date_key] &lt;= 20101231</QueryDefinition>
           </Source>
           <StorageMode>Molap</StorageMode>
           <CurrentStorageMode>Molap</CurrentStorageMode>
@@ -114,6 +114,24 @@
           </ProactiveCaching>
           <EstimatedRows>3855030</EstimatedRows>
           <AggregationDesignID>AggregationDesign 2</AggregationDesignID>
+        </Partition>
+        <Partition dwd:design-time-name="21dd5037-da11-4ff4-a2df-fc6778e734b2">
+          <ID>Fact Chargeable Time Activity</ID>
+          <Name>Fact Chargeable Time Activity Pre 2008</Name>
+          <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+          <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+          <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+          <State>Unprocessed</State>
+          <Source xsi:type="QueryBinding" dwd:design-time-name="ee347409-3bbb-4b89-9649-daa213d55b90">
+            <DataSourceID>Red_dw</DataSourceID>
+            <QueryDefinition>SELECT [dbo].[fact_chargeable_time_activity].[dim_bill_key],[dbo].[fact_chargeable_time_activity].[dim_transaction_date_key],[dbo].[fact_chargeable_time_activity].[dim_fed_hierarchy_history_key],[dbo].[fact_chargeable_time_activity].[dim_time_activity_key],[dbo].[fact_chargeable_time_activity].[source_system_id],[dbo].[fact_chargeable_time_activity].[transaction_sequence_number],[dbo].[fact_chargeable_time_activity].[time_activity_code],[dbo].[fact_chargeable_time_activity].[minutes_recorded],[dbo].[fact_chargeable_time_activity].[hourly_charge_rate],[dbo].[fact_chargeable_time_activity].[time_charge_value],[dbo].[fact_chargeable_time_activity].[actual_time_recorded_value],[dbo].[fact_chargeable_time_activity].[dss_update_time],[dbo].[fact_chargeable_time_activity].[zero_rate_minutes_recorded],[dbo].[fact_chargeable_time_activity].[dim_matter_header_curr_key],[dbo].[fact_chargeable_time_activity].[dim_gl_date_key],[dbo].[fact_chargeable_time_activity].[dim_client_key]
+		FROM [dbo].[fact_chargeable_time_activity]
+		WHERE [dim_transaction_date_key] &lt;= 20071231</QueryDefinition>
+          </Source>
+          <StorageMode>Molap</StorageMode>
+          <CurrentStorageMode>Molap</CurrentStorageMode>
+          <ProcessingMode>Regular</ProcessingMode>
+          <EstimatedRows>15904029</EstimatedRows>
         </Partition>
       </Partitions>
       <AggregationDesigns>
