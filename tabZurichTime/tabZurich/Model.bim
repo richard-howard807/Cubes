@@ -110,6 +110,12 @@
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>ClientPartnerCode</Name>
                 </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>ClientID</AttributeID>
+                  <Cardinality>One</Cardinality>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>ClientID</Name>
+                </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
@@ -334,6 +340,31 @@
               </NameColumn>
               <OrderBy>Key</OrderBy>
             </Attribute>
+            <Attribute>
+              <ID>ClientID</ID>
+              <Name>ClientID</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Error</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
+                    <ColumnID>ClientID</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
+                  <ColumnID>ClientID</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
           </Attributes>
           <ProactiveCaching>
             <SilenceInterval>-PT1S</SilenceInterval>
@@ -464,11 +495,6 @@
                   <Name>HasRecordInCashdr</Name>
                 </AttributeRelationship>
                 <AttributeRelationship>
-                  <AttributeID>ClientNumber</AttributeID>
-                  <OverrideBehavior>None</OverrideBehavior>
-                  <Name>ClientNumber</Name>
-                </AttributeRelationship>
-                <AttributeRelationship>
                   <AttributeID>DateMatterOpen</AttributeID>
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>DateMatterOpen</Name>
@@ -512,6 +538,11 @@
                   <AttributeID>DepartmentID</AttributeID>
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>DepartmentID</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>ClientID</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>ClientID</Name>
                 </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
@@ -958,32 +989,6 @@
               <OrderBy>Key</OrderBy>
             </Attribute>
             <Attribute>
-              <ID>ClientNumber</ID>
-              <Name>ClientNumber</Name>
-              <KeyColumns>
-                <KeyColumn>
-                  <DataType>WChar</DataType>
-                  <DataSize>32768</DataSize>
-                  <NullProcessing>Preserve</NullProcessing>
-                  <Source xsi:type="ColumnBinding">
-                    <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
-                    <ColumnID>ClientNumber</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-              <NameColumn>
-                <DataType>WChar</DataType>
-                <DataSize>32768</DataSize>
-                <NullProcessing>ZeroOrBlank</NullProcessing>
-                <Source xsi:type="ColumnBinding">
-                  <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
-                  <ColumnID>ClientNumber</ColumnID>
-                </Source>
-              </NameColumn>
-              <OrderBy>Key</OrderBy>
-              <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
-            </Attribute>
-            <Attribute>
               <ID>DateMatterOpen</ID>
               <Name>DateMatterOpen</Name>
               <KeyColumns>
@@ -1210,6 +1215,31 @@
               </NameColumn>
               <OrderBy>Key</OrderBy>
             </Attribute>
+            <Attribute>
+              <ID>ClientID</ID>
+              <Name>ClientID</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                    <ColumnID>ClientID</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                  <ColumnID>ClientID</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
           </Attributes>
           <ProactiveCaching>
             <SilenceInterval>-PT1S</SilenceInterval>
@@ -1335,29 +1365,6 @@
               </ddl300_300:ToRelationshipEnd>
             </ddl300_300:Relationship>
             <ddl300_300:Relationship>
-              <ID>ada1b428-cff1-411c-8025-23732ff6cad2</ID>
-              <ddl300_300:FromRelationshipEnd>
-                <ddl300_300:Multiplicity>Many</ddl300_300:Multiplicity>
-                <ddl300:VisualizationProperties />
-                <DimensionID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</DimensionID>
-                <Attributes>
-                  <Attribute>
-                    <AttributeID>ClientNumber</AttributeID>
-                  </Attribute>
-                </Attributes>
-              </ddl300_300:FromRelationshipEnd>
-              <ddl300_300:ToRelationshipEnd>
-                <ddl300_300:Multiplicity>One</ddl300_300:Multiplicity>
-                <ddl300:VisualizationProperties />
-                <DimensionID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</DimensionID>
-                <Attributes>
-                  <Attribute>
-                    <AttributeID>ClientCode</AttributeID>
-                  </Attribute>
-                </Attributes>
-              </ddl300_300:ToRelationshipEnd>
-            </ddl300_300:Relationship>
-            <ddl300_300:Relationship>
               <ID>0fe98dfd-2fe8-46dd-a995-e3037b087ac7</ID>
               <ddl300_300:FromRelationshipEnd>
                 <ddl300_300:Multiplicity>Many</ddl300_300:Multiplicity>
@@ -1422,6 +1429,29 @@
                 <Attributes>
                   <Attribute>
                     <AttributeID>BranchID</AttributeID>
+                  </Attribute>
+                </Attributes>
+              </ddl300_300:ToRelationshipEnd>
+            </ddl300_300:Relationship>
+            <ddl300_300:Relationship>
+              <ID>4a32bb88-5d1f-4f84-80f8-0167d9e0abb5</ID>
+              <ddl300_300:FromRelationshipEnd>
+                <ddl300_300:Multiplicity>Many</ddl300_300:Multiplicity>
+                <ddl300:VisualizationProperties />
+                <DimensionID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</DimensionID>
+                <Attributes>
+                  <Attribute>
+                    <AttributeID>ClientID</AttributeID>
+                  </Attribute>
+                </Attributes>
+              </ddl300_300:FromRelationshipEnd>
+              <ddl300_300:ToRelationshipEnd>
+                <ddl300_300:Multiplicity>One</ddl300_300:Multiplicity>
+                <ddl300:VisualizationProperties />
+                <DimensionID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</DimensionID>
+                <Attributes>
+                  <Attribute>
+                    <AttributeID>ClientID</AttributeID>
                   </Attribute>
                 </Attributes>
               </ddl300_300:ToRelationshipEnd>
@@ -9774,14 +9804,14 @@
                   <Name>TransactionAgeBanding</Name>
                 </AttributeRelationship>
                 <AttributeRelationship>
-                  <AttributeID>KPIUnbilledTimeBanding</AttributeID>
+                  <AttributeID>WIPAgeBanding</AttributeID>
                   <OverrideBehavior>None</OverrideBehavior>
-                  <Name>KPIUnbilledTimeBanding</Name>
+                  <Name>WIPAgeBanding</Name>
                 </AttributeRelationship>
                 <AttributeRelationship>
-                  <AttributeID>KPIUnbilledTimeOrder</AttributeID>
+                  <AttributeID>WIPAgeOrder</AttributeID>
                   <OverrideBehavior>None</OverrideBehavior>
-                  <Name>KPIUnbilledTimeOrder</Name>
+                  <Name>WIPAgeOrder</Name>
                 </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
@@ -9858,8 +9888,8 @@
               <OrderBy>Key</OrderBy>
             </Attribute>
             <Attribute>
-              <ID>KPIUnbilledTimeBanding</ID>
-              <Name>KPIUnbilledTimeBanding</Name>
+              <ID>WIPAgeBanding</ID>
+              <Name>WIPAgeBanding</Name>
               <KeyColumns>
                 <KeyColumn>
                   <DataType>WChar</DataType>
@@ -9867,7 +9897,7 @@
                   <NullProcessing>Preserve</NullProcessing>
                   <Source xsi:type="ColumnBinding">
                     <TableID>DaysBanding_a0bb1990-5adf-49c9-8dd2-ce75361b1478</TableID>
-                    <ColumnID>KPIUnbilledTimeBanding</ColumnID>
+                    <ColumnID>WIPAgeBanding</ColumnID>
                   </Source>
                 </KeyColumn>
               </KeyColumns>
@@ -9877,14 +9907,14 @@
                 <NullProcessing>ZeroOrBlank</NullProcessing>
                 <Source xsi:type="ColumnBinding">
                   <TableID>DaysBanding_a0bb1990-5adf-49c9-8dd2-ce75361b1478</TableID>
-                  <ColumnID>KPIUnbilledTimeBanding</ColumnID>
+                  <ColumnID>WIPAgeBanding</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
             </Attribute>
             <Attribute>
-              <ID>KPIUnbilledTimeOrder</ID>
-              <Name>KPIUnbilledTimeOrder</Name>
+              <ID>WIPAgeOrder</ID>
+              <Name>WIPAgeOrder</Name>
               <KeyColumns>
                 <KeyColumn>
                   <DataType>Integer</DataType>
@@ -9892,7 +9922,7 @@
                   <NullProcessing>Preserve</NullProcessing>
                   <Source xsi:type="ColumnBinding">
                     <TableID>DaysBanding_a0bb1990-5adf-49c9-8dd2-ce75361b1478</TableID>
-                    <ColumnID>KPIUnbilledTimeOrder</ColumnID>
+                    <ColumnID>WIPAgeOrder</ColumnID>
                   </Source>
                 </KeyColumn>
               </KeyColumns>
@@ -9902,7 +9932,7 @@
                 <NullProcessing>ZeroOrBlank</NullProcessing>
                 <Source xsi:type="ColumnBinding">
                   <TableID>DaysBanding_a0bb1990-5adf-49c9-8dd2-ce75361b1478</TableID>
-                  <ColumnID>KPIUnbilledTimeOrder</ColumnID>
+                  <ColumnID>WIPAgeOrder</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
@@ -9966,11 +9996,6 @@
               </NameColumn>
               <AttributeRelationships>
                 <AttributeRelationship>
-                  <AttributeID>BillXBillNumber</AttributeID>
-                  <OverrideBehavior>None</OverrideBehavior>
-                  <Name>BillXBillNumber</Name>
-                </AttributeRelationship>
-                <AttributeRelationship>
                   <AttributeID>BillXFeeEarner</AttributeID>
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>BillXFeeEarner</Name>
@@ -9985,44 +10010,14 @@
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>BillXTimeBilled</Name>
                 </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>BillID</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>BillID</Name>
+                </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
-            </Attribute>
-            <Attribute>
-              <Annotations>
-                <Annotation>
-                  <Name>Format</Name>
-                  <Value>
-                    <Format Format="Text" xmlns="" />
-                  </Value>
-                </Annotation>
-              </Annotations>
-              <ID>BillXBillNumber</ID>
-              <Name>BillXBillNumber</Name>
-              <KeyColumns>
-                <KeyColumn>
-                  <DataType>WChar</DataType>
-                  <DataSize>32768</DataSize>
-                  <NullProcessing>Preserve</NullProcessing>
-                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                  <Source xsi:type="ColumnBinding">
-                    <TableID>BillExtension_f9cf1452-de25-4f55-8f1a-9e59d04c98dc</TableID>
-                    <ColumnID>BillXBillNumber</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-              <NameColumn>
-                <DataType>WChar</DataType>
-                <DataSize>32768</DataSize>
-                <NullProcessing>ZeroOrBlank</NullProcessing>
-                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                <Source xsi:type="ColumnBinding">
-                  <TableID>BillExtension_f9cf1452-de25-4f55-8f1a-9e59d04c98dc</TableID>
-                  <ColumnID>BillXBillNumber</ColumnID>
-                </Source>
-              </NameColumn>
-              <OrderBy>Key</OrderBy>
             </Attribute>
             <Attribute>
               <Annotations>
@@ -10129,6 +10124,31 @@
               </NameColumn>
               <OrderBy>Key</OrderBy>
             </Attribute>
+            <Attribute>
+              <ID>BillID</ID>
+              <Name>BillID</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>BillExtension_f9cf1452-de25-4f55-8f1a-9e59d04c98dc</TableID>
+                    <ColumnID>BillID</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>BillExtension_f9cf1452-de25-4f55-8f1a-9e59d04c98dc</TableID>
+                  <ColumnID>BillID</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
           </Attributes>
           <ProactiveCaching>
             <SilenceInterval>-PT1S</SilenceInterval>
@@ -10138,29 +10158,6 @@
             <Source xsi:type="ProactiveCachingInheritedBinding" />
           </ProactiveCaching>
           <ddl300_300:Relationships>
-            <ddl300_300:Relationship>
-              <ID>ec7d169e-57a4-4e9c-9733-be4f7ae85f6f</ID>
-              <ddl300_300:FromRelationshipEnd>
-                <ddl300_300:Multiplicity>Many</ddl300_300:Multiplicity>
-                <ddl300:VisualizationProperties />
-                <DimensionID>BillExtension_f9cf1452-de25-4f55-8f1a-9e59d04c98dc</DimensionID>
-                <Attributes>
-                  <Attribute>
-                    <AttributeID>BillXBillNumber</AttributeID>
-                  </Attribute>
-                </Attributes>
-              </ddl300_300:FromRelationshipEnd>
-              <ddl300_300:ToRelationshipEnd>
-                <ddl300_300:Multiplicity>One</ddl300_300:Multiplicity>
-                <ddl300:VisualizationProperties />
-                <DimensionID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</DimensionID>
-                <Attributes>
-                  <Attribute>
-                    <AttributeID>BillNumber</AttributeID>
-                  </Attribute>
-                </Attributes>
-              </ddl300_300:ToRelationshipEnd>
-            </ddl300_300:Relationship>
             <ddl300_300:Relationship>
               <ID>e2889e23-3cf8-4eae-ba82-15140341527f</ID>
               <ddl300_300:FromRelationshipEnd>
@@ -10180,6 +10177,29 @@
                 <Attributes>
                   <Attribute>
                     <AttributeID>BillXFEDCodeID</AttributeID>
+                  </Attribute>
+                </Attributes>
+              </ddl300_300:ToRelationshipEnd>
+            </ddl300_300:Relationship>
+            <ddl300_300:Relationship>
+              <ID>fc637b2b-4e99-4fc4-a683-57ee933c125f</ID>
+              <ddl300_300:FromRelationshipEnd>
+                <ddl300_300:Multiplicity>Many</ddl300_300:Multiplicity>
+                <ddl300:VisualizationProperties />
+                <DimensionID>BillExtension_f9cf1452-de25-4f55-8f1a-9e59d04c98dc</DimensionID>
+                <Attributes>
+                  <Attribute>
+                    <AttributeID>BillID</AttributeID>
+                  </Attribute>
+                </Attributes>
+              </ddl300_300:FromRelationshipEnd>
+              <ddl300_300:ToRelationshipEnd>
+                <ddl300_300:Multiplicity>One</ddl300_300:Multiplicity>
+                <ddl300:VisualizationProperties />
+                <DimensionID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</DimensionID>
+                <Attributes>
+                  <Attribute>
+                    <AttributeID>BillID</AttributeID>
                   </Attribute>
                 </Attributes>
               </ddl300_300:ToRelationshipEnd>
@@ -10927,6 +10947,9 @@
                 <Attribute>
                   <AttributeID>ClientPartnerCode</AttributeID>
                 </Attribute>
+                <Attribute>
+                  <AttributeID>ClientID</AttributeID>
+                </Attribute>
               </Attributes>
             </Dimension>
             <Dimension>
@@ -10981,10 +11004,6 @@
                   <AttributeID>HasRecordInCashdr</AttributeID>
                 </Attribute>
                 <Attribute>
-                  <AttributeID>ClientNumber</AttributeID>
-                  <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
-                </Attribute>
-                <Attribute>
                   <AttributeID>DateMatterOpen</AttributeID>
                 </Attribute>
                 <Attribute>
@@ -11012,6 +11031,9 @@
                 </Attribute>
                 <Attribute>
                   <AttributeID>DepartmentID</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>ClientID</AttributeID>
                 </Attribute>
               </Attributes>
             </Dimension>
@@ -11884,10 +11906,10 @@
                   <AttributeID>TransactionAgeBanding</AttributeID>
                 </Attribute>
                 <Attribute>
-                  <AttributeID>KPIUnbilledTimeBanding</AttributeID>
+                  <AttributeID>WIPAgeBanding</AttributeID>
                 </Attribute>
                 <Attribute>
-                  <AttributeID>KPIUnbilledTimeOrder</AttributeID>
+                  <AttributeID>WIPAgeOrder</AttributeID>
                 </Attribute>
               </Attributes>
             </Dimension>
@@ -11901,9 +11923,6 @@
                   <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
                 </Attribute>
                 <Attribute>
-                  <AttributeID>BillXBillNumber</AttributeID>
-                </Attribute>
-                <Attribute>
                   <AttributeID>BillXFeeEarner</AttributeID>
                 </Attribute>
                 <Attribute>
@@ -11911,6 +11930,9 @@
                 </Attribute>
                 <Attribute>
                   <AttributeID>BillXTimeBilled</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>BillID</AttributeID>
                 </Attribute>
               </Attributes>
             </Dimension>
@@ -12145,6 +12167,20 @@
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientID</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
+                            <ColumnID>ClientID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
                 </Dimension>
@@ -12171,6 +12207,7 @@
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
                     <QueryDefinition>SELECT distinct
+c.dim_client_key as 'ClientID',
 c.client_code as 'ClientCode',
 c.client_name as 'ClientName',
 c.client_group_name as 'ClientGroupName',
@@ -12494,20 +12531,6 @@ left join sql2008svr.axxia01.dbo.caclextn crm
                       </KeyColumns>
                     </Attribute>
                     <Attribute>
-                      <AttributeID>ClientNumber</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
-                            <ColumnID>ClientNumber</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
                       <AttributeID>DateMatterOpen</AttributeID>
                       <KeyColumns>
                         <KeyColumn>
@@ -12629,6 +12652,20 @@ left join sql2008svr.axxia01.dbo.caclextn crm
                           <Source xsi:type="ColumnBinding">
                             <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
                             <ColumnID>DepartmentID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientID</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                            <ColumnID>ClientID</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -14032,141 +14069,6 @@ left join sql2008svr.axxia01.dbo.caclextn crm
                   <ddl300:RelationshipID>e324e367-1e5c-4782-924a-9cc9c0480fdc</ddl300:RelationshipID>
                 </Dimension>
                 <Dimension xsi:type="ReferenceMeasureGroupDimension">
-                  <CubeDimensionID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</CubeDimensionID>
-                  <Attributes>
-                    <Attribute>
-                      <AttributeID>RowNumber</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>4</DataSize>
-                          <NullProcessing>Error</NullProcessing>
-                          <Source xsi:type="ddl200_200:RowNumberBinding" />
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>ClientCode</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Error</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
-                            <ColumnID>ClientCode</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                      <Type>Granularity</Type>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>ClientName</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
-                            <ColumnID>ClientName</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>ClientGroupName</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
-                            <ColumnID>ClientGroupName</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>ClientPartnerName</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
-                            <ColumnID>ClientPartnerName</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>CreditControllerName</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
-                            <ColumnID>CreditControllerName</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>SectorName</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
-                            <ColumnID>SectorName</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>CRMStatus</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
-                            <ColumnID>CRMStatus</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>ClientPartnerCode</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
-                            <ColumnID>ClientPartnerCode</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                  </Attributes>
-                  <IntermediateCubeDimensionID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</IntermediateCubeDimensionID>
-                  <IntermediateGranularityAttributeID>ClientNumber</IntermediateGranularityAttributeID>
-                  <Materialization>Regular</Materialization>
-                  <ddl300:RelationshipID>ada1b428-cff1-411c-8025-23732ff6cad2</ddl300:RelationshipID>
-                </Dimension>
-                <Dimension xsi:type="ReferenceMeasureGroupDimension">
                   <CubeDimensionID>dimMatterGroup_a1fa978a-d7bc-444c-a040-0879c3086dad</CubeDimensionID>
                   <Attributes>
                     <Attribute>
@@ -14359,6 +14261,155 @@ left join sql2008svr.axxia01.dbo.caclextn crm
                   <Materialization>Regular</Materialization>
                   <ddl300:RelationshipID>6e3a9340-4f3c-40fd-affb-ed7af16f23ca</ddl300:RelationshipID>
                 </Dimension>
+                <Dimension xsi:type="ReferenceMeasureGroupDimension">
+                  <CubeDimensionID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>RowNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>4</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ddl200_200:RowNumberBinding" />
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientCode</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
+                            <ColumnID>ClientCode</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
+                            <ColumnID>ClientName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientGroupName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
+                            <ColumnID>ClientGroupName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientPartnerName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
+                            <ColumnID>ClientPartnerName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>CreditControllerName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
+                            <ColumnID>CreditControllerName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>SectorName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
+                            <ColumnID>SectorName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>CRMStatus</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
+                            <ColumnID>CRMStatus</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientPartnerCode</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
+                            <ColumnID>ClientPartnerCode</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientID</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
+                            <ColumnID>ClientID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                  </Attributes>
+                  <IntermediateCubeDimensionID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</IntermediateCubeDimensionID>
+                  <IntermediateGranularityAttributeID>ClientID</IntermediateGranularityAttributeID>
+                  <Materialization>Regular</Materialization>
+                  <ddl300:RelationshipID>4a32bb88-5d1f-4f84-80f8-0167d9e0abb5</ddl300:RelationshipID>
+                </Dimension>
               </Dimensions>
               <Partitions>
                 <Partition>
@@ -14388,9 +14439,9 @@ d.dim_matter_group_key as 'MatterGroupID',
 d.dim_matter_branch_key as 'BranchID',
 d.dim_matter_worktype_key as 'WorkTypeID',
 d.dim_department_key as 'DepartmentID',
+c.dim_client_key as 'ClientID',
 d.fed_code_partner as 'PartnerCode',
 d.matter_number as 'MatterNumber',
-c.client_code as 'ClientNumber',
 d.case_public_desc1 as 'MatterDesc',
 date1.dim_date_key as 'DateMatterOpen',
 date2.dim_date_key as 'DateMatterClosed',
@@ -14449,7 +14500,7 @@ red_dw.dbo.dim_date
 
 where
 calendar_date = cast(getdate() - 1 as date))
-and f.dim_matter_header_key &gt; 0
+and f.dim_matter_header_curr_key &gt; 0
 and c.client_group_name = 'Zurich'
 order by
 d.matter_number</QueryDefinition>
@@ -15678,20 +15729,6 @@ d.matter_number</QueryDefinition>
                       </KeyColumns>
                     </Attribute>
                     <Attribute>
-                      <AttributeID>ClientNumber</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
-                            <ColumnID>ClientNumber</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
                       <AttributeID>DateMatterOpen</AttributeID>
                       <KeyColumns>
                         <KeyColumn>
@@ -15813,6 +15850,20 @@ d.matter_number</QueryDefinition>
                           <Source xsi:type="ColumnBinding">
                             <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
                             <ColumnID>DepartmentID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientID</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                            <ColumnID>ClientID</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -17209,139 +17260,6 @@ d.matter_number</QueryDefinition>
                   <IntermediateGranularityAttributeID>LastTimeDate</IntermediateGranularityAttributeID>
                 </Dimension>
                 <Dimension xsi:type="ReferenceMeasureGroupDimension">
-                  <CubeDimensionID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</CubeDimensionID>
-                  <Attributes>
-                    <Attribute>
-                      <AttributeID>RowNumber</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>4</DataSize>
-                          <NullProcessing>Error</NullProcessing>
-                          <Source xsi:type="ddl200_200:RowNumberBinding" />
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>ClientCode</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Error</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
-                            <ColumnID>ClientCode</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                      <Type>Granularity</Type>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>ClientName</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
-                            <ColumnID>ClientName</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>ClientGroupName</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
-                            <ColumnID>ClientGroupName</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>ClientPartnerName</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
-                            <ColumnID>ClientPartnerName</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>CreditControllerName</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
-                            <ColumnID>CreditControllerName</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>SectorName</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
-                            <ColumnID>SectorName</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>CRMStatus</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
-                            <ColumnID>CRMStatus</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>ClientPartnerCode</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
-                            <ColumnID>ClientPartnerCode</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                  </Attributes>
-                  <IntermediateCubeDimensionID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</IntermediateCubeDimensionID>
-                  <IntermediateGranularityAttributeID>ClientNumber</IntermediateGranularityAttributeID>
-                </Dimension>
-                <Dimension xsi:type="ReferenceMeasureGroupDimension">
                   <CubeDimensionID>dimMatterGroup_a1fa978a-d7bc-444c-a040-0879c3086dad</CubeDimensionID>
                   <Attributes>
                     <Attribute>
@@ -17527,6 +17445,153 @@ d.matter_number</QueryDefinition>
                   </Attributes>
                   <IntermediateCubeDimensionID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</IntermediateCubeDimensionID>
                   <IntermediateGranularityAttributeID>BranchID</IntermediateGranularityAttributeID>
+                </Dimension>
+                <Dimension xsi:type="ReferenceMeasureGroupDimension">
+                  <CubeDimensionID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>RowNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>4</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ddl200_200:RowNumberBinding" />
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientCode</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
+                            <ColumnID>ClientCode</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
+                            <ColumnID>ClientName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientGroupName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
+                            <ColumnID>ClientGroupName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientPartnerName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
+                            <ColumnID>ClientPartnerName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>CreditControllerName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
+                            <ColumnID>CreditControllerName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>SectorName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
+                            <ColumnID>SectorName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>CRMStatus</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
+                            <ColumnID>CRMStatus</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientPartnerCode</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
+                            <ColumnID>ClientPartnerCode</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientID</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
+                            <ColumnID>ClientID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                  </Attributes>
+                  <IntermediateCubeDimensionID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</IntermediateCubeDimensionID>
+                  <IntermediateGranularityAttributeID>ClientID</IntermediateGranularityAttributeID>
                 </Dimension>
               </Dimensions>
               <Partitions>
@@ -19328,7 +19393,7 @@ red_dw.dbo.dim_matter_branch</QueryDefinition>
                       </KeyColumns>
                     </Attribute>
                     <Attribute>
-                      <AttributeID>KPIUnbilledTimeBanding</AttributeID>
+                      <AttributeID>WIPAgeBanding</AttributeID>
                       <KeyColumns>
                         <KeyColumn>
                           <DataType>WChar</DataType>
@@ -19336,13 +19401,13 @@ red_dw.dbo.dim_matter_branch</QueryDefinition>
                           <NullProcessing>Preserve</NullProcessing>
                           <Source xsi:type="ColumnBinding">
                             <TableID>DaysBanding_a0bb1990-5adf-49c9-8dd2-ce75361b1478</TableID>
-                            <ColumnID>KPIUnbilledTimeBanding</ColumnID>
+                            <ColumnID>WIPAgeBanding</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
                     <Attribute>
-                      <AttributeID>KPIUnbilledTimeOrder</AttributeID>
+                      <AttributeID>WIPAgeOrder</AttributeID>
                       <KeyColumns>
                         <KeyColumn>
                           <DataType>Integer</DataType>
@@ -19350,7 +19415,7 @@ red_dw.dbo.dim_matter_branch</QueryDefinition>
                           <NullProcessing>Preserve</NullProcessing>
                           <Source xsi:type="ColumnBinding">
                             <TableID>DaysBanding_a0bb1990-5adf-49c9-8dd2-ce75361b1478</TableID>
-                            <ColumnID>KPIUnbilledTimeOrder</ColumnID>
+                            <ColumnID>WIPAgeOrder</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -19582,20 +19647,6 @@ red_dw.dbo.dim_matter_branch</QueryDefinition>
                       </KeyColumns>
                     </Attribute>
                     <Attribute>
-                      <AttributeID>ClientNumber</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
-                            <ColumnID>ClientNumber</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
                       <AttributeID>DateMatterOpen</AttributeID>
                       <KeyColumns>
                         <KeyColumn>
@@ -19717,6 +19768,20 @@ red_dw.dbo.dim_matter_branch</QueryDefinition>
                           <Source xsi:type="ColumnBinding">
                             <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
                             <ColumnID>DepartmentID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientID</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                            <ColumnID>ClientID</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -21111,139 +21176,6 @@ red_dw.dbo.dim_matter_branch</QueryDefinition>
                   <IntermediateGranularityAttributeID>LastTimeDate</IntermediateGranularityAttributeID>
                 </Dimension>
                 <Dimension xsi:type="ReferenceMeasureGroupDimension">
-                  <CubeDimensionID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</CubeDimensionID>
-                  <Attributes>
-                    <Attribute>
-                      <AttributeID>RowNumber</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>4</DataSize>
-                          <NullProcessing>Error</NullProcessing>
-                          <Source xsi:type="ddl200_200:RowNumberBinding" />
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>ClientCode</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Error</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
-                            <ColumnID>ClientCode</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                      <Type>Granularity</Type>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>ClientName</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
-                            <ColumnID>ClientName</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>ClientGroupName</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
-                            <ColumnID>ClientGroupName</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>ClientPartnerName</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
-                            <ColumnID>ClientPartnerName</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>CreditControllerName</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
-                            <ColumnID>CreditControllerName</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>SectorName</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
-                            <ColumnID>SectorName</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>CRMStatus</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
-                            <ColumnID>CRMStatus</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>ClientPartnerCode</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
-                            <ColumnID>ClientPartnerCode</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                  </Attributes>
-                  <IntermediateCubeDimensionID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</IntermediateCubeDimensionID>
-                  <IntermediateGranularityAttributeID>ClientNumber</IntermediateGranularityAttributeID>
-                </Dimension>
-                <Dimension xsi:type="ReferenceMeasureGroupDimension">
                   <CubeDimensionID>dimMatterGroup_a1fa978a-d7bc-444c-a040-0879c3086dad</CubeDimensionID>
                   <Attributes>
                     <Attribute>
@@ -21846,6 +21778,153 @@ red_dw.dbo.dim_matter_branch</QueryDefinition>
                   <IntermediateGranularityAttributeID>TimeNarrativeID</IntermediateGranularityAttributeID>
                   <Materialization>Regular</Materialization>
                   <ddl300:RelationshipID>df5438f7-30b5-4646-a4b4-a705db7839fa</ddl300:RelationshipID>
+                </Dimension>
+                <Dimension xsi:type="ReferenceMeasureGroupDimension">
+                  <CubeDimensionID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>RowNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>4</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ddl200_200:RowNumberBinding" />
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientCode</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
+                            <ColumnID>ClientCode</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
+                            <ColumnID>ClientName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientGroupName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
+                            <ColumnID>ClientGroupName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientPartnerName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
+                            <ColumnID>ClientPartnerName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>CreditControllerName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
+                            <ColumnID>CreditControllerName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>SectorName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
+                            <ColumnID>SectorName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>CRMStatus</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
+                            <ColumnID>CRMStatus</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientPartnerCode</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
+                            <ColumnID>ClientPartnerCode</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientID</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
+                            <ColumnID>ClientID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                  </Attributes>
+                  <IntermediateCubeDimensionID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</IntermediateCubeDimensionID>
+                  <IntermediateGranularityAttributeID>ClientID</IntermediateGranularityAttributeID>
                 </Dimension>
               </Dimensions>
               <Partitions>
@@ -26347,7 +26426,7 @@ dim_date</QueryDefinition>
                       </KeyColumns>
                     </Attribute>
                     <Attribute>
-                      <AttributeID>KPIUnbilledTimeBanding</AttributeID>
+                      <AttributeID>WIPAgeBanding</AttributeID>
                       <KeyColumns>
                         <KeyColumn>
                           <DataType>WChar</DataType>
@@ -26355,13 +26434,13 @@ dim_date</QueryDefinition>
                           <NullProcessing>Preserve</NullProcessing>
                           <Source xsi:type="ColumnBinding">
                             <TableID>DaysBanding_a0bb1990-5adf-49c9-8dd2-ce75361b1478</TableID>
-                            <ColumnID>KPIUnbilledTimeBanding</ColumnID>
+                            <ColumnID>WIPAgeBanding</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
                     <Attribute>
-                      <AttributeID>KPIUnbilledTimeOrder</AttributeID>
+                      <AttributeID>WIPAgeOrder</AttributeID>
                       <KeyColumns>
                         <KeyColumn>
                           <DataType>Integer</DataType>
@@ -26369,7 +26448,7 @@ dim_date</QueryDefinition>
                           <NullProcessing>Preserve</NullProcessing>
                           <Source xsi:type="ColumnBinding">
                             <TableID>DaysBanding_a0bb1990-5adf-49c9-8dd2-ce75361b1478</TableID>
-                            <ColumnID>KPIUnbilledTimeOrder</ColumnID>
+                            <ColumnID>WIPAgeOrder</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -26415,14 +26494,14 @@ dim_date</QueryDefinition>
   when n between 181 and 270 then '181 - 270 Days'
   when n between 271 and 360 then '271 - 360 Days'
   when n between 361 and 720 then '361 - 720 Days'
-  when n &gt; 710 then 'Greater than 720 Days' end as 'KPIUnbilledTimeBanding',
+  when n &gt; 710 then 'Greater than 720 Days' end as 'WIPAgeBanding',
   case when n between 0 and 60 then 1
   when n between 61 and 90 then 2
   when n between 91 and 180 then 3
   when n between 181 and 270 then 4
   when n between 271 and 360 then 5
   when n between 361 and 720 then 6
-  when n &gt; 710 then 7 end as 'KPIUnbilledTimeOrder'
+  when n &gt; 710 then 7 end as 'WIPAgeOrder'
 
 
 
@@ -26510,21 +26589,6 @@ dim_date</QueryDefinition>
                       <Type>Granularity</Type>
                     </Attribute>
                     <Attribute>
-                      <AttributeID>BillXBillNumber</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>BillExtension_f9cf1452-de25-4f55-8f1a-9e59d04c98dc</TableID>
-                            <ColumnID>BillXBillNumber</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
                       <AttributeID>BillXFeeEarner</AttributeID>
                       <KeyColumns>
                         <KeyColumn>
@@ -26569,8 +26633,456 @@ dim_date</QueryDefinition>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>BillID</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>BillExtension_f9cf1452-de25-4f55-8f1a-9e59d04c98dc</TableID>
+                            <ColumnID>BillID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
+                </Dimension>
+                <Dimension xsi:type="ReferenceMeasureGroupDimension">
+                  <CubeDimensionID>dimBillXFEDHierarchy_1b7a28ed-c996-42e4-bec8-629be1efde7c</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>RowNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>4</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ddl200_200:RowNumberBinding" />
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BillXFEDCodeID</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimBillXFEDHierarchy_1b7a28ed-c996-42e4-bec8-629be1efde7c</TableID>
+                            <ColumnID>BillXFEDCodeID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BillXFEDCode</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimBillXFEDHierarchy_1b7a28ed-c996-42e4-bec8-629be1efde7c</TableID>
+                            <ColumnID>BillXFEDCode</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BillXFEDName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimBillXFEDHierarchy_1b7a28ed-c996-42e4-bec8-629be1efde7c</TableID>
+                            <ColumnID>BillXFEDName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BillXBusinessLine</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimBillXFEDHierarchy_1b7a28ed-c996-42e4-bec8-629be1efde7c</TableID>
+                            <ColumnID>BillXBusinessLine</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BillXPracticeArea</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimBillXFEDHierarchy_1b7a28ed-c996-42e4-bec8-629be1efde7c</TableID>
+                            <ColumnID>BillXPracticeArea</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BillXTeam</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimBillXFEDHierarchy_1b7a28ed-c996-42e4-bec8-629be1efde7c</TableID>
+                            <ColumnID>BillXTeam</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BillXBCMName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimBillXFEDHierarchy_1b7a28ed-c996-42e4-bec8-629be1efde7c</TableID>
+                            <ColumnID>BillXBCMName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BillXEmailAddress</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimBillXFEDHierarchy_1b7a28ed-c996-42e4-bec8-629be1efde7c</TableID>
+                            <ColumnID>BillXEmailAddress</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BillXBCMEmail</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimBillXFEDHierarchy_1b7a28ed-c996-42e4-bec8-629be1efde7c</TableID>
+                            <ColumnID>BillXBCMEmail</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                  </Attributes>
+                  <IntermediateCubeDimensionID>BillExtension_f9cf1452-de25-4f55-8f1a-9e59d04c98dc</IntermediateCubeDimensionID>
+                  <IntermediateGranularityAttributeID>BillXFeeEarner</IntermediateGranularityAttributeID>
+                  <Materialization>Regular</Materialization>
+                  <ddl300:RelationshipID>e2889e23-3cf8-4eae-ba82-15140341527f</ddl300:RelationshipID>
+                </Dimension>
+                <Dimension xsi:type="ReferenceMeasureGroupDimension">
+                  <CubeDimensionID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>RowNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>4</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ddl200_200:RowNumberBinding" />
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BillDate</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
+                            <ColumnID>BillDate</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BillAmount</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Double</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
+                            <ColumnID>BillAmount</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>FeeValue</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Double</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
+                            <ColumnID>FeeValue</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DisbursementsPaid</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Double</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
+                            <ColumnID>DisbursementsPaid</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DisbursementsUnpaid</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Double</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
+                            <ColumnID>DisbursementsUnpaid</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>AdministrationCharges</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Double</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
+                            <ColumnID>AdministrationCharges</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>VATAmount</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Double</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
+                            <ColumnID>VATAmount</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>AmountPaid</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Double</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
+                            <ColumnID>AmountPaid</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BillNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
+                            <ColumnID>BillNumber</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BillTypeCode</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
+                            <ColumnID>BillTypeCode</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BillFinalOrInterimCode</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
+                            <ColumnID>BillFinalOrInterimCode</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BillAgeDays</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
+                            <ColumnID>BillAgeDays</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>AmountOutstanding</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Double</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
+                            <ColumnID>AmountOutstanding</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BillLastPaymentDate</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
+                            <ColumnID>BillLastPaymentDate</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BillID</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
+                            <ColumnID>BillID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>OpenItem</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
+                            <ColumnID>OpenItem</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BillRank</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
+                            <ColumnID>BillRank</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterID</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
+                            <ColumnID>MatterID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                  </Attributes>
+                  <IntermediateCubeDimensionID>BillExtension_f9cf1452-de25-4f55-8f1a-9e59d04c98dc</IntermediateCubeDimensionID>
+                  <IntermediateGranularityAttributeID>BillID</IntermediateGranularityAttributeID>
+                  <Materialization>Regular</Materialization>
+                  <ddl300:RelationshipID>fc637b2b-4e99-4fc4-a683-57ee933c125f</ddl300:RelationshipID>
                 </Dimension>
                 <Dimension xsi:type="ReferenceMeasureGroupDimension">
                   <CubeDimensionID>dimBillFinalOrInterim_2ff2c4c4-389e-4d83-8fc9-fb979ef2a896</CubeDimensionID>
@@ -27238,440 +27750,6 @@ dim_date</QueryDefinition>
                   <IntermediateGranularityAttributeID>BillLastPaymentDate</IntermediateGranularityAttributeID>
                 </Dimension>
                 <Dimension xsi:type="ReferenceMeasureGroupDimension">
-                  <CubeDimensionID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</CubeDimensionID>
-                  <Attributes>
-                    <Attribute>
-                      <AttributeID>RowNumber</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>4</DataSize>
-                          <NullProcessing>Error</NullProcessing>
-                          <Source xsi:type="ddl200_200:RowNumberBinding" />
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>BillDate</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
-                            <ColumnID>BillDate</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>BillAmount</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Double</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
-                            <ColumnID>BillAmount</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>FeeValue</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Double</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
-                            <ColumnID>FeeValue</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>DisbursementsPaid</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Double</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
-                            <ColumnID>DisbursementsPaid</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>DisbursementsUnpaid</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Double</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
-                            <ColumnID>DisbursementsUnpaid</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>AdministrationCharges</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Double</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
-                            <ColumnID>AdministrationCharges</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>VATAmount</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Double</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
-                            <ColumnID>VATAmount</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>AmountPaid</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Double</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
-                            <ColumnID>AmountPaid</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>BillNumber</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Error</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
-                            <ColumnID>BillNumber</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                      <Type>Granularity</Type>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>BillTypeCode</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
-                            <ColumnID>BillTypeCode</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>BillFinalOrInterimCode</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
-                            <ColumnID>BillFinalOrInterimCode</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>BillAgeDays</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
-                            <ColumnID>BillAgeDays</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>AmountOutstanding</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Double</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
-                            <ColumnID>AmountOutstanding</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>BillLastPaymentDate</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
-                            <ColumnID>BillLastPaymentDate</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>BillID</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Error</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
-                            <ColumnID>BillID</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>OpenItem</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
-                            <ColumnID>OpenItem</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>BillRank</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>BigInt</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
-                            <ColumnID>BillRank</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>MatterID</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
-                            <ColumnID>MatterID</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                  </Attributes>
-                  <IntermediateCubeDimensionID>BillExtension_f9cf1452-de25-4f55-8f1a-9e59d04c98dc</IntermediateCubeDimensionID>
-                  <IntermediateGranularityAttributeID>BillXBillNumber</IntermediateGranularityAttributeID>
-                  <Materialization>Regular</Materialization>
-                  <ddl300:RelationshipID>ec7d169e-57a4-4e9c-9733-be4f7ae85f6f</ddl300:RelationshipID>
-                </Dimension>
-                <Dimension xsi:type="ReferenceMeasureGroupDimension">
-                  <CubeDimensionID>dimBillXFEDHierarchy_1b7a28ed-c996-42e4-bec8-629be1efde7c</CubeDimensionID>
-                  <Attributes>
-                    <Attribute>
-                      <AttributeID>RowNumber</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>4</DataSize>
-                          <NullProcessing>Error</NullProcessing>
-                          <Source xsi:type="ddl200_200:RowNumberBinding" />
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>BillXFEDCodeID</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Error</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimBillXFEDHierarchy_1b7a28ed-c996-42e4-bec8-629be1efde7c</TableID>
-                            <ColumnID>BillXFEDCodeID</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                      <Type>Granularity</Type>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>BillXFEDCode</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimBillXFEDHierarchy_1b7a28ed-c996-42e4-bec8-629be1efde7c</TableID>
-                            <ColumnID>BillXFEDCode</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>BillXFEDName</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimBillXFEDHierarchy_1b7a28ed-c996-42e4-bec8-629be1efde7c</TableID>
-                            <ColumnID>BillXFEDName</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>BillXBusinessLine</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimBillXFEDHierarchy_1b7a28ed-c996-42e4-bec8-629be1efde7c</TableID>
-                            <ColumnID>BillXBusinessLine</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>BillXPracticeArea</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimBillXFEDHierarchy_1b7a28ed-c996-42e4-bec8-629be1efde7c</TableID>
-                            <ColumnID>BillXPracticeArea</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>BillXTeam</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimBillXFEDHierarchy_1b7a28ed-c996-42e4-bec8-629be1efde7c</TableID>
-                            <ColumnID>BillXTeam</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>BillXBCMName</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimBillXFEDHierarchy_1b7a28ed-c996-42e4-bec8-629be1efde7c</TableID>
-                            <ColumnID>BillXBCMName</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>BillXEmailAddress</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimBillXFEDHierarchy_1b7a28ed-c996-42e4-bec8-629be1efde7c</TableID>
-                            <ColumnID>BillXEmailAddress</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>BillXBCMEmail</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimBillXFEDHierarchy_1b7a28ed-c996-42e4-bec8-629be1efde7c</TableID>
-                            <ColumnID>BillXBCMEmail</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                  </Attributes>
-                  <IntermediateCubeDimensionID>BillExtension_f9cf1452-de25-4f55-8f1a-9e59d04c98dc</IntermediateCubeDimensionID>
-                  <IntermediateGranularityAttributeID>BillXFeeEarner</IntermediateGranularityAttributeID>
-                  <Materialization>Regular</Materialization>
-                  <ddl300:RelationshipID>e2889e23-3cf8-4eae-ba82-15140341527f</ddl300:RelationshipID>
-                </Dimension>
-                <Dimension xsi:type="ReferenceMeasureGroupDimension">
                   <CubeDimensionID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</CubeDimensionID>
                   <Attributes>
                     <Attribute>
@@ -27892,20 +27970,6 @@ dim_date</QueryDefinition>
                       </KeyColumns>
                     </Attribute>
                     <Attribute>
-                      <AttributeID>ClientNumber</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
-                            <ColumnID>ClientNumber</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
                       <AttributeID>DateMatterOpen</AttributeID>
                       <KeyColumns>
                         <KeyColumn>
@@ -28027,6 +28091,20 @@ dim_date</QueryDefinition>
                           <Source xsi:type="ColumnBinding">
                             <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
                             <ColumnID>DepartmentID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientID</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                            <ColumnID>ClientID</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -29421,139 +29499,6 @@ dim_date</QueryDefinition>
                   <IntermediateGranularityAttributeID>LastTimeDate</IntermediateGranularityAttributeID>
                 </Dimension>
                 <Dimension xsi:type="ReferenceMeasureGroupDimension">
-                  <CubeDimensionID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</CubeDimensionID>
-                  <Attributes>
-                    <Attribute>
-                      <AttributeID>RowNumber</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>4</DataSize>
-                          <NullProcessing>Error</NullProcessing>
-                          <Source xsi:type="ddl200_200:RowNumberBinding" />
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>ClientCode</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Error</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
-                            <ColumnID>ClientCode</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                      <Type>Granularity</Type>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>ClientName</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
-                            <ColumnID>ClientName</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>ClientGroupName</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
-                            <ColumnID>ClientGroupName</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>ClientPartnerName</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
-                            <ColumnID>ClientPartnerName</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>CreditControllerName</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
-                            <ColumnID>CreditControllerName</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>SectorName</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
-                            <ColumnID>SectorName</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>CRMStatus</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
-                            <ColumnID>CRMStatus</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>ClientPartnerCode</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
-                            <ColumnID>ClientPartnerCode</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                  </Attributes>
-                  <IntermediateCubeDimensionID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</IntermediateCubeDimensionID>
-                  <IntermediateGranularityAttributeID>ClientNumber</IntermediateGranularityAttributeID>
-                </Dimension>
-                <Dimension xsi:type="ReferenceMeasureGroupDimension">
                   <CubeDimensionID>dimMatterGroup_a1fa978a-d7bc-444c-a040-0879c3086dad</CubeDimensionID>
                   <Attributes>
                     <Attribute>
@@ -29740,6 +29685,153 @@ dim_date</QueryDefinition>
                   <IntermediateCubeDimensionID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</IntermediateCubeDimensionID>
                   <IntermediateGranularityAttributeID>BranchID</IntermediateGranularityAttributeID>
                 </Dimension>
+                <Dimension xsi:type="ReferenceMeasureGroupDimension">
+                  <CubeDimensionID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>RowNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>4</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ddl200_200:RowNumberBinding" />
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientCode</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
+                            <ColumnID>ClientCode</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
+                            <ColumnID>ClientName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientGroupName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
+                            <ColumnID>ClientGroupName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientPartnerName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
+                            <ColumnID>ClientPartnerName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>CreditControllerName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
+                            <ColumnID>CreditControllerName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>SectorName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
+                            <ColumnID>SectorName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>CRMStatus</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
+                            <ColumnID>CRMStatus</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientPartnerCode</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
+                            <ColumnID>ClientPartnerCode</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientID</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc</TableID>
+                            <ColumnID>ClientID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                  </Attributes>
+                  <IntermediateCubeDimensionID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</IntermediateCubeDimensionID>
+                  <IntermediateGranularityAttributeID>ClientID</IntermediateGranularityAttributeID>
+                </Dimension>
               </Dimensions>
               <Partitions>
                 <Partition>
@@ -29763,7 +29855,7 @@ dim_date</QueryDefinition>
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
                     <QueryDefinition>select
-bill_number as 'BillXBillNumber',
+dim_bill_key as 'BillID',
 dim_fed_hierarchy_history_key as 'BillXFeeEarner',
 bill_amount as 'BillXBillAmount',
 billed_time as 'BillXTimeBilled'
@@ -29772,7 +29864,7 @@ from
 red_dw.dbo.fact_bill_activity b
 
 left join red_dw.dbo.dim_client c
-	on c.dim_client_key = b.dim_client_key
+ on c.dim_client_key = b.dim_client_key
 
 where
 c.client_group_name = 'Zurich'</QueryDefinition>
@@ -30717,6 +30809,44 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                     </Annotation>
                   </Annotations>
                 </Command>
+                <Command>
+                  <Text>----------------------------------------------------------
+-- PowerPivot measures command (do not modify manually) --
+----------------------------------------------------------
+
+
+CREATE MEASURE 'BillExtension'[BillX Time Billed]=SUM([BillXTimeBilled]);
+</Text>
+                  <Annotations>
+                    <Annotation>
+                      <Name>FullName</Name>
+                      <Value>BillX Time Billed</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Table</Name>
+                      <Value>BillExtension</Value>
+                    </Annotation>
+                  </Annotations>
+                </Command>
+                <Command>
+                  <Text>----------------------------------------------------------
+-- PowerPivot measures command (do not modify manually) --
+----------------------------------------------------------
+
+
+CREATE MEASURE 'BillExtension'[BillX Profit Costs]=SUM([BillXBillAmount]);
+</Text>
+                  <Annotations>
+                    <Annotation>
+                      <Name>FullName</Name>
+                      <Value>BillX Profit Costs</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Table</Name>
+                      <Value>BillExtension</Value>
+                    </Annotation>
+                  </Annotations>
+                </Command>
               </Commands>
               <CalculationProperties>
                 <CalculationProperty>
@@ -31140,6 +31270,48 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                   <FormatString>''</FormatString>
                 </CalculationProperty>
                 <CalculationProperty>
+                  <Annotations>
+                    <Annotation>
+                      <Name>Type</Name>
+                      <Value>User</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsPrivate</Name>
+                      <Value>False</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Format</Name>
+                      <Value>
+                        <Format Format="General" xmlns="" />
+                      </Value>
+                    </Annotation>
+                  </Annotations>
+                  <CalculationReference>[BillX Time Billed]</CalculationReference>
+                  <CalculationType>Member</CalculationType>
+                  <FormatString>''</FormatString>
+                </CalculationProperty>
+                <CalculationProperty>
+                  <Annotations>
+                    <Annotation>
+                      <Name>Type</Name>
+                      <Value>User</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsPrivate</Name>
+                      <Value>False</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Format</Name>
+                      <Value>
+                        <Format Format="General" xmlns="" />
+                      </Value>
+                    </Annotation>
+                  </Annotations>
+                  <CalculationReference>[BillX Profit Costs]</CalculationReference>
+                  <CalculationType>Member</CalculationType>
+                  <FormatString>''</FormatString>
+                </CalculationProperty>
+                <CalculationProperty>
                   <CalculationReference>Measures.[__No measures defined]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <Visible>false</Visible>
@@ -31185,7 +31357,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
               <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:Locale="en-US">
                 <xs:complexType>
                   <xs:choice minOccurs="0" maxOccurs="unbounded">
-                    <xs:element name="dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimClient" msprop:DbTableName="dimClient" msprop:TableType="View" msprop:Description="dimClient" msprop:QueryDefinition="SELECT distinct&#xD;&#xA;c.client_code as 'ClientCode',&#xD;&#xA;c.client_name as 'ClientName',&#xD;&#xA;c.client_group_name as 'ClientGroupName',&#xD;&#xA;c.client_partner_name as 'ClientPartnerName',&#xD;&#xA;c.client_partner_code as 'ClientPartnerCode',&#xD;&#xA;case&#xD;&#xA;when cc.cx_data = 'SGO' then 'Stephen Gorman'&#xD;&#xA;when cc.cx_data = 'KWA' then 'Keith Walters'&#xD;&#xA;when cc.cx_data = 'LIL' then 'Linda Lewis'&#xD;&#xA;when cc.cx_data = 'JWO' then 'Jemma Woodworth'&#xD;&#xA;when cc.cx_data = 'AEV' then 'Alun Evans'&#xD;&#xA;when cc.cx_data = 'JEV' then 'Joanne Sawkins'&#xD;&#xA;when cc.cx_data = 'KEL1' then 'Kelly Ryan'&#xD;&#xA;when cc.cx_data = 'JZD' then 'Julie Dootson'&#xD;&#xA;when cc.cx_data = 'JTUR' then 'Jocelyn Turner'&#xD;&#xA;when cc.cx_data = 'MWN' then 'Michelle Wilson'&#xD;&#xA;when cc.cx_data = 'NMB' then 'Natalie Cooney'&#xD;&#xA;when cc.cx_data = 'DIA' then 'Diane Robinson'&#xD;&#xA;else cc.cx_data&#xD;&#xA;end as 'CreditControllerName',&#xD;&#xA;RTRIM(ds_descrn) AS 'SectorName',&#xD;&#xA;  CASE WHEN crm.cx_data = 1 THEN 'Patron'&#xD;&#xA;   WHEN crm.cx_data = 2 THEN 'Star' &#xD;&#xA;   WHEN crm.cx_data is null then null &#xD;&#xA;   ELSE 'Rising Star' END AS 'CRMStatus'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA; FROM &#xD;&#xA;[dim_client] c&#xD;&#xA;&#xD;&#xA;inner join fact_matter_summary a&#xD;&#xA; on a.dim_client_key = c.dim_client_key&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join sql2008svr.axxia01.dbo.caclextn  as cc&#xD;&#xA; on c.client_code = cc.cx_accode&#xD;&#xA; and cc.cx_colnum = '5'&#xD;&#xA;&#xD;&#xA;left join sql2008svr.axxia01.dbo.caclextn s&#xD;&#xA; on s.cx_accode = c.client_code&#xD;&#xA; and s.cx_colnum = '102'&#xD;&#xA;left join axxia01.dbo.cadescrp AS cadescrp WITH (NOLOCK) ON s.cx_data = ds_reckey AND ds_rectyp = 'XX'&#xD;&#xA;&#xD;&#xA;left join sql2008svr.axxia01.dbo.caclextn crm&#xD;&#xA; on crm.cx_accode = c.client_code&#xD;&#xA; and crm.cx_colnum = '101'&#xD;&#xA;&#xD;&#xA; where&#xD;&#xA; c.client_group_name = 'Zurich'">
+                    <xs:element name="dimClient_f85a3b37-17b2-4eec-8978-3c3b1c7093dc" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimClient" msprop:DbTableName="dimClient" msprop:TableType="View" msprop:Description="dimClient" msprop:QueryDefinition="SELECT distinct&#xD;&#xA;c.dim_client_key as 'ClientID',&#xD;&#xA;c.client_code as 'ClientCode',&#xD;&#xA;c.client_name as 'ClientName',&#xD;&#xA;c.client_group_name as 'ClientGroupName',&#xD;&#xA;c.client_partner_name as 'ClientPartnerName',&#xD;&#xA;c.client_partner_code as 'ClientPartnerCode',&#xD;&#xA;case&#xD;&#xA;when cc.cx_data = 'SGO' then 'Stephen Gorman'&#xD;&#xA;when cc.cx_data = 'KWA' then 'Keith Walters'&#xD;&#xA;when cc.cx_data = 'LIL' then 'Linda Lewis'&#xD;&#xA;when cc.cx_data = 'JWO' then 'Jemma Woodworth'&#xD;&#xA;when cc.cx_data = 'AEV' then 'Alun Evans'&#xD;&#xA;when cc.cx_data = 'JEV' then 'Joanne Sawkins'&#xD;&#xA;when cc.cx_data = 'KEL1' then 'Kelly Ryan'&#xD;&#xA;when cc.cx_data = 'JZD' then 'Julie Dootson'&#xD;&#xA;when cc.cx_data = 'JTUR' then 'Jocelyn Turner'&#xD;&#xA;when cc.cx_data = 'MWN' then 'Michelle Wilson'&#xD;&#xA;when cc.cx_data = 'NMB' then 'Natalie Cooney'&#xD;&#xA;when cc.cx_data = 'DIA' then 'Diane Robinson'&#xD;&#xA;else cc.cx_data&#xD;&#xA;end as 'CreditControllerName',&#xD;&#xA;RTRIM(ds_descrn) AS 'SectorName',&#xD;&#xA;  CASE WHEN crm.cx_data = 1 THEN 'Patron'&#xD;&#xA;   WHEN crm.cx_data = 2 THEN 'Star' &#xD;&#xA;   WHEN crm.cx_data is null then null &#xD;&#xA;   ELSE 'Rising Star' END AS 'CRMStatus'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA; FROM &#xD;&#xA;[dim_client] c&#xD;&#xA;&#xD;&#xA;inner join fact_matter_summary a&#xD;&#xA; on a.dim_client_key = c.dim_client_key&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join sql2008svr.axxia01.dbo.caclextn  as cc&#xD;&#xA; on c.client_code = cc.cx_accode&#xD;&#xA; and cc.cx_colnum = '5'&#xD;&#xA;&#xD;&#xA;left join sql2008svr.axxia01.dbo.caclextn s&#xD;&#xA; on s.cx_accode = c.client_code&#xD;&#xA; and s.cx_colnum = '102'&#xD;&#xA;left join axxia01.dbo.cadescrp AS cadescrp WITH (NOLOCK) ON s.cx_data = ds_reckey AND ds_rectyp = 'XX'&#xD;&#xA;&#xD;&#xA;left join sql2008svr.axxia01.dbo.caclextn crm&#xD;&#xA; on crm.cx_accode = c.client_code&#xD;&#xA; and crm.cx_colnum = '101'&#xD;&#xA;&#xD;&#xA; where&#xD;&#xA; c.client_group_name = 'Zurich'">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="ClientCode" msprop:DbColumnName="ClientCode" msprop:FriendlyName="ClientCode" minOccurs="0">
@@ -31244,10 +31416,11 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                               </xs:restriction>
                             </xs:simpleType>
                           </xs:element>
+                          <xs:element name="ClientID" msprop:DbColumnName="ClientID" msprop:FriendlyName="ClientID" type="xs:int" minOccurs="0" />
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="Matter" msprop:DbTableName="factMatter" msprop:TableType="View" msprop:Description="factMatter" msprop:QueryDefinition="select distinct &#xD;&#xA;f.dim_matter_header_curr_key as 'MatterID',&#xD;&#xA;f.dim_fed_hierarchy_history_key as 'FEDCodeID',&#xD;&#xA;d.dim_matter_group_key as 'MatterGroupID',&#xD;&#xA;d.dim_matter_branch_key as 'BranchID',&#xD;&#xA;d.dim_matter_worktype_key as 'WorkTypeID',&#xD;&#xA;d.dim_department_key as 'DepartmentID',&#xD;&#xA;d.fed_code_partner as 'PartnerCode',&#xD;&#xA;d.matter_number as 'MatterNumber',&#xD;&#xA;c.client_code as 'ClientNumber',&#xD;&#xA;d.case_public_desc1 as 'MatterDesc',&#xD;&#xA;date1.dim_date_key as 'DateMatterOpen',&#xD;&#xA;date2.dim_date_key as 'DateMatterClosed',&#xD;&#xA;datediff(day, d.date_opened_case, isnull(d.date_closed_case, getdate())) as 'AgeOfMatterDays',&#xD;&#xA;disbursement_balance as 'DisbursementBalance',&#xD;&#xA;client_account_balance_of_matter as 'ClientAccountBalance',&#xD;&#xA;unpaid_bill_balance as 'UnpaidBillsBalance',&#xD;&#xA;wip_balance as 'WIPBalance',&#xD;&#xA;costs_to_date as 'CostsToDate',&#xD;&#xA;time_billed as 'TotalTimeBilled',&#xD;&#xA;number_bills_matter as 'NumberOfBillsRaised',&#xD;&#xA;unbilled_time as 'UnbilledTime',&#xD;&#xA;case when d.case_id is null then 'No' else 'Yes' end as 'HasRecordInCashdr',&#xD;&#xA;lastbill.LastBillDate,&#xD;&#xA;lasttime.LastTimeDate &#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_matter_summary f&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_client c&#xD;&#xA; on c.dim_client_key = f.dim_client_key&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_matter_header_current d&#xD;&#xA; on d.dim_matter_header_curr_key = f.dim_matter_header_curr_key&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_date date1&#xD;&#xA; on date1.calendar_date = d.date_opened_case&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_date date2&#xD;&#xA; on date2.calendar_date = isnull(d.date_closed_case, '1753-01-01 00:00:00.000')&#xD;&#xA;&#xD;&#xA;left join (&#xD;&#xA;  select dim_matter_header_curr_key, max(dim_bill_date_key) LastBillDate from red_dw.dbo.fact_bill&#xD;&#xA;  group by dim_matter_header_curr_key) lastbill &#xD;&#xA;  on f.dim_matter_header_curr_key = lastbill.dim_matter_header_curr_key&#xD;&#xA;&#xD;&#xA;left join (&#xD;&#xA;  select dim_matter_header_curr_key, max(dim_transaction_date_key) LastTimeDate &#xD;&#xA;  from red_dw.dbo.fact_all_time_activity a &#xD;&#xA;  group by dim_matter_header_curr_key) lasttime &#xD;&#xA;  on lasttime.dim_matter_header_curr_key = f.dim_matter_header_curr_key&#xD;&#xA;  &#xD;&#xA;&#xD;&#xA; &#xD;&#xA;where&#xD;&#xA; f.fin_month = (&#xD;&#xA;select &#xD;&#xA;fin_month&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_date&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;calendar_date = cast(getdate() - 1 as date))&#xD;&#xA;and f.dim_matter_header_key &gt; 0&#xD;&#xA;and c.client_group_name = 'Zurich'&#xD;&#xA;order by&#xD;&#xA;d.matter_number">
+                    <xs:element name="factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="Matter" msprop:DbTableName="factMatter" msprop:TableType="View" msprop:Description="factMatter" msprop:QueryDefinition="select distinct &#xD;&#xA;f.dim_matter_header_curr_key as 'MatterID',&#xD;&#xA;f.dim_fed_hierarchy_history_key as 'FEDCodeID',&#xD;&#xA;d.dim_matter_group_key as 'MatterGroupID',&#xD;&#xA;d.dim_matter_branch_key as 'BranchID',&#xD;&#xA;d.dim_matter_worktype_key as 'WorkTypeID',&#xD;&#xA;d.dim_department_key as 'DepartmentID',&#xD;&#xA;c.dim_client_key as 'ClientID',&#xD;&#xA;d.fed_code_partner as 'PartnerCode',&#xD;&#xA;d.matter_number as 'MatterNumber',&#xD;&#xA;d.case_public_desc1 as 'MatterDesc',&#xD;&#xA;date1.dim_date_key as 'DateMatterOpen',&#xD;&#xA;date2.dim_date_key as 'DateMatterClosed',&#xD;&#xA;datediff(day, d.date_opened_case, isnull(d.date_closed_case, getdate())) as 'AgeOfMatterDays',&#xD;&#xA;disbursement_balance as 'DisbursementBalance',&#xD;&#xA;client_account_balance_of_matter as 'ClientAccountBalance',&#xD;&#xA;unpaid_bill_balance as 'UnpaidBillsBalance',&#xD;&#xA;wip_balance as 'WIPBalance',&#xD;&#xA;costs_to_date as 'CostsToDate',&#xD;&#xA;time_billed as 'TotalTimeBilled',&#xD;&#xA;number_bills_matter as 'NumberOfBillsRaised',&#xD;&#xA;unbilled_time as 'UnbilledTime',&#xD;&#xA;case when d.case_id is null then 'No' else 'Yes' end as 'HasRecordInCashdr',&#xD;&#xA;lastbill.LastBillDate,&#xD;&#xA;lasttime.LastTimeDate &#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_matter_summary f&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_client c&#xD;&#xA; on c.dim_client_key = f.dim_client_key&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_matter_header_current d&#xD;&#xA; on d.dim_matter_header_curr_key = f.dim_matter_header_curr_key&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_date date1&#xD;&#xA; on date1.calendar_date = d.date_opened_case&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_date date2&#xD;&#xA; on date2.calendar_date = isnull(d.date_closed_case, '1753-01-01 00:00:00.000')&#xD;&#xA;&#xD;&#xA;left join (&#xD;&#xA;  select dim_matter_header_curr_key, max(dim_bill_date_key) LastBillDate from red_dw.dbo.fact_bill&#xD;&#xA;  group by dim_matter_header_curr_key) lastbill &#xD;&#xA;  on f.dim_matter_header_curr_key = lastbill.dim_matter_header_curr_key&#xD;&#xA;&#xD;&#xA;left join (&#xD;&#xA;  select dim_matter_header_curr_key, max(dim_transaction_date_key) LastTimeDate &#xD;&#xA;  from red_dw.dbo.fact_all_time_activity a &#xD;&#xA;  group by dim_matter_header_curr_key) lasttime &#xD;&#xA;  on lasttime.dim_matter_header_curr_key = f.dim_matter_header_curr_key&#xD;&#xA;  &#xD;&#xA;&#xD;&#xA; &#xD;&#xA;where&#xD;&#xA; f.fin_month = (&#xD;&#xA;select &#xD;&#xA;fin_month&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_date&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;calendar_date = cast(getdate() - 1 as date))&#xD;&#xA;and f.dim_matter_header_curr_key &gt; 0&#xD;&#xA;and c.client_group_name = 'Zurich'&#xD;&#xA;order by&#xD;&#xA;d.matter_number">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="MatterID" msprop:DbColumnName="MatterID" msprop:FriendlyName="MatterID" type="xs:int" minOccurs="0" />
@@ -31288,13 +31461,6 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                               </xs:restriction>
                             </xs:simpleType>
                           </xs:element>
-                          <xs:element name="ClientNumber" msprop:DbColumnName="ClientNumber" msprop:FriendlyName="ClientNumber" minOccurs="0">
-                            <xs:simpleType>
-                              <xs:restriction base="xs:string">
-                                <xs:maxLength value="32768" />
-                              </xs:restriction>
-                            </xs:simpleType>
-                          </xs:element>
                           <xs:element name="DateMatterOpen" msprop:DbColumnName="DateMatterOpen" msprop:FriendlyName="DateMatterOpen" type="xs:int" minOccurs="0" />
                           <xs:element name="DateMatterClosed" msprop:DbColumnName="DateMatterClosed" msprop:FriendlyName="DateMatterClosed" type="xs:int" minOccurs="0" />
                           <xs:element name="AgeOfMatterDays" msprop:DbColumnName="AgeOfMatterDays" msprop:FriendlyName="AgeOfMatterDays" type="xs:int" minOccurs="0" />
@@ -31304,6 +31470,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                           <xs:element name="BranchID" msprop:DbColumnName="BranchID" msprop:FriendlyName="BranchID" type="xs:int" minOccurs="0" />
                           <xs:element name="WorkTypeID" msprop:DbColumnName="WorkTypeID" msprop:FriendlyName="WorkTypeID" type="xs:int" minOccurs="0" />
                           <xs:element name="DepartmentID" msprop:DbColumnName="DepartmentID" msprop:FriendlyName="DepartmentID" type="xs:int" minOccurs="0" />
+                          <xs:element name="ClientID" msprop:DbColumnName="ClientID" msprop:FriendlyName="ClientID" type="xs:int" minOccurs="0" />
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
@@ -32181,7 +32348,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="DaysBanding_a0bb1990-5adf-49c9-8dd2-ce75361b1478" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimDaysBanding" msprop:DbTableName="DaysBanding" msprop:TableType="View" msprop:Description="DaysBanding" msprop:QueryDefinition="select &#xD;&#xA;  n as 'Number',&#xD;&#xA;  case when n between 0 and 30 then '0 - 30 Days'&#xD;&#xA;  when n between 31 and 90 then '31 - 90 Days'&#xD;&#xA;  when n between 91 and 180 then '91 - 180 Days'&#xD;&#xA;  when n between 181 and 270 then '181 - 270 Days'&#xD;&#xA;  when n between 271 and 360 then '271 - 360 Days'&#xD;&#xA;  when n between 361 and 720 then '361 - 720 Days'&#xD;&#xA;  when n &gt; 710 then 'Over 720 Days' end as 'TransactionAgeBanding',&#xD;&#xA;  &#xD;&#xA;  case when n between 0 and 60 then 'Current'&#xD;&#xA;  when n between 61 and 90 then '61 - 90 Days'&#xD;&#xA;  when n between 91 and 180 then '91 - 180 Days'&#xD;&#xA;  when n between 181 and 270 then '181 - 270 Days'&#xD;&#xA;  when n between 271 and 360 then '271 - 360 Days'&#xD;&#xA;  when n between 361 and 720 then '361 - 720 Days'&#xD;&#xA;  when n &gt; 710 then 'Greater than 720 Days' end as 'KPIUnbilledTimeBanding',&#xD;&#xA;  case when n between 0 and 60 then 1&#xD;&#xA;  when n between 61 and 90 then 2&#xD;&#xA;  when n between 91 and 180 then 3&#xD;&#xA;  when n between 181 and 270 then 4&#xD;&#xA;  when n between 271 and 360 then 5&#xD;&#xA;  when n between 361 and 720 then 6&#xD;&#xA;  when n &gt; 710 then 7 end as 'KPIUnbilledTimeOrder'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;  from (&#xD;&#xA;  select &#xD;&#xA;  top 100000&#xD;&#xA;  row_number() over(order by t1.number) as n&#xD;&#xA;  &#xD;&#xA;  &#xD;&#xA;  from &#xD;&#xA;  master..spt_values t1   &#xD;&#xA;  CROSS JOIN master..spt_values t2&#xD;&#xA;&#xD;&#xA;  ) tbl&#xD;&#xA;  union&#xD;&#xA;  select 0, '0 - 30 Days', 'Current', 1&#xD;&#xA;&#xD;&#xA;  order by 1">
+                    <xs:element name="DaysBanding_a0bb1990-5adf-49c9-8dd2-ce75361b1478" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimDaysBanding" msprop:DbTableName="DaysBanding" msprop:TableType="View" msprop:Description="DaysBanding" msprop:QueryDefinition="select &#xD;&#xA;  n as 'Number',&#xD;&#xA;  case when n between 0 and 30 then '0 - 30 Days'&#xD;&#xA;  when n between 31 and 90 then '31 - 90 Days'&#xD;&#xA;  when n between 91 and 180 then '91 - 180 Days'&#xD;&#xA;  when n between 181 and 270 then '181 - 270 Days'&#xD;&#xA;  when n between 271 and 360 then '271 - 360 Days'&#xD;&#xA;  when n between 361 and 720 then '361 - 720 Days'&#xD;&#xA;  when n &gt; 710 then 'Over 720 Days' end as 'TransactionAgeBanding',&#xD;&#xA;  &#xD;&#xA;  case when n between 0 and 60 then 'Current'&#xD;&#xA;  when n between 61 and 90 then '61 - 90 Days'&#xD;&#xA;  when n between 91 and 180 then '91 - 180 Days'&#xD;&#xA;  when n between 181 and 270 then '181 - 270 Days'&#xD;&#xA;  when n between 271 and 360 then '271 - 360 Days'&#xD;&#xA;  when n between 361 and 720 then '361 - 720 Days'&#xD;&#xA;  when n &gt; 710 then 'Greater than 720 Days' end as 'WIPAgeBanding',&#xD;&#xA;  case when n between 0 and 60 then 1&#xD;&#xA;  when n between 61 and 90 then 2&#xD;&#xA;  when n between 91 and 180 then 3&#xD;&#xA;  when n between 181 and 270 then 4&#xD;&#xA;  when n between 271 and 360 then 5&#xD;&#xA;  when n between 361 and 720 then 6&#xD;&#xA;  when n &gt; 710 then 7 end as 'WIPAgeOrder'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;  from (&#xD;&#xA;  select &#xD;&#xA;  top 100000&#xD;&#xA;  row_number() over(order by t1.number) as n&#xD;&#xA;  &#xD;&#xA;  &#xD;&#xA;  from &#xD;&#xA;  master..spt_values t1   &#xD;&#xA;  CROSS JOIN master..spt_values t2&#xD;&#xA;&#xD;&#xA;  ) tbl&#xD;&#xA;  union&#xD;&#xA;  select 0, '0 - 30 Days', 'Current', 1&#xD;&#xA;&#xD;&#xA;  order by 1">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="Number" msprop:DbColumnName="Number" msprop:FriendlyName="Number" type="xs:long" minOccurs="0" />
@@ -32192,27 +32359,20 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                               </xs:restriction>
                             </xs:simpleType>
                           </xs:element>
-                          <xs:element name="KPIUnbilledTimeBanding" msprop:DbColumnName="KPIUnbilledTimeBanding" msprop:FriendlyName="KPIUnbilledTimeBanding" minOccurs="0">
+                          <xs:element name="WIPAgeBanding" msprop:DbColumnName="WIPAgeBanding" msprop:FriendlyName="WIPAgeBanding" minOccurs="0">
                             <xs:simpleType>
                               <xs:restriction base="xs:string">
                                 <xs:maxLength value="32768" />
                               </xs:restriction>
                             </xs:simpleType>
                           </xs:element>
-                          <xs:element name="KPIUnbilledTimeOrder" msprop:DbColumnName="KPIUnbilledTimeOrder" msprop:FriendlyName="KPIUnbilledTimeOrder" type="xs:int" minOccurs="0" />
+                          <xs:element name="WIPAgeOrder" msprop:DbColumnName="WIPAgeOrder" msprop:FriendlyName="WIPAgeOrder" type="xs:int" minOccurs="0" />
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="BillExtension_f9cf1452-de25-4f55-8f1a-9e59d04c98dc" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="BillExtension" msprop:DbTableName="BillExtension" msprop:TableType="View" msprop:Description="BillExtension" msprop:QueryDefinition="select&#xD;&#xA;bill_number as 'BillXBillNumber',&#xD;&#xA;dim_fed_hierarchy_history_key as 'BillXFeeEarner',&#xD;&#xA;bill_amount as 'BillXBillAmount',&#xD;&#xA;billed_time as 'BillXTimeBilled'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_bill_activity b&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_client c&#xD;&#xA; on c.dim_client_key = b.dim_client_key&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;c.client_group_name = 'Zurich'">
+                    <xs:element name="BillExtension_f9cf1452-de25-4f55-8f1a-9e59d04c98dc" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="BillExtension" msprop:DbTableName="BillExtension" msprop:TableType="View" msprop:Description="BillExtension" msprop:QueryDefinition="select&#xD;&#xA;dim_bill_key as 'BillID',&#xD;&#xA;dim_fed_hierarchy_history_key as 'BillXFeeEarner',&#xD;&#xA;bill_amount as 'BillXBillAmount',&#xD;&#xA;billed_time as 'BillXTimeBilled'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_bill_activity b&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_client c&#xD;&#xA; on c.dim_client_key = b.dim_client_key&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;c.client_group_name = 'Zurich'">
                       <xs:complexType>
                         <xs:sequence>
-                          <xs:element name="BillXBillNumber" msprop:DbColumnName="BillXBillNumber" msprop:FriendlyName="BillXBillNumber" minOccurs="0">
-                            <xs:simpleType>
-                              <xs:restriction base="xs:string">
-                                <xs:maxLength value="32768" />
-                              </xs:restriction>
-                            </xs:simpleType>
-                          </xs:element>
                           <xs:element name="BillXFeeEarner" msprop:DbColumnName="BillXFeeEarner" msprop:FriendlyName="BillXFeeEarner" minOccurs="0">
                             <xs:simpleType>
                               <xs:restriction base="xs:string">
@@ -32222,6 +32382,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                           </xs:element>
                           <xs:element name="BillXBillAmount" msprop:DbColumnName="BillXBillAmount" msprop:FriendlyName="BillXBillAmount" type="xs:decimal" minOccurs="0" />
                           <xs:element name="BillXTimeBilled" msprop:DbColumnName="BillXTimeBilled" msprop:FriendlyName="BillXTimeBilled" type="xs:decimal" minOccurs="0" />
+                          <xs:element name="BillID" msprop:DbColumnName="BillID" msprop:FriendlyName="BillID" type="xs:int" minOccurs="0" />
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
