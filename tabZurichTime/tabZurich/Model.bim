@@ -436,11 +436,6 @@
                   <Name>DisbursementBalance</Name>
                 </AttributeRelationship>
                 <AttributeRelationship>
-                  <AttributeID>ClientAccountBalance</AttributeID>
-                  <OverrideBehavior>None</OverrideBehavior>
-                  <Name>ClientAccountBalance</Name>
-                </AttributeRelationship>
-                <AttributeRelationship>
                   <AttributeID>UnpaidBillsBalance</AttributeID>
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>UnpaidBillsBalance</Name>
@@ -545,6 +540,11 @@
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>ClientID</Name>
                 </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>TotalMatterBalance</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>TotalMatterBalance</Name>
+                </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
@@ -616,42 +616,6 @@
                 <Source xsi:type="ColumnBinding">
                   <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
                   <ColumnID>DisbursementBalance</ColumnID>
-                </Source>
-              </NameColumn>
-              <OrderBy>Key</OrderBy>
-              <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
-            </Attribute>
-            <Attribute>
-              <Annotations>
-                <Annotation>
-                  <Name>Format</Name>
-                  <Value>
-                    <Format Format="General" xmlns="" />
-                  </Value>
-                </Annotation>
-              </Annotations>
-              <ID>ClientAccountBalance</ID>
-              <Name>ClientAccountBalance</Name>
-              <KeyColumns>
-                <KeyColumn>
-                  <DataType>Double</DataType>
-                  <DataSize>-1</DataSize>
-                  <NullProcessing>Preserve</NullProcessing>
-                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                  <Source xsi:type="ColumnBinding">
-                    <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
-                    <ColumnID>ClientAccountBalance</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-              <NameColumn>
-                <DataType>WChar</DataType>
-                <DataSize>-1</DataSize>
-                <NullProcessing>ZeroOrBlank</NullProcessing>
-                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                <Source xsi:type="ColumnBinding">
-                  <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
-                  <ColumnID>ClientAccountBalance</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
@@ -1258,6 +1222,31 @@
               </NameColumn>
               <OrderBy>Key</OrderBy>
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+            </Attribute>
+            <Attribute>
+              <ID>TotalMatterBalance</ID>
+              <Name>TotalMatterBalance</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Double</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                    <ColumnID>TotalMatterBalance</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                  <ColumnID>TotalMatterBalance</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
             </Attribute>
           </Attributes>
           <ProactiveCaching>
@@ -11025,10 +11014,6 @@
                   <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
                 </Attribute>
                 <Attribute>
-                  <AttributeID>ClientAccountBalance</AttributeID>
-                  <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
-                </Attribute>
-                <Attribute>
                   <AttributeID>UnpaidBillsBalance</AttributeID>
                   <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
                 </Attribute>
@@ -11107,6 +11092,9 @@
                 <Attribute>
                   <AttributeID>ClientID</AttributeID>
                   <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>TotalMatterBalance</AttributeID>
                 </Attribute>
               </Attributes>
             </Dimension>
@@ -12465,21 +12453,6 @@ left join sql2008svr.axxia01.dbo.caclextn crm
                       </KeyColumns>
                     </Attribute>
                     <Attribute>
-                      <AttributeID>ClientAccountBalance</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Double</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
-                            <ColumnID>ClientAccountBalance</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
                       <AttributeID>UnpaidBillsBalance</AttributeID>
                       <KeyColumns>
                         <KeyColumn>
@@ -12775,6 +12748,20 @@ left join sql2008svr.axxia01.dbo.caclextn crm
                           <Source xsi:type="ColumnBinding">
                             <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
                             <ColumnID>ClientID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>TotalMatterBalance</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Double</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                            <ColumnID>TotalMatterBalance</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -14556,7 +14543,7 @@ date1.dim_date_key as 'DateMatterOpen',
 date2.dim_date_key as 'DateMatterClosed',
 datediff(day, d.date_opened_case, isnull(d.date_closed_case, getdate())) as 'AgeOfMatterDays',
 disbursement_balance as 'DisbursementBalance',
-client_account_balance_of_matter as 'ClientAccountBalance',
+client_account_balance_of_matter as 'TotalMatterBalance',
 unpaid_bill_balance as 'UnpaidBillsBalance',
 wip_balance as 'WIPBalance',
 costs_to_date as 'CostsToDate',
@@ -15663,21 +15650,6 @@ d.matter_number</QueryDefinition>
                       </KeyColumns>
                     </Attribute>
                     <Attribute>
-                      <AttributeID>ClientAccountBalance</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Double</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
-                            <ColumnID>ClientAccountBalance</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
                       <AttributeID>UnpaidBillsBalance</AttributeID>
                       <KeyColumns>
                         <KeyColumn>
@@ -15973,6 +15945,20 @@ d.matter_number</QueryDefinition>
                           <Source xsi:type="ColumnBinding">
                             <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
                             <ColumnID>ClientID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>TotalMatterBalance</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Double</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                            <ColumnID>TotalMatterBalance</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -19581,21 +19567,6 @@ red_dw.dbo.dim_matter_branch</QueryDefinition>
                       </KeyColumns>
                     </Attribute>
                     <Attribute>
-                      <AttributeID>ClientAccountBalance</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Double</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
-                            <ColumnID>ClientAccountBalance</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
                       <AttributeID>UnpaidBillsBalance</AttributeID>
                       <KeyColumns>
                         <KeyColumn>
@@ -19891,6 +19862,20 @@ red_dw.dbo.dim_matter_branch</QueryDefinition>
                           <Source xsi:type="ColumnBinding">
                             <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
                             <ColumnID>ClientID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>TotalMatterBalance</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Double</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                            <ColumnID>TotalMatterBalance</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -27904,21 +27889,6 @@ dim_date</QueryDefinition>
                       </KeyColumns>
                     </Attribute>
                     <Attribute>
-                      <AttributeID>ClientAccountBalance</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Double</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
-                            <ColumnID>ClientAccountBalance</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
                       <AttributeID>UnpaidBillsBalance</AttributeID>
                       <KeyColumns>
                         <KeyColumn>
@@ -28214,6 +28184,20 @@ dim_date</QueryDefinition>
                           <Source xsi:type="ColumnBinding">
                             <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
                             <ColumnID>ClientID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>TotalMatterBalance</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Double</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                            <ColumnID>TotalMatterBalance</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -30734,7 +30718,7 @@ CREATE MEASURE 'Matter'[Disbursement Balance]=sum([DisbursementBalance]);
 ----------------------------------------------------------
 
 
-CREATE MEASURE 'Matter'[Total Matter Balance]=sum([ClientAccountBalance]);
+CREATE MEASURE 'Matter'[Total Matter Balance]=sum([TotalMatterBalance]);
 </Text>
                   <Annotations>
                     <Annotation>
@@ -31489,12 +31473,11 @@ CREATE MEASURE 'BillExtension'[BillX Profit Costs]=SUM([BillXBillAmount]);
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="Matter" msprop:DbTableName="factMatter" msprop:TableType="View" msprop:Description="factMatter" msprop:QueryDefinition="select distinct &#xD;&#xA;f.dim_matter_header_curr_key as 'MatterID',&#xD;&#xA;f.dim_fed_hierarchy_history_key as 'FEDCodeID',&#xD;&#xA;d.dim_matter_group_key as 'MatterGroupID',&#xD;&#xA;d.dim_matter_branch_key as 'BranchID',&#xD;&#xA;d.dim_matter_worktype_key as 'WorkTypeID',&#xD;&#xA;d.dim_department_key as 'DepartmentID',&#xD;&#xA;c.dim_client_key as 'ClientID',&#xD;&#xA;d.fed_code_partner as 'PartnerCode',&#xD;&#xA;d.matter_number as 'MatterNumber',&#xD;&#xA;d.case_public_desc1 as 'MatterDesc',&#xD;&#xA;date1.dim_date_key as 'DateMatterOpen',&#xD;&#xA;date2.dim_date_key as 'DateMatterClosed',&#xD;&#xA;datediff(day, d.date_opened_case, isnull(d.date_closed_case, getdate())) as 'AgeOfMatterDays',&#xD;&#xA;disbursement_balance as 'DisbursementBalance',&#xD;&#xA;client_account_balance_of_matter as 'ClientAccountBalance',&#xD;&#xA;unpaid_bill_balance as 'UnpaidBillsBalance',&#xD;&#xA;wip_balance as 'WIPBalance',&#xD;&#xA;costs_to_date as 'CostsToDate',&#xD;&#xA;time_billed as 'TotalTimeBilled',&#xD;&#xA;number_bills_matter as 'NumberOfBillsRaised',&#xD;&#xA;unbilled_time as 'UnbilledTime',&#xD;&#xA;case when d.case_id is null then 'No' else 'Yes' end as 'HasRecordInCashdr',&#xD;&#xA;lastbill.LastBillDate,&#xD;&#xA;lasttime.LastTimeDate &#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_matter_summary f&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_client c&#xD;&#xA; on c.dim_client_key = f.dim_client_key&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_matter_header_current d&#xD;&#xA; on d.dim_matter_header_curr_key = f.dim_matter_header_curr_key&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_date date1&#xD;&#xA; on date1.calendar_date = d.date_opened_case&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_date date2&#xD;&#xA; on date2.calendar_date = d.date_closed_case&#xD;&#xA;&#xD;&#xA;left join (&#xD;&#xA;  select dim_matter_header_curr_key, max(dim_bill_date_key) LastBillDate from red_dw.dbo.fact_bill&#xD;&#xA;  group by dim_matter_header_curr_key) lastbill &#xD;&#xA;  on f.dim_matter_header_curr_key = lastbill.dim_matter_header_curr_key&#xD;&#xA;&#xD;&#xA;left join (&#xD;&#xA;  select dim_matter_header_curr_key, max(dim_transaction_date_key) LastTimeDate &#xD;&#xA;  from red_dw.dbo.fact_all_time_activity a &#xD;&#xA;  group by dim_matter_header_curr_key) lasttime &#xD;&#xA;  on lasttime.dim_matter_header_curr_key = f.dim_matter_header_curr_key&#xD;&#xA;  &#xD;&#xA;&#xD;&#xA; &#xD;&#xA;where&#xD;&#xA; f.fin_month = (&#xD;&#xA;select &#xD;&#xA;fin_month&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_date&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;calendar_date = cast(getdate() - 1 as date))&#xD;&#xA;and f.dim_matter_header_curr_key &gt; 0&#xD;&#xA;and c.client_group_name = 'Zurich'&#xD;&#xA;order by&#xD;&#xA;d.matter_number">
+                    <xs:element name="factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="Matter" msprop:DbTableName="factMatter" msprop:TableType="View" msprop:Description="factMatter" msprop:QueryDefinition="select distinct &#xD;&#xA;f.dim_matter_header_curr_key as 'MatterID',&#xD;&#xA;f.dim_fed_hierarchy_history_key as 'FEDCodeID',&#xD;&#xA;d.dim_matter_group_key as 'MatterGroupID',&#xD;&#xA;d.dim_matter_branch_key as 'BranchID',&#xD;&#xA;d.dim_matter_worktype_key as 'WorkTypeID',&#xD;&#xA;d.dim_department_key as 'DepartmentID',&#xD;&#xA;c.dim_client_key as 'ClientID',&#xD;&#xA;d.fed_code_partner as 'PartnerCode',&#xD;&#xA;d.matter_number as 'MatterNumber',&#xD;&#xA;d.case_public_desc1 as 'MatterDesc',&#xD;&#xA;date1.dim_date_key as 'DateMatterOpen',&#xD;&#xA;date2.dim_date_key as 'DateMatterClosed',&#xD;&#xA;datediff(day, d.date_opened_case, isnull(d.date_closed_case, getdate())) as 'AgeOfMatterDays',&#xD;&#xA;disbursement_balance as 'DisbursementBalance',&#xD;&#xA;client_account_balance_of_matter as 'TotalMatterBalance',&#xD;&#xA;unpaid_bill_balance as 'UnpaidBillsBalance',&#xD;&#xA;wip_balance as 'WIPBalance',&#xD;&#xA;costs_to_date as 'CostsToDate',&#xD;&#xA;time_billed as 'TotalTimeBilled',&#xD;&#xA;number_bills_matter as 'NumberOfBillsRaised',&#xD;&#xA;unbilled_time as 'UnbilledTime',&#xD;&#xA;case when d.case_id is null then 'No' else 'Yes' end as 'HasRecordInCashdr',&#xD;&#xA;lastbill.LastBillDate,&#xD;&#xA;lasttime.LastTimeDate &#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_matter_summary f&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_client c&#xD;&#xA; on c.dim_client_key = f.dim_client_key&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_matter_header_current d&#xD;&#xA; on d.dim_matter_header_curr_key = f.dim_matter_header_curr_key&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_date date1&#xD;&#xA; on date1.calendar_date = d.date_opened_case&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_date date2&#xD;&#xA; on date2.calendar_date = d.date_closed_case&#xD;&#xA;&#xD;&#xA;left join (&#xD;&#xA;  select dim_matter_header_curr_key, max(dim_bill_date_key) LastBillDate from red_dw.dbo.fact_bill&#xD;&#xA;  group by dim_matter_header_curr_key) lastbill &#xD;&#xA;  on f.dim_matter_header_curr_key = lastbill.dim_matter_header_curr_key&#xD;&#xA;&#xD;&#xA;left join (&#xD;&#xA;  select dim_matter_header_curr_key, max(dim_transaction_date_key) LastTimeDate &#xD;&#xA;  from red_dw.dbo.fact_all_time_activity a &#xD;&#xA;  group by dim_matter_header_curr_key) lasttime &#xD;&#xA;  on lasttime.dim_matter_header_curr_key = f.dim_matter_header_curr_key&#xD;&#xA;  &#xD;&#xA;&#xD;&#xA; &#xD;&#xA;where&#xD;&#xA; f.fin_month = (&#xD;&#xA;select &#xD;&#xA;fin_month&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_date&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;calendar_date = cast(getdate() - 1 as date))&#xD;&#xA;and f.dim_matter_header_curr_key &gt; 0&#xD;&#xA;and c.client_group_name = 'Zurich'&#xD;&#xA;order by&#xD;&#xA;d.matter_number">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="MatterID" msprop:DbColumnName="MatterID" msprop:FriendlyName="MatterID" type="xs:int" minOccurs="0" />
                           <xs:element name="DisbursementBalance" msprop:DbColumnName="DisbursementBalance" msprop:FriendlyName="DisbursementBalance" type="xs:decimal" minOccurs="0" />
-                          <xs:element name="ClientAccountBalance" msprop:DbColumnName="ClientAccountBalance" msprop:FriendlyName="ClientAccountBalance" type="xs:decimal" minOccurs="0" />
                           <xs:element name="UnpaidBillsBalance" msprop:DbColumnName="UnpaidBillsBalance" msprop:FriendlyName="UnpaidBillsBalance" type="xs:decimal" minOccurs="0" />
                           <xs:element name="WIPBalance" msprop:DbColumnName="WIPBalance" msprop:FriendlyName="WIPBalance" type="xs:decimal" minOccurs="0" />
                           <xs:element name="CostsToDate" msprop:DbColumnName="CostsToDate" msprop:FriendlyName="CostsToDate" type="xs:decimal" minOccurs="0" />
@@ -31540,6 +31523,7 @@ CREATE MEASURE 'BillExtension'[BillX Profit Costs]=SUM([BillXBillAmount]);
                           <xs:element name="WorkTypeID" msprop:DbColumnName="WorkTypeID" msprop:FriendlyName="WorkTypeID" type="xs:int" minOccurs="0" />
                           <xs:element name="DepartmentID" msprop:DbColumnName="DepartmentID" msprop:FriendlyName="DepartmentID" type="xs:int" minOccurs="0" />
                           <xs:element name="ClientID" msprop:DbColumnName="ClientID" msprop:FriendlyName="ClientID" type="xs:int" minOccurs="0" />
+                          <xs:element name="TotalMatterBalance" msprop:DbColumnName="TotalMatterBalance" msprop:FriendlyName="TotalMatterBalance" type="xs:decimal" minOccurs="0" />
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
