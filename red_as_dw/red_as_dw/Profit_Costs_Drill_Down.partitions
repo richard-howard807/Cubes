@@ -11,14 +11,17 @@
           <LastSchemaUpdate>2014-11-14T09:05:49.47Z</LastSchemaUpdate>
           <LastProcessed>2015-07-13T23:56:19.713333Z</LastProcessed>
           <State>Processed</State>
-          <Source xsi:type="DsvTableBinding" dwd:design-time-name="0adbe64e-84ea-4837-8d08-baeb6e6478a4">
-            <DataSourceViewID>Profit_Costs</DataSourceViewID>
-            <TableID>dbo_fact_bill_activity</TableID>
+          <Source xsi:type="QueryBinding" dwd:design-time-name="c47c5e5f-385d-4494-9073-1ec5e2552dcd">
+            <DataSourceID>Red_dw</DataSourceID>
+            <QueryDefinition>SELECT [dbo].[fact_bill_activity].[dim_client_key],[dbo].[fact_bill_activity].[dim_bill_date_key],[dbo].[fact_bill_activity].[dim_bill_key],[dbo].[fact_bill_activity].[dim_fed_hierarchy_history_key],[dbo].[fact_bill_activity].[dim_billing_address_key],[dbo].[fact_bill_activity].[dim_posting_date_key],[dbo].[fact_bill_activity].[dim_run_date_key],[dbo].[fact_bill_activity].[dim_date_key],[dbo].[fact_bill_activity].[source_system_id],[dbo].[fact_bill_activity].[deleted_flag],[dbo].[fact_bill_activity].[bill_number],[dbo].[fact_bill_activity].[fed_code_fee_earner],[dbo].[fact_bill_activity].[billed_time],[dbo].[fact_bill_activity].[bill_amount],[dbo].[fact_bill_activity].[client_code],[dbo].[fact_bill_activity].[matter_number],[dbo].[fact_bill_activity].[bill_sequence_number],[dbo].[fact_bill_activity].[bill_run_date],[dbo].[fact_bill_activity].[bill_last_pay_date],[dbo].[fact_bill_activity].[bill_record_type],[dbo].[fact_bill_activity].[bill_date],[dbo].[fact_bill_activity].[posting_date],[dbo].[fact_bill_activity].[bill_total],[dbo].[fact_bill_activity].[fees_total],[dbo].[fact_bill_activity].[payed_disbursement],[dbo].[fact_bill_activity].[unpaid_disbursement],[dbo].[fact_bill_activity].[administration_charges],[dbo].[fact_bill_activity].[vat_amount],[dbo].[fact_bill_activity].[payed_amount],[dbo].[fact_bill_activity].[payed_amount_in_currency],[dbo].[fact_bill_activity].[bill_total_in_currency],[dbo].[fact_bill_activity].[bill_address_code],[dbo].[fact_bill_activity].[cablaloc_uid],[dbo].[fact_bill_activity].[dss_update_time],[dbo].[fact_bill_activity].[dim_matter_header_curr_key]
+        FROM [dbo].[fact_bill_activity]
+        WHERE dim_bill_date_key &gt;= 20150501</QueryDefinition>
           </Source>
           <StorageMode>Molap</StorageMode>
           <CurrentStorageMode>Molap</CurrentStorageMode>
           <ProcessingMode>Regular</ProcessingMode>
-          <ProactiveCaching dwd:design-time-name="513b8792-4530-4328-81b5-3e8af36f4247">
+          <Slice>[Dim Bill Date].[Hierarchy].[Bill Fin Year].&amp;[2016]</Slice>
+          <ProactiveCaching dwd:design-time-name="28cdcd67-a398-4052-915a-f1e67c54d2e0">
             <SilenceInterval>PT10S</SilenceInterval>
             <Latency>-PT1S</Latency>
             <SilenceOverrideInterval>PT10M</SilenceOverrideInterval>
@@ -26,10 +29,70 @@
             <Enabled>true</Enabled>
             <OnlineMode>OnCacheComplete</OnlineMode>
             <AggregationStorage>MolapOnly</AggregationStorage>
-            <Source xsi:type="ProactiveCachingInheritedBinding" dwd:design-time-name="f1732f51-be9e-4edb-86a3-dbe137608e7f" />
+            <Source xsi:type="ProactiveCachingTablesBinding" dwd:design-time-name="354a3854-3c5b-4016-8924-475d17bb7f53">
+              <TableNotifications>
+                <TableNotification>
+                  <DbTableName>fact_bill_activity</DbTableName>
+                  <DbSchemaName>dbo</DbSchemaName>
+                </TableNotification>
+              </TableNotifications>
+            </Source>
           </ProactiveCaching>
           <EstimatedSize>144892926</EstimatedSize>
-          <EstimatedRows>2086944</EstimatedRows>
+          <EstimatedRows>46000</EstimatedRows>
+          <AggregationDesignID>AggregationDesign</AggregationDesignID>
+        </Partition>
+        <Partition dwd:design-time-name="8f20efd4-9943-4b10-84db-a4b4480ea713">
+          <ID>Fact Bill Activity Old</ID>
+          <Name>Fact Bill Activity Old</Name>
+          <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+          <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+          <Annotations>
+            <Annotation>
+              <Name>AggregationPercent</Name>
+              <Value></Value>
+            </Annotation>
+          </Annotations>
+          <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+          <State>Unprocessed</State>
+          <Source xsi:type="QueryBinding" dwd:design-time-name="3aeb555a-8fa2-4d27-8073-58d5d2209a3e">
+            <DataSourceID>Red_dw</DataSourceID>
+            <QueryDefinition>SELECT [dbo].[fact_bill_activity].[dim_client_key],[dbo].[fact_bill_activity].[dim_bill_date_key],[dbo].[fact_bill_activity].[dim_bill_key],[dbo].[fact_bill_activity].[dim_fed_hierarchy_history_key],[dbo].[fact_bill_activity].[dim_billing_address_key],[dbo].[fact_bill_activity].[dim_posting_date_key],[dbo].[fact_bill_activity].[dim_run_date_key],[dbo].[fact_bill_activity].[dim_date_key],[dbo].[fact_bill_activity].[source_system_id],[dbo].[fact_bill_activity].[deleted_flag],[dbo].[fact_bill_activity].[bill_number],[dbo].[fact_bill_activity].[fed_code_fee_earner],[dbo].[fact_bill_activity].[billed_time],[dbo].[fact_bill_activity].[bill_amount],[dbo].[fact_bill_activity].[client_code],[dbo].[fact_bill_activity].[matter_number],[dbo].[fact_bill_activity].[bill_sequence_number],[dbo].[fact_bill_activity].[bill_run_date],[dbo].[fact_bill_activity].[bill_last_pay_date],[dbo].[fact_bill_activity].[bill_record_type],[dbo].[fact_bill_activity].[bill_date],[dbo].[fact_bill_activity].[posting_date],[dbo].[fact_bill_activity].[bill_total],[dbo].[fact_bill_activity].[fees_total],[dbo].[fact_bill_activity].[payed_disbursement],[dbo].[fact_bill_activity].[unpaid_disbursement],[dbo].[fact_bill_activity].[administration_charges],[dbo].[fact_bill_activity].[vat_amount],[dbo].[fact_bill_activity].[payed_amount],[dbo].[fact_bill_activity].[payed_amount_in_currency],[dbo].[fact_bill_activity].[bill_total_in_currency],[dbo].[fact_bill_activity].[bill_address_code],[dbo].[fact_bill_activity].[cablaloc_uid],[dbo].[fact_bill_activity].[dss_update_time],[dbo].[fact_bill_activity].[dim_matter_header_curr_key]
+        FROM [dbo].[fact_bill_activity]
+        WHERE dim_bill_date_key &lt; 20150501</QueryDefinition>
+          </Source>
+          <StorageMode>Molap</StorageMode>
+          <CurrentStorageMode>Molap</CurrentStorageMode>
+          <ProcessingMode>Regular</ProcessingMode>
+          <Slice>{
+[Dim Bill Date].[Hierarchy].[Bill Fin Year].&amp;[2015],
+[Dim Bill Date].[Hierarchy].[Bill Fin Year].&amp;[2014],
+[Dim Bill Date].[Hierarchy].[Bill Fin Year].&amp;[2013],
+[Dim Bill Date].[Hierarchy].[Bill Fin Year].&amp;[2012],
+[Dim Bill Date].[Hierarchy].[Bill Fin Year].&amp;[2011],
+[Dim Bill Date].[Hierarchy].[Bill Fin Year].&amp;[2010],
+[Dim Bill Date].[Hierarchy].[Bill Fin Year].&amp;[2009],
+[Dim Bill Date].[Hierarchy].[Bill Fin Year].&amp;[2008],
+[Dim Bill Date].[Hierarchy].[Bill Fin Year].&amp;[2007]
+}</Slice>
+          <ProactiveCaching dwd:design-time-name="00df297b-9529-4f8c-aa24-4361efd16a4a">
+            <SilenceInterval>PT10S</SilenceInterval>
+            <Latency>-PT1S</Latency>
+            <SilenceOverrideInterval>PT10M</SilenceOverrideInterval>
+            <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+            <Enabled>true</Enabled>
+            <OnlineMode>OnCacheComplete</OnlineMode>
+            <AggregationStorage>MolapOnly</AggregationStorage>
+            <Source xsi:type="ProactiveCachingTablesBinding" dwd:design-time-name="7f9065c1-d658-408c-ab52-cd1c15d92c31">
+              <TableNotifications>
+                <TableNotification>
+                  <DbTableName>fact_bill_activity</DbTableName>
+                  <DbSchemaName>dbo</DbSchemaName>
+                </TableNotification>
+              </TableNotifications>
+            </Source>
+          </ProactiveCaching>
+          <EstimatedRows>2042481</EstimatedRows>
           <AggregationDesignID>AggregationDesign</AggregationDesignID>
         </Partition>
       </Partitions>
@@ -37,8 +100,8 @@
         <AggregationDesign>
           <ID>AggregationDesign</ID>
           <Name>AggregationDesign</Name>
-          <CreatedTimestamp>2015-09-03T15:58:55.93Z</CreatedTimestamp>
-          <LastSchemaUpdate>2015-09-03T15:58:55.93Z</LastSchemaUpdate>
+          <CreatedTimestamp>2015-09-10T12:32:37.67Z</CreatedTimestamp>
+          <LastSchemaUpdate>2015-09-10T13:09:13.25Z</LastSchemaUpdate>
           <EstimatedRows>2086944</EstimatedRows>
           <Dimensions>
             <Dimension>
@@ -180,84 +243,42 @@
                   <CubeDimensionID>Dim Bill Date</CubeDimensionID>
                   <Attributes>
                     <Attribute>
-                      <AttributeID>Bill Fin Period</AttributeID>
+                      <AttributeID>Bill Financial Date</AttributeID>
                     </Attribute>
                   </Attributes>
                 </Dimension>
                 <Dimension>
                   <CubeDimensionID>Dim Matter Header Current</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Case Public Desc1</AttributeID>
+                    </Attribute>
+                  </Attributes>
                 </Dimension>
                 <Dimension>
                   <CubeDimensionID>Dim Client</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Client Code</AttributeID>
+                    </Attribute>
+                  </Attributes>
                 </Dimension>
                 <Dimension>
                   <CubeDimensionID>Dim Bill</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Bill Number</AttributeID>
+                    </Attribute>
+                  </Attributes>
                 </Dimension>
                 <Dimension>
                   <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
-                  <Attributes>
-                    <Attribute>
-                      <AttributeID>Hierarchylevel1hist</AttributeID>
-                    </Attribute>
-                  </Attributes>
                 </Dimension>
               </Dimensions>
             </Aggregation>
             <Aggregation>
               <ID>Aggregation 1</ID>
               <Name>Aggregation 1</Name>
-              <Dimensions>
-                <Dimension>
-                  <CubeDimensionID>Dim Bill Date</CubeDimensionID>
-                </Dimension>
-                <Dimension>
-                  <CubeDimensionID>Dim Matter Header Current</CubeDimensionID>
-                </Dimension>
-                <Dimension>
-                  <CubeDimensionID>Dim Client</CubeDimensionID>
-                </Dimension>
-                <Dimension>
-                  <CubeDimensionID>Dim Bill</CubeDimensionID>
-                </Dimension>
-                <Dimension>
-                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
-                  <Attributes>
-                    <Attribute>
-                      <AttributeID>Display Name</AttributeID>
-                    </Attribute>
-                  </Attributes>
-                </Dimension>
-              </Dimensions>
-            </Aggregation>
-            <Aggregation>
-              <ID>Aggregation 2</ID>
-              <Name>Aggregation 2</Name>
-              <Dimensions>
-                <Dimension>
-                  <CubeDimensionID>Dim Bill Date</CubeDimensionID>
-                </Dimension>
-                <Dimension>
-                  <CubeDimensionID>Dim Matter Header Current</CubeDimensionID>
-                </Dimension>
-                <Dimension>
-                  <CubeDimensionID>Dim Client</CubeDimensionID>
-                </Dimension>
-                <Dimension>
-                  <CubeDimensionID>Dim Bill</CubeDimensionID>
-                </Dimension>
-                <Dimension>
-                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
-                  <Attributes>
-                    <Attribute>
-                      <AttributeID>Hierarchylevel2hist</AttributeID>
-                    </Attribute>
-                  </Attributes>
-                </Dimension>
-              </Dimensions>
-            </Aggregation>
-            <Aggregation>
-              <ID>Aggregation 3</ID>
-              <Name>Aggregation 3</Name>
               <Dimensions>
                 <Dimension>
                   <CubeDimensionID>Dim Bill Date</CubeDimensionID>
@@ -272,15 +293,158 @@
                 </Dimension>
                 <Dimension>
                   <CubeDimensionID>Dim Client</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Client Code</AttributeID>
+                    </Attribute>
+                  </Attributes>
                 </Dimension>
                 <Dimension>
                   <CubeDimensionID>Dim Bill</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Bill Number</AttributeID>
+                    </Attribute>
+                  </Attributes>
                 </Dimension>
                 <Dimension>
                   <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
                   <Attributes>
                     <Attribute>
-                      <AttributeID>Hierarchylevel3hist</AttributeID>
+                      <AttributeID>Fed Code</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+              </Dimensions>
+            </Aggregation>
+            <Aggregation>
+              <ID>Aggregation 2</ID>
+              <Name>Aggregation 2</Name>
+              <Dimensions>
+                <Dimension>
+                  <CubeDimensionID>Dim Bill Date</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Bill Financial Date</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Header Current</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Case Public Desc1</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Client</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Client Code</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Bill</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Bill Number</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Fed Code</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+              </Dimensions>
+            </Aggregation>
+            <Aggregation>
+              <ID>Aggregation 3</ID>
+              <Name>Aggregation 3</Name>
+              <Dimensions>
+                <Dimension>
+                  <CubeDimensionID>Dim Bill Date</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Bill Financial Date</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Header Current</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Case Public Desc1</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Client</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Client Name</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Bill</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Bill Number</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+                </Dimension>
+              </Dimensions>
+            </Aggregation>
+            <Aggregation>
+              <ID>Aggregation 4</ID>
+              <Name>Aggregation 4</Name>
+              <Dimensions>
+                <Dimension>
+                  <CubeDimensionID>Dim Bill Date</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Bill Financial Date</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Header Current</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Case Public Desc1</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Client</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Client Name</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Bill</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Bill Number</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Fed Code</AttributeID>
                     </Attribute>
                   </Attributes>
                 </Dimension>
