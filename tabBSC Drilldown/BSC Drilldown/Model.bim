@@ -32960,6 +32960,13 @@ CREATE MEASURE 'fact_bsc_learndev'[Sum of cpd_flag]=SUM([cpd_flag]);
 CREATE MEASURE 'fact_bsc_learndev'[CPD Score Calculated]=if([Sum of cpd_flag] = 0, blank(), [Sum of cpd_score]);
 CREATE MEASURE 'fact_bsc_learndev'[CPD Percentage Calculated]=if([Sum of cpd_flag] = 0, blank(), [Sum of cpd_percentage_ind]);
 CREATE MEASURE 'fact_bsc_learndev'[Sum of cpd_percentage_ind]=SUM([cpd_percentage_ind]);
+CREATE MEASURE 'fact_bsc_learndev'[Sum of team_meetings_score]=SUM([team_meetings_score]);
+CREATE MEASURE 'fact_bsc_learndev'[Sum of team_meetings_attended]=SUM([team_meetings_attended]);
+CREATE MEASURE 'fact_bsc_learndev'[Sum of team_meetings_flag]=SUM([team_meetings_flag]);
+CREATE MEASURE 'fact_bsc_learndev'[Team Meetings Score Calculated]=if([Sum of team_meetings_flag] = 0, blank(), [Sum of team_meetings_score]);
+CREATE MEASURE 'fact_bsc_learndev'[Team Meetings Attended Calculated]=if([Sum of team_meetings_flag] = 0, blank(), [Sum of team_meetings_attended]);
+CREATE MEASURE 'fact_bsc_learndev'[Sum of team_meetings_possible]=SUM([team_meetings_possible]);
+CREATE MEASURE 'fact_bsc_learndev'[Team Meetings Possible Calculated]=if([Sum of team_meetings_flag] = 0, blank(), [Sum of team_meetings_possible]);
 </Text>
                 </Command>
               </Commands>
@@ -33171,6 +33178,153 @@ CREATE MEASURE 'fact_bsc_learndev'[Sum of cpd_percentage_ind]=SUM([cpd_percentag
                     </Annotation>
                   </Annotations>
                   <CalculationReference>[Sum of cpd_percentage_ind]</CalculationReference>
+                  <CalculationType>Member</CalculationType>
+                  <FormatString>''</FormatString>
+                </CalculationProperty>
+                <CalculationProperty>
+                  <Annotations>
+                    <Annotation>
+                      <Name>Type</Name>
+                      <Value>User</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsPrivate</Name>
+                      <Value>False</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Format</Name>
+                      <Value>
+                        <Format Format="General" xmlns="" />
+                      </Value>
+                    </Annotation>
+                  </Annotations>
+                  <CalculationReference>[Sum of team_meetings_score]</CalculationReference>
+                  <CalculationType>Member</CalculationType>
+                  <FormatString>''</FormatString>
+                </CalculationProperty>
+                <CalculationProperty>
+                  <Annotations>
+                    <Annotation>
+                      <Name>Type</Name>
+                      <Value>User</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsPrivate</Name>
+                      <Value>False</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Format</Name>
+                      <Value>
+                        <Format Format="General" xmlns="" />
+                      </Value>
+                    </Annotation>
+                  </Annotations>
+                  <CalculationReference>[Sum of team_meetings_attended]</CalculationReference>
+                  <CalculationType>Member</CalculationType>
+                  <FormatString>''</FormatString>
+                </CalculationProperty>
+                <CalculationProperty>
+                  <Annotations>
+                    <Annotation>
+                      <Name>Type</Name>
+                      <Value>User</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsPrivate</Name>
+                      <Value>False</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Format</Name>
+                      <Value>
+                        <Format Format="General" xmlns="" />
+                      </Value>
+                    </Annotation>
+                  </Annotations>
+                  <CalculationReference>[Sum of team_meetings_flag]</CalculationReference>
+                  <CalculationType>Member</CalculationType>
+                  <FormatString>''</FormatString>
+                </CalculationProperty>
+                <CalculationProperty>
+                  <Annotations>
+                    <Annotation>
+                      <Name>Type</Name>
+                      <Value>User</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsPrivate</Name>
+                      <Value>False</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Format</Name>
+                      <Value>
+                        <Format Format="General" xmlns="" />
+                      </Value>
+                    </Annotation>
+                  </Annotations>
+                  <CalculationReference>[Team Meetings Score Calculated]</CalculationReference>
+                  <CalculationType>Member</CalculationType>
+                  <FormatString>''</FormatString>
+                </CalculationProperty>
+                <CalculationProperty>
+                  <Annotations>
+                    <Annotation>
+                      <Name>Type</Name>
+                      <Value>User</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsPrivate</Name>
+                      <Value>False</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Format</Name>
+                      <Value>
+                        <Format Format="General" xmlns="" />
+                      </Value>
+                    </Annotation>
+                  </Annotations>
+                  <CalculationReference>[Team Meetings Attended Calculated]</CalculationReference>
+                  <CalculationType>Member</CalculationType>
+                  <FormatString>''</FormatString>
+                </CalculationProperty>
+                <CalculationProperty>
+                  <Annotations>
+                    <Annotation>
+                      <Name>Type</Name>
+                      <Value>User</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsPrivate</Name>
+                      <Value>False</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Format</Name>
+                      <Value>
+                        <Format Format="General" xmlns="" />
+                      </Value>
+                    </Annotation>
+                  </Annotations>
+                  <CalculationReference>[Sum of team_meetings_possible]</CalculationReference>
+                  <CalculationType>Member</CalculationType>
+                  <FormatString>''</FormatString>
+                </CalculationProperty>
+                <CalculationProperty>
+                  <Annotations>
+                    <Annotation>
+                      <Name>Type</Name>
+                      <Value>User</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsPrivate</Name>
+                      <Value>False</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Format</Name>
+                      <Value>
+                        <Format Format="General" xmlns="" />
+                      </Value>
+                    </Annotation>
+                  </Annotations>
+                  <CalculationReference>[Team Meetings Possible Calculated]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
                 </CalculationProperty>
