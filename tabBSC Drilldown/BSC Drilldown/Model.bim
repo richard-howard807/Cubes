@@ -32967,6 +32967,13 @@ CREATE MEASURE 'fact_bsc_learndev'[Team Meetings Score Calculated]=if([Sum of te
 CREATE MEASURE 'fact_bsc_learndev'[Team Meetings Attended Calculated]=if([Sum of team_meetings_flag] = 0, blank(), [Sum of team_meetings_attended]);
 CREATE MEASURE 'fact_bsc_learndev'[Sum of team_meetings_possible]=SUM([team_meetings_possible]);
 CREATE MEASURE 'fact_bsc_learndev'[Team Meetings Possible Calculated]=if([Sum of team_meetings_flag] = 0, blank(), [Sum of team_meetings_possible]);
+CREATE MEASURE 'fact_bsc_client'[Sum of client_meetings_score]=SUM([client_meetings_score]);
+CREATE MEASURE 'fact_bsc_client'[Sum of client_meetings_attended]=SUM([client_meetings_attended]);
+CREATE MEASURE 'fact_bsc_client'[Sum of client_meetings_flag]=SUM([client_meetings_flag]);
+CREATE MEASURE 'fact_bsc_client'[Sum of client_meetings_possible]=SUM([client_meetings_possible]);
+CREATE MEASURE 'fact_bsc_client'[Client Meetings Score Calculated]=if([Sum of client_meetings_flag] = 0, blank(), [Sum of client_meetings_score]);
+CREATE MEASURE 'fact_bsc_client'[Client Meetings Attended Calculated]=if([Sum of client_meetings_flag] = 0, blank(), [Sum of client_meetings_attended]);
+CREATE MEASURE 'fact_bsc_client'[Client Meetings Possible Calculated]=if([Sum of client_meetings_flag] = 0, blank(), [Sum of client_meetings_possible]);
 </Text>
                 </Command>
               </Commands>
@@ -33325,6 +33332,153 @@ CREATE MEASURE 'fact_bsc_learndev'[Team Meetings Possible Calculated]=if([Sum of
                     </Annotation>
                   </Annotations>
                   <CalculationReference>[Team Meetings Possible Calculated]</CalculationReference>
+                  <CalculationType>Member</CalculationType>
+                  <FormatString>''</FormatString>
+                </CalculationProperty>
+                <CalculationProperty>
+                  <Annotations>
+                    <Annotation>
+                      <Name>Type</Name>
+                      <Value>User</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsPrivate</Name>
+                      <Value>False</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Format</Name>
+                      <Value>
+                        <Format Format="General" xmlns="" />
+                      </Value>
+                    </Annotation>
+                  </Annotations>
+                  <CalculationReference>[Sum of client_meetings_score]</CalculationReference>
+                  <CalculationType>Member</CalculationType>
+                  <FormatString>''</FormatString>
+                </CalculationProperty>
+                <CalculationProperty>
+                  <Annotations>
+                    <Annotation>
+                      <Name>Type</Name>
+                      <Value>User</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsPrivate</Name>
+                      <Value>False</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Format</Name>
+                      <Value>
+                        <Format Format="General" xmlns="" />
+                      </Value>
+                    </Annotation>
+                  </Annotations>
+                  <CalculationReference>[Sum of client_meetings_attended]</CalculationReference>
+                  <CalculationType>Member</CalculationType>
+                  <FormatString>''</FormatString>
+                </CalculationProperty>
+                <CalculationProperty>
+                  <Annotations>
+                    <Annotation>
+                      <Name>Type</Name>
+                      <Value>User</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsPrivate</Name>
+                      <Value>False</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Format</Name>
+                      <Value>
+                        <Format Format="General" xmlns="" />
+                      </Value>
+                    </Annotation>
+                  </Annotations>
+                  <CalculationReference>[Sum of client_meetings_flag]</CalculationReference>
+                  <CalculationType>Member</CalculationType>
+                  <FormatString>''</FormatString>
+                </CalculationProperty>
+                <CalculationProperty>
+                  <Annotations>
+                    <Annotation>
+                      <Name>Type</Name>
+                      <Value>User</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsPrivate</Name>
+                      <Value>False</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Format</Name>
+                      <Value>
+                        <Format Format="General" xmlns="" />
+                      </Value>
+                    </Annotation>
+                  </Annotations>
+                  <CalculationReference>[Sum of client_meetings_possible]</CalculationReference>
+                  <CalculationType>Member</CalculationType>
+                  <FormatString>''</FormatString>
+                </CalculationProperty>
+                <CalculationProperty>
+                  <Annotations>
+                    <Annotation>
+                      <Name>Type</Name>
+                      <Value>User</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsPrivate</Name>
+                      <Value>False</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Format</Name>
+                      <Value>
+                        <Format Format="General" xmlns="" />
+                      </Value>
+                    </Annotation>
+                  </Annotations>
+                  <CalculationReference>[Client Meetings Score Calculated]</CalculationReference>
+                  <CalculationType>Member</CalculationType>
+                  <FormatString>''</FormatString>
+                </CalculationProperty>
+                <CalculationProperty>
+                  <Annotations>
+                    <Annotation>
+                      <Name>Type</Name>
+                      <Value>User</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsPrivate</Name>
+                      <Value>False</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Format</Name>
+                      <Value>
+                        <Format Format="General" xmlns="" />
+                      </Value>
+                    </Annotation>
+                  </Annotations>
+                  <CalculationReference>[Client Meetings Attended Calculated]</CalculationReference>
+                  <CalculationType>Member</CalculationType>
+                  <FormatString>''</FormatString>
+                </CalculationProperty>
+                <CalculationProperty>
+                  <Annotations>
+                    <Annotation>
+                      <Name>Type</Name>
+                      <Value>User</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsPrivate</Name>
+                      <Value>False</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Format</Name>
+                      <Value>
+                        <Format Format="General" xmlns="" />
+                      </Value>
+                    </Annotation>
+                  </Annotations>
+                  <CalculationReference>[Client Meetings Possible Calculated]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
                 </CalculationProperty>
