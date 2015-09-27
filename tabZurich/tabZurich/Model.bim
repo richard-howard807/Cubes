@@ -3023,7 +3023,7 @@
         </Dimension>
         <Dimension>
           <ID>dimDate_2680225e-8095-4471-8c2a-a5053eb922fc</ID>
-          <Name>dimDateTransactionDate</Name>
+          <Name>dim_transaction_date</Name>
           <Annotations>
             <Annotation>
               <Name>UnnamedHierarchies</Name>
@@ -3047,6 +3047,7 @@
           <Source xsi:type="DataSourceViewBinding">
             <DataSourceViewID>Sandbox</DataSourceViewID>
           </Source>
+          <Type>Time</Type>
           <UnknownMember valuens="ddl200_200">AutomaticNull</UnknownMember>
           <ErrorConfiguration>
             <KeyNotFound>IgnoreError</KeyNotFound>
@@ -3062,7 +3063,6 @@
               <ID>RowNumber</ID>
               <Name>RowNumber</Name>
               <Type valuens="ddl200_200">RowNumber</Type>
-              <Usage>Key</Usage>
               <KeyColumns>
                 <KeyColumn>
                   <DataType>Integer</DataType>
@@ -3083,11 +3083,6 @@
                   <Cardinality>One</Cardinality>
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>transaction_date_dim_date_key</Name>
-                </AttributeRelationship>
-                <AttributeRelationship>
-                  <AttributeID>transaction_date_calendar_date</AttributeID>
-                  <OverrideBehavior>None</OverrideBehavior>
-                  <Name>transaction_date_calendar_date</Name>
                 </AttributeRelationship>
                 <AttributeRelationship>
                   <AttributeID>transaction_date_cal_day_in_month</AttributeID>
@@ -3212,11 +3207,12 @@
             <Attribute>
               <ID>transaction_date_calendar_date</ID>
               <Name>transaction_date_calendar_date</Name>
+              <Usage>Key</Usage>
               <KeyColumns>
                 <KeyColumn>
                   <DataType>Date</DataType>
                   <DataSize>-1</DataSize>
-                  <NullProcessing>Preserve</NullProcessing>
+                  <NullProcessing>Error</NullProcessing>
                   <Source xsi:type="ColumnBinding">
                     <TableID>dimDate_2680225e-8095-4471-8c2a-a5053eb922fc</TableID>
                     <ColumnID>transaction_date_calendar_date</ColumnID>
@@ -3232,6 +3228,14 @@
                   <ColumnID>transaction_date_calendar_date</ColumnID>
                 </Source>
               </NameColumn>
+              <AttributeRelationships>
+                <AttributeRelationship>
+                  <AttributeID>RowNumber</AttributeID>
+                  <Cardinality>One</Cardinality>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>RowNumber</Name>
+                </AttributeRelationship>
+              </AttributeRelationships>
               <OrderBy>Key</OrderBy>
             </Attribute>
             <Attribute>
@@ -10733,11 +10737,6 @@
                   <Name>costs_claimed_by_another_defendant</Name>
                 </AttributeRelationship>
                 <AttributeRelationship>
-                  <AttributeID>costs_outcome</AttributeID>
-                  <OverrideBehavior>None</OverrideBehavior>
-                  <Name>costs_outcome</Name>
-                </AttributeRelationship>
-                <AttributeRelationship>
                   <AttributeID>costs_paid_to_another_defendant</AttributeID>
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>costs_paid_to_another_defendant</Name>
@@ -11768,41 +11767,6 @@
                 <Source xsi:type="ColumnBinding">
                   <TableID>dimCaseDetailValue_dd541f99-9bd6-40ed-8c82-e838e140b6f8</TableID>
                   <ColumnID>costs_claimed_by_another_defendant</ColumnID>
-                </Source>
-              </NameColumn>
-              <OrderBy>Key</OrderBy>
-            </Attribute>
-            <Attribute>
-              <Annotations>
-                <Annotation>
-                  <Name>Format</Name>
-                  <Value>
-                    <Format Format="General" xmlns="" />
-                  </Value>
-                </Annotation>
-              </Annotations>
-              <ID>costs_outcome</ID>
-              <Name>costs_outcome</Name>
-              <KeyColumns>
-                <KeyColumn>
-                  <DataType>Double</DataType>
-                  <DataSize>-1</DataSize>
-                  <NullProcessing>Preserve</NullProcessing>
-                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                  <Source xsi:type="ColumnBinding">
-                    <TableID>dimCaseDetailValue_dd541f99-9bd6-40ed-8c82-e838e140b6f8</TableID>
-                    <ColumnID>costs_outcome</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-              <NameColumn>
-                <DataType>WChar</DataType>
-                <DataSize>-1</DataSize>
-                <NullProcessing>ZeroOrBlank</NullProcessing>
-                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                <Source xsi:type="ColumnBinding">
-                  <TableID>dimCaseDetailValue_dd541f99-9bd6-40ed-8c82-e838e140b6f8</TableID>
-                  <ColumnID>costs_outcome</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
@@ -19372,7 +19336,7 @@
             </Dimension>
             <Dimension>
               <ID>dimDate_2680225e-8095-4471-8c2a-a5053eb922fc</ID>
-              <Name>dimDateTransactionDate</Name>
+              <Name>dim_transaction_date</Name>
               <DimensionID>dimDate_2680225e-8095-4471-8c2a-a5053eb922fc</DimensionID>
               <Attributes>
                 <Attribute>
@@ -20283,9 +20247,6 @@
                 </Attribute>
                 <Attribute>
                   <AttributeID>costs_claimed_by_another_defendant</AttributeID>
-                </Attribute>
-                <Attribute>
-                  <AttributeID>costs_outcome</AttributeID>
                 </Attribute>
                 <Attribute>
                   <AttributeID>costs_paid_to_another_defendant</AttributeID>
@@ -25067,21 +25028,6 @@ inner join fact_matter_summary a
                           <Source xsi:type="ColumnBinding">
                             <TableID>dimCaseDetailValue_dd541f99-9bd6-40ed-8c82-e838e140b6f8</TableID>
                             <ColumnID>costs_claimed_by_another_defendant</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>costs_outcome</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Double</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimCaseDetailValue_dd541f99-9bd6-40ed-8c82-e838e140b6f8</TableID>
-                            <ColumnID>costs_outcome</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -30654,21 +30600,6 @@ and c.client_group_name = 'Zurich'</QueryDefinition>
                           <Source xsi:type="ColumnBinding">
                             <TableID>dimCaseDetailValue_dd541f99-9bd6-40ed-8c82-e838e140b6f8</TableID>
                             <ColumnID>costs_claimed_by_another_defendant</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>costs_outcome</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Double</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimCaseDetailValue_dd541f99-9bd6-40ed-8c82-e838e140b6f8</TableID>
-                            <ColumnID>costs_outcome</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -37869,21 +37800,6 @@ red_dw.dbo.dim_matter_branch</QueryDefinition>
                       </KeyColumns>
                     </Attribute>
                     <Attribute>
-                      <AttributeID>costs_outcome</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Double</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimCaseDetailValue_dd541f99-9bd6-40ed-8c82-e838e140b6f8</TableID>
-                            <ColumnID>costs_outcome</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
                       <AttributeID>costs_paid_to_another_defendant</AttributeID>
                       <KeyColumns>
                         <KeyColumn>
@@ -39985,11 +39901,11 @@ red_dw.dbo.fact_all_time_activity</QueryDefinition>
             </MeasureGroup>
             <MeasureGroup>
               <ID>dimDate_2680225e-8095-4471-8c2a-a5053eb922fc</ID>
-              <Name>dimDateTransactionDate</Name>
+              <Name>dim_transaction_date</Name>
               <Measures>
                 <Measure>
                   <ID>dimDate_2680225e-8095-4471-8c2a-a5053eb922fc</ID>
-                  <Name>_Count dimDateTransactionDate</Name>
+                  <Name>_Count dim_transaction_date</Name>
                   <AggregateFunction>Count</AggregateFunction>
                   <DataType>BigInt</DataType>
                   <Source>
@@ -48893,21 +48809,6 @@ dim_date</QueryDefinition>
                       </KeyColumns>
                     </Attribute>
                     <Attribute>
-                      <AttributeID>costs_outcome</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Double</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimCaseDetailValue_dd541f99-9bd6-40ed-8c82-e838e140b6f8</TableID>
-                            <ColumnID>costs_outcome</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
                       <AttributeID>costs_paid_to_another_defendant</AttributeID>
                       <KeyColumns>
                         <KeyColumn>
@@ -54936,21 +54837,6 @@ n.dim_time_narratives_key &gt; 0</QueryDefinition>
                       </KeyColumns>
                     </Attribute>
                     <Attribute>
-                      <AttributeID>costs_outcome</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Double</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimCaseDetailValue_dd541f99-9bd6-40ed-8c82-e838e140b6f8</TableID>
-                            <ColumnID>costs_outcome</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
                       <AttributeID>costs_paid_to_another_defendant</AttributeID>
                       <KeyColumns>
                         <KeyColumn>
@@ -57342,21 +57228,6 @@ red_dw.dbo.dim_department</QueryDefinition>
                           <Source xsi:type="ColumnBinding">
                             <TableID>dimCaseDetailValue_dd541f99-9bd6-40ed-8c82-e838e140b6f8</TableID>
                             <ColumnID>costs_claimed_by_another_defendant</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>costs_outcome</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Double</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimCaseDetailValue_dd541f99-9bd6-40ed-8c82-e838e140b6f8</TableID>
-                            <ColumnID>costs_outcome</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -61895,7 +61766,7 @@ CREATE MEASURE 'fact_bill'[Bill Amount Outstanding]=sum([amount_outstanding]);
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimDate_2680225e-8095-4471-8c2a-a5053eb922fc" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimDateTransactionDate" msprop:DbTableName="dimDate" msprop:TableType="View" msprop:Description="dimDate" msprop:QueryDefinition="select&#xD;&#xA;dim_date_key as 'transaction_date_dim_date_key',&#xD;&#xA;calendar_date as 'transaction_date_calendar_date',&#xD;&#xA;cal_day_in_month as 'transaction_date_cal_day_in_month',&#xD;&#xA;cal_day_in_year as 'transaction_date_cal_day_in_year',&#xD;&#xA;cal_day_in_week_no as 'transaction_date_cal_day_in_week_no',&#xD;&#xA;cal_day_in_week as 'transaction_date_cal_day_in_week',&#xD;&#xA;cal_week_in_year as 'transaction_date_cal_week_in_year',&#xD;&#xA;cal_month_no as 'transaction_date_cal_month_no',&#xD;&#xA;cal_month_name as 'transaction_date_cal_month_name',&#xD;&#xA;cal_quarter_no as 'transaction_date_cal_quarter_no',&#xD;&#xA;cal_year as 'transaction_date_cal_year',&#xD;&#xA;fin_week_in_year as 'transaction_date_fin_week_in_year',&#xD;&#xA;fin_month_no as 'transaction_date_fin_month_no',&#xD;&#xA;fin_month_name as 'transaction_date_fin_month_name',&#xD;&#xA;fin_quarter_no as 'transaction_date_fin_quarter_no',&#xD;&#xA;fin_year as 'transaction_date_fin_year',&#xD;&#xA;week_end_flag as 'transaction_date_week_end_flag',&#xD;&#xA;holiday_flag as 'transaction_date_holiday_flag',&#xD;&#xA;cal_month_name + '-' + right(cal_year, 2) as 'transaction_date_cal_period',&#xD;&#xA;fin_month_name + '-' + right(fin_year, 2) as 'transaction_date_fin_period'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;dim_date">
+                    <xs:element name="dimDate_2680225e-8095-4471-8c2a-a5053eb922fc" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dim_transaction_date" msprop:DbTableName="dimDate" msprop:TableType="View" msprop:Description="dimDate" msprop:QueryDefinition="select&#xD;&#xA;dim_date_key as 'transaction_date_dim_date_key',&#xD;&#xA;calendar_date as 'transaction_date_calendar_date',&#xD;&#xA;cal_day_in_month as 'transaction_date_cal_day_in_month',&#xD;&#xA;cal_day_in_year as 'transaction_date_cal_day_in_year',&#xD;&#xA;cal_day_in_week_no as 'transaction_date_cal_day_in_week_no',&#xD;&#xA;cal_day_in_week as 'transaction_date_cal_day_in_week',&#xD;&#xA;cal_week_in_year as 'transaction_date_cal_week_in_year',&#xD;&#xA;cal_month_no as 'transaction_date_cal_month_no',&#xD;&#xA;cal_month_name as 'transaction_date_cal_month_name',&#xD;&#xA;cal_quarter_no as 'transaction_date_cal_quarter_no',&#xD;&#xA;cal_year as 'transaction_date_cal_year',&#xD;&#xA;fin_week_in_year as 'transaction_date_fin_week_in_year',&#xD;&#xA;fin_month_no as 'transaction_date_fin_month_no',&#xD;&#xA;fin_month_name as 'transaction_date_fin_month_name',&#xD;&#xA;fin_quarter_no as 'transaction_date_fin_quarter_no',&#xD;&#xA;fin_year as 'transaction_date_fin_year',&#xD;&#xA;week_end_flag as 'transaction_date_week_end_flag',&#xD;&#xA;holiday_flag as 'transaction_date_holiday_flag',&#xD;&#xA;cal_month_name + '-' + right(cal_year, 2) as 'transaction_date_cal_period',&#xD;&#xA;fin_month_name + '-' + right(fin_year, 2) as 'transaction_date_fin_period'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;dim_date">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="transaction_date_dim_date_key" msprop:DbColumnName="transaction_date_dim_date_key" msprop:FriendlyName="transaction_date_dim_date_key" type="xs:int" minOccurs="0" />
