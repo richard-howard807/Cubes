@@ -148,6 +148,14 @@
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
             </Attribute>
             <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="Text" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
               <ID>ReportRunTime</ID>
               <Name>ReportRunTime</Name>
               <KeyColumns>
@@ -407,29 +415,6 @@
               </ddl300_300:ToRelationshipEnd>
             </ddl300_300:Relationship>
             <ddl300_300:Relationship>
-              <ID>42ef59c5-f353-4f62-a367-0916f3290794</ID>
-              <ddl300_300:FromRelationshipEnd>
-                <ddl300_300:Multiplicity>Many</ddl300_300:Multiplicity>
-                <ddl300:VisualizationProperties />
-                <DimensionID>ExecutionLog_8ba32cd9-e938-4bce-87b7-251e27df5540</DimensionID>
-                <Attributes>
-                  <Attribute>
-                    <AttributeID>ReportRunTime</AttributeID>
-                  </Attribute>
-                </Attributes>
-              </ddl300_300:FromRelationshipEnd>
-              <ddl300_300:ToRelationshipEnd>
-                <ddl300_300:Multiplicity>One</ddl300_300:Multiplicity>
-                <ddl300:VisualizationProperties />
-                <DimensionID>dimTime_b7d3fbee-b354-4e83-8cee-0f5b90da06c1</DimensionID>
-                <Attributes>
-                  <Attribute>
-                    <AttributeID>Time</AttributeID>
-                  </Attribute>
-                </Attributes>
-              </ddl300_300:ToRelationshipEnd>
-            </ddl300_300:Relationship>
-            <ddl300_300:Relationship>
               <ID>3dfdd1d3-1d89-421b-a4d2-5d4c85d53346</ID>
               <ddl300_300:FromRelationshipEnd>
                 <ddl300_300:Multiplicity>Many</ddl300_300:Multiplicity>
@@ -471,6 +456,29 @@
                 <Attributes>
                   <Attribute>
                     <AttributeID>BusinessKey</AttributeID>
+                  </Attribute>
+                </Attributes>
+              </ddl300_300:ToRelationshipEnd>
+            </ddl300_300:Relationship>
+            <ddl300_300:Relationship>
+              <ID>1d41fe58-8b90-4436-a7e5-39f64a1187dc</ID>
+              <ddl300_300:FromRelationshipEnd>
+                <ddl300_300:Multiplicity>Many</ddl300_300:Multiplicity>
+                <ddl300:VisualizationProperties />
+                <DimensionID>ExecutionLog_8ba32cd9-e938-4bce-87b7-251e27df5540</DimensionID>
+                <Attributes>
+                  <Attribute>
+                    <AttributeID>ReportRunTime</AttributeID>
+                  </Attribute>
+                </Attributes>
+              </ddl300_300:FromRelationshipEnd>
+              <ddl300_300:ToRelationshipEnd>
+                <ddl300_300:Multiplicity>One</ddl300_300:Multiplicity>
+                <ddl300:VisualizationProperties />
+                <DimensionID>dimTime_b7d3fbee-b354-4e83-8cee-0f5b90da06c1</DimensionID>
+                <Attributes>
+                  <Attribute>
+                    <AttributeID>Time</AttributeID>
                   </Attribute>
                 </Attributes>
               </ddl300_300:ToRelationshipEnd>
@@ -2035,12 +2043,6 @@
                   <Name>TimeAltKey</Name>
                 </AttributeRelationship>
                 <AttributeRelationship>
-                  <AttributeID>Time</AttributeID>
-                  <Cardinality>One</Cardinality>
-                  <OverrideBehavior>None</OverrideBehavior>
-                  <Name>Time</Name>
-                </AttributeRelationship>
-                <AttributeRelationship>
                   <AttributeID>HourNumber</AttributeID>
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>HourNumber</Name>
@@ -2074,6 +2076,12 @@
                   <AttributeID>DayTimeBand</AttributeID>
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>DayTimeBand</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>Time</AttributeID>
+                  <Cardinality>One</Cardinality>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>Time</Name>
                 </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
@@ -2150,41 +2158,6 @@
               </NameColumn>
               <OrderBy>Key</OrderBy>
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
-            </Attribute>
-            <Attribute>
-              <Annotations>
-                <Annotation>
-                  <Name>Format</Name>
-                  <Value>
-                    <Format Format="Text" xmlns="" />
-                  </Value>
-                </Annotation>
-              </Annotations>
-              <ID>Time</ID>
-              <Name>Time</Name>
-              <KeyColumns>
-                <KeyColumn>
-                  <DataType>WChar</DataType>
-                  <DataSize>32768</DataSize>
-                  <NullProcessing>Error</NullProcessing>
-                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                  <Source xsi:type="ColumnBinding">
-                    <TableID>dimTime_b7d3fbee-b354-4e83-8cee-0f5b90da06c1</TableID>
-                    <ColumnID>Time</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-              <NameColumn>
-                <DataType>WChar</DataType>
-                <DataSize>32768</DataSize>
-                <NullProcessing>ZeroOrBlank</NullProcessing>
-                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                <Source xsi:type="ColumnBinding">
-                  <TableID>dimTime_b7d3fbee-b354-4e83-8cee-0f5b90da06c1</TableID>
-                  <ColumnID>Time</ColumnID>
-                </Source>
-              </NameColumn>
-              <OrderBy>Key</OrderBy>
             </Attribute>
             <Attribute>
               <Annotations>
@@ -2432,6 +2405,39 @@
               </NameColumn>
               <OrderBy>AttributeKey</OrderBy>
               <OrderByAttributeID>DayTimeBandGroupKey</OrderByAttributeID>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="Text" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>Time</ID>
+              <Name>Time</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Error</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimTime_b7d3fbee-b354-4e83-8cee-0f5b90da06c1</TableID>
+                    <ColumnID>Time</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimTime_b7d3fbee-b354-4e83-8cee-0f5b90da06c1</TableID>
+                  <ColumnID>Time</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
             </Attribute>
           </Attributes>
           <ProactiveCaching>
@@ -3421,9 +3427,6 @@
                   <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
                 </Attribute>
                 <Attribute>
-                  <AttributeID>Time</AttributeID>
-                </Attribute>
-                <Attribute>
                   <AttributeID>HourNumber</AttributeID>
                 </Attribute>
                 <Attribute>
@@ -3444,6 +3447,9 @@
                 </Attribute>
                 <Attribute>
                   <AttributeID>DayTimeBand</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Time</AttributeID>
                 </Attribute>
               </Attributes>
             </Dimension>
@@ -4132,177 +4138,6 @@
                   <ddl300:RelationshipID>da8e1cb1-414c-4895-bdf6-44f0e154d6ce</ddl300:RelationshipID>
                 </Dimension>
                 <Dimension xsi:type="ReferenceMeasureGroupDimension">
-                  <CubeDimensionID>dimTime_b7d3fbee-b354-4e83-8cee-0f5b90da06c1</CubeDimensionID>
-                  <Attributes>
-                    <Attribute>
-                      <AttributeID>RowNumber</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>4</DataSize>
-                          <NullProcessing>Error</NullProcessing>
-                          <Source xsi:type="ddl200_200:RowNumberBinding" />
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>TimeKey</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimTime_b7d3fbee-b354-4e83-8cee-0f5b90da06c1</TableID>
-                            <ColumnID>TimeKey</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>TimeAltKey</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimTime_b7d3fbee-b354-4e83-8cee-0f5b90da06c1</TableID>
-                            <ColumnID>TimeAltKey</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>Time</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Error</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimTime_b7d3fbee-b354-4e83-8cee-0f5b90da06c1</TableID>
-                            <ColumnID>Time</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                      <Type>Granularity</Type>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>HourNumber</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>UnsignedTinyInt</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimTime_b7d3fbee-b354-4e83-8cee-0f5b90da06c1</TableID>
-                            <ColumnID>HourNumber</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>MinuteNumber</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>UnsignedTinyInt</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimTime_b7d3fbee-b354-4e83-8cee-0f5b90da06c1</TableID>
-                            <ColumnID>MinuteNumber</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>SecondNumber</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>UnsignedTinyInt</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimTime_b7d3fbee-b354-4e83-8cee-0f5b90da06c1</TableID>
-                            <ColumnID>SecondNumber</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>TimeInSecond</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimTime_b7d3fbee-b354-4e83-8cee-0f5b90da06c1</TableID>
-                            <ColumnID>TimeInSecond</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>HourBand</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimTime_b7d3fbee-b354-4e83-8cee-0f5b90da06c1</TableID>
-                            <ColumnID>HourBand</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>DayTimeBandGroupKey</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimTime_b7d3fbee-b354-4e83-8cee-0f5b90da06c1</TableID>
-                            <ColumnID>DayTimeBandGroupKey</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>DayTimeBand</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimTime_b7d3fbee-b354-4e83-8cee-0f5b90da06c1</TableID>
-                            <ColumnID>DayTimeBand</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                  </Attributes>
-                  <IntermediateCubeDimensionID>ExecutionLog_8ba32cd9-e938-4bce-87b7-251e27df5540</IntermediateCubeDimensionID>
-                  <IntermediateGranularityAttributeID>ReportRunTime</IntermediateGranularityAttributeID>
-                  <Materialization>Regular</Materialization>
-                  <ddl300:RelationshipID>42ef59c5-f353-4f62-a367-0916f3290794</ddl300:RelationshipID>
-                </Dimension>
-                <Dimension xsi:type="ReferenceMeasureGroupDimension">
                   <CubeDimensionID>dimStaffMember_9cff4bd9-978d-42ca-bebe-57d3fb410088</CubeDimensionID>
                   <Attributes>
                     <Attribute>
@@ -4544,6 +4379,176 @@
                   <IntermediateGranularityAttributeID>BusinessKey</IntermediateGranularityAttributeID>
                   <Materialization>Regular</Materialization>
                   <ddl300:RelationshipID>e2f55a01-463b-4298-a2d3-cf8dad68606c</ddl300:RelationshipID>
+                </Dimension>
+                <Dimension xsi:type="ReferenceMeasureGroupDimension">
+                  <CubeDimensionID>dimTime_b7d3fbee-b354-4e83-8cee-0f5b90da06c1</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>RowNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>4</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ddl200_200:RowNumberBinding" />
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>TimeKey</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimTime_b7d3fbee-b354-4e83-8cee-0f5b90da06c1</TableID>
+                            <ColumnID>TimeKey</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>TimeAltKey</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimTime_b7d3fbee-b354-4e83-8cee-0f5b90da06c1</TableID>
+                            <ColumnID>TimeAltKey</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>HourNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>UnsignedTinyInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimTime_b7d3fbee-b354-4e83-8cee-0f5b90da06c1</TableID>
+                            <ColumnID>HourNumber</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MinuteNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>UnsignedTinyInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimTime_b7d3fbee-b354-4e83-8cee-0f5b90da06c1</TableID>
+                            <ColumnID>MinuteNumber</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>SecondNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>UnsignedTinyInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimTime_b7d3fbee-b354-4e83-8cee-0f5b90da06c1</TableID>
+                            <ColumnID>SecondNumber</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>TimeInSecond</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimTime_b7d3fbee-b354-4e83-8cee-0f5b90da06c1</TableID>
+                            <ColumnID>TimeInSecond</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>HourBand</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimTime_b7d3fbee-b354-4e83-8cee-0f5b90da06c1</TableID>
+                            <ColumnID>HourBand</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DayTimeBandGroupKey</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimTime_b7d3fbee-b354-4e83-8cee-0f5b90da06c1</TableID>
+                            <ColumnID>DayTimeBandGroupKey</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DayTimeBand</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimTime_b7d3fbee-b354-4e83-8cee-0f5b90da06c1</TableID>
+                            <ColumnID>DayTimeBand</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>Time</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimTime_b7d3fbee-b354-4e83-8cee-0f5b90da06c1</TableID>
+                            <ColumnID>Time</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                  </Attributes>
+                  <IntermediateCubeDimensionID>ExecutionLog_8ba32cd9-e938-4bce-87b7-251e27df5540</IntermediateCubeDimensionID>
+                  <IntermediateGranularityAttributeID>ReportRunTime</IntermediateGranularityAttributeID>
+                  <Materialization>Regular</Materialization>
+                  <ddl300:RelationshipID>1d41fe58-8b90-4436-a7e5-39f64a1187dc</ddl300:RelationshipID>
                 </Dimension>
               </Dimensions>
               <Partitions>
@@ -5466,21 +5471,6 @@ DateKey</QueryDefinition>
                       </KeyColumns>
                     </Attribute>
                     <Attribute>
-                      <AttributeID>Time</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimTime_b7d3fbee-b354-4e83-8cee-0f5b90da06c1</TableID>
-                            <ColumnID>Time</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
                       <AttributeID>HourNumber</AttributeID>
                       <KeyColumns>
                         <KeyColumn>
@@ -5585,6 +5575,20 @@ DateKey</QueryDefinition>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>Time</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimTime_b7d3fbee-b354-4e83-8cee-0f5b90da06c1</TableID>
+                            <ColumnID>Time</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
                 </Dimension>
@@ -5613,7 +5617,7 @@ DateKey</QueryDefinition>
                     <QueryDefinition>select 
  TimeKey,
  TimeAltKey,
- [Time],
+ left([Time], 5) as 'Time',
  HourNumber,
  MinuteNumber,
  SecondNumber,
@@ -5623,7 +5627,10 @@ DateKey</QueryDefinition>
  DayTimeBand
 
  from
- Reporting.dbo.DimTime</QueryDefinition>
+ Reporting.dbo.DimTime
+
+ where
+ right([Time], 2) = 0</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
@@ -7132,7 +7139,7 @@ CREATE MEASURE 'dimReportCatalogue'[Percentage of Reports Completed]=if([LiveOn2
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimTime_b7d3fbee-b354-4e83-8cee-0f5b90da06c1" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimTime" msprop:DbTableName="dimTime" msprop:TableType="View" msprop:Description="dimTime" msprop:QueryDefinition="select &#xD;&#xA; TimeKey,&#xD;&#xA; TimeAltKey,&#xD;&#xA; [Time],&#xD;&#xA; HourNumber,&#xD;&#xA; MinuteNumber,&#xD;&#xA; SecondNumber,&#xD;&#xA; TimeInSecond,&#xD;&#xA; HourBand,&#xD;&#xA; DayTimeBandGroupKey,&#xD;&#xA; DayTimeBand&#xD;&#xA;&#xD;&#xA; from&#xD;&#xA; Reporting.dbo.DimTime">
+                    <xs:element name="dimTime_b7d3fbee-b354-4e83-8cee-0f5b90da06c1" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimTime" msprop:DbTableName="dimTime" msprop:TableType="View" msprop:Description="dimTime" msprop:QueryDefinition="select &#xD;&#xA; TimeKey,&#xD;&#xA; TimeAltKey,&#xD;&#xA; left([Time], 5) as 'Time',&#xD;&#xA; HourNumber,&#xD;&#xA; MinuteNumber,&#xD;&#xA; SecondNumber,&#xD;&#xA; TimeInSecond,&#xD;&#xA; HourBand,&#xD;&#xA; DayTimeBandGroupKey,&#xD;&#xA; DayTimeBand&#xD;&#xA;&#xD;&#xA; from&#xD;&#xA; Reporting.dbo.DimTime&#xD;&#xA;&#xD;&#xA; where&#xD;&#xA; right([Time], 2) = 0">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="TimeKey" msprop:DbColumnName="TimeKey" msprop:FriendlyName="TimeKey" type="xs:int" minOccurs="0" />
