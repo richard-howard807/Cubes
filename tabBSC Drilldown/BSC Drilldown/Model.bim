@@ -54420,6 +54420,10 @@ CREATE MEASURE 'fact_bsc_activ_rollup'[No Future Activity Percentage]=calculate(
 CREATE MEASURE 'fact_bsc_activ_rollup'[Rolling Red Activity per Matter]=calculate(average(fact_bsc_activ_rollup[rolling_red_activity_per_matter_ind]), fact_bsc_activ_rollup[red_activity_flag_ind] = 1);
 CREATE MEASURE 'fact_bsc_activ_rollup'[Red Activity Score]=calculate(average(fact_bsc_activ_rollup[red_activity_score_ind]), fact_bsc_activ_rollup[red_activity_flag_ind] = 1);
 CREATE MEASURE 'fact_bsc_activ_rollup'[Red Activity per Matter]=calculate(average(fact_bsc_activ_rollup[red_activity_per_matter_ind]), fact_bsc_activ_rollup[red_activity_flag_ind] = 1);
+CREATE MEASURE 'fact_bsc_comp'[Compliance Score]=calculate(average(fact_bsc_comp[compliance_score]), fact_bsc_comp[compliance_flag] = 1);
+CREATE MEASURE 'fact_bsc_except_rollup'[Critical Exceptions Percentage]=calculate(average(fact_bsc_except_rollup[critical_exceptions_percentage_ind]), fact_bsc_except_rollup[exceptions_flag_ind] = 1);
+CREATE MEASURE 'fact_bsc_except_rollup'[Exceptions Percentage]=calculate(average(fact_bsc_except_rollup[exceptions_percentage_ind]), fact_bsc_except_rollup[exceptions_flag_ind] = 1);
+CREATE MEASURE 'fact_bsc_except_rollup'[Exceptions Score]=calculate(average(fact_bsc_except_rollup[exceptions_score_ind]), fact_bsc_except_rollup[exceptions_flag_ind] = 1);
 </Text>
                 </Command>
               </Commands>
@@ -55198,6 +55202,90 @@ CREATE MEASURE 'fact_bsc_activ_rollup'[Red Activity per Matter]=calculate(averag
                     </Annotation>
                   </Annotations>
                   <CalculationReference>[Red Activity per Matter]</CalculationReference>
+                  <CalculationType>Member</CalculationType>
+                  <FormatString>''</FormatString>
+                </CalculationProperty>
+                <CalculationProperty>
+                  <Annotations>
+                    <Annotation>
+                      <Name>Type</Name>
+                      <Value>User</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsPrivate</Name>
+                      <Value>False</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Format</Name>
+                      <Value>
+                        <Format Format="General" xmlns="" />
+                      </Value>
+                    </Annotation>
+                  </Annotations>
+                  <CalculationReference>[Compliance Score]</CalculationReference>
+                  <CalculationType>Member</CalculationType>
+                  <FormatString>''</FormatString>
+                </CalculationProperty>
+                <CalculationProperty>
+                  <Annotations>
+                    <Annotation>
+                      <Name>Type</Name>
+                      <Value>User</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsPrivate</Name>
+                      <Value>False</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Format</Name>
+                      <Value>
+                        <Format Format="General" xmlns="" />
+                      </Value>
+                    </Annotation>
+                  </Annotations>
+                  <CalculationReference>[Critical Exceptions Percentage]</CalculationReference>
+                  <CalculationType>Member</CalculationType>
+                  <FormatString>''</FormatString>
+                </CalculationProperty>
+                <CalculationProperty>
+                  <Annotations>
+                    <Annotation>
+                      <Name>Type</Name>
+                      <Value>User</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsPrivate</Name>
+                      <Value>False</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Format</Name>
+                      <Value>
+                        <Format Format="General" xmlns="" />
+                      </Value>
+                    </Annotation>
+                  </Annotations>
+                  <CalculationReference>[Exceptions Percentage]</CalculationReference>
+                  <CalculationType>Member</CalculationType>
+                  <FormatString>''</FormatString>
+                </CalculationProperty>
+                <CalculationProperty>
+                  <Annotations>
+                    <Annotation>
+                      <Name>Type</Name>
+                      <Value>User</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsPrivate</Name>
+                      <Value>False</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Format</Name>
+                      <Value>
+                        <Format Format="General" xmlns="" />
+                      </Value>
+                    </Annotation>
+                  </Annotations>
+                  <CalculationReference>[Exceptions Score]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
                 </CalculationProperty>
