@@ -1,6 +1,6 @@
 ﻿<Cube xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="53632966-1179-4538-94fb-f6989725bc91" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
   <ID>Profit_Costs_Cube</ID>
-  <Name>Profit_Costs_Cube</Name>
+  <Name>Profit Costs</Name>
   <CreatedTimestamp>2014-10-27T22:41:57.056667Z</CreatedTimestamp>
   <LastSchemaUpdate>2015-02-10T16:35:43.596667Z</LastSchemaUpdate>
   <Annotations>
@@ -8,7 +8,7 @@
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
       <Value>
         <dds xmlns="">
-          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="12" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-12682" scrolltop="-1979" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="84" x="40217" y="17515" backcolor="2434342" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="1" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="12" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-18697" scrolltop="-5408" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="84" x="40217" y="17515" backcolor="2434342" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
             <font>
               <ddsxmlobjectstreamwrapper binary="01000000900144420100065461686f6d61" />
             </font>
@@ -109,11 +109,11 @@
     </Annotation>
     <Annotation>
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
-      <Value>-12682</Value>
+      <Value>-18697</Value>
     </Annotation>
     <Annotation>
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
-      <Value>-1979</Value>
+      <Value>-5408</Value>
     </Annotation>
     <Annotation>
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
@@ -130,12 +130,12 @@
   </Annotations>
   <LastProcessed>2015-07-13T23:53:37.293333Z</LastProcessed>
   <State>Processed</State>
-  <Language>1033</Language>
+  <Language>2057</Language>
   <Collation>Latin1_General_CI_AS</Collation>
   <Dimensions>
     <Dimension dwd:design-time-name="2f056695-55ab-4325-8759-a4673c961384">
       <ID>Dim Fed Hierarchy History</ID>
-      <Name>Dim_Fed_Hierarchy_History</Name>
+      <Name>Dim Fed Hierarchy History</Name>
       <DimensionID>Dim Fed Hierarchy History</DimensionID>
       <Attributes>
         <Attribute dwd:design-time-name="439b1ac3-3a6a-4432-9901-337481f755e7">
@@ -199,6 +199,9 @@
         <Attribute dwd:design-time-name="7bfd4f17-c29f-4f9d-8704-b5f0cff8cc6a">
           <AttributeID>Bill Fin Year</AttributeID>
         </Attribute>
+        <Attribute dwd:design-time-name="d629dcbf-d619-467b-891c-23fb7e51cb8a">
+          <AttributeID>Bill Fin Quarter</AttributeID>
+        </Attribute>
       </Attributes>
       <Hierarchies>
         <Hierarchy dwd:design-time-name="db26cc81-1ee9-4ad7-8628-d892cd201028">
@@ -207,7 +210,6 @@
       </Hierarchies>
     </Dimension>
   </Dimensions>
-  <DefaultMeasure>[Measures].[FED Code Level Budget Value]</DefaultMeasure>
   <MeasureGroups>
     <MeasureGroup dwd:design-time-name="03405f2e-19ed-4b9c-b106-099b8b83ca93">
       <ID>Agg Bill Activity Monthly Rollup</ID>
@@ -256,13 +258,13 @@
         </Measure>
         <Measure dwd:design-time-name="f0237bc7-f9de-44c5-b768-1cc4df6b978e">
           <ID>Fed Level Budget Value</ID>
-          <Name>FED Code Level Budget Value</Name>
+          <Name>Target Profit Costs</Name>
           <DataType>Double</DataType>
           <Source dwd:design-time-name="759bd7f5-f4ae-4fbd-8f6c-51bc187fc5f6">
             <DataType>Double</DataType>
-            <Source xsi:type="ColumnBinding" dwd:design-time-name="cc92a503-ae42-49f9-ad44-0e2b2096af79">
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="02a1005d-2eae-405f-9912-d206f991fd9c">
               <TableID>dbo_agg_bill_activity_monthly_rollup</TableID>
-              <ColumnID>fed_level_budget_value</ColumnID>
+              <ColumnID>target_profit_costs</ColumnID>
             </Source>
           </Source>
         </Measure>
@@ -445,10 +447,10 @@ The CALCULATE command controls the aggregation of leaf cells in the cube.
 If the CALCULATE command is deleted or modified, the data within the cube is affected.
 You should edit this command only if you manually specify how the cube is aggregated.
 */
-CALCULATE;   
+CALCULATE;    
 CREATE MEMBER CURRENTCUBE.[Measures].[Username]
  AS Username, 
-VISIBLE = 1;      
+VISIBLE = 1;       
 CREATE MEMBER CURRENTCUBE.[Measures].[Today]
  AS vba!str(vba!DatePart("yyyy", vba!Now())) 
 
@@ -457,14 +459,66 @@ CREATE MEMBER CURRENTCUBE.[Measures].[Today]
 + "-" + vba!str(vba!format((vba!DatePart("d", vba!Now())), "0#")) 
 
 + vba!str("T00:00:00"), 
-VISIBLE = 1; 
+VISIBLE = 1;  
 CREATE MEMBER CURRENTCUBE.[Measures].[YTD Profit Costs]
  AS sum(
                 YTD([Dim Bill Date].[Hierarchy].CurrentMember),
                 Measures.[Profit Costs]
    ), 
 NON_EMPTY_BEHAVIOR = { [Profit Costs] }, 
-VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Bill Activity Monthly Rollup'  ; </Text>
+VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Bill Activity Monthly Rollup'; 
+CREATE MEMBER CURRENTCUBE.[Measures].[YTD Target Profit Costs (Budget Balanced)]
+ AS sum (
+                YTD (
+                [Dim Bill Date].[Hierarchy].CurrentMember),
+                Measures.[Target Profit Costs (Budget Balanced)]
+                ), 
+NON_EMPTY_BEHAVIOR = { [Target Profit Costs] }, 
+VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Bill Activity Monthly Rollup'  ; 
+CREATE MEMBER CURRENTCUBE.[Measures].[Annual Target Profit Costs]
+ AS sum(
+                ([Dim Bill Date].[Bill Fin Year].CurrentMember),
+                Measures.[Target Profit Costs]
+   ), 
+NON_EMPTY_BEHAVIOR = { [Target Profit Costs] }, 
+VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Bill Activity Monthly Rollup'  ; 
+CREATE MEMBER CURRENTCUBE.[Measures].[Annual Budget Balance (Calculation Measure)]
+ AS iif(   [Dim Fed Hierarchy History].[Hierarchy].CurrentMember.Level.Name = "Display Name"
+	or [Dim Fed Hierarchy History].[Fed Hierarchy Business Key].CurrentMember.Level.Name = "Fed Hierarchy Business Key"
+	or [Dim Fed Hierarchy History].[Fed Code].CurrentMember.Level.Name = "Fed Code"
+    or [Dim Bill Date].[Hierarchy].CurrentMember.Level.Name = "Bill Financial Date",
+	0,
+	[Team Level Budget Value] - [Annual Target Profit Costs]
+   ), 
+NON_EMPTY_BEHAVIOR = { [Target Profit Costs] }, 
+VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Bill Activity Monthly Rollup'  ; 
+CREATE MEMBER CURRENTCUBE.[Measures].[Budget Balance (Calculation Measure)]
+ AS [Measures].[Annual Budget Balance (Calculation Measure)] / 12, 
+VISIBLE = 1 ,  DISPLAY_FOLDER = 'Monthly' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Bill Activity Monthly Rollup'  ; 
+CREATE MEMBER CURRENTCUBE.[Measures].[Target Profit Costs (Calculation Measure)]
+ AS (
+sum(
+     [Measures].[Target Profit Costs]
+   ) + 
+sum(
+     [Measures].[Budget Balance (Calculation Measure)]
+   ) + 
+([Business Line Level Budget Value] / 12)
+), 
+VISIBLE = 1 ,  DISPLAY_FOLDER = 'Monthly' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Bill Activity Monthly Rollup'  ; 
+CREATE MEMBER CURRENTCUBE.[Measures].[Target Profit Costs (Budget Balanced)]
+ AS case 
+    when [Dim Bill Date].[Hierarchy].CurrentMember.Level.Name = "Bill Fin Quarter"
+		then              sum(descendants([Dim Bill Date].[Hierarchy].CurrentMember))
+	when	  [Dim Bill Date].[Hierarchy].CurrentMember.Level.Name = "Bill Fin Year"
+		then	  ([Dim Bill Date].[Hierarchy].CurrentMember.LastChild.LastChild, 
+		           [Measures].[Annual Target Profit Costs (Calculation Measure)])
+	else			Measures.[Target Profit Costs (Calculation Measure)]
+end, 
+VISIBLE = 1 ,  DISPLAY_FOLDER = 'Monthly' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Bill Activity Monthly Rollup'  ; 
+CREATE MEMBER CURRENTCUBE.[Measures].[Annual Target Profit Costs (Calculation Measure)]
+ AS (Measures.[Annual Target Profit Costs] + Measures.[Annual Budget Balance (Calculation Measure)]) + [Business Line Level Budget Value], 
+VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Bill Activity Monthly Rollup'  ; </Text>
         </Command>
       </Commands>
     </MdxScript>
