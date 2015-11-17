@@ -243,7 +243,7 @@
         </Measure>
         <Measure dwd:design-time-name="1bc7c6b6-0685-49fe-b8e9-26d1745c0624">
           <ID>Bill Amount</ID>
-          <Name>Bill Amount</Name>
+          <Name>Profit Costs</Name>
           <DataType>Double</DataType>
           <Source dwd:design-time-name="19e95872-813a-4b96-a3da-c15c01657837">
             <DataType>Double</DataType>
@@ -252,6 +252,7 @@
               <ColumnID>bill_amount</ColumnID>
             </Source>
           </Source>
+          <DisplayFolder>Monthly</DisplayFolder>
         </Measure>
         <Measure dwd:design-time-name="f0237bc7-f9de-44c5-b768-1cc4df6b978e">
           <ID>Fed Level Budget Value</ID>
@@ -444,10 +445,10 @@ The CALCULATE command controls the aggregation of leaf cells in the cube.
 If the CALCULATE command is deleted or modified, the data within the cube is affected.
 You should edit this command only if you manually specify how the cube is aggregated.
 */
-CALCULATE;  
+CALCULATE;   
 CREATE MEMBER CURRENTCUBE.[Measures].[Username]
  AS Username, 
-VISIBLE = 1;     
+VISIBLE = 1;      
 CREATE MEMBER CURRENTCUBE.[Measures].[Today]
  AS vba!str(vba!DatePart("yyyy", vba!Now())) 
 
@@ -456,7 +457,14 @@ CREATE MEMBER CURRENTCUBE.[Measures].[Today]
 + "-" + vba!str(vba!format((vba!DatePart("d", vba!Now())), "0#")) 
 
 + vba!str("T00:00:00"), 
-VISIBLE = 1; </Text>
+VISIBLE = 1; 
+CREATE MEMBER CURRENTCUBE.[Measures].[YTD Profit Costs]
+ AS sum(
+                YTD([Dim Bill Date].[Hierarchy].CurrentMember),
+                Measures.[Profit Costs]
+   ), 
+NON_EMPTY_BEHAVIOR = { [Profit Costs] }, 
+VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Bill Activity Monthly Rollup'  ; </Text>
         </Command>
       </Commands>
     </MdxScript>
