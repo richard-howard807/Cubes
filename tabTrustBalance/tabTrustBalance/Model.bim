@@ -1951,29 +1951,6 @@
               </ddl300_300:ToRelationshipEnd>
             </ddl300_300:Relationship>
             <ddl300_300:Relationship>
-              <ID>a0280bd8-845a-4c0b-a266-0c3617385c29</ID>
-              <ddl300_300:FromRelationshipEnd>
-                <ddl300_300:Multiplicity>Many</ddl300_300:Multiplicity>
-                <ddl300:VisualizationProperties />
-                <DimensionID>fact_trust_balance_8ec0481b-05db-49ea-b03a-943d23a96d28</DimensionID>
-                <Attributes>
-                  <Attribute>
-                    <AttributeID>transaction_date</AttributeID>
-                  </Attribute>
-                </Attributes>
-              </ddl300_300:FromRelationshipEnd>
-              <ddl300_300:ToRelationshipEnd>
-                <ddl300_300:Multiplicity>One</ddl300_300:Multiplicity>
-                <ddl300:VisualizationProperties />
-                <DimensionID>dim_transaction_date_7a098b23-cfad-4bb4-97eb-dbf1b703ba85</DimensionID>
-                <Attributes>
-                  <Attribute>
-                    <AttributeID>dim_transaction_date_key</AttributeID>
-                  </Attribute>
-                </Attributes>
-              </ddl300_300:ToRelationshipEnd>
-            </ddl300_300:Relationship>
-            <ddl300_300:Relationship>
               <ID>d718f4a3-767a-4777-8e9e-24530ab3fcd2</ID>
               <ddl300_300:FromRelationshipEnd>
                 <ddl300_300:Multiplicity>Many</ddl300_300:Multiplicity>
@@ -1992,6 +1969,29 @@
                 <Attributes>
                   <Attribute>
                     <AttributeID>dim_time_narratives_key</AttributeID>
+                  </Attribute>
+                </Attributes>
+              </ddl300_300:ToRelationshipEnd>
+            </ddl300_300:Relationship>
+            <ddl300_300:Relationship>
+              <ID>f45ab87d-da8c-4f28-9958-df1babb2d839</ID>
+              <ddl300_300:FromRelationshipEnd>
+                <ddl300_300:Multiplicity>Many</ddl300_300:Multiplicity>
+                <ddl300:VisualizationProperties />
+                <DimensionID>fact_trust_balance_8ec0481b-05db-49ea-b03a-943d23a96d28</DimensionID>
+                <Attributes>
+                  <Attribute>
+                    <AttributeID>dim_transaction_date_key</AttributeID>
+                  </Attribute>
+                </Attributes>
+              </ddl300_300:FromRelationshipEnd>
+              <ddl300_300:ToRelationshipEnd>
+                <ddl300_300:Multiplicity>One</ddl300_300:Multiplicity>
+                <ddl300:VisualizationProperties />
+                <DimensionID>dim_transaction_date_7a098b23-cfad-4bb4-97eb-dbf1b703ba85</DimensionID>
+                <Attributes>
+                  <Attribute>
+                    <AttributeID>dim_transaction_date_key</AttributeID>
                   </Attribute>
                 </Attributes>
               </ddl300_300:ToRelationshipEnd>
@@ -9611,6 +9611,132 @@
                   <ddl300:RelationshipID>488867e8-d6b9-49cc-be78-dfff20b2389c</ddl300:RelationshipID>
                 </Dimension>
                 <Dimension xsi:type="ReferenceMeasureGroupDimension">
+                  <CubeDimensionID>dim_matter_ledger_narrative_c623db68-139b-4b62-a9bd-df46d9f9cb6f</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>RowNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>4</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ddl200_200:RowNumberBinding" />
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_time_narratives_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_matter_ledger_narrative_c623db68-139b-4b62-a9bd-df46d9f9cb6f</TableID>
+                            <ColumnID>dim_time_narratives_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>source_system_id</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_matter_ledger_narrative_c623db68-139b-4b62-a9bd-df46d9f9cb6f</TableID>
+                            <ColumnID>source_system_id</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>td_seqnum</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_matter_ledger_narrative_c623db68-139b-4b62-a9bd-df46d9f9cb6f</TableID>
+                            <ColumnID>td_seqnum</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>td_rectyp</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_matter_ledger_narrative_c623db68-139b-4b62-a9bd-df46d9f9cb6f</TableID>
+                            <ColumnID>td_rectyp</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>td_textln</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_matter_ledger_narrative_c623db68-139b-4b62-a9bd-df46d9f9cb6f</TableID>
+                            <ColumnID>td_textln</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>td_batchid</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_matter_ledger_narrative_c623db68-139b-4b62-a9bd-df46d9f9cb6f</TableID>
+                            <ColumnID>td_batchid</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>td_posref</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_matter_ledger_narrative_c623db68-139b-4b62-a9bd-df46d9f9cb6f</TableID>
+                            <ColumnID>td_posref</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                  </Attributes>
+                  <IntermediateCubeDimensionID>fact_trust_balance_8ec0481b-05db-49ea-b03a-943d23a96d28</IntermediateCubeDimensionID>
+                  <IntermediateGranularityAttributeID>dim_trust_narratives_key</IntermediateGranularityAttributeID>
+                  <Materialization>Regular</Materialization>
+                  <ddl300:RelationshipID>d718f4a3-767a-4777-8e9e-24530ab3fcd2</ddl300:RelationshipID>
+                </Dimension>
+                <Dimension xsi:type="ReferenceMeasureGroupDimension">
                   <CubeDimensionID>dim_transaction_date_7a098b23-cfad-4bb4-97eb-dbf1b703ba85</CubeDimensionID>
                   <Attributes>
                     <Attribute>
@@ -10377,135 +10503,9 @@
                     </Attribute>
                   </Attributes>
                   <IntermediateCubeDimensionID>fact_trust_balance_8ec0481b-05db-49ea-b03a-943d23a96d28</IntermediateCubeDimensionID>
-                  <IntermediateGranularityAttributeID>transaction_date</IntermediateGranularityAttributeID>
+                  <IntermediateGranularityAttributeID>dim_transaction_date_key</IntermediateGranularityAttributeID>
                   <Materialization>Regular</Materialization>
-                  <ddl300:RelationshipID>a0280bd8-845a-4c0b-a266-0c3617385c29</ddl300:RelationshipID>
-                </Dimension>
-                <Dimension xsi:type="ReferenceMeasureGroupDimension">
-                  <CubeDimensionID>dim_matter_ledger_narrative_c623db68-139b-4b62-a9bd-df46d9f9cb6f</CubeDimensionID>
-                  <Attributes>
-                    <Attribute>
-                      <AttributeID>RowNumber</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>4</DataSize>
-                          <NullProcessing>Error</NullProcessing>
-                          <Source xsi:type="ddl200_200:RowNumberBinding" />
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>dim_time_narratives_key</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>BigInt</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Error</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dim_matter_ledger_narrative_c623db68-139b-4b62-a9bd-df46d9f9cb6f</TableID>
-                            <ColumnID>dim_time_narratives_key</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                      <Type>Granularity</Type>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>source_system_id</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>BigInt</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dim_matter_ledger_narrative_c623db68-139b-4b62-a9bd-df46d9f9cb6f</TableID>
-                            <ColumnID>source_system_id</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>td_seqnum</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>BigInt</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dim_matter_ledger_narrative_c623db68-139b-4b62-a9bd-df46d9f9cb6f</TableID>
-                            <ColumnID>td_seqnum</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>td_rectyp</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dim_matter_ledger_narrative_c623db68-139b-4b62-a9bd-df46d9f9cb6f</TableID>
-                            <ColumnID>td_rectyp</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>td_textln</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dim_matter_ledger_narrative_c623db68-139b-4b62-a9bd-df46d9f9cb6f</TableID>
-                            <ColumnID>td_textln</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>td_batchid</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>BigInt</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dim_matter_ledger_narrative_c623db68-139b-4b62-a9bd-df46d9f9cb6f</TableID>
-                            <ColumnID>td_batchid</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>td_posref</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>BigInt</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dim_matter_ledger_narrative_c623db68-139b-4b62-a9bd-df46d9f9cb6f</TableID>
-                            <ColumnID>td_posref</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                  </Attributes>
-                  <IntermediateCubeDimensionID>fact_trust_balance_8ec0481b-05db-49ea-b03a-943d23a96d28</IntermediateCubeDimensionID>
-                  <IntermediateGranularityAttributeID>dim_trust_narratives_key</IntermediateGranularityAttributeID>
-                  <Materialization>Regular</Materialization>
-                  <ddl300:RelationshipID>d718f4a3-767a-4777-8e9e-24530ab3fcd2</ddl300:RelationshipID>
+                  <ddl300:RelationshipID>f45ab87d-da8c-4f28-9958-df1babb2d839</ddl300:RelationshipID>
                 </Dimension>
               </Dimensions>
               <Partitions>
@@ -13151,7 +13151,7 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
           <ConnectionString>Provider=SQLNCLI11;Data Source=SVR-LIV-DWH-01;Integrated Security=SSPI;Persist Security Info=false;Initial Catalog=red_dw</ConnectionString>
           <ImpersonationInfo>
             <ImpersonationMode>ImpersonateAccount</ImpersonationMode>
-            <Account>sbc\khanse</Account>
+            <Account>sbc\DWH_SSASAdmin</Account>
           </ImpersonationInfo>
           <Timeout>PT0S</Timeout>
         </DataSource>
