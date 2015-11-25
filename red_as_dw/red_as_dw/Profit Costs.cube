@@ -150,6 +150,11 @@
         <Attribute dwd:design-time-name="605b1ac5-c575-4907-a41a-3d12f40726ae">
           <AttributeID>Fin Year</AttributeID>
         </Attribute>
+        <Attribute dwd:design-time-name="b32f2231-9fdf-45a1-8400-c9accdd11302">
+          <AttributeID>Calendar Date</AttributeID>
+          <AttributeHierarchyEnabled>false</AttributeHierarchyEnabled>
+          <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+        </Attribute>
       </Attributes>
       <Hierarchies>
         <Hierarchy dwd:design-time-name="c6ecb366-3a8a-4475-980b-45e3289ecdac">
@@ -186,6 +191,9 @@
         <Attribute dwd:design-time-name="0ce0b640-c43d-4526-9de3-f604510a0525">
           <AttributeID>Fed Hierarchy Business Key</AttributeID>
         </Attribute>
+        <Attribute dwd:design-time-name="e722b093-3705-46ea-a77c-576f3f876ffa">
+          <AttributeID>Fed Code</AttributeID>
+        </Attribute>
       </Attributes>
       <Hierarchies>
         <Hierarchy dwd:design-time-name="bb9d6090-7b51-46a9-b630-8732eab1dfbd">
@@ -203,18 +211,6 @@
       <LastProcessed>2015-07-13T23:53:37.28Z</LastProcessed>
       <State>Processed</State>
       <Measures>
-        <Measure dwd:design-time-name="9c64209b-e7e8-4d97-8810-f3ac89e6ffbd">
-          <ID>Billed Time</ID>
-          <Name>Billed Time In Minutes</Name>
-          <DataType>Double</DataType>
-          <Source dwd:design-time-name="0c31bff9-db54-4e24-bcee-859d6986921c">
-            <DataType>Double</DataType>
-            <Source xsi:type="ColumnBinding" dwd:design-time-name="685b0f9d-61c6-41ee-b7a2-ee217cdb5801">
-              <TableID>dbo_agg_bill_activity_monthly_rollup</TableID>
-              <ColumnID>billed_time</ColumnID>
-            </Source>
-          </Source>
-        </Measure>
         <Measure dwd:design-time-name="51ed2306-2bc4-4c81-bd9e-bbb30fee9944">
           <ID>Minutes Recorded</ID>
           <Name>Billed Hours</Name>
@@ -255,18 +251,6 @@
           <Visible>false</Visible>
           <DisplayFolder>Monthly</DisplayFolder>
         </Measure>
-        <Measure dwd:design-time-name="83836e62-ade1-4e08-b20c-fda2ae76c43e">
-          <ID>Fed Level Minute Value</ID>
-          <Name>Chargeable Time Budget Value</Name>
-          <DataType>Double</DataType>
-          <Source dwd:design-time-name="13ef98e6-a668-48ee-8b29-f0c8c5dd0c4c">
-            <DataType>Double</DataType>
-            <Source xsi:type="ColumnBinding" dwd:design-time-name="967efc39-be71-4114-94fe-6532d39f3f5f">
-              <TableID>dbo_agg_bill_activity_monthly_rollup</TableID>
-              <ColumnID>fed_level_minute_value</ColumnID>
-            </Source>
-          </Source>
-        </Measure>
         <Measure dwd:design-time-name="a297ece6-3b60-4264-8d79-998d488fdf7c">
           <ID>Fed Level Tb Budget Value</ID>
           <Name>Target Billed Hours</Name>
@@ -294,18 +278,6 @@
           <Visible>false</Visible>
           <DisplayFolder>Annual</DisplayFolder>
         </Measure>
-        <Measure dwd:design-time-name="db5c0973-1308-4833-ae30-2b737098d19e">
-          <ID>Practice Area Level Budget Value</ID>
-          <Name>Practice Area Level Budget Value</Name>
-          <DataType>Double</DataType>
-          <Source dwd:design-time-name="ce1bef1b-f882-44a1-a33b-68aab5c7eac9">
-            <DataType>Double</DataType>
-            <Source xsi:type="ColumnBinding" dwd:design-time-name="fd1d1c9e-16c6-4982-b59e-a08abd71b3cc">
-              <TableID>dbo_agg_bill_activity_monthly_rollup</TableID>
-              <ColumnID>practice_area_level_budget_value</ColumnID>
-            </Source>
-          </Source>
-        </Measure>
         <Measure dwd:design-time-name="850bc300-8573-4624-b065-8c7ee051d4be">
           <ID>Business Line Level Budget Value</ID>
           <Name>Annual Business Line Budget Balance</Name>
@@ -318,18 +290,6 @@
             </Source>
           </Source>
           <DisplayFolder>Annual</DisplayFolder>
-        </Measure>
-        <Measure dwd:design-time-name="0fba0b1a-433f-454c-b949-fecacbf342f7">
-          <ID>Firm Level Budget Value</ID>
-          <Name>Firm Level Budget Value</Name>
-          <DataType>Double</DataType>
-          <Source dwd:design-time-name="c0950b53-9ccd-4772-967f-f217df46f5cd">
-            <DataType>Double</DataType>
-            <Source xsi:type="ColumnBinding" dwd:design-time-name="927ce54d-8462-4bcd-842f-15bcbe963793">
-              <TableID>dbo_agg_bill_activity_monthly_rollup</TableID>
-              <ColumnID>firm_level_budget_value</ColumnID>
-            </Source>
-          </Source>
         </Measure>
       </Measures>
       <StorageMode>Molap</StorageMode>
@@ -403,19 +363,7 @@ The CALCULATE command controls the aggregation of leaf cells in the cube.
 If the CALCULATE command is deleted or modified, the data within the cube is affected.
 You should edit this command only if you manually specify how the cube is aggregated.
 */
-CALCULATE;                
-CREATE MEMBER CURRENTCUBE.[Measures].[Username]
- AS Username, 
-VISIBLE = 1;                   
-CREATE MEMBER CURRENTCUBE.[Measures].[Today]
- AS vba!str(vba!DatePart("yyyy", vba!Now())) 
-
-+ "-" + vba!str(vba!format(vba!Month(vba!Now()), "0#")) 
-
-+ "-" + vba!str(vba!format((vba!DatePart("d", vba!Now())), "0#")) 
-
-+ vba!str("T00:00:00"), 
-VISIBLE = 1;         
+CALCULATE;           
 CREATE MEMBER CURRENTCUBE.[Measures].[KPI Profit Costs Filter]
  AS [Measures].[Profit Costs]
 + [Measures].[YTD Profit Costs] 
@@ -423,28 +371,79 @@ CREATE MEMBER CURRENTCUBE.[Measures].[KPI Profit Costs Filter]
 + [Measures].[YTD Billed Hours]
 + [Measures].[YTD Target Billed Hours]
 + [Measures].[Annual Budget Balance], 
-VISIBLE = 1 ,  ASSOCIATED_MEASURE_GROUP = 'Agg Bill Activity Monthly Rollup'  ;         
+VISIBLE = 1 ,  ASSOCIATED_MEASURE_GROUP = 'Agg Bill Activity Monthly Rollup';           
 CREATE MEMBER CURRENTCUBE.[Measures].[Recovery Rate]
  AS iif(
     [Measures].[Billed Hours] = 0, 
     null,
     [Measures].[Profit Costs] / [Measures].[Billed Hours]
    ), 
-VISIBLE = 1 ,  DISPLAY_FOLDER = 'Monthly' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Bill Activity Monthly Rollup';         
-CREATE MEMBER CURRENTCUBE.[Measures].[YTD Target Billed Hours]
- AS sum(
-                YTD([Dim Date].[Hierarchy].CurrentMember),
-                Measures.[Target Billed Hours]
-   ), 
-NON_EMPTY_BEHAVIOR = { [Billed Hours] }, 
-VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Bill Activity Monthly Rollup';         
+VISIBLE = 1 ,  DISPLAY_FOLDER = 'Monthly' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Bill Activity Monthly Rollup';           
 CREATE MEMBER CURRENTCUBE.[Measures].[YTD Recovery Rate]
  AS iif(
     [Measures].[YTD Billed Hours] = 0, 
     null,
     [Measures].[YTD Profit Costs] / [Measures].[YTD Billed Hours]
    ), 
-VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Bill Activity Monthly Rollup';          
+VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Bill Activity Monthly Rollup';           
+CREATE MEMBER CURRENTCUBE.[Measures].[YTD Target Billed Hours]
+ AS sum(
+                YTD([Dim Date].[Hierarchy].CurrentMember),
+                Measures.[Target Billed Hours]
+   ), 
+NON_EMPTY_BEHAVIOR = { [Billed Hours] }, 
+VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Bill Activity Monthly Rollup';           
+CREATE MEMBER CURRENTCUBE.[Measures].[YTD Target Recovery Rate]
+ AS iif(
+    [Measures].[YTD Target Billed Hours] = 0, 
+    null,
+    [Measures].[YTD Target Profit Costs (Budget Balanced)] / [Measures].[YTD Target Billed Hours]
+   ), 
+VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Bill Activity Monthly Rollup';                
+CREATE MEMBER CURRENTCUBE.[Measures].[YTD Profit Costs]
+ AS sum(
+                YTD([Dim Date].[Hierarchy].CurrentMember),
+                Measures.[Profit Costs]
+   ), 
+NON_EMPTY_BEHAVIOR = { [Profit Costs] }, 
+VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Bill Activity Monthly Rollup';           
+CREATE MEMBER CURRENTCUBE.[Measures].[YTD Billed Hours]
+ AS sum(
+                YTD([Dim Date].[Hierarchy].CurrentMember),
+                Measures.[Billed Hours]
+   ), 
+VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Bill Activity Monthly Rollup';               
+CREATE MEMBER CURRENTCUBE.[Measures].[YTD Target Profit Costs (Budget Balanced)]
+ AS sum (
+                YTD (
+                [Dim Date].[Hierarchy].CurrentMember),
+                Measures.[Target Profit Costs (Budget Balanced)]
+                ), 
+NON_EMPTY_BEHAVIOR = { [Target Profit Costs] }, 
+VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Bill Activity Monthly Rollup';            
+CREATE MEMBER CURRENTCUBE.[Measures].[YTD Percentage of Profit Costs Target Achieved]
+ AS iif(
+    [Measures].[YTD Target Profit Costs (Budget Balanced)] = 0, 
+    null,
+    [Measures].[YTD Profit Costs] / [Measures].[YTD Target Profit Costs (Budget Balanced)]
+   ), 
+NON_EMPTY_BEHAVIOR = { [Target Profit Costs] }, 
+VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Bill Activity Monthly Rollup';            
+CREATE MEMBER CURRENTCUBE.[Measures].[YTD Budget Balance]
+ AS sum(
+                YTD(
+                [Dim Date].[Hierarchy].CurrentMember),
+                Measures.[Budget Balance]
+                ), 
+VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Bill Activity Monthly Rollup';   
+CREATE MEMBER CURRENTCUBE.[Measures].[YTD Business Line Budget Balance]
+ AS sum(
+                YTD(
+                [Dim Date].[Hierarchy].CurrentMember),
+                Measures.[Business Line Budget Balance]
+                ), 
+NON_EMPTY_BEHAVIOR = { [Annual Business Line Budget Balance] }, 
+VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Bill Activity Monthly Rollup';            
 CREATE MEMBER CURRENTCUBE.[Measures].[Annual Budget Balance]
  AS case 
      when [Dim Fed Hierarchy History].[Hierarchy].CurrentMember.Level.Name = "Business Line"
@@ -457,65 +456,14 @@ CREATE MEMBER CURRENTCUBE.[Measures].[Annual Budget Balance]
            )
      else [Measures].[Annual Budget Balance (Calculation Measure)]
 end, 
-VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Bill Activity Monthly Rollup';         
-CREATE MEMBER CURRENTCUBE.[Measures].[YTD Target Recovery Rate]
- AS iif(
-    [Measures].[YTD Target Billed Hours] = 0, 
-    null,
-    [Measures].[YTD Target Profit Costs (Budget Balanced)] / [Measures].[YTD Target Billed Hours]
-   ), 
-VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Bill Activity Monthly Rollup';              
-CREATE MEMBER CURRENTCUBE.[Measures].[YTD Profit Costs]
- AS sum(
-                YTD([Dim Date].[Hierarchy].CurrentMember),
-                Measures.[Profit Costs]
-   ), 
-NON_EMPTY_BEHAVIOR = { [Profit Costs] }, 
-VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Bill Activity Monthly Rollup';         
-CREATE MEMBER CURRENTCUBE.[Measures].[YTD Billed Hours]
- AS sum(
-                YTD([Dim Date].[Hierarchy].CurrentMember),
-                Measures.[Billed Hours]
-   ), 
-VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Bill Activity Monthly Rollup';             
-CREATE MEMBER CURRENTCUBE.[Measures].[YTD Target Profit Costs (Budget Balanced)]
- AS sum (
-                YTD (
-                [Dim Date].[Hierarchy].CurrentMember),
-                Measures.[Target Profit Costs (Budget Balanced)]
-                ), 
-NON_EMPTY_BEHAVIOR = { [Target Profit Costs] }, 
-VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Bill Activity Monthly Rollup';          
-CREATE MEMBER CURRENTCUBE.[Measures].[YTD Percentage of Profit Costs Target Achieved]
- AS iif(
-    [Measures].[YTD Target Profit Costs (Budget Balanced)] = 0, 
-    null,
-    [Measures].[YTD Profit Costs] / [Measures].[YTD Target Profit Costs (Budget Balanced)]
-   ), 
-NON_EMPTY_BEHAVIOR = { [Target Profit Costs] }, 
-VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Bill Activity Monthly Rollup';          
-CREATE MEMBER CURRENTCUBE.[Measures].[YTD Budget Balance]
- AS sum(
-                YTD(
-                [Dim Date].[Hierarchy].CurrentMember),
-                Measures.[Budget Balance]
-                ), 
-VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Bill Activity Monthly Rollup'; 
-CREATE MEMBER CURRENTCUBE.[Measures].[YTD Business Line Budget Balance]
- AS sum(
-                YTD(
-                [Dim Date].[Hierarchy].CurrentMember),
-                Measures.[Business Line Budget Balance]
-                ), 
-NON_EMPTY_BEHAVIOR = { [Annual Business Line Budget Balance] }, 
-VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Bill Activity Monthly Rollup'  ;             
+VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Bill Activity Monthly Rollup';               
 CREATE MEMBER CURRENTCUBE.[Measures].[Annual Target Profit Costs]
  AS sum(
                 ([Dim Date].[Fin Year].CurrentMember),
                 Measures.[Target Profit Costs]
    ), 
 NON_EMPTY_BEHAVIOR = { [Target Profit Costs] }, 
-VISIBLE = 0 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Bill Activity Monthly Rollup';             
+VISIBLE = 0 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Bill Activity Monthly Rollup';               
 CREATE MEMBER CURRENTCUBE.[Measures].[Annual Budget Balance (Calculation Measure)]
  AS iif(   [Dim Fed Hierarchy History].[Hierarchy].CurrentMember.Level.Name = "Display Name"
   or [Dim Fed Hierarchy History].[Fed Hierarchy Business Key].CurrentMember.Level.Name = "Fed Hierarchy Business Key"
@@ -524,10 +472,10 @@ CREATE MEMBER CURRENTCUBE.[Measures].[Annual Budget Balance (Calculation Measure
   [Team Level Budget Value] - [Annual Target Profit Costs]
    ), 
 NON_EMPTY_BEHAVIOR = { [Target Profit Costs] }, 
-VISIBLE = 0 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Bill Activity Monthly Rollup';             
+VISIBLE = 0 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Bill Activity Monthly Rollup';               
 CREATE MEMBER CURRENTCUBE.[Measures].[Annual Target Profit Costs (Calculation Measure)]
  AS (Measures.[Annual Target Profit Costs] + Measures.[Annual Budget Balance (Calculation Measure)]) + [Annual Business Line Budget Balance], 
-VISIBLE = 0 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Bill Activity Monthly Rollup';          
+VISIBLE = 0 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Bill Activity Monthly Rollup';            
 CREATE MEMBER CURRENTCUBE.[Measures].[Annual Target Profit Costs (Budget Balanced)]
  AS case 
         when [Dim Date].[Hierarchy].CurrentMember.Level.Name = "Fin Quarter"
@@ -546,17 +494,17 @@ CREATE MEMBER CURRENTCUBE.[Measures].[Annual Target Profit Costs (Budget Balance
               else [Measures].[Annual Target Profit Costs (Calculation Measure)]
         end                
 end, 
-VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Bill Activity Monthly Rollup'  ;          
+VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Bill Activity Monthly Rollup';            
 CREATE MEMBER CURRENTCUBE.[Measures].[Annual Percentage of Profit Costs Target Achieved]
  AS iif(
     [Measures].[Annual Target Profit Costs (Budget Balanced)] = 0, 
     null,
     [Measures].[YTD Profit Costs] / [Measures].[Annual Target Profit Costs (Budget Balanced)]
    ), 
-VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Bill Activity Monthly Rollup';             
+VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Bill Activity Monthly Rollup';               
 CREATE MEMBER CURRENTCUBE.[Measures].[Budget Balance (Calculation Measure)]
  AS [Measures].[Annual Budget Balance (Calculation Measure)] / 12, 
-VISIBLE = 0 ,  DISPLAY_FOLDER = 'Monthly' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Bill Activity Monthly Rollup';             
+VISIBLE = 0 ,  DISPLAY_FOLDER = 'Monthly' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Bill Activity Monthly Rollup';               
 CREATE MEMBER CURRENTCUBE.[Measures].[Target Profit Costs (Budget Balanced)]
  AS case 
     when [Dim Date].[Hierarchy].CurrentMember.Level.Name = "Fin Quarter"
@@ -575,7 +523,7 @@ CREATE MEMBER CURRENTCUBE.[Measures].[Target Profit Costs (Budget Balanced)]
         else [Measures].[Target Profit Costs (Calculation Measure)]
         end                
     end, 
-VISIBLE = 1 ,  DISPLAY_FOLDER = 'Monthly' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Bill Activity Monthly Rollup';             
+VISIBLE = 1 ,  DISPLAY_FOLDER = 'Monthly' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Bill Activity Monthly Rollup';               
 CREATE MEMBER CURRENTCUBE.[Measures].[Target Profit Costs (Calculation Measure)]
  AS (
 sum(
@@ -586,14 +534,14 @@ sum(
    ) + 
 ([Annual Business Line Budget Balance] / 12)
 ), 
-VISIBLE = 0 ,  DISPLAY_FOLDER = 'Monthly' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Bill Activity Monthly Rollup';          
+VISIBLE = 0 ,  DISPLAY_FOLDER = 'Monthly' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Bill Activity Monthly Rollup';            
 CREATE MEMBER CURRENTCUBE.[Measures].[Budget Balance]
  AS [Measures].[Annual Budget Balance] / 12, 
-VISIBLE = 1 ,  DISPLAY_FOLDER = 'Monthly' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Bill Activity Monthly Rollup'; 
+VISIBLE = 1 ,  DISPLAY_FOLDER = 'Monthly' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Bill Activity Monthly Rollup';   
 CREATE MEMBER CURRENTCUBE.[Measures].[Business Line Budget Balance]
  AS [Measures].[Annual Business Line Budget Balance] / 12, 
 NON_EMPTY_BEHAVIOR = { [Annual Business Line Budget Balance] }, 
-VISIBLE = 1 ,  DISPLAY_FOLDER = 'Monthly' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Bill Activity Monthly Rollup'  ; </Text>
+VISIBLE = 1 ,  DISPLAY_FOLDER = 'Monthly' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Bill Activity Monthly Rollup'; </Text>
         </Command>
       </Commands>
     </MdxScript>
