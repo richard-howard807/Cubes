@@ -587,12 +587,23 @@
       </Levels>
     </Hierarchy>
   </Hierarchies>
-  <ProactiveCaching dwd:design-time-name="74be3574-20aa-4bea-b6a3-38673c5cd89d">
-    <SilenceInterval>-PT1S</SilenceInterval>
+  <ProactiveCaching dwd:design-time-name="c6b59256-8d63-424d-b236-75c582e4f5b1">
+    <SilenceInterval>PT10S</SilenceInterval>
     <Latency>-PT1S</Latency>
-    <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+    <SilenceOverrideInterval>PT10M</SilenceOverrideInterval>
     <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
-    <Source xsi:type="ProactiveCachingInheritedBinding" dwd:design-time-name="709556ee-c921-4b1b-8861-e1274e57fc12" />
+    <Enabled>true</Enabled>
+    <OnlineMode>OnCacheComplete</OnlineMode>
+    <AggregationStorage>MolapOnly</AggregationStorage>
+    <Source xsi:type="ProactiveCachingTablesBinding" dwd:design-time-name="0d6279af-6ed0-4baa-83ae-012bd57be37c">
+      <NotificationTechnique>Server</NotificationTechnique>
+      <TableNotifications>
+        <TableNotification>
+          <DbTableName>dim_fed_hierarchy_history</DbTableName>
+          <DbSchemaName>dbo</DbSchemaName>
+        </TableNotification>
+      </TableNotifications>
+    </Source>
   </ProactiveCaching>
   <ddl300:ProcessingState>Unprocessed</ddl300:ProcessingState>
 </Dimension>

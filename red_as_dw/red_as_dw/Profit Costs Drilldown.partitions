@@ -18,6 +18,24 @@
           <StorageMode>Molap</StorageMode>
           <CurrentStorageMode>Molap</CurrentStorageMode>
           <ProcessingMode>Regular</ProcessingMode>
+          <ProactiveCaching dwd:design-time-name="b4a6f647-63a3-4957-acd4-baa1787e0427">
+            <SilenceInterval>PT10S</SilenceInterval>
+            <Latency>-PT1S</Latency>
+            <SilenceOverrideInterval>PT10M</SilenceOverrideInterval>
+            <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+            <Enabled>true</Enabled>
+            <OnlineMode>OnCacheComplete</OnlineMode>
+            <AggregationStorage>MolapOnly</AggregationStorage>
+            <Source xsi:type="ProactiveCachingTablesBinding" dwd:design-time-name="0021e6db-41af-465a-a8fe-3a5996db7cbd">
+              <NotificationTechnique>Server</NotificationTechnique>
+              <TableNotifications>
+                <TableNotification>
+                  <DbTableName>fact_bill_activity</DbTableName>
+                  <DbSchemaName>dbo</DbSchemaName>
+                </TableNotification>
+              </TableNotifications>
+            </Source>
+          </ProactiveCaching>
           <EstimatedRows>2120619</EstimatedRows>
           <AggregationDesignID>AggregationDesign</AggregationDesignID>
         </Partition>

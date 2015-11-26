@@ -20,6 +20,24 @@ where dim_transaction_date_key &lt; 20090501</QueryDefinition>
           <StorageMode>Molap</StorageMode>
           <CurrentStorageMode>Molap</CurrentStorageMode>
           <ProcessingMode>Regular</ProcessingMode>
+          <ProactiveCaching dwd:design-time-name="0398349e-00cd-423c-b8ad-c0f09f07d901">
+            <SilenceInterval>PT10S</SilenceInterval>
+            <Latency>-PT1S</Latency>
+            <SilenceOverrideInterval>PT10M</SilenceOverrideInterval>
+            <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+            <Enabled>true</Enabled>
+            <OnlineMode>OnCacheComplete</OnlineMode>
+            <AggregationStorage>MolapOnly</AggregationStorage>
+            <Source xsi:type="ProactiveCachingTablesBinding" dwd:design-time-name="d7380d69-3e72-45c5-8628-f14a37b612c8">
+              <NotificationTechnique>Server</NotificationTechnique>
+              <TableNotifications>
+                <TableNotification>
+                  <DbTableName>fact_chargeable_time_monthly_rollup</DbTableName>
+                  <DbSchemaName>dbo</DbSchemaName>
+                </TableNotification>
+              </TableNotifications>
+            </Source>
+          </ProactiveCaching>
           <EstimatedRows>19000000</EstimatedRows>
           <AggregationDesignID>AggregationDesign</AggregationDesignID>
         </Partition>
@@ -39,6 +57,24 @@ where dim_transaction_date_key &lt; 20090501</QueryDefinition>
           <StorageMode>Molap</StorageMode>
           <CurrentStorageMode>Molap</CurrentStorageMode>
           <ProcessingMode>Regular</ProcessingMode>
+          <ProactiveCaching dwd:design-time-name="d2a1c4aa-6a78-4473-af0d-fa946f18ab8f">
+            <SilenceInterval>PT10S</SilenceInterval>
+            <Latency>-PT1S</Latency>
+            <SilenceOverrideInterval>PT10M</SilenceOverrideInterval>
+            <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+            <Enabled>true</Enabled>
+            <OnlineMode>OnCacheComplete</OnlineMode>
+            <AggregationStorage>MolapOnly</AggregationStorage>
+            <Source xsi:type="ProactiveCachingTablesBinding" dwd:design-time-name="0b32bb92-e442-4bf0-a08a-867ae48fdf6e">
+              <NotificationTechnique>Server</NotificationTechnique>
+              <TableNotifications>
+                <TableNotification>
+                  <DbTableName>fact_chargeable_time_activity</DbTableName>
+                  <DbSchemaName>dbo</DbSchemaName>
+                </TableNotification>
+              </TableNotifications>
+            </Source>
+          </ProactiveCaching>
           <EstimatedRows>12000000</EstimatedRows>
           <AggregationDesignID>AggregationDesign 1</AggregationDesignID>
         </Partition>
