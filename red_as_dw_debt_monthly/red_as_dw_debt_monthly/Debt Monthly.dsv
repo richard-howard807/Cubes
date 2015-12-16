@@ -257,7 +257,7 @@
       <xs:element name="Debt_x0020_Monthly" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:design-time-name="492772a6-6ab9-4581-ae36-5e0b66c20eb5">
         <xs:complexType>
           <xs:choice minOccurs="0" maxOccurs="unbounded">
-            <xs:element name="dbo_dim_bill" msprop:design-time-name="71dfbba7-1b73-4194-88b4-fc28c4f0482b" msprop:FriendlyName="dim_bill" msprop:DbSchemaName="dbo" msprop:DbTableName="fact_bill" msprop:TableType="Table">
+            <xs:element name="dbo_dim_bill" msprop:design-time-name="71dfbba7-1b73-4194-88b4-fc28c4f0482b" msprop:FriendlyName="dim_bill" msprop:DbSchemaName="dbo" msprop:DbTableName="dim_bill" msprop:TableType="Table">
               <xs:complexType>
                 <xs:sequence>
                   <xs:element name="dim_bill_key" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:design-time-name="8d76d07d-ad6e-49fa-8cf8-177fd821aecc" msprop:DbColumnName="dim_bill_key" msprop:FriendlyName="dim_bill_key" type="xs:int" />
@@ -270,36 +270,53 @@
                     </xs:simpleType>
                   </xs:element>
                   <xs:element name="dss_update_time" msprop:design-time-name="ba7a12f1-9e41-4338-8821-3a2a3e6ee3fc" msprop:DbColumnName="dss_update_time" msprop:FriendlyName="dss_update_time" type="xs:dateTime" minOccurs="0" />
-                  <xs:element name="dim_matter_header_curr_key" msprop:DbColumnName="dim_matter_header_curr_key" msprop:design-time-name="242afa26-9055-4711-a212-dcac0e5857bb" type="xs:int" minOccurs="0" />
-                  <xs:element name="dim_client_key" msprop:DbColumnName="dim_client_key" msprop:design-time-name="23d7c730-4a70-4acd-9248-58902795a2f2" type="xs:int" minOccurs="0" />
-                  <xs:element name="dim_bill_date_key" msprop:DbColumnName="dim_bill_date_key" msprop:design-time-name="4f3bf5e2-95ac-41f7-b8a0-0749d9d645ed" type="xs:int" minOccurs="0" />
-                  <xs:element name="dim_posting_date_key" msprop:DbColumnName="dim_posting_date_key" msprop:design-time-name="501d70e8-7cba-457c-92ca-029db10c96d8" type="xs:int" minOccurs="0" />
-                  <xs:element name="dim_last_pay_date_key" msprop:DbColumnName="dim_last_pay_date_key" msprop:design-time-name="9483c428-f787-444b-a899-e14884e1f89f" type="xs:int" minOccurs="0" />
-                  <xs:element name="dim_address_key" msprop:DbColumnName="dim_address_key" msprop:design-time-name="0558a188-0a14-4d29-aac3-2c2124985c91" type="xs:int" minOccurs="0" />
-                  <xs:element name="dim_write_off_codes_key" msprop:DbColumnName="dim_write_off_codes_key" msprop:design-time-name="2686760a-f8fa-4374-aefc-0029da931579" type="xs:int" minOccurs="0" />
-                  <xs:element name="client_code" msprop:DbColumnName="client_code" msprop:design-time-name="d4077ae7-aecc-4682-8956-6eb7e7052ce1" minOccurs="0">
+                  <xs:element name="bill_sequence" msprop:DbColumnName="bill_sequence" msprop:design-time-name="81bf923f-c9bf-42dc-ba3e-91ed671811ea" type="xs:int" minOccurs="0" />
+                  <xs:element name="record_type" msprop:DbColumnName="record_type" msprop:design-time-name="7fb24a8f-847f-4a96-9f31-7f7c7e72c27d" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="1" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="bill_flag" msprop:DbColumnName="bill_flag" msprop:design-time-name="9457dc57-d4f8-48eb-948e-e3175249bb25" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="1" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="bill_address" msprop:DbColumnName="bill_address" msprop:design-time-name="e723e455-eeb3-4d38-a14c-aa8329a03556" type="xs:int" minOccurs="0" />
+                  <xs:element name="outstanding_flag" msprop:DbColumnName="outstanding_flag" msprop:design-time-name="73fcd652-a793-493e-af1c-85ef156ba18c" minOccurs="0">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
                         <xs:maxLength value="8" />
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
-                  <xs:element name="matter_number" msprop:DbColumnName="matter_number" msprop:design-time-name="1e5e9652-cf38-40e7-ac51-d83beb0dea92" minOccurs="0">
+                  <xs:element name="matter_reference" msprop:DbColumnName="matter_reference" msprop:design-time-name="d85d1b3b-962a-4957-bb4e-5d1ca99c78b7" minOccurs="0">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
                         <xs:maxLength value="8" />
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
-                  <xs:element name="bill_total" msprop:DbColumnName="bill_total" msprop:design-time-name="b8b99494-54ca-4a91-86bf-dd3908955194" type="xs:decimal" minOccurs="0" />
-                  <xs:element name="fees_total" msprop:DbColumnName="fees_total" msprop:design-time-name="7dfdc3fb-0b63-422c-a8ca-e4cb5d0adc00" type="xs:decimal" minOccurs="0" />
-                  <xs:element name="paid_disbursements" msprop:DbColumnName="paid_disbursements" msprop:design-time-name="d1e53f2d-4549-447d-8cac-1f89d3a37372" type="xs:decimal" minOccurs="0" />
-                  <xs:element name="unpaid_disbursements" msprop:DbColumnName="unpaid_disbursements" msprop:design-time-name="2ff5d0dd-974d-465e-a74f-8cb7035be465" type="xs:decimal" minOccurs="0" />
-                  <xs:element name="admin_charges_total" msprop:DbColumnName="admin_charges_total" msprop:design-time-name="7f9fb07d-9cfa-467f-b44c-68bd893f9384" type="xs:decimal" minOccurs="0" />
-                  <xs:element name="vat_amount" msprop:DbColumnName="vat_amount" msprop:design-time-name="12803937-f497-4173-8b1d-b5d40402ae19" type="xs:decimal" minOccurs="0" />
-                  <xs:element name="amount_paid" msprop:DbColumnName="amount_paid" msprop:design-time-name="b2457697-8c0b-4625-8ee7-368a32cf62d6" type="xs:decimal" minOccurs="0" />
-                  <xs:element name="amount_outstanding" msprop:DbColumnName="amount_outstanding" msprop:design-time-name="c9ba6d5b-5890-472f-a9f3-4ec6e287f0d5" type="xs:decimal" minOccurs="0" />
-                  <xs:element name="fact_bill_key" msprop:DbColumnName="fact_bill_key" msprop:design-time-name="e23d1eec-cb9c-4f1c-9bc1-914f9086e385" type="xs:int" />
+                  <xs:element name="bill_address_id" msprop:DbColumnName="bill_address_id" msprop:design-time-name="dd36ebe6-28ab-4988-a9c7-a31bd66fd6c2" type="xs:int" minOccurs="0" />
+                  <xs:element name="fees_apportioned" msprop:DbColumnName="fees_apportioned" msprop:design-time-name="54ee3cb2-a2c6-415f-a9ce-4097059aa4d7" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="1" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="last_reminder_number" msprop:DbColumnName="last_reminder_number" msprop:design-time-name="d312762a-0be2-460e-a6b7-86b159b4b780" type="xs:short" minOccurs="0" />
+                  <xs:element name="exchange_rate" msprop:DbColumnName="exchange_rate" msprop:design-time-name="470790b3-6bb2-4cd8-b11e-9ce3edc7adf6" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="currency_code" msprop:DbColumnName="currency_code" msprop:design-time-name="487538d0-8ab1-4a19-a273-11cbfe6b2640" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="2" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
@@ -1217,7 +1234,7 @@
         </xs:complexType>
         <xs:unique name="Constraint1" msdata:PrimaryKey="true">
           <xs:selector xpath=".//dbo_dim_bill" />
-          <xs:field xpath="fact_bill_key" />
+          <xs:field xpath="dim_bill_key" />
         </xs:unique>
         <xs:unique name="dbo_dim_client_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
           <xs:selector xpath=".//dbo_dim_client" />
