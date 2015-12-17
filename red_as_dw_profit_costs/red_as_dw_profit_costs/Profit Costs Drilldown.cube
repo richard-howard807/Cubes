@@ -308,7 +308,15 @@
         <Attribute dwd:design-time-name="8ed65781-da53-49b1-a4ae-9bcbb022ad4a">
           <AttributeID>Client Name</AttributeID>
         </Attribute>
+        <Attribute dwd:design-time-name="28366af1-c108-46a1-acdc-7714f77b7703">
+          <AttributeID>Client Group Name</AttributeID>
+        </Attribute>
       </Attributes>
+      <Hierarchies>
+        <Hierarchy dwd:design-time-name="f4c8a0de-699e-405f-877a-4e17cda06995">
+          <HierarchyID>Hierarchy</HierarchyID>
+        </Hierarchy>
+      </Hierarchies>
       <AllMemberAggregationUsage>Full</AllMemberAggregationUsage>
     </Dimension>
     <Dimension dwd:design-time-name="f46f1afa-94a2-46ec-8342-e30fb1c6e9ac">
@@ -463,6 +471,17 @@
             <Source xsi:type="ColumnBinding" dwd:design-time-name="a8e0fb01-1a98-49ed-969d-525372e37f60">
               <TableID>dbo_fact_bill_activity</TableID>
               <ColumnID>bill_amount</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="6b0e028f-5283-4727-acc2-ad1d3bb63ec3">
+          <ID>Billed Time</ID>
+          <Name>Billed Time</Name>
+          <Source dwd:design-time-name="a4b3774c-1505-4269-bd85-234b257ce0af">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="96bcb26a-c642-4cd5-9f84-04857cb71aca">
+              <TableID>dbo_fact_bill_activity</TableID>
+              <ColumnID>billed_time</ColumnID>
             </Source>
           </Source>
         </Measure>
@@ -1283,6 +1302,32 @@
   <Source dwd:design-time-name="73815340-ed42-473a-8ef4-5792ee4e4ff1">
     <DataSourceViewID>Chargeable_Hours</DataSourceViewID>
   </Source>
+  <MdxScripts>
+    <MdxScript dwd:design-time-name="d09cc11b-54ab-40e9-a209-064d63d430ff">
+      <ID>MdxScript</ID>
+      <Name>MdxScript</Name>
+      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+      <Commands>
+        <Command>
+          <Text>/*
+The CALCULATE command controls the aggregation of leaf cells in the cube.
+If the CALCULATE command is deleted or modified, the data within the cube is affected.
+You should edit this command only if you manually specify how the cube is aggregated.
+*/
+CALCULATE; 
+CREATE MEMBER CURRENTCUBE.[Measures].[Recovery Rate]
+ AS iif(
+    [Measures].[Billed Time] = 0, 
+    null,
+    [Measures].[Fee Earner Profit Costs] / [Measures].[Billed Time]
+   ), 
+NON_EMPTY_BEHAVIOR = { [Billed Time] }, 
+VISIBLE = 1 ,  ASSOCIATED_MEASURE_GROUP = 'Fact Bill Activity'  ; </Text>
+        </Command>
+      </Commands>
+    </MdxScript>
+  </MdxScripts>
   <ProactiveCaching dwd:design-time-name="ff95ef32-a642-467c-90bd-48db0edf921c">
     <SilenceInterval>-PT1S</SilenceInterval>
     <Latency>-PT1S</Latency>
