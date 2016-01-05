@@ -574,6 +574,11 @@
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>BusinessLine</Name>
                 </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>Service Account</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>Service Account</Name>
+                </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
@@ -825,6 +830,31 @@
                 <Source xsi:type="ColumnBinding">
                   <TableID>dimStaffMember_9cff4bd9-978d-42ca-bebe-57d3fb410088</TableID>
                   <ColumnID>BusinessLine</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>Service Account</ID>
+              <Name>Service Account</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimStaffMember_9cff4bd9-978d-42ca-bebe-57d3fb410088</TableID>
+                    <ColumnID>Service_x0020_Account</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimStaffMember_9cff4bd9-978d-42ca-bebe-57d3fb410088</TableID>
+                  <ColumnID>Service_x0020_Account</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
@@ -3312,6 +3342,9 @@
                 <Attribute>
                   <AttributeID>BusinessLine</AttributeID>
                 </Attribute>
+                <Attribute>
+                  <AttributeID>Service Account</AttributeID>
+                </Attribute>
               </Attributes>
             </Dimension>
             <Dimension>
@@ -4269,6 +4302,20 @@
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>Service Account</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimStaffMember_9cff4bd9-978d-42ca-bebe-57d3fb410088</TableID>
+                            <ColumnID>Service_x0020_Account</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <IntermediateCubeDimensionID>ExecutionLog_8ba32cd9-e938-4bce-87b7-251e27df5540</IntermediateCubeDimensionID>
                   <IntermediateGranularityAttributeID>UserID</IntermediateGranularityAttributeID>
@@ -4804,6 +4851,20 @@ left join [Cascade].dbo.Employee e
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>Service Account</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimStaffMember_9cff4bd9-978d-42ca-bebe-57d3fb410088</TableID>
+                            <ColumnID>Service_x0020_Account</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
                 </Dimension>
@@ -4839,7 +4900,8 @@ e.KnownAs + ' ' + e.Surname as 'FullName',
 --j.LocationIDUD as 'Location',
 s.hierarchylevel4hist as 'Team',
 s.hierarchylevel3hist as 'PracticeArea',
-s.hierarchylevel2hist as 'BusinessLine'
+s.hierarchylevel2hist as 'BusinessLine',
+'No' as 'Service Account'
 
 from
 [Cascade].dbo.Employee e
@@ -4862,7 +4924,8 @@ select
  'SBC\sqlsvcdwh01' as 'WindowsUserID',
  null,
  null,
- null
+ null,
+ 'Yes' as 'Service Account'
 
  union
 
@@ -4874,7 +4937,8 @@ select
  'SBC\sqlservice' as 'WindowsUserID',
  null,
  null,
- null</QueryDefinition>
+ null,
+ 'Yes' as 'Service Account'</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
@@ -7036,7 +7100,7 @@ CREATE MEASURE 'dimReportCatalogue'[Percentage of Reports Completed]=if([LiveOn2
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimStaffMember_9cff4bd9-978d-42ca-bebe-57d3fb410088" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimStaffMember" msprop:DbTableName="dimStaffMember" msprop:TableType="View" msprop:Description="dimStaffMember" msprop:QueryDefinition="select distinct &#xD;&#xA;cast(e.employeeid as varchar(36)) as 'UserID',&#xD;&#xA;e.KnownAs as 'Forename',&#xD;&#xA;e.Surname,&#xD;&#xA;e.KnownAs + ' ' + e.Surname as 'FullName',&#xD;&#xA;'SBC\' + e.windowsusername as 'WindowsUserID',&#xD;&#xA;--j.JobTitle,&#xD;&#xA;--j.LocationIDUD as 'Location',&#xD;&#xA;s.hierarchylevel4hist as 'Team',&#xD;&#xA;s.hierarchylevel3hist as 'PracticeArea',&#xD;&#xA;s.hierarchylevel2hist as 'BusinessLine'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;[Cascade].dbo.Employee e&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join [SVR-LIV-DWH-01].red_dw.dbo.dim_fed_hierarchy_history s&#xD;&#xA; on s.employeeid = cast(e.EmployeeID as varchar(40))&#xD;&#xA; and s.activeud = 1&#xD;&#xA; and s.dss_current_flag = 'Y'&#xD;&#xA;-- and (cast(e.employeeid as varchar(40)) != 'CEBFFAEE-B21F-499D-AA81-54D2DD2C2032')&#xD;&#xA;-- and (cast(e.employeeid as varchar(40)) != 'BB0176B7-653C-4692-9CF4-B1F3F26A5CE8')&#xD;&#xA;-- and (cast(e.employeeid as varchar(40)) != '864CD99D-7BAB-452E-8E0C-0228729FB322')&#xD;&#xA;union&#xD;&#xA;&#xD;&#xA;select&#xD;&#xA;'SBC\sqlsvcdwh01' as 'UserID',&#xD;&#xA;'DWH' as 'Forename',&#xD;&#xA;'Service Account' as 'Surname',&#xD;&#xA;'DWH Service Account' as 'FullName',&#xD;&#xA; 'SBC\sqlsvcdwh01' as 'WindowsUserID',&#xD;&#xA; null,&#xD;&#xA; null,&#xD;&#xA; null&#xD;&#xA;&#xD;&#xA; union&#xD;&#xA;&#xD;&#xA; select&#xD;&#xA;'SBC\sqlservice' as 'UserID',&#xD;&#xA;'2008' as 'Forename',&#xD;&#xA;'Service Account' as 'Surname',&#xD;&#xA;'2008 Service Account' as 'FullName',&#xD;&#xA; 'SBC\sqlservice' as 'WindowsUserID',&#xD;&#xA; null,&#xD;&#xA; null,&#xD;&#xA; null">
+                    <xs:element name="dimStaffMember_9cff4bd9-978d-42ca-bebe-57d3fb410088" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimStaffMember" msprop:DbTableName="dimStaffMember" msprop:TableType="View" msprop:Description="dimStaffMember" msprop:QueryDefinition="select distinct &#xD;&#xA;cast(e.employeeid as varchar(36)) as 'UserID',&#xD;&#xA;e.KnownAs as 'Forename',&#xD;&#xA;e.Surname,&#xD;&#xA;e.KnownAs + ' ' + e.Surname as 'FullName',&#xD;&#xA;'SBC\' + e.windowsusername as 'WindowsUserID',&#xD;&#xA;--j.JobTitle,&#xD;&#xA;--j.LocationIDUD as 'Location',&#xD;&#xA;s.hierarchylevel4hist as 'Team',&#xD;&#xA;s.hierarchylevel3hist as 'PracticeArea',&#xD;&#xA;s.hierarchylevel2hist as 'BusinessLine',&#xD;&#xA;'No' as 'Service Account'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;[Cascade].dbo.Employee e&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join [SVR-LIV-DWH-01].red_dw.dbo.dim_fed_hierarchy_history s&#xD;&#xA; on s.employeeid = cast(e.EmployeeID as varchar(40))&#xD;&#xA; and s.activeud = 1&#xD;&#xA; and s.dss_current_flag = 'Y'&#xD;&#xA;-- and (cast(e.employeeid as varchar(40)) != 'CEBFFAEE-B21F-499D-AA81-54D2DD2C2032')&#xD;&#xA;-- and (cast(e.employeeid as varchar(40)) != 'BB0176B7-653C-4692-9CF4-B1F3F26A5CE8')&#xD;&#xA;-- and (cast(e.employeeid as varchar(40)) != '864CD99D-7BAB-452E-8E0C-0228729FB322')&#xD;&#xA;union&#xD;&#xA;&#xD;&#xA;select&#xD;&#xA;'SBC\sqlsvcdwh01' as 'UserID',&#xD;&#xA;'DWH' as 'Forename',&#xD;&#xA;'Service Account' as 'Surname',&#xD;&#xA;'DWH Service Account' as 'FullName',&#xD;&#xA; 'SBC\sqlsvcdwh01' as 'WindowsUserID',&#xD;&#xA; null,&#xD;&#xA; null,&#xD;&#xA; null,&#xD;&#xA; 'Yes' as 'Service Account'&#xD;&#xA;&#xD;&#xA; union&#xD;&#xA;&#xD;&#xA; select&#xD;&#xA;'SBC\sqlservice' as 'UserID',&#xD;&#xA;'2008' as 'Forename',&#xD;&#xA;'Service Account' as 'Surname',&#xD;&#xA;'2008 Service Account' as 'FullName',&#xD;&#xA; 'SBC\sqlservice' as 'WindowsUserID',&#xD;&#xA; null,&#xD;&#xA; null,&#xD;&#xA; null,&#xD;&#xA; 'Yes' as 'Service Account'">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="UserID" msprop:DbColumnName="UserID" msprop:FriendlyName="UserID" minOccurs="0">
@@ -7089,6 +7153,13 @@ CREATE MEASURE 'dimReportCatalogue'[Percentage of Reports Completed]=if([LiveOn2
                             </xs:simpleType>
                           </xs:element>
                           <xs:element name="BusinessLine" msprop:DbColumnName="BusinessLine" msprop:FriendlyName="BusinessLine" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="Service_x0020_Account" msprop:DbColumnName="Service Account" msprop:FriendlyName="Service Account" minOccurs="0">
                             <xs:simpleType>
                               <xs:restriction base="xs:string">
                                 <xs:maxLength value="32768" />
