@@ -664,7 +664,7 @@
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
-            <xs:element name="dbo_dim_client" msprop:design-time-name="3dae0403-f95c-4c48-a233-628ea7d21d07" msprop:IsLogical="True" msprop:FriendlyName="dim_client" msprop:DbTableName="dim_client" msprop:TableType="View" msprop:QueryDefinition="SELECT        dim_client.dim_client_key, dim_client.source_system_id, dim_client.client_code, dim_client.effective_start_date, dim_client.effective_end_date, &#xD;&#xA;                         dim_client.current_flag, dim_client.client_name, dim_client.client_group_name, dim_client.client_partner_code, dim_client.client_partner_name, &#xD;&#xA;                         dim_client.contact_salutation, dim_client.contact_name, dim_client.address_type, dim_client.addresse, dim_client.address_line_1, dim_client.address_line_2, &#xD;&#xA;                         dim_client.address_line_3, dim_client.address_line_4, dim_client.postcode, dim_client.phone_number, dim_client.dss_update_time, &#xD;&#xA;                         ISNULL(dim_client.client_group_name, dim_client.client_name) AS 'client_group_name_calculated', ISNULL(view_client_group_look_up.client_group_code, &#xD;&#xA;                         dim_client.client_code) AS 'client_group_code_calculated'&#xD;&#xA;FROM            dim_client LEFT OUTER JOIN&#xD;&#xA;                         view_client_group_look_up ON view_client_group_look_up.client_group_name = dim_client.client_group_name" msprop:QueryBuilder="SpecificQueryBuilder">
+            <xs:element name="dbo_dim_client" msprop:design-time-name="3dae0403-f95c-4c48-a233-628ea7d21d07" msprop:IsLogical="True" msprop:FriendlyName="dim_client" msprop:DbTableName="dim_client" msprop:TableType="View" msprop:QueryDefinition="SELECT        dim_client.dim_client_key, dim_client.source_system_id, dim_client.client_code, dim_client.effective_start_date, dim_client.effective_end_date, &#xD;&#xA;                         dim_client.current_flag, dim_client.client_name, dim_client.client_group_name, dim_client.client_partner_code, dim_client.client_partner_name, &#xD;&#xA;                         dim_client.contact_salutation, dim_client.contact_name, dim_client.address_type, dim_client.addresse, dim_client.address_line_1, dim_client.address_line_2, &#xD;&#xA;                         dim_client.address_line_3, dim_client.address_line_4, dim_client.postcode, dim_client.phone_number, dim_client.dss_update_time, &#xD;&#xA;                         ISNULL(dim_client.client_group_name, dim_client.client_name) AS 'client_group_name_calculated', ISNULL(view_client_group_look_up.client_group_code + '_gr', &#xD;&#xA;                         dim_client.client_code) AS 'client_group_code_calculated'&#xD;&#xA;FROM            dim_client LEFT OUTER JOIN&#xD;&#xA;                         view_client_group_look_up ON view_client_group_look_up.client_group_name = dim_client.client_group_name" msprop:QueryBuilder="SpecificQueryBuilder">
               <xs:complexType>
                 <xs:sequence>
                   <xs:element name="dim_client_key" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:design-time-name="51b8b5fb-8ce0-44b3-91fb-d858c5587ee1" msprop:DbColumnName="dim_client_key" msprop:FriendlyName="dim_client_key" type="xs:int" minOccurs="0" />
@@ -784,17 +784,17 @@
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
-                  <xs:element name="client_group_name_calculated" msprop:DbColumnName="client_group_name_calculated" msprop:design-time-name="a1eb825c-e830-4398-861c-1ca3e1d78ff4" minOccurs="0">
+                  <xs:element name="client_group_name_calculated" msprop:design-time-name="a1eb825c-e830-4398-861c-1ca3e1d78ff4" msprop:DbColumnName="client_group_name_calculated" minOccurs="0">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
                         <xs:maxLength value="40" />
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
-                  <xs:element name="client_group_code_calculated" msprop:DbColumnName="client_group_code_calculated" msprop:design-time-name="488cef57-9548-492f-8bbf-fafa789e2277" minOccurs="0">
+                  <xs:element name="client_group_code_calculated" msprop:design-time-name="488cef57-9548-492f-8bbf-fafa789e2277" msprop:DbColumnName="client_group_code_calculated" minOccurs="0">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
-                        <xs:maxLength value="8" />
+                        <xs:maxLength value="11" />
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
