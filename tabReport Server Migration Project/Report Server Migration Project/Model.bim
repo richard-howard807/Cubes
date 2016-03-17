@@ -499,6 +499,11 @@
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>ReportingCategory</Name>
                 </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>DevelopmentAllocation</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>DevelopmentAllocation</Name>
+                </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
@@ -996,6 +1001,31 @@
                 <Source xsi:type="ColumnBinding">
                   <TableID>EligibleReports_5ac2d0f7-68b7-4949-8bec-94014fcbe202</TableID>
                   <ColumnID>ReportingCategory</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>DevelopmentAllocation</ID>
+              <Name>DevelopmentAllocation</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>EligibleReports_5ac2d0f7-68b7-4949-8bec-94014fcbe202</TableID>
+                    <ColumnID>DevelopmentAllocation</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>EligibleReports_5ac2d0f7-68b7-4949-8bec-94014fcbe202</TableID>
+                  <ColumnID>DevelopmentAllocation</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
@@ -2174,6 +2204,9 @@
                 <Attribute>
                   <AttributeID>ReportingCategory</AttributeID>
                 </Attribute>
+                <Attribute>
+                  <AttributeID>DevelopmentAllocation</AttributeID>
+                </Attribute>
               </Attributes>
             </Dimension>
             <Dimension>
@@ -2649,6 +2682,20 @@
                           <Source xsi:type="ColumnBinding">
                             <TableID>EligibleReports_5ac2d0f7-68b7-4949-8bec-94014fcbe202</TableID>
                             <ColumnID>ReportingCategory</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DevelopmentAllocation</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>EligibleReports_5ac2d0f7-68b7-4949-8bec-94014fcbe202</TableID>
+                            <ColumnID>DevelopmentAllocation</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -3300,6 +3347,20 @@ CreatedBy
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>DevelopmentAllocation</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>EligibleReports_5ac2d0f7-68b7-4949-8bec-94014fcbe202</TableID>
+                            <ColumnID>DevelopmentAllocation</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
                 </Dimension>
@@ -3659,12 +3720,13 @@ CreatedBy
       ,[Comments]
       ,[Recipient],
        [ReportingCategory],
+DevelopmentAllocation,
 case 
 when isnull(Status, '') = ''  or isnull(Category, '') = '' or isnull(Allocation, '') = '' or isnull(ReportingCategory, '') = '' then null else 1 end  DataCompleted,
 IDLinkConfirmed
  
   FROM [Reporting].[dbo].[DWHProgress]
-where ID != 1778</QueryDefinition>
+where ID not in (1778, 1933)</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
@@ -4415,6 +4477,20 @@ dim_date2</QueryDefinition>
                           <Source xsi:type="ColumnBinding">
                             <TableID>EligibleReports_5ac2d0f7-68b7-4949-8bec-94014fcbe202</TableID>
                             <ColumnID>ReportingCategory</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DevelopmentAllocation</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>EligibleReports_5ac2d0f7-68b7-4949-8bec-94014fcbe202</TableID>
+                            <ColumnID>DevelopmentAllocation</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -5331,7 +5407,7 @@ CREATE MEASURE 'ReportIDs'[Count of New Reports]=if(isblank(calculate(countrows(
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="EligibleReports_5ac2d0f7-68b7-4949-8bec-94014fcbe202" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="EligibleReports" msprop:DbTableName="EligibleReports" msprop:TableType="View" msprop:Description="EligibleReports" msprop:QueryDefinition="SELECT[ID]&#xD;&#xA;      ,[Name]&#xD;&#xA;      ,cast([CreationDate] as date) CreationDate&#xD;&#xA;      ,[ModifiedDate]&#xD;&#xA;      ,[Status]&#xD;&#xA;      ,[Path]&#xD;&#xA;      ,[Category]&#xD;&#xA;      ,[ServerLocation]&#xD;&#xA;      ,[Allocation]&#xD;&#xA;      ,[Priority]&#xD;&#xA;      ,[Comments]&#xD;&#xA;      ,[Recipient],&#xD;&#xA;       [ReportingCategory],&#xD;&#xA;case &#xD;&#xA;when isnull(Status, '') = ''  or isnull(Category, '') = '' or isnull(Allocation, '') = '' or isnull(ReportingCategory, '') = '' then null else 1 end  DataCompleted,&#xD;&#xA;IDLinkConfirmed&#xD;&#xA; &#xD;&#xA;  FROM [Reporting].[dbo].[DWHProgress]&#xD;&#xA;where ID != 1778">
+                    <xs:element name="EligibleReports_5ac2d0f7-68b7-4949-8bec-94014fcbe202" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="EligibleReports" msprop:DbTableName="EligibleReports" msprop:TableType="View" msprop:Description="EligibleReports" msprop:QueryDefinition="SELECT[ID]&#xD;&#xA;      ,[Name]&#xD;&#xA;      ,cast([CreationDate] as date) CreationDate&#xD;&#xA;      ,[ModifiedDate]&#xD;&#xA;      ,[Status]&#xD;&#xA;      ,[Path]&#xD;&#xA;      ,[Category]&#xD;&#xA;      ,[ServerLocation]&#xD;&#xA;      ,[Allocation]&#xD;&#xA;      ,[Priority]&#xD;&#xA;      ,[Comments]&#xD;&#xA;      ,[Recipient],&#xD;&#xA;       [ReportingCategory],&#xD;&#xA;DevelopmentAllocation,&#xD;&#xA;case &#xD;&#xA;when isnull(Status, '') = ''  or isnull(Category, '') = '' or isnull(Allocation, '') = '' or isnull(ReportingCategory, '') = '' then null else 1 end  DataCompleted,&#xD;&#xA;IDLinkConfirmed&#xD;&#xA; &#xD;&#xA;  FROM [Reporting].[dbo].[DWHProgress]&#xD;&#xA;where ID not in (1778, 1933)">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="ID" msprop:DbColumnName="ID" msprop:FriendlyName="ID" type="xs:int" minOccurs="0" />
@@ -5397,6 +5473,13 @@ CREATE MEASURE 'ReportIDs'[Count of New Reports]=if(isblank(calculate(countrows(
                           <xs:element name="DataCompleted" msprop:DbColumnName="DataCompleted" msprop:FriendlyName="DataCompleted" type="xs:int" minOccurs="0" />
                           <xs:element name="IDLinkConfirmed" msprop:DbColumnName="IDLinkConfirmed" msprop:FriendlyName="IDLinkConfirmed" type="xs:int" minOccurs="0" />
                           <xs:element name="ReportingCategory" msprop:DbColumnName="ReportingCategory" msprop:FriendlyName="ReportingCategory" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="DevelopmentAllocation" msprop:DbColumnName="DevelopmentAllocation" msprop:FriendlyName="DevelopmentAllocation" minOccurs="0">
                             <xs:simpleType>
                               <xs:restriction base="xs:string">
                                 <xs:maxLength value="32768" />
