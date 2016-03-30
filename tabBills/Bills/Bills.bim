@@ -238,6 +238,7 @@
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
+              <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
             </Attribute>
             <Attribute>
               <Annotations>
@@ -2494,7 +2495,7 @@
                   <Value>
                     <Format Format="DateTimeCustom" xmlns="">
                       <DateTimes>
-                        <DateTime LCID="2057" Group="ShortDate" FormatString="dd/MM/yy" />
+                        <DateTime LCID="2057" Group="ShortDate" FormatString="dd/MM/yyyy" />
                       </DateTimes>
                     </Format>
                   </Value>
@@ -2523,7 +2524,7 @@
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
-              <ddl300_300:FormatString>dd/MM/yy</ddl300_300:FormatString>
+              <ddl300_300:FormatString>dd/MM/yyyy</ddl300_300:FormatString>
             </Attribute>
             <Attribute>
               <ID>BillDateDayInMonth</ID>
@@ -3179,9 +3180,9 @@
                   <Name>DateMatterOpenedFinancialPeriod</Name>
                 </AttributeRelationship>
                 <AttributeRelationship>
-                  <AttributeID>DateMatterOpenedFinancialQuarterName</AttributeID>
+                  <AttributeID>DateMatterOpenedCalPeriod</AttributeID>
                   <OverrideBehavior>None</OverrideBehavior>
-                  <Name>DateMatterOpenedFinancialQuarterName</Name>
+                  <Name>DateMatterOpenedCalPeriod</Name>
                 </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
@@ -3662,8 +3663,8 @@
               <OrderBy>Key</OrderBy>
             </Attribute>
             <Attribute>
-              <ID>DateMatterOpenedFinancialQuarterName</ID>
-              <Name>DateMatterOpenedFinancialQuarterName</Name>
+              <ID>DateMatterOpenedCalPeriod</ID>
+              <Name>DateMatterOpenedCalPeriod</Name>
               <KeyColumns>
                 <KeyColumn>
                   <DataType>WChar</DataType>
@@ -3671,7 +3672,7 @@
                   <NullProcessing>Preserve</NullProcessing>
                   <Source xsi:type="ColumnBinding">
                     <TableID>dimDateMatterOpened_866fdd20-c0be-47a9-9ff2-e0c3a5aa9443</TableID>
-                    <ColumnID>DateMatterOpenedFinancialQuarterName</ColumnID>
+                    <ColumnID>DateMatterOpenedCalPeriod</ColumnID>
                   </Source>
                 </KeyColumn>
               </KeyColumns>
@@ -3681,7 +3682,7 @@
                 <NullProcessing>ZeroOrBlank</NullProcessing>
                 <Source xsi:type="ColumnBinding">
                   <TableID>dimDateMatterOpened_866fdd20-c0be-47a9-9ff2-e0c3a5aa9443</TableID>
-                  <ColumnID>DateMatterOpenedFinancialQuarterName</ColumnID>
+                  <ColumnID>DateMatterOpenedCalPeriod</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
@@ -3696,11 +3697,6 @@
                   <ID>DateMatterOpenedFinancialYear</ID>
                   <Name>DateMatterOpenedFinancialYear</Name>
                   <SourceAttributeID>DateMatterOpenedFinancialYear</SourceAttributeID>
-                </Level>
-                <Level>
-                  <ID>DateMatterOpenedFinancialQuarterName</ID>
-                  <Name>DateMatterOpenedFinancialQuarterName</Name>
-                  <SourceAttributeID>DateMatterOpenedFinancialQuarterName</SourceAttributeID>
                 </Level>
                 <Level>
                   <ID>DateMatterOpenedFinancialPeriod</ID>
@@ -3857,6 +3853,16 @@
                   <AttributeID>DateMatterClosedHoliday</AttributeID>
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>DateMatterClosedHoliday</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>DateMatterClosedCalPeriod</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>DateMatterClosedCalPeriod</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>DateMatterClosedFinancialPeriod</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>DateMatterClosedFinancialPeriod</Name>
                 </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
@@ -4307,6 +4313,56 @@
                 <Source xsi:type="ColumnBinding">
                   <TableID>dimDateMatterClosed_ab636a6a-d3cd-4638-9aaf-bddf26883940</TableID>
                   <ColumnID>DateMatterClosedHoliday</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>DateMatterClosedCalPeriod</ID>
+              <Name>DateMatterClosedCalPeriod</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimDateMatterClosed_ab636a6a-d3cd-4638-9aaf-bddf26883940</TableID>
+                    <ColumnID>DateMatterClosedCalPeriod</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimDateMatterClosed_ab636a6a-d3cd-4638-9aaf-bddf26883940</TableID>
+                  <ColumnID>DateMatterClosedCalPeriod</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>DateMatterClosedFinancialPeriod</ID>
+              <Name>DateMatterClosedFinancialPeriod</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimDateMatterClosed_ab636a6a-d3cd-4638-9aaf-bddf26883940</TableID>
+                    <ColumnID>DateMatterClosedFinancialPeriod</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimDateMatterClosed_ab636a6a-d3cd-4638-9aaf-bddf26883940</TableID>
+                  <ColumnID>DateMatterClosedFinancialPeriod</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
@@ -7225,20 +7281,14 @@ order by 1&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryC
           <Name>dimDateLastTime</Name>
           <Annotations>
             <Annotation>
-              <Name>IsQueryEditorUsed</Name>
-              <Value>True</Value>
+              <Name>TableWidgetSerialization</Name>
             </Annotation>
             <Annotation>
               <Name>QueryEditorSerialization</Name>
             </Annotation>
             <Annotation>
-              <Name>TableWidgetSerialization</Name>
-            </Annotation>
-            <Annotation>
-              <Name>DataMarketWebBaseUrl</Name>
-            </Annotation>
-            <Annotation>
-              <Name>DataMarketWebQueryUrl</Name>
+              <Name>IsQueryEditorUsed</Name>
+              <Value>True</Value>
             </Annotation>
           </Annotations>
           <Source xsi:type="DataSourceViewBinding">
@@ -9745,6 +9795,7 @@ order by 1&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryC
                 </Attribute>
                 <Attribute>
                   <AttributeID>MatterID</AttributeID>
+                  <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
                 </Attribute>
                 <Attribute>
                   <AttributeID>DisbursementBalance</AttributeID>
@@ -10092,7 +10143,7 @@ order by 1&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryC
                   <AttributeID>DateMatterOpenedFinancialPeriod</AttributeID>
                 </Attribute>
                 <Attribute>
-                  <AttributeID>DateMatterOpenedFinancialQuarterName</AttributeID>
+                  <AttributeID>DateMatterOpenedCalPeriod</AttributeID>
                 </Attribute>
               </Attributes>
               <Hierarchies>
@@ -10163,6 +10214,12 @@ order by 1&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryC
                 </Attribute>
                 <Attribute>
                   <AttributeID>DateMatterClosedHoliday</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>DateMatterClosedCalPeriod</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>DateMatterClosedFinancialPeriod</AttributeID>
                 </Attribute>
               </Attributes>
             </Dimension>
@@ -11805,7 +11862,7 @@ order by 1&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryC
                       </KeyColumns>
                     </Attribute>
                     <Attribute>
-                      <AttributeID>DateMatterOpenedFinancialQuarterName</AttributeID>
+                      <AttributeID>DateMatterOpenedCalPeriod</AttributeID>
                       <KeyColumns>
                         <KeyColumn>
                           <DataType>WChar</DataType>
@@ -11813,7 +11870,7 @@ order by 1&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryC
                           <NullProcessing>Preserve</NullProcessing>
                           <Source xsi:type="ColumnBinding">
                             <TableID>dimDateMatterOpened_866fdd20-c0be-47a9-9ff2-e0c3a5aa9443</TableID>
-                            <ColumnID>DateMatterOpenedFinancialQuarterName</ColumnID>
+                            <ColumnID>DateMatterOpenedCalPeriod</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -12086,6 +12143,34 @@ order by 1&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryC
                           <Source xsi:type="ColumnBinding">
                             <TableID>dimDateMatterClosed_ab636a6a-d3cd-4638-9aaf-bddf26883940</TableID>
                             <ColumnID>DateMatterClosedHoliday</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DateMatterClosedCalPeriod</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateMatterClosed_ab636a6a-d3cd-4638-9aaf-bddf26883940</TableID>
+                            <ColumnID>DateMatterClosedCalPeriod</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DateMatterClosedFinancialPeriod</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateMatterClosed_ab636a6a-d3cd-4638-9aaf-bddf26883940</TableID>
+                            <ColumnID>DateMatterClosedFinancialPeriod</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -13301,7 +13386,7 @@ order by 1&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryC
                   </Annotations>
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
-                    <QueryDefinition>select distinct 
+                    <QueryDefinition>select
 f.dim_matter_header_curr_key MatterID,
 f.dim_fed_hierarchy_history_key FEDCodeID,
 d.dim_matter_group_key MatterGroupID,
@@ -13311,10 +13396,10 @@ d.dim_department_key DepartmentID,
 d.matter_partner_code PartnerCode,
 d.matter_number MatterNumber,
 CASE WHEN ISNUMERIC(d.matter_number) = 1 and rtrim(d.matter_number) != '.' THEN CAST(CAST(d.matter_number AS int) AS varchar) ELSE RTRIM(d.matter_number) END as 'MatterNumberTrimmed',
-c.dim_client_key ClientID,
+f.dim_client_key ClientID,
 d.matter_description MatterDesc,
-date1.dim_date_key DateMatterOpen,
-date2.dim_date_key DateMatterClosed,
+dim_open_practice_management_date_key DateMatterOpen,
+dim_closed_practice_management_date_key DateMatterClosed,
 datediff(day, d.date_opened_practice_management, isnull(d.date_closed_practice_management, getdate())) AgeOfMatterDays,
 disbursement_balance DisbursementBalance,
 client_account_balance_of_matter ClientAccountBalance,
@@ -13325,55 +13410,25 @@ time_billed TotalTimeBilled,
 number_bills_matter NumberOfBillsRaised,
 unbilled_time UnbilledTime,
 case when d.case_id is null then 'No' else 'Yes' end HasRecordInCashdr,
-lastbill.LastBillDate,
-lasttime.LastTimeDate,
+dim_last_bill_date_key LastBillDate,
+dim_last_transaction_date_key LastTimeDate,
 case when 
 d.date_closed_case_management is not null
 and d.date_closed_practice_management is null
 then 'OpenInArtiionClosedInFED' else null end as 'FileClosedStatus'
 
 from
-red_dw.dbo.fact_matter_summary f
+red_dw.dbo.fact_matter_summary_current f
 
 inner join red_dw.dbo.dim_matter_header_current d
  on d.dim_matter_header_curr_key = f.dim_matter_header_curr_key
 
-left join red_dw.dbo.dim_client c
- on c.dim_client_key = f.dim_client_key
-
- 
-left join red_dw.dbo.dim_date date1
- on date1.calendar_date = cast(d.date_opened_practice_management as date)
-
-left join red_dw.dbo.dim_date date2
- on date2.calendar_date = isnull(cast(d.date_closed_practice_management as date), '1753-01-01 00:00:00.000')
-
-left join (
-  select dim_matter_header_curr_key, max(dim_bill_date_key) LastBillDate from red_dw.dbo.fact_bill
-  group by dim_matter_header_curr_key) lastbill 
-  on f.dim_matter_header_curr_key = lastbill.dim_matter_header_curr_key
-
-left join (
-  select dim_matter_header_curr_key, max(dim_transaction_date_key) LastTimeDate 
-  from red_dw.dbo.fact_all_time_activity a 
-  group by dim_matter_header_curr_key) lasttime 
-  on lasttime.dim_matter_header_curr_key = f.dim_matter_header_curr_key
-  
 left join red_dw.dbo.dim_matter_branch br
  on br.branch_code = d.branch_code
  
 
 where
- f.fin_month = (
-select 
-fin_month
-
-from
-red_dw.dbo.dim_date
-
-where
-calendar_date = cast(getdate() - 1 as date))
-and f.dim_matter_header_curr_key &gt; 0</QueryDefinition>
+f.dim_matter_header_curr_key &gt; 0</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
@@ -14355,7 +14410,7 @@ and f.dim_matter_header_curr_key &gt; 0</QueryDefinition>
                       </KeyColumns>
                     </Attribute>
                     <Attribute>
-                      <AttributeID>DateMatterOpenedFinancialQuarterName</AttributeID>
+                      <AttributeID>DateMatterOpenedCalPeriod</AttributeID>
                       <KeyColumns>
                         <KeyColumn>
                           <DataType>WChar</DataType>
@@ -14363,7 +14418,7 @@ and f.dim_matter_header_curr_key &gt; 0</QueryDefinition>
                           <NullProcessing>Preserve</NullProcessing>
                           <Source xsi:type="ColumnBinding">
                             <TableID>dimDateMatterOpened_866fdd20-c0be-47a9-9ff2-e0c3a5aa9443</TableID>
-                            <ColumnID>DateMatterOpenedFinancialQuarterName</ColumnID>
+                            <ColumnID>DateMatterOpenedCalPeriod</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -14634,6 +14689,34 @@ and f.dim_matter_header_curr_key &gt; 0</QueryDefinition>
                           <Source xsi:type="ColumnBinding">
                             <TableID>dimDateMatterClosed_ab636a6a-d3cd-4638-9aaf-bddf26883940</TableID>
                             <ColumnID>DateMatterClosedHoliday</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DateMatterClosedCalPeriod</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateMatterClosed_ab636a6a-d3cd-4638-9aaf-bddf26883940</TableID>
+                            <ColumnID>DateMatterClosedCalPeriod</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DateMatterClosedFinancialPeriod</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateMatterClosed_ab636a6a-d3cd-4638-9aaf-bddf26883940</TableID>
+                            <ColumnID>DateMatterClosedFinancialPeriod</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -17656,42 +17739,45 @@ red_dw.dbo.fact_bill_activity</QueryDefinition>
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
                     <QueryDefinition>select
-dim_date_key as 'BillDateKey',
-calendar_date as 'BillDateDate',
-cal_day_in_month as 'BillDateDayInMonth',
-cal_day_in_year as 'BillDateDayInYear',
-cal_day_in_week_no as 'BillDateWeekdayNo',
-cal_day_in_week as 'BillDateWeekdayName',
-cal_week_in_year as 'BillDateCalendarWeek',
-cal_month_no as 'BillDateCalendarMonthNo',
-cal_month_name as 'BillDateCalendarMonthName',
-cal_quarter_no as 'BillDateCalendarQuarterNo',
-cal_year as 'BillDateCalendarYear',
-fin_week_in_year as 'BillDateFinancialWeek',
-fin_month_no as 'BillDateFinancialMonthNo',
-fin_month_name as 'BillDateFinancialMonthName',
-fin_quarter_no as 'BillDateFinancialQuarterNo',
-fin_year as 'BillDateFinancialYear',
-week_end_flag as 'BillDateWeekend',
-holiday_flag as 'BillDateHoliday',
-fin_month_name + '-' + right(fin_year, 2) as 'BillDateFinancialPeriod',
-cal_month_name + '-' + right(cal_year, 2) as 'BillDateCalendarPeriod',
+dim_bill_date_key as 'BillDateKey',
+bill_date as 'BillDateDate',
+bill_cal_day_in_month as 'BillDateDayInMonth',
+bill_cal_day_in_year as 'BillDateDayInYear',
+bill_cal_day_in_week_no as 'BillDateWeekdayNo',
+bill_cal_day_in_week as 'BillDateWeekdayName',
+bill_cal_week_in_year as 'BillDateCalendarWeek',
+bill_cal_month_no as 'BillDateCalendarMonthNo',
+bill_cal_month_name as 'BillDateCalendarMonthName',
+bill_cal_quarter_no as 'BillDateCalendarQuarterNo',
+bill_cal_year as 'BillDateCalendarYear',
+bill_fin_week_in_year as 'BillDateFinancialWeek',
+bill_fin_month_no as 'BillDateFinancialMonthNo',
+bill_fin_month_name as 'BillDateFinancialMonthName',
+bill_fin_quarter_no as 'BillDateFinancialQuarterNo',
+bill_fin_year as 'BillDateFinancialYear',
+bill_week_end_flag as 'BillDateWeekend',
+bill_holiday_flag as 'BillDateHoliday',
+bill_fin_month_name + '-' + right(bill_fin_year, 2) as 'BillDateFinancialPeriod',
+bill_cal_month_name + '-' + right(bill_cal_year, 2) as 'BillDateCalendarPeriod',
 p.BillDateDaysInMonth
 
 
 from
-red_dw.dbo.dim_date
+red_dw.dbo.dim_bill_date
 
 left join (
  select 
-  fin_month_name + '-' + right(fin_year, 2) as 'BillDateFinancialPeriod',
-  max(cal_day_in_month) as 'BillDateDaysInMonth'
+  bill_fin_month_name + '-' + right(bill_fin_year, 2) as 'BillDateFinancialPeriod',
+  max(bill_cal_day_in_month) as 'BillDateDaysInMonth'
  from
-  red_dw.dbo.dim_date
+  red_dw.dbo.dim_bill_date
  group by
-    fin_month_name + '-' + right(fin_year, 2) 
+    bill_fin_month_name + '-' + right(bill_fin_year, 2) 
   ) p
-   on p.BillDateFinancialPeriod = fin_month_name + '-' + right(fin_year, 2)</QueryDefinition>
+   on p.BillDateFinancialPeriod = bill_fin_month_name + '-' + right(bill_fin_year, 2)
+
+where
+dim_bill_date_key &gt; 0</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
@@ -18027,7 +18113,7 @@ left join (
                       </KeyColumns>
                     </Attribute>
                     <Attribute>
-                      <AttributeID>DateMatterOpenedFinancialQuarterName</AttributeID>
+                      <AttributeID>DateMatterOpenedCalPeriod</AttributeID>
                       <KeyColumns>
                         <KeyColumn>
                           <DataType>WChar</DataType>
@@ -18035,7 +18121,7 @@ left join (
                           <NullProcessing>Preserve</NullProcessing>
                           <Source xsi:type="ColumnBinding">
                             <TableID>dimDateMatterOpened_866fdd20-c0be-47a9-9ff2-e0c3a5aa9443</TableID>
-                            <ColumnID>DateMatterOpenedFinancialQuarterName</ColumnID>
+                            <ColumnID>DateMatterOpenedCalPeriod</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -18066,31 +18152,32 @@ left join (
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
                     <QueryDefinition>select
-dim_date_key as 'DateMatterOpenedKey',
-calendar_date as 'DateMatterOpenedDate',
-cal_day_in_month as 'DateMatterOpenedDayInMonth',
-cal_day_in_year as 'DateMatterOpenedDayInYear',
-cal_day_in_week_no as 'DateMatterOpenedWeekdayNo',
-cal_day_in_week as 'DateMatterOpenedWeekdayName',
-cal_week_in_year as 'DateMatterOpenedCalendarWeek',
-cal_month_no as 'DateMatterOpenedCalendarMonthNo',
-cal_month_name as 'DateMatterOpenedCalendarMonthName',
-cal_quarter_no as 'DateMatterOpenedCalendarQuarterNo',
-cal_year as 'DateMatterOpenedCalendarYear',
-fin_period as 'DateMatterOpenedFinancialPeriod',
-fin_quarter as 'DateMatterOpenedFinancialQuarterName',
-fin_week_in_year as 'DateMatterOpenedFinancialWeek',
-fin_month_no as 'DateMatterOpenedFinancialMonthNo',
-fin_month_name as 'DateMatterOpenedFinancialMonthName',
-fin_quarter_no as 'DateMatterOpenedFinancialQuarterNo',
-fin_year as 'DateMatterOpenedFinancialYear',
-week_end_flag as 'DateMatterOpenedWeekend',
-holiday_flag as 'DateMatterOpenedHoliday'
-
-
+dim_open_practice_management_date_key DateMatterOpenedKey,
+calendar_date DateMatterOpenedDate,
+open_practice_management_cal_day_in_month DateMatterOpenedDayInMonth,
+open_practice_management_cal_day_in_year DateMatterOpenedDayInYear,
+open_practice_management_cal_day_in_week_no DateMatterOpenedWeekdayNo,
+open_practice_management_cal_day_in_week DateMatterOpenedWeekdayName,
+open_practice_management_cal_week_in_year DateMatterOpenedCalendarWeek,
+open_practice_management_cal_month_no DateMatterOpenedCalendarMonthNo,
+open_practice_management_cal_month_name DateMatterOpenedCalendarMonthName,
+open_practice_management_cal_quarter_no DateMatterOpenedCalendarQuarterNo,
+open_practice_management_cal_year DateMatterOpenedCalendarYear,
+open_practice_management_fin_week_in_year DateMatterOpenedFinancialWeek,
+open_practice_management_fin_month_no DateMatterOpenedFinancialMonthNo,
+open_practice_management_fin_month_name DateMatterOpenedFinancialMonthName,
+open_practice_management_fin_quarter_no DateMatterOpenedFinancialQuarterNo,
+open_practice_management_fin_year DateMatterOpenedFinancialYear,
+open_practice_management_week_end_flag DateMatterOpenedWeekend,
+open_practice_management_holiday_flag DateMatterOpenedHoliday,
+open_practice_management_cal_month_name + '-' + right(open_practice_management_cal_year, 2) DateMatterOpenedCalPeriod,
+open_practice_management_fin_month_name + '-' + right(open_practice_management_fin_year, 2) DateMatterOpenedFinancialPeriod
 
 from
-dim_date</QueryDefinition>
+red_dw.dbo.dim_open_practice_management_date
+
+where
+dim_open_practice_management_date_key &gt; 0</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
@@ -18411,6 +18498,34 @@ dim_date</QueryDefinition>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>DateMatterClosedCalPeriod</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateMatterClosed_ab636a6a-d3cd-4638-9aaf-bddf26883940</TableID>
+                            <ColumnID>DateMatterClosedCalPeriod</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DateMatterClosedFinancialPeriod</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateMatterClosed_ab636a6a-d3cd-4638-9aaf-bddf26883940</TableID>
+                            <ColumnID>DateMatterClosedFinancialPeriod</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
                 </Dimension>
@@ -18437,29 +18552,33 @@ dim_date</QueryDefinition>
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
                     <QueryDefinition>select
-dim_date_key as 'DateMatterClosedKey',
-calendar_date as 'DateMatterClosedDate',
-cal_day_in_month as 'DateMatterClosedDayInMonth',
-cal_day_in_year as 'DateMatterClosedDayInYear',
-cal_day_in_week_no as 'DateMatterClosedWeekdayNo',
-cal_day_in_week as 'DateMatterClosedWeekdayName',
-cal_week_in_year as 'DateMatterClosedCalendarWeek',
-cal_month_no as 'DateMatterClosedCalendarMonthNo',
-cal_month_name as 'DateMatterClosedCalendarMonthName',
-cal_quarter_no as 'DateMatterClosedCalendarQuarterNo',
-cal_year as 'DateMatterClosedCalendarYear',
-fin_week_in_year as 'DateMatterClosedFinancialWeek',
-fin_month_no as 'DateMatterClosedFinancialMonthNo',
-fin_month_name as 'DateMatterClosedFinancialMonthName',
-fin_quarter_no as 'DateMatterClosedFinancialQuarterNo',
-fin_year as 'DateMatterClosedFinancialYear',
-week_end_flag as 'DateMatterClosedWeekend',
-holiday_flag as 'DateMatterClosedHoliday'
-
+dim_closed_practice_management_date_key DateMatterClosedKey,
+calendar_date DateMatterClosedDate,
+closed_practice_management_cal_day_in_month DateMatterClosedDayInMonth,
+closed_practice_management_cal_day_in_year DateMatterClosedDayInYear,
+closed_practice_management_cal_day_in_week_no DateMatterClosedWeekdayNo,
+closed_practice_management_cal_day_in_week DateMatterClosedWeekdayName,
+closed_practice_management_cal_week_in_year DateMatterClosedCalendarWeek,
+closed_practice_management_cal_month_no DateMatterClosedCalendarMonthNo,
+closed_practice_management_cal_month_name DateMatterClosedCalendarMonthName,
+closed_practice_management_cal_quarter_no DateMatterClosedCalendarQuarterNo,
+closed_practice_management_cal_year DateMatterClosedCalendarYear,
+closed_practice_management_fin_week_in_year DateMatterClosedFinancialWeek,
+closed_practice_management_fin_month_no DateMatterClosedFinancialMonthNo,
+closed_practice_management_fin_month_name DateMatterClosedFinancialMonthName,
+closed_practice_management_fin_quarter_no DateMatterClosedFinancialQuarterNo,
+closed_practice_management_fin_year DateMatterClosedFinancialYear,
+closed_practice_management_week_end_flag DateMatterClosedWeekend,
+closed_practice_management_holiday_flag DateMatterClosedHoliday,
+closed_practice_management_cal_month_name + '-' + right(closed_practice_management_cal_year, 2) DateMatterClosedCalPeriod,
+closed_practice_management_fin_month_name + '-' + right(closed_practice_management_fin_year, 2) DateMatterClosedFinancialPeriod
 
 
 from
-dim_date</QueryDefinition>
+red_dw.dbo.dim_closed_practice_management_date
+
+where 
+dim_closed_practice_management_date_key &gt; 0</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
@@ -18806,29 +18925,32 @@ dim_date</QueryDefinition>
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
                     <QueryDefinition>select
-dim_date_key as 'DateBillLastPaymentKey',
-calendar_date as 'DateBillLastPaymentDate',
-cal_day_in_month as 'DateBillLastPaymentDayInMonth',
-cal_day_in_year as 'DateBillLastPaymentDayInYear',
-cal_day_in_week_no as 'DateBillLastPaymentWeekdayNo',
-cal_day_in_week as 'DateBillLastPaymentWeekdayName',
-cal_week_in_year as 'DateBillLastPaymentCalendarWeek',
-cal_month_no as 'DateBillLastPaymentCalendarMonthNo',
-cal_month_name as 'DateBillLastPaymentCalendarMonthName',
-cal_quarter_no as 'DateBillLastPaymentCalendarQuarterNo',
-cal_year as 'DateBillLastPaymentCalendarYear',
-fin_week_in_year as 'DateBillLastPaymentFinancialWeek',
-fin_month_no as 'DateBillLastPaymentFinancialMonthNo',
-fin_month_name as 'DateBillLastPaymentFinancialMonthName',
-fin_quarter_no as 'DateBillLastPaymentFinancialQuarterNo',
-fin_year as 'DateBillLastPaymentFinancialYear',
-week_end_flag as 'DateBillLastPaymentWeekend',
-holiday_flag as 'DateBillLastPaymentHoliday'
+dim_last_pay_date_key DateBillLastPaymentKey,
+last_pay_calendar_date DateBillLastPaymentDate,
+last_pay_cal_day_in_month DateBillLastPaymentDayInMonth,
+last_pay_cal_day_in_year DateBillLastPaymentDayInYear,
+last_pay_cal_day_in_week_no DateBillLastPaymentWeekdayNo,
+last_pay_cal_day_in_week DateBillLastPaymentWeekdayName,
+last_pay_cal_week_in_year DateBillLastPaymentCalendarWeek,
+last_pay_cal_month_no DateBillLastPaymentCalendarMonthNo,
+last_pay_cal_month_name DateBillLastPaymentCalendarMonthName,
+last_pay_cal_quarter_no DateBillLastPaymentCalendarQuarterNo,
+last_pay_cal_year DateBillLastPaymentCalendarYear,
+last_pay_fin_week_in_year DateBillLastPaymentFinancialWeek,
+last_pay_fin_month_no DateBillLastPaymentFinancialMonthNo,
+last_pay_fin_month_name DateBillLastPaymentFinancialMonthName,
+last_pay_fin_quarter_no DateBillLastPaymentFinancialQuarterNo,
+last_pay_fin_year DateBillLastPaymentFinancialYear,
+last_pay_week_end_flag DateBillLastPaymentWeekend,
+last_pay_holiday_flag DateBillLastPaymentHoliday
 
 
 
 from
-dim_date</QueryDefinition>
+dim_last_pay_date
+
+where
+dim_last_pay_date_key &gt; 0</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
@@ -20819,29 +20941,32 @@ left join sql2008svr.axxia01.dbo.caclextn crm
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
                     <QueryDefinition>select
-dim_date_key as 'LastBillKey',
-calendar_date as 'LastBillDate',
-cal_day_in_month as 'LastBillDayInMonth',
-cal_day_in_year as 'LastBillDayInYear',
-cal_day_in_week_no as 'LastBillWeekdayNo',
-cal_day_in_week as 'LastBillWeekdayName',
-cal_week_in_year as 'LastBillCalendarWeek',
-cal_month_no as 'LastBillCalendarMonthNo',
-cal_month_name as 'LastBillCalendarMonthName',
-cal_quarter_no as 'LastBillCalendarQuarterNo',
-cal_year as 'LastBillCalendarYear',
-fin_week_in_year as 'LastBillFinancialWeek',
-fin_month_no as 'LastBillFinancialMonthNo',
-fin_month_name as 'LastBillFinancialMonthName',
-fin_quarter_no as 'LastBillFinancialQuarterNo',
-fin_year as 'LastBillFinancialYear',
-week_end_flag as 'LastBillWeekend',
-holiday_flag as 'LastBillHoliday'
+dim_last_bill_date_key LastBillKey,
+calendar_date LastBillDate,
+last_bill_cal_day_in_month LastBillDayInMonth,
+last_bill_cal_day_in_year LastBillDayInYear,
+last_bill_cal_day_in_week_no LastBillWeekdayNo,
+last_bill_cal_day_in_week LastBillWeekdayName,
+last_bill_cal_week_in_year LastBillCalendarWeek,
+last_bill_cal_month_no LastBillCalendarMonthNo,
+last_bill_cal_month_name LastBillCalendarMonthName,
+last_bill_cal_quarter_no LastBillCalendarQuarterNo,
+last_bill_cal_year LastBillCalendarYear,
+last_bill_fin_week_in_year LastBillFinancialWeek,
+last_bill_fin_month_no LastBillFinancialMonthNo,
+last_bill_fin_month_name LastBillFinancialMonthName,
+last_bill_fin_quarter_no LastBillFinancialQuarterNo,
+last_bill_fin_year LastBillFinancialYear,
+last_bill_week_end_flag LastBillWeekend,
+last_bill_holiday_flag LastBillHoliday
 
 
 
 from
-dim_date</QueryDefinition>
+dim_last_bill_date
+
+where
+dim_last_bill_date_key &gt; 0</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
@@ -21190,42 +21315,48 @@ dim_date</QueryDefinition>
                   <Name>dimDateLastTime</Name>
                   <Annotations>
                     <Annotation>
-                      <Name>IsQueryEditorUsed</Name>
-                      <Value>True</Value>
+                      <Name>TableWidgetSerialization</Name>
+                    </Annotation>
+                    <Annotation>
+                      <Name>TableWidgetSourceTable</Name>
                     </Annotation>
                     <Annotation>
                       <Name>QueryEditorSerialization</Name>
                     </Annotation>
                     <Annotation>
-                      <Name>TableWidgetSerialization</Name>
+                      <Name>IsQueryEditorUsed</Name>
+                      <Value>True</Value>
                     </Annotation>
                   </Annotations>
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
                     <QueryDefinition>select
-dim_date_key as 'LastTimeKey',
-calendar_date as 'LastTimeDate',
-cal_day_in_month as 'LastTimeDayInMonth',
-cal_day_in_year as 'LastTimeDayInYear',
-cal_day_in_week_no as 'LastTimeWeekdayNo',
-cal_day_in_week as 'LastTimeWeekdayName',
-cal_week_in_year as 'LastTimeCalendarWeek',
-cal_month_no as 'LastTimeCalendarMonthNo',
-cal_month_name as 'LastTimeCalendarMonthName',
-cal_quarter_no as 'LastTimeCalendarQuarterNo',
-cal_year as 'LastTimeCalendarYear',
-fin_week_in_year as 'LastTimeFinancialWeek',
-fin_month_no as 'LastTimeFinancialMonthNo',
-fin_month_name as 'LastTimeFinancialMonthName',
-fin_quarter_no as 'LastTimeFinancialQuarterNo',
-fin_year as 'LastTimeFinancialYear',
-week_end_flag as 'LastTimeWeekend',
-holiday_flag as 'LastTimeHoliday'
+dim_last_transaction_date_key LastTimeKey,
+calendar_date LastTimeDate,
+last_transaction_cal_day_in_month LastTimeDayInMonth,
+last_transaction_cal_day_in_year LastTimeDayInYear,
+last_transaction_cal_day_in_week_no LastTimeWeekdayNo,
+last_transaction_cal_day_in_week LastTimeWeekdayName,
+last_transaction_cal_week_in_year LastTimeCalendarWeek,
+last_transaction_cal_month_no LastTimeCalendarMonthNo,
+last_transaction_cal_month_name LastTimeCalendarMonthName,
+last_transaction_cal_quarter_no LastTimeCalendarQuarterNo,
+last_transaction_cal_year LastTimeCalendarYear,
+last_transaction_fin_week_in_year LastTimeFinancialWeek,
+last_transaction_fin_month_no LastTimeFinancialMonthNo,
+last_transaction_fin_month_name LastTimeFinancialMonthName,
+last_transaction_fin_quarter_no LastTimeFinancialQuarterNo,
+last_transaction_fin_year LastTimeFinancialYear,
+last_transaction_week_end_flag LastTimeWeekend,
+last_transaction_holiday_flag LastTimeHoliday
 
 
 
 from
-dim_date</QueryDefinition>
+dim_last_transaction_date
+
+where
+dim_last_transaction_date_key &gt; 0</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
@@ -22192,7 +22323,7 @@ dim_date</QueryDefinition>
                       </KeyColumns>
                     </Attribute>
                     <Attribute>
-                      <AttributeID>DateMatterOpenedFinancialQuarterName</AttributeID>
+                      <AttributeID>DateMatterOpenedCalPeriod</AttributeID>
                       <KeyColumns>
                         <KeyColumn>
                           <DataType>WChar</DataType>
@@ -22200,7 +22331,7 @@ dim_date</QueryDefinition>
                           <NullProcessing>Preserve</NullProcessing>
                           <Source xsi:type="ColumnBinding">
                             <TableID>dimDateMatterOpened_866fdd20-c0be-47a9-9ff2-e0c3a5aa9443</TableID>
-                            <ColumnID>DateMatterOpenedFinancialQuarterName</ColumnID>
+                            <ColumnID>DateMatterOpenedCalPeriod</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -22471,6 +22602,34 @@ dim_date</QueryDefinition>
                           <Source xsi:type="ColumnBinding">
                             <TableID>dimDateMatterClosed_ab636a6a-d3cd-4638-9aaf-bddf26883940</TableID>
                             <ColumnID>DateMatterClosedHoliday</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DateMatterClosedCalPeriod</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateMatterClosed_ab636a6a-d3cd-4638-9aaf-bddf26883940</TableID>
+                            <ColumnID>DateMatterClosedCalPeriod</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>DateMatterClosedFinancialPeriod</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateMatterClosed_ab636a6a-d3cd-4638-9aaf-bddf26883940</TableID>
+                            <ColumnID>DateMatterClosedFinancialPeriod</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -27082,7 +27241,7 @@ CREATE MEASURE 'Matters'[Count of Matters]=countrows(Matters);
               <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:Locale="en-US">
                 <xs:complexType>
                   <xs:choice minOccurs="0" maxOccurs="unbounded">
-                    <xs:element name="factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="Matters" msprop:DbTableName="factMatter" msprop:TableType="View" msprop:Description="factMatter" msprop:QueryDefinition="select distinct &#xD;&#xA;f.dim_matter_header_curr_key MatterID,&#xD;&#xA;f.dim_fed_hierarchy_history_key FEDCodeID,&#xD;&#xA;d.dim_matter_group_key MatterGroupID,&#xD;&#xA;br.dim_matter_branch_key BranchID,&#xD;&#xA;d.dim_matter_worktype_key WorkTypeID,&#xD;&#xA;d.dim_department_key DepartmentID,&#xD;&#xA;d.matter_partner_code PartnerCode,&#xD;&#xA;d.matter_number MatterNumber,&#xD;&#xA;CASE WHEN ISNUMERIC(d.matter_number) = 1 and rtrim(d.matter_number) != '.' THEN CAST(CAST(d.matter_number AS int) AS varchar) ELSE RTRIM(d.matter_number) END as 'MatterNumberTrimmed',&#xD;&#xA;c.dim_client_key ClientID,&#xD;&#xA;d.matter_description MatterDesc,&#xD;&#xA;date1.dim_date_key DateMatterOpen,&#xD;&#xA;date2.dim_date_key DateMatterClosed,&#xD;&#xA;datediff(day, d.date_opened_practice_management, isnull(d.date_closed_practice_management, getdate())) AgeOfMatterDays,&#xD;&#xA;disbursement_balance DisbursementBalance,&#xD;&#xA;client_account_balance_of_matter ClientAccountBalance,&#xD;&#xA;unpaid_bill_balance UnpaidBillsBalance,&#xD;&#xA;wip_balance WIPBalance,&#xD;&#xA;costs_to_date CostsToDate,&#xD;&#xA;time_billed TotalTimeBilled,&#xD;&#xA;number_bills_matter NumberOfBillsRaised,&#xD;&#xA;unbilled_time UnbilledTime,&#xD;&#xA;case when d.case_id is null then 'No' else 'Yes' end HasRecordInCashdr,&#xD;&#xA;lastbill.LastBillDate,&#xD;&#xA;lasttime.LastTimeDate,&#xD;&#xA;case when &#xD;&#xA;d.date_closed_case_management is not null&#xD;&#xA;and d.date_closed_practice_management is null&#xD;&#xA;then 'OpenInArtiionClosedInFED' else null end as 'FileClosedStatus'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_matter_summary f&#xD;&#xA;&#xD;&#xA;inner join red_dw.dbo.dim_matter_header_current d&#xD;&#xA; on d.dim_matter_header_curr_key = f.dim_matter_header_curr_key&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_client c&#xD;&#xA; on c.dim_client_key = f.dim_client_key&#xD;&#xA;&#xD;&#xA; &#xD;&#xA;left join red_dw.dbo.dim_date date1&#xD;&#xA; on date1.calendar_date = cast(d.date_opened_practice_management as date)&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_date date2&#xD;&#xA; on date2.calendar_date = isnull(cast(d.date_closed_practice_management as date), '1753-01-01 00:00:00.000')&#xD;&#xA;&#xD;&#xA;left join (&#xD;&#xA;  select dim_matter_header_curr_key, max(dim_bill_date_key) LastBillDate from red_dw.dbo.fact_bill&#xD;&#xA;  group by dim_matter_header_curr_key) lastbill &#xD;&#xA;  on f.dim_matter_header_curr_key = lastbill.dim_matter_header_curr_key&#xD;&#xA;&#xD;&#xA;left join (&#xD;&#xA;  select dim_matter_header_curr_key, max(dim_transaction_date_key) LastTimeDate &#xD;&#xA;  from red_dw.dbo.fact_all_time_activity a &#xD;&#xA;  group by dim_matter_header_curr_key) lasttime &#xD;&#xA;  on lasttime.dim_matter_header_curr_key = f.dim_matter_header_curr_key&#xD;&#xA;  &#xD;&#xA;left join red_dw.dbo.dim_matter_branch br&#xD;&#xA; on br.branch_code = d.branch_code&#xD;&#xA; &#xD;&#xA;&#xD;&#xA;where&#xD;&#xA; f.fin_month = (&#xD;&#xA;select &#xD;&#xA;fin_month&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_date&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;calendar_date = cast(getdate() - 1 as date))&#xD;&#xA;and f.dim_matter_header_curr_key &gt; 0">
+                    <xs:element name="factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="Matters" msprop:DbTableName="factMatter" msprop:TableType="View" msprop:Description="factMatter" msprop:QueryDefinition="select&#xD;&#xA;f.dim_matter_header_curr_key MatterID,&#xD;&#xA;f.dim_fed_hierarchy_history_key FEDCodeID,&#xD;&#xA;d.dim_matter_group_key MatterGroupID,&#xD;&#xA;br.dim_matter_branch_key BranchID,&#xD;&#xA;d.dim_matter_worktype_key WorkTypeID,&#xD;&#xA;d.dim_department_key DepartmentID,&#xD;&#xA;d.matter_partner_code PartnerCode,&#xD;&#xA;d.matter_number MatterNumber,&#xD;&#xA;CASE WHEN ISNUMERIC(d.matter_number) = 1 and rtrim(d.matter_number) != '.' THEN CAST(CAST(d.matter_number AS int) AS varchar) ELSE RTRIM(d.matter_number) END as 'MatterNumberTrimmed',&#xD;&#xA;f.dim_client_key ClientID,&#xD;&#xA;d.matter_description MatterDesc,&#xD;&#xA;dim_open_practice_management_date_key DateMatterOpen,&#xD;&#xA;dim_closed_practice_management_date_key DateMatterClosed,&#xD;&#xA;datediff(day, d.date_opened_practice_management, isnull(d.date_closed_practice_management, getdate())) AgeOfMatterDays,&#xD;&#xA;disbursement_balance DisbursementBalance,&#xD;&#xA;client_account_balance_of_matter ClientAccountBalance,&#xD;&#xA;unpaid_bill_balance UnpaidBillsBalance,&#xD;&#xA;wip_balance WIPBalance,&#xD;&#xA;costs_to_date CostsToDate,&#xD;&#xA;time_billed TotalTimeBilled,&#xD;&#xA;number_bills_matter NumberOfBillsRaised,&#xD;&#xA;unbilled_time UnbilledTime,&#xD;&#xA;case when d.case_id is null then 'No' else 'Yes' end HasRecordInCashdr,&#xD;&#xA;dim_last_bill_date_key LastBillDate,&#xD;&#xA;dim_last_transaction_date_key LastTimeDate,&#xD;&#xA;case when &#xD;&#xA;d.date_closed_case_management is not null&#xD;&#xA;and d.date_closed_practice_management is null&#xD;&#xA;then 'OpenInArtiionClosedInFED' else null end as 'FileClosedStatus'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_matter_summary_current f&#xD;&#xA;&#xD;&#xA;inner join red_dw.dbo.dim_matter_header_current d&#xD;&#xA; on d.dim_matter_header_curr_key = f.dim_matter_header_curr_key&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_matter_branch br&#xD;&#xA; on br.branch_code = d.branch_code&#xD;&#xA; &#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;f.dim_matter_header_curr_key &gt; 0">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="MatterID" msprop:DbColumnName="MatterID" msprop:FriendlyName="MatterID" type="xs:int" minOccurs="0" />
@@ -27238,7 +27397,7 @@ CREATE MEASURE 'Matters'[Count of Matters]=countrows(Matters);
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimDateBillDate_5d487121-6f04-420b-b2c5-aaac44ffc60f" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimDateBillDate" msprop:DbTableName="dimDateBillDate" msprop:TableType="View" msprop:Description="dimDateBillDate" msprop:QueryDefinition="select&#xD;&#xA;dim_date_key as 'BillDateKey',&#xD;&#xA;calendar_date as 'BillDateDate',&#xD;&#xA;cal_day_in_month as 'BillDateDayInMonth',&#xD;&#xA;cal_day_in_year as 'BillDateDayInYear',&#xD;&#xA;cal_day_in_week_no as 'BillDateWeekdayNo',&#xD;&#xA;cal_day_in_week as 'BillDateWeekdayName',&#xD;&#xA;cal_week_in_year as 'BillDateCalendarWeek',&#xD;&#xA;cal_month_no as 'BillDateCalendarMonthNo',&#xD;&#xA;cal_month_name as 'BillDateCalendarMonthName',&#xD;&#xA;cal_quarter_no as 'BillDateCalendarQuarterNo',&#xD;&#xA;cal_year as 'BillDateCalendarYear',&#xD;&#xA;fin_week_in_year as 'BillDateFinancialWeek',&#xD;&#xA;fin_month_no as 'BillDateFinancialMonthNo',&#xD;&#xA;fin_month_name as 'BillDateFinancialMonthName',&#xD;&#xA;fin_quarter_no as 'BillDateFinancialQuarterNo',&#xD;&#xA;fin_year as 'BillDateFinancialYear',&#xD;&#xA;week_end_flag as 'BillDateWeekend',&#xD;&#xA;holiday_flag as 'BillDateHoliday',&#xD;&#xA;fin_month_name + '-' + right(fin_year, 2) as 'BillDateFinancialPeriod',&#xD;&#xA;cal_month_name + '-' + right(cal_year, 2) as 'BillDateCalendarPeriod',&#xD;&#xA;p.BillDateDaysInMonth&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_date&#xD;&#xA;&#xD;&#xA;left join (&#xD;&#xA; select &#xD;&#xA;  fin_month_name + '-' + right(fin_year, 2) as 'BillDateFinancialPeriod',&#xD;&#xA;  max(cal_day_in_month) as 'BillDateDaysInMonth'&#xD;&#xA; from&#xD;&#xA;  red_dw.dbo.dim_date&#xD;&#xA; group by&#xD;&#xA;    fin_month_name + '-' + right(fin_year, 2) &#xD;&#xA;  ) p&#xD;&#xA;   on p.BillDateFinancialPeriod = fin_month_name + '-' + right(fin_year, 2)">
+                    <xs:element name="dimDateBillDate_5d487121-6f04-420b-b2c5-aaac44ffc60f" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimDateBillDate" msprop:DbTableName="dimDateBillDate" msprop:TableType="View" msprop:Description="dimDateBillDate" msprop:QueryDefinition="select&#xD;&#xA;dim_bill_date_key as 'BillDateKey',&#xD;&#xA;bill_date as 'BillDateDate',&#xD;&#xA;bill_cal_day_in_month as 'BillDateDayInMonth',&#xD;&#xA;bill_cal_day_in_year as 'BillDateDayInYear',&#xD;&#xA;bill_cal_day_in_week_no as 'BillDateWeekdayNo',&#xD;&#xA;bill_cal_day_in_week as 'BillDateWeekdayName',&#xD;&#xA;bill_cal_week_in_year as 'BillDateCalendarWeek',&#xD;&#xA;bill_cal_month_no as 'BillDateCalendarMonthNo',&#xD;&#xA;bill_cal_month_name as 'BillDateCalendarMonthName',&#xD;&#xA;bill_cal_quarter_no as 'BillDateCalendarQuarterNo',&#xD;&#xA;bill_cal_year as 'BillDateCalendarYear',&#xD;&#xA;bill_fin_week_in_year as 'BillDateFinancialWeek',&#xD;&#xA;bill_fin_month_no as 'BillDateFinancialMonthNo',&#xD;&#xA;bill_fin_month_name as 'BillDateFinancialMonthName',&#xD;&#xA;bill_fin_quarter_no as 'BillDateFinancialQuarterNo',&#xD;&#xA;bill_fin_year as 'BillDateFinancialYear',&#xD;&#xA;bill_week_end_flag as 'BillDateWeekend',&#xD;&#xA;bill_holiday_flag as 'BillDateHoliday',&#xD;&#xA;bill_fin_month_name + '-' + right(bill_fin_year, 2) as 'BillDateFinancialPeriod',&#xD;&#xA;bill_cal_month_name + '-' + right(bill_cal_year, 2) as 'BillDateCalendarPeriod',&#xD;&#xA;p.BillDateDaysInMonth&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_bill_date&#xD;&#xA;&#xD;&#xA;left join (&#xD;&#xA; select &#xD;&#xA;  bill_fin_month_name + '-' + right(bill_fin_year, 2) as 'BillDateFinancialPeriod',&#xD;&#xA;  max(bill_cal_day_in_month) as 'BillDateDaysInMonth'&#xD;&#xA; from&#xD;&#xA;  red_dw.dbo.dim_bill_date&#xD;&#xA; group by&#xD;&#xA;    bill_fin_month_name + '-' + right(bill_fin_year, 2) &#xD;&#xA;  ) p&#xD;&#xA;   on p.BillDateFinancialPeriod = bill_fin_month_name + '-' + right(bill_fin_year, 2)&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;dim_bill_date_key &gt; 0">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="BillDateKey" msprop:DbColumnName="BillDateKey" msprop:FriendlyName="BillDateKey" type="xs:int" minOccurs="0" />
@@ -27307,7 +27466,7 @@ CREATE MEASURE 'Matters'[Count of Matters]=countrows(Matters);
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimDateMatterOpened_866fdd20-c0be-47a9-9ff2-e0c3a5aa9443" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimDateMatterOpened" msprop:DbTableName="dimDateMatterOpened" msprop:TableType="View" msprop:Description="dimDateMatterOpened" msprop:QueryDefinition="select&#xD;&#xA;dim_date_key as 'DateMatterOpenedKey',&#xD;&#xA;calendar_date as 'DateMatterOpenedDate',&#xD;&#xA;cal_day_in_month as 'DateMatterOpenedDayInMonth',&#xD;&#xA;cal_day_in_year as 'DateMatterOpenedDayInYear',&#xD;&#xA;cal_day_in_week_no as 'DateMatterOpenedWeekdayNo',&#xD;&#xA;cal_day_in_week as 'DateMatterOpenedWeekdayName',&#xD;&#xA;cal_week_in_year as 'DateMatterOpenedCalendarWeek',&#xD;&#xA;cal_month_no as 'DateMatterOpenedCalendarMonthNo',&#xD;&#xA;cal_month_name as 'DateMatterOpenedCalendarMonthName',&#xD;&#xA;cal_quarter_no as 'DateMatterOpenedCalendarQuarterNo',&#xD;&#xA;cal_year as 'DateMatterOpenedCalendarYear',&#xD;&#xA;fin_period as 'DateMatterOpenedFinancialPeriod',&#xD;&#xA;fin_quarter as 'DateMatterOpenedFinancialQuarterName',&#xD;&#xA;fin_week_in_year as 'DateMatterOpenedFinancialWeek',&#xD;&#xA;fin_month_no as 'DateMatterOpenedFinancialMonthNo',&#xD;&#xA;fin_month_name as 'DateMatterOpenedFinancialMonthName',&#xD;&#xA;fin_quarter_no as 'DateMatterOpenedFinancialQuarterNo',&#xD;&#xA;fin_year as 'DateMatterOpenedFinancialYear',&#xD;&#xA;week_end_flag as 'DateMatterOpenedWeekend',&#xD;&#xA;holiday_flag as 'DateMatterOpenedHoliday'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;dim_date">
+                    <xs:element name="dimDateMatterOpened_866fdd20-c0be-47a9-9ff2-e0c3a5aa9443" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimDateMatterOpened" msprop:DbTableName="dimDateMatterOpened" msprop:TableType="View" msprop:Description="dimDateMatterOpened" msprop:QueryDefinition="select&#xD;&#xA;dim_open_practice_management_date_key DateMatterOpenedKey,&#xD;&#xA;calendar_date DateMatterOpenedDate,&#xD;&#xA;open_practice_management_cal_day_in_month DateMatterOpenedDayInMonth,&#xD;&#xA;open_practice_management_cal_day_in_year DateMatterOpenedDayInYear,&#xD;&#xA;open_practice_management_cal_day_in_week_no DateMatterOpenedWeekdayNo,&#xD;&#xA;open_practice_management_cal_day_in_week DateMatterOpenedWeekdayName,&#xD;&#xA;open_practice_management_cal_week_in_year DateMatterOpenedCalendarWeek,&#xD;&#xA;open_practice_management_cal_month_no DateMatterOpenedCalendarMonthNo,&#xD;&#xA;open_practice_management_cal_month_name DateMatterOpenedCalendarMonthName,&#xD;&#xA;open_practice_management_cal_quarter_no DateMatterOpenedCalendarQuarterNo,&#xD;&#xA;open_practice_management_cal_year DateMatterOpenedCalendarYear,&#xD;&#xA;open_practice_management_fin_week_in_year DateMatterOpenedFinancialWeek,&#xD;&#xA;open_practice_management_fin_month_no DateMatterOpenedFinancialMonthNo,&#xD;&#xA;open_practice_management_fin_month_name DateMatterOpenedFinancialMonthName,&#xD;&#xA;open_practice_management_fin_quarter_no DateMatterOpenedFinancialQuarterNo,&#xD;&#xA;open_practice_management_fin_year DateMatterOpenedFinancialYear,&#xD;&#xA;open_practice_management_week_end_flag DateMatterOpenedWeekend,&#xD;&#xA;open_practice_management_holiday_flag DateMatterOpenedHoliday,&#xD;&#xA;open_practice_management_cal_month_name + '-' + right(open_practice_management_cal_year, 2) DateMatterOpenedCalPeriod,&#xD;&#xA;open_practice_management_fin_month_name + '-' + right(open_practice_management_fin_year, 2) DateMatterOpenedFinancialPeriod&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_open_practice_management_date&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;dim_open_practice_management_date_key &gt; 0">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="DateMatterOpenedKey" msprop:DbColumnName="DateMatterOpenedKey" msprop:FriendlyName="DateMatterOpenedKey" type="xs:int" minOccurs="0" />
@@ -27365,7 +27524,7 @@ CREATE MEASURE 'Matters'[Count of Matters]=countrows(Matters);
                               </xs:restriction>
                             </xs:simpleType>
                           </xs:element>
-                          <xs:element name="DateMatterOpenedFinancialQuarterName" msprop:DbColumnName="DateMatterOpenedFinancialQuarterName" msprop:FriendlyName="DateMatterOpenedFinancialQuarterName" minOccurs="0">
+                          <xs:element name="DateMatterOpenedCalPeriod" msprop:DbColumnName="DateMatterOpenedCalPeriod" msprop:FriendlyName="DateMatterOpenedCalPeriod" minOccurs="0">
                             <xs:simpleType>
                               <xs:restriction base="xs:string">
                                 <xs:maxLength value="32768" />
@@ -27375,7 +27534,7 @@ CREATE MEASURE 'Matters'[Count of Matters]=countrows(Matters);
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimDateMatterClosed_ab636a6a-d3cd-4638-9aaf-bddf26883940" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimDateMatterClosed" msprop:DbTableName="dimDateMatterClosed" msprop:TableType="View" msprop:Description="dimDateMatterClosed" msprop:QueryDefinition="select&#xD;&#xA;dim_date_key as 'DateMatterClosedKey',&#xD;&#xA;calendar_date as 'DateMatterClosedDate',&#xD;&#xA;cal_day_in_month as 'DateMatterClosedDayInMonth',&#xD;&#xA;cal_day_in_year as 'DateMatterClosedDayInYear',&#xD;&#xA;cal_day_in_week_no as 'DateMatterClosedWeekdayNo',&#xD;&#xA;cal_day_in_week as 'DateMatterClosedWeekdayName',&#xD;&#xA;cal_week_in_year as 'DateMatterClosedCalendarWeek',&#xD;&#xA;cal_month_no as 'DateMatterClosedCalendarMonthNo',&#xD;&#xA;cal_month_name as 'DateMatterClosedCalendarMonthName',&#xD;&#xA;cal_quarter_no as 'DateMatterClosedCalendarQuarterNo',&#xD;&#xA;cal_year as 'DateMatterClosedCalendarYear',&#xD;&#xA;fin_week_in_year as 'DateMatterClosedFinancialWeek',&#xD;&#xA;fin_month_no as 'DateMatterClosedFinancialMonthNo',&#xD;&#xA;fin_month_name as 'DateMatterClosedFinancialMonthName',&#xD;&#xA;fin_quarter_no as 'DateMatterClosedFinancialQuarterNo',&#xD;&#xA;fin_year as 'DateMatterClosedFinancialYear',&#xD;&#xA;week_end_flag as 'DateMatterClosedWeekend',&#xD;&#xA;holiday_flag as 'DateMatterClosedHoliday'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;dim_date">
+                    <xs:element name="dimDateMatterClosed_ab636a6a-d3cd-4638-9aaf-bddf26883940" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimDateMatterClosed" msprop:DbTableName="dimDateMatterClosed" msprop:TableType="View" msprop:Description="dimDateMatterClosed" msprop:QueryDefinition="select&#xD;&#xA;dim_closed_practice_management_date_key DateMatterClosedKey,&#xD;&#xA;calendar_date DateMatterClosedDate,&#xD;&#xA;closed_practice_management_cal_day_in_month DateMatterClosedDayInMonth,&#xD;&#xA;closed_practice_management_cal_day_in_year DateMatterClosedDayInYear,&#xD;&#xA;closed_practice_management_cal_day_in_week_no DateMatterClosedWeekdayNo,&#xD;&#xA;closed_practice_management_cal_day_in_week DateMatterClosedWeekdayName,&#xD;&#xA;closed_practice_management_cal_week_in_year DateMatterClosedCalendarWeek,&#xD;&#xA;closed_practice_management_cal_month_no DateMatterClosedCalendarMonthNo,&#xD;&#xA;closed_practice_management_cal_month_name DateMatterClosedCalendarMonthName,&#xD;&#xA;closed_practice_management_cal_quarter_no DateMatterClosedCalendarQuarterNo,&#xD;&#xA;closed_practice_management_cal_year DateMatterClosedCalendarYear,&#xD;&#xA;closed_practice_management_fin_week_in_year DateMatterClosedFinancialWeek,&#xD;&#xA;closed_practice_management_fin_month_no DateMatterClosedFinancialMonthNo,&#xD;&#xA;closed_practice_management_fin_month_name DateMatterClosedFinancialMonthName,&#xD;&#xA;closed_practice_management_fin_quarter_no DateMatterClosedFinancialQuarterNo,&#xD;&#xA;closed_practice_management_fin_year DateMatterClosedFinancialYear,&#xD;&#xA;closed_practice_management_week_end_flag DateMatterClosedWeekend,&#xD;&#xA;closed_practice_management_holiday_flag DateMatterClosedHoliday,&#xD;&#xA;closed_practice_management_cal_month_name + '-' + right(closed_practice_management_cal_year, 2) DateMatterClosedCalPeriod,&#xD;&#xA;closed_practice_management_fin_month_name + '-' + right(closed_practice_management_fin_year, 2) DateMatterClosedFinancialPeriod&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_closed_practice_management_date&#xD;&#xA;&#xD;&#xA;where &#xD;&#xA;dim_closed_practice_management_date_key &gt; 0">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="DateMatterClosedKey" msprop:DbColumnName="DateMatterClosedKey" msprop:FriendlyName="DateMatterClosedKey" type="xs:int" minOccurs="0" />
@@ -27426,10 +27585,24 @@ CREATE MEASURE 'Matters'[Count of Matters]=countrows(Matters);
                               </xs:restriction>
                             </xs:simpleType>
                           </xs:element>
+                          <xs:element name="DateMatterClosedCalPeriod" msprop:DbColumnName="DateMatterClosedCalPeriod" msprop:FriendlyName="DateMatterClosedCalPeriod" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="DateMatterClosedFinancialPeriod" msprop:DbColumnName="DateMatterClosedFinancialPeriod" msprop:FriendlyName="DateMatterClosedFinancialPeriod" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimDateBillLastPayment" msprop:DbTableName="dimDateBillLastPaymentDate" msprop:TableType="View" msprop:Description="dimDateBillLastPaymentDate" msprop:QueryDefinition="select&#xD;&#xA;dim_date_key as 'DateBillLastPaymentKey',&#xD;&#xA;calendar_date as 'DateBillLastPaymentDate',&#xD;&#xA;cal_day_in_month as 'DateBillLastPaymentDayInMonth',&#xD;&#xA;cal_day_in_year as 'DateBillLastPaymentDayInYear',&#xD;&#xA;cal_day_in_week_no as 'DateBillLastPaymentWeekdayNo',&#xD;&#xA;cal_day_in_week as 'DateBillLastPaymentWeekdayName',&#xD;&#xA;cal_week_in_year as 'DateBillLastPaymentCalendarWeek',&#xD;&#xA;cal_month_no as 'DateBillLastPaymentCalendarMonthNo',&#xD;&#xA;cal_month_name as 'DateBillLastPaymentCalendarMonthName',&#xD;&#xA;cal_quarter_no as 'DateBillLastPaymentCalendarQuarterNo',&#xD;&#xA;cal_year as 'DateBillLastPaymentCalendarYear',&#xD;&#xA;fin_week_in_year as 'DateBillLastPaymentFinancialWeek',&#xD;&#xA;fin_month_no as 'DateBillLastPaymentFinancialMonthNo',&#xD;&#xA;fin_month_name as 'DateBillLastPaymentFinancialMonthName',&#xD;&#xA;fin_quarter_no as 'DateBillLastPaymentFinancialQuarterNo',&#xD;&#xA;fin_year as 'DateBillLastPaymentFinancialYear',&#xD;&#xA;week_end_flag as 'DateBillLastPaymentWeekend',&#xD;&#xA;holiday_flag as 'DateBillLastPaymentHoliday'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;dim_date">
+                    <xs:element name="dimDateBillLastPaymentDate_28a174b6-1518-49fd-86c9-eb861bb6c0e5" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimDateBillLastPayment" msprop:DbTableName="dimDateBillLastPaymentDate" msprop:TableType="View" msprop:Description="dimDateBillLastPaymentDate" msprop:QueryDefinition="select&#xD;&#xA;dim_last_pay_date_key DateBillLastPaymentKey,&#xD;&#xA;last_pay_calendar_date DateBillLastPaymentDate,&#xD;&#xA;last_pay_cal_day_in_month DateBillLastPaymentDayInMonth,&#xD;&#xA;last_pay_cal_day_in_year DateBillLastPaymentDayInYear,&#xD;&#xA;last_pay_cal_day_in_week_no DateBillLastPaymentWeekdayNo,&#xD;&#xA;last_pay_cal_day_in_week DateBillLastPaymentWeekdayName,&#xD;&#xA;last_pay_cal_week_in_year DateBillLastPaymentCalendarWeek,&#xD;&#xA;last_pay_cal_month_no DateBillLastPaymentCalendarMonthNo,&#xD;&#xA;last_pay_cal_month_name DateBillLastPaymentCalendarMonthName,&#xD;&#xA;last_pay_cal_quarter_no DateBillLastPaymentCalendarQuarterNo,&#xD;&#xA;last_pay_cal_year DateBillLastPaymentCalendarYear,&#xD;&#xA;last_pay_fin_week_in_year DateBillLastPaymentFinancialWeek,&#xD;&#xA;last_pay_fin_month_no DateBillLastPaymentFinancialMonthNo,&#xD;&#xA;last_pay_fin_month_name DateBillLastPaymentFinancialMonthName,&#xD;&#xA;last_pay_fin_quarter_no DateBillLastPaymentFinancialQuarterNo,&#xD;&#xA;last_pay_fin_year DateBillLastPaymentFinancialYear,&#xD;&#xA;last_pay_week_end_flag DateBillLastPaymentWeekend,&#xD;&#xA;last_pay_holiday_flag DateBillLastPaymentHoliday&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;dim_last_pay_date&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;dim_last_pay_date_key &gt; 0">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="DateBillLastPaymentKey" msprop:DbColumnName="DateBillLastPaymentKey" msprop:FriendlyName="DateBillLastPaymentKey" type="xs:int" minOccurs="0" />
@@ -27778,7 +27951,7 @@ CREATE MEASURE 'Matters'[Count of Matters]=countrows(Matters);
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimDateLastBill_25ad1174-db1d-4f13-b00b-a3e687a23c0f" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimDateLastBill" msprop:DbTableName="dimDateLastBill" msprop:TableType="View" msprop:Description="dimDateLastBill" msprop:QueryDefinition="select&#xD;&#xA;dim_date_key as 'LastBillKey',&#xD;&#xA;calendar_date as 'LastBillDate',&#xD;&#xA;cal_day_in_month as 'LastBillDayInMonth',&#xD;&#xA;cal_day_in_year as 'LastBillDayInYear',&#xD;&#xA;cal_day_in_week_no as 'LastBillWeekdayNo',&#xD;&#xA;cal_day_in_week as 'LastBillWeekdayName',&#xD;&#xA;cal_week_in_year as 'LastBillCalendarWeek',&#xD;&#xA;cal_month_no as 'LastBillCalendarMonthNo',&#xD;&#xA;cal_month_name as 'LastBillCalendarMonthName',&#xD;&#xA;cal_quarter_no as 'LastBillCalendarQuarterNo',&#xD;&#xA;cal_year as 'LastBillCalendarYear',&#xD;&#xA;fin_week_in_year as 'LastBillFinancialWeek',&#xD;&#xA;fin_month_no as 'LastBillFinancialMonthNo',&#xD;&#xA;fin_month_name as 'LastBillFinancialMonthName',&#xD;&#xA;fin_quarter_no as 'LastBillFinancialQuarterNo',&#xD;&#xA;fin_year as 'LastBillFinancialYear',&#xD;&#xA;week_end_flag as 'LastBillWeekend',&#xD;&#xA;holiday_flag as 'LastBillHoliday'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;dim_date">
+                    <xs:element name="dimDateLastBill_25ad1174-db1d-4f13-b00b-a3e687a23c0f" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimDateLastBill" msprop:DbTableName="dimDateLastBill" msprop:TableType="View" msprop:Description="dimDateLastBill" msprop:QueryDefinition="select&#xD;&#xA;dim_last_bill_date_key LastBillKey,&#xD;&#xA;calendar_date LastBillDate,&#xD;&#xA;last_bill_cal_day_in_month LastBillDayInMonth,&#xD;&#xA;last_bill_cal_day_in_year LastBillDayInYear,&#xD;&#xA;last_bill_cal_day_in_week_no LastBillWeekdayNo,&#xD;&#xA;last_bill_cal_day_in_week LastBillWeekdayName,&#xD;&#xA;last_bill_cal_week_in_year LastBillCalendarWeek,&#xD;&#xA;last_bill_cal_month_no LastBillCalendarMonthNo,&#xD;&#xA;last_bill_cal_month_name LastBillCalendarMonthName,&#xD;&#xA;last_bill_cal_quarter_no LastBillCalendarQuarterNo,&#xD;&#xA;last_bill_cal_year LastBillCalendarYear,&#xD;&#xA;last_bill_fin_week_in_year LastBillFinancialWeek,&#xD;&#xA;last_bill_fin_month_no LastBillFinancialMonthNo,&#xD;&#xA;last_bill_fin_month_name LastBillFinancialMonthName,&#xD;&#xA;last_bill_fin_quarter_no LastBillFinancialQuarterNo,&#xD;&#xA;last_bill_fin_year LastBillFinancialYear,&#xD;&#xA;last_bill_week_end_flag LastBillWeekend,&#xD;&#xA;last_bill_holiday_flag LastBillHoliday&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;dim_last_bill_date&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;dim_last_bill_date_key &gt; 0">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="LastBillKey" msprop:DbColumnName="LastBillKey" msprop:FriendlyName="LastBillKey" type="xs:int" minOccurs="0" />
@@ -27832,7 +28005,7 @@ CREATE MEASURE 'Matters'[Count of Matters]=countrows(Matters);
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimDateLastTime_55a93974-a33e-4f88-9351-43b631401c1e" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimDateLastTime" msprop:DbTableName="dimDateLastTime" msprop:TableType="View" msprop:Description="dimDateLastTime" msprop:QueryDefinition="select&#xD;&#xA;dim_date_key as 'LastTimeKey',&#xD;&#xA;calendar_date as 'LastTimeDate',&#xD;&#xA;cal_day_in_month as 'LastTimeDayInMonth',&#xD;&#xA;cal_day_in_year as 'LastTimeDayInYear',&#xD;&#xA;cal_day_in_week_no as 'LastTimeWeekdayNo',&#xD;&#xA;cal_day_in_week as 'LastTimeWeekdayName',&#xD;&#xA;cal_week_in_year as 'LastTimeCalendarWeek',&#xD;&#xA;cal_month_no as 'LastTimeCalendarMonthNo',&#xD;&#xA;cal_month_name as 'LastTimeCalendarMonthName',&#xD;&#xA;cal_quarter_no as 'LastTimeCalendarQuarterNo',&#xD;&#xA;cal_year as 'LastTimeCalendarYear',&#xD;&#xA;fin_week_in_year as 'LastTimeFinancialWeek',&#xD;&#xA;fin_month_no as 'LastTimeFinancialMonthNo',&#xD;&#xA;fin_month_name as 'LastTimeFinancialMonthName',&#xD;&#xA;fin_quarter_no as 'LastTimeFinancialQuarterNo',&#xD;&#xA;fin_year as 'LastTimeFinancialYear',&#xD;&#xA;week_end_flag as 'LastTimeWeekend',&#xD;&#xA;holiday_flag as 'LastTimeHoliday'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;dim_date">
+                    <xs:element name="dimDateLastTime_55a93974-a33e-4f88-9351-43b631401c1e" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimDateLastTime" msprop:DbTableName="dimDateLastTime" msprop:TableType="View" msprop:Description="dimDateLastTime" msprop:QueryDefinition="select&#xD;&#xA;dim_last_transaction_date_key LastTimeKey,&#xD;&#xA;calendar_date LastTimeDate,&#xD;&#xA;last_transaction_cal_day_in_month LastTimeDayInMonth,&#xD;&#xA;last_transaction_cal_day_in_year LastTimeDayInYear,&#xD;&#xA;last_transaction_cal_day_in_week_no LastTimeWeekdayNo,&#xD;&#xA;last_transaction_cal_day_in_week LastTimeWeekdayName,&#xD;&#xA;last_transaction_cal_week_in_year LastTimeCalendarWeek,&#xD;&#xA;last_transaction_cal_month_no LastTimeCalendarMonthNo,&#xD;&#xA;last_transaction_cal_month_name LastTimeCalendarMonthName,&#xD;&#xA;last_transaction_cal_quarter_no LastTimeCalendarQuarterNo,&#xD;&#xA;last_transaction_cal_year LastTimeCalendarYear,&#xD;&#xA;last_transaction_fin_week_in_year LastTimeFinancialWeek,&#xD;&#xA;last_transaction_fin_month_no LastTimeFinancialMonthNo,&#xD;&#xA;last_transaction_fin_month_name LastTimeFinancialMonthName,&#xD;&#xA;last_transaction_fin_quarter_no LastTimeFinancialQuarterNo,&#xD;&#xA;last_transaction_fin_year LastTimeFinancialYear,&#xD;&#xA;last_transaction_week_end_flag LastTimeWeekend,&#xD;&#xA;last_transaction_holiday_flag LastTimeHoliday&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;dim_last_transaction_date&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;dim_last_transaction_date_key &gt; 0">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="LastTimeKey" msprop:DbColumnName="LastTimeKey" msprop:FriendlyName="LastTimeKey" type="xs:int" minOccurs="0" />
