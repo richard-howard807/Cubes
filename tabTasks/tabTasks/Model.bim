@@ -12005,7 +12005,7 @@
         &lt;string&gt;master_fact_key&lt;/string&gt;
       &lt;/key&gt;
       &lt;value&gt;
-        &lt;boolean&gt;false&lt;/boolean&gt;
+        &lt;boolean&gt;true&lt;/boolean&gt;
       &lt;/value&gt;
     &lt;/item&gt;
   &lt;/ColumnChecked&gt;
@@ -12125,6 +12125,11 @@
                   <AttributeID>dss_update_time</AttributeID>
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>dss_update_time</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>master_fact_key</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>master_fact_key</Name>
                 </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
@@ -12633,6 +12638,31 @@
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
               <ddl300_300:FormatString>General Date</ddl300_300:FormatString>
             </Attribute>
+            <Attribute>
+              <ID>master_fact_key</ID>
+              <Name>master_fact_key</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>fact_tasks_7d22b44a-276f-41fd-9a6e-d0b4f5ba2607</TableID>
+                    <ColumnID>master_fact_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>fact_tasks_7d22b44a-276f-41fd-9a6e-d0b4f5ba2607</TableID>
+                  <ColumnID>master_fact_key</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
           </Attributes>
           <ProactiveCaching>
             <SilenceInterval>-PT1S</SilenceInterval>
@@ -12753,6 +12783,29 @@
                 <Attributes>
                   <Attribute>
                     <AttributeID>dim_matter_header_curr_key</AttributeID>
+                  </Attribute>
+                </Attributes>
+              </ddl300_300:ToRelationshipEnd>
+            </ddl300_300:Relationship>
+            <ddl300_300:Relationship>
+              <ID>37e009d1-761c-42ca-8386-ef2d928f52c5</ID>
+              <ddl300_300:FromRelationshipEnd>
+                <ddl300_300:Multiplicity>Many</ddl300_300:Multiplicity>
+                <ddl300:VisualizationProperties />
+                <DimensionID>fact_tasks_7d22b44a-276f-41fd-9a6e-d0b4f5ba2607</DimensionID>
+                <Attributes>
+                  <Attribute>
+                    <AttributeID>master_fact_key</AttributeID>
+                  </Attribute>
+                </Attributes>
+              </ddl300_300:FromRelationshipEnd>
+              <ddl300_300:ToRelationshipEnd>
+                <ddl300_300:Multiplicity>One</ddl300_300:Multiplicity>
+                <ddl300:VisualizationProperties />
+                <DimensionID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</DimensionID>
+                <Attributes>
+                  <Attribute>
+                    <AttributeID>master_fact_key</AttributeID>
                   </Attribute>
                 </Attributes>
               </ddl300_300:ToRelationshipEnd>
@@ -17296,6 +17349,1476 @@
             <Source xsi:type="ProactiveCachingInheritedBinding" />
           </ProactiveCaching>
         </Dimension>
+        <Dimension>
+          <ID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</ID>
+          <Name>fact_dimension_main</Name>
+          <Annotations>
+            <Annotation>
+              <Name>IsQueryEditorUsed</Name>
+              <Value>False</Value>
+            </Annotation>
+            <Annotation>
+              <Name>QueryEditorSerialization</Name>
+            </Annotation>
+            <Annotation>
+              <Name>TableWidgetSerialization</Name>
+            </Annotation>
+            <Annotation>
+              <Name>DataMarketWebBaseUrl</Name>
+            </Annotation>
+            <Annotation>
+              <Name>DataMarketWebQueryUrl</Name>
+            </Annotation>
+          </Annotations>
+          <Source xsi:type="DataSourceViewBinding">
+            <DataSourceViewID>Sandbox</DataSourceViewID>
+          </Source>
+          <UnknownMember valuens="ddl200_200">AutomaticNull</UnknownMember>
+          <ErrorConfiguration>
+            <KeyNotFound>IgnoreError</KeyNotFound>
+            <KeyDuplicate>ReportAndStop</KeyDuplicate>
+            <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+          </ErrorConfiguration>
+          <StorageMode valuens="ddl200_200">InMemory</StorageMode>
+          <Language>2057</Language>
+          <UnknownMemberName>Unknown</UnknownMemberName>
+          <Attributes>
+            <Attribute>
+              <ID>RowNumber</ID>
+              <Name>RowNumber</Name>
+              <Type valuens="ddl200_200">RowNumber</Type>
+              <Usage>Key</Usage>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>4</DataSize>
+                  <NullProcessing>Error</NullProcessing>
+                  <Source xsi:type="ddl200_200:RowNumberBinding" />
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>4</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ddl200_200:RowNumberBinding" />
+              </NameColumn>
+              <AttributeRelationships>
+                <AttributeRelationship>
+                  <AttributeID>master_fact_key</AttributeID>
+                  <Cardinality>One</Cardinality>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>master_fact_key</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>source_system_id</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>source_system_id</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>client_code</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>client_code</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>matter_number</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>matter_number</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>dim_matter_header_curr_key</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>dim_matter_header_curr_key</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>dim_client_key</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>dim_client_key</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>dim_detail_audit_key</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>dim_detail_audit_key</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>dim_detail_claim_key</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>dim_detail_claim_key</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>dim_detail_client_key</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>dim_detail_client_key</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>dim_detail_core_detail_key</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>dim_detail_core_detail_key</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>dim_detail_court_key</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>dim_detail_court_key</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>dim_detail_critical_mi_key</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>dim_detail_critical_mi_key</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>dim_detail_flight_dela_key</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>dim_detail_flight_dela_key</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>dim_detail_fraud_key</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>dim_detail_fraud_key</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>dim_detail_future_care_key</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>dim_detail_future_care_key</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>dim_detail_health_key</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>dim_detail_health_key</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>dim_detail_hire_detail_key</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>dim_detail_hire_detail_key</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>dim_detail_litigation_key</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>dim_detail_litigation_key</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>dim_detail_outcome_key</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>dim_detail_outcome_key</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>dim_detail_plot_detail_key</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>dim_detail_plot_detail_key</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>dim_detail_practice_ar_key</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>dim_detail_practice_ar_key</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>dim_detail_property_key</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>dim_detail_property_key</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>dim_detail_incident_key</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>dim_detail_incident_key</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>dim_agents_involvement_key</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>dim_agents_involvement_key</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>dim_claimant_thirdpart_key</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>dim_claimant_thirdpart_key</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>dim_client_involvement_key</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>dim_client_involvement_key</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>dim_court_involvement_key</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>dim_court_involvement_key</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>dim_defendant_involvem_key</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>dim_defendant_involvem_key</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>dim_experts_involvemen_key</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>dim_experts_involvemen_key</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>dim_insurance_involvem_key</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>dim_insurance_involvem_key</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>dim_involvement_full_bridge_key</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>dim_involvement_full_bridge_key</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>dim_witness_involvemen_key</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>dim_witness_involvemen_key</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>dim_detail_advice_key</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>dim_detail_advice_key</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>dss_create_time</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>dss_create_time</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>dss_update_time</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>dss_update_time</Name>
+                </AttributeRelationship>
+              </AttributeRelationships>
+              <OrderBy>Key</OrderBy>
+              <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>master_fact_key</ID>
+              <Name>master_fact_key</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>BigInt</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Error</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                    <ColumnID>master_fact_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                  <ColumnID>master_fact_key</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>source_system_id</ID>
+              <Name>source_system_id</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>BigInt</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                    <ColumnID>source_system_id</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                  <ColumnID>source_system_id</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="Text" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>client_code</ID>
+              <Name>client_code</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                    <ColumnID>client_code</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                  <ColumnID>client_code</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="Text" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>matter_number</ID>
+              <Name>matter_number</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                    <ColumnID>matter_number</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                  <ColumnID>matter_number</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>dim_matter_header_curr_key</ID>
+              <Name>dim_matter_header_curr_key</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>BigInt</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                    <ColumnID>dim_matter_header_curr_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                  <ColumnID>dim_matter_header_curr_key</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>dim_client_key</ID>
+              <Name>dim_client_key</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>BigInt</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                    <ColumnID>dim_client_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                  <ColumnID>dim_client_key</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>dim_detail_audit_key</ID>
+              <Name>dim_detail_audit_key</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>BigInt</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                    <ColumnID>dim_detail_audit_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                  <ColumnID>dim_detail_audit_key</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>dim_detail_claim_key</ID>
+              <Name>dim_detail_claim_key</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>BigInt</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                    <ColumnID>dim_detail_claim_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                  <ColumnID>dim_detail_claim_key</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>dim_detail_client_key</ID>
+              <Name>dim_detail_client_key</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>BigInt</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                    <ColumnID>dim_detail_client_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                  <ColumnID>dim_detail_client_key</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>dim_detail_core_detail_key</ID>
+              <Name>dim_detail_core_detail_key</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>BigInt</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                    <ColumnID>dim_detail_core_detail_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                  <ColumnID>dim_detail_core_detail_key</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>dim_detail_court_key</ID>
+              <Name>dim_detail_court_key</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>BigInt</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                    <ColumnID>dim_detail_court_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                  <ColumnID>dim_detail_court_key</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>dim_detail_critical_mi_key</ID>
+              <Name>dim_detail_critical_mi_key</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>BigInt</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                    <ColumnID>dim_detail_critical_mi_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                  <ColumnID>dim_detail_critical_mi_key</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>dim_detail_flight_dela_key</ID>
+              <Name>dim_detail_flight_dela_key</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>BigInt</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                    <ColumnID>dim_detail_flight_dela_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                  <ColumnID>dim_detail_flight_dela_key</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>dim_detail_fraud_key</ID>
+              <Name>dim_detail_fraud_key</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>BigInt</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                    <ColumnID>dim_detail_fraud_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                  <ColumnID>dim_detail_fraud_key</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>dim_detail_future_care_key</ID>
+              <Name>dim_detail_future_care_key</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>BigInt</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                    <ColumnID>dim_detail_future_care_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                  <ColumnID>dim_detail_future_care_key</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>dim_detail_health_key</ID>
+              <Name>dim_detail_health_key</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>BigInt</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                    <ColumnID>dim_detail_health_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                  <ColumnID>dim_detail_health_key</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>dim_detail_hire_detail_key</ID>
+              <Name>dim_detail_hire_detail_key</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>BigInt</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                    <ColumnID>dim_detail_hire_detail_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                  <ColumnID>dim_detail_hire_detail_key</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>dim_detail_litigation_key</ID>
+              <Name>dim_detail_litigation_key</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>BigInt</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                    <ColumnID>dim_detail_litigation_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                  <ColumnID>dim_detail_litigation_key</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>dim_detail_outcome_key</ID>
+              <Name>dim_detail_outcome_key</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>BigInt</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                    <ColumnID>dim_detail_outcome_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                  <ColumnID>dim_detail_outcome_key</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>dim_detail_plot_detail_key</ID>
+              <Name>dim_detail_plot_detail_key</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>BigInt</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                    <ColumnID>dim_detail_plot_detail_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                  <ColumnID>dim_detail_plot_detail_key</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>dim_detail_practice_ar_key</ID>
+              <Name>dim_detail_practice_ar_key</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>BigInt</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                    <ColumnID>dim_detail_practice_ar_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                  <ColumnID>dim_detail_practice_ar_key</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>dim_detail_property_key</ID>
+              <Name>dim_detail_property_key</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>BigInt</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                    <ColumnID>dim_detail_property_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                  <ColumnID>dim_detail_property_key</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>dim_detail_incident_key</ID>
+              <Name>dim_detail_incident_key</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>BigInt</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                    <ColumnID>dim_detail_incident_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                  <ColumnID>dim_detail_incident_key</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>dim_agents_involvement_key</ID>
+              <Name>dim_agents_involvement_key</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>BigInt</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                    <ColumnID>dim_agents_involvement_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                  <ColumnID>dim_agents_involvement_key</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>dim_claimant_thirdpart_key</ID>
+              <Name>dim_claimant_thirdpart_key</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>BigInt</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                    <ColumnID>dim_claimant_thirdpart_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                  <ColumnID>dim_claimant_thirdpart_key</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>dim_client_involvement_key</ID>
+              <Name>dim_client_involvement_key</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>BigInt</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                    <ColumnID>dim_client_involvement_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                  <ColumnID>dim_client_involvement_key</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>dim_court_involvement_key</ID>
+              <Name>dim_court_involvement_key</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>BigInt</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                    <ColumnID>dim_court_involvement_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                  <ColumnID>dim_court_involvement_key</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>dim_defendant_involvem_key</ID>
+              <Name>dim_defendant_involvem_key</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>BigInt</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                    <ColumnID>dim_defendant_involvem_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                  <ColumnID>dim_defendant_involvem_key</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>dim_experts_involvemen_key</ID>
+              <Name>dim_experts_involvemen_key</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>BigInt</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                    <ColumnID>dim_experts_involvemen_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                  <ColumnID>dim_experts_involvemen_key</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>dim_insurance_involvem_key</ID>
+              <Name>dim_insurance_involvem_key</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>BigInt</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                    <ColumnID>dim_insurance_involvem_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                  <ColumnID>dim_insurance_involvem_key</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>dim_involvement_full_bridge_key</ID>
+              <Name>dim_involvement_full_bridge_key</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>BigInt</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                    <ColumnID>dim_involvement_full_bridge_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                  <ColumnID>dim_involvement_full_bridge_key</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>dim_witness_involvemen_key</ID>
+              <Name>dim_witness_involvemen_key</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>BigInt</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                    <ColumnID>dim_witness_involvemen_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                  <ColumnID>dim_witness_involvemen_key</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>dim_detail_advice_key</ID>
+              <Name>dim_detail_advice_key</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>BigInt</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                    <ColumnID>dim_detail_advice_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                  <ColumnID>dim_detail_advice_key</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="DateTimeGeneral" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>dss_create_time</ID>
+              <Name>dss_create_time</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Date</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                    <ColumnID>dss_create_time</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                  <ColumnID>dss_create_time</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+              <ddl300_300:FormatString>General Date</ddl300_300:FormatString>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="DateTimeGeneral" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>dss_update_time</ID>
+              <Name>dss_update_time</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Date</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                    <ColumnID>dss_update_time</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                  <ColumnID>dss_update_time</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+              <ddl300_300:FormatString>General Date</ddl300_300:FormatString>
+            </Attribute>
+          </Attributes>
+          <ProactiveCaching>
+            <SilenceInterval>-PT1S</SilenceInterval>
+            <Latency>-PT1S</Latency>
+            <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+            <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+            <Source xsi:type="ProactiveCachingInheritedBinding" />
+          </ProactiveCaching>
+        </Dimension>
       </Dimensions>
       <Cubes>
         <Cube>
@@ -18038,6 +19561,9 @@
                   <AttributeID>dss_update_time</AttributeID>
                   <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
                 </Attribute>
+                <Attribute>
+                  <AttributeID>master_fact_key</AttributeID>
+                </Attribute>
               </Attributes>
             </Dimension>
             <Dimension>
@@ -18428,6 +19954,122 @@
                 <Attribute>
                   <AttributeID>dss_update_time</AttributeID>
                   <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+                </Attribute>
+              </Attributes>
+            </Dimension>
+            <Dimension>
+              <ID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</ID>
+              <Name>fact_dimension_main</Name>
+              <DimensionID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</DimensionID>
+              <Attributes>
+                <Attribute>
+                  <AttributeID>RowNumber</AttributeID>
+                  <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>master_fact_key</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>source_system_id</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>client_code</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>matter_number</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>dim_matter_header_curr_key</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>dim_client_key</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>dim_detail_audit_key</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>dim_detail_claim_key</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>dim_detail_client_key</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>dim_detail_core_detail_key</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>dim_detail_court_key</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>dim_detail_critical_mi_key</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>dim_detail_flight_dela_key</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>dim_detail_fraud_key</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>dim_detail_future_care_key</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>dim_detail_health_key</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>dim_detail_hire_detail_key</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>dim_detail_litigation_key</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>dim_detail_outcome_key</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>dim_detail_plot_detail_key</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>dim_detail_practice_ar_key</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>dim_detail_property_key</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>dim_detail_incident_key</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>dim_agents_involvement_key</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>dim_claimant_thirdpart_key</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>dim_client_involvement_key</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>dim_court_involvement_key</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>dim_defendant_involvem_key</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>dim_experts_involvemen_key</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>dim_insurance_involvem_key</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>dim_involvement_full_bridge_key</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>dim_witness_involvemen_key</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>dim_detail_advice_key</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>dss_create_time</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>dss_update_time</AttributeID>
                 </Attribute>
               </Attributes>
             </Dimension>
@@ -25431,6 +27073,20 @@
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>master_fact_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_tasks_7d22b44a-276f-41fd-9a6e-d0b4f5ba2607</TableID>
+                            <ColumnID>master_fact_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
                 </Dimension>
@@ -30153,6 +31809,552 @@
                   <IntermediateCubeDimensionID>dim_matter_header_current_c7829405-f90f-4034-b8b2-35ba6642b8a6</IntermediateCubeDimensionID>
                   <IntermediateGranularityAttributeID>dim_office_bank_account_key</IntermediateGranularityAttributeID>
                 </Dimension>
+                <Dimension xsi:type="ReferenceMeasureGroupDimension">
+                  <CubeDimensionID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>RowNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>4</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ddl200_200:RowNumberBinding" />
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>master_fact_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>master_fact_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>source_system_id</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>source_system_id</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>client_code</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>client_code</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>matter_number</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>matter_number</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_matter_header_curr_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dim_matter_header_curr_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_client_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dim_client_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_detail_audit_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dim_detail_audit_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_detail_claim_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dim_detail_claim_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_detail_client_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dim_detail_client_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_detail_core_detail_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dim_detail_core_detail_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_detail_court_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dim_detail_court_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_detail_critical_mi_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dim_detail_critical_mi_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_detail_flight_dela_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dim_detail_flight_dela_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_detail_fraud_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dim_detail_fraud_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_detail_future_care_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dim_detail_future_care_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_detail_health_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dim_detail_health_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_detail_hire_detail_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dim_detail_hire_detail_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_detail_litigation_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dim_detail_litigation_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_detail_outcome_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dim_detail_outcome_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_detail_plot_detail_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dim_detail_plot_detail_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_detail_practice_ar_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dim_detail_practice_ar_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_detail_property_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dim_detail_property_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_detail_incident_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dim_detail_incident_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_agents_involvement_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dim_agents_involvement_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_claimant_thirdpart_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dim_claimant_thirdpart_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_client_involvement_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dim_client_involvement_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_court_involvement_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dim_court_involvement_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_defendant_involvem_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dim_defendant_involvem_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_experts_involvemen_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dim_experts_involvemen_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_insurance_involvem_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dim_insurance_involvem_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_involvement_full_bridge_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dim_involvement_full_bridge_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_witness_involvemen_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dim_witness_involvemen_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_detail_advice_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dim_detail_advice_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dss_create_time</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dss_create_time</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dss_update_time</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dss_update_time</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                  </Attributes>
+                  <IntermediateCubeDimensionID>fact_tasks_7d22b44a-276f-41fd-9a6e-d0b4f5ba2607</IntermediateCubeDimensionID>
+                  <IntermediateGranularityAttributeID>master_fact_key</IntermediateGranularityAttributeID>
+                  <Materialization>Regular</Materialization>
+                  <ddl300:RelationshipID>37e009d1-761c-42ca-8386-ef2d928f52c5</ddl300:RelationshipID>
+                </Dimension>
               </Dimensions>
               <Partitions>
                 <Partition>
@@ -30420,7 +32622,7 @@
         &lt;string&gt;master_fact_key&lt;/string&gt;
       &lt;/key&gt;
       &lt;value&gt;
-        &lt;boolean&gt;false&lt;/boolean&gt;
+        &lt;boolean&gt;true&lt;/boolean&gt;
       &lt;/value&gt;
     &lt;/item&gt;
   &lt;/ColumnChecked&gt;
@@ -30443,7 +32645,7 @@
                   </Annotations>
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>003d478b-380e-4b45-a1c8-3233eac94659</DataSourceID>
-                    <QueryDefinition>SELECT [dbo].[fact_tasks].[dim_task_date_key],[dbo].[fact_tasks].[dim_matter_header_curr_key],[dbo].[fact_tasks].[dim_task_owner_key],[dbo].[fact_tasks].[dim_matter_owner_key],[dbo].[fact_tasks].[dim_task_due_date_key],[dbo].[fact_tasks].[dim_tasks_key],[dbo].[fact_tasks].[client_code],[dbo].[fact_tasks].[matter_number],[dbo].[fact_tasks].[matter_owner],[dbo].[fact_tasks].[task_sequence],[dbo].[fact_tasks].[task_code],[dbo].[fact_tasks].[task_count],[dbo].[fact_tasks].[dss_create_time],[dbo].[fact_tasks].[dss_update_time] 		FROM [dbo].[fact_tasks]</QueryDefinition>
+                    <QueryDefinition>SELECT [dbo].[fact_tasks].* 		FROM [dbo].[fact_tasks]</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
@@ -33662,6 +35864,622 @@
                 <Source xsi:type="ProactiveCachingInheritedBinding" />
               </ProactiveCaching>
             </MeasureGroup>
+            <MeasureGroup>
+              <ID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</ID>
+              <Name>fact_dimension_main</Name>
+              <Measures>
+                <Measure>
+                  <ID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</ID>
+                  <Name>_Count fact_dimension_main</Name>
+                  <AggregateFunction>Count</AggregateFunction>
+                  <DataType>BigInt</DataType>
+                  <Source>
+                    <DataType>BigInt</DataType>
+                    <DataSize>8</DataSize>
+                    <Source xsi:type="RowBinding">
+                      <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                    </Source>
+                  </Source>
+                  <Visible>false</Visible>
+                </Measure>
+              </Measures>
+              <StorageMode valuens="ddl200_200">InMemory</StorageMode>
+              <ErrorConfiguration>
+                <KeyNotFound>IgnoreError</KeyNotFound>
+                <KeyDuplicate>ReportAndStop</KeyDuplicate>
+                <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+              </ErrorConfiguration>
+              <ProcessingMode>Regular</ProcessingMode>
+              <Dimensions>
+                <Dimension xsi:type="DegenerateMeasureGroupDimension">
+                  <CubeDimensionID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>RowNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main</TableID>
+                            <ColumnID>RowNumber</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>master_fact_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>master_fact_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>source_system_id</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>source_system_id</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>client_code</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>client_code</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>matter_number</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>matter_number</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_matter_header_curr_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dim_matter_header_curr_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_client_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dim_client_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_detail_audit_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dim_detail_audit_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_detail_claim_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dim_detail_claim_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_detail_client_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dim_detail_client_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_detail_core_detail_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dim_detail_core_detail_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_detail_court_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dim_detail_court_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_detail_critical_mi_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dim_detail_critical_mi_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_detail_flight_dela_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dim_detail_flight_dela_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_detail_fraud_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dim_detail_fraud_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_detail_future_care_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dim_detail_future_care_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_detail_health_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dim_detail_health_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_detail_hire_detail_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dim_detail_hire_detail_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_detail_litigation_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dim_detail_litigation_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_detail_outcome_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dim_detail_outcome_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_detail_plot_detail_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dim_detail_plot_detail_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_detail_practice_ar_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dim_detail_practice_ar_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_detail_property_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dim_detail_property_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_detail_incident_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dim_detail_incident_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_agents_involvement_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dim_agents_involvement_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_claimant_thirdpart_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dim_claimant_thirdpart_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_client_involvement_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dim_client_involvement_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_court_involvement_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dim_court_involvement_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_defendant_involvem_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dim_defendant_involvem_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_experts_involvemen_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dim_experts_involvemen_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_insurance_involvem_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dim_insurance_involvem_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_involvement_full_bridge_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dim_involvement_full_bridge_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_witness_involvemen_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dim_witness_involvemen_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_detail_advice_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dim_detail_advice_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dss_create_time</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dss_create_time</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dss_update_time</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</TableID>
+                            <ColumnID>dss_update_time</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                  </Attributes>
+                  <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
+                </Dimension>
+              </Dimensions>
+              <Partitions>
+                <Partition>
+                  <ID>fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c</ID>
+                  <Name>fact_dimension_main</Name>
+                  <Annotations>
+                    <Annotation>
+                      <Name>IsQueryEditorUsed</Name>
+                      <Value>False</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>QueryEditorSerialization</Name>
+                    </Annotation>
+                    <Annotation>
+                      <Name>TableWidgetSerialization</Name>
+                    </Annotation>
+                  </Annotations>
+                  <Source xsi:type="QueryBinding">
+                    <DataSourceID>003d478b-380e-4b45-a1c8-3233eac94659</DataSourceID>
+                    <QueryDefinition>SELECT [dbo].[fact_dimension_main].* 		FROM [dbo].[fact_dimension_main]</QueryDefinition>
+                  </Source>
+                  <StorageMode valuens="ddl200_200">InMemory</StorageMode>
+                  <ProcessingMode>Regular</ProcessingMode>
+                  <ErrorConfiguration>
+                    <KeyNotFound>IgnoreError</KeyNotFound>
+                    <KeyDuplicate>ReportAndStop</KeyDuplicate>
+                    <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+                  </ErrorConfiguration>
+                  <ProactiveCaching>
+                    <SilenceInterval>-PT1S</SilenceInterval>
+                    <Latency>-PT1S</Latency>
+                    <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+                    <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+                    <Source xsi:type="ProactiveCachingInheritedBinding" />
+                  </ProactiveCaching>
+                </Partition>
+              </Partitions>
+              <ProactiveCaching>
+                <SilenceInterval>-PT1S</SilenceInterval>
+                <Latency>-PT1S</Latency>
+                <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+                <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+                <Source xsi:type="ProactiveCachingInheritedBinding" />
+              </ProactiveCaching>
+            </MeasureGroup>
           </MeasureGroups>
           <Source>
             <DataSourceViewID>Sandbox</DataSourceViewID>
@@ -34663,7 +37481,7 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="fact_tasks_7d22b44a-276f-41fd-9a6e-d0b4f5ba2607" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="fact_tasks" msprop:DbSchemaName="dbo" msprop:DbTableName="fact_tasks" msprop:TableType="View" msprop:Description="fact_tasks" msprop:QueryDefinition="      SELECT [dbo].[fact_tasks].[dim_task_date_key],[dbo].[fact_tasks].[dim_matter_header_curr_key],[dbo].[fact_tasks].[dim_task_owner_key],[dbo].[fact_tasks].[dim_matter_owner_key],[dbo].[fact_tasks].[dim_task_due_date_key],[dbo].[fact_tasks].[dim_tasks_key],[dbo].[fact_tasks].[client_code],[dbo].[fact_tasks].[matter_number],[dbo].[fact_tasks].[matter_owner],[dbo].[fact_tasks].[task_sequence],[dbo].[fact_tasks].[task_code],[dbo].[fact_tasks].[task_count],[dbo].[fact_tasks].[dss_create_time],[dbo].[fact_tasks].[dss_update_time]   FROM [dbo].[fact_tasks] ">
+                    <xs:element name="fact_tasks_7d22b44a-276f-41fd-9a6e-d0b4f5ba2607" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="fact_tasks" msprop:DbSchemaName="dbo" msprop:DbTableName="fact_tasks" msprop:TableType="View" msprop:Description="fact_tasks" msprop:QueryDefinition="      SELECT [dbo].[fact_tasks].*   FROM [dbo].[fact_tasks] ">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="dim_task_date_key" msprop:DbColumnName="dim_task_date_key" msprop:FriendlyName="dim_task_date_key" type="xs:long" minOccurs="0" />
@@ -34704,6 +37522,7 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
                           <xs:element name="task_count" msprop:DbColumnName="task_count" msprop:FriendlyName="task_count" type="xs:long" minOccurs="0" />
                           <xs:element name="dss_create_time" msprop:DbColumnName="dss_create_time" msprop:FriendlyName="dss_create_time" type="xs:dateTime" minOccurs="0" />
                           <xs:element name="dss_update_time" msprop:DbColumnName="dss_update_time" msprop:FriendlyName="dss_update_time" type="xs:dateTime" minOccurs="0" />
+                          <xs:element name="master_fact_key" msprop:DbColumnName="master_fact_key" msprop:FriendlyName="master_fact_key" type="xs:int" minOccurs="0" />
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
@@ -35152,6 +37971,59 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
+                    <xs:element name="fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="fact_dimension_main" msprop:DbSchemaName="dbo" msprop:DbTableName="fact_dimension_main" msprop:TableType="View" msprop:Description="fact_dimension_main" msprop:QueryDefinition="      SELECT [dbo].[fact_dimension_main].*   FROM [dbo].[fact_dimension_main] ">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="master_fact_key" msprop:DbColumnName="master_fact_key" msprop:FriendlyName="master_fact_key" type="xs:long" />
+                          <xs:element name="source_system_id" msprop:DbColumnName="source_system_id" msprop:FriendlyName="source_system_id" type="xs:long" minOccurs="0" />
+                          <xs:element name="client_code" msprop:DbColumnName="client_code" msprop:FriendlyName="client_code" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="matter_number" msprop:DbColumnName="matter_number" msprop:FriendlyName="matter_number" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="dim_matter_header_curr_key" msprop:DbColumnName="dim_matter_header_curr_key" msprop:FriendlyName="dim_matter_header_curr_key" type="xs:long" minOccurs="0" />
+                          <xs:element name="dim_client_key" msprop:DbColumnName="dim_client_key" msprop:FriendlyName="dim_client_key" type="xs:long" minOccurs="0" />
+                          <xs:element name="dim_detail_audit_key" msprop:DbColumnName="dim_detail_audit_key" msprop:FriendlyName="dim_detail_audit_key" type="xs:long" minOccurs="0" />
+                          <xs:element name="dim_detail_claim_key" msprop:DbColumnName="dim_detail_claim_key" msprop:FriendlyName="dim_detail_claim_key" type="xs:long" minOccurs="0" />
+                          <xs:element name="dim_detail_client_key" msprop:DbColumnName="dim_detail_client_key" msprop:FriendlyName="dim_detail_client_key" type="xs:long" minOccurs="0" />
+                          <xs:element name="dim_detail_core_detail_key" msprop:DbColumnName="dim_detail_core_detail_key" msprop:FriendlyName="dim_detail_core_detail_key" type="xs:long" minOccurs="0" />
+                          <xs:element name="dim_detail_court_key" msprop:DbColumnName="dim_detail_court_key" msprop:FriendlyName="dim_detail_court_key" type="xs:long" minOccurs="0" />
+                          <xs:element name="dim_detail_critical_mi_key" msprop:DbColumnName="dim_detail_critical_mi_key" msprop:FriendlyName="dim_detail_critical_mi_key" type="xs:long" minOccurs="0" />
+                          <xs:element name="dim_detail_flight_dela_key" msprop:DbColumnName="dim_detail_flight_dela_key" msprop:FriendlyName="dim_detail_flight_dela_key" type="xs:long" minOccurs="0" />
+                          <xs:element name="dim_detail_fraud_key" msprop:DbColumnName="dim_detail_fraud_key" msprop:FriendlyName="dim_detail_fraud_key" type="xs:long" minOccurs="0" />
+                          <xs:element name="dim_detail_future_care_key" msprop:DbColumnName="dim_detail_future_care_key" msprop:FriendlyName="dim_detail_future_care_key" type="xs:long" minOccurs="0" />
+                          <xs:element name="dim_detail_health_key" msprop:DbColumnName="dim_detail_health_key" msprop:FriendlyName="dim_detail_health_key" type="xs:long" minOccurs="0" />
+                          <xs:element name="dim_detail_hire_detail_key" msprop:DbColumnName="dim_detail_hire_detail_key" msprop:FriendlyName="dim_detail_hire_detail_key" type="xs:long" minOccurs="0" />
+                          <xs:element name="dim_detail_litigation_key" msprop:DbColumnName="dim_detail_litigation_key" msprop:FriendlyName="dim_detail_litigation_key" type="xs:long" minOccurs="0" />
+                          <xs:element name="dim_detail_outcome_key" msprop:DbColumnName="dim_detail_outcome_key" msprop:FriendlyName="dim_detail_outcome_key" type="xs:long" minOccurs="0" />
+                          <xs:element name="dim_detail_plot_detail_key" msprop:DbColumnName="dim_detail_plot_detail_key" msprop:FriendlyName="dim_detail_plot_detail_key" type="xs:long" minOccurs="0" />
+                          <xs:element name="dim_detail_practice_ar_key" msprop:DbColumnName="dim_detail_practice_ar_key" msprop:FriendlyName="dim_detail_practice_ar_key" type="xs:long" minOccurs="0" />
+                          <xs:element name="dim_detail_property_key" msprop:DbColumnName="dim_detail_property_key" msprop:FriendlyName="dim_detail_property_key" type="xs:long" minOccurs="0" />
+                          <xs:element name="dim_detail_incident_key" msprop:DbColumnName="dim_detail_incident_key" msprop:FriendlyName="dim_detail_incident_key" type="xs:long" minOccurs="0" />
+                          <xs:element name="dim_agents_involvement_key" msprop:DbColumnName="dim_agents_involvement_key" msprop:FriendlyName="dim_agents_involvement_key" type="xs:long" minOccurs="0" />
+                          <xs:element name="dim_claimant_thirdpart_key" msprop:DbColumnName="dim_claimant_thirdpart_key" msprop:FriendlyName="dim_claimant_thirdpart_key" type="xs:long" minOccurs="0" />
+                          <xs:element name="dim_client_involvement_key" msprop:DbColumnName="dim_client_involvement_key" msprop:FriendlyName="dim_client_involvement_key" type="xs:long" minOccurs="0" />
+                          <xs:element name="dim_court_involvement_key" msprop:DbColumnName="dim_court_involvement_key" msprop:FriendlyName="dim_court_involvement_key" type="xs:long" minOccurs="0" />
+                          <xs:element name="dim_defendant_involvem_key" msprop:DbColumnName="dim_defendant_involvem_key" msprop:FriendlyName="dim_defendant_involvem_key" type="xs:long" minOccurs="0" />
+                          <xs:element name="dim_experts_involvemen_key" msprop:DbColumnName="dim_experts_involvemen_key" msprop:FriendlyName="dim_experts_involvemen_key" type="xs:long" minOccurs="0" />
+                          <xs:element name="dim_insurance_involvem_key" msprop:DbColumnName="dim_insurance_involvem_key" msprop:FriendlyName="dim_insurance_involvem_key" type="xs:long" minOccurs="0" />
+                          <xs:element name="dim_involvement_full_bridge_key" msprop:DbColumnName="dim_involvement_full_bridge_key" msprop:FriendlyName="dim_involvement_full_bridge_key" type="xs:long" minOccurs="0" />
+                          <xs:element name="dim_witness_involvemen_key" msprop:DbColumnName="dim_witness_involvemen_key" msprop:FriendlyName="dim_witness_involvemen_key" type="xs:long" minOccurs="0" />
+                          <xs:element name="dim_detail_advice_key" msprop:DbColumnName="dim_detail_advice_key" msprop:FriendlyName="dim_detail_advice_key" type="xs:long" minOccurs="0" />
+                          <xs:element name="dss_create_time" msprop:DbColumnName="dss_create_time" msprop:FriendlyName="dss_create_time" type="xs:dateTime" minOccurs="0" />
+                          <xs:element name="dss_update_time" msprop:DbColumnName="dss_update_time" msprop:FriendlyName="dss_update_time" type="xs:dateTime" minOccurs="0" />
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
                   </xs:choice>
                 </xs:complexType>
                 <xs:unique name="Constraint1" msdata:PrimaryKey="true">
@@ -35177,6 +38049,10 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
                 <xs:unique name="dim_matter_worktype_a096b9c3-f681-4e18-948d-8d93741b21c5_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
                   <xs:selector xpath=".//dim_matter_worktype_a096b9c3-f681-4e18-948d-8d93741b21c5" />
                   <xs:field xpath="dim_matter_worktype_key" />
+                </xs:unique>
+                <xs:unique name="fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+                  <xs:selector xpath=".//fact_dimension_main_a38009b5-6158-4822-ad9f-40e64d83bc4c" />
+                  <xs:field xpath="master_fact_key" />
                 </xs:unique>
               </xs:element>
             </xs:schema>
