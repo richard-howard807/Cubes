@@ -372,6 +372,48 @@
         </Attribute>
       </Attributes>
     </Dimension>
+    <Dimension dwd:design-time-name="ba159356-6e09-4d0b-ae4c-9379bff785ab">
+      <ID>Dim Fed Hierarchy History</ID>
+      <Name>Dim Fed Hierarchy History</Name>
+      <DimensionID>Dim Fed Hierarchy History</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="2619fd00-8fac-4569-83ec-f27e802ddfe2">
+          <AttributeID>Dim Fed Hierarchy History Key</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="6fa62b92-fa09-4048-9cf0-3fd133f18111">
+          <AttributeID>Fed Code</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="52d33d5b-0994-4ff7-9da6-ed87c0856d60">
+          <AttributeID>Display Name</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="d22d5802-1527-4f78-a94f-1327040edee6">
+          <AttributeID>Hierarchylevel1hist</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="808f63b4-59fb-4f27-8958-833fafcfbdf3">
+          <AttributeID>Hierarchylevel2hist</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="3e12262c-5923-4443-b399-21461f519676">
+          <AttributeID>Hierarchylevel3hist</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="60431398-10b1-41bc-b895-39a66ee7f9f2">
+          <AttributeID>Hierarchylevel4hist</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="56487c67-2e49-45d7-a27d-257582bfe1be">
+          <AttributeID>Hierarchylevel5hist</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="8abdee58-e2cb-41ff-9092-999347cc96b3">
+          <AttributeID>Hierarchylevel6hist</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="00f2bcbd-3451-4156-8b81-996d23ce72b7">
+          <AttributeID>Fed Hierarchy Business Key</AttributeID>
+        </Attribute>
+      </Attributes>
+      <Hierarchies>
+        <Hierarchy dwd:design-time-name="0bd49f36-f781-4ede-b591-381dda533788">
+          <HierarchyID>Hierarchy</HierarchyID>
+        </Hierarchy>
+      </Hierarchies>
+    </Dimension>
   </Dimensions>
   <MeasureGroups>
     <MeasureGroup dwd:design-time-name="cf59586d-5c50-4a20-b2b4-365fe8227c81">
@@ -440,6 +482,14 @@
         </Dimension>
         <Dimension xsi:type="ManyToManyMeasureGroupDimension" dwd:design-time-name="c6ce1d05-090c-4def-8729-ae9438b8cd21">
           <CubeDimensionID>Dim Date</CubeDimensionID>
+          <MeasureGroupID>Fact Matter Summary Current</MeasureGroupID>
+        </Dimension>
+        <Dimension xsi:type="ManyToManyMeasureGroupDimension" dwd:design-time-name="6e0ce9fa-efc2-40a8-99cb-3a171dad006a">
+          <CubeDimensionID>Dim Matter Header Current</CubeDimensionID>
+          <MeasureGroupID>Fact Matter Summary Current</MeasureGroupID>
+        </Dimension>
+        <Dimension xsi:type="ManyToManyMeasureGroupDimension" dwd:design-time-name="89032031-276f-4297-b54e-93dc0f5eb770">
+          <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
           <MeasureGroupID>Fact Matter Summary Current</MeasureGroupID>
         </Dimension>
       </Dimensions>
@@ -588,6 +638,24 @@
                   <Source xsi:type="ColumnBinding" dwd:design-time-name="2643928e-7607-4633-a9ef-c07eae03891c">
                     <TableID>dbo_fact_matter_summary_current</TableID>
                     <ColumnID>dim_open_practice_management_date_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="c94debdc-2d2c-4b0f-b711-b3cbf5323fb4">
+          <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="1658e530-6d95-425e-871b-31c56571c272">
+              <AttributeID>Dim Fed Hierarchy History Key</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="217fc151-61f5-4af7-b644-2218292ccf25">
+                  <DataType>Integer</DataType>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="0f882522-48c9-4f14-9ee7-dd96762290fd">
+                    <TableID>dbo_fact_matter_summary_current</TableID>
+                    <ColumnID>dim_fed_hierarchy_history_key</ColumnID>
                   </Source>
                 </KeyColumn>
               </KeyColumns>
