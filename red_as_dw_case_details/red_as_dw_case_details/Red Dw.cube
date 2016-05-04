@@ -375,6 +375,17 @@
         </Hierarchy>
       </Hierarchies>
     </Dimension>
+    <Dimension dwd:design-time-name="26d3b932-0c67-4a65-acf9-a58b2aeab031">
+      <ID>Fact Finance Summary</ID>
+      <Name>Fact Finance Summary</Name>
+      <DimensionID>Fact Finance Summary</DimensionID>
+      <Visible>false</Visible>
+      <Attributes>
+        <Attribute dwd:design-time-name="57c23243-18cf-4ff1-addd-415b273a4570">
+          <AttributeID>Master Fact Key</AttributeID>
+        </Attribute>
+      </Attributes>
+    </Dimension>
   </Dimensions>
   <MeasureGroups>
     <MeasureGroup dwd:design-time-name="cf59586d-5c50-4a20-b2b4-365fe8227c81">
@@ -434,6 +445,28 @@
         <Dimension xsi:type="ManyToManyMeasureGroupDimension" dwd:design-time-name="89032031-276f-4297-b54e-93dc0f5eb770">
           <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
           <MeasureGroupID>Fact Matter Summary Current</MeasureGroupID>
+        </Dimension>
+        <Dimension xsi:type="ManyToManyMeasureGroupDimension" dwd:design-time-name="eff71ed5-fbc0-4c7a-8aea-e999dd899ee1">
+          <CubeDimensionID>Fact Matter Summary Current</CubeDimensionID>
+          <MeasureGroupID>Fact Matter Summary Current</MeasureGroupID>
+        </Dimension>
+        <Dimension xsi:type="DegenerateMeasureGroupDimension" dwd:design-time-name="e210669f-bb5c-4776-9933-3940033eee1f">
+          <CubeDimensionID>Fact Finance Summary</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="2cf0b29b-635b-4e29-899a-24ad4f2992dc">
+              <AttributeID>Master Fact Key</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="a40bc785-08b3-488d-8cd7-c90a56fd2bb6">
+                  <DataType>Integer</DataType>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="c5362d03-61f5-403d-a3f9-4cb979c01d6f">
+                    <TableID>dbo_fact_finance_summary</TableID>
+                    <ColumnID>master_fact_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
         </Dimension>
       </Dimensions>
       <Partitions />
@@ -556,6 +589,19 @@
               <Type>Granularity</Type>
             </Attribute>
           </Attributes>
+        </Dimension>
+        <Dimension xsi:type="ReferenceMeasureGroupDimension" dwd:design-time-name="e884a8a2-4131-449f-ae48-cf76ac362500">
+          <CubeDimensionID>Fact Finance Summary</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="a1085e78-c675-4670-b25e-611946d0d85a">
+              <AttributeID>Master Fact Key</AttributeID>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+          <IntermediateCubeDimensionID>Fact Matter Summary Current</IntermediateCubeDimensionID>
+          <IntermediateGranularityAttributeID>Master Fact Key</IntermediateGranularityAttributeID>
+          <Materialization>Regular</Materialization>
+          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
         </Dimension>
       </Dimensions>
       <Partitions />
