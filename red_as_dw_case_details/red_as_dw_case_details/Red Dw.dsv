@@ -1144,7 +1144,7 @@
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
-                  <xs:element name="track" msprop:DbColumnName="track" msprop:design-time-name="a1a45986-f706-40ab-994b-977bdf596d94" minOccurs="0">
+                  <xs:element name="track" msprop:design-time-name="a1a45986-f706-40ab-994b-977bdf596d94" msprop:DbColumnName="track" minOccurs="0">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
                         <xs:maxLength value="255" />
@@ -1333,11 +1333,18 @@
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
-            <xs:element name="dim_client_involvement" msprop:design-time-name="af373ade-5e8d-442d-a6b8-5ea370367fe9" msprop:IsLogical="True" msprop:FriendlyName="dim_client_involvement" msprop:DbTableName="dim_client_involvement" msprop:TableType="View" msprop:Description="" msprop:QueryDefinition="SELECT        dim_client_involvement_key, insuredclient_name&#xD;&#xA;FROM            dim_client_involvement" msprop:QueryBuilder="SpecificQueryBuilder">
+            <xs:element name="dim_client_involvement" msprop:design-time-name="af373ade-5e8d-442d-a6b8-5ea370367fe9" msprop:IsLogical="True" msprop:FriendlyName="dim_client_involvement" msprop:DbTableName="dim_client_involvement" msprop:TableType="View" msprop:Description="" msprop:QueryDefinition="SELECT        dim_client_involvement_key, insuredclient_name, insurerclient_reference&#xD;&#xA;FROM            dim_client_involvement" msprop:QueryBuilder="SpecificQueryBuilder">
               <xs:complexType>
                 <xs:sequence>
-                  <xs:element name="dim_client_involvement_key" msdata:ReadOnly="true" msprop:design-time-name="b79aee17-7cde-4ac2-8d22-913750871f5d" msprop:DbColumnName="dim_client_involvement_key" msprop:FriendlyName="dim_client_involvement_key" type="xs:int" />
+                  <xs:element name="dim_client_involvement_key" msdata:ReadOnly="true" msprop:design-time-name="b79aee17-7cde-4ac2-8d22-913750871f5d" msprop:DbColumnName="dim_client_involvement_key" msprop:FriendlyName="dim_client_involvement_key" type="xs:int" minOccurs="0" />
                   <xs:element name="insuredclient_name" msprop:design-time-name="02352d95-0efd-4095-aae2-d517587e0f88" msprop:DbColumnName="insuredclient_name" msprop:FriendlyName="insuredclient_name" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="2000" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="insurerclient_reference" msprop:DbColumnName="insurerclient_reference" msprop:design-time-name="ae881506-494b-4143-98be-5bb6a2e84081" minOccurs="0">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
                         <xs:maxLength value="2000" />
