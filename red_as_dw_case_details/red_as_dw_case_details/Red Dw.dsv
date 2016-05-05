@@ -31,7 +31,7 @@
             <Name>_ALL_TABLES_</Name>
             <DiagramLayout>
               <dds>
-                <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="42" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-8938" scrolltop="4408" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="44873" y="23416" backcolor="2434342" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="1" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+                <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="42" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-8938" scrolltop="7027" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="44873" y="23416" backcolor="2434342" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="1" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
                   <font>
                     <ddsxmlobjectstreamwrapper binary="01000000900144420100065461686f6d61" />
                   </font>
@@ -384,7 +384,7 @@
             <ShowRelationshipNames>False</ShowRelationshipNames>
             <UseDiagramDefaultLayout>True</UseDiagramDefaultLayout>
             <DiagramViewPortLeft>-8938</DiagramViewPortLeft>
-            <DiagramViewPortTop>4408</DiagramViewPortTop>
+            <DiagramViewPortTop>7027</DiagramViewPortTop>
             <DiagramBoundingLeft>0</DiagramBoundingLeft>
             <DiagramBoundingTop>0</DiagramBoundingTop>
             <DiagramZoom>100</DiagramZoom>
@@ -1118,7 +1118,7 @@
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
-            <xs:element name="dbo_dim_detail_core_details" msprop:design-time-name="6fc0d2e3-df2c-4e57-b549-3d5f9042f80c" msprop:IsLogical="True" msprop:FriendlyName="dim_detail_core_details" msprop:DbTableName="dim_detail_core_details" msprop:TableType="View" msprop:QueryDefinition="SELECT        dim_detail_core_detail_key, ISNULL(fixed_fee, '') AS fixed_fee, ISNULL(date_instructions_received, '') AS date_instructions_received, ISNULL(delegated_c, '') AS delegated_c, ISNULL(nature_of_claim, '') &#xD;&#xA;                         AS nature_of_claim&#xD;&#xA;FROM            dim_detail_core_details" msprop:QueryBuilder="SpecificQueryBuilder">
+            <xs:element name="dbo_dim_detail_core_details" msprop:design-time-name="6fc0d2e3-df2c-4e57-b549-3d5f9042f80c" msprop:IsLogical="True" msprop:FriendlyName="dim_detail_core_details" msprop:DbTableName="dim_detail_core_details" msprop:TableType="View" msprop:QueryDefinition="SELECT        dim_detail_core_detail_key, ISNULL(fixed_fee, '') AS fixed_fee, ISNULL(date_instructions_received, '') AS date_instructions_received, ISNULL(delegated_c, '') AS delegated_c, ISNULL(nature_of_claim, '') &#xD;&#xA;                         AS nature_of_claim, ISNULL(track, '') AS track&#xD;&#xA;FROM            dim_detail_core_details" msprop:QueryBuilder="SpecificQueryBuilder">
               <xs:complexType>
                 <xs:sequence>
                   <xs:element name="dim_detail_core_detail_key" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:design-time-name="9bef269f-6dae-4218-8094-6c8ca19c7351" msprop:DbColumnName="dim_detail_core_detail_key" msprop:FriendlyName="dim_detail_core_detail_key" type="xs:int" minOccurs="0" />
@@ -1144,6 +1144,13 @@
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
+                  <xs:element name="track" msprop:DbColumnName="track" msprop:design-time-name="a1a45986-f706-40ab-994b-977bdf596d94" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
@@ -1162,7 +1169,7 @@
                   <xs:element name="fixed_fee_amount" msprop:design-time-name="612fb1da-e608-408c-a428-cc0e16953973" msprop:DbColumnName="fixed_fee_amount" type="xs:decimal" minOccurs="0" />
                   <xs:element name="dim_client_key" msprop:design-time-name="b51a64f8-0a35-44e9-bc96-22bb507e3f61" msprop:DbColumnName="dim_client_key" type="xs:int" minOccurs="0" />
                   <xs:element name="dim_client_involvement_key" msprop:design-time-name="58fa5f7b-cb7d-444d-a9be-18e81274d34f" msprop:DbColumnName="dim_client_involvement_key" type="xs:int" minOccurs="0" />
-                  <xs:element name="defence_costs_reserve" msprop:DbColumnName="defence_costs_reserve" msprop:design-time-name="358137c7-c308-4e78-affd-9403d33d8bbe" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="defence_costs_reserve" msprop:design-time-name="358137c7-c308-4e78-affd-9403d33d8bbe" msprop:DbColumnName="defence_costs_reserve" type="xs:decimal" minOccurs="0" />
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
