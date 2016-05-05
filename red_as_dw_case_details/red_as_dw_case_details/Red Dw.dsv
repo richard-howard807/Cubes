@@ -362,7 +362,7 @@
                 <ddscontrol controlprogid="MSDDS.Polyline" left="310" top="12548" logicalid="41" controlid="22" masterid="0" hint1="0" hint2="0" width="3942" height="3977" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
                   <control>
                     <ddsxmlobj>
-                      <polyline endtypedst="6" endtypesrc="3" usercolor="0" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+                      <polyline endtypedst="6" endtypesrc="3" usercolor="15856113" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
                     </ddsxmlobj>
                   </control>
                   <layoutobject>
@@ -1118,7 +1118,7 @@
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
-            <xs:element name="dbo_dim_detail_core_details" msprop:design-time-name="6fc0d2e3-df2c-4e57-b549-3d5f9042f80c" msprop:IsLogical="True" msprop:FriendlyName="dim_detail_core_details" msprop:DbTableName="dim_detail_core_details" msprop:TableType="View" msprop:QueryDefinition="SELECT        dim_detail_core_detail_key, ISNULL(fixed_fee, '') AS fixed_fee, ISNULL(date_instructions_received, '') AS date_instructions_received, ISNULL(delegated_c, '') AS delegated_c&#xD;&#xA;FROM            dim_detail_core_details" msprop:QueryBuilder="SpecificQueryBuilder">
+            <xs:element name="dbo_dim_detail_core_details" msprop:design-time-name="6fc0d2e3-df2c-4e57-b549-3d5f9042f80c" msprop:IsLogical="True" msprop:FriendlyName="dim_detail_core_details" msprop:DbTableName="dim_detail_core_details" msprop:TableType="View" msprop:QueryDefinition="SELECT        dim_detail_core_detail_key, ISNULL(fixed_fee, '') AS fixed_fee, ISNULL(date_instructions_received, '') AS date_instructions_received, ISNULL(delegated_c, '') AS delegated_c, ISNULL(nature_of_claim, '') &#xD;&#xA;                         AS nature_of_claim&#xD;&#xA;FROM            dim_detail_core_details" msprop:QueryBuilder="SpecificQueryBuilder">
               <xs:complexType>
                 <xs:sequence>
                   <xs:element name="dim_detail_core_detail_key" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:design-time-name="9bef269f-6dae-4218-8094-6c8ca19c7351" msprop:DbColumnName="dim_detail_core_detail_key" msprop:FriendlyName="dim_detail_core_detail_key" type="xs:int" minOccurs="0" />
@@ -1131,6 +1131,13 @@
                   </xs:element>
                   <xs:element name="date_instructions_received" msprop:design-time-name="0820c399-bbc7-4003-8007-1488cbebabf7" msprop:DbColumnName="date_instructions_received" type="xs:dateTime" minOccurs="0" />
                   <xs:element name="delegated_c" msprop:design-time-name="17875682-7ff7-4083-9605-d3d5d82053ae" msprop:DbColumnName="delegated_c" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="nature_of_claim" msprop:DbColumnName="nature_of_claim" msprop:design-time-name="b1c8ba48-3555-4807-8533-19faf26501c7" minOccurs="0">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
                         <xs:maxLength value="255" />
@@ -1154,7 +1161,7 @@
                   <xs:element name="wip" msprop:design-time-name="669e6512-60ba-49fe-8bb0-38b421738cae" msprop:DbColumnName="wip" type="xs:decimal" minOccurs="0" />
                   <xs:element name="fixed_fee_amount" msprop:design-time-name="612fb1da-e608-408c-a428-cc0e16953973" msprop:DbColumnName="fixed_fee_amount" type="xs:decimal" minOccurs="0" />
                   <xs:element name="dim_client_key" msprop:design-time-name="b51a64f8-0a35-44e9-bc96-22bb507e3f61" msprop:DbColumnName="dim_client_key" type="xs:int" minOccurs="0" />
-                  <xs:element name="dim_client_involvement_key" msprop:DbColumnName="dim_client_involvement_key" msprop:design-time-name="58fa5f7b-cb7d-444d-a9be-18e81274d34f" type="xs:int" minOccurs="0" />
+                  <xs:element name="dim_client_involvement_key" msprop:design-time-name="58fa5f7b-cb7d-444d-a9be-18e81274d34f" msprop:DbColumnName="dim_client_involvement_key" type="xs:int" minOccurs="0" />
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
