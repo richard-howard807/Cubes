@@ -622,6 +622,60 @@
         </Attribute>
       </Attributes>
     </Dimension>
+    <Dimension dwd:design-time-name="0339eed5-6cab-48a9-bb74-42ce944ab339">
+      <ID>Dim Date 2</ID>
+      <Name>Dim Last Time Date</Name>
+      <DimensionID>Dim Date</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="f6b8fff5-d04f-4372-b57f-c42c8cb65384">
+          <AttributeID>Dim Date Key</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="87be78e9-5b16-4487-9e88-266f90d5e71a">
+          <AttributeID>Fin Year</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="9ce54732-341c-4883-8632-2e751b3556ea">
+          <AttributeID>Fin Quarter</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="e191824c-ed7d-4ac4-99af-f63d2dd6660c">
+          <AttributeID>Calendar Date</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="5b2b4357-8e2c-48d6-9c5f-e2c13a19a03e">
+          <AttributeID>Fin Period</AttributeID>
+        </Attribute>
+      </Attributes>
+      <Hierarchies>
+        <Hierarchy dwd:design-time-name="40a3d7c2-fae1-4eac-be45-1195bfdce60a">
+          <HierarchyID>Hierarchy</HierarchyID>
+        </Hierarchy>
+      </Hierarchies>
+    </Dimension>
+    <Dimension dwd:design-time-name="f8ada997-3f95-45c1-86e7-4da3bfb9d1e2">
+      <ID>Dim Date 3</ID>
+      <Name>Dim Date Matter Closed Practice Management</Name>
+      <DimensionID>Dim Date</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="7418c34d-226a-40d2-b5ab-a5365426cbd9">
+          <AttributeID>Dim Date Key</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="80836be4-e970-4aaf-8603-381340049e5e">
+          <AttributeID>Fin Year</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="e5683e32-5b28-4a05-9dbc-90ca6e5c6689">
+          <AttributeID>Fin Quarter</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="dcc39689-3da5-4646-aaca-9b621ad60b56">
+          <AttributeID>Calendar Date</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="cf94a283-a699-4885-8537-be850113e8e4">
+          <AttributeID>Fin Period</AttributeID>
+        </Attribute>
+      </Attributes>
+      <Hierarchies>
+        <Hierarchy dwd:design-time-name="18971732-b060-4ea6-8100-bb7bd06a90c9">
+          <HierarchyID>Hierarchy</HierarchyID>
+        </Hierarchy>
+      </Hierarchies>
+    </Dimension>
   </Dimensions>
   <MeasureGroups>
     <MeasureGroup dwd:design-time-name="60750e5e-4c42-4523-8526-ebdb8b1e6264">
@@ -858,6 +912,42 @@
             </Attribute>
           </Attributes>
         </Dimension>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="7613f574-7cc7-4ec4-8391-66912d9e6520">
+          <CubeDimensionID>Dim Date 2</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="3cb291dc-0a4e-42e3-9359-b25ec3828335">
+              <AttributeID>Dim Date Key</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="48bb95ba-eb8d-49c6-942c-7de751a40d5b">
+                  <DataType>Integer</DataType>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="7305b053-8bd4-4691-aea5-ae4f864282a8">
+                    <TableID>dbo_fact_dimension_main</TableID>
+                    <ColumnID>dim_last_transaction_date_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="243fbdcc-9eab-487f-9bc6-0a1dc680f8c9">
+          <CubeDimensionID>Dim Date 3</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="be7a3dae-9e29-4379-90b5-dc923b8232c3">
+              <AttributeID>Dim Date Key</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="583567c2-e985-4fd7-9597-64f634041548">
+                  <DataType>Integer</DataType>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="7178e9ee-85fa-4808-a6ac-9cf805f84ae0">
+                    <TableID>dbo_fact_dimension_main</TableID>
+                    <ColumnID>dim_closed_practice_management_date_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
       </Dimensions>
       <Partitions />
       <AggregationDesigns />
@@ -993,6 +1083,14 @@
         </Dimension>
         <Dimension xsi:type="ManyToManyMeasureGroupDimension" dwd:design-time-name="abcf2be8-e1de-4192-a9c9-ec5f3be16481">
           <CubeDimensionID>Dim Client Involvement</CubeDimensionID>
+          <MeasureGroupID>Fact Dimension Main</MeasureGroupID>
+        </Dimension>
+        <Dimension xsi:type="ManyToManyMeasureGroupDimension" dwd:design-time-name="f7612de5-a722-4f69-83c4-bd379551e645">
+          <CubeDimensionID>Dim Date 2</CubeDimensionID>
+          <MeasureGroupID>Fact Dimension Main</MeasureGroupID>
+        </Dimension>
+        <Dimension xsi:type="ManyToManyMeasureGroupDimension" dwd:design-time-name="90b46f7b-aaac-40f1-bf19-c63ee723220f">
+          <CubeDimensionID>Dim Date 3</CubeDimensionID>
           <MeasureGroupID>Fact Dimension Main</MeasureGroupID>
         </Dimension>
       </Dimensions>
