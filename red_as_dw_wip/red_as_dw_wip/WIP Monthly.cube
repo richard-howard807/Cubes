@@ -160,7 +160,7 @@
           <ddscontrol controlprogid="MSDDS.Polyline" left="11036" top="9949" logicalid="12" controlid="12" masterid="0" hint1="0" hint2="0" width="1507" height="1404" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
             <control>
               <ddsxmlobj>
-                <polyline endtypedst="6" endtypesrc="3" usercolor="0" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+                <polyline endtypedst="6" endtypesrc="3" usercolor="15856113" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
               </ddsxmlobj>
             </control>
             <layoutobject>
@@ -273,7 +273,7 @@
     </Dimension>
     <Dimension dwd:design-time-name="83a44122-616b-42dc-8f53-271f1f4b0e4a">
       <ID>Dim Matter Header History</ID>
-      <Name>Dim Matter Header History</Name>
+      <Name>Dim Matter Header History - Time Owner</Name>
       <DimensionID>Dim Matter Header History</DimensionID>
       <Attributes>
         <Attribute dwd:design-time-name="9d73a504-58c3-4cd4-aa73-d41492770826">
@@ -341,6 +341,48 @@
       </Attributes>
       <Hierarchies>
         <Hierarchy dwd:design-time-name="68f6fe8c-e0f2-4b78-9380-acefe89b0ba3">
+          <HierarchyID>Hierarchy</HierarchyID>
+        </Hierarchy>
+      </Hierarchies>
+    </Dimension>
+    <Dimension dwd:design-time-name="55824e02-aa76-488e-8c63-0e3a150fb918">
+      <ID>Dim Fed Hierarchy History 1</ID>
+      <Name>Dim Fed Hierarchy History - Matter Owner</Name>
+      <DimensionID>Dim Fed Hierarchy History</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="13d7df43-6420-4455-a298-8aeb701048c8">
+          <AttributeID>Dim Fed Hierarchy History Key</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="59677a87-830f-47d1-b9ae-903ef4bc7f12">
+          <AttributeID>Fed Code</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="829d7035-dbf7-4c45-bf95-4a1548df3eb7">
+          <AttributeID>Display Name</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="ed702001-7493-44ad-aedb-84d9c65b6466">
+          <AttributeID>Hierarchylevel1hist</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="ff1bc12d-0d6f-4182-b42a-4467734b2a92">
+          <AttributeID>Hierarchylevel2hist</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="46ff2e44-f01e-4e15-96a2-245a38a0a8d0">
+          <AttributeID>Hierarchylevel3hist</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="05c29c79-2858-41df-b5fc-a116c31bac61">
+          <AttributeID>Hierarchylevel4hist</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="444f5f9b-4e37-4f5b-86a5-56331f482c22">
+          <AttributeID>Hierarchylevel5hist</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="07c8d243-7880-4c67-bdfd-1d7a6db6734b">
+          <AttributeID>Hierarchylevel6hist</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="b9574a59-78ac-40ca-a4f7-9c1c6583715a">
+          <AttributeID>Fed Hierarchy Business Key</AttributeID>
+        </Attribute>
+      </Attributes>
+      <Hierarchies>
+        <Hierarchy dwd:design-time-name="0e88b65c-1c65-4a53-91ce-5d228eb4d079">
           <HierarchyID>Hierarchy</HierarchyID>
         </Hierarchy>
       </Hierarchies>
@@ -469,6 +511,25 @@
                   <Source xsi:type="ColumnBinding" dwd:design-time-name="38f74599-1e9d-4333-a791-15534d8bd118">
                     <TableID>dbo_fact_wip_monthly</TableID>
                     <ColumnID>wip_month</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="91c809f4-e98b-4ac3-8123-8d1c1b2877f4">
+          <CubeDimensionID>Dim Fed Hierarchy History 1</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="9744540d-c0dd-4480-9a36-c1813c80dc60">
+              <AttributeID>Dim Fed Hierarchy History Key</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="c3222390-c48a-40f7-ad23-e7b7f874a8ab">
+                  <DataType>Integer</DataType>
+                  <NullProcessing>UnknownMember</NullProcessing>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="a207168f-2ce8-4117-b3cc-4ef2f03c43f6">
+                    <TableID>dbo_fact_wip_monthly</TableID>
+                    <ColumnID>dim_fed_matter_owner_key</ColumnID>
                   </Source>
                 </KeyColumn>
               </KeyColumns>
