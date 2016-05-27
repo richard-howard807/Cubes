@@ -2557,6 +2557,11 @@
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>ReportID</Name>
                 </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>NewReport</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>NewReport</Name>
+                </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
@@ -2707,6 +2712,31 @@
                 <Source xsi:type="ColumnBinding">
                   <TableID>dimReportCatalogue_a7b89ce4-0564-462d-8307-e883d9f3ed17</TableID>
                   <ColumnID>ReportID</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>NewReport</ID>
+              <Name>NewReport</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimReportCatalogue_a7b89ce4-0564-462d-8307-e883d9f3ed17</TableID>
+                    <ColumnID>NewReport</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimReportCatalogue_a7b89ce4-0564-462d-8307-e883d9f3ed17</TableID>
+                  <ColumnID>NewReport</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
@@ -3512,6 +3542,9 @@
                 </Attribute>
                 <Attribute>
                   <AttributeID>ReportID</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>NewReport</AttributeID>
                 </Attribute>
               </Attributes>
             </Dimension>
@@ -4417,6 +4450,20 @@
                           <Source xsi:type="ColumnBinding">
                             <TableID>dimReportCatalogue_a7b89ce4-0564-462d-8307-e883d9f3ed17</TableID>
                             <ColumnID>ReportID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>NewReport</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimReportCatalogue_a7b89ce4-0564-462d-8307-e883d9f3ed17</TableID>
+                            <ColumnID>NewReport</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -5868,6 +5915,20 @@ DateKey</QueryDefinition>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>NewReport</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimReportCatalogue_a7b89ce4-0564-462d-8307-e883d9f3ed17</TableID>
+                            <ColumnID>NewReport</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
                 </Dimension>
@@ -5902,7 +5963,12 @@ DateKey</QueryDefinition>
    then coalesce([12Live], [12UAT], [12Dev])
  else coalesce([08Retired], case when [08Live] = 'Live' then '08Live' end)
  end as 'Status',
-  b.ReportID
+  b.ReportID,
+  case when coalesce([08Live], [08Retired]) is null 
+		and coalesce([12Live], [12UAT], [12Dev], [12Retired]) is not null 
+		then 1
+		else 0 
+  end as 'NewReport'
 from 
 Reporting.dw.ExecutionStatsNew e
 
@@ -6181,6 +6247,20 @@ where  case when Server = 'SVR-LIV-DWH-01'
                           <Source xsi:type="ColumnBinding">
                             <TableID>dimReportCatalogue_a7b89ce4-0564-462d-8307-e883d9f3ed17</TableID>
                             <ColumnID>ReportID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>NewReport</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimReportCatalogue_a7b89ce4-0564-462d-8307-e883d9f3ed17</TableID>
+                            <ColumnID>NewReport</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -6608,6 +6688,20 @@ where
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>NewReport</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimReportCatalogue_a7b89ce4-0564-462d-8307-e883d9f3ed17</TableID>
+                            <ColumnID>NewReport</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <IntermediateCubeDimensionID>dimReportFolder_42d9c745-bb1b-4a8e-8418-4e3fe271f674</IntermediateCubeDimensionID>
                   <IntermediateGranularityAttributeID>BusinessKey</IntermediateGranularityAttributeID>
@@ -6738,6 +6832,7 @@ CREATE MEASURE 'dimReportCatalogue'[UATOnDWH]=calculate(COUNTA(dimReportCatalogu
 CREATE MEASURE 'dimReportCatalogue'[DevOnDWH]=calculate(COUNTA(dimReportCatalogue[ReportName]),dimReportCatalogue[Status] = "Dev");
 CREATE MEASURE 'dimReportCatalogue'[RetiredOn2008]=calculate(COUNTA(dimReportCatalogue[ReportName]),dimReportCatalogue[Status] = "For Retirement");
 CREATE MEASURE 'dimReportCatalogue'[Percentage of Reports Completed]=if([LiveOn2008] = 0, 1, if(([DevOnDWH]+[UATOnDWH]+[LiveOnDWH]) = 0, 0, ([DevOnDWH]+[UATOnDWH]+[LiveOnDWH]) / [LiveOn2008]));
+CREATE MEASURE 'dimReportCatalogue'[New Reports on 2012]=sum([NewReport]);
 </Text>
                 </Command>
               </Commands>
@@ -7016,6 +7111,27 @@ CREATE MEASURE 'dimReportCatalogue'[Percentage of Reports Completed]=if([LiveOn2
                   <FormatString>''</FormatString>
                 </CalculationProperty>
                 <CalculationProperty>
+                  <Annotations>
+                    <Annotation>
+                      <Name>Type</Name>
+                      <Value>User</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsPrivate</Name>
+                      <Value>False</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Format</Name>
+                      <Value>
+                        <Format Format="General" xmlns="" />
+                      </Value>
+                    </Annotation>
+                  </Annotations>
+                  <CalculationReference>[New Reports on 2012]</CalculationReference>
+                  <CalculationType>Member</CalculationType>
+                  <FormatString>''</FormatString>
+                </CalculationProperty>
+                <CalculationProperty>
                   <CalculationReference>Measures.[__No measures defined]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <Visible>false</Visible>
@@ -7271,7 +7387,7 @@ CREATE MEASURE 'dimReportCatalogue'[Percentage of Reports Completed]=if([LiveOn2
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimReportCatalogue_a7b89ce4-0564-462d-8307-e883d9f3ed17" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimReportCatalogue" msprop:DbTableName="dimReportCatalogue" msprop:TableType="View" msprop:Description="dimReportCatalogue" msprop:QueryDefinition="select &#xD;&#xA; e.BusinessKey,&#xD;&#xA; Server,&#xD;&#xA; ReportName,&#xD;&#xA; ReportCategory,&#xD;&#xA; case when Server = 'SVR-LIV-DWH-01'&#xD;&#xA;   then coalesce([12Live], [12UAT], [12Dev])&#xD;&#xA; else coalesce([08Retired], case when [08Live] = 'Live' then '08Live' end)&#xD;&#xA; end as 'Status',&#xD;&#xA;  b.ReportID&#xD;&#xA;from &#xD;&#xA;Reporting.dw.ExecutionStatsNew e&#xD;&#xA;&#xD;&#xA;left join &#xD;&#xA;(&#xD;&#xA;&#xD;&#xA;select&#xD;&#xA;'SQL2008SVR' + &#xD;&#xA;     substring(c.[Path],&#xD;&#xA;   len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3, case when &#xD;&#xA;   (len([Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) &lt; 0 then 0 else&#xD;&#xA;   (len([Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) + 1 end&#xD;&#xA;  )&#xD;&#xA;+ c.Name  as 'BusinessKey',&#xD;&#xA;LEFT(Description, (CHARINDEX('-',[Description],1)-2)) as 'ReportID'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;sql2008svr.ReportServer.dbo.Catalog c&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;Type in (2,4)&#xD;&#xA;and Description like '%-%'&#xD;&#xA;&#xD;&#xA;union &#xD;&#xA;&#xD;&#xA;select&#xD;&#xA;'SVR-LIV-DWH-01' + &#xD;&#xA;     substring(c.[Path],&#xD;&#xA;   len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3, case when &#xD;&#xA;   (len([Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) &lt; 0 then 0 else&#xD;&#xA;   (len([Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) + 1 end&#xD;&#xA;  )&#xD;&#xA;+ c.Name  as 'BusinessKey',&#xD;&#xA;LEFT(Description, (CHARINDEX('-',[Description],1)-2)) as 'ReportID'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;[SVR-LIV-DWH-01].ReportServer.dbo.Catalog c&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;Type in (2,4)&#xD;&#xA;and Description like '%-%'&#xD;&#xA;) b on b.BusinessKey collate database_default = e.BusinessKey collate database_default&#xD;&#xA;where  case when Server = 'SVR-LIV-DWH-01'&#xD;&#xA;   then coalesce([12Live], [12UAT], [12Dev])&#xD;&#xA; else coalesce([08Retired], case when [08Live] = 'Live' then '08Live' end)&#xD;&#xA; end &#xD;&#xA; is not null">
+                    <xs:element name="dimReportCatalogue_a7b89ce4-0564-462d-8307-e883d9f3ed17" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimReportCatalogue" msprop:DbTableName="dimReportCatalogue" msprop:TableType="View" msprop:Description="dimReportCatalogue" msprop:QueryDefinition="select &#xD;&#xA; e.BusinessKey,&#xD;&#xA; Server,&#xD;&#xA; ReportName,&#xD;&#xA; ReportCategory,&#xD;&#xA; case when Server = 'SVR-LIV-DWH-01'&#xD;&#xA;   then coalesce([12Live], [12UAT], [12Dev])&#xD;&#xA; else coalesce([08Retired], case when [08Live] = 'Live' then '08Live' end)&#xD;&#xA; end as 'Status',&#xD;&#xA;  b.ReportID,&#xD;&#xA;  case when coalesce([08Live], [08Retired]) is null &#xD;&#xA;  and coalesce([12Live], [12UAT], [12Dev], [12Retired]) is not null &#xD;&#xA;  then 1&#xD;&#xA;  else 0 &#xD;&#xA;  end as 'NewReport'&#xD;&#xA;from &#xD;&#xA;Reporting.dw.ExecutionStatsNew e&#xD;&#xA;&#xD;&#xA;left join &#xD;&#xA;(&#xD;&#xA;&#xD;&#xA;select&#xD;&#xA;'SQL2008SVR' + &#xD;&#xA;     substring(c.[Path],&#xD;&#xA;   len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3, case when &#xD;&#xA;   (len([Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) &lt; 0 then 0 else&#xD;&#xA;   (len([Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) + 1 end&#xD;&#xA;  )&#xD;&#xA;+ c.Name  as 'BusinessKey',&#xD;&#xA;LEFT(Description, (CHARINDEX('-',[Description],1)-2)) as 'ReportID'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;sql2008svr.ReportServer.dbo.Catalog c&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;Type in (2,4)&#xD;&#xA;and Description like '%-%'&#xD;&#xA;&#xD;&#xA;union &#xD;&#xA;&#xD;&#xA;select&#xD;&#xA;'SVR-LIV-DWH-01' + &#xD;&#xA;     substring(c.[Path],&#xD;&#xA;   len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3, case when &#xD;&#xA;   (len([Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) &lt; 0 then 0 else&#xD;&#xA;   (len([Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) + 1 end&#xD;&#xA;  )&#xD;&#xA;+ c.Name  as 'BusinessKey',&#xD;&#xA;LEFT(Description, (CHARINDEX('-',[Description],1)-2)) as 'ReportID'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;[SVR-LIV-DWH-01].ReportServer.dbo.Catalog c&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;Type in (2,4)&#xD;&#xA;and Description like '%-%'&#xD;&#xA;) b on b.BusinessKey collate database_default = e.BusinessKey collate database_default&#xD;&#xA;where  case when Server = 'SVR-LIV-DWH-01'&#xD;&#xA;   then coalesce([12Live], [12UAT], [12Dev])&#xD;&#xA; else coalesce([08Retired], case when [08Live] = 'Live' then '08Live' end)&#xD;&#xA; end &#xD;&#xA; is not null">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="ReportName" msprop:DbColumnName="ReportName" msprop:FriendlyName="ReportName" minOccurs="0">
@@ -7316,6 +7432,7 @@ CREATE MEASURE 'dimReportCatalogue'[Percentage of Reports Completed]=if([LiveOn2
                               </xs:restriction>
                             </xs:simpleType>
                           </xs:element>
+                          <xs:element name="NewReport" msprop:DbColumnName="NewReport" msprop:FriendlyName="NewReport" type="xs:int" minOccurs="0" />
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
