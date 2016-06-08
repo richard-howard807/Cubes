@@ -11,10 +11,16 @@
           <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
           <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
           <State>Unprocessed</State>
-          <Source xsi:type="QueryBinding" dwd:design-time-name="09a0fe10-0318-49ba-b686-8476bc9fda41">
+          <Source xsi:type="QueryBinding" dwd:design-time-name="abb75939-ae9c-40e3-a0fd-37b2bf2bb3d7">
             <DataSourceID>Red Dw</DataSourceID>
-            <QueryDefinition>SELECT [dbo].[fact_wip_daily].[dim_transaction_date_key],[dbo].[fact_wip_daily].[dim_matter_header_history_key],[dbo].[fact_wip_daily].[dim_fed_hierarchy_history_key],[dbo].[fact_wip_daily].[dim_days_banding_key],[dbo].[fact_wip_daily].[wip_minutes],[dbo].[fact_wip_daily].[wip_value],[dbo].[fact_wip_daily].[dim_client_key],[dbo].[fact_wip_daily].[dim_fed_matter_owner_key],[dbo].[fact_wip_daily].[source_system_id],[dbo].[fact_wip_daily].[client],[dbo].[fact_wip_daily].[matter],[dbo].[fact_wip_daily].[matter_owner],[dbo].[fact_wip_daily].[fee_earner_code],[dbo].[fact_wip_daily].[wip_date],[dbo].[fact_wip_daily].[dss_update_time],[dbo].[fact_wip_daily].[master_fact_key]
-		FROM [dbo].[fact_wip_daily]
+            <QueryDefinition>SELECT    fact_wip_daily.master_fact_key,   fact_wip_daily.dim_fed_matter_owner_key,  fact_wip_daily.dim_matter_header_history_key, fact_wip_daily.dim_days_banding_key, fact_wip_daily.dim_client_key, fact_wip_daily.dim_transaction_date_key, fact_wip_daily.dim_fed_hierarchy_history_key, 
+                         fact_wip_daily.wip_minutes, fact_wip_daily.wip_value, fact_detail_paid_detail.output_wip_hourly_rate, fact_detail_paid_detail.output_wip_fixed_fee_value, 
+                         dim_detail_finance.output_wip_percentage_of_completion, fact_detail_paid_detail.output_wip_current_value_of_fixed_fee_wip, fact_detail_paid_detail.output_wip_contingent_wip, 
+                         fact_detail_paid_detail.output_wip_other_tbc_wip, fact_detail_paid_detail.output_wip_total_output_wip
+FROM            fact_wip_daily INNER JOIN
+                         fact_detail_paid_detail ON fact_detail_paid_detail.master_fact_key = fact_wip_daily.master_fact_key INNER JOIN
+                         fact_dimension_main ON fact_dimension_main.master_fact_key = fact_wip_daily.master_fact_key INNER JOIN
+                         dim_detail_finance ON dim_detail_finance.dim_detail_finance_key = fact_dimension_main.dim_detail_finance_key
 		WHERE dim_transaction_date_key = replace(cast(getdate() as date), '-', '') - 1 and wip_value &lt;&gt; 0 and wip_minutes &lt;&gt; 0</QueryDefinition>
           </Source>
           <StorageMode>Molap</StorageMode>
@@ -31,15 +37,20 @@
           <Annotations>
             <Annotation>
               <Name>AggregationPercent</Name>
-              <Value></Value>
             </Annotation>
           </Annotations>
           <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
           <State>Unprocessed</State>
-          <Source xsi:type="QueryBinding" dwd:design-time-name="c8e086b8-82d6-42d2-a5b7-f86edec8b547">
+          <Source xsi:type="QueryBinding" dwd:design-time-name="ede9debb-1d17-4079-b407-8e9959ab0c99">
             <DataSourceID>Red Dw</DataSourceID>
-            <QueryDefinition>SELECT [dbo].[fact_wip_daily].[dim_transaction_date_key],[dbo].[fact_wip_daily].[dim_matter_header_history_key],[dbo].[fact_wip_daily].[dim_fed_hierarchy_history_key],[dbo].[fact_wip_daily].[dim_days_banding_key],[dbo].[fact_wip_daily].[wip_minutes],[dbo].[fact_wip_daily].[wip_value],[dbo].[fact_wip_daily].[dim_client_key],[dbo].[fact_wip_daily].[dim_fed_matter_owner_key],[dbo].[fact_wip_daily].[source_system_id],[dbo].[fact_wip_daily].[client],[dbo].[fact_wip_daily].[matter],[dbo].[fact_wip_daily].[matter_owner],[dbo].[fact_wip_daily].[fee_earner_code],[dbo].[fact_wip_daily].[wip_date],[dbo].[fact_wip_daily].[dss_update_time],[dbo].[fact_wip_daily].[master_fact_key]
-		FROM [dbo].[fact_wip_daily]
+            <QueryDefinition>SELECT    fact_wip_daily.master_fact_key,  fact_wip_daily.dim_fed_matter_owner_key,   fact_wip_daily.dim_matter_header_history_key, fact_wip_daily.dim_days_banding_key, fact_wip_daily.dim_client_key, fact_wip_daily.dim_transaction_date_key, fact_wip_daily.dim_fed_hierarchy_history_key, 
+                         fact_wip_daily.wip_minutes, fact_wip_daily.wip_value, fact_detail_paid_detail.output_wip_hourly_rate, fact_detail_paid_detail.output_wip_fixed_fee_value, 
+                         dim_detail_finance.output_wip_percentage_of_completion, fact_detail_paid_detail.output_wip_current_value_of_fixed_fee_wip, fact_detail_paid_detail.output_wip_contingent_wip, 
+                         fact_detail_paid_detail.output_wip_other_tbc_wip, fact_detail_paid_detail.output_wip_total_output_wip
+FROM            fact_wip_daily INNER JOIN
+                         fact_detail_paid_detail ON fact_detail_paid_detail.master_fact_key = fact_wip_daily.master_fact_key INNER JOIN
+                         fact_dimension_main ON fact_dimension_main.master_fact_key = fact_wip_daily.master_fact_key INNER JOIN
+                         dim_detail_finance ON dim_detail_finance.dim_detail_finance_key = fact_dimension_main.dim_detail_finance_key
 		where dim_transaction_date_key &gt;= cast(left(replace(cast(getdate() as date), '-', '') -1 , 6) as varchar(8)) + '01'
 and dim_transaction_date_key &lt; replace(cast(getdate() as date), '-', '') - 1 and wip_value &lt;&gt; 0 and wip_minutes &lt;&gt; 0</QueryDefinition>
           </Source>
@@ -57,15 +68,20 @@ and dim_transaction_date_key &lt; replace(cast(getdate() as date), '-', '') - 1 
           <Annotations>
             <Annotation>
               <Name>AggregationPercent</Name>
-              <Value></Value>
             </Annotation>
           </Annotations>
           <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
           <State>Unprocessed</State>
-          <Source xsi:type="QueryBinding" dwd:design-time-name="6c7fd86f-50cb-4d05-b515-12b5aae707ef">
+          <Source xsi:type="QueryBinding" dwd:design-time-name="a293803a-3b0d-4ebe-a62d-af3b7d36d9e4">
             <DataSourceID>Red Dw</DataSourceID>
-            <QueryDefinition>SELECT [dbo].[fact_wip_daily].[dim_transaction_date_key],[dbo].[fact_wip_daily].[dim_matter_header_history_key],[dbo].[fact_wip_daily].[dim_fed_hierarchy_history_key],[dbo].[fact_wip_daily].[dim_days_banding_key],[dbo].[fact_wip_daily].[wip_minutes],[dbo].[fact_wip_daily].[wip_value],[dbo].[fact_wip_daily].[dim_client_key],[dbo].[fact_wip_daily].[dim_fed_matter_owner_key],[dbo].[fact_wip_daily].[source_system_id],[dbo].[fact_wip_daily].[client],[dbo].[fact_wip_daily].[matter],[dbo].[fact_wip_daily].[matter_owner],[dbo].[fact_wip_daily].[fee_earner_code],[dbo].[fact_wip_daily].[wip_date],[dbo].[fact_wip_daily].[dss_update_time],[dbo].[fact_wip_daily].[master_fact_key]
-		FROM [dbo].[fact_wip_daily]
+            <QueryDefinition>SELECT    fact_wip_daily.master_fact_key,  fact_wip_daily.dim_fed_matter_owner_key,  fact_wip_daily.dim_matter_header_history_key, fact_wip_daily.dim_days_banding_key, fact_wip_daily.dim_client_key, fact_wip_daily.dim_transaction_date_key, fact_wip_daily.dim_fed_hierarchy_history_key, 
+                         fact_wip_daily.wip_minutes, fact_wip_daily.wip_value, fact_detail_paid_detail.output_wip_hourly_rate, fact_detail_paid_detail.output_wip_fixed_fee_value, 
+                         dim_detail_finance.output_wip_percentage_of_completion, fact_detail_paid_detail.output_wip_current_value_of_fixed_fee_wip, fact_detail_paid_detail.output_wip_contingent_wip, 
+                         fact_detail_paid_detail.output_wip_other_tbc_wip, fact_detail_paid_detail.output_wip_total_output_wip
+FROM            fact_wip_daily INNER JOIN
+                         fact_detail_paid_detail ON fact_detail_paid_detail.master_fact_key = fact_wip_daily.master_fact_key INNER JOIN
+                         fact_dimension_main ON fact_dimension_main.master_fact_key = fact_wip_daily.master_fact_key INNER JOIN
+                         dim_detail_finance ON dim_detail_finance.dim_detail_finance_key = fact_dimension_main.dim_detail_finance_key
 		where 
 		dim_transaction_date_key &gt;= '20160501'
 		and dim_transaction_date_key &lt; cast(left(replace(cast(getdate() as date), '-', '') -1 , 6) as varchar(8)) + '01' and wip_value &lt;&gt; 0 and wip_minutes &lt;&gt; 0</QueryDefinition>
@@ -83,10 +99,16 @@ and dim_transaction_date_key &lt; replace(cast(getdate() as date), '-', '') - 1 
           <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
           <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
           <State>Unprocessed</State>
-          <Source xsi:type="QueryBinding" dwd:design-time-name="39df0fde-3101-4430-adbb-4af2ef3bef04">
+          <Source xsi:type="QueryBinding" dwd:design-time-name="93d4ce2a-61b6-43ce-9436-54dd4fc55609">
             <DataSourceID>Red Dw</DataSourceID>
-            <QueryDefinition>SELECT [dbo].[fact_wip_daily].[dim_transaction_date_key],[dbo].[fact_wip_daily].[dim_matter_header_history_key],[dbo].[fact_wip_daily].[dim_fed_hierarchy_history_key],[dbo].[fact_wip_daily].[dim_days_banding_key],[dbo].[fact_wip_daily].[wip_minutes],[dbo].[fact_wip_daily].[wip_value],[dbo].[fact_wip_daily].[dim_client_key],[dbo].[fact_wip_daily].[dim_fed_matter_owner_key],[dbo].[fact_wip_daily].[source_system_id],[dbo].[fact_wip_daily].[client],[dbo].[fact_wip_daily].[matter],[dbo].[fact_wip_daily].[matter_owner],[dbo].[fact_wip_daily].[fee_earner_code],[dbo].[fact_wip_daily].[wip_date],[dbo].[fact_wip_daily].[dss_update_time],[dbo].[fact_wip_daily].[master_fact_key]
-		FROM [dbo].[fact_wip_daily]
+            <QueryDefinition>SELECT    fact_wip_daily.master_fact_key,   fact_wip_daily.dim_fed_matter_owner_key,  fact_wip_daily.dim_matter_header_history_key, fact_wip_daily.dim_days_banding_key, fact_wip_daily.dim_client_key, fact_wip_daily.dim_transaction_date_key, fact_wip_daily.dim_fed_hierarchy_history_key, 
+                         fact_wip_daily.wip_minutes, fact_wip_daily.wip_value, fact_detail_paid_detail.output_wip_hourly_rate, fact_detail_paid_detail.output_wip_fixed_fee_value, 
+                         dim_detail_finance.output_wip_percentage_of_completion, fact_detail_paid_detail.output_wip_current_value_of_fixed_fee_wip, fact_detail_paid_detail.output_wip_contingent_wip, 
+                         fact_detail_paid_detail.output_wip_other_tbc_wip, fact_detail_paid_detail.output_wip_total_output_wip
+FROM            fact_wip_daily INNER JOIN
+                         fact_detail_paid_detail ON fact_detail_paid_detail.master_fact_key = fact_wip_daily.master_fact_key INNER JOIN
+                         fact_dimension_main ON fact_dimension_main.master_fact_key = fact_wip_daily.master_fact_key INNER JOIN
+                         dim_detail_finance ON dim_detail_finance.dim_detail_finance_key = fact_dimension_main.dim_detail_finance_key
 		WHERE dim_transaction_date_key &lt; 20160501 and wip_value &lt;&gt; 0 and wip_minutes &lt;&gt; 0</QueryDefinition>
           </Source>
           <StorageMode>Molap</StorageMode>
