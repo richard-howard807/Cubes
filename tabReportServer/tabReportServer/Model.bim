@@ -117,6 +117,11 @@
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>ReportID</Name>
                 </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>ReportRunDateTime</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>ReportRunDateTime</Name>
+                </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
@@ -378,6 +383,31 @@
                 <Source xsi:type="ColumnBinding">
                   <TableID>ExecutionLog_8ba32cd9-e938-4bce-87b7-251e27df5540</TableID>
                   <ColumnID>ReportID</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>ReportRunDateTime</ID>
+              <Name>ReportRunDateTime</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>ExecutionLog_8ba32cd9-e938-4bce-87b7-251e27df5540</TableID>
+                    <ColumnID>ReportRunDateTime</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>ExecutionLog_8ba32cd9-e938-4bce-87b7-251e27df5540</TableID>
+                  <ColumnID>ReportRunDateTime</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
@@ -4469,6 +4499,9 @@
                 <Attribute>
                   <AttributeID>ReportID</AttributeID>
                 </Attribute>
+                <Attribute>
+                  <AttributeID>ReportRunDateTime</AttributeID>
+                </Attribute>
               </Attributes>
             </Dimension>
             <Dimension>
@@ -5007,6 +5040,20 @@
                           <Source xsi:type="ColumnBinding">
                             <TableID>ExecutionLog_8ba32cd9-e938-4bce-87b7-251e27df5540</TableID>
                             <ColumnID>ReportID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ReportRunDateTime</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>ExecutionLog_8ba32cd9-e938-4bce-87b7-251e27df5540</TableID>
+                            <ColumnID>ReportRunDateTime</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -6327,6 +6374,10 @@ c.SERVER as 'Server',
 coalesce(cast(e.EmployeeID as varchar(36)), c.UserName) as 'UserID',
 cast(DateTime as date) as 'ReportRunDate',
 left(convert(varchar, DateTime, 108), 5) as 'ReportRunTime',
+cast(cast(DateTime as date) as varchar(10)) + ' ' + 
+left(convert(varchar, DateTime, 108), 5) as 'ReportRunDateTime',
+
+
 cast(c.TimeDataRetrieval / 1000  as decimal(10,2)) as 'TimeDataRetrievalSeconds',
 cast(c.TimeProcessing / 1000 as decimal(10,2)) as 'TimeProcessingSeconds',
 cast(c.TimeRendering / 1000 as decimal(10,2)) as 'TimeRenderingSeconds',
@@ -9294,7 +9345,7 @@ CREATE MEASURE 'dimReportCatalogue'[New Reports on 2012]=sum([NewReport]);
               <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:Locale="en-GB">
                 <xs:complexType>
                   <xs:choice minOccurs="0" maxOccurs="unbounded">
-                    <xs:element name="ExecutionLog_8ba32cd9-e938-4bce-87b7-251e27df5540" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="ExecutionLog" msprop:DbTableName="ExecutionLog" msprop:TableType="View" msprop:Description="ExecutionLog" msprop:QueryDefinition="select distinct&#xD;&#xA;c.Server + &#xD;&#xA;     substring(c.[Path],&#xD;&#xA;   len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3, case when &#xD;&#xA;   (len([Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) &lt; 0 then 0 else&#xD;&#xA;   (len([Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) + 1 end&#xD;&#xA;  )&#xD;&#xA;&#xD;&#xA;+&#xD;&#xA;&#xD;&#xA;reverse(&#xD;&#xA; replace(&#xD;&#xA; substring(reverse(c.[Path]), 0,&#xD;&#xA; charindex('/', &#xD;&#xA; substring(reverse(c.[Path]), 0, 100)&#xD;&#xA; )&#xD;&#xA; )&#xD;&#xA; ,'/','')&#xD;&#xA;) &#xD;&#xA;&#xD;&#xA;&#xD;&#xA; as 'BusinessKey',&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;c.SERVER as 'Server',&#xD;&#xA;coalesce(cast(e.EmployeeID as varchar(36)), c.UserName) as 'UserID',&#xD;&#xA;cast(DateTime as date) as 'ReportRunDate',&#xD;&#xA;left(convert(varchar, DateTime, 108), 5) as 'ReportRunTime',&#xD;&#xA;cast(c.TimeDataRetrieval / 1000  as decimal(10,2)) as 'TimeDataRetrievalSeconds',&#xD;&#xA;cast(c.TimeProcessing / 1000 as decimal(10,2)) as 'TimeProcessingSeconds',&#xD;&#xA;cast(c.TimeRendering / 1000 as decimal(10,2)) as 'TimeRenderingSeconds',&#xD;&#xA;cast(&#xD;&#xA;(c.TimeDataRetrieval +&#xD;&#xA;c.TimeProcessing +&#xD;&#xA;c.TimeRendering)&#xD;&#xA;/ 1000 as decimal(10,2)) as 'TotalLoadTimeSeconds',&#xD;&#xA;ReportID&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;Reporting.dw.tbl_reportexecutionsadvanced c&#xD;&#xA;&#xD;&#xA;left join [Cascade].dbo.Employee e&#xD;&#xA; on case when left(c.UserName, 4) != 'SBC\' then 'SBC\' + c.UserName else c.UserName end = 'SBC\' + e.windowsusername collate database_default&#xD;&#xA;&#xD;&#xA; where&#xD;&#xA; c.UserName not in ('SBC\SQLalert')">
+                    <xs:element name="ExecutionLog_8ba32cd9-e938-4bce-87b7-251e27df5540" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="ExecutionLog" msprop:DbTableName="ExecutionLog" msprop:TableType="View" msprop:Description="ExecutionLog" msprop:QueryDefinition="select distinct&#xD;&#xA;c.Server + &#xD;&#xA;     substring(c.[Path],&#xD;&#xA;   len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3, case when &#xD;&#xA;   (len([Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) &lt; 0 then 0 else&#xD;&#xA;   (len([Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) + 1 end&#xD;&#xA;  )&#xD;&#xA;&#xD;&#xA;+&#xD;&#xA;&#xD;&#xA;reverse(&#xD;&#xA; replace(&#xD;&#xA; substring(reverse(c.[Path]), 0,&#xD;&#xA; charindex('/', &#xD;&#xA; substring(reverse(c.[Path]), 0, 100)&#xD;&#xA; )&#xD;&#xA; )&#xD;&#xA; ,'/','')&#xD;&#xA;) &#xD;&#xA;&#xD;&#xA;&#xD;&#xA; as 'BusinessKey',&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;c.SERVER as 'Server',&#xD;&#xA;coalesce(cast(e.EmployeeID as varchar(36)), c.UserName) as 'UserID',&#xD;&#xA;cast(DateTime as date) as 'ReportRunDate',&#xD;&#xA;left(convert(varchar, DateTime, 108), 5) as 'ReportRunTime',&#xD;&#xA;cast(cast(DateTime as date) as varchar(10)) + ' ' + &#xD;&#xA;left(convert(varchar, DateTime, 108), 5) as 'ReportRunDateTime',&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;cast(c.TimeDataRetrieval / 1000  as decimal(10,2)) as 'TimeDataRetrievalSeconds',&#xD;&#xA;cast(c.TimeProcessing / 1000 as decimal(10,2)) as 'TimeProcessingSeconds',&#xD;&#xA;cast(c.TimeRendering / 1000 as decimal(10,2)) as 'TimeRenderingSeconds',&#xD;&#xA;cast(&#xD;&#xA;(c.TimeDataRetrieval +&#xD;&#xA;c.TimeProcessing +&#xD;&#xA;c.TimeRendering)&#xD;&#xA;/ 1000 as decimal(10,2)) as 'TotalLoadTimeSeconds',&#xD;&#xA;ReportID&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;Reporting.dw.tbl_reportexecutionsadvanced c&#xD;&#xA;&#xD;&#xA;left join [Cascade].dbo.Employee e&#xD;&#xA; on case when left(c.UserName, 4) != 'SBC\' then 'SBC\' + c.UserName else c.UserName end = 'SBC\' + e.windowsusername collate database_default&#xD;&#xA;&#xD;&#xA; where&#xD;&#xA; c.UserName not in ('SBC\SQLalert')">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="ReportRunDate" msprop:DbColumnName="ReportRunDate" msprop:FriendlyName="ReportRunDate" type="xs:dateTime" minOccurs="0" />
@@ -9331,6 +9382,13 @@ CREATE MEASURE 'dimReportCatalogue'[New Reports on 2012]=sum([NewReport]);
                             </xs:simpleType>
                           </xs:element>
                           <xs:element name="ReportID" msprop:DbColumnName="ReportID" msprop:FriendlyName="ReportID" type="xs:int" minOccurs="0" />
+                          <xs:element name="ReportRunDateTime" msprop:DbColumnName="ReportRunDateTime" msprop:FriendlyName="ReportRunDateTime" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
