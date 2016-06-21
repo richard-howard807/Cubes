@@ -8,7 +8,7 @@
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
       <Value>
         <dds xmlns="">
-          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="28" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-17433" scrolltop="-7367" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="75" x="38047" y="17515" backcolor="2434342" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="28" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-17433" scrolltop="-7367" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="75" x="38709" y="22093" backcolor="2434342" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
             <font>
               <ddsxmlobjectstreamwrapper binary="01000000900144420100065461686f6d61" />
             </font>
@@ -330,6 +330,19 @@
         </Hierarchy>
       </Hierarchies>
     </Dimension>
+    <Dimension dwd:design-time-name="b297bed0-1190-4cb7-a63a-21d8d89b040e">
+      <ID>Dim Bill</ID>
+      <Name>Dim Bill</Name>
+      <DimensionID>Dim Bill</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="1df6e849-7afe-428c-be96-495022b35693">
+          <AttributeID>Dim Bill Key</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="f70f9ab6-a92e-4081-a6a5-7fd26b00d19c">
+          <AttributeID>Bill Number</AttributeID>
+        </Attribute>
+      </Attributes>
+    </Dimension>
   </Dimensions>
   <MeasureGroups>
     <MeasureGroup dwd:design-time-name="d95ccc74-1863-4fc8-8fe7-2994ea4babbd">
@@ -348,6 +361,17 @@
             <Source xsi:type="ColumnBinding" dwd:design-time-name="b77068a9-bd7d-4676-a836-1fe9db2ee50d">
               <TableID>dbo_fact_debt_monthly</TableID>
               <ColumnID>outstanding_total_bill</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="cc2e7661-9a32-443a-abea-5722c9c6e9c3">
+          <ID>Age Of Debt</ID>
+          <Name>Age Of Debt</Name>
+          <Source dwd:design-time-name="30bd15da-619c-4630-ab00-3ca51717b6c7">
+            <DataType>Integer</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="c2322b8b-b82e-4a2c-b06b-345417b37492">
+              <TableID>dbo_fact_debt_monthly</TableID>
+              <ColumnID>age_of_debt</ColumnID>
             </Source>
           </Source>
         </Measure>
@@ -411,6 +435,25 @@
             </Attribute>
           </Attributes>
         </Dimension>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="5ebdf1be-cbd5-4559-837a-c969b81112bd">
+          <CubeDimensionID>Dim Bill</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="bddf4ffa-3584-4249-a7a4-8a8d9f0d7557">
+              <AttributeID>Dim Bill Key</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="a61d5bb7-bba2-4517-8d32-6162a2477ac9">
+                  <DataType>Integer</DataType>
+                  <NullProcessing>UnknownMember</NullProcessing>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="78d1c58c-c179-431e-bb00-a60d674c2eec">
+                    <TableID>dbo_fact_debt_monthly</TableID>
+                    <ColumnID>dim_bill_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
       </Dimensions>
       <Partitions />
       <AggregationDesigns />
@@ -419,4 +462,22 @@
   <Source dwd:design-time-name="a3756ebe-fe50-4eeb-abf2-2ba805489db5">
     <DataSourceViewID>Debt Monthly</DataSourceViewID>
   </Source>
+  <MdxScripts>
+    <MdxScript dwd:design-time-name="cba9d44d-7dd6-4192-9805-ff7611fc0b8d">
+      <ID>MdxScript</ID>
+      <Name>MdxScript</Name>
+      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+      <Commands>
+        <Command>
+          <Text>/*
+The CALCULATE command controls the aggregation of leaf cells in the cube.
+If the CALCULATE command is deleted or modified, the data within the cube is affected.
+You should edit this command only if you manually specify how the cube is aggregated.
+*/
+CALCULATE; </Text>
+        </Command>
+      </Commands>
+    </MdxScript>
+  </MdxScripts>
 </Cube>
