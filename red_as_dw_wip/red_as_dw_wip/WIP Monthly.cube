@@ -424,6 +424,17 @@
             </Source>
           </Source>
         </Measure>
+        <Measure dwd:design-time-name="b833c8dd-1087-4ba3-9207-9d60c0af1cd6">
+          <ID>Wip Over 90 Days</ID>
+          <Name>Wip Over 90 Days</Name>
+          <Source dwd:design-time-name="2ff43d59-4d59-4c64-81f7-748b1c6226bd">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="f8ae9545-3f51-4558-acd9-b5a640936708">
+              <TableID>dbo_fact_wip_monthly</TableID>
+              <ColumnID>wip_over_90_days</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
       </Measures>
       <StorageMode>Molap</StorageMode>
       <EstimatedRows>2578890</EstimatedRows>
@@ -549,4 +560,28 @@
   <Source dwd:design-time-name="01ca4d86-356e-4eb4-9edb-c2ecc068c486">
     <DataSourceViewID>fact_wip_monthly</DataSourceViewID>
   </Source>
+  <MdxScripts>
+    <MdxScript dwd:design-time-name="fc6d1bdb-a0b5-49bc-a530-684537658170">
+      <ID>MdxScript</ID>
+      <Name>MdxScript</Name>
+      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+      <Commands>
+        <Command>
+          <Text>/*
+The CALCULATE command controls the aggregation of leaf cells in the cube.
+If the CALCULATE command is deleted or modified, the data within the cube is affected.
+You should edit this command only if you manually specify how the cube is aggregated.
+*/
+CALCULATE; 
+CREATE MEMBER CURRENTCUBE.[Measures].[Percentage of Wip Over 90 Days]
+ AS iif([Measures].[Wip Value] = 0,
+null,
+[Measures].[Wip Over 90 Days] / [Measures].[Wip Value]
+), 
+VISIBLE = 1 ,  ASSOCIATED_MEASURE_GROUP = 'Fact Wip Monthly'  ; </Text>
+        </Command>
+      </Commands>
+    </MdxScript>
+  </MdxScripts>
 </Cube>
