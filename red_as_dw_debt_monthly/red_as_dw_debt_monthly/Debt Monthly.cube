@@ -375,6 +375,17 @@
             </Source>
           </Source>
         </Measure>
+        <Measure dwd:design-time-name="7e098554-e894-4dc2-883f-dc349b7cc02f">
+          <ID>Debt Over 90 Days</ID>
+          <Name>Debt Over 90 Days</Name>
+          <Source dwd:design-time-name="f4139b81-cf04-45bf-9db3-4ebab8bb1d78">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="9c21b0c0-e6f1-47fd-8172-5bc1faefffe6">
+              <TableID>dbo_fact_debt_monthly</TableID>
+              <ColumnID>debt_over_90_days</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
       </Measures>
       <StorageMode>Molap</StorageMode>
       <EstimatedRows>21138</EstimatedRows>
@@ -475,7 +486,13 @@ The CALCULATE command controls the aggregation of leaf cells in the cube.
 If the CALCULATE command is deleted or modified, the data within the cube is affected.
 You should edit this command only if you manually specify how the cube is aggregated.
 */
-CALCULATE; </Text>
+CALCULATE; 
+CREATE MEMBER CURRENTCUBE.[Measures].[Percentage of Debt over 90 days]
+ AS iif([Measures].[Debt Value] = 0,
+null,
+[Measures].[Debt over 90 days] / [Measures].[Debt Value]
+), 
+VISIBLE = 1 ,  ASSOCIATED_MEASURE_GROUP = 'Fact Debt Monthly'  ; </Text>
         </Command>
       </Commands>
     </MdxScript>
