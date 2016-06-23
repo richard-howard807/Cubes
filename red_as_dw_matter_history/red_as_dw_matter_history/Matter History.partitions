@@ -1,3 +1,1551 @@
 ﻿<Cube xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="39f3023e-29c4-4431-bb8d-b6aeb710b7e7" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
   <ID>Matter History</ID>
+  <MeasureGroups>
+    <MeasureGroup>
+      <ID>Fact Matter Summary</ID>
+      <Partitions>
+        <Partition dwd:design-time-name="166724d0-a3de-4bad-a3d2-83af1fbc357a">
+          <ID>Fact Matter Summary 2015_4</ID>
+          <Name>Fact Matter Summary 2015_4</Name>
+          <CreatedTimestamp>2016-02-02T13:54:24.893333Z</CreatedTimestamp>
+          <LastSchemaUpdate>2016-02-03T11:13:52.033333Z</LastSchemaUpdate>
+          <LastProcessed>2016-06-09T12:59:32.003333Z</LastProcessed>
+          <State>Processed</State>
+          <Source xsi:type="QueryBinding" dwd:design-time-name="689ee0d2-d988-4ebf-a130-db902d285334">
+            <DataSourceID>Red Dw</DataSourceID>
+            <QueryDefinition>SELECT        fact_matter_summary.dim_fed_hierarchy_history_key, fact_matter_summary.dim_matter_header_history_key, fact_matter_summary.dim_client_key, fact_matter_summary.dim_date_key, 
+                         fact_matter_summary.dim_open_practice_management_date_key, fact_matter_summary.dim_closed_practice_management_date_key, fact_matter_summary.source_system_id, 
+                         fact_matter_summary.client_code, fact_matter_summary.matter_number, fact_matter_summary.fee_earner_fed_code, fact_matter_summary.date_opened_practice_management, 
+                         fact_matter_summary.date_closed_practice_management, fact_matter_summary.date_opened_case_management, fact_matter_summary.date_closed_case_management, 
+                         fact_matter_summary.estimated_matter_fee, fact_matter_summary.disbursement_balance, fact_matter_summary.client_account_balance_of_matter, fact_matter_summary.number_unpaid_bills, 
+                         fact_matter_summary.number_bills_matter, fact_matter_summary.unpaid_bill_balance, fact_matter_summary.deposit_account_balance, fact_matter_summary.wip_balance, fact_matter_summary.costs_to_date, 
+                         fact_matter_summary.time_billed, fact_matter_summary.unbilled_time, fact_matter_summary.fin_month, fact_matter_summary.closed_practice_management, fact_matter_summary.closed_case_management, 
+                         fact_matter_summary.matter_count, fact_matter_summary.open_practice_management, fact_matter_summary.open_case_management, fact_matter_summary.dss_update_time, 
+                         fact_matter_summary.dim_matter_header_curr_key, fact_matter_summary.dim_open_case_management_date_key, fact_matter_summary.dim_closed_case_management_date_key, 
+                         fact_matter_summary.closed_practice_management_month, fact_matter_summary.closed_case_management_month, fact_matter_summary.open_case_management_month, 
+                         fact_matter_summary.open_practice_management_month, fact_matter_summary.closed_practice_management_fin_ytd, fact_matter_summary.closed_case_management_fin_ytd, 
+                         fact_matter_summary.open_case_management_fin_ytd, fact_matter_summary.open_practice_management_fin_ytd, fact_matter_summary.fact_matter_summary_key, fact_matter_summary.last_bill_date, 
+                         fact_matter_summary.last_financial_transaction_date, fact_matter_summary.dim_last_bill_date_key, fact_matter_summary.dim_last_transaction_date_key, dim_matter_header_history.dim_department_key, 
+                         dim_matter_header_history.dim_matter_worktype_key
+FROM            fact_matter_summary INNER JOIN
+                         dim_matter_header_history ON fact_matter_summary.dim_matter_header_history_key = dim_matter_header_history.dim_mat_head_history_key
+
+where 
+fin_month between 201510 and 201512</QueryDefinition>
+          </Source>
+          <StorageMode>Molap</StorageMode>
+          <CurrentStorageMode>Molap</CurrentStorageMode>
+          <ProcessingMode>Regular</ProcessingMode>
+          <ProactiveCaching dwd:design-time-name="e706b864-c566-4afd-b0a6-10dae1baf905">
+            <SilenceInterval>-PT1S</SilenceInterval>
+            <Latency>-PT1S</Latency>
+            <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+            <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+            <Source xsi:type="ProactiveCachingInheritedBinding" dwd:design-time-name="895b31de-286c-4b69-bc66-ee5231ed3d07" />
+          </ProactiveCaching>
+          <EstimatedSize>121181530</EstimatedSize>
+          <EstimatedRows>2367268</EstimatedRows>
+          <AggregationDesignID>AggregationDesign 1</AggregationDesignID>
+        </Partition>
+        <Partition dwd:design-time-name="85f72c2d-7b8d-4d1e-88b6-051f6ccd4117">
+          <ID>Fact Matter Summary 2016_1</ID>
+          <Name>Fact Matter Summary 2016_1</Name>
+          <CreatedTimestamp>2016-02-02T13:54:25.016667Z</CreatedTimestamp>
+          <LastSchemaUpdate>2016-02-03T11:13:52.08Z</LastSchemaUpdate>
+          <Annotations>
+            <Annotation>
+              <Name>AggregationPercent</Name>
+            </Annotation>
+          </Annotations>
+          <LastProcessed>2016-06-09T12:59:38.143333Z</LastProcessed>
+          <State>Processed</State>
+          <Source xsi:type="QueryBinding" dwd:design-time-name="a0a4ab4c-9703-42f4-b355-457c08b2fc30">
+            <DataSourceID>Red Dw</DataSourceID>
+            <QueryDefinition>SELECT        fact_matter_summary.dim_fed_hierarchy_history_key, fact_matter_summary.dim_matter_header_history_key, fact_matter_summary.dim_client_key, fact_matter_summary.dim_date_key, 
+                         fact_matter_summary.dim_open_practice_management_date_key, fact_matter_summary.dim_closed_practice_management_date_key, fact_matter_summary.source_system_id, 
+                         fact_matter_summary.client_code, fact_matter_summary.matter_number, fact_matter_summary.fee_earner_fed_code, fact_matter_summary.date_opened_practice_management, 
+                         fact_matter_summary.date_closed_practice_management, fact_matter_summary.date_opened_case_management, fact_matter_summary.date_closed_case_management, 
+                         fact_matter_summary.estimated_matter_fee, fact_matter_summary.disbursement_balance, fact_matter_summary.client_account_balance_of_matter, fact_matter_summary.number_unpaid_bills, 
+                         fact_matter_summary.number_bills_matter, fact_matter_summary.unpaid_bill_balance, fact_matter_summary.deposit_account_balance, fact_matter_summary.wip_balance, fact_matter_summary.costs_to_date, 
+                         fact_matter_summary.time_billed, fact_matter_summary.unbilled_time, fact_matter_summary.fin_month, fact_matter_summary.closed_practice_management, fact_matter_summary.closed_case_management, 
+                         fact_matter_summary.matter_count, fact_matter_summary.open_practice_management, fact_matter_summary.open_case_management, fact_matter_summary.dss_update_time, 
+                         fact_matter_summary.dim_matter_header_curr_key, fact_matter_summary.dim_open_case_management_date_key, fact_matter_summary.dim_closed_case_management_date_key, 
+                         fact_matter_summary.closed_practice_management_month, fact_matter_summary.closed_case_management_month, fact_matter_summary.open_case_management_month, 
+                         fact_matter_summary.open_practice_management_month, fact_matter_summary.closed_practice_management_fin_ytd, fact_matter_summary.closed_case_management_fin_ytd, 
+                         fact_matter_summary.open_case_management_fin_ytd, fact_matter_summary.open_practice_management_fin_ytd, fact_matter_summary.fact_matter_summary_key, fact_matter_summary.last_bill_date, 
+                         fact_matter_summary.last_financial_transaction_date, fact_matter_summary.dim_last_bill_date_key, fact_matter_summary.dim_last_transaction_date_key, dim_matter_header_history.dim_department_key, 
+                         dim_matter_header_history.dim_matter_worktype_key
+FROM            fact_matter_summary INNER JOIN
+                         dim_matter_header_history ON fact_matter_summary.dim_matter_header_history_key = dim_matter_header_history.dim_mat_head_history_key
+
+where fin_month between 201601 and 201603</QueryDefinition>
+          </Source>
+          <StorageMode>Molap</StorageMode>
+          <CurrentStorageMode>Molap</CurrentStorageMode>
+          <ProcessingMode>Regular</ProcessingMode>
+          <ProactiveCaching dwd:design-time-name="7c49e879-6698-4728-92a5-1f0f54ec122c">
+            <SilenceInterval>-PT1S</SilenceInterval>
+            <Latency>-PT1S</Latency>
+            <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+            <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+            <Source xsi:type="ProactiveCachingInheritedBinding" dwd:design-time-name="c567909c-dd2c-4bfb-a38c-a3d434acbf18" />
+          </ProactiveCaching>
+          <EstimatedSize>123782678</EstimatedSize>
+          <AggregationDesignID>AggregationDesign 1</AggregationDesignID>
+        </Partition>
+        <Partition dwd:design-time-name="adf3fc53-b7bc-4440-810d-ad26ea070e80">
+          <ID>Fact Matter Summary 2016_2</ID>
+          <Name>Fact Matter Summary 2016_2</Name>
+          <CreatedTimestamp>2016-02-02T13:54:25.05Z</CreatedTimestamp>
+          <LastSchemaUpdate>2016-02-03T11:13:52.11Z</LastSchemaUpdate>
+          <LastProcessed>2016-06-09T12:59:37.94Z</LastProcessed>
+          <State>Processed</State>
+          <Source xsi:type="QueryBinding" dwd:design-time-name="61320c59-a412-4517-b5b7-43a61ecce781">
+            <DataSourceID>Red Dw</DataSourceID>
+            <QueryDefinition>SELECT        fact_matter_summary.dim_fed_hierarchy_history_key, fact_matter_summary.dim_matter_header_history_key, fact_matter_summary.dim_client_key, fact_matter_summary.dim_date_key, 
+                         fact_matter_summary.dim_open_practice_management_date_key, fact_matter_summary.dim_closed_practice_management_date_key, fact_matter_summary.source_system_id, 
+                         fact_matter_summary.client_code, fact_matter_summary.matter_number, fact_matter_summary.fee_earner_fed_code, fact_matter_summary.date_opened_practice_management, 
+                         fact_matter_summary.date_closed_practice_management, fact_matter_summary.date_opened_case_management, fact_matter_summary.date_closed_case_management, 
+                         fact_matter_summary.estimated_matter_fee, fact_matter_summary.disbursement_balance, fact_matter_summary.client_account_balance_of_matter, fact_matter_summary.number_unpaid_bills, 
+                         fact_matter_summary.number_bills_matter, fact_matter_summary.unpaid_bill_balance, fact_matter_summary.deposit_account_balance, fact_matter_summary.wip_balance, fact_matter_summary.costs_to_date, 
+                         fact_matter_summary.time_billed, fact_matter_summary.unbilled_time, fact_matter_summary.fin_month, fact_matter_summary.closed_practice_management, fact_matter_summary.closed_case_management, 
+                         fact_matter_summary.matter_count, fact_matter_summary.open_practice_management, fact_matter_summary.open_case_management, fact_matter_summary.dss_update_time, 
+                         fact_matter_summary.dim_matter_header_curr_key, fact_matter_summary.dim_open_case_management_date_key, fact_matter_summary.dim_closed_case_management_date_key, 
+                         fact_matter_summary.closed_practice_management_month, fact_matter_summary.closed_case_management_month, fact_matter_summary.open_case_management_month, 
+                         fact_matter_summary.open_practice_management_month, fact_matter_summary.closed_practice_management_fin_ytd, fact_matter_summary.closed_case_management_fin_ytd, 
+                         fact_matter_summary.open_case_management_fin_ytd, fact_matter_summary.open_practice_management_fin_ytd, fact_matter_summary.fact_matter_summary_key, fact_matter_summary.last_bill_date, 
+                         fact_matter_summary.last_financial_transaction_date, fact_matter_summary.dim_last_bill_date_key, fact_matter_summary.dim_last_transaction_date_key, dim_matter_header_history.dim_department_key, 
+                         dim_matter_header_history.dim_matter_worktype_key
+FROM            fact_matter_summary INNER JOIN
+                         dim_matter_header_history ON fact_matter_summary.dim_matter_header_history_key = dim_matter_header_history.dim_mat_head_history_key
+where fin_month between 201604 and 201606</QueryDefinition>
+          </Source>
+          <StorageMode>Molap</StorageMode>
+          <CurrentStorageMode>Molap</CurrentStorageMode>
+          <ProcessingMode>Regular</ProcessingMode>
+          <ProactiveCaching dwd:design-time-name="fefdfcff-a60c-48b0-abca-8b45f41d3e1f">
+            <SilenceInterval>-PT1S</SilenceInterval>
+            <Latency>-PT1S</Latency>
+            <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+            <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+            <Source xsi:type="ProactiveCachingInheritedBinding" dwd:design-time-name="9fa33bce-5fb3-4bd2-ab8f-a6c58f981b3d" />
+          </ProactiveCaching>
+          <EstimatedSize>132751841</EstimatedSize>
+          <AggregationDesignID>AggregationDesign 1</AggregationDesignID>
+        </Partition>
+        <Partition dwd:design-time-name="1f1fbb3b-411b-4082-812a-5734c4cfa8aa">
+          <ID>Fact Matter Summary 2016_3</ID>
+          <Name>Fact Matter Summary 2016_3</Name>
+          <CreatedTimestamp>2016-02-02T13:54:25.08Z</CreatedTimestamp>
+          <LastSchemaUpdate>2016-02-03T11:13:52.143333Z</LastSchemaUpdate>
+          <Annotations>
+            <Annotation>
+              <Name>AggregationPercent</Name>
+            </Annotation>
+          </Annotations>
+          <LastProcessed>2016-06-09T12:59:36.41Z</LastProcessed>
+          <State>Processed</State>
+          <Source xsi:type="QueryBinding" dwd:design-time-name="56da44da-da61-4da8-b925-8feaf93760b7">
+            <DataSourceID>Red Dw</DataSourceID>
+            <QueryDefinition>SELECT        fact_matter_summary.dim_fed_hierarchy_history_key, fact_matter_summary.dim_matter_header_history_key, fact_matter_summary.dim_client_key, fact_matter_summary.dim_date_key, 
+                         fact_matter_summary.dim_open_practice_management_date_key, fact_matter_summary.dim_closed_practice_management_date_key, fact_matter_summary.source_system_id, 
+                         fact_matter_summary.client_code, fact_matter_summary.matter_number, fact_matter_summary.fee_earner_fed_code, fact_matter_summary.date_opened_practice_management, 
+                         fact_matter_summary.date_closed_practice_management, fact_matter_summary.date_opened_case_management, fact_matter_summary.date_closed_case_management, 
+                         fact_matter_summary.estimated_matter_fee, fact_matter_summary.disbursement_balance, fact_matter_summary.client_account_balance_of_matter, fact_matter_summary.number_unpaid_bills, 
+                         fact_matter_summary.number_bills_matter, fact_matter_summary.unpaid_bill_balance, fact_matter_summary.deposit_account_balance, fact_matter_summary.wip_balance, fact_matter_summary.costs_to_date, 
+                         fact_matter_summary.time_billed, fact_matter_summary.unbilled_time, fact_matter_summary.fin_month, fact_matter_summary.closed_practice_management, fact_matter_summary.closed_case_management, 
+                         fact_matter_summary.matter_count, fact_matter_summary.open_practice_management, fact_matter_summary.open_case_management, fact_matter_summary.dss_update_time, 
+                         fact_matter_summary.dim_matter_header_curr_key, fact_matter_summary.dim_open_case_management_date_key, fact_matter_summary.dim_closed_case_management_date_key, 
+                         fact_matter_summary.closed_practice_management_month, fact_matter_summary.closed_case_management_month, fact_matter_summary.open_case_management_month, 
+                         fact_matter_summary.open_practice_management_month, fact_matter_summary.closed_practice_management_fin_ytd, fact_matter_summary.closed_case_management_fin_ytd, 
+                         fact_matter_summary.open_case_management_fin_ytd, fact_matter_summary.open_practice_management_fin_ytd, fact_matter_summary.fact_matter_summary_key, fact_matter_summary.last_bill_date, 
+                         fact_matter_summary.last_financial_transaction_date, fact_matter_summary.dim_last_bill_date_key, fact_matter_summary.dim_last_transaction_date_key, dim_matter_header_history.dim_department_key, 
+                         dim_matter_header_history.dim_matter_worktype_key
+FROM            fact_matter_summary INNER JOIN
+                         dim_matter_header_history ON fact_matter_summary.dim_matter_header_history_key = dim_matter_header_history.dim_mat_head_history_key
+where fin_month between 201607 and 201609</QueryDefinition>
+          </Source>
+          <StorageMode>Molap</StorageMode>
+          <CurrentStorageMode>Molap</CurrentStorageMode>
+          <ProcessingMode>Regular</ProcessingMode>
+          <ProactiveCaching dwd:design-time-name="3314b930-f75a-4452-8a42-fc3978497112">
+            <SilenceInterval>-PT1S</SilenceInterval>
+            <Latency>-PT1S</Latency>
+            <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+            <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+            <Source xsi:type="ProactiveCachingInheritedBinding" dwd:design-time-name="0d4f2c7d-74eb-43bd-ac36-9d002bf692de" />
+          </ProactiveCaching>
+          <EstimatedSize>129943037</EstimatedSize>
+          <AggregationDesignID>AggregationDesign 1</AggregationDesignID>
+        </Partition>
+        <Partition dwd:design-time-name="54a78673-4cb4-4b55-b7f2-a3140a1f13a5">
+          <ID>Fact Matter Summary 2016_4</ID>
+          <Name>Fact Matter Summary 2016_4</Name>
+          <CreatedTimestamp>2016-02-02T13:54:25.113333Z</CreatedTimestamp>
+          <LastSchemaUpdate>2016-02-03T11:13:52.173333Z</LastSchemaUpdate>
+          <Annotations>
+            <Annotation>
+              <Name>AggregationPercent</Name>
+            </Annotation>
+          </Annotations>
+          <LastProcessed>2016-06-09T12:59:45.52Z</LastProcessed>
+          <State>Processed</State>
+          <Source xsi:type="QueryBinding" dwd:design-time-name="350df5c0-17e1-49fa-9a47-4ca9b15472fc">
+            <DataSourceID>Red Dw</DataSourceID>
+            <QueryDefinition>SELECT        fact_matter_summary.dim_fed_hierarchy_history_key, fact_matter_summary.dim_matter_header_history_key, fact_matter_summary.dim_client_key, fact_matter_summary.dim_date_key, 
+                         fact_matter_summary.dim_open_practice_management_date_key, fact_matter_summary.dim_closed_practice_management_date_key, fact_matter_summary.source_system_id, 
+                         fact_matter_summary.client_code, fact_matter_summary.matter_number, fact_matter_summary.fee_earner_fed_code, fact_matter_summary.date_opened_practice_management, 
+                         fact_matter_summary.date_closed_practice_management, fact_matter_summary.date_opened_case_management, fact_matter_summary.date_closed_case_management, 
+                         fact_matter_summary.estimated_matter_fee, fact_matter_summary.disbursement_balance, fact_matter_summary.client_account_balance_of_matter, fact_matter_summary.number_unpaid_bills, 
+                         fact_matter_summary.number_bills_matter, fact_matter_summary.unpaid_bill_balance, fact_matter_summary.deposit_account_balance, fact_matter_summary.wip_balance, fact_matter_summary.costs_to_date, 
+                         fact_matter_summary.time_billed, fact_matter_summary.unbilled_time, fact_matter_summary.fin_month, fact_matter_summary.closed_practice_management, fact_matter_summary.closed_case_management, 
+                         fact_matter_summary.matter_count, fact_matter_summary.open_practice_management, fact_matter_summary.open_case_management, fact_matter_summary.dss_update_time, 
+                         fact_matter_summary.dim_matter_header_curr_key, fact_matter_summary.dim_open_case_management_date_key, fact_matter_summary.dim_closed_case_management_date_key, 
+                         fact_matter_summary.closed_practice_management_month, fact_matter_summary.closed_case_management_month, fact_matter_summary.open_case_management_month, 
+                         fact_matter_summary.open_practice_management_month, fact_matter_summary.closed_practice_management_fin_ytd, fact_matter_summary.closed_case_management_fin_ytd, 
+                         fact_matter_summary.open_case_management_fin_ytd, fact_matter_summary.open_practice_management_fin_ytd, fact_matter_summary.fact_matter_summary_key, fact_matter_summary.last_bill_date, 
+                         fact_matter_summary.last_financial_transaction_date, fact_matter_summary.dim_last_bill_date_key, fact_matter_summary.dim_last_transaction_date_key, dim_matter_header_history.dim_department_key, 
+                         dim_matter_header_history.dim_matter_worktype_key
+FROM            fact_matter_summary INNER JOIN
+                         dim_matter_header_history ON fact_matter_summary.dim_matter_header_history_key = dim_matter_header_history.dim_mat_head_history_key
+where fin_month between 201610 and 201612</QueryDefinition>
+          </Source>
+          <StorageMode>Molap</StorageMode>
+          <CurrentStorageMode>Molap</CurrentStorageMode>
+          <ProcessingMode>Regular</ProcessingMode>
+          <ProactiveCaching dwd:design-time-name="684e62d0-c8fb-4ed5-9270-bfa04ffe4094">
+            <SilenceInterval>-PT1S</SilenceInterval>
+            <Latency>-PT1S</Latency>
+            <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+            <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+            <Source xsi:type="ProactiveCachingInheritedBinding" dwd:design-time-name="f09dbcf3-e448-4f2b-bb8a-2bdf945dc436" />
+          </ProactiveCaching>
+          <EstimatedSize>130836914</EstimatedSize>
+          <AggregationDesignID>AggregationDesign 1</AggregationDesignID>
+        </Partition>
+        <Partition dwd:design-time-name="a4591db6-409b-459e-b40f-e866e4323e23">
+          <ID>Fact Matter Summary</ID>
+          <Name>Fact Matter Summary 2017_1</Name>
+          <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+          <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+          <Annotations>
+            <Annotation>
+              <Name>AggregationPercent</Name>
+              <Value></Value>
+            </Annotation>
+          </Annotations>
+          <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+          <State>Unprocessed</State>
+          <Source xsi:type="QueryBinding" dwd:design-time-name="26abb910-e6e8-4ab8-97d5-1b599b53c36e">
+            <DataSourceID>Red Dw</DataSourceID>
+            <QueryDefinition>SELECT        fact_matter_summary.dim_fed_hierarchy_history_key, fact_matter_summary.dim_matter_header_history_key, fact_matter_summary.dim_client_key, fact_matter_summary.dim_date_key, 
+                         fact_matter_summary.dim_open_practice_management_date_key, fact_matter_summary.dim_closed_practice_management_date_key, fact_matter_summary.source_system_id, 
+                         fact_matter_summary.client_code, fact_matter_summary.matter_number, fact_matter_summary.fee_earner_fed_code, fact_matter_summary.date_opened_practice_management, 
+                         fact_matter_summary.date_closed_practice_management, fact_matter_summary.date_opened_case_management, fact_matter_summary.date_closed_case_management, 
+                         fact_matter_summary.estimated_matter_fee, fact_matter_summary.disbursement_balance, fact_matter_summary.client_account_balance_of_matter, fact_matter_summary.number_unpaid_bills, 
+                         fact_matter_summary.number_bills_matter, fact_matter_summary.unpaid_bill_balance, fact_matter_summary.deposit_account_balance, fact_matter_summary.wip_balance, fact_matter_summary.costs_to_date, 
+                         fact_matter_summary.time_billed, fact_matter_summary.unbilled_time, fact_matter_summary.fin_month, fact_matter_summary.closed_practice_management, fact_matter_summary.closed_case_management, 
+                         fact_matter_summary.matter_count, fact_matter_summary.open_practice_management, fact_matter_summary.open_case_management, fact_matter_summary.dss_update_time, 
+                         fact_matter_summary.dim_matter_header_curr_key, fact_matter_summary.dim_open_case_management_date_key, fact_matter_summary.dim_closed_case_management_date_key, 
+                         fact_matter_summary.closed_practice_management_month, fact_matter_summary.closed_case_management_month, fact_matter_summary.open_case_management_month, 
+                         fact_matter_summary.open_practice_management_month, fact_matter_summary.closed_practice_management_fin_ytd, fact_matter_summary.closed_case_management_fin_ytd, 
+                         fact_matter_summary.open_case_management_fin_ytd, fact_matter_summary.open_practice_management_fin_ytd, fact_matter_summary.fact_matter_summary_key, fact_matter_summary.last_bill_date, 
+                         fact_matter_summary.last_financial_transaction_date, fact_matter_summary.dim_last_bill_date_key, fact_matter_summary.dim_last_transaction_date_key, dim_matter_header_history.dim_department_key, 
+                         dim_matter_header_history.dim_matter_worktype_key
+FROM            fact_matter_summary INNER JOIN
+                         dim_matter_header_history ON fact_matter_summary.dim_matter_header_history_key = dim_matter_header_history.dim_mat_head_history_key
+
+where fin_month between 201701 and 201703</QueryDefinition>
+          </Source>
+          <StorageMode>Molap</StorageMode>
+          <CurrentStorageMode>Molap</CurrentStorageMode>
+          <ProcessingMode>Regular</ProcessingMode>
+          <AggregationDesignID>AggregationDesign 1</AggregationDesignID>
+        </Partition>
+        <Partition dwd:design-time-name="c6b094c3-a768-40be-8edd-bc23d084267c">
+          <ID>Fact Matter Summary 2017_2</ID>
+          <Name>Fact Matter Summary 2017_2</Name>
+          <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+          <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+          <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+          <State>Unprocessed</State>
+          <Source xsi:type="QueryBinding" dwd:design-time-name="a932e2ff-94cb-454c-8322-50b265c69364">
+            <DataSourceID>Red Dw</DataSourceID>
+            <QueryDefinition>SELECT        fact_matter_summary.dim_fed_hierarchy_history_key, fact_matter_summary.dim_matter_header_history_key, fact_matter_summary.dim_client_key, fact_matter_summary.dim_date_key, 
+                         fact_matter_summary.dim_open_practice_management_date_key, fact_matter_summary.dim_closed_practice_management_date_key, fact_matter_summary.source_system_id, 
+                         fact_matter_summary.client_code, fact_matter_summary.matter_number, fact_matter_summary.fee_earner_fed_code, fact_matter_summary.date_opened_practice_management, 
+                         fact_matter_summary.date_closed_practice_management, fact_matter_summary.date_opened_case_management, fact_matter_summary.date_closed_case_management, 
+                         fact_matter_summary.estimated_matter_fee, fact_matter_summary.disbursement_balance, fact_matter_summary.client_account_balance_of_matter, fact_matter_summary.number_unpaid_bills, 
+                         fact_matter_summary.number_bills_matter, fact_matter_summary.unpaid_bill_balance, fact_matter_summary.deposit_account_balance, fact_matter_summary.wip_balance, fact_matter_summary.costs_to_date, 
+                         fact_matter_summary.time_billed, fact_matter_summary.unbilled_time, fact_matter_summary.fin_month, fact_matter_summary.closed_practice_management, fact_matter_summary.closed_case_management, 
+                         fact_matter_summary.matter_count, fact_matter_summary.open_practice_management, fact_matter_summary.open_case_management, fact_matter_summary.dss_update_time, 
+                         fact_matter_summary.dim_matter_header_curr_key, fact_matter_summary.dim_open_case_management_date_key, fact_matter_summary.dim_closed_case_management_date_key, 
+                         fact_matter_summary.closed_practice_management_month, fact_matter_summary.closed_case_management_month, fact_matter_summary.open_case_management_month, 
+                         fact_matter_summary.open_practice_management_month, fact_matter_summary.closed_practice_management_fin_ytd, fact_matter_summary.closed_case_management_fin_ytd, 
+                         fact_matter_summary.open_case_management_fin_ytd, fact_matter_summary.open_practice_management_fin_ytd, fact_matter_summary.fact_matter_summary_key, fact_matter_summary.last_bill_date, 
+                         fact_matter_summary.last_financial_transaction_date, fact_matter_summary.dim_last_bill_date_key, fact_matter_summary.dim_last_transaction_date_key, dim_matter_header_history.dim_department_key, 
+                         dim_matter_header_history.dim_matter_worktype_key
+FROM            fact_matter_summary INNER JOIN
+                         dim_matter_header_history ON fact_matter_summary.dim_matter_header_history_key = dim_matter_header_history.dim_mat_head_history_key
+where fin_month between 201704 and 201706</QueryDefinition>
+          </Source>
+          <StorageMode>Molap</StorageMode>
+          <CurrentStorageMode>Molap</CurrentStorageMode>
+          <ProcessingMode>Regular</ProcessingMode>
+          <AggregationDesignID>AggregationDesign 1</AggregationDesignID>
+        </Partition>
+        <Partition dwd:design-time-name="be68a053-d25b-496d-9e5c-827095579d1f">
+          <ID>Fact Matter Summary 1</ID>
+          <Name>Fact Matter Summary 2017_3</Name>
+          <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+          <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+          <Annotations>
+            <Annotation>
+              <Name>AggregationPercent</Name>
+              <Value></Value>
+            </Annotation>
+          </Annotations>
+          <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+          <State>Unprocessed</State>
+          <Source xsi:type="QueryBinding" dwd:design-time-name="7800d776-d8b4-4f6b-812e-62ae10f9cb9e">
+            <DataSourceID>Red Dw</DataSourceID>
+            <QueryDefinition>SELECT        fact_matter_summary.dim_fed_hierarchy_history_key, fact_matter_summary.dim_matter_header_history_key, fact_matter_summary.dim_client_key, fact_matter_summary.dim_date_key, 
+                         fact_matter_summary.dim_open_practice_management_date_key, fact_matter_summary.dim_closed_practice_management_date_key, fact_matter_summary.source_system_id, 
+                         fact_matter_summary.client_code, fact_matter_summary.matter_number, fact_matter_summary.fee_earner_fed_code, fact_matter_summary.date_opened_practice_management, 
+                         fact_matter_summary.date_closed_practice_management, fact_matter_summary.date_opened_case_management, fact_matter_summary.date_closed_case_management, 
+                         fact_matter_summary.estimated_matter_fee, fact_matter_summary.disbursement_balance, fact_matter_summary.client_account_balance_of_matter, fact_matter_summary.number_unpaid_bills, 
+                         fact_matter_summary.number_bills_matter, fact_matter_summary.unpaid_bill_balance, fact_matter_summary.deposit_account_balance, fact_matter_summary.wip_balance, fact_matter_summary.costs_to_date, 
+                         fact_matter_summary.time_billed, fact_matter_summary.unbilled_time, fact_matter_summary.fin_month, fact_matter_summary.closed_practice_management, fact_matter_summary.closed_case_management, 
+                         fact_matter_summary.matter_count, fact_matter_summary.open_practice_management, fact_matter_summary.open_case_management, fact_matter_summary.dss_update_time, 
+                         fact_matter_summary.dim_matter_header_curr_key, fact_matter_summary.dim_open_case_management_date_key, fact_matter_summary.dim_closed_case_management_date_key, 
+                         fact_matter_summary.closed_practice_management_month, fact_matter_summary.closed_case_management_month, fact_matter_summary.open_case_management_month, 
+                         fact_matter_summary.open_practice_management_month, fact_matter_summary.closed_practice_management_fin_ytd, fact_matter_summary.closed_case_management_fin_ytd, 
+                         fact_matter_summary.open_case_management_fin_ytd, fact_matter_summary.open_practice_management_fin_ytd, fact_matter_summary.fact_matter_summary_key, fact_matter_summary.last_bill_date, 
+                         fact_matter_summary.last_financial_transaction_date, fact_matter_summary.dim_last_bill_date_key, fact_matter_summary.dim_last_transaction_date_key, dim_matter_header_history.dim_department_key, 
+                         dim_matter_header_history.dim_matter_worktype_key
+FROM            fact_matter_summary INNER JOIN
+                         dim_matter_header_history ON fact_matter_summary.dim_matter_header_history_key = dim_matter_header_history.dim_mat_head_history_key
+where fin_month between 201707 and 201709</QueryDefinition>
+          </Source>
+          <StorageMode>Molap</StorageMode>
+          <CurrentStorageMode>Molap</CurrentStorageMode>
+          <ProcessingMode>Regular</ProcessingMode>
+          <AggregationDesignID>AggregationDesign 1</AggregationDesignID>
+        </Partition>
+        <Partition dwd:design-time-name="e88e75d4-4433-4f93-a05d-5641ecba7979">
+          <ID>Fact Matter Summary 2017_4</ID>
+          <Name>Fact Matter Summary 2017_4</Name>
+          <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+          <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+          <Annotations>
+            <Annotation>
+              <Name>AggregationPercent</Name>
+              <Value></Value>
+            </Annotation>
+          </Annotations>
+          <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+          <State>Unprocessed</State>
+          <Source xsi:type="QueryBinding" dwd:design-time-name="b69e6a93-429b-4cf9-bc35-3e876ea33364">
+            <DataSourceID>Red Dw</DataSourceID>
+            <QueryDefinition>SELECT        fact_matter_summary.dim_fed_hierarchy_history_key, fact_matter_summary.dim_matter_header_history_key, fact_matter_summary.dim_client_key, fact_matter_summary.dim_date_key, 
+                         fact_matter_summary.dim_open_practice_management_date_key, fact_matter_summary.dim_closed_practice_management_date_key, fact_matter_summary.source_system_id, 
+                         fact_matter_summary.client_code, fact_matter_summary.matter_number, fact_matter_summary.fee_earner_fed_code, fact_matter_summary.date_opened_practice_management, 
+                         fact_matter_summary.date_closed_practice_management, fact_matter_summary.date_opened_case_management, fact_matter_summary.date_closed_case_management, 
+                         fact_matter_summary.estimated_matter_fee, fact_matter_summary.disbursement_balance, fact_matter_summary.client_account_balance_of_matter, fact_matter_summary.number_unpaid_bills, 
+                         fact_matter_summary.number_bills_matter, fact_matter_summary.unpaid_bill_balance, fact_matter_summary.deposit_account_balance, fact_matter_summary.wip_balance, fact_matter_summary.costs_to_date, 
+                         fact_matter_summary.time_billed, fact_matter_summary.unbilled_time, fact_matter_summary.fin_month, fact_matter_summary.closed_practice_management, fact_matter_summary.closed_case_management, 
+                         fact_matter_summary.matter_count, fact_matter_summary.open_practice_management, fact_matter_summary.open_case_management, fact_matter_summary.dss_update_time, 
+                         fact_matter_summary.dim_matter_header_curr_key, fact_matter_summary.dim_open_case_management_date_key, fact_matter_summary.dim_closed_case_management_date_key, 
+                         fact_matter_summary.closed_practice_management_month, fact_matter_summary.closed_case_management_month, fact_matter_summary.open_case_management_month, 
+                         fact_matter_summary.open_practice_management_month, fact_matter_summary.closed_practice_management_fin_ytd, fact_matter_summary.closed_case_management_fin_ytd, 
+                         fact_matter_summary.open_case_management_fin_ytd, fact_matter_summary.open_practice_management_fin_ytd, fact_matter_summary.fact_matter_summary_key, fact_matter_summary.last_bill_date, 
+                         fact_matter_summary.last_financial_transaction_date, fact_matter_summary.dim_last_bill_date_key, fact_matter_summary.dim_last_transaction_date_key, dim_matter_header_history.dim_department_key, 
+                         dim_matter_header_history.dim_matter_worktype_key
+FROM            fact_matter_summary INNER JOIN
+                         dim_matter_header_history ON fact_matter_summary.dim_matter_header_history_key = dim_matter_header_history.dim_mat_head_history_key
+where fin_month between 201710 and 201712</QueryDefinition>
+          </Source>
+          <StorageMode>Molap</StorageMode>
+          <CurrentStorageMode>Molap</CurrentStorageMode>
+          <ProcessingMode>Regular</ProcessingMode>
+          <AggregationDesignID>AggregationDesign 1</AggregationDesignID>
+        </Partition>
+      </Partitions>
+      <AggregationDesigns>
+        <AggregationDesign>
+          <ID>AggregationDesign 1</ID>
+          <Name>AggregationDesign</Name>
+          <CreatedTimestamp>2016-02-02T13:54:24.863333Z</CreatedTimestamp>
+          <LastSchemaUpdate>2016-02-03T11:13:51.986667Z</LastSchemaUpdate>
+          <EstimatedRows>2367268</EstimatedRows>
+          <Dimensions>
+            <Dimension>
+              <CubeDimensionID>Dim Client</CubeDimensionID>
+              <Attributes>
+                <Attribute>
+                  <AttributeID>Dim Client Key</AttributeID>
+                  <EstimatedCount>873915</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Client Code</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Client Name</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Client Group Name</AttributeID>
+                </Attribute>
+              </Attributes>
+            </Dimension>
+            <Dimension>
+              <CubeDimensionID>Dim Date</CubeDimensionID>
+              <Attributes>
+                <Attribute>
+                  <AttributeID>Dim Date Key</AttributeID>
+                  <EstimatedCount>21835</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Financial Date</AttributeID>
+                  <EstimatedCount>21834</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Fin Year</AttributeID>
+                  <EstimatedCount>62</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Fin Quarter</AttributeID>
+                  <EstimatedCount>240</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Fin Period</AttributeID>
+                  <EstimatedCount>718</EstimatedCount>
+                </Attribute>
+              </Attributes>
+            </Dimension>
+            <Dimension>
+              <CubeDimensionID>Dim Matter Header History</CubeDimensionID>
+              <Attributes>
+                <Attribute>
+                  <AttributeID>Dim Mat Head History Key</AttributeID>
+                  <EstimatedCount>1555522</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Matter Number</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Matter Description</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Reporting Exclusions</AttributeID>
+                </Attribute>
+              </Attributes>
+            </Dimension>
+            <Dimension>
+              <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+              <Attributes>
+                <Attribute>
+                  <AttributeID>Dim Fed Hierarchy History Key</AttributeID>
+                  <EstimatedCount>32534</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Hierarchylevel2hist</AttributeID>
+                  <EstimatedCount>7</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Hierarchylevel3hist</AttributeID>
+                  <EstimatedCount>88</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Hierarchylevel4hist</AttributeID>
+                  <EstimatedCount>513</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Display Name</AttributeID>
+                  <EstimatedCount>7343</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Fed Code</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Fed Hierarchy Business Key</AttributeID>
+                </Attribute>
+              </Attributes>
+            </Dimension>
+            <Dimension>
+              <CubeDimensionID>Dim Department</CubeDimensionID>
+              <Attributes>
+                <Attribute>
+                  <AttributeID>Dim Department Key</AttributeID>
+                  <EstimatedCount>45</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Department Code</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Department Name</AttributeID>
+                </Attribute>
+              </Attributes>
+            </Dimension>
+            <Dimension>
+              <CubeDimensionID>Dim Matter Worktype</CubeDimensionID>
+              <Attributes>
+                <Attribute>
+                  <AttributeID>Dim Matter Worktype Key</AttributeID>
+                  <EstimatedCount>594</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Work Type Code</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Work Type Name</AttributeID>
+                </Attribute>
+              </Attributes>
+            </Dimension>
+            <Dimension>
+              <CubeDimensionID>Dim Date 1</CubeDimensionID>
+              <Attributes>
+                <Attribute>
+                  <AttributeID>Dim Date Key</AttributeID>
+                  <EstimatedCount>21835</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Financial Date</AttributeID>
+                  <EstimatedCount>21834</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Fin Year</AttributeID>
+                  <EstimatedCount>62</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Fin Quarter</AttributeID>
+                  <EstimatedCount>240</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Fin Period</AttributeID>
+                  <EstimatedCount>718</EstimatedCount>
+                </Attribute>
+              </Attributes>
+            </Dimension>
+            <Dimension>
+              <CubeDimensionID>Dim Date 2</CubeDimensionID>
+              <Attributes>
+                <Attribute>
+                  <AttributeID>Dim Date Key</AttributeID>
+                  <EstimatedCount>21835</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Financial Date</AttributeID>
+                  <EstimatedCount>21834</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Fin Year</AttributeID>
+                  <EstimatedCount>62</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Fin Quarter</AttributeID>
+                  <EstimatedCount>240</EstimatedCount>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Fin Period</AttributeID>
+                  <EstimatedCount>718</EstimatedCount>
+                </Attribute>
+              </Attributes>
+            </Dimension>
+          </Dimensions>
+          <Aggregations>
+            <Aggregation>
+              <ID>Aggregation 0</ID>
+              <Name>Aggregation 0</Name>
+              <Dimensions>
+                <Dimension>
+                  <CubeDimensionID>Dim Client</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Header History</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Hierarchylevel2hist</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Department</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Worktype</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Dim Matter Worktype Key</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date 1</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date 2</CubeDimensionID>
+                </Dimension>
+              </Dimensions>
+            </Aggregation>
+            <Aggregation>
+              <ID>Aggregation 1</ID>
+              <Name>Aggregation 1</Name>
+              <Dimensions>
+                <Dimension>
+                  <CubeDimensionID>Dim Client</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Header History</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Hierarchylevel2hist</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Department</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Worktype</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date 1</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date 2</CubeDimensionID>
+                </Dimension>
+              </Dimensions>
+            </Aggregation>
+            <Aggregation>
+              <ID>Aggregation 2</ID>
+              <Name>Aggregation 2</Name>
+              <Dimensions>
+                <Dimension>
+                  <CubeDimensionID>Dim Client</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Header History</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Display Name</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Department</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Worktype</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date 1</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date 2</CubeDimensionID>
+                </Dimension>
+              </Dimensions>
+            </Aggregation>
+            <Aggregation>
+              <ID>Aggregation 3</ID>
+              <Name>Aggregation 3</Name>
+              <Dimensions>
+                <Dimension>
+                  <CubeDimensionID>Dim Client</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Header History</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Hierarchylevel3hist</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Department</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Dim Department Key</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Worktype</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date 1</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date 2</CubeDimensionID>
+                </Dimension>
+              </Dimensions>
+            </Aggregation>
+            <Aggregation>
+              <ID>Aggregation 4</ID>
+              <Name>Aggregation 4</Name>
+              <Dimensions>
+                <Dimension>
+                  <CubeDimensionID>Dim Client</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Fin Period</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Header History</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Hierarchylevel2hist</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Department</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Worktype</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date 1</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date 2</CubeDimensionID>
+                </Dimension>
+              </Dimensions>
+            </Aggregation>
+            <Aggregation>
+              <ID>Aggregation 5</ID>
+              <Name>Aggregation 5</Name>
+              <Dimensions>
+                <Dimension>
+                  <CubeDimensionID>Dim Client</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Header History</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Hierarchylevel2hist</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Department</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Worktype</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date 1</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Fin Period</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date 2</CubeDimensionID>
+                </Dimension>
+              </Dimensions>
+            </Aggregation>
+            <Aggregation>
+              <ID>Aggregation 6</ID>
+              <Name>Aggregation 6</Name>
+              <Dimensions>
+                <Dimension>
+                  <CubeDimensionID>Dim Client</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Header History</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Hierarchylevel2hist</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Department</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Worktype</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date 1</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date 2</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Fin Period</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+              </Dimensions>
+            </Aggregation>
+            <Aggregation>
+              <ID>Aggregation 7</ID>
+              <Name>Aggregation 7</Name>
+              <Dimensions>
+                <Dimension>
+                  <CubeDimensionID>Dim Client</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Header History</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Hierarchylevel3hist</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Department</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Worktype</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date 1</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date 2</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Fin Quarter</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+              </Dimensions>
+            </Aggregation>
+            <Aggregation>
+              <ID>Aggregation 8</ID>
+              <Name>Aggregation 8</Name>
+              <Dimensions>
+                <Dimension>
+                  <CubeDimensionID>Dim Client</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Header History</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Hierarchylevel3hist</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Department</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Worktype</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date 1</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Fin Quarter</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date 2</CubeDimensionID>
+                </Dimension>
+              </Dimensions>
+            </Aggregation>
+            <Aggregation>
+              <ID>Aggregation 9</ID>
+              <Name>Aggregation 9</Name>
+              <Dimensions>
+                <Dimension>
+                  <CubeDimensionID>Dim Client</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Fin Quarter</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Header History</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Hierarchylevel3hist</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Department</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Worktype</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date 1</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date 2</CubeDimensionID>
+                </Dimension>
+              </Dimensions>
+            </Aggregation>
+            <Aggregation>
+              <ID>Aggregation a</ID>
+              <Name>Aggregation a</Name>
+              <Dimensions>
+                <Dimension>
+                  <CubeDimensionID>Dim Client</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Header History</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Department</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Dim Department Key</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Worktype</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date 1</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Fin Quarter</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date 2</CubeDimensionID>
+                </Dimension>
+              </Dimensions>
+            </Aggregation>
+            <Aggregation>
+              <ID>Aggregation b</ID>
+              <Name>Aggregation b</Name>
+              <Dimensions>
+                <Dimension>
+                  <CubeDimensionID>Dim Client</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Header History</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Department</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Dim Department Key</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Worktype</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date 1</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date 2</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Fin Quarter</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+              </Dimensions>
+            </Aggregation>
+            <Aggregation>
+              <ID>Aggregation c</ID>
+              <Name>Aggregation c</Name>
+              <Dimensions>
+                <Dimension>
+                  <CubeDimensionID>Dim Client</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Fin Quarter</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Header History</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Department</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Dim Department Key</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Worktype</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date 1</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date 2</CubeDimensionID>
+                </Dimension>
+              </Dimensions>
+            </Aggregation>
+            <Aggregation>
+              <ID>Aggregation d</ID>
+              <Name>Aggregation d</Name>
+              <Dimensions>
+                <Dimension>
+                  <CubeDimensionID>Dim Client</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Fin Quarter</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Header History</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Department</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Worktype</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date 1</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Fin Year</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date 2</CubeDimensionID>
+                </Dimension>
+              </Dimensions>
+            </Aggregation>
+            <Aggregation>
+              <ID>Aggregation e</ID>
+              <Name>Aggregation e</Name>
+              <Dimensions>
+                <Dimension>
+                  <CubeDimensionID>Dim Client</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Fin Quarter</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Header History</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Department</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Worktype</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date 1</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date 2</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Fin Year</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+              </Dimensions>
+            </Aggregation>
+            <Aggregation>
+              <ID>Aggregation f</ID>
+              <Name>Aggregation f</Name>
+              <Dimensions>
+                <Dimension>
+                  <CubeDimensionID>Dim Client</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Header History</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Department</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Worktype</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date 1</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Fin Year</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date 2</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Fin Quarter</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+              </Dimensions>
+            </Aggregation>
+            <Aggregation>
+              <ID>Aggregation 10</ID>
+              <Name>Aggregation 10</Name>
+              <Dimensions>
+                <Dimension>
+                  <CubeDimensionID>Dim Client</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Header History</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Department</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Worktype</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date 1</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Fin Quarter</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date 2</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Fin Year</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+              </Dimensions>
+            </Aggregation>
+            <Aggregation>
+              <ID>Aggregation 11</ID>
+              <Name>Aggregation 11</Name>
+              <Dimensions>
+                <Dimension>
+                  <CubeDimensionID>Dim Client</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Fin Year</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Header History</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Department</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Worktype</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date 1</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Fin Quarter</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date 2</CubeDimensionID>
+                </Dimension>
+              </Dimensions>
+            </Aggregation>
+            <Aggregation>
+              <ID>Aggregation 12</ID>
+              <Name>Aggregation 12</Name>
+              <Dimensions>
+                <Dimension>
+                  <CubeDimensionID>Dim Client</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Fin Year</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Header History</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Department</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Worktype</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date 1</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date 2</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Fin Quarter</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+              </Dimensions>
+            </Aggregation>
+            <Aggregation>
+              <ID>Aggregation 13</ID>
+              <Name>Aggregation 13</Name>
+              <Dimensions>
+                <Dimension>
+                  <CubeDimensionID>Dim Client</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Fin Year</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Header History</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Hierarchylevel2hist</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Department</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Dim Department Key</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Worktype</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date 1</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date 2</CubeDimensionID>
+                </Dimension>
+              </Dimensions>
+            </Aggregation>
+            <Aggregation>
+              <ID>Aggregation 14</ID>
+              <Name>Aggregation 14</Name>
+              <Dimensions>
+                <Dimension>
+                  <CubeDimensionID>Dim Client</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Header History</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Hierarchylevel2hist</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Department</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Dim Department Key</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Worktype</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date 1</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Fin Year</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date 2</CubeDimensionID>
+                </Dimension>
+              </Dimensions>
+            </Aggregation>
+            <Aggregation>
+              <ID>Aggregation 15</ID>
+              <Name>Aggregation 15</Name>
+              <Dimensions>
+                <Dimension>
+                  <CubeDimensionID>Dim Client</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Header History</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Hierarchylevel2hist</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Department</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Dim Department Key</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Worktype</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date 1</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date 2</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Fin Year</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+              </Dimensions>
+            </Aggregation>
+            <Aggregation>
+              <ID>Aggregation 16</ID>
+              <Name>Aggregation 16</Name>
+              <Dimensions>
+                <Dimension>
+                  <CubeDimensionID>Dim Client</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Header History</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Department</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Worktype</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date 1</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Dim Date Key</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date 2</CubeDimensionID>
+                </Dimension>
+              </Dimensions>
+            </Aggregation>
+            <Aggregation>
+              <ID>Aggregation 17</ID>
+              <Name>Aggregation 17</Name>
+              <Dimensions>
+                <Dimension>
+                  <CubeDimensionID>Dim Client</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Dim Date Key</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Header History</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Department</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Worktype</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date 1</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date 2</CubeDimensionID>
+                </Dimension>
+              </Dimensions>
+            </Aggregation>
+            <Aggregation>
+              <ID>Aggregation 18</ID>
+              <Name>Aggregation 18</Name>
+              <Dimensions>
+                <Dimension>
+                  <CubeDimensionID>Dim Client</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Header History</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Department</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Matter Worktype</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date 1</CubeDimensionID>
+                </Dimension>
+                <Dimension>
+                  <CubeDimensionID>Dim Date 2</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>Dim Date Key</AttributeID>
+                    </Attribute>
+                  </Attributes>
+                </Dimension>
+              </Dimensions>
+            </Aggregation>
+          </Aggregations>
+        </AggregationDesign>
+      </AggregationDesigns>
+    </MeasureGroup>
+  </MeasureGroups>
 </Cube>
