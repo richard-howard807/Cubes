@@ -8,11 +8,11 @@
       <Name>SemanticModel</Name>
       <Annotations>
         <Annotation>
-          <Name>SandboxVersion</Name>
-          <Value>SQL11_Denali</Value>
+          <Name>ClientCompatibilityLevel</Name>
+          <Value>300</Value>
         </Annotation>
       </Annotations>
-      <ddl200:CompatibilityLevel>1100</ddl200:CompatibilityLevel>
+      <ddl200:CompatibilityLevel>1103</ddl200:CompatibilityLevel>
       <ddl200_200:StorageEngineUsed>InMemory</ddl200_200:StorageEngineUsed>
       <Language>2057</Language>
       <DataSourceImpersonationInfo>
@@ -15868,6 +15868,55 @@
                   <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
                 </Dimension>
                 <Dimension xsi:type="ReferenceMeasureGroupDimension">
+                  <CubeDimensionID>dim_instruction_type_5e01184d-6836-4d88-ad7a-fc048f25bc92</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>RowNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>4</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ddl200_200:RowNumberBinding" />
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_instruction_type_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_instruction_type_5e01184d-6836-4d88-ad7a-fc048f25bc92</TableID>
+                            <ColumnID>dim_instruction_type_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>instruction_type</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_instruction_type_5e01184d-6836-4d88-ad7a-fc048f25bc92</TableID>
+                            <ColumnID>instruction_type</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                  </Attributes>
+                  <IntermediateCubeDimensionID>dim_matter_header_current_c48bee89-3edf-48d8-8ebf-6dd658fd47d2</IntermediateCubeDimensionID>
+                  <IntermediateGranularityAttributeID>dim_instruction_type_key</IntermediateGranularityAttributeID>
+                </Dimension>
+                <Dimension xsi:type="ReferenceMeasureGroupDimension">
                   <CubeDimensionID>dim_matter_header_current_c48bee89-3edf-48d8-8ebf-6dd658fd47d2</CubeDimensionID>
                   <Attributes>
                     <Attribute>
@@ -16382,55 +16431,6 @@
                   <IntermediateGranularityAttributeID>dim_matter_header_curr_key</IntermediateGranularityAttributeID>
                   <Materialization>Regular</Materialization>
                   <ddl300:RelationshipID>f770f91c-e335-4a10-bda2-ccba81c24441</ddl300:RelationshipID>
-                </Dimension>
-                <Dimension xsi:type="ReferenceMeasureGroupDimension">
-                  <CubeDimensionID>dim_instruction_type_5e01184d-6836-4d88-ad7a-fc048f25bc92</CubeDimensionID>
-                  <Attributes>
-                    <Attribute>
-                      <AttributeID>RowNumber</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>4</DataSize>
-                          <NullProcessing>Error</NullProcessing>
-                          <Source xsi:type="ddl200_200:RowNumberBinding" />
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>dim_instruction_type_key</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>BigInt</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Error</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dim_instruction_type_5e01184d-6836-4d88-ad7a-fc048f25bc92</TableID>
-                            <ColumnID>dim_instruction_type_key</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                      <Type>Granularity</Type>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>instruction_type</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dim_instruction_type_5e01184d-6836-4d88-ad7a-fc048f25bc92</TableID>
-                            <ColumnID>instruction_type</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                  </Attributes>
-                  <IntermediateCubeDimensionID>dim_matter_header_current_c48bee89-3edf-48d8-8ebf-6dd658fd47d2</IntermediateCubeDimensionID>
-                  <IntermediateGranularityAttributeID>dim_instruction_type_key</IntermediateGranularityAttributeID>
                 </Dimension>
                 <Dimension xsi:type="ReferenceMeasureGroupDimension">
                   <CubeDimensionID>dim_client_236ee8ed-42bb-4bc2-96c1-570c37040b64</CubeDimensionID>
@@ -21508,6 +21508,12 @@ CREATE MEMBER CURRENTCUBE.Measures.[__No measures defined] AS 1;
 ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measures defined]; </Text>
                 </Command>
               </Commands>
+              <CalculationProperties>
+                <CalculationProperty>
+                  <CalculationReference>Measures.[__No measures defined]</CalculationReference>
+                  <CalculationType>Member</CalculationType>
+                </CalculationProperty>
+              </CalculationProperties>
             </MdxScript>
           </MdxScripts>
           <StorageMode valuens="ddl200_200">InMemory</StorageMode>
