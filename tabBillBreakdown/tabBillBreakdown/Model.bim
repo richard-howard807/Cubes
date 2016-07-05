@@ -5336,6 +5336,11 @@
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>vat_amount</Name>
                 </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>dim_bill_item_matter_header_curr_key</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>dim_bill_item_matter_header_curr_key</Name>
+                </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
@@ -5804,6 +5809,7 @@
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
+              <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
             </Attribute>
             <Attribute>
               <Annotations>
@@ -5839,6 +5845,7 @@
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
+              <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
             </Attribute>
             <Attribute>
               <Annotations>
@@ -5944,6 +5951,32 @@
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>dim_bill_item_matter_header_curr_key</ID>
+              <Name>dim_bill_item_matter_header_curr_key</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>fact_bill_detail_8a9a376f-026d-4963-b677-2da451051fe7</TableID>
+                    <ColumnID>dim_bill_item_matter_header_curr_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>fact_bill_detail_8a9a376f-026d-4963-b677-2da451051fe7</TableID>
+                  <ColumnID>dim_bill_item_matter_header_curr_key</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+              <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
             </Attribute>
           </Attributes>
           <ProactiveCaching>
@@ -6180,6 +6213,29 @@
                 <Attributes>
                   <Attribute>
                     <AttributeID>dim_time_type_key</AttributeID>
+                  </Attribute>
+                </Attributes>
+              </ddl300_300:ToRelationshipEnd>
+            </ddl300_300:Relationship>
+            <ddl300_300:Relationship>
+              <ID>480156e5-2b09-40ff-9a43-f1c248b37b83</ID>
+              <ddl300_300:FromRelationshipEnd>
+                <ddl300_300:Multiplicity>Many</ddl300_300:Multiplicity>
+                <ddl300:VisualizationProperties />
+                <DimensionID>fact_bill_detail_8a9a376f-026d-4963-b677-2da451051fe7</DimensionID>
+                <Attributes>
+                  <Attribute>
+                    <AttributeID>dim_bill_item_matter_header_curr_key</AttributeID>
+                  </Attribute>
+                </Attributes>
+              </ddl300_300:FromRelationshipEnd>
+              <ddl300_300:ToRelationshipEnd>
+                <ddl300_300:Multiplicity>One</ddl300_300:Multiplicity>
+                <ddl300:VisualizationProperties />
+                <DimensionID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</DimensionID>
+                <Attributes>
+                  <Attribute>
+                    <AttributeID>dim_bill_item_matter_header_curr_key</AttributeID>
                   </Attribute>
                 </Attributes>
               </ddl300_300:ToRelationshipEnd>
@@ -11938,6 +11994,1406 @@
             <Source xsi:type="ProactiveCachingInheritedBinding" />
           </ProactiveCaching>
         </Dimension>
+        <Dimension>
+          <ID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</ID>
+          <Name>dim_bill_item_matter_header_current</Name>
+          <Annotations>
+            <Annotation>
+              <Name>IsQueryEditorUsed</Name>
+              <Value>False</Value>
+            </Annotation>
+            <Annotation>
+              <Name>QueryEditorSerialization</Name>
+            </Annotation>
+            <Annotation>
+              <Name>TableWidgetSerialization</Name>
+            </Annotation>
+            <Annotation>
+              <Name>DataMarketWebBaseUrl</Name>
+            </Annotation>
+            <Annotation>
+              <Name>DataMarketWebQueryUrl</Name>
+            </Annotation>
+          </Annotations>
+          <Source xsi:type="DataSourceViewBinding">
+            <DataSourceViewID>Sandbox</DataSourceViewID>
+          </Source>
+          <UnknownMember valuens="ddl200_200">AutomaticNull</UnknownMember>
+          <ErrorConfiguration>
+            <KeyNotFound>IgnoreError</KeyNotFound>
+            <KeyDuplicate>ReportAndStop</KeyDuplicate>
+            <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+          </ErrorConfiguration>
+          <StorageMode valuens="ddl200_200">InMemory</StorageMode>
+          <Language>2057</Language>
+          <UnknownMemberName>Unknown</UnknownMemberName>
+          <Attributes>
+            <Attribute>
+              <ID>RowNumber</ID>
+              <Name>RowNumber</Name>
+              <Type valuens="ddl200_200">RowNumber</Type>
+              <Usage>Key</Usage>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>4</DataSize>
+                  <NullProcessing>Error</NullProcessing>
+                  <Source xsi:type="ddl200_200:RowNumberBinding" />
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>4</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ddl200_200:RowNumberBinding" />
+              </NameColumn>
+              <AttributeRelationships>
+                <AttributeRelationship>
+                  <AttributeID>dim_bill_item_matter_header_curr_key</AttributeID>
+                  <Cardinality>One</Cardinality>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>dim_bill_item_matter_header_curr_key</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>dim_department_key</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>dim_department_key</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>dim_matter_worktype_key</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>dim_matter_worktype_key</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>dim_matter_group_key</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>dim_matter_group_key</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>dim_office_bank_account_key</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>dim_office_bank_account_key</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>dim_client_bank_account_key</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>dim_client_bank_account_key</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>dim_instruction_type_key</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>dim_instruction_type_key</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>client_group_code</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>client_group_code</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>client_group_name</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>client_group_name</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>client_code</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>client_code</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>client_name</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>client_name</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>ms_client_code</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>ms_client_code</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>matter_number</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>matter_number</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>matter_description</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>matter_description</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>matter_reference</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>matter_reference</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>date_opened_practice_management</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>date_opened_practice_management</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>date_closed_practice_management</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>date_closed_practice_management</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>date_opened_case_management</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>date_opened_case_management</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>date_closed_case_management</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>date_closed_case_management</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>branch_code</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>branch_code</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>branch_name</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>branch_name</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>matter_partner_code</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>matter_partner_code</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>matter_partner_full_name</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>matter_partner_full_name</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>fee_earner_code</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>fee_earner_code</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>matter_owner_full_name</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>matter_owner_full_name</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>department_code</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>department_code</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>fixed_fee</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>fixed_fee</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>fixed_fee_amount</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>fixed_fee_amount</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>delegated</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>delegated</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>reporting_exclusions</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>reporting_exclusions</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>final_bill_flag</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>final_bill_flag</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>final_bill_date</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>final_bill_date</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>present_position</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>present_position</Name>
+                </AttributeRelationship>
+              </AttributeRelationships>
+              <OrderBy>Key</OrderBy>
+              <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>dim_bill_item_matter_header_curr_key</ID>
+              <Name>dim_bill_item_matter_header_curr_key</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>BigInt</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Error</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                    <ColumnID>dim_bill_item_matter_header_curr_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                  <ColumnID>dim_bill_item_matter_header_curr_key</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+              <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>dim_department_key</ID>
+              <Name>dim_department_key</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>BigInt</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                    <ColumnID>dim_department_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                  <ColumnID>dim_department_key</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+              <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>dim_matter_worktype_key</ID>
+              <Name>dim_matter_worktype_key</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>BigInt</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                    <ColumnID>dim_matter_worktype_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                  <ColumnID>dim_matter_worktype_key</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+              <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>dim_matter_group_key</ID>
+              <Name>dim_matter_group_key</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>BigInt</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                    <ColumnID>dim_matter_group_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                  <ColumnID>dim_matter_group_key</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+              <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>dim_office_bank_account_key</ID>
+              <Name>dim_office_bank_account_key</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>BigInt</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                    <ColumnID>dim_office_bank_account_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                  <ColumnID>dim_office_bank_account_key</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+              <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>dim_client_bank_account_key</ID>
+              <Name>dim_client_bank_account_key</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>BigInt</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                    <ColumnID>dim_client_bank_account_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                  <ColumnID>dim_client_bank_account_key</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+              <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>dim_instruction_type_key</ID>
+              <Name>dim_instruction_type_key</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>BigInt</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                    <ColumnID>dim_instruction_type_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                  <ColumnID>dim_instruction_type_key</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+              <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="Text" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>client_group_code</ID>
+              <Name>client_group_code</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                    <ColumnID>client_group_code</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                  <ColumnID>client_group_code</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="Text" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>client_group_name</ID>
+              <Name>client_group_name</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                    <ColumnID>client_group_name</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                  <ColumnID>client_group_name</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="Text" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>client_code</ID>
+              <Name>client_code</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                    <ColumnID>client_code</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                  <ColumnID>client_code</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="Text" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>client_name</ID>
+              <Name>client_name</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                    <ColumnID>client_name</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                  <ColumnID>client_name</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="Text" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>ms_client_code</ID>
+              <Name>ms_client_code</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                    <ColumnID>ms_client_code</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                  <ColumnID>ms_client_code</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="Text" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>matter_number</ID>
+              <Name>matter_number</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                    <ColumnID>matter_number</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                  <ColumnID>matter_number</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="Text" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>matter_description</ID>
+              <Name>matter_description</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                    <ColumnID>matter_description</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                  <ColumnID>matter_description</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="Text" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>matter_reference</ID>
+              <Name>matter_reference</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                    <ColumnID>matter_reference</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                  <ColumnID>matter_reference</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="DateTimeGeneral" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>date_opened_practice_management</ID>
+              <Name>date_opened_practice_management</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Date</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                    <ColumnID>date_opened_practice_management</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                  <ColumnID>date_opened_practice_management</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+              <ddl300_300:FormatString>General Date</ddl300_300:FormatString>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="DateTimeGeneral" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>date_closed_practice_management</ID>
+              <Name>date_closed_practice_management</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Date</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                    <ColumnID>date_closed_practice_management</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                  <ColumnID>date_closed_practice_management</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+              <ddl300_300:FormatString>General Date</ddl300_300:FormatString>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="DateTimeGeneral" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>date_opened_case_management</ID>
+              <Name>date_opened_case_management</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Date</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                    <ColumnID>date_opened_case_management</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                  <ColumnID>date_opened_case_management</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+              <ddl300_300:FormatString>General Date</ddl300_300:FormatString>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="DateTimeGeneral" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>date_closed_case_management</ID>
+              <Name>date_closed_case_management</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Date</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                    <ColumnID>date_closed_case_management</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                  <ColumnID>date_closed_case_management</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+              <ddl300_300:FormatString>General Date</ddl300_300:FormatString>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="Text" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>branch_code</ID>
+              <Name>branch_code</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                    <ColumnID>branch_code</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                  <ColumnID>branch_code</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="Text" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>branch_name</ID>
+              <Name>branch_name</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                    <ColumnID>branch_name</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                  <ColumnID>branch_name</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="Text" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>matter_partner_code</ID>
+              <Name>matter_partner_code</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                    <ColumnID>matter_partner_code</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                  <ColumnID>matter_partner_code</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="Text" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>matter_partner_full_name</ID>
+              <Name>matter_partner_full_name</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                    <ColumnID>matter_partner_full_name</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                  <ColumnID>matter_partner_full_name</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="Text" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>fee_earner_code</ID>
+              <Name>fee_earner_code</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                    <ColumnID>fee_earner_code</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                  <ColumnID>fee_earner_code</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="Text" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>matter_owner_full_name</ID>
+              <Name>matter_owner_full_name</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                    <ColumnID>matter_owner_full_name</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                  <ColumnID>matter_owner_full_name</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="Text" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>department_code</ID>
+              <Name>department_code</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                    <ColumnID>department_code</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                  <ColumnID>department_code</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="Text" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>fixed_fee</ID>
+              <Name>fixed_fee</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                    <ColumnID>fixed_fee</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                  <ColumnID>fixed_fee</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>fixed_fee_amount</ID>
+              <Name>fixed_fee_amount</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Double</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                    <ColumnID>fixed_fee_amount</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                  <ColumnID>fixed_fee_amount</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="Text" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>delegated</ID>
+              <Name>delegated</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                    <ColumnID>delegated</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                  <ColumnID>delegated</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>reporting_exclusions</ID>
+              <Name>reporting_exclusions</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>BigInt</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                    <ColumnID>reporting_exclusions</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                  <ColumnID>reporting_exclusions</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="Text" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>final_bill_flag</ID>
+              <Name>final_bill_flag</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                    <ColumnID>final_bill_flag</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                  <ColumnID>final_bill_flag</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="DateTimeGeneral" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>final_bill_date</ID>
+              <Name>final_bill_date</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Date</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                    <ColumnID>final_bill_date</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                  <ColumnID>final_bill_date</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+              <ddl300_300:FormatString>General Date</ddl300_300:FormatString>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="Text" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>present_position</ID>
+              <Name>present_position</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                    <ColumnID>present_position</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                  <ColumnID>present_position</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+          </Attributes>
+          <ProactiveCaching>
+            <SilenceInterval>-PT1S</SilenceInterval>
+            <Latency>-PT1S</Latency>
+            <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+            <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+            <Source xsi:type="ProactiveCachingInheritedBinding" />
+          </ProactiveCaching>
+        </Dimension>
       </Dimensions>
       <Cubes>
         <Cube>
@@ -12474,9 +13930,11 @@
                 </Attribute>
                 <Attribute>
                   <AttributeID>bill_sequence</AttributeID>
+                  <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
                 </Attribute>
                 <Attribute>
                   <AttributeID>bill_number</AttributeID>
+                  <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
                 </Attribute>
                 <Attribute>
                   <AttributeID>bill_total</AttributeID>
@@ -12486,6 +13944,10 @@
                 </Attribute>
                 <Attribute>
                   <AttributeID>vat_amount</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>dim_bill_item_matter_header_curr_key</AttributeID>
+                  <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
                 </Attribute>
               </Attributes>
             </Dimension>
@@ -12969,6 +14431,123 @@
                 </Attribute>
                 <Attribute>
                   <AttributeID>dss_update_time</AttributeID>
+                </Attribute>
+              </Attributes>
+            </Dimension>
+            <Dimension>
+              <ID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</ID>
+              <Name>dim_bill_item_matter_header_current</Name>
+              <DimensionID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</DimensionID>
+              <Attributes>
+                <Attribute>
+                  <AttributeID>RowNumber</AttributeID>
+                  <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>dim_bill_item_matter_header_curr_key</AttributeID>
+                  <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>dim_department_key</AttributeID>
+                  <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>dim_matter_worktype_key</AttributeID>
+                  <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>dim_matter_group_key</AttributeID>
+                  <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>dim_office_bank_account_key</AttributeID>
+                  <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>dim_client_bank_account_key</AttributeID>
+                  <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>dim_instruction_type_key</AttributeID>
+                  <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>client_group_code</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>client_group_name</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>client_code</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>client_name</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>ms_client_code</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>matter_number</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>matter_description</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>matter_reference</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>date_opened_practice_management</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>date_closed_practice_management</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>date_opened_case_management</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>date_closed_case_management</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>branch_code</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>branch_name</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>matter_partner_code</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>matter_partner_full_name</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>fee_earner_code</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>matter_owner_full_name</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>department_code</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>fixed_fee</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>fixed_fee_amount</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>delegated</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>reporting_exclusions</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>final_bill_flag</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>final_bill_date</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>present_position</AttributeID>
                 </Attribute>
               </Attributes>
             </Dimension>
@@ -15860,6 +17439,20 @@
                           <Source xsi:type="ColumnBinding">
                             <TableID>fact_bill_detail_8a9a376f-026d-4963-b677-2da451051fe7</TableID>
                             <ColumnID>vat_amount</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_bill_item_matter_header_curr_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_bill_detail_8a9a376f-026d-4963-b677-2da451051fe7</TableID>
+                            <ColumnID>dim_bill_item_matter_header_curr_key</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -19096,6 +20689,522 @@
                   <Materialization>Regular</Materialization>
                   <ddl300:RelationshipID>05af256e-d098-4d38-aee8-9931fe784191</ddl300:RelationshipID>
                 </Dimension>
+                <Dimension xsi:type="ReferenceMeasureGroupDimension">
+                  <CubeDimensionID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>RowNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>4</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ddl200_200:RowNumberBinding" />
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_bill_item_matter_header_curr_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>dim_bill_item_matter_header_curr_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_department_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>dim_department_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_matter_worktype_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>dim_matter_worktype_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_matter_group_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>dim_matter_group_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_office_bank_account_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>dim_office_bank_account_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_client_bank_account_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>dim_client_bank_account_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_instruction_type_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>dim_instruction_type_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>client_group_code</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>client_group_code</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>client_group_name</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>client_group_name</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>client_code</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>client_code</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>client_name</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>client_name</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ms_client_code</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>ms_client_code</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>matter_number</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>matter_number</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>matter_description</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>matter_description</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>matter_reference</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>matter_reference</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>date_opened_practice_management</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>date_opened_practice_management</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>date_closed_practice_management</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>date_closed_practice_management</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>date_opened_case_management</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>date_opened_case_management</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>date_closed_case_management</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>date_closed_case_management</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>branch_code</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>branch_code</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>branch_name</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>branch_name</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>matter_partner_code</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>matter_partner_code</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>matter_partner_full_name</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>matter_partner_full_name</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>fee_earner_code</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>fee_earner_code</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>matter_owner_full_name</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>matter_owner_full_name</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>department_code</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>department_code</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>fixed_fee</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>fixed_fee</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>fixed_fee_amount</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Double</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>fixed_fee_amount</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>delegated</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>delegated</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>reporting_exclusions</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>reporting_exclusions</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>final_bill_flag</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>final_bill_flag</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>final_bill_date</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>final_bill_date</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>present_position</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>present_position</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                  </Attributes>
+                  <IntermediateCubeDimensionID>fact_bill_detail_8a9a376f-026d-4963-b677-2da451051fe7</IntermediateCubeDimensionID>
+                  <IntermediateGranularityAttributeID>dim_bill_item_matter_header_curr_key</IntermediateGranularityAttributeID>
+                  <Materialization>Regular</Materialization>
+                  <ddl300:RelationshipID>480156e5-2b09-40ff-9a43-f1c248b37b83</ddl300:RelationshipID>
+                </Dimension>
               </Dimensions>
               <Partitions>
                 <Partition>
@@ -19118,7 +21227,7 @@
                   </Annotations>
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>e8e0673f-7952-4c4e-a705-9ac57378e5ef</DataSourceID>
-                    <QueryDefinition>SELECT [dbo].[fact_bill_detail].* 		FROM [dbo].[fact_bill_detail]</QueryDefinition>
+                    <QueryDefinition>SELECT [dbo].[fact_bill_detail].*   FROM [dbo].[fact_bill_detail]</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
@@ -21493,6 +23602,592 @@
                 <Source xsi:type="ProactiveCachingInheritedBinding" />
               </ProactiveCaching>
             </MeasureGroup>
+            <MeasureGroup>
+              <ID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</ID>
+              <Name>dim_bill_item_matter_header_current</Name>
+              <Measures>
+                <Measure>
+                  <ID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</ID>
+                  <Name>_Count dim_bill_item_matter_header_current</Name>
+                  <AggregateFunction>Count</AggregateFunction>
+                  <DataType>BigInt</DataType>
+                  <Source>
+                    <DataType>BigInt</DataType>
+                    <DataSize>8</DataSize>
+                    <Source xsi:type="RowBinding">
+                      <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                    </Source>
+                  </Source>
+                  <Visible>false</Visible>
+                </Measure>
+              </Measures>
+              <StorageMode valuens="ddl200_200">InMemory</StorageMode>
+              <ErrorConfiguration>
+                <KeyNotFound>IgnoreError</KeyNotFound>
+                <KeyDuplicate>ReportAndStop</KeyDuplicate>
+                <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+              </ErrorConfiguration>
+              <ProcessingMode>Regular</ProcessingMode>
+              <Dimensions>
+                <Dimension xsi:type="DegenerateMeasureGroupDimension">
+                  <CubeDimensionID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>RowNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current</TableID>
+                            <ColumnID>RowNumber</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_bill_item_matter_header_curr_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>dim_bill_item_matter_header_curr_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_department_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>dim_department_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_matter_worktype_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>dim_matter_worktype_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_matter_group_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>dim_matter_group_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_office_bank_account_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>dim_office_bank_account_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_client_bank_account_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>dim_client_bank_account_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_instruction_type_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>dim_instruction_type_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>client_group_code</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>client_group_code</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>client_group_name</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>client_group_name</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>client_code</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>client_code</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>client_name</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>client_name</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ms_client_code</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>ms_client_code</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>matter_number</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>matter_number</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>matter_description</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>matter_description</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>matter_reference</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>matter_reference</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>date_opened_practice_management</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>date_opened_practice_management</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>date_closed_practice_management</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>date_closed_practice_management</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>date_opened_case_management</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>date_opened_case_management</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>date_closed_case_management</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>date_closed_case_management</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>branch_code</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>branch_code</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>branch_name</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>branch_name</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>matter_partner_code</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>matter_partner_code</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>matter_partner_full_name</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>matter_partner_full_name</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>fee_earner_code</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>fee_earner_code</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>matter_owner_full_name</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>matter_owner_full_name</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>department_code</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>department_code</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>fixed_fee</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>fixed_fee</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>fixed_fee_amount</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Double</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>fixed_fee_amount</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>delegated</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>delegated</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>reporting_exclusions</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>reporting_exclusions</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>final_bill_flag</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>final_bill_flag</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>final_bill_date</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>final_bill_date</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>present_position</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</TableID>
+                            <ColumnID>present_position</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                  </Attributes>
+                  <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
+                </Dimension>
+              </Dimensions>
+              <Partitions>
+                <Partition>
+                  <ID>dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624</ID>
+                  <Name>dim_bill_item_matter_header_current</Name>
+                  <Annotations>
+                    <Annotation>
+                      <Name>IsQueryEditorUsed</Name>
+                      <Value>False</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>QueryEditorSerialization</Name>
+                    </Annotation>
+                    <Annotation>
+                      <Name>TableWidgetSerialization</Name>
+                    </Annotation>
+                  </Annotations>
+                  <Source xsi:type="QueryBinding">
+                    <DataSourceID>c04c1255-ba07-48a0-bf71-d278b5d59902</DataSourceID>
+                    <QueryDefinition>SELECT [dbo].[dim_bill_item_matter_header_current].* 		FROM [dbo].[dim_bill_item_matter_header_current]</QueryDefinition>
+                  </Source>
+                  <StorageMode valuens="ddl200_200">InMemory</StorageMode>
+                  <ProcessingMode>Regular</ProcessingMode>
+                  <ErrorConfiguration>
+                    <KeyNotFound>IgnoreError</KeyNotFound>
+                    <KeyDuplicate>ReportAndStop</KeyDuplicate>
+                    <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+                  </ErrorConfiguration>
+                  <ProactiveCaching>
+                    <SilenceInterval>-PT1S</SilenceInterval>
+                    <Latency>-PT1S</Latency>
+                    <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+                    <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+                    <Source xsi:type="ProactiveCachingInheritedBinding" />
+                  </ProactiveCaching>
+                </Partition>
+              </Partitions>
+              <ProactiveCaching>
+                <SilenceInterval>-PT1S</SilenceInterval>
+                <Latency>-PT1S</Latency>
+                <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+                <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+                <Source xsi:type="ProactiveCachingInheritedBinding" />
+              </ProactiveCaching>
+            </MeasureGroup>
           </MeasureGroups>
           <Source>
             <DataSourceViewID>Sandbox</DataSourceViewID>
@@ -21537,6 +24232,36 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
             </Annotation>
           </Annotations>
           <ConnectionString>Provider=SQLNCLI11;Data Source=SVR-LIV-DWH-01;Initial Catalog=red_dw;Integrated Security=SSPI;Persist Security Info=false</ConnectionString>
+          <ImpersonationInfo>
+            <ImpersonationMode>ImpersonateServiceAccount</ImpersonationMode>
+          </ImpersonationInfo>
+          <Timeout>PT0S</Timeout>
+        </DataSource>
+        <DataSource xsi:type="RelationalDataSource">
+          <ID>88a99ac0-cd3b-4e95-a53a-d5880d9ec287</ID>
+          <Name>SqlServer svr-liv-dwh-01 red_dw 2</Name>
+          <Annotations>
+            <Annotation>
+              <Name>ConnectionEditUISource</Name>
+              <Value>SqlServer</Value>
+            </Annotation>
+          </Annotations>
+          <ConnectionString>Provider=SQLNCLI11;Data Source=svr-liv-dwh-01;Initial Catalog=red_dw;Integrated Security=SSPI;Persist Security Info=false</ConnectionString>
+          <ImpersonationInfo>
+            <ImpersonationMode>ImpersonateServiceAccount</ImpersonationMode>
+          </ImpersonationInfo>
+          <Timeout>PT0S</Timeout>
+        </DataSource>
+        <DataSource xsi:type="RelationalDataSource">
+          <ID>c04c1255-ba07-48a0-bf71-d278b5d59902</ID>
+          <Name>SqlServer svr-liv-dwh-01 red_dw 3</Name>
+          <Annotations>
+            <Annotation>
+              <Name>ConnectionEditUISource</Name>
+              <Value>SqlServer</Value>
+            </Annotation>
+          </Annotations>
+          <ConnectionString>Provider=SQLNCLI11;Data Source=svr-liv-dwh-01;Initial Catalog=red_dw;Integrated Security=SSPI;Persist Security Info=false</ConnectionString>
           <ImpersonationInfo>
             <ImpersonationMode>ImpersonateServiceAccount</ImpersonationMode>
           </ImpersonationInfo>
@@ -22384,6 +25109,21 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
                           <xs:element name="vat_amount" msprop:DbColumnName="vat_amount" msprop:FriendlyName="vat_amount" type="xs:double" minOccurs="0" />
                           <xs:element name="dss_create_time" msprop:DbColumnName="dss_create_time" msprop:FriendlyName="dss_create_time" type="xs:dateTime" minOccurs="0" />
                           <xs:element name="dss_update_time" msprop:DbColumnName="dss_update_time" msprop:FriendlyName="dss_update_time" type="xs:dateTime" minOccurs="0" />
+                          <xs:element name="dim_bill_item_matter_header_curr_key" msprop:DbColumnName="dim_bill_item_matter_header_curr_key" msprop:FriendlyName="dim_bill_item_matter_header_curr_key" type="xs:int" minOccurs="0" />
+                          <xs:element name="client_code_bill_item" msprop:DbColumnName="client_code_bill_item" msprop:FriendlyName="client_code_bill_item" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="matter_number_bill_item" msprop:DbColumnName="matter_number_bill_item" msprop:FriendlyName="matter_number_bill_item" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
@@ -22893,6 +25633,162 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
                           </xs:element>
                           <xs:element name="transaction_trading_days_in_mth" msprop:DbColumnName="transaction_trading_days_in_mth" msprop:FriendlyName="transaction_trading_days_in_mth" type="xs:long" minOccurs="0" />
                           <xs:element name="transaction_trading_days_so_far" msprop:DbColumnName="transaction_trading_days_so_far" msprop:FriendlyName="transaction_trading_days_so_far" type="xs:long" minOccurs="0" />
+                          <xs:element name="dss_update_time" msprop:DbColumnName="dss_update_time" msprop:FriendlyName="dss_update_time" type="xs:dateTime" minOccurs="0" />
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="dim_bill_item_matter_header_current_d2bf1876-0ca3-4420-a10a-af309c5c0624" msdata:Locale="" msprop:DataSourceID="c04c1255-ba07-48a0-bf71-d278b5d59902" msprop:IsLogical="True" msprop:FriendlyName="dim_bill_item_matter_header_current" msprop:DbSchemaName="dbo" msprop:DbTableName="dim_bill_item_matter_header_current" msprop:TableType="View" msprop:Description="dim_bill_item_matter_header_current" msprop:QueryDefinition="      SELECT [dbo].[dim_bill_item_matter_header_current].*   FROM [dbo].[dim_bill_item_matter_header_current] ">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="dim_bill_item_matter_header_curr_key" msprop:DbColumnName="dim_bill_item_matter_header_curr_key" msprop:FriendlyName="dim_bill_item_matter_header_curr_key" type="xs:long" minOccurs="0" />
+                          <xs:element name="dim_department_key" msprop:DbColumnName="dim_department_key" msprop:FriendlyName="dim_department_key" type="xs:long" minOccurs="0" />
+                          <xs:element name="dim_matter_worktype_key" msprop:DbColumnName="dim_matter_worktype_key" msprop:FriendlyName="dim_matter_worktype_key" type="xs:long" minOccurs="0" />
+                          <xs:element name="dim_matter_group_key" msprop:DbColumnName="dim_matter_group_key" msprop:FriendlyName="dim_matter_group_key" type="xs:long" minOccurs="0" />
+                          <xs:element name="dim_office_bank_account_key" msprop:DbColumnName="dim_office_bank_account_key" msprop:FriendlyName="dim_office_bank_account_key" type="xs:long" minOccurs="0" />
+                          <xs:element name="dim_client_bank_account_key" msprop:DbColumnName="dim_client_bank_account_key" msprop:FriendlyName="dim_client_bank_account_key" type="xs:long" minOccurs="0" />
+                          <xs:element name="dim_instruction_type_key" msprop:DbColumnName="dim_instruction_type_key" msprop:FriendlyName="dim_instruction_type_key" type="xs:long" minOccurs="0" />
+                          <xs:element name="source_system_id" msprop:DbColumnName="source_system_id" msprop:FriendlyName="source_system_id" type="xs:long" minOccurs="0" />
+                          <xs:element name="case_id" msprop:DbColumnName="case_id" msprop:FriendlyName="case_id" type="xs:long" minOccurs="0" />
+                          <xs:element name="client_group_code" msprop:DbColumnName="client_group_code" msprop:FriendlyName="client_group_code" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="client_group_name" msprop:DbColumnName="client_group_name" msprop:FriendlyName="client_group_name" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="client_code" msprop:DbColumnName="client_code" msprop:FriendlyName="client_code" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="client_name" msprop:DbColumnName="client_name" msprop:FriendlyName="client_name" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="ms_client_code" msprop:DbColumnName="ms_client_code" msprop:FriendlyName="ms_client_code" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="matter_number" msprop:DbColumnName="matter_number" msprop:FriendlyName="matter_number" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="matter_description" msprop:DbColumnName="matter_description" msprop:FriendlyName="matter_description" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="matter_reference" msprop:DbColumnName="matter_reference" msprop:FriendlyName="matter_reference" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="date_opened_practice_management" msprop:DbColumnName="date_opened_practice_management" msprop:FriendlyName="date_opened_practice_management" type="xs:dateTime" minOccurs="0" />
+                          <xs:element name="date_closed_practice_management" msprop:DbColumnName="date_closed_practice_management" msprop:FriendlyName="date_closed_practice_management" type="xs:dateTime" minOccurs="0" />
+                          <xs:element name="date_opened_case_management" msprop:DbColumnName="date_opened_case_management" msprop:FriendlyName="date_opened_case_management" type="xs:dateTime" minOccurs="0" />
+                          <xs:element name="date_closed_case_management" msprop:DbColumnName="date_closed_case_management" msprop:FriendlyName="date_closed_case_management" type="xs:dateTime" minOccurs="0" />
+                          <xs:element name="branch_code" msprop:DbColumnName="branch_code" msprop:FriendlyName="branch_code" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="branch_name" msprop:DbColumnName="branch_name" msprop:FriendlyName="branch_name" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="matter_partner_code" msprop:DbColumnName="matter_partner_code" msprop:FriendlyName="matter_partner_code" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="matter_partner_full_name" msprop:DbColumnName="matter_partner_full_name" msprop:FriendlyName="matter_partner_full_name" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="fee_earner_code" msprop:DbColumnName="fee_earner_code" msprop:FriendlyName="fee_earner_code" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="matter_owner_full_name" msprop:DbColumnName="matter_owner_full_name" msprop:FriendlyName="matter_owner_full_name" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="department_code" msprop:DbColumnName="department_code" msprop:FriendlyName="department_code" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="fixed_fee" msprop:DbColumnName="fixed_fee" msprop:FriendlyName="fixed_fee" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="fixed_fee_amount" msprop:DbColumnName="fixed_fee_amount" msprop:FriendlyName="fixed_fee_amount" type="xs:double" minOccurs="0" />
+                          <xs:element name="delegated" msprop:DbColumnName="delegated" msprop:FriendlyName="delegated" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="reporting_exclusions" msprop:DbColumnName="reporting_exclusions" msprop:FriendlyName="reporting_exclusions" type="xs:long" minOccurs="0" />
+                          <xs:element name="final_bill_flag" msprop:DbColumnName="final_bill_flag" msprop:FriendlyName="final_bill_flag" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="final_bill_date" msprop:DbColumnName="final_bill_date" msprop:FriendlyName="final_bill_date" type="xs:dateTime" minOccurs="0" />
+                          <xs:element name="present_position" msprop:DbColumnName="present_position" msprop:FriendlyName="present_position" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
                           <xs:element name="dss_update_time" msprop:DbColumnName="dss_update_time" msprop:FriendlyName="dss_update_time" type="xs:dateTime" minOccurs="0" />
                         </xs:sequence>
                       </xs:complexType>
