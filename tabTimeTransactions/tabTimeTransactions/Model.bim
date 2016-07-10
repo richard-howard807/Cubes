@@ -2555,11 +2555,6 @@
                   <Name>TimeActivityCode</Name>
                 </AttributeRelationship>
                 <AttributeRelationship>
-                  <AttributeID>RateCode</AttributeID>
-                  <OverrideBehavior>None</OverrideBehavior>
-                  <Name>RateCode</Name>
-                </AttributeRelationship>
-                <AttributeRelationship>
                   <AttributeID>FEDCodeID</AttributeID>
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>FEDCodeID</Name>
@@ -2776,31 +2771,6 @@
               </NameColumn>
               <OrderBy>Key</OrderBy>
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
-            </Attribute>
-            <Attribute>
-              <ID>RateCode</ID>
-              <Name>RateCode</Name>
-              <KeyColumns>
-                <KeyColumn>
-                  <DataType>Double</DataType>
-                  <DataSize>-1</DataSize>
-                  <NullProcessing>Preserve</NullProcessing>
-                  <Source xsi:type="ColumnBinding">
-                    <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
-                    <ColumnID>RateCode</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-              <NameColumn>
-                <DataType>WChar</DataType>
-                <DataSize>-1</DataSize>
-                <NullProcessing>ZeroOrBlank</NullProcessing>
-                <Source xsi:type="ColumnBinding">
-                  <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
-                  <ColumnID>RateCode</ColumnID>
-                </Source>
-              </NameColumn>
-              <OrderBy>Key</OrderBy>
             </Attribute>
             <Attribute>
               <ID>FEDCodeID</ID>
@@ -11324,9 +11294,6 @@
                   <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
                 </Attribute>
                 <Attribute>
-                  <AttributeID>RateCode</AttributeID>
-                </Attribute>
-                <Attribute>
                   <AttributeID>FEDCodeID</AttributeID>
                   <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
                 </Attribute>
@@ -15974,20 +15941,6 @@ red_dw.dbo.dim_matter_branch</QueryDefinition>
                       </KeyColumns>
                     </Attribute>
                     <Attribute>
-                      <AttributeID>RateCode</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Double</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
-                            <ColumnID>RateCode</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
                       <AttributeID>FEDCodeID</AttributeID>
                       <KeyColumns>
                         <KeyColumn>
@@ -20055,49 +20008,35 @@ a.transaction_sequence_number TransactionID,
 a.dim_client_key ClientID,
 a.dim_matter_header_curr_key MatterID,
 a.dim_bill_key BillID,
-a.dim_time_narratives_key NarrativeID,
-a.time_type ChargeableTimeCode,
+a.dim_all_time_narrative_key NarrativeID,
+
+CASE WHEN
+t.unbilled_record = 1 THEN 'Unbilled'
+WHEN t.written_off_transaction = 1 THEN 'Written Off'
+when t.billed_record = 1 THEN 'Billed'
+ELSE ''
+END ChargeableTimeCode,
+--a.time_type ChargeableTimeCode,
 a.dim_fed_hierarchy_history_key FEDCodeID,
 a.dim_transaction_date_key TransactionDate,
 a.minutes_recorded MinutesRecorded,
 a.hourly_charge_rate ChargeRate,
 a.time_charge_value timeChargeValue,
-
-case 
-when t.time_activity_code != 'W/O'
-and t.bill_number = 'xxxxxxxx'
-and left(c.client_code, 2) != 'SB'
- then 'Written Off'
-when t.time_activity_code = 'W/O'
- then 'Written Off Transaction'
-when t.bill_number = ''
- and left(c.client_code, 2) != 'SB'
- then 'Unbilled'
-when t.bill_number in ('', 'xxxxxxxx')
- and left(c.client_code, 2) = 'SB'
- then 'Springboard'
-when a.dim_bill_key &gt; 0
-and t.time_activity_code not in ('Bill','Abmt')
- then 'Billed'
-when a.time_type = 'NC' 
- then 'Non Chargeable Time'
-else 'Transferred'
-end TransactionType,
-
+t.transaction_type TransactionType,
 t.time_activity_code TimeActivityCode,
-t.rate_code RateCode,
+--t.rate_code RateCode,
 t.matter_stage_descrn StageDesc,
 datediff(d, d3.calendar_date, getdate()) TransactionAgeDays,
 t.reporting_exclusions ReportingExclusions
 
 from
-[SVR-LIV-DWH-01].red_dw.dbo.fact_all_time_activity a
+red_dw.dbo.fact_all_time_activity a
 
 left join red_dw.dbo.dim_client c
  on c.dim_client_key = a.dim_client_key
 
 left join
- [SVR-LIV-DWH-01].red_dw.dbo.dim_all_time_activity t
+ red_dw.dbo.dim_all_time_activity t
   on a.dim_all_time_activity_key = t.dim_all_time_activity_key
 
 
@@ -20351,13 +20290,16 @@ red_dw.dbo.fact_bill_activity</QueryDefinition>
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
                     <QueryDefinition>select distinct
-time_type TimeTransactionTimeTypeCode,
-case when time_type = 'NC' then 'Non Chargeable Time'
- when time_type = 'TM' then 'Chargeable Time'
- end TimeTransactionTimeTypeDesc
+case when unbilled_record = 1 THEN 'Unbilled'
+WHEN written_off_transaction = 1 THEN 'Written Off'
+when billed_record = 1 THEN 'Billed'
+ELSE ''
+END TimeTransactionTimeTypeCode,
+chargeable_nonc_nonb TimeTransactionTimeTypeDesc
 
 from
-red_dw.dbo.fact_all_time_activity</QueryDefinition>
+red_dw.dbo.dim_all_time_activity
+where chargeable_nonc_nonb &lt;&gt; 'Un'</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
@@ -26381,15 +26323,15 @@ order by 1</QueryDefinition>
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
                     <QueryDefinition>select
-dim_time_narratives_key as 'TimeNarrativeID',
-td_textln as 'TimeNarrative'
+dim_all_time_narrative_key as 'TimeNarrativeID',
+narrative as 'TimeNarrative'
 
 from
-red_dw.dbo.dim_time_narratives nar
+red_dw.dbo.dim_all_time_narrative nar
 
 
 where
-dim_time_narratives_key in ( select dim_time_narratives_key from fact_all_time_activity )</QueryDefinition>
+dim_all_time_narrative_key in ( select dim_all_time_narrative_key from fact_all_time_activity )</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
@@ -27261,8 +27203,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
           </Annotations>
           <ConnectionString>Provider=SQLNCLI11;Data Source=svr-liv-dwh-01;Initial Catalog=red_dw;Integrated Security=SSPI;Persist Security Info=false</ConnectionString>
           <ImpersonationInfo>
-            <ImpersonationMode>ImpersonateAccount</ImpersonationMode>
-            <Account>sbc\DWH_SSASAdmin</Account>
+            <ImpersonationMode>ImpersonateServiceAccount</ImpersonationMode>
           </ImpersonationInfo>
           <Timeout>PT0S</Timeout>
         </DataSource>
@@ -27496,7 +27437,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="TimeTransactions" msprop:DbTableName="factMainTable" msprop:TableType="View" msprop:Description="factMainTable" msprop:QueryDefinition="select &#xD;&#xA;a.transaction_sequence_number TransactionID,&#xD;&#xA;a.dim_client_key ClientID,&#xD;&#xA;a.dim_matter_header_curr_key MatterID,&#xD;&#xA;a.dim_bill_key BillID,&#xD;&#xA;a.dim_time_narratives_key NarrativeID,&#xD;&#xA;a.time_type ChargeableTimeCode,&#xD;&#xA;a.dim_fed_hierarchy_history_key FEDCodeID,&#xD;&#xA;a.dim_transaction_date_key TransactionDate,&#xD;&#xA;a.minutes_recorded MinutesRecorded,&#xD;&#xA;a.hourly_charge_rate ChargeRate,&#xD;&#xA;a.time_charge_value timeChargeValue,&#xD;&#xA;&#xD;&#xA;case &#xD;&#xA;when t.time_activity_code != 'W/O'&#xD;&#xA;and t.bill_number = 'xxxxxxxx'&#xD;&#xA;and left(c.client_code, 2) != 'SB'&#xD;&#xA; then 'Written Off'&#xD;&#xA;when t.time_activity_code = 'W/O'&#xD;&#xA; then 'Written Off Transaction'&#xD;&#xA;when t.bill_number = ''&#xD;&#xA; and left(c.client_code, 2) != 'SB'&#xD;&#xA; then 'Unbilled'&#xD;&#xA;when t.bill_number in ('', 'xxxxxxxx')&#xD;&#xA; and left(c.client_code, 2) = 'SB'&#xD;&#xA; then 'Springboard'&#xD;&#xA;when a.dim_bill_key &gt; 0&#xD;&#xA;and t.time_activity_code not in ('Bill','Abmt')&#xD;&#xA; then 'Billed'&#xD;&#xA;when a.time_type = 'NC' &#xD;&#xA; then 'Non Chargeable Time'&#xD;&#xA;else 'Transferred'&#xD;&#xA;end TransactionType,&#xD;&#xA;&#xD;&#xA;t.time_activity_code TimeActivityCode,&#xD;&#xA;t.rate_code RateCode,&#xD;&#xA;t.matter_stage_descrn StageDesc,&#xD;&#xA;datediff(d, d3.calendar_date, getdate()) TransactionAgeDays,&#xD;&#xA;t.reporting_exclusions ReportingExclusions&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;[SVR-LIV-DWH-01].red_dw.dbo.fact_all_time_activity a&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_client c&#xD;&#xA; on c.dim_client_key = a.dim_client_key&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; [SVR-LIV-DWH-01].red_dw.dbo.dim_all_time_activity t&#xD;&#xA;  on a.dim_all_time_activity_key = t.dim_all_time_activity_key&#xD;&#xA;&#xD;&#xA;&#xD;&#xA; left join red_dw.dbo.dim_date d3&#xD;&#xA; on d3.dim_date_key = a.dim_transaction_date_key">
+                    <xs:element name="factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="TimeTransactions" msprop:DbTableName="factMainTable" msprop:TableType="View" msprop:Description="factMainTable" msprop:QueryDefinition="select &#xD;&#xA;a.transaction_sequence_number TransactionID,&#xD;&#xA;a.dim_client_key ClientID,&#xD;&#xA;a.dim_matter_header_curr_key MatterID,&#xD;&#xA;a.dim_bill_key BillID,&#xD;&#xA;a.dim_all_time_narrative_key NarrativeID,&#xD;&#xA;&#xD;&#xA;CASE WHEN&#xD;&#xA;t.unbilled_record = 1 THEN 'Unbilled'&#xD;&#xA;WHEN t.written_off_transaction = 1 THEN 'Written Off'&#xD;&#xA;when t.billed_record = 1 THEN 'Billed'&#xD;&#xA;ELSE ''&#xD;&#xA;END ChargeableTimeCode,&#xD;&#xA;--a.time_type ChargeableTimeCode,&#xD;&#xA;a.dim_fed_hierarchy_history_key FEDCodeID,&#xD;&#xA;a.dim_transaction_date_key TransactionDate,&#xD;&#xA;a.minutes_recorded MinutesRecorded,&#xD;&#xA;a.hourly_charge_rate ChargeRate,&#xD;&#xA;a.time_charge_value timeChargeValue,&#xD;&#xA;t.transaction_type TransactionType,&#xD;&#xA;t.time_activity_code TimeActivityCode,&#xD;&#xA;--t.rate_code RateCode,&#xD;&#xA;t.matter_stage_descrn StageDesc,&#xD;&#xA;datediff(d, d3.calendar_date, getdate()) TransactionAgeDays,&#xD;&#xA;t.reporting_exclusions ReportingExclusions&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_all_time_activity a&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_client c&#xD;&#xA; on c.dim_client_key = a.dim_client_key&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; red_dw.dbo.dim_all_time_activity t&#xD;&#xA;  on a.dim_all_time_activity_key = t.dim_all_time_activity_key&#xD;&#xA;&#xD;&#xA;&#xD;&#xA; left join red_dw.dbo.dim_date d3&#xD;&#xA; on d3.dim_date_key = a.dim_transaction_date_key">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="BillID" msprop:DbColumnName="BillID" msprop:FriendlyName="BillID" type="xs:int" minOccurs="0" />
@@ -27511,7 +27452,6 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                               </xs:restriction>
                             </xs:simpleType>
                           </xs:element>
-                          <xs:element name="RateCode" msprop:DbColumnName="RateCode" msprop:FriendlyName="RateCode" type="xs:decimal" minOccurs="0" />
                           <xs:element name="FEDCodeID" msprop:DbColumnName="FEDCodeID" msprop:FriendlyName="FEDCodeID" type="xs:int" minOccurs="0" />
                           <xs:element name="ChargeableTimeCode" msprop:DbColumnName="ChargeableTimeCode" msprop:FriendlyName="ChargeableTimeCode" minOccurs="0">
                             <xs:simpleType>
@@ -27563,7 +27503,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimTimeTransactionTimeType_b143b586-63c5-4482-a0af-8ed4f80b7a5f" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimTimeTransactionTimeType" msprop:DbTableName="dimTimeTransactionTimeType" msprop:TableType="View" msprop:Description="dimTimeTransactionTimeType" msprop:QueryDefinition="select distinct&#xD;&#xA;time_type TimeTransactionTimeTypeCode,&#xD;&#xA;case when time_type = 'NC' then 'Non Chargeable Time'&#xD;&#xA; when time_type = 'TM' then 'Chargeable Time'&#xD;&#xA; end TimeTransactionTimeTypeDesc&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_all_time_activity">
+                    <xs:element name="dimTimeTransactionTimeType_b143b586-63c5-4482-a0af-8ed4f80b7a5f" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimTimeTransactionTimeType" msprop:DbTableName="dimTimeTransactionTimeType" msprop:TableType="View" msprop:Description="dimTimeTransactionTimeType" msprop:QueryDefinition="select distinct&#xD;&#xA;case when unbilled_record = 1 THEN 'Unbilled'&#xD;&#xA;WHEN written_off_transaction = 1 THEN 'Written Off'&#xD;&#xA;when billed_record = 1 THEN 'Billed'&#xD;&#xA;ELSE ''&#xD;&#xA;END TimeTransactionTimeTypeCode,&#xD;&#xA;chargeable_nonc_nonb TimeTransactionTimeTypeDesc&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_all_time_activity&#xD;&#xA;where chargeable_nonc_nonb &lt;&gt; 'Un'">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="TimeTransactionTimeTypeCode" msprop:DbColumnName="TimeTransactionTimeTypeCode" msprop:FriendlyName="TimeTransactionTimeTypeCode" minOccurs="0">
@@ -28419,7 +28359,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimTimeNarrative_f7aaa709-9ede-4b2b-9541-55bd8bffab32" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimTimeNarrative" msprop:DbTableName="dimTimeNarrative" msprop:TableType="View" msprop:Description="dimTimeNarrative" msprop:QueryDefinition="select&#xD;&#xA;dim_time_narratives_key as 'TimeNarrativeID',&#xD;&#xA;td_textln as 'TimeNarrative'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_time_narratives nar&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;dim_time_narratives_key in ( select dim_time_narratives_key from fact_all_time_activity )">
+                    <xs:element name="dimTimeNarrative_f7aaa709-9ede-4b2b-9541-55bd8bffab32" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimTimeNarrative" msprop:DbTableName="dimTimeNarrative" msprop:TableType="View" msprop:Description="dimTimeNarrative" msprop:QueryDefinition="select&#xD;&#xA;dim_all_time_narrative_key as 'TimeNarrativeID',&#xD;&#xA;narrative as 'TimeNarrative'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_all_time_narrative nar&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;dim_all_time_narrative_key in ( select dim_all_time_narrative_key from fact_all_time_activity )">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="TimeNarrativeID" msprop:DbColumnName="TimeNarrativeID" msprop:FriendlyName="TimeNarrativeID" type="xs:int" minOccurs="0" />
