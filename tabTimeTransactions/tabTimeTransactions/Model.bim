@@ -27201,9 +27201,10 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
               <Value>SqlServer</Value>
             </Annotation>
           </Annotations>
-          <ConnectionString>Provider=SQLNCLI11;Data Source=svr-liv-dwh-01;Initial Catalog=red_dw;Integrated Security=SSPI;Persist Security Info=false</ConnectionString>
+          <ConnectionString>Provider=SQLNCLI11;Data Source=svr-liv-dwh-01;Initial Catalog=red_dw;Persist Security Info=true;User ID=SBC\DWH_SSASAdmin;Integrated Security=SSPI</ConnectionString>
           <ImpersonationInfo>
-            <ImpersonationMode>ImpersonateServiceAccount</ImpersonationMode>
+            <ImpersonationMode>ImpersonateAccount</ImpersonationMode>
+            <Account>SBC\DWH_SSASAdmin</Account>
           </ImpersonationInfo>
           <Timeout>PT0S</Timeout>
         </DataSource>
