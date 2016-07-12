@@ -20289,17 +20289,15 @@ red_dw.dbo.fact_bill_activity</QueryDefinition>
                   </Annotations>
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
-                    <QueryDefinition>select distinct
-case when unbilled_record = 1 THEN 'Unbilled'
-WHEN written_off_transaction = 1 THEN 'Written Off'
-when billed_record = 1 THEN 'Billed'
-ELSE ''
-END TimeTransactionTimeTypeCode,
-chargeable_nonc_nonb TimeTransactionTimeTypeDesc
+                    <QueryDefinition>select 
+'NC' as 'TimeTransactionTimeTypeCode',
+'Non Chargeable Time' as 'TimeTransactionTimeTypeDesc'
 
-from
-red_dw.dbo.dim_all_time_activity
-where chargeable_nonc_nonb &lt;&gt; 'Un'</QueryDefinition>
+union
+
+select
+'TM',
+'Chargeable Time'</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
@@ -27504,7 +27502,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimTimeTransactionTimeType_b143b586-63c5-4482-a0af-8ed4f80b7a5f" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimTimeTransactionTimeType" msprop:DbTableName="dimTimeTransactionTimeType" msprop:TableType="View" msprop:Description="dimTimeTransactionTimeType" msprop:QueryDefinition="select distinct&#xD;&#xA;case when unbilled_record = 1 THEN 'Unbilled'&#xD;&#xA;WHEN written_off_transaction = 1 THEN 'Written Off'&#xD;&#xA;when billed_record = 1 THEN 'Billed'&#xD;&#xA;ELSE ''&#xD;&#xA;END TimeTransactionTimeTypeCode,&#xD;&#xA;chargeable_nonc_nonb TimeTransactionTimeTypeDesc&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_all_time_activity&#xD;&#xA;where chargeable_nonc_nonb &lt;&gt; 'Un'">
+                    <xs:element name="dimTimeTransactionTimeType_b143b586-63c5-4482-a0af-8ed4f80b7a5f" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimTimeTransactionTimeType" msprop:DbTableName="dimTimeTransactionTimeType" msprop:TableType="View" msprop:Description="dimTimeTransactionTimeType" msprop:QueryDefinition="select &#xD;&#xA;'NC' as 'TimeTransactionTimeTypeCode',&#xD;&#xA;'Non Chargeable Time' as 'TimeTransactionTimeTypeDesc'&#xD;&#xA;&#xD;&#xA;union&#xD;&#xA;&#xD;&#xA;select&#xD;&#xA;'TM',&#xD;&#xA;'Chargeable Time'">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="TimeTransactionTimeTypeCode" msprop:DbColumnName="TimeTransactionTimeTypeCode" msprop:FriendlyName="TimeTransactionTimeTypeCode" minOccurs="0">
