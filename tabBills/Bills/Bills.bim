@@ -17329,7 +17329,10 @@ red_dw.dbo.fact_bill f
 
 left join
  red_dw.dbo.dim_bill d
-  on d.dim_bill_key = f.dim_bill_key</QueryDefinition>
+  on d.dim_bill_key = f.dim_bill_key
+
+where 
+f.bill_number != 'PURGE'</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
@@ -27628,7 +27631,7 @@ CREATE MEASURE 'Matters'[Count of Matters]=countrows(Matters);
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="Bills" msprop:DbTableName="factBill" msprop:TableType="View" msprop:Description="factBill" msprop:QueryDefinition="select distinct&#xD;&#xA;f.dim_bill_key as 'BillID',&#xD;&#xA;f.bill_number as 'BillNumber',&#xD;&#xA;upper(d.record_type) as  'BillTypeCode',&#xD;&#xA;f.dim_matter_header_curr_key as 'MatterID',&#xD;&#xA;d.bill_flag as 'BillFinalOrInterimCode',&#xD;&#xA;f.dim_last_pay_date_key as 'BillLastPaymentDate',&#xD;&#xA;f.dim_bill_date_key as 'BillDate',&#xD;&#xA;f.bill_total as 'BillAmount',&#xD;&#xA;f.fees_total as 'FeeValue',&#xD;&#xA;f.paid_disbursements as 'DisbursementsPaid',&#xD;&#xA;f.unpaid_disbursements as 'DisbursementsUnpaid',&#xD;&#xA;f.admin_charges_total as 'AdministrationCharges',&#xD;&#xA;f.vat_amount as 'VATAmount',&#xD;&#xA;f.amount_paid as 'AmountPaid',&#xD;&#xA;amount_outstanding as 'AmountOutstanding',&#xD;&#xA;case when f.amount_paid = f.bill_total then 0 else cast(datediff(day,cast( cast(f.dim_bill_date_key as varchar(10)) as date), getdate()) as numeric(10,2))  end as 'BillAgeDays',&#xD;&#xA;d.outstanding_flag as 'OpenItem'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_bill f&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; red_dw.dbo.dim_bill d&#xD;&#xA;  on d.dim_bill_key = f.dim_bill_key">
+                    <xs:element name="factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="Bills" msprop:DbTableName="factBill" msprop:TableType="View" msprop:Description="factBill" msprop:QueryDefinition="select distinct&#xD;&#xA;f.dim_bill_key as 'BillID',&#xD;&#xA;f.bill_number as 'BillNumber',&#xD;&#xA;upper(d.record_type) as  'BillTypeCode',&#xD;&#xA;f.dim_matter_header_curr_key as 'MatterID',&#xD;&#xA;d.bill_flag as 'BillFinalOrInterimCode',&#xD;&#xA;f.dim_last_pay_date_key as 'BillLastPaymentDate',&#xD;&#xA;f.dim_bill_date_key as 'BillDate',&#xD;&#xA;f.bill_total as 'BillAmount',&#xD;&#xA;f.fees_total as 'FeeValue',&#xD;&#xA;f.paid_disbursements as 'DisbursementsPaid',&#xD;&#xA;f.unpaid_disbursements as 'DisbursementsUnpaid',&#xD;&#xA;f.admin_charges_total as 'AdministrationCharges',&#xD;&#xA;f.vat_amount as 'VATAmount',&#xD;&#xA;f.amount_paid as 'AmountPaid',&#xD;&#xA;amount_outstanding as 'AmountOutstanding',&#xD;&#xA;case when f.amount_paid = f.bill_total then 0 else cast(datediff(day,cast( cast(f.dim_bill_date_key as varchar(10)) as date), getdate()) as numeric(10,2))  end as 'BillAgeDays',&#xD;&#xA;d.outstanding_flag as 'OpenItem'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_bill f&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; red_dw.dbo.dim_bill d&#xD;&#xA;  on d.dim_bill_key = f.dim_bill_key&#xD;&#xA;&#xD;&#xA;where &#xD;&#xA;f.bill_number != 'PURGE'">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="BillDate" msprop:DbColumnName="BillDate" msprop:FriendlyName="BillDate" type="xs:int" minOccurs="0" />
