@@ -10094,7 +10094,11 @@
                 <Annotation>
                   <Name>Format</Name>
                   <Value>
-                    <Format Format="DateTimeGeneral" xmlns="" />
+                    <Format Format="DateTimeCustom" xmlns="">
+                      <DateTimes>
+                        <DateTime LCID="2057" Group="ShortDate" FormatString="dd/MM/yyyy" />
+                      </DateTimes>
+                    </Format>
                   </Value>
                 </Annotation>
               </Annotations>
@@ -10123,7 +10127,7 @@
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
-              <ddl300_300:FormatString>General Date</ddl300_300:FormatString>
+              <ddl300_300:FormatString>dd/MM/yyyy</ddl300_300:FormatString>
             </Attribute>
             <Attribute>
               <Annotations>
@@ -72321,6 +72325,44 @@ CREATE MEASURE 'fact_bsc_audit_rollup'[Audit Score Average]=calculate(average(fa
                     </Annotation>
                   </Annotations>
                 </Command>
+                <Command>
+                  <Text>----------------------------------------------------------
+-- PowerPivot measures command (do not modify manually) --
+----------------------------------------------------------
+
+
+CREATE MEASURE 'fact_bsc_finance_rollup'[Sum of chargeable_hours_flag_ind]=SUM([chargeable_hours_flag_ind]);
+</Text>
+                  <Annotations>
+                    <Annotation>
+                      <Name>FullName</Name>
+                      <Value>Sum of chargeable_hours_flag_ind</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Table</Name>
+                      <Value>fact_bsc_finance_rollup</Value>
+                    </Annotation>
+                  </Annotations>
+                </Command>
+                <Command>
+                  <Text>----------------------------------------------------------
+-- PowerPivot measures command (do not modify manually) --
+----------------------------------------------------------
+
+
+CREATE MEASURE 'fact_bsc_finance_rollup'[Sum of chargeable_hours_mtd_ind]=SUM([chargeable_hours_mtd_ind]);
+</Text>
+                  <Annotations>
+                    <Annotation>
+                      <Name>FullName</Name>
+                      <Value>Sum of chargeable_hours_mtd_ind</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Table</Name>
+                      <Value>fact_bsc_finance_rollup</Value>
+                    </Annotation>
+                  </Annotations>
+                </Command>
               </Commands>
               <CalculationProperties>
                 <CalculationProperty>
@@ -73244,6 +73286,48 @@ CREATE MEASURE 'fact_bsc_audit_rollup'[Audit Score Average]=calculate(average(fa
                     </Annotation>
                   </Annotations>
                   <CalculationReference>[Audit Score Average]</CalculationReference>
+                  <CalculationType>Member</CalculationType>
+                  <FormatString>''</FormatString>
+                </CalculationProperty>
+                <CalculationProperty>
+                  <Annotations>
+                    <Annotation>
+                      <Name>Type</Name>
+                      <Value>User</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsPrivate</Name>
+                      <Value>False</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Format</Name>
+                      <Value>
+                        <Format Format="General" xmlns="" />
+                      </Value>
+                    </Annotation>
+                  </Annotations>
+                  <CalculationReference>[Sum of chargeable_hours_flag_ind]</CalculationReference>
+                  <CalculationType>Member</CalculationType>
+                  <FormatString>''</FormatString>
+                </CalculationProperty>
+                <CalculationProperty>
+                  <Annotations>
+                    <Annotation>
+                      <Name>Type</Name>
+                      <Value>User</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsPrivate</Name>
+                      <Value>False</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>Format</Name>
+                      <Value>
+                        <Format Format="General" xmlns="" />
+                      </Value>
+                    </Annotation>
+                  </Annotations>
+                  <CalculationReference>[Sum of chargeable_hours_mtd_ind]</CalculationReference>
                   <CalculationType>Member</CalculationType>
                   <FormatString>''</FormatString>
                 </CalculationProperty>
