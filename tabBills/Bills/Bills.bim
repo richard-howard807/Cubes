@@ -17594,11 +17594,19 @@ red_dw.dbo.dim_matter_branch</QueryDefinition>
                     <QueryDefinition>select distinct
 case when bill_record_type = 'Bill' then 'B'
  when bill_record_type = 'Abatement' then 'A'
+ when bill_record_type = 'b' then 'B'
  end as 'BillTypeCode',
-bill_record_type as 'BillTypeDesc'
+case when bill_record_type = 'b' then 'Bill' else bill_record_type end as 'BillTypeDesc'
  
 from
-red_dw.dbo.fact_bill_activity</QueryDefinition>
+red_dw.dbo.fact_bill_activity
+
+group by 
+case when bill_record_type = 'Bill' then 'B'
+ when bill_record_type = 'Abatement' then 'A'
+ when bill_record_type = 'b' then 'B'
+ end ,
+case when bill_record_type = 'b' then 'Bill' else bill_record_type end</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
@@ -27699,7 +27707,7 @@ CREATE MEASURE 'Matters'[Count of Matters]=countrows(Matters);
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimBillRecordType_87655b43-7ca3-458f-b9b5-f185be6f155f" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimBillType" msprop:DbTableName="dimBillRecordType" msprop:TableType="View" msprop:Description="dimBillRecordType" msprop:QueryDefinition="select distinct&#xD;&#xA;case when bill_record_type = 'Bill' then 'B'&#xD;&#xA; when bill_record_type = 'Abatement' then 'A'&#xD;&#xA; end as 'BillTypeCode',&#xD;&#xA;bill_record_type as 'BillTypeDesc'&#xD;&#xA; &#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_bill_activity">
+                    <xs:element name="dimBillRecordType_87655b43-7ca3-458f-b9b5-f185be6f155f" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimBillType" msprop:DbTableName="dimBillRecordType" msprop:TableType="View" msprop:Description="dimBillRecordType" msprop:QueryDefinition="select distinct&#xD;&#xA;case when bill_record_type = 'Bill' then 'B'&#xD;&#xA; when bill_record_type = 'Abatement' then 'A'&#xD;&#xA; when bill_record_type = 'b' then 'B'&#xD;&#xA; end as 'BillTypeCode',&#xD;&#xA;case when bill_record_type = 'b' then 'Bill' else bill_record_type end as 'BillTypeDesc'&#xD;&#xA; &#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_bill_activity&#xD;&#xA;&#xD;&#xA;group by &#xD;&#xA;case when bill_record_type = 'Bill' then 'B'&#xD;&#xA; when bill_record_type = 'Abatement' then 'A'&#xD;&#xA; when bill_record_type = 'b' then 'B'&#xD;&#xA; end ,&#xD;&#xA;case when bill_record_type = 'b' then 'Bill' else bill_record_type end">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="BillTypeCode" msprop:DbColumnName="BillTypeCode" msprop:FriendlyName="BillTypeCode" minOccurs="0">
