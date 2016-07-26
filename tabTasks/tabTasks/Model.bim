@@ -11132,24 +11132,24 @@
               </ddl300_300:ToRelationshipEnd>
             </ddl300_300:Relationship>
             <ddl300_300:Relationship>
-              <ID>adfb056a-efd3-4ffa-a5d6-85f7c06c87d3</ID>
+              <ID>7976e93b-f661-4e50-ac49-9c006ebe9c38</ID>
               <ddl300_300:FromRelationshipEnd>
                 <ddl300_300:Multiplicity>Many</ddl300_300:Multiplicity>
                 <ddl300:VisualizationProperties />
                 <DimensionID>fact_tasks_7d22b44a-276f-41fd-9a6e-d0b4f5ba2607</DimensionID>
                 <Attributes>
                   <Attribute>
-                    <AttributeID>dim_matter_owner_key</AttributeID>
+                    <AttributeID>master_fact_key</AttributeID>
                   </Attribute>
                 </Attributes>
               </ddl300_300:FromRelationshipEnd>
               <ddl300_300:ToRelationshipEnd>
                 <ddl300_300:Multiplicity>One</ddl300_300:Multiplicity>
                 <ddl300:VisualizationProperties />
-                <DimensionID>dim_matter_owner_0e7d2e49-091b-4d71-bfaf-5ae5d6542ac7</DimensionID>
+                <DimensionID>fact_matter_summary_current_e3a2c6bd-0983-4929-9594-61af7e820487</DimensionID>
                 <Attributes>
                   <Attribute>
-                    <AttributeID>dim_matter_owner_key</AttributeID>
+                    <AttributeID>master_fact_key</AttributeID>
                   </Attribute>
                 </Attributes>
               </ddl300_300:ToRelationshipEnd>
@@ -13517,6 +13517,181 @@
             <Source xsi:type="ProactiveCachingInheritedBinding" />
           </ProactiveCaching>
         </Dimension>
+        <Dimension>
+          <ID>fact_matter_summary_current_e3a2c6bd-0983-4929-9594-61af7e820487</ID>
+          <Name>fact_matter_summary_current</Name>
+          <Annotations>
+            <Annotation>
+              <Name>IsQueryEditorUsed</Name>
+              <Value>True</Value>
+            </Annotation>
+            <Annotation>
+              <Name>QueryEditorSerialization</Name>
+            </Annotation>
+            <Annotation>
+              <Name>TableWidgetSerialization</Name>
+            </Annotation>
+            <Annotation>
+              <Name>DataMarketWebBaseUrl</Name>
+            </Annotation>
+            <Annotation>
+              <Name>DataMarketWebQueryUrl</Name>
+            </Annotation>
+          </Annotations>
+          <Source xsi:type="DataSourceViewBinding">
+            <DataSourceViewID>Sandbox</DataSourceViewID>
+          </Source>
+          <UnknownMember valuens="ddl200_200">AutomaticNull</UnknownMember>
+          <ErrorConfiguration>
+            <KeyNotFound>IgnoreError</KeyNotFound>
+            <KeyDuplicate>ReportAndStop</KeyDuplicate>
+            <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+          </ErrorConfiguration>
+          <StorageMode valuens="ddl200_200">InMemory</StorageMode>
+          <Language>2057</Language>
+          <UnknownMemberName>Unknown</UnknownMemberName>
+          <Attributes>
+            <Attribute>
+              <ID>RowNumber</ID>
+              <Name>RowNumber</Name>
+              <Type valuens="ddl200_200">RowNumber</Type>
+              <Usage>Key</Usage>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>4</DataSize>
+                  <NullProcessing>Error</NullProcessing>
+                  <Source xsi:type="ddl200_200:RowNumberBinding" />
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>4</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ddl200_200:RowNumberBinding" />
+              </NameColumn>
+              <AttributeRelationships>
+                <AttributeRelationship>
+                  <AttributeID>master_fact_key</AttributeID>
+                  <Cardinality>One</Cardinality>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>master_fact_key</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>dim_fed_hierarchy_history_key</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>dim_fed_hierarchy_history_key</Name>
+                </AttributeRelationship>
+              </AttributeRelationships>
+              <OrderBy>Key</OrderBy>
+              <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>master_fact_key</ID>
+              <Name>master_fact_key</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Error</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>fact_matter_summary_current_e3a2c6bd-0983-4929-9594-61af7e820487</TableID>
+                    <ColumnID>master_fact_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>fact_matter_summary_current_e3a2c6bd-0983-4929-9594-61af7e820487</TableID>
+                  <ColumnID>master_fact_key</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+              <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>dim_fed_hierarchy_history_key</ID>
+              <Name>dim_fed_hierarchy_history_key</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>fact_matter_summary_current_e3a2c6bd-0983-4929-9594-61af7e820487</TableID>
+                    <ColumnID>dim_fed_hierarchy_history_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>fact_matter_summary_current_e3a2c6bd-0983-4929-9594-61af7e820487</TableID>
+                  <ColumnID>dim_fed_hierarchy_history_key</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+              <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+            </Attribute>
+          </Attributes>
+          <ProactiveCaching>
+            <SilenceInterval>-PT1S</SilenceInterval>
+            <Latency>-PT1S</Latency>
+            <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+            <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+            <Source xsi:type="ProactiveCachingInheritedBinding" />
+          </ProactiveCaching>
+          <ddl300_300:Relationships>
+            <ddl300_300:Relationship>
+              <ID>1fa76cd4-4989-4512-809f-b3bc203d3375</ID>
+              <ddl300_300:FromRelationshipEnd>
+                <ddl300_300:Multiplicity>Many</ddl300_300:Multiplicity>
+                <ddl300:VisualizationProperties />
+                <DimensionID>fact_matter_summary_current_e3a2c6bd-0983-4929-9594-61af7e820487</DimensionID>
+                <Attributes>
+                  <Attribute>
+                    <AttributeID>dim_fed_hierarchy_history_key</AttributeID>
+                  </Attribute>
+                </Attributes>
+              </ddl300_300:FromRelationshipEnd>
+              <ddl300_300:ToRelationshipEnd>
+                <ddl300_300:Multiplicity>One</ddl300_300:Multiplicity>
+                <ddl300:VisualizationProperties />
+                <DimensionID>dim_matter_owner_0e7d2e49-091b-4d71-bfaf-5ae5d6542ac7</DimensionID>
+                <Attributes>
+                  <Attribute>
+                    <AttributeID>dim_matter_owner_key</AttributeID>
+                  </Attribute>
+                </Attributes>
+              </ddl300_300:ToRelationshipEnd>
+            </ddl300_300:Relationship>
+          </ddl300_300:Relationships>
+        </Dimension>
       </Dimensions>
       <Cubes>
         <Cube>
@@ -14358,6 +14533,26 @@
                 </Attribute>
                 <Attribute>
                   <AttributeID>matter_owner_login</AttributeID>
+                </Attribute>
+              </Attributes>
+            </Dimension>
+            <Dimension>
+              <ID>fact_matter_summary_current_e3a2c6bd-0983-4929-9594-61af7e820487</ID>
+              <Name>fact_matter_summary_current</Name>
+              <DimensionID>fact_matter_summary_current_e3a2c6bd-0983-4929-9594-61af7e820487</DimensionID>
+              <Visible>false</Visible>
+              <Attributes>
+                <Attribute>
+                  <AttributeID>RowNumber</AttributeID>
+                  <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>master_fact_key</AttributeID>
+                  <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>dim_fed_hierarchy_history_key</AttributeID>
+                  <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
                 </Attribute>
               </Attributes>
             </Dimension>
@@ -23498,6 +23693,57 @@ FROM [dbo].[dim_task_owner]</QueryDefinition>
                   <IntermediateGranularityAttributeID>dim_matter_worktype_key</IntermediateGranularityAttributeID>
                 </Dimension>
                 <Dimension xsi:type="ReferenceMeasureGroupDimension">
+                  <CubeDimensionID>fact_matter_summary_current_e3a2c6bd-0983-4929-9594-61af7e820487</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>RowNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>4</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ddl200_200:RowNumberBinding" />
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>master_fact_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_matter_summary_current_e3a2c6bd-0983-4929-9594-61af7e820487</TableID>
+                            <ColumnID>master_fact_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_fed_hierarchy_history_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_matter_summary_current_e3a2c6bd-0983-4929-9594-61af7e820487</TableID>
+                            <ColumnID>dim_fed_hierarchy_history_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                  </Attributes>
+                  <IntermediateCubeDimensionID>fact_tasks_7d22b44a-276f-41fd-9a6e-d0b4f5ba2607</IntermediateCubeDimensionID>
+                  <IntermediateGranularityAttributeID>master_fact_key</IntermediateGranularityAttributeID>
+                  <Materialization>Regular</Materialization>
+                  <ddl300:RelationshipID>7976e93b-f661-4e50-ac49-9c006ebe9c38</ddl300:RelationshipID>
+                </Dimension>
+                <Dimension xsi:type="ReferenceMeasureGroupDimension">
                   <CubeDimensionID>dim_matter_owner_0e7d2e49-091b-4d71-bfaf-5ae5d6542ac7</CubeDimensionID>
                   <Attributes>
                     <Attribute>
@@ -23682,10 +23928,8 @@ FROM [dbo].[dim_task_owner]</QueryDefinition>
                       </KeyColumns>
                     </Attribute>
                   </Attributes>
-                  <IntermediateCubeDimensionID>fact_tasks_7d22b44a-276f-41fd-9a6e-d0b4f5ba2607</IntermediateCubeDimensionID>
-                  <IntermediateGranularityAttributeID>dim_matter_owner_key</IntermediateGranularityAttributeID>
-                  <Materialization>Regular</Materialization>
-                  <ddl300:RelationshipID>adfb056a-efd3-4ffa-a5d6-85f7c06c87d3</ddl300:RelationshipID>
+                  <IntermediateCubeDimensionID>fact_matter_summary_current_e3a2c6bd-0983-4929-9594-61af7e820487</IntermediateCubeDimensionID>
+                  <IntermediateGranularityAttributeID>dim_fed_hierarchy_history_key</IntermediateGranularityAttributeID>
                 </Dimension>
               </Dimensions>
               <Partitions>
@@ -25538,6 +25782,327 @@ FROM [dbo].[dim_matter_owner]</QueryDefinition>
                 <Source xsi:type="ProactiveCachingInheritedBinding" />
               </ProactiveCaching>
             </MeasureGroup>
+            <MeasureGroup>
+              <ID>fact_matter_summary_current_e3a2c6bd-0983-4929-9594-61af7e820487</ID>
+              <Name>fact_matter_summary_current</Name>
+              <Annotations>
+                <Annotation>
+                  <Name>IsTablePrivate</Name>
+                </Annotation>
+              </Annotations>
+              <Measures>
+                <Measure>
+                  <ID>fact_matter_summary_current_e3a2c6bd-0983-4929-9594-61af7e820487</ID>
+                  <Name>_Count fact_matter_summary_current</Name>
+                  <AggregateFunction>Count</AggregateFunction>
+                  <DataType>BigInt</DataType>
+                  <Source>
+                    <DataType>BigInt</DataType>
+                    <DataSize>8</DataSize>
+                    <Source xsi:type="RowBinding">
+                      <TableID>fact_matter_summary_current_e3a2c6bd-0983-4929-9594-61af7e820487</TableID>
+                    </Source>
+                  </Source>
+                  <Visible>false</Visible>
+                </Measure>
+              </Measures>
+              <StorageMode valuens="ddl200_200">InMemory</StorageMode>
+              <ErrorConfiguration>
+                <KeyNotFound>IgnoreError</KeyNotFound>
+                <KeyDuplicate>ReportAndStop</KeyDuplicate>
+                <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+              </ErrorConfiguration>
+              <ProcessingMode>Regular</ProcessingMode>
+              <Dimensions>
+                <Dimension xsi:type="DegenerateMeasureGroupDimension">
+                  <CubeDimensionID>fact_matter_summary_current_e3a2c6bd-0983-4929-9594-61af7e820487</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>RowNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_matter_summary_current</TableID>
+                            <ColumnID>RowNumber</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>master_fact_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_matter_summary_current_e3a2c6bd-0983-4929-9594-61af7e820487</TableID>
+                            <ColumnID>master_fact_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_fed_hierarchy_history_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_matter_summary_current_e3a2c6bd-0983-4929-9594-61af7e820487</TableID>
+                            <ColumnID>dim_fed_hierarchy_history_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                  </Attributes>
+                  <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
+                </Dimension>
+                <Dimension xsi:type="ReferenceMeasureGroupDimension">
+                  <CubeDimensionID>dim_matter_owner_0e7d2e49-091b-4d71-bfaf-5ae5d6542ac7</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>RowNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>4</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ddl200_200:RowNumberBinding" />
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_matter_owner_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>BigInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_matter_owner_0e7d2e49-091b-4d71-bfaf-5ae5d6542ac7</TableID>
+                            <ColumnID>dim_matter_owner_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>matter_owner_active_flag</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Boolean</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_matter_owner_0e7d2e49-091b-4d71-bfaf-5ae5d6542ac7</TableID>
+                            <ColumnID>matter_owner_active_flag</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>matter_owner_job_title</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_matter_owner_0e7d2e49-091b-4d71-bfaf-5ae5d6542ac7</TableID>
+                            <ColumnID>matter_owner_job_title</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>matter_owner_reporting_bcm_name</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_matter_owner_0e7d2e49-091b-4d71-bfaf-5ae5d6542ac7</TableID>
+                            <ColumnID>matter_owner_reporting_bcm_name</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>matter_owner_works_for_name</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_matter_owner_0e7d2e49-091b-4d71-bfaf-5ae5d6542ac7</TableID>
+                            <ColumnID>matter_owner_works_for_name</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>matter_owner_display_name</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_matter_owner_0e7d2e49-091b-4d71-bfaf-5ae5d6542ac7</TableID>
+                            <ColumnID>matter_owner_display_name</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>matter_owner_name</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_matter_owner_0e7d2e49-091b-4d71-bfaf-5ae5d6542ac7</TableID>
+                            <ColumnID>matter_owner_name</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>matter_owner_business_line_current</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_matter_owner_0e7d2e49-091b-4d71-bfaf-5ae5d6542ac7</TableID>
+                            <ColumnID>matter_owner_business_line_current</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>matter_owner_practice_area_current</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_matter_owner_0e7d2e49-091b-4d71-bfaf-5ae5d6542ac7</TableID>
+                            <ColumnID>matter_owner_practice_area_current</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>matter_owner_team_current</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_matter_owner_0e7d2e49-091b-4d71-bfaf-5ae5d6542ac7</TableID>
+                            <ColumnID>matter_owner_team_current</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>matter_owner_sub_team</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_matter_owner_0e7d2e49-091b-4d71-bfaf-5ae5d6542ac7</TableID>
+                            <ColumnID>matter_owner_sub_team</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>matter_owner_login</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_matter_owner_0e7d2e49-091b-4d71-bfaf-5ae5d6542ac7</TableID>
+                            <ColumnID>matter_owner_login</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                  </Attributes>
+                  <IntermediateCubeDimensionID>fact_matter_summary_current_e3a2c6bd-0983-4929-9594-61af7e820487</IntermediateCubeDimensionID>
+                  <IntermediateGranularityAttributeID>dim_fed_hierarchy_history_key</IntermediateGranularityAttributeID>
+                  <Materialization>Regular</Materialization>
+                  <ddl300:RelationshipID>1fa76cd4-4989-4512-809f-b3bc203d3375</ddl300:RelationshipID>
+                </Dimension>
+              </Dimensions>
+              <Partitions>
+                <Partition>
+                  <ID>fact_matter_summary_current_e3a2c6bd-0983-4929-9594-61af7e820487</ID>
+                  <Name>fact_matter_summary_current</Name>
+                  <Annotations>
+                    <Annotation>
+                      <Name>IsQueryEditorUsed</Name>
+                      <Value>True</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>QueryEditorSerialization</Name>
+                    </Annotation>
+                    <Annotation>
+                      <Name>TableWidgetSerialization</Name>
+                    </Annotation>
+                  </Annotations>
+                  <Source xsi:type="QueryBinding">
+                    <DataSourceID>003d478b-380e-4b45-a1c8-3233eac94659</DataSourceID>
+                    <QueryDefinition>select
+master_fact_key,
+dim_fed_hierarchy_history_key
+
+from
+fact_matter_summary_current</QueryDefinition>
+                  </Source>
+                  <StorageMode valuens="ddl200_200">InMemory</StorageMode>
+                  <ProcessingMode>Regular</ProcessingMode>
+                  <ErrorConfiguration>
+                    <KeyNotFound>IgnoreError</KeyNotFound>
+                    <KeyDuplicate>ReportAndStop</KeyDuplicate>
+                    <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+                  </ErrorConfiguration>
+                  <ProactiveCaching>
+                    <SilenceInterval>-PT1S</SilenceInterval>
+                    <Latency>-PT1S</Latency>
+                    <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+                    <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+                    <Source xsi:type="ProactiveCachingInheritedBinding" />
+                  </ProactiveCaching>
+                </Partition>
+              </Partitions>
+              <ProactiveCaching>
+                <SilenceInterval>-PT1S</SilenceInterval>
+                <Latency>-PT1S</Latency>
+                <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+                <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+                <Source xsi:type="ProactiveCachingInheritedBinding" />
+              </ProactiveCaching>
+            </MeasureGroup>
           </MeasureGroups>
           <Source>
             <DataSourceViewID>Sandbox</DataSourceViewID>
@@ -26777,6 +27342,14 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
                               </xs:restriction>
                             </xs:simpleType>
                           </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="fact_matter_summary_current_e3a2c6bd-0983-4929-9594-61af7e820487" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="fact_matter_summary_current" msprop:DbTableName="fact_matter_summary_current" msprop:TableType="View" msprop:Description="fact_matter_summary_current" msprop:QueryDefinition="select&#xD;&#xA;master_fact_key,&#xD;&#xA;dim_fed_hierarchy_history_key&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;fact_matter_summary_current">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="master_fact_key" msprop:DbColumnName="master_fact_key" msprop:FriendlyName="master_fact_key" type="xs:int" minOccurs="0" />
+                          <xs:element name="dim_fed_hierarchy_history_key" msprop:DbColumnName="dim_fed_hierarchy_history_key" msprop:FriendlyName="dim_fed_hierarchy_history_key" type="xs:int" minOccurs="0" />
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
