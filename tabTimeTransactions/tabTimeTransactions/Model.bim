@@ -600,6 +600,11 @@
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>dim_instruction_type_key</Name>
                 </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>PartnerName</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>PartnerName</Name>
+                </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
@@ -1406,6 +1411,31 @@
                 <Source xsi:type="ColumnBinding">
                   <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
                   <ColumnID>dim_instruction_type_key</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>PartnerName</ID>
+              <Name>PartnerName</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                    <ColumnID>PartnerName</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                  <ColumnID>PartnerName</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
@@ -11486,6 +11516,9 @@
                 <Attribute>
                   <AttributeID>dim_instruction_type_key</AttributeID>
                 </Attribute>
+                <Attribute>
+                  <AttributeID>PartnerName</AttributeID>
+                </Attribute>
               </Attributes>
             </Dimension>
             <Dimension>
@@ -13235,6 +13268,20 @@ left join sql2008svr.axxia01.dbo.caclextn crm
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>PartnerName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                            <ColumnID>PartnerName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
                 </Dimension>
@@ -14713,7 +14760,8 @@ fixed_fee FixedFee,
 fixed_fee_amount FixedFeeAmount,
 delegated Delegated,
 d.ms_client_code,
-d.dim_instruction_type_key
+d.dim_instruction_type_key,
+d.matter_partner_full_name as 'PartnerName'
 from
 red_dw.dbo.fact_matter_summary_current f
 
@@ -18699,6 +18747,20 @@ red_dw.dbo.dim_matter_branch</QueryDefinition>
                           <Source xsi:type="ColumnBinding">
                             <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
                             <ColumnID>dim_instruction_type_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>PartnerName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                            <ColumnID>PartnerName</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -27427,7 +27489,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="Matter" msprop:DbTableName="factMatter" msprop:TableType="View" msprop:Description="factMatter" msprop:QueryDefinition="select distinct &#xD;&#xA;f.dim_matter_header_curr_key MatterID,&#xD;&#xA;f.dim_fed_hierarchy_history_key FEDCodeID,&#xD;&#xA;d.dim_matter_group_key MatterGroupID,&#xD;&#xA;br.dim_matter_branch_key BranchID,&#xD;&#xA;d.dim_matter_worktype_key WorkTypeID,&#xD;&#xA;d.dim_department_key DepartmentID,&#xD;&#xA;d.matter_partner_code PartnerCode,&#xD;&#xA;d.matter_number MatterNumber,&#xD;&#xA;CASE WHEN ISNUMERIC(d.matter_number) = 1 and rtrim(d.matter_number) != '.' THEN CAST(CAST(d.matter_number AS int) AS varchar) ELSE RTRIM(d.matter_number) END as 'MatterNumberTrimmed',&#xD;&#xA;f.dim_client_key ClientID,&#xD;&#xA;d.matter_description MatterDesc,&#xD;&#xA;dim_open_practice_management_date_key as DateMatterOpen,&#xD;&#xA;dim_closed_practice_management_date_key as DateMatterClosed,&#xD;&#xA;datediff(day, d.date_opened_case_management, isnull(d.date_closed_case_management, getdate())) AgeOfMatterDays,&#xD;&#xA;disbursement_balance DisbursementBalance,&#xD;&#xA;client_account_balance_of_matter ClientAccountBalance,&#xD;&#xA;unpaid_bill_balance UnpaidBillsBalance,&#xD;&#xA;wip_balance WIPBalance,&#xD;&#xA;costs_to_date CostsToDate,&#xD;&#xA;time_billed TotalTimeBilled,&#xD;&#xA;number_bills_matter NumberOfBillsRaised,&#xD;&#xA;unbilled_time UnbilledTime,&#xD;&#xA;case when d.case_id is null then 'No' else 'Yes' end HasRecordInCashdr,&#xD;&#xA;dim_last_bill_date_key LastBillDate,&#xD;&#xA;fixed_fee FixedFee,&#xD;&#xA;fixed_fee_amount FixedFeeAmount,&#xD;&#xA;delegated Delegated,&#xD;&#xA;d.ms_client_code,&#xD;&#xA;d.dim_instruction_type_key&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_matter_summary_current f&#xD;&#xA;&#xD;&#xA;inner join red_dw.dbo.dim_matter_header_current d&#xD;&#xA; on d.dim_matter_header_curr_key = f.dim_matter_header_curr_key&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_matter_branch br&#xD;&#xA; on br.branch_code = d.branch_code&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;f.dim_matter_header_curr_key &gt; 0">
+                    <xs:element name="factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="Matter" msprop:DbTableName="factMatter" msprop:TableType="View" msprop:Description="factMatter" msprop:QueryDefinition="select distinct &#xD;&#xA;f.dim_matter_header_curr_key MatterID,&#xD;&#xA;f.dim_fed_hierarchy_history_key FEDCodeID,&#xD;&#xA;d.dim_matter_group_key MatterGroupID,&#xD;&#xA;br.dim_matter_branch_key BranchID,&#xD;&#xA;d.dim_matter_worktype_key WorkTypeID,&#xD;&#xA;d.dim_department_key DepartmentID,&#xD;&#xA;d.matter_partner_code PartnerCode,&#xD;&#xA;d.matter_number MatterNumber,&#xD;&#xA;CASE WHEN ISNUMERIC(d.matter_number) = 1 and rtrim(d.matter_number) != '.' THEN CAST(CAST(d.matter_number AS int) AS varchar) ELSE RTRIM(d.matter_number) END as 'MatterNumberTrimmed',&#xD;&#xA;f.dim_client_key ClientID,&#xD;&#xA;d.matter_description MatterDesc,&#xD;&#xA;dim_open_practice_management_date_key as DateMatterOpen,&#xD;&#xA;dim_closed_practice_management_date_key as DateMatterClosed,&#xD;&#xA;datediff(day, d.date_opened_case_management, isnull(d.date_closed_case_management, getdate())) AgeOfMatterDays,&#xD;&#xA;disbursement_balance DisbursementBalance,&#xD;&#xA;client_account_balance_of_matter ClientAccountBalance,&#xD;&#xA;unpaid_bill_balance UnpaidBillsBalance,&#xD;&#xA;wip_balance WIPBalance,&#xD;&#xA;costs_to_date CostsToDate,&#xD;&#xA;time_billed TotalTimeBilled,&#xD;&#xA;number_bills_matter NumberOfBillsRaised,&#xD;&#xA;unbilled_time UnbilledTime,&#xD;&#xA;case when d.case_id is null then 'No' else 'Yes' end HasRecordInCashdr,&#xD;&#xA;dim_last_bill_date_key LastBillDate,&#xD;&#xA;fixed_fee FixedFee,&#xD;&#xA;fixed_fee_amount FixedFeeAmount,&#xD;&#xA;delegated Delegated,&#xD;&#xA;d.ms_client_code,&#xD;&#xA;d.dim_instruction_type_key,&#xD;&#xA;d.matter_partner_full_name as 'PartnerName'&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_matter_summary_current f&#xD;&#xA;&#xD;&#xA;inner join red_dw.dbo.dim_matter_header_current d&#xD;&#xA; on d.dim_matter_header_curr_key = f.dim_matter_header_curr_key&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_matter_branch br&#xD;&#xA; on br.branch_code = d.branch_code&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;f.dim_matter_header_curr_key &gt; 0">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="MatterID" msprop:DbColumnName="MatterID" msprop:FriendlyName="MatterID" type="xs:int" minOccurs="0" />
@@ -27507,6 +27569,13 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                             </xs:simpleType>
                           </xs:element>
                           <xs:element name="dim_instruction_type_key" msprop:DbColumnName="dim_instruction_type_key" msprop:FriendlyName="dim_instruction_type_key" type="xs:int" minOccurs="0" />
+                          <xs:element name="PartnerName" msprop:DbColumnName="PartnerName" msprop:FriendlyName="PartnerName" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
