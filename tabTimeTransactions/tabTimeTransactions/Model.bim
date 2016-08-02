@@ -605,6 +605,11 @@
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>PartnerName</Name>
                 </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>LastTimeDate</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>LastTimeDate</Name>
+                </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
@@ -1440,6 +1445,31 @@
               </NameColumn>
               <OrderBy>Key</OrderBy>
             </Attribute>
+            <Attribute>
+              <ID>LastTimeDate</ID>
+              <Name>LastTimeDate</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                    <ColumnID>LastTimeDate</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                  <ColumnID>LastTimeDate</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
           </Attributes>
           <ProactiveCaching>
             <SilenceInterval>-PT1S</SilenceInterval>
@@ -1652,6 +1682,29 @@
                 <Attributes>
                   <Attribute>
                     <AttributeID>dim_instruction_type_key</AttributeID>
+                  </Attribute>
+                </Attributes>
+              </ddl300_300:ToRelationshipEnd>
+            </ddl300_300:Relationship>
+            <ddl300_300:Relationship>
+              <ID>322e9354-dc5b-4741-ba17-20ae1ac5bf5d</ID>
+              <ddl300_300:FromRelationshipEnd>
+                <ddl300_300:Multiplicity>Many</ddl300_300:Multiplicity>
+                <ddl300:VisualizationProperties />
+                <DimensionID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</DimensionID>
+                <Attributes>
+                  <Attribute>
+                    <AttributeID>LastTimeDate</AttributeID>
+                  </Attribute>
+                </Attributes>
+              </ddl300_300:FromRelationshipEnd>
+              <ddl300_300:ToRelationshipEnd>
+                <ddl300_300:Multiplicity>One</ddl300_300:Multiplicity>
+                <ddl300:VisualizationProperties />
+                <DimensionID>dimDateLastTime_55a93974-a33e-4f88-9351-43b631401c1e</DimensionID>
+                <Attributes>
+                  <Attribute>
+                    <AttributeID>LastTimeDate</AttributeID>
                   </Attribute>
                 </Attributes>
               </ddl300_300:ToRelationshipEnd>
@@ -9378,6 +9431,7 @@
                 </AttributeRelationship>
                 <AttributeRelationship>
                   <AttributeID>LastTimeDate</AttributeID>
+                  <Cardinality>One</Cardinality>
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>LastTimeDate</Name>
                 </AttributeRelationship>
@@ -9515,7 +9569,7 @@
                 <KeyColumn>
                   <DataType>Date</DataType>
                   <DataSize>-1</DataSize>
-                  <NullProcessing>Preserve</NullProcessing>
+                  <NullProcessing>Error</NullProcessing>
                   <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
                   <Source xsi:type="ColumnBinding">
                     <TableID>dimDateLastTime_55a93974-a33e-4f88-9351-43b631401c1e</TableID>
@@ -11519,6 +11573,9 @@
                 <Attribute>
                   <AttributeID>PartnerName</AttributeID>
                 </Attribute>
+                <Attribute>
+                  <AttributeID>LastTimeDate</AttributeID>
+                </Attribute>
               </Attributes>
             </Dimension>
             <Dimension>
@@ -13282,6 +13339,20 @@ left join sql2008svr.axxia01.dbo.caclextn crm
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>LastTimeDate</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                            <ColumnID>LastTimeDate</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
                 </Dimension>
@@ -14709,6 +14780,297 @@ left join sql2008svr.axxia01.dbo.caclextn crm
                   <Materialization>Regular</Materialization>
                   <ddl300:RelationshipID>16a3c663-edc7-45d5-a792-a50eda887f6b</ddl300:RelationshipID>
                 </Dimension>
+                <Dimension xsi:type="ReferenceMeasureGroupDimension">
+                  <CubeDimensionID>dimDateLastTime_55a93974-a33e-4f88-9351-43b631401c1e</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>RowNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>4</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ddl200_200:RowNumberBinding" />
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>LastTimeKey</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateLastTime_55a93974-a33e-4f88-9351-43b631401c1e</TableID>
+                            <ColumnID>LastTimeKey</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>LastTimeDate</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateLastTime_55a93974-a33e-4f88-9351-43b631401c1e</TableID>
+                            <ColumnID>LastTimeDate</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>LastTimeDayInMonth</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateLastTime_55a93974-a33e-4f88-9351-43b631401c1e</TableID>
+                            <ColumnID>LastTimeDayInMonth</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>LastTimeDayInYear</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateLastTime_55a93974-a33e-4f88-9351-43b631401c1e</TableID>
+                            <ColumnID>LastTimeDayInYear</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>LastTimeWeekdayNo</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateLastTime_55a93974-a33e-4f88-9351-43b631401c1e</TableID>
+                            <ColumnID>LastTimeWeekdayNo</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>LastTimeWeekdayName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateLastTime_55a93974-a33e-4f88-9351-43b631401c1e</TableID>
+                            <ColumnID>LastTimeWeekdayName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>LastTimeCalendarWeek</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateLastTime_55a93974-a33e-4f88-9351-43b631401c1e</TableID>
+                            <ColumnID>LastTimeCalendarWeek</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>LastTimeCalendarMonthNo</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateLastTime_55a93974-a33e-4f88-9351-43b631401c1e</TableID>
+                            <ColumnID>LastTimeCalendarMonthNo</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>LastTimeCalendarMonthName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateLastTime_55a93974-a33e-4f88-9351-43b631401c1e</TableID>
+                            <ColumnID>LastTimeCalendarMonthName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>LastTimeCalendarQuarterNo</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateLastTime_55a93974-a33e-4f88-9351-43b631401c1e</TableID>
+                            <ColumnID>LastTimeCalendarQuarterNo</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>LastTimeCalendarYear</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateLastTime_55a93974-a33e-4f88-9351-43b631401c1e</TableID>
+                            <ColumnID>LastTimeCalendarYear</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>LastTimeFinancialWeek</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateLastTime_55a93974-a33e-4f88-9351-43b631401c1e</TableID>
+                            <ColumnID>LastTimeFinancialWeek</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>LastTimeFinancialMonthNo</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateLastTime_55a93974-a33e-4f88-9351-43b631401c1e</TableID>
+                            <ColumnID>LastTimeFinancialMonthNo</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>LastTimeFinancialMonthName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateLastTime_55a93974-a33e-4f88-9351-43b631401c1e</TableID>
+                            <ColumnID>LastTimeFinancialMonthName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>LastTimeFinancialQuarterNo</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateLastTime_55a93974-a33e-4f88-9351-43b631401c1e</TableID>
+                            <ColumnID>LastTimeFinancialQuarterNo</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>LastTimeFinancialYear</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateLastTime_55a93974-a33e-4f88-9351-43b631401c1e</TableID>
+                            <ColumnID>LastTimeFinancialYear</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>LastTimeWeekend</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateLastTime_55a93974-a33e-4f88-9351-43b631401c1e</TableID>
+                            <ColumnID>LastTimeWeekend</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>LastTimeHoliday</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateLastTime_55a93974-a33e-4f88-9351-43b631401c1e</TableID>
+                            <ColumnID>LastTimeHoliday</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                  </Attributes>
+                  <IntermediateCubeDimensionID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</IntermediateCubeDimensionID>
+                  <IntermediateGranularityAttributeID>LastTimeDate</IntermediateGranularityAttributeID>
+                  <Materialization>Regular</Materialization>
+                  <ddl300:RelationshipID>322e9354-dc5b-4741-ba17-20ae1ac5bf5d</ddl300:RelationshipID>
+                </Dimension>
               </Dimensions>
               <Partitions>
                 <Partition>
@@ -14756,12 +15118,14 @@ number_bills_matter NumberOfBillsRaised,
 unbilled_time UnbilledTime,
 case when d.case_id is null then 'No' else 'Yes' end HasRecordInCashdr,
 dim_last_bill_date_key LastBillDate,
+dim_last_transaction_date_key LastTimeDate,
 fixed_fee FixedFee,
 fixed_fee_amount FixedFeeAmount,
 delegated Delegated,
 d.ms_client_code,
 d.dim_instruction_type_key,
 d.matter_partner_full_name as 'PartnerName'
+
 from
 red_dw.dbo.fact_matter_summary_current f
 
@@ -18765,6 +19129,20 @@ red_dw.dbo.dim_matter_branch</QueryDefinition>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>LastTimeDate</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                            <ColumnID>LastTimeDate</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <IntermediateCubeDimensionID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</IntermediateCubeDimensionID>
                   <IntermediateGranularityAttributeID>MatterID</IntermediateGranularityAttributeID>
@@ -19933,6 +20311,295 @@ red_dw.dbo.dim_matter_branch</QueryDefinition>
                   </Attributes>
                   <IntermediateCubeDimensionID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</IntermediateCubeDimensionID>
                   <IntermediateGranularityAttributeID>dim_instruction_type_key</IntermediateGranularityAttributeID>
+                </Dimension>
+                <Dimension xsi:type="ReferenceMeasureGroupDimension">
+                  <CubeDimensionID>dimDateLastTime_55a93974-a33e-4f88-9351-43b631401c1e</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>RowNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>4</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ddl200_200:RowNumberBinding" />
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>LastTimeKey</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateLastTime_55a93974-a33e-4f88-9351-43b631401c1e</TableID>
+                            <ColumnID>LastTimeKey</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>LastTimeDate</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateLastTime_55a93974-a33e-4f88-9351-43b631401c1e</TableID>
+                            <ColumnID>LastTimeDate</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>LastTimeDayInMonth</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateLastTime_55a93974-a33e-4f88-9351-43b631401c1e</TableID>
+                            <ColumnID>LastTimeDayInMonth</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>LastTimeDayInYear</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateLastTime_55a93974-a33e-4f88-9351-43b631401c1e</TableID>
+                            <ColumnID>LastTimeDayInYear</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>LastTimeWeekdayNo</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateLastTime_55a93974-a33e-4f88-9351-43b631401c1e</TableID>
+                            <ColumnID>LastTimeWeekdayNo</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>LastTimeWeekdayName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateLastTime_55a93974-a33e-4f88-9351-43b631401c1e</TableID>
+                            <ColumnID>LastTimeWeekdayName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>LastTimeCalendarWeek</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateLastTime_55a93974-a33e-4f88-9351-43b631401c1e</TableID>
+                            <ColumnID>LastTimeCalendarWeek</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>LastTimeCalendarMonthNo</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateLastTime_55a93974-a33e-4f88-9351-43b631401c1e</TableID>
+                            <ColumnID>LastTimeCalendarMonthNo</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>LastTimeCalendarMonthName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateLastTime_55a93974-a33e-4f88-9351-43b631401c1e</TableID>
+                            <ColumnID>LastTimeCalendarMonthName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>LastTimeCalendarQuarterNo</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateLastTime_55a93974-a33e-4f88-9351-43b631401c1e</TableID>
+                            <ColumnID>LastTimeCalendarQuarterNo</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>LastTimeCalendarYear</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateLastTime_55a93974-a33e-4f88-9351-43b631401c1e</TableID>
+                            <ColumnID>LastTimeCalendarYear</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>LastTimeFinancialWeek</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateLastTime_55a93974-a33e-4f88-9351-43b631401c1e</TableID>
+                            <ColumnID>LastTimeFinancialWeek</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>LastTimeFinancialMonthNo</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateLastTime_55a93974-a33e-4f88-9351-43b631401c1e</TableID>
+                            <ColumnID>LastTimeFinancialMonthNo</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>LastTimeFinancialMonthName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateLastTime_55a93974-a33e-4f88-9351-43b631401c1e</TableID>
+                            <ColumnID>LastTimeFinancialMonthName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>LastTimeFinancialQuarterNo</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateLastTime_55a93974-a33e-4f88-9351-43b631401c1e</TableID>
+                            <ColumnID>LastTimeFinancialQuarterNo</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>LastTimeFinancialYear</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateLastTime_55a93974-a33e-4f88-9351-43b631401c1e</TableID>
+                            <ColumnID>LastTimeFinancialYear</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>LastTimeWeekend</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateLastTime_55a93974-a33e-4f88-9351-43b631401c1e</TableID>
+                            <ColumnID>LastTimeWeekend</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>LastTimeHoliday</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateLastTime_55a93974-a33e-4f88-9351-43b631401c1e</TableID>
+                            <ColumnID>LastTimeHoliday</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                  </Attributes>
+                  <IntermediateCubeDimensionID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</IntermediateCubeDimensionID>
+                  <IntermediateGranularityAttributeID>LastTimeDate</IntermediateGranularityAttributeID>
                 </Dimension>
               </Dimensions>
               <Partitions>
@@ -27489,7 +28156,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="Matter" msprop:DbTableName="factMatter" msprop:TableType="View" msprop:Description="factMatter" msprop:QueryDefinition="select distinct &#xD;&#xA;f.dim_matter_header_curr_key MatterID,&#xD;&#xA;f.dim_fed_hierarchy_history_key FEDCodeID,&#xD;&#xA;d.dim_matter_group_key MatterGroupID,&#xD;&#xA;br.dim_matter_branch_key BranchID,&#xD;&#xA;d.dim_matter_worktype_key WorkTypeID,&#xD;&#xA;d.dim_department_key DepartmentID,&#xD;&#xA;d.matter_partner_code PartnerCode,&#xD;&#xA;d.matter_number MatterNumber,&#xD;&#xA;CASE WHEN ISNUMERIC(d.matter_number) = 1 and rtrim(d.matter_number) != '.' THEN CAST(CAST(d.matter_number AS int) AS varchar) ELSE RTRIM(d.matter_number) END as 'MatterNumberTrimmed',&#xD;&#xA;f.dim_client_key ClientID,&#xD;&#xA;d.matter_description MatterDesc,&#xD;&#xA;dim_open_practice_management_date_key as DateMatterOpen,&#xD;&#xA;dim_closed_practice_management_date_key as DateMatterClosed,&#xD;&#xA;datediff(day, d.date_opened_case_management, isnull(d.date_closed_case_management, getdate())) AgeOfMatterDays,&#xD;&#xA;disbursement_balance DisbursementBalance,&#xD;&#xA;client_account_balance_of_matter ClientAccountBalance,&#xD;&#xA;unpaid_bill_balance UnpaidBillsBalance,&#xD;&#xA;wip_balance WIPBalance,&#xD;&#xA;costs_to_date CostsToDate,&#xD;&#xA;time_billed TotalTimeBilled,&#xD;&#xA;number_bills_matter NumberOfBillsRaised,&#xD;&#xA;unbilled_time UnbilledTime,&#xD;&#xA;case when d.case_id is null then 'No' else 'Yes' end HasRecordInCashdr,&#xD;&#xA;dim_last_bill_date_key LastBillDate,&#xD;&#xA;fixed_fee FixedFee,&#xD;&#xA;fixed_fee_amount FixedFeeAmount,&#xD;&#xA;delegated Delegated,&#xD;&#xA;d.ms_client_code,&#xD;&#xA;d.dim_instruction_type_key,&#xD;&#xA;d.matter_partner_full_name as 'PartnerName'&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_matter_summary_current f&#xD;&#xA;&#xD;&#xA;inner join red_dw.dbo.dim_matter_header_current d&#xD;&#xA; on d.dim_matter_header_curr_key = f.dim_matter_header_curr_key&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_matter_branch br&#xD;&#xA; on br.branch_code = d.branch_code&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;f.dim_matter_header_curr_key &gt; 0">
+                    <xs:element name="factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="Matter" msprop:DbTableName="factMatter" msprop:TableType="View" msprop:Description="factMatter" msprop:QueryDefinition="select distinct &#xD;&#xA;f.dim_matter_header_curr_key MatterID,&#xD;&#xA;f.dim_fed_hierarchy_history_key FEDCodeID,&#xD;&#xA;d.dim_matter_group_key MatterGroupID,&#xD;&#xA;br.dim_matter_branch_key BranchID,&#xD;&#xA;d.dim_matter_worktype_key WorkTypeID,&#xD;&#xA;d.dim_department_key DepartmentID,&#xD;&#xA;d.matter_partner_code PartnerCode,&#xD;&#xA;d.matter_number MatterNumber,&#xD;&#xA;CASE WHEN ISNUMERIC(d.matter_number) = 1 and rtrim(d.matter_number) != '.' THEN CAST(CAST(d.matter_number AS int) AS varchar) ELSE RTRIM(d.matter_number) END as 'MatterNumberTrimmed',&#xD;&#xA;f.dim_client_key ClientID,&#xD;&#xA;d.matter_description MatterDesc,&#xD;&#xA;dim_open_practice_management_date_key as DateMatterOpen,&#xD;&#xA;dim_closed_practice_management_date_key as DateMatterClosed,&#xD;&#xA;datediff(day, d.date_opened_case_management, isnull(d.date_closed_case_management, getdate())) AgeOfMatterDays,&#xD;&#xA;disbursement_balance DisbursementBalance,&#xD;&#xA;client_account_balance_of_matter ClientAccountBalance,&#xD;&#xA;unpaid_bill_balance UnpaidBillsBalance,&#xD;&#xA;wip_balance WIPBalance,&#xD;&#xA;costs_to_date CostsToDate,&#xD;&#xA;time_billed TotalTimeBilled,&#xD;&#xA;number_bills_matter NumberOfBillsRaised,&#xD;&#xA;unbilled_time UnbilledTime,&#xD;&#xA;case when d.case_id is null then 'No' else 'Yes' end HasRecordInCashdr,&#xD;&#xA;dim_last_bill_date_key LastBillDate,&#xD;&#xA;dim_last_transaction_date_key LastTimeDate,&#xD;&#xA;fixed_fee FixedFee,&#xD;&#xA;fixed_fee_amount FixedFeeAmount,&#xD;&#xA;delegated Delegated,&#xD;&#xA;d.ms_client_code,&#xD;&#xA;d.dim_instruction_type_key,&#xD;&#xA;d.matter_partner_full_name as 'PartnerName'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_matter_summary_current f&#xD;&#xA;&#xD;&#xA;inner join red_dw.dbo.dim_matter_header_current d&#xD;&#xA; on d.dim_matter_header_curr_key = f.dim_matter_header_curr_key&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_matter_branch br&#xD;&#xA; on br.branch_code = d.branch_code&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;f.dim_matter_header_curr_key &gt; 0">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="MatterID" msprop:DbColumnName="MatterID" msprop:FriendlyName="MatterID" type="xs:int" minOccurs="0" />
@@ -27576,6 +28243,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                               </xs:restriction>
                             </xs:simpleType>
                           </xs:element>
+                          <xs:element name="LastTimeDate" msprop:DbColumnName="LastTimeDate" msprop:FriendlyName="LastTimeDate" type="xs:int" minOccurs="0" />
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
