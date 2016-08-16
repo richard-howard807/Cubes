@@ -3338,20 +3338,14 @@
           <Name>DWHProgress</Name>
           <Annotations>
             <Annotation>
-              <Name>IsQueryEditorUsed</Name>
-              <Value>True</Value>
+              <Name>TableWidgetSerialization</Name>
             </Annotation>
             <Annotation>
               <Name>QueryEditorSerialization</Name>
             </Annotation>
             <Annotation>
-              <Name>TableWidgetSerialization</Name>
-            </Annotation>
-            <Annotation>
-              <Name>DataMarketWebBaseUrl</Name>
-            </Annotation>
-            <Annotation>
-              <Name>DataMarketWebQueryUrl</Name>
+              <Name>IsQueryEditorUsed</Name>
+              <Value>True</Value>
             </Annotation>
           </Annotations>
           <Source xsi:type="DataSourceViewBinding">
@@ -3517,6 +3511,11 @@
                   <AttributeID>DependencyStatus</AttributeID>
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>DependencyStatus</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>RevisedPriority</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>RevisedPriority</Name>
                 </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
@@ -4434,6 +4433,31 @@
               </NameColumn>
               <OrderBy>Key</OrderBy>
             </Attribute>
+            <Attribute>
+              <ID>RevisedPriority</ID>
+              <Name>RevisedPriority</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>DWHProgress_60a14ad6-cc95-400c-a6fe-7b86cbcc771e</TableID>
+                    <ColumnID>RevisedPriority</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>DWHProgress_60a14ad6-cc95-400c-a6fe-7b86cbcc771e</TableID>
+                  <ColumnID>RevisedPriority</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
           </Attributes>
           <ProactiveCaching>
             <SilenceInterval>-PT1S</SilenceInterval>
@@ -4856,6 +4880,9 @@
                 </Attribute>
                 <Attribute>
                   <AttributeID>DependencyStatus</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>RevisedPriority</AttributeID>
                 </Attribute>
               </Attributes>
             </Dimension>
@@ -6314,6 +6341,20 @@
                           <Source xsi:type="ColumnBinding">
                             <TableID>DWHProgress_60a14ad6-cc95-400c-a6fe-7b86cbcc771e</TableID>
                             <ColumnID>DependencyStatus</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>RevisedPriority</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>DWHProgress_60a14ad6-cc95-400c-a6fe-7b86cbcc771e</TableID>
+                            <ColumnID>RevisedPriority</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -8916,6 +8957,20 @@ order by 3</QueryDefinition>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>RevisedPriority</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>DWHProgress_60a14ad6-cc95-400c-a6fe-7b86cbcc771e</TableID>
+                            <ColumnID>RevisedPriority</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
                 </Dimension>
@@ -8926,14 +8981,17 @@ order by 3</QueryDefinition>
                   <Name>DWHProgress</Name>
                   <Annotations>
                     <Annotation>
-                      <Name>IsQueryEditorUsed</Name>
-                      <Value>True</Value>
+                      <Name>TableWidgetSerialization</Name>
+                    </Annotation>
+                    <Annotation>
+                      <Name>TableWidgetSourceTable</Name>
                     </Annotation>
                     <Annotation>
                       <Name>QueryEditorSerialization</Name>
                     </Annotation>
                     <Annotation>
-                      <Name>TableWidgetSerialization</Name>
+                      <Name>IsQueryEditorUsed</Name>
+                      <Value>True</Value>
                     </Annotation>
                   </Annotations>
                   <Source xsi:type="QueryBinding">
@@ -9804,6 +9862,13 @@ CREATE MEASURE 'dimReportCatalogue'[New Reports on 2012]=sum([NewReport]);
                             </xs:simpleType>
                           </xs:element>
                           <xs:element name="DependencyStatus" msprop:DbColumnName="DependencyStatus" msprop:FriendlyName="DependencyStatus" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="RevisedPriority" msprop:DbColumnName="RevisedPriority" msprop:FriendlyName="RevisedPriority" minOccurs="0">
                             <xs:simpleType>
                               <xs:restriction base="xs:string">
                                 <xs:maxLength value="32768" />
