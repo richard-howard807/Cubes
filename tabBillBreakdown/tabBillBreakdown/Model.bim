@@ -5221,6 +5221,16 @@
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>workhrs</Name>
                 </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>bill_rate</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>bill_rate</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>bill_hours</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>bill_hours</Name>
+                </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
@@ -6104,6 +6114,56 @@
                 <Source xsi:type="ColumnBinding">
                   <TableID>fact_bill_detail_8a9a376f-026d-4963-b677-2da451051fe7</TableID>
                   <ColumnID>workhrs</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>bill_rate</ID>
+              <Name>bill_rate</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Double</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>fact_bill_detail_8a9a376f-026d-4963-b677-2da451051fe7</TableID>
+                    <ColumnID>bill_rate</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>fact_bill_detail_8a9a376f-026d-4963-b677-2da451051fe7</TableID>
+                  <ColumnID>bill_rate</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>bill_hours</ID>
+              <Name>bill_hours</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Double</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>fact_bill_detail_8a9a376f-026d-4963-b677-2da451051fe7</TableID>
+                    <ColumnID>bill_hours</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>fact_bill_detail_8a9a376f-026d-4963-b677-2da451051fe7</TableID>
+                  <ColumnID>bill_hours</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
@@ -14415,6 +14475,12 @@
                 <Attribute>
                   <AttributeID>workhrs</AttributeID>
                 </Attribute>
+                <Attribute>
+                  <AttributeID>bill_rate</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>bill_hours</AttributeID>
+                </Attribute>
               </Attributes>
             </Dimension>
             <Dimension>
@@ -18024,6 +18090,34 @@
                           <Source xsi:type="ColumnBinding">
                             <TableID>fact_bill_detail_8a9a376f-026d-4963-b677-2da451051fe7</TableID>
                             <ColumnID>workhrs</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>bill_rate</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Double</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_bill_detail_8a9a376f-026d-4963-b677-2da451051fe7</TableID>
+                            <ColumnID>bill_rate</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>bill_hours</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Double</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_bill_detail_8a9a376f-026d-4963-b677-2da451051fe7</TableID>
+                            <ColumnID>bill_hours</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -26762,6 +26856,8 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
                           <xs:element name="item_index" msprop:DbColumnName="item_index" msprop:FriendlyName="item_index" type="xs:int" minOccurs="0" />
                           <xs:element name="workamt" msprop:DbColumnName="workamt" msprop:FriendlyName="workamt" type="xs:decimal" minOccurs="0" />
                           <xs:element name="workhrs" msprop:DbColumnName="workhrs" msprop:FriendlyName="workhrs" type="xs:decimal" minOccurs="0" />
+                          <xs:element name="bill_rate" msprop:DbColumnName="bill_rate" msprop:FriendlyName="bill_rate" type="xs:decimal" minOccurs="0" />
+                          <xs:element name="bill_hours" msprop:DbColumnName="bill_hours" msprop:FriendlyName="bill_hours" type="xs:decimal" minOccurs="0" />
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
