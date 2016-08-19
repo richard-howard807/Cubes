@@ -1139,7 +1139,11 @@
                 <Annotation>
                   <Name>Format</Name>
                   <Value>
-                    <Format Format="DateTimeGeneral" xmlns="" />
+                    <Format Format="DateTimeCustom" xmlns="">
+                      <DateTimes>
+                        <DateTime LCID="2057" Group="ShortDate" FormatString="dd/MM/yyyy" />
+                      </DateTimes>
+                    </Format>
                   </Value>
                 </Annotation>
               </Annotations>
@@ -1177,7 +1181,7 @@
                 </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
-              <ddl300_300:FormatString>General Date</ddl300_300:FormatString>
+              <ddl300_300:FormatString>dd/MM/yyyy</ddl300_300:FormatString>
             </Attribute>
             <Attribute>
               <Annotations>
@@ -7690,9 +7694,9 @@ DateKey</QueryDefinition>
  end as 'Status',
   b.ReportID,
   case when coalesce([08Live], [08Retired]) is null 
-		and coalesce([12Live], [12UAT], [12Dev], [12Retired]) is not null 
-		then 1
-		else 0 
+  and coalesce([12Live], [12UAT], [12Dev], [12Retired]) is not null 
+  then 1
+  else 0 
   end as 'NewReport'
 from 
 Reporting.dw.ExecutionStatsNew e
