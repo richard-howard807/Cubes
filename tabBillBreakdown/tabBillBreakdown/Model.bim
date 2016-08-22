@@ -5806,6 +5806,16 @@
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>bill_quantity</Name>
                 </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>timekeeper</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>timekeeper</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>is_reversed</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>is_reversed</Name>
+                </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
@@ -6764,6 +6774,56 @@
                 <Source xsi:type="ColumnBinding">
                   <TableID>fact_bill_detail_8a9a376f-026d-4963-b677-2da451051fe7</TableID>
                   <ColumnID>bill_quantity</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>timekeeper</ID>
+              <Name>timekeeper</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>fact_bill_detail_8a9a376f-026d-4963-b677-2da451051fe7</TableID>
+                    <ColumnID>timekeeper</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>fact_bill_detail_8a9a376f-026d-4963-b677-2da451051fe7</TableID>
+                  <ColumnID>timekeeper</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>is_reversed</ID>
+              <Name>is_reversed</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>UnsignedTinyInt</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>fact_bill_detail_8a9a376f-026d-4963-b677-2da451051fe7</TableID>
+                    <ColumnID>is_reversed</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>fact_bill_detail_8a9a376f-026d-4963-b677-2da451051fe7</TableID>
+                  <ColumnID>is_reversed</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
@@ -15141,6 +15201,12 @@
                 <Attribute>
                   <AttributeID>bill_quantity</AttributeID>
                 </Attribute>
+                <Attribute>
+                  <AttributeID>timekeeper</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>is_reversed</AttributeID>
+                </Attribute>
               </Attributes>
             </Dimension>
             <Dimension>
@@ -19065,6 +19131,34 @@
                           <Source xsi:type="ColumnBinding">
                             <TableID>fact_bill_detail_8a9a376f-026d-4963-b677-2da451051fe7</TableID>
                             <ColumnID>bill_quantity</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>timekeeper</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_bill_detail_8a9a376f-026d-4963-b677-2da451051fe7</TableID>
+                            <ColumnID>timekeeper</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>is_reversed</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>UnsignedTinyInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_bill_detail_8a9a376f-026d-4963-b677-2da451051fe7</TableID>
+                            <ColumnID>is_reversed</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -28121,6 +28215,14 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
                           <xs:element name="bill_rate" msprop:DbColumnName="bill_rate" msprop:FriendlyName="bill_rate" type="xs:decimal" minOccurs="0" />
                           <xs:element name="bill_hours" msprop:DbColumnName="bill_hours" msprop:FriendlyName="bill_hours" type="xs:decimal" minOccurs="0" />
                           <xs:element name="bill_quantity" msprop:DbColumnName="bill_quantity" msprop:FriendlyName="bill_quantity" type="xs:decimal" minOccurs="0" />
+                          <xs:element name="timekeeper" msprop:DbColumnName="timekeeper" msprop:FriendlyName="timekeeper" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="is_reversed" msprop:DbColumnName="is_reversed" msprop:FriendlyName="is_reversed" type="xs:unsignedByte" minOccurs="0" />
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
