@@ -277,7 +277,7 @@
       <xs:element name="Debt_x0020_Monthly" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:design-time-name="86ff2d31-8fcc-4c5e-a2c3-53bedc401473">
         <xs:complexType>
           <xs:choice minOccurs="0" maxOccurs="unbounded">
-            <xs:element name="dbo_fact_debt_monthly" msprop:design-time-name="847fe45c-e0f9-4674-89fa-ad272bb08009" msprop:IsLogical="True" msprop:FriendlyName="fact_debt_monthly" msprop:DbTableName="fact_debt_monthly" msprop:TableType="View" msprop:QueryDefinition="SELECT        dim_client_key, dim_mat_head_history_key, dim_matter_header_curr_key, dim_bill_key, dim_bill_date_key, dim_fed_matter_owner_key, dim_days_banding_key, dim_transaction_date_key, source_system_id, &#xD;&#xA;                         client_code, matter_number, bill_number, bill_date, matter_owner, outstanding_total_bill, outstanding_costs, age_of_debt, debt_date, debt_month, dss_update_time, master_fact_key, &#xD;&#xA;                         CASE WHEN age_of_debt &gt; 90 THEN outstanding_total_bill ELSE NULL END AS 'debt_over_90_days'&#xD;&#xA;FROM            fact_debt_monthly" msprop:QueryBuilder="SpecificQueryBuilder">
+            <xs:element name="dbo_fact_debt_monthly" msprop:design-time-name="847fe45c-e0f9-4674-89fa-ad272bb08009" msprop:IsLogical="True" msprop:FriendlyName="fact_debt_monthly" msprop:DbTableName="fact_debt_monthly" msprop:TableType="View" msprop:QueryDefinition="SELECT        dim_client_key, dim_mat_head_history_key, dim_matter_header_curr_key, dim_bill_key, dim_bill_date_key, dim_fed_matter_owner_key, dim_days_banding_key, dim_transaction_date_key, source_system_id, &#xD;&#xA;                         client_code, matter_number, bill_number, bill_date, matter_owner, outstanding_total_bill, outstanding_costs, age_of_debt, debt_date, debt_month, dss_update_time, master_fact_key, &#xD;&#xA;                         CASE WHEN age_of_debt &gt; 90 THEN outstanding_total_bill ELSE NULL END AS 'debt_over_90_days'&#xD;&#xA;FROM            fact_debt_monthly&#xD;&#xA;WHERE        (dim_transaction_date_key &gt;= 20160801)" msprop:QueryBuilder="SpecificQueryBuilder">
               <xs:complexType>
                 <xs:sequence>
                   <xs:element name="dim_client_key" msprop:design-time-name="f6be6764-86bc-4297-afe4-45f340c33018" msprop:DbColumnName="dim_client_key" msprop:FriendlyName="dim_client_key" type="xs:int" minOccurs="0" />
@@ -331,7 +331,7 @@
                   </xs:element>
                   <xs:element name="dss_update_time" msprop:design-time-name="2b49d381-a131-4666-952c-db4802cab073" msprop:DbColumnName="dss_update_time" msprop:FriendlyName="dss_update_time" type="xs:dateTime" minOccurs="0" />
                   <xs:element name="master_fact_key" msprop:design-time-name="cfdb1ceb-2620-4ade-a562-845d7362ddee" msprop:DbColumnName="master_fact_key" msprop:FriendlyName="master_fact_key" type="xs:int" minOccurs="0" />
-                  <xs:element name="debt_over_90_days" msprop:DbColumnName="debt_over_90_days" msprop:design-time-name="2695e99c-1aff-4c14-9a8a-05a612f1145d" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="debt_over_90_days" msprop:design-time-name="2695e99c-1aff-4c14-9a8a-05a612f1145d" msprop:DbColumnName="debt_over_90_days" type="xs:decimal" minOccurs="0" />
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
@@ -1338,9 +1338,9 @@
           <msdata:Relationship name="fact_debt_monthly-dim_matter_header_history" msdata:parent="dbo_dim_matter_header_history" msdata:child="dbo_fact_debt_monthly" msdata:parentkey="dim_mat_head_history_key" msdata:childkey="dim_mat_head_history_key" msprop:IsLogical="True" />
           <msdata:Relationship name="fact_debt_monthly-dim_bill" msdata:parent="dbo_dim_bill" msdata:child="dbo_fact_debt_monthly" msdata:parentkey="dim_bill_key" msdata:childkey="dim_bill_key" msprop:IsLogical="True" />
           <msdata:Relationship name="fact_debt_monthly-dim_days_banding" msdata:parent="dbo_dim_days_banding" msdata:child="dbo_fact_debt_monthly" msdata:parentkey="dim_days_banding_key" msdata:childkey="dim_days_banding_key" msprop:IsLogical="True" />
-          <msdata:Relationship name="fact_debt_monthly-dim_date" msdata:parent="dbo_dim_date" msdata:child="dbo_fact_debt_monthly" msdata:parentkey="dim_date_key" msdata:childkey="dim_transaction_date_key" msprop:Description="" msprop:IsLogical="True" />
-          <msdata:Relationship name="fact_debt_monthly-dim_fed_hierarchy_history" msdata:parent="dbo_dim_fed_hierarchy_history" msdata:child="dbo_fact_debt_monthly" msdata:parentkey="dim_fed_hierarchy_history_key" msdata:childkey="dim_fed_matter_owner_key" msprop:Description="" msprop:IsLogical="True" />
-          <msdata:Relationship name="fact_debt_monthly-dim_date1" msdata:parent="dbo_dim_date" msdata:child="dbo_fact_debt_monthly" msdata:parentkey="dim_date_key" msdata:childkey="dim_bill_date_key" msprop:Description="" msprop:IsLogical="True" />
+          <msdata:Relationship name="fact_debt_monthly-dim_date" msdata:parent="dbo_dim_date" msdata:child="dbo_fact_debt_monthly" msdata:parentkey="dim_date_key" msdata:childkey="dim_transaction_date_key" msprop:IsLogical="True" msprop:Description="" />
+          <msdata:Relationship name="fact_debt_monthly-dim_fed_hierarchy_history" msdata:parent="dbo_dim_fed_hierarchy_history" msdata:child="dbo_fact_debt_monthly" msdata:parentkey="dim_fed_hierarchy_history_key" msdata:childkey="dim_fed_matter_owner_key" msprop:IsLogical="True" msprop:Description="" />
+          <msdata:Relationship name="fact_debt_monthly-dim_date1" msdata:parent="dbo_dim_date" msdata:child="dbo_fact_debt_monthly" msdata:parentkey="dim_date_key" msdata:childkey="dim_bill_date_key" msprop:IsLogical="True" msprop:Description="" />
         </xs:appinfo>
       </xs:annotation>
     </xs:schema>
