@@ -11118,6 +11118,11 @@
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>TimeTransactionsEmployeeLevel</Name>
                 </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>employeeid</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>employeeid</Name>
+                </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
@@ -11229,6 +11234,31 @@
                 <Source xsi:type="ColumnBinding">
                   <TableID>dimEmployee_14781c56-a2bf-42af-80fb-9ec43239c1e8</TableID>
                   <ColumnID>TimeTransactionsEmployeeLevel</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>employeeid</ID>
+              <Name>employeeid</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimEmployee_14781c56-a2bf-42af-80fb-9ec43239c1e8</TableID>
+                    <ColumnID>employeeid</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimEmployee_14781c56-a2bf-42af-80fb-9ec43239c1e8</TableID>
+                  <ColumnID>employeeid</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
@@ -12894,6 +12924,9 @@
                 </Attribute>
                 <Attribute>
                   <AttributeID>TimeTransactionsEmployeeLevel</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>employeeid</AttributeID>
                 </Attribute>
               </Attributes>
             </Dimension>
@@ -20848,6 +20881,20 @@ red_dw.dbo.dim_matter_branch</QueryDefinition>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>employeeid</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimEmployee_14781c56-a2bf-42af-80fb-9ec43239c1e8</TableID>
+                            <ColumnID>employeeid</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <IntermediateCubeDimensionID>dimFEDHierarchy_e077edfd-a3df-4415-9164-2f7aab15a75f</IntermediateCubeDimensionID>
                   <IntermediateGranularityAttributeID>dim_employee_key</IntermediateGranularityAttributeID>
@@ -23216,6 +23263,20 @@ dim_closed_practice_management_date_key &gt; 0</QueryDefinition>
                           <Source xsi:type="ColumnBinding">
                             <TableID>dimEmployee_14781c56-a2bf-42af-80fb-9ec43239c1e8</TableID>
                             <ColumnID>TimeTransactionsEmployeeLevel</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>employeeid</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimEmployee_14781c56-a2bf-42af-80fb-9ec43239c1e8</TableID>
+                            <ColumnID>employeeid</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -27694,6 +27755,20 @@ dim_all_time_narrative_key in ( select dim_all_time_narrative_key from fact_all_
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>employeeid</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimEmployee_14781c56-a2bf-42af-80fb-9ec43239c1e8</TableID>
+                            <ColumnID>employeeid</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
                 </Dimension>
@@ -27721,6 +27796,7 @@ dim_all_time_narrative_key in ( select dim_all_time_narrative_key from fact_all_
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
                     <QueryDefinition>select
 dim_employee_key,
+dim_employee.employeeid,
 levelidud as TimeTransactionsEmployeeLevel,
 workemail as TimeTransactionsEmployeeEmailAddress,
 worksforemail as TimeTransactionsEmployeeWorksForEmailAddress
@@ -30052,7 +30128,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimEmployee_14781c56-a2bf-42af-80fb-9ec43239c1e8" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimTimeTransactionsEmployee" msprop:DbTableName="dimEmployee" msprop:TableType="View" msprop:Description="dimEmployee" msprop:QueryDefinition="select&#xD;&#xA;dim_employee_key,&#xD;&#xA;levelidud as TimeTransactionsEmployeeLevel,&#xD;&#xA;workemail as TimeTransactionsEmployeeEmailAddress,&#xD;&#xA;worksforemail as TimeTransactionsEmployeeWorksForEmailAddress&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_employee">
+                    <xs:element name="dimEmployee_14781c56-a2bf-42af-80fb-9ec43239c1e8" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimTimeTransactionsEmployee" msprop:DbTableName="dimEmployee" msprop:TableType="View" msprop:Description="dimEmployee" msprop:QueryDefinition="select&#xD;&#xA;dim_employee_key,&#xD;&#xA;dim_employee.employeeid,&#xD;&#xA;levelidud as TimeTransactionsEmployeeLevel,&#xD;&#xA;workemail as TimeTransactionsEmployeeEmailAddress,&#xD;&#xA;worksforemail as TimeTransactionsEmployeeWorksForEmailAddress&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_employee">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="dim_employee_key" msprop:DbColumnName="dim_employee_key" msprop:FriendlyName="dim_employee_key" type="xs:int" minOccurs="0" />
@@ -30071,6 +30147,13 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                             </xs:simpleType>
                           </xs:element>
                           <xs:element name="TimeTransactionsEmployeeLevel" msprop:DbColumnName="TimeTransactionsEmployeeLevel" msprop:FriendlyName="TimeTransactionsEmployeeLevel" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="employeeid" msprop:DbColumnName="employeeid" msprop:FriendlyName="employeeid" minOccurs="0">
                             <xs:simpleType>
                               <xs:restriction base="xs:string">
                                 <xs:maxLength value="32768" />
