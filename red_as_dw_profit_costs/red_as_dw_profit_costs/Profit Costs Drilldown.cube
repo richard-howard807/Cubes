@@ -8,7 +8,7 @@
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
       <Value>
         <dds xmlns="">
-          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="42" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-13333" scrolltop="-2921" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="89" x="38709" y="22093" backcolor="2434342" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="42" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-13333" scrolltop="-2921" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="89" x="28893" y="22093" backcolor="2434342" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="1" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
             <font>
               <ddsxmlobjectstreamwrapper binary="01000000900144420100065461686f6d61" />
             </font>
@@ -456,9 +456,6 @@
         <Attribute dwd:design-time-name="48a5fd3e-50b8-4828-8a88-d266bccebb85">
           <AttributeID>Bill Number</AttributeID>
         </Attribute>
-        <Attribute dwd:design-time-name="b5580858-981e-4365-b7b9-cb97508783be">
-          <AttributeID>Record Type</AttributeID>
-        </Attribute>
       </Attributes>
       <AllMemberAggregationUsage>Full</AllMemberAggregationUsage>
     </Dimension>
@@ -552,6 +549,19 @@
           <HierarchyID>Hierarchy</HierarchyID>
         </Hierarchy>
       </Hierarchies>
+    </Dimension>
+    <Dimension dwd:design-time-name="f0d32f50-4f3f-403e-983c-26ae6886c7ba">
+      <ID>Fact Bill Activity</ID>
+      <Name>Fact Bill Activity</Name>
+      <DimensionID>Fact Bill Activity</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="0e07353c-fecc-411e-92c5-95a013a486f0">
+          <AttributeID>Fact Bill Activity Key</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="711587e9-3c1a-4641-a179-51a7578852a2">
+          <AttributeID>Bill Record Type</AttributeID>
+        </Attribute>
+      </Attributes>
     </Dimension>
   </Dimensions>
   <MeasureGroups>
@@ -720,18 +730,6 @@
                 </KeyColumn>
               </KeyColumns>
             </Attribute>
-            <Attribute dwd:design-time-name="bbe48b30-7a70-4ec9-8e78-5db1096307c0">
-              <AttributeID>Record Type</AttributeID>
-              <KeyColumns>
-                <KeyColumn dwd:design-time-name="dc2e00af-58e2-43eb-b2c1-d5d6cb2ec11c">
-                  <DataType>Integer</DataType>
-                  <Source xsi:type="ColumnBinding" dwd:design-time-name="242b8d85-74c6-448c-a804-0882a41e37ed">
-                    <TableID>dbo_dim_bill</TableID>
-                    <ColumnID>dim_bill_key</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-            </Attribute>
           </Attributes>
         </Dimension>
         <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="a362ffff-5df6-4cc9-85cc-0634323a44da">
@@ -815,6 +813,24 @@
                   <Source xsi:type="ColumnBinding" dwd:design-time-name="55f309dc-ef1d-43ad-adb4-56c0ae4080b2">
                     <TableID>dbo_fact_bill_activity</TableID>
                     <ColumnID>dim_fed_hierarchy_history_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+        <Dimension xsi:type="DegenerateMeasureGroupDimension" dwd:design-time-name="ad1c9b07-11cc-4e9e-88e8-4f4fd03b81b7">
+          <CubeDimensionID>Fact Bill Activity</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="7a3e1e69-79ce-4e92-bf3a-053318354985">
+              <AttributeID>Fact Bill Activity Key</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="c39c446f-e15b-45ac-89d0-81173118acb1">
+                  <DataType>Integer</DataType>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="484f5e17-aee6-492c-99e7-6b25536323ef">
+                    <TableID>dbo_fact_bill_activity</TableID>
+                    <ColumnID>fact_bill_activity_key</ColumnID>
                   </Source>
                 </KeyColumn>
               </KeyColumns>
@@ -1049,18 +1065,6 @@
                 <KeyColumn dwd:design-time-name="5d658236-87ce-49e6-9f3f-a02e2d5e58f5">
                   <DataType>Integer</DataType>
                   <Source xsi:type="ColumnBinding" dwd:design-time-name="3abb6635-136d-46f4-a523-3eef56b9bd2b">
-                    <TableID>dbo_dim_bill</TableID>
-                    <ColumnID>dim_bill_key</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-            </Attribute>
-            <Attribute dwd:design-time-name="d144a663-d960-4a32-b929-7a2b26f3e83c">
-              <AttributeID>Record Type</AttributeID>
-              <KeyColumns>
-                <KeyColumn dwd:design-time-name="058ef6af-4814-49a5-b6e9-2ed25a79a9b9">
-                  <DataType>Integer</DataType>
-                  <Source xsi:type="ColumnBinding" dwd:design-time-name="039a0548-295e-4785-bd48-38bb8e400991">
                     <TableID>dbo_dim_bill</TableID>
                     <ColumnID>dim_bill_key</ColumnID>
                   </Source>
