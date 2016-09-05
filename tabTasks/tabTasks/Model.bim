@@ -14296,6 +14296,11 @@
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>closed_case_management</Name>
                 </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>closed_practice_management</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>closed_practice_management</Name>
+                </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
@@ -14468,6 +14473,31 @@
                 <Source xsi:type="ColumnBinding">
                   <TableID>fact_matter_summary_current_e3a2c6bd-0983-4929-9594-61af7e820487</TableID>
                   <ColumnID>closed_case_management</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>closed_practice_management</ID>
+              <Name>closed_practice_management</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>fact_matter_summary_current_e3a2c6bd-0983-4929-9594-61af7e820487</TableID>
+                    <ColumnID>closed_practice_management</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>fact_matter_summary_current_e3a2c6bd-0983-4929-9594-61af7e820487</TableID>
+                  <ColumnID>closed_practice_management</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
@@ -15382,6 +15412,9 @@
                 </Attribute>
                 <Attribute>
                   <AttributeID>closed_case_management</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>closed_practice_management</AttributeID>
                 </Attribute>
               </Attributes>
             </Dimension>
@@ -24636,6 +24669,20 @@ FROM [dbo].[dim_task_owner]</QueryDefinition>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>closed_practice_management</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_matter_summary_current_e3a2c6bd-0983-4929-9594-61af7e820487</TableID>
+                            <ColumnID>closed_practice_management</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <IntermediateCubeDimensionID>fact_tasks_7d22b44a-276f-41fd-9a6e-d0b4f5ba2607</IntermediateCubeDimensionID>
                   <IntermediateGranularityAttributeID>master_fact_key</IntermediateGranularityAttributeID>
@@ -27508,6 +27555,20 @@ FROM [dbo].[dim_matter_owner]</QueryDefinition>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>closed_practice_management</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>fact_matter_summary_current_e3a2c6bd-0983-4929-9594-61af7e820487</TableID>
+                            <ColumnID>closed_practice_management</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
                 </Dimension>
@@ -27729,7 +27790,8 @@ dim_fed_hierarchy_history_key,
 wip_balance,
 client_account_balance_of_matter, 
 disbursement_balance,
-closed_case_management
+closed_case_management,
+closed_practice_management
 
 from
 fact_matter_summary_current</QueryDefinition>
@@ -29118,7 +29180,7 @@ CREATE MEASURE 'fact_matter_summary_current'[Sum of disbursement_balance]=SUM([d
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="fact_matter_summary_current_e3a2c6bd-0983-4929-9594-61af7e820487" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="fact_matter_summary_current" msprop:DbTableName="fact_matter_summary_current" msprop:TableType="View" msprop:Description="fact_matter_summary_current" msprop:QueryDefinition="select&#xD;&#xA;master_fact_key,&#xD;&#xA;dim_fed_hierarchy_history_key,&#xD;&#xA;wip_balance,&#xD;&#xA;client_account_balance_of_matter, &#xD;&#xA;disbursement_balance,&#xD;&#xA;closed_case_management&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;fact_matter_summary_current">
+                    <xs:element name="fact_matter_summary_current_e3a2c6bd-0983-4929-9594-61af7e820487" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="fact_matter_summary_current" msprop:DbTableName="fact_matter_summary_current" msprop:TableType="View" msprop:Description="fact_matter_summary_current" msprop:QueryDefinition="select&#xD;&#xA;master_fact_key,&#xD;&#xA;dim_fed_hierarchy_history_key,&#xD;&#xA;wip_balance,&#xD;&#xA;client_account_balance_of_matter, &#xD;&#xA;disbursement_balance,&#xD;&#xA;closed_case_management,&#xD;&#xA;closed_practice_management&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;fact_matter_summary_current">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="master_fact_key" msprop:DbColumnName="master_fact_key" msprop:FriendlyName="master_fact_key" type="xs:int" minOccurs="0" />
@@ -29127,6 +29189,7 @@ CREATE MEASURE 'fact_matter_summary_current'[Sum of disbursement_balance]=SUM([d
                           <xs:element name="client_account_balance_of_matter" msprop:DbColumnName="client_account_balance_of_matter" msprop:FriendlyName="client_account_balance_of_matter" type="xs:decimal" minOccurs="0" />
                           <xs:element name="disbursement_balance" msprop:DbColumnName="disbursement_balance" msprop:FriendlyName="disbursement_balance" type="xs:decimal" minOccurs="0" />
                           <xs:element name="closed_case_management" msprop:DbColumnName="closed_case_management" msprop:FriendlyName="closed_case_management" type="xs:int" minOccurs="0" />
+                          <xs:element name="closed_practice_management" msprop:DbColumnName="closed_practice_management" msprop:FriendlyName="closed_practice_management" type="xs:int" minOccurs="0" />
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
