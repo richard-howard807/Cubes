@@ -72,7 +72,7 @@ and dim_transaction_date_key &lt; replace(cast(getdate() as date), '-', '') - 1 
           </Annotations>
           <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
           <State>Unprocessed</State>
-          <Source xsi:type="QueryBinding" dwd:design-time-name="06717c9b-7a80-444b-9ac7-90afe28425f8">
+          <Source xsi:type="QueryBinding" dwd:design-time-name="e11dfcf5-0309-4af8-bf4a-a55142c8e821">
             <DataSourceID>Red Dw</DataSourceID>
             <QueryDefinition>SELECT    fact_wip_daily.master_fact_key,  fact_wip_daily.dim_fed_matter_owner_key,  fact_wip_daily.dim_matter_header_history_key, fact_wip_daily.dim_days_banding_key, fact_wip_daily.dim_client_key, fact_wip_daily.dim_transaction_date_key, fact_wip_daily.dim_fed_hierarchy_history_key, 
                          fact_wip_daily.wip_minutes, fact_wip_daily.wip_value, fact_detail_paid_detail.output_wip_hourly_rate, fact_detail_paid_detail.output_wip_fixed_fee_value, 
@@ -83,7 +83,7 @@ FROM            fact_wip_daily INNER JOIN
                          fact_dimension_main ON fact_dimension_main.master_fact_key = fact_wip_daily.master_fact_key INNER JOIN
                          dim_detail_finance ON dim_detail_finance.dim_detail_finance_key = fact_dimension_main.dim_detail_finance_key
 		where 
-		dim_transaction_date_key &gt;= '20160501'
+		dim_transaction_date_key &gt;= '20160822'
 		and dim_transaction_date_key &lt; cast(left(replace(cast(getdate() as date), '-', '') -1 , 6) as varchar(8)) + '01' and wip_value &lt;&gt; 0</QueryDefinition>
           </Source>
           <StorageMode>Molap</StorageMode>
@@ -91,31 +91,6 @@ FROM            fact_wip_daily INNER JOIN
           <ProcessingMode>Regular</ProcessingMode>
           <Slice>[Dim WIP Date].[Hierarchy].[Fin Year].&amp;[2017]</Slice>
           <AggregationDesignID>AggregationDesign</AggregationDesignID>
-        </Partition>
-        <Partition dwd:design-time-name="f5244880-9b6b-46a3-ab41-f00c58ec88b1">
-          <ID>Fact Wip Daily_old</ID>
-          <Name>Fact Wip Daily_old</Name>
-          <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
-          <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
-          <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
-          <State>Unprocessed</State>
-          <Source xsi:type="QueryBinding" dwd:design-time-name="58fddc47-4df0-4d8d-9d83-075add174f50">
-            <DataSourceID>Red Dw</DataSourceID>
-            <QueryDefinition>SELECT    fact_wip_daily.master_fact_key,   fact_wip_daily.dim_fed_matter_owner_key,  fact_wip_daily.dim_matter_header_history_key, fact_wip_daily.dim_days_banding_key, fact_wip_daily.dim_client_key, fact_wip_daily.dim_transaction_date_key, fact_wip_daily.dim_fed_hierarchy_history_key, 
-                         fact_wip_daily.wip_minutes, fact_wip_daily.wip_value, fact_detail_paid_detail.output_wip_hourly_rate, fact_detail_paid_detail.output_wip_fixed_fee_value, 
-                         dim_detail_finance.output_wip_percentage_of_completion, fact_detail_paid_detail.output_wip_current_value_of_fixed_fee_wip, fact_detail_paid_detail.output_wip_contingent_wip, 
-                         fact_detail_paid_detail.output_wip_other_tbc_wip, fact_detail_paid_detail.output_wip_total_output_wip
-FROM            fact_wip_daily INNER JOIN
-                         fact_detail_paid_detail ON fact_detail_paid_detail.master_fact_key = fact_wip_daily.master_fact_key INNER JOIN
-                         fact_dimension_main ON fact_dimension_main.master_fact_key = fact_wip_daily.master_fact_key INNER JOIN
-                         dim_detail_finance ON dim_detail_finance.dim_detail_finance_key = fact_dimension_main.dim_detail_finance_key
-		WHERE dim_transaction_date_key &lt; 20160501 and wip_value &lt;&gt; 0</QueryDefinition>
-          </Source>
-          <StorageMode>Molap</StorageMode>
-          <CurrentStorageMode>Molap</CurrentStorageMode>
-          <ProcessingMode>Regular</ProcessingMode>
-          <EstimatedRows>45164538</EstimatedRows>
-          <AggregationDesignID>AggregationDesign_old</AggregationDesignID>
         </Partition>
       </Partitions>
       <AggregationDesigns>
