@@ -8168,6 +8168,11 @@ order by 1&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryC
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>BillXBillID</Name>
                 </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>BillXBillDate</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>BillXBillDate</Name>
+                </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
@@ -8306,6 +8311,32 @@ order by 1&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryC
               <OrderBy>Key</OrderBy>
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
             </Attribute>
+            <Attribute>
+              <ID>BillXBillDate</ID>
+              <Name>BillXBillDate</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>BillExtension_f335d257-da82-45f9-8729-a19aea809c40</TableID>
+                    <ColumnID>BillXBillDate</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>BillExtension_f335d257-da82-45f9-8729-a19aea809c40</TableID>
+                  <ColumnID>BillXBillDate</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+              <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+            </Attribute>
           </Attributes>
           <ProactiveCaching>
             <SilenceInterval>-PT1S</SilenceInterval>
@@ -8357,6 +8388,29 @@ order by 1&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryC
                 <Attributes>
                   <Attribute>
                     <AttributeID>BillID</AttributeID>
+                  </Attribute>
+                </Attributes>
+              </ddl300_300:ToRelationshipEnd>
+            </ddl300_300:Relationship>
+            <ddl300_300:Relationship>
+              <ID>7503b37d-6c9a-482a-abd1-975605d01e65</ID>
+              <ddl300_300:FromRelationshipEnd>
+                <ddl300_300:Multiplicity>Many</ddl300_300:Multiplicity>
+                <ddl300:VisualizationProperties />
+                <DimensionID>BillExtension_f335d257-da82-45f9-8729-a19aea809c40</DimensionID>
+                <Attributes>
+                  <Attribute>
+                    <AttributeID>BillXBillDate</AttributeID>
+                  </Attribute>
+                </Attributes>
+              </ddl300_300:FromRelationshipEnd>
+              <ddl300_300:ToRelationshipEnd>
+                <ddl300_300:Multiplicity>One</ddl300_300:Multiplicity>
+                <ddl300:VisualizationProperties />
+                <DimensionID>dimDateBillXDate_809bb870-4f3e-4fdf-b736-bc0401353c13</DimensionID>
+                <Attributes>
+                  <Attribute>
+                    <AttributeID>BillXDateKey</AttributeID>
                   </Attribute>
                 </Attributes>
               </ddl300_300:ToRelationshipEnd>
@@ -10505,6 +10559,237 @@ order by 1&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryC
             <Source xsi:type="ProactiveCachingInheritedBinding" />
           </ProactiveCaching>
         </Dimension>
+        <Dimension>
+          <ID>dimDateBillXDate_809bb870-4f3e-4fdf-b736-bc0401353c13</ID>
+          <Name>dimDateBillXDate</Name>
+          <Annotations>
+            <Annotation>
+              <Name>IsQueryEditorUsed</Name>
+              <Value>True</Value>
+            </Annotation>
+            <Annotation>
+              <Name>QueryEditorSerialization</Name>
+            </Annotation>
+            <Annotation>
+              <Name>TableWidgetSerialization</Name>
+            </Annotation>
+            <Annotation>
+              <Name>DataMarketWebBaseUrl</Name>
+            </Annotation>
+            <Annotation>
+              <Name>DataMarketWebQueryUrl</Name>
+            </Annotation>
+          </Annotations>
+          <Source xsi:type="DataSourceViewBinding">
+            <DataSourceViewID>Sandbox</DataSourceViewID>
+          </Source>
+          <UnknownMember valuens="ddl200_200">AutomaticNull</UnknownMember>
+          <ErrorConfiguration>
+            <KeyNotFound>IgnoreError</KeyNotFound>
+            <KeyDuplicate>ReportAndStop</KeyDuplicate>
+            <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+          </ErrorConfiguration>
+          <StorageMode valuens="ddl200_200">InMemory</StorageMode>
+          <Language>1033</Language>
+          <Collation>Latin1_General_CS_AS</Collation>
+          <UnknownMemberName>Unknown</UnknownMemberName>
+          <Attributes>
+            <Attribute>
+              <ID>RowNumber</ID>
+              <Name>RowNumber</Name>
+              <Type valuens="ddl200_200">RowNumber</Type>
+              <Usage>Key</Usage>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>4</DataSize>
+                  <NullProcessing>Error</NullProcessing>
+                  <Source xsi:type="ddl200_200:RowNumberBinding" />
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>4</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ddl200_200:RowNumberBinding" />
+              </NameColumn>
+              <AttributeRelationships>
+                <AttributeRelationship>
+                  <AttributeID>BillXDateKey</AttributeID>
+                  <Cardinality>One</Cardinality>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>BillXDateKey</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>BillXDateDate</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>BillXDateDate</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>BillXDateFinancialMonthNo</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>BillXDateFinancialMonthNo</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>BillXDateFinancialYear</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>BillXDateFinancialYear</Name>
+                </AttributeRelationship>
+              </AttributeRelationships>
+              <OrderBy>Key</OrderBy>
+              <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>BillXDateKey</ID>
+              <Name>BillXDateKey</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Error</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimDateBillXDate_809bb870-4f3e-4fdf-b736-bc0401353c13</TableID>
+                    <ColumnID>BillXDateKey</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimDateBillXDate_809bb870-4f3e-4fdf-b736-bc0401353c13</TableID>
+                  <ColumnID>BillXDateKey</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+              <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="DateTimeGeneral" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>BillXDateDate</ID>
+              <Name>BillXDateDate</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Date</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimDateBillXDate_809bb870-4f3e-4fdf-b736-bc0401353c13</TableID>
+                    <ColumnID>BillXDateDate</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimDateBillXDate_809bb870-4f3e-4fdf-b736-bc0401353c13</TableID>
+                  <ColumnID>BillXDateDate</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+              <ddl300_300:FormatString>General Date</ddl300_300:FormatString>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>BillXDateFinancialMonthNo</ID>
+              <Name>BillXDateFinancialMonthNo</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimDateBillXDate_809bb870-4f3e-4fdf-b736-bc0401353c13</TableID>
+                    <ColumnID>BillXDateFinancialMonthNo</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimDateBillXDate_809bb870-4f3e-4fdf-b736-bc0401353c13</TableID>
+                  <ColumnID>BillXDateFinancialMonthNo</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>BillXDateFinancialYear</ID>
+              <Name>BillXDateFinancialYear</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimDateBillXDate_809bb870-4f3e-4fdf-b736-bc0401353c13</TableID>
+                    <ColumnID>BillXDateFinancialYear</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimDateBillXDate_809bb870-4f3e-4fdf-b736-bc0401353c13</TableID>
+                  <ColumnID>BillXDateFinancialYear</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+          </Attributes>
+          <ProactiveCaching>
+            <SilenceInterval>-PT1S</SilenceInterval>
+            <Latency>-PT1S</Latency>
+            <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+            <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+            <Source xsi:type="ProactiveCachingInheritedBinding" />
+          </ProactiveCaching>
+        </Dimension>
       </Dimensions>
       <Cubes>
         <Cube>
@@ -11353,6 +11638,10 @@ order by 1&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryC
                   <AttributeID>BillXBillID</AttributeID>
                   <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
                 </Attribute>
+                <Attribute>
+                  <AttributeID>BillXBillDate</AttributeID>
+                  <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+                </Attribute>
               </Attributes>
             </Dimension>
             <Dimension>
@@ -11569,6 +11858,30 @@ order by 1&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryC
                 </Attribute>
                 <Attribute>
                   <AttributeID>BillXEmployeeBCMEmail</AttributeID>
+                </Attribute>
+              </Attributes>
+            </Dimension>
+            <Dimension>
+              <ID>dimDateBillXDate_809bb870-4f3e-4fdf-b736-bc0401353c13</ID>
+              <Name>dimDateBillXDate</Name>
+              <DimensionID>dimDateBillXDate_809bb870-4f3e-4fdf-b736-bc0401353c13</DimensionID>
+              <Attributes>
+                <Attribute>
+                  <AttributeID>RowNumber</AttributeID>
+                  <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>BillXDateKey</AttributeID>
+                  <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>BillXDateDate</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>BillXDateFinancialMonthNo</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>BillXDateFinancialYear</AttributeID>
                 </Attribute>
               </Attributes>
             </Dimension>
@@ -22712,6 +23025,20 @@ dim_last_transaction_date_key &gt; 0</QueryDefinition>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>BillXBillDate</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>BillExtension_f335d257-da82-45f9-8729-a19aea809c40</TableID>
+                            <ColumnID>BillXBillDate</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
                 </Dimension>
@@ -26642,6 +26969,87 @@ dim_last_transaction_date_key &gt; 0</QueryDefinition>
                   <IntermediateCubeDimensionID>dimBillXFEDHierarchy_cd7ebd06-20e5-4f3a-9c2e-7a2110dd736d</IntermediateCubeDimensionID>
                   <IntermediateGranularityAttributeID>dim_employee_key</IntermediateGranularityAttributeID>
                 </Dimension>
+                <Dimension xsi:type="ReferenceMeasureGroupDimension">
+                  <CubeDimensionID>dimDateBillXDate_809bb870-4f3e-4fdf-b736-bc0401353c13</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>RowNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>4</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ddl200_200:RowNumberBinding" />
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BillXDateKey</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateBillXDate_809bb870-4f3e-4fdf-b736-bc0401353c13</TableID>
+                            <ColumnID>BillXDateKey</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BillXDateDate</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateBillXDate_809bb870-4f3e-4fdf-b736-bc0401353c13</TableID>
+                            <ColumnID>BillXDateDate</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BillXDateFinancialMonthNo</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateBillXDate_809bb870-4f3e-4fdf-b736-bc0401353c13</TableID>
+                            <ColumnID>BillXDateFinancialMonthNo</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BillXDateFinancialYear</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateBillXDate_809bb870-4f3e-4fdf-b736-bc0401353c13</TableID>
+                            <ColumnID>BillXDateFinancialYear</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                  </Attributes>
+                  <IntermediateCubeDimensionID>BillExtension_f335d257-da82-45f9-8729-a19aea809c40</IntermediateCubeDimensionID>
+                  <IntermediateGranularityAttributeID>BillXBillDate</IntermediateGranularityAttributeID>
+                  <Materialization>Regular</Materialization>
+                  <ddl300:RelationshipID>7503b37d-6c9a-482a-abd1-975605d01e65</ddl300:RelationshipID>
+                </Dimension>
               </Dimensions>
               <Partitions>
                 <Partition>
@@ -26665,6 +27073,7 @@ dim_last_transaction_date_key &gt; 0</QueryDefinition>
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
                     <QueryDefinition>select
+dim_bill_date_key as BillXBillDate,
 dim_bill_key as 'BillXBillID',
 dim_fed_hierarchy_history_key as 'BillXFeeEarner',
 bill_amount as 'BillXBillAmount',
@@ -28172,6 +28581,168 @@ worksforemail as 'BillXEmployeeBCMEmail'
 
 from
 red_dw.dbo.dim_employee</QueryDefinition>
+                  </Source>
+                  <StorageMode valuens="ddl200_200">InMemory</StorageMode>
+                  <ProcessingMode>Regular</ProcessingMode>
+                  <ErrorConfiguration>
+                    <KeyNotFound>IgnoreError</KeyNotFound>
+                    <KeyDuplicate>ReportAndStop</KeyDuplicate>
+                    <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+                  </ErrorConfiguration>
+                  <ProactiveCaching>
+                    <SilenceInterval>-PT1S</SilenceInterval>
+                    <Latency>-PT1S</Latency>
+                    <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+                    <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+                    <Source xsi:type="ProactiveCachingInheritedBinding" />
+                  </ProactiveCaching>
+                </Partition>
+              </Partitions>
+              <ProactiveCaching>
+                <SilenceInterval>-PT1S</SilenceInterval>
+                <Latency>-PT1S</Latency>
+                <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+                <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+                <Source xsi:type="ProactiveCachingInheritedBinding" />
+              </ProactiveCaching>
+            </MeasureGroup>
+            <MeasureGroup>
+              <ID>dimDateBillXDate_809bb870-4f3e-4fdf-b736-bc0401353c13</ID>
+              <Name>dimDateBillXDate</Name>
+              <Measures>
+                <Measure>
+                  <ID>dimDateBillXDate_809bb870-4f3e-4fdf-b736-bc0401353c13</ID>
+                  <Name>_Count dimDateBillXDate</Name>
+                  <AggregateFunction>Count</AggregateFunction>
+                  <DataType>BigInt</DataType>
+                  <Source>
+                    <DataType>BigInt</DataType>
+                    <DataSize>8</DataSize>
+                    <Source xsi:type="RowBinding">
+                      <TableID>dimDateBillXDate_809bb870-4f3e-4fdf-b736-bc0401353c13</TableID>
+                    </Source>
+                  </Source>
+                  <Visible>false</Visible>
+                </Measure>
+              </Measures>
+              <StorageMode valuens="ddl200_200">InMemory</StorageMode>
+              <ErrorConfiguration>
+                <KeyNotFound>IgnoreError</KeyNotFound>
+                <KeyDuplicate>ReportAndStop</KeyDuplicate>
+                <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+              </ErrorConfiguration>
+              <ProcessingMode>Regular</ProcessingMode>
+              <Dimensions>
+                <Dimension xsi:type="DegenerateMeasureGroupDimension">
+                  <CubeDimensionID>dimDateBillXDate_809bb870-4f3e-4fdf-b736-bc0401353c13</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>RowNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateBillXDate</TableID>
+                            <ColumnID>RowNumber</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BillXDateKey</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateBillXDate_809bb870-4f3e-4fdf-b736-bc0401353c13</TableID>
+                            <ColumnID>BillXDateKey</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BillXDateDate</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateBillXDate_809bb870-4f3e-4fdf-b736-bc0401353c13</TableID>
+                            <ColumnID>BillXDateDate</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BillXDateFinancialMonthNo</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateBillXDate_809bb870-4f3e-4fdf-b736-bc0401353c13</TableID>
+                            <ColumnID>BillXDateFinancialMonthNo</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BillXDateFinancialYear</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDateBillXDate_809bb870-4f3e-4fdf-b736-bc0401353c13</TableID>
+                            <ColumnID>BillXDateFinancialYear</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                  </Attributes>
+                  <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
+                </Dimension>
+              </Dimensions>
+              <Partitions>
+                <Partition>
+                  <ID>dimDateBillXDate_809bb870-4f3e-4fdf-b736-bc0401353c13</ID>
+                  <Name>dimDateBillXDate</Name>
+                  <Annotations>
+                    <Annotation>
+                      <Name>IsQueryEditorUsed</Name>
+                      <Value>True</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>QueryEditorSerialization</Name>
+                    </Annotation>
+                    <Annotation>
+                      <Name>TableWidgetSerialization</Name>
+                    </Annotation>
+                  </Annotations>
+                  <Source xsi:type="QueryBinding">
+                    <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
+                    <QueryDefinition>select
+dim_bill_date_key as 'BillXDateKey',
+bill_date as 'BillXDateDate',
+bill_fin_month_no as 'BillXDateFinancialMonthNo',
+bill_fin_year as 'BillXDateFinancialYear'
+
+
+from
+red_dw.dbo.dim_bill_date
+
+where
+dim_bill_date_key &gt; 0</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
@@ -29878,7 +30449,7 @@ CREATE MEASURE 'Matters'[Count of Matters]=countrows(Matters);
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="BillExtension_f335d257-da82-45f9-8729-a19aea809c40" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="BillExtension" msprop:DbTableName="BillExtension" msprop:TableType="View" msprop:Description="BillExtension" msprop:QueryDefinition="select&#xD;&#xA;dim_bill_key as 'BillXBillID',&#xD;&#xA;dim_fed_hierarchy_history_key as 'BillXFeeEarner',&#xD;&#xA;bill_amount as 'BillXBillAmount',&#xD;&#xA;billed_time as 'BillXTimeBilled'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_bill_activity">
+                    <xs:element name="BillExtension_f335d257-da82-45f9-8729-a19aea809c40" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="BillExtension" msprop:DbTableName="BillExtension" msprop:TableType="View" msprop:Description="BillExtension" msprop:QueryDefinition="select&#xD;&#xA;dim_bill_date_key as BillXBillDate,&#xD;&#xA;dim_bill_key as 'BillXBillID',&#xD;&#xA;dim_fed_hierarchy_history_key as 'BillXFeeEarner',&#xD;&#xA;bill_amount as 'BillXBillAmount',&#xD;&#xA;billed_time as 'BillXTimeBilled'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_bill_activity">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="BillXFeeEarner" msprop:DbColumnName="BillXFeeEarner" msprop:FriendlyName="BillXFeeEarner" minOccurs="0">
@@ -29891,6 +30462,7 @@ CREATE MEASURE 'Matters'[Count of Matters]=countrows(Matters);
                           <xs:element name="BillXBillAmount" msprop:DbColumnName="BillXBillAmount" msprop:FriendlyName="BillXBillAmount" type="xs:decimal" minOccurs="0" />
                           <xs:element name="BillXTimeBilled" msprop:DbColumnName="BillXTimeBilled" msprop:FriendlyName="BillXTimeBilled" type="xs:decimal" minOccurs="0" />
                           <xs:element name="BillXBillID" msprop:DbColumnName="BillXBillID" msprop:FriendlyName="BillXBillID" type="xs:int" minOccurs="0" />
+                          <xs:element name="BillXBillDate" msprop:DbColumnName="BillXBillDate" msprop:FriendlyName="BillXBillDate" type="xs:int" minOccurs="0" />
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
@@ -30160,6 +30732,16 @@ CREATE MEASURE 'Matters'[Count of Matters]=countrows(Matters);
                               </xs:restriction>
                             </xs:simpleType>
                           </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="dimDateBillXDate_809bb870-4f3e-4fdf-b736-bc0401353c13" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimDateBillXDate" msprop:DbTableName="dimDateBillXDate" msprop:TableType="View" msprop:Description="dimDateBillXDate" msprop:QueryDefinition="select&#xD;&#xA;dim_bill_date_key as 'BillXDateKey',&#xD;&#xA;bill_date as 'BillXDateDate',&#xD;&#xA;bill_fin_month_no as 'BillXDateFinancialMonthNo',&#xD;&#xA;bill_fin_year as 'BillXDateFinancialYear'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_bill_date&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;dim_bill_date_key &gt; 0">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="BillXDateKey" msprop:DbColumnName="BillXDateKey" msprop:FriendlyName="BillXDateKey" type="xs:int" minOccurs="0" />
+                          <xs:element name="BillXDateDate" msprop:DbColumnName="BillXDateDate" msprop:FriendlyName="BillXDateDate" type="xs:dateTime" minOccurs="0" />
+                          <xs:element name="BillXDateFinancialMonthNo" msprop:DbColumnName="BillXDateFinancialMonthNo" msprop:FriendlyName="BillXDateFinancialMonthNo" type="xs:int" minOccurs="0" />
+                          <xs:element name="BillXDateFinancialYear" msprop:DbColumnName="BillXDateFinancialYear" msprop:FriendlyName="BillXDateFinancialYear" type="xs:int" minOccurs="0" />
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
