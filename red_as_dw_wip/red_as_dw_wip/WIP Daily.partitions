@@ -11,17 +11,11 @@
           <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
           <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
           <State>Unprocessed</State>
-          <Source xsi:type="QueryBinding" dwd:design-time-name="954a7435-5a0f-462d-ae1f-a81fb43dd65b">
+          <Source xsi:type="QueryBinding" dwd:design-time-name="b32f7f6f-27c4-412f-9860-7efc72e2445c">
             <DataSourceID>Red Dw</DataSourceID>
-            <QueryDefinition>SELECT    fact_wip_daily.master_fact_key,   fact_wip_daily.dim_fed_matter_owner_key,  fact_wip_daily.dim_matter_header_history_key, fact_wip_daily.dim_days_banding_key, fact_wip_daily.dim_client_key, fact_wip_daily.dim_transaction_date_key, fact_wip_daily.dim_fed_hierarchy_history_key, 
-                         fact_wip_daily.wip_minutes, fact_wip_daily.wip_value, fact_detail_paid_detail.output_wip_hourly_rate, fact_detail_paid_detail.output_wip_fixed_fee_value, 
-                         dim_detail_finance.output_wip_percentage_of_completion, fact_detail_paid_detail.output_wip_current_value_of_fixed_fee_wip, fact_detail_paid_detail.output_wip_contingent_wip, 
-                         fact_detail_paid_detail.output_wip_other_tbc_wip, fact_detail_paid_detail.output_wip_total_output_wip
-FROM            fact_wip_daily INNER JOIN
-                         fact_detail_paid_detail ON fact_detail_paid_detail.master_fact_key = fact_wip_daily.master_fact_key INNER JOIN
-                         fact_dimension_main ON fact_dimension_main.master_fact_key = fact_wip_daily.master_fact_key INNER JOIN
-                         dim_detail_finance ON dim_detail_finance.dim_detail_finance_key = fact_dimension_main.dim_detail_finance_key
-		WHERE dim_transaction_date_key = replace(cast(getdate() as date), '-', '') - 1 and wip_value &lt;&gt; 0</QueryDefinition>
+            <QueryDefinition>SELECT    *
+FROM            fact_wip_daily 
+		WHERE dim_transaction_date_key = replace(cast(getdate() as date), '-', '') - 1 and wip_value &lt;&gt; 0 and master_fact_key &lt;&gt; 0</QueryDefinition>
           </Source>
           <StorageMode>Molap</StorageMode>
           <CurrentStorageMode>Molap</CurrentStorageMode>
@@ -41,18 +35,12 @@ FROM            fact_wip_daily INNER JOIN
           </Annotations>
           <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
           <State>Unprocessed</State>
-          <Source xsi:type="QueryBinding" dwd:design-time-name="f2d51f81-1f20-406b-9c12-3e3af68ad0d1">
+          <Source xsi:type="QueryBinding" dwd:design-time-name="5ef7870d-2324-4db9-97d3-5f6bb670f201">
             <DataSourceID>Red Dw</DataSourceID>
-            <QueryDefinition>SELECT    fact_wip_daily.master_fact_key,  fact_wip_daily.dim_fed_matter_owner_key,   fact_wip_daily.dim_matter_header_history_key, fact_wip_daily.dim_days_banding_key, fact_wip_daily.dim_client_key, fact_wip_daily.dim_transaction_date_key, fact_wip_daily.dim_fed_hierarchy_history_key, 
-                         fact_wip_daily.wip_minutes, fact_wip_daily.wip_value, fact_detail_paid_detail.output_wip_hourly_rate, fact_detail_paid_detail.output_wip_fixed_fee_value, 
-                         dim_detail_finance.output_wip_percentage_of_completion, fact_detail_paid_detail.output_wip_current_value_of_fixed_fee_wip, fact_detail_paid_detail.output_wip_contingent_wip, 
-                         fact_detail_paid_detail.output_wip_other_tbc_wip, fact_detail_paid_detail.output_wip_total_output_wip
-FROM            fact_wip_daily INNER JOIN
-                         fact_detail_paid_detail ON fact_detail_paid_detail.master_fact_key = fact_wip_daily.master_fact_key INNER JOIN
-                         fact_dimension_main ON fact_dimension_main.master_fact_key = fact_wip_daily.master_fact_key INNER JOIN
-                         dim_detail_finance ON dim_detail_finance.dim_detail_finance_key = fact_dimension_main.dim_detail_finance_key
+            <QueryDefinition>SELECT   *
+FROM            fact_wip_daily 
 		where dim_transaction_date_key &gt;= cast(left(replace(cast(getdate() as date), '-', '') -1 , 6) as varchar(8)) + '01'
-and dim_transaction_date_key &lt; replace(cast(getdate() as date), '-', '') - 1 and wip_value &lt;&gt; 0</QueryDefinition>
+and dim_transaction_date_key &lt; replace(cast(getdate() as date), '-', '') - 1 and wip_value &lt;&gt; 0 and master_fact_key &lt;&gt; 0</QueryDefinition>
           </Source>
           <StorageMode>Molap</StorageMode>
           <CurrentStorageMode>Molap</CurrentStorageMode>
@@ -72,19 +60,13 @@ and dim_transaction_date_key &lt; replace(cast(getdate() as date), '-', '') - 1 
           </Annotations>
           <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
           <State>Unprocessed</State>
-          <Source xsi:type="QueryBinding" dwd:design-time-name="e11dfcf5-0309-4af8-bf4a-a55142c8e821">
+          <Source xsi:type="QueryBinding" dwd:design-time-name="4fa2275a-d6ca-4925-874c-8791631756dd">
             <DataSourceID>Red Dw</DataSourceID>
-            <QueryDefinition>SELECT    fact_wip_daily.master_fact_key,  fact_wip_daily.dim_fed_matter_owner_key,  fact_wip_daily.dim_matter_header_history_key, fact_wip_daily.dim_days_banding_key, fact_wip_daily.dim_client_key, fact_wip_daily.dim_transaction_date_key, fact_wip_daily.dim_fed_hierarchy_history_key, 
-                         fact_wip_daily.wip_minutes, fact_wip_daily.wip_value, fact_detail_paid_detail.output_wip_hourly_rate, fact_detail_paid_detail.output_wip_fixed_fee_value, 
-                         dim_detail_finance.output_wip_percentage_of_completion, fact_detail_paid_detail.output_wip_current_value_of_fixed_fee_wip, fact_detail_paid_detail.output_wip_contingent_wip, 
-                         fact_detail_paid_detail.output_wip_other_tbc_wip, fact_detail_paid_detail.output_wip_total_output_wip
-FROM            fact_wip_daily INNER JOIN
-                         fact_detail_paid_detail ON fact_detail_paid_detail.master_fact_key = fact_wip_daily.master_fact_key INNER JOIN
-                         fact_dimension_main ON fact_dimension_main.master_fact_key = fact_wip_daily.master_fact_key INNER JOIN
-                         dim_detail_finance ON dim_detail_finance.dim_detail_finance_key = fact_dimension_main.dim_detail_finance_key
+            <QueryDefinition>SELECT    *
+FROM            fact_wip_daily
 		where 
 		dim_transaction_date_key &gt;= '20160822'
-		and dim_transaction_date_key &lt; cast(left(replace(cast(getdate() as date), '-', '') -1 , 6) as varchar(8)) + '01' and wip_value &lt;&gt; 0</QueryDefinition>
+		and dim_transaction_date_key &lt; cast(left(replace(cast(getdate() as date), '-', '') -1 , 6) as varchar(8)) + '01' and wip_value &lt;&gt; 0 and master_fact_key &lt;&gt; 0</QueryDefinition>
           </Source>
           <StorageMode>Molap</StorageMode>
           <CurrentStorageMode>Molap</CurrentStorageMode>
