@@ -1070,6 +1070,75 @@
         </Attribute>
       </Attributes>
     </Dimension>
+    <Dimension dwd:design-time-name="b9af2d36-4172-41ce-a77c-99299b1aa7d5">
+      <ID>Dim Fed Hierarchy History 2</ID>
+      <Name>Dim Fed Hierarchy History Time Owner</Name>
+      <DimensionID>Dim Fed Hierarchy History</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="bf054ffb-295d-4741-ae3a-405267132d6d">
+          <AttributeID>Dim Fed Hierarchy History Key</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="6a8add22-ccf6-4e41-af4a-187368240dbf">
+          <AttributeID>Fed Code</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="e9d6f339-a2bd-4d31-9e2a-aa31d3bb18ee">
+          <AttributeID>Display Name</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="53e62104-3606-4306-999b-44b77fad1e27">
+          <AttributeID>Hierarchylevel1hist</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="93a7566f-6173-4fcf-87e9-4e0f2c8f3bfe">
+          <AttributeID>Hierarchylevel2hist</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="8917a040-5d5e-4c14-a616-f4d9814755e1">
+          <AttributeID>Hierarchylevel3hist</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="e928bcd8-343b-405f-a025-97f29de64a5c">
+          <AttributeID>Hierarchylevel4hist</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="53163e40-dee8-4bff-954f-c188c5c90018">
+          <AttributeID>Hierarchylevel5hist</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="3823de96-9d1e-4478-8a05-7e4fdc365948">
+          <AttributeID>Hierarchylevel6hist</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="c8d4a499-5682-412b-9d51-67db2abe4eb5">
+          <AttributeID>Fed Hierarchy Business Key</AttributeID>
+        </Attribute>
+      </Attributes>
+      <Hierarchies>
+        <Hierarchy dwd:design-time-name="72f4957f-66dc-4d77-b51d-75d4fd6ec541">
+          <HierarchyID>Hierarchy</HierarchyID>
+        </Hierarchy>
+      </Hierarchies>
+    </Dimension>
+    <Dimension dwd:design-time-name="497ccfb1-5676-46f8-b5db-7420d0a17538">
+      <ID>Dim Date 6</ID>
+      <Name>Dim Transaction Date</Name>
+      <DimensionID>Dim Date</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="1e61fbfe-07da-41e5-8a60-6fbb5e7b79b6">
+          <AttributeID>Dim Date Key</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="71577863-adac-4bcd-b4ed-deb54618cd6b">
+          <AttributeID>Fin Year</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="1ef0375b-b7fb-4995-9edc-36f35e03f95b">
+          <AttributeID>Fin Quarter</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="85827695-023c-4dbb-a191-1b8f50251b4b">
+          <AttributeID>Calendar Date</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="a577b5b5-9610-4719-9275-dbb25f34648c">
+          <AttributeID>Fin Period</AttributeID>
+        </Attribute>
+      </Attributes>
+      <Hierarchies>
+        <Hierarchy dwd:design-time-name="0848f351-de82-4062-b814-e0bad346c8dc">
+          <HierarchyID>Hierarchy</HierarchyID>
+        </Hierarchy>
+      </Hierarchies>
+    </Dimension>
   </Dimensions>
   <MeasureGroups>
     <MeasureGroup dwd:design-time-name="60750e5e-4c42-4523-8526-ebdb8b1e6264">
@@ -1187,6 +1256,18 @@
               <ColumnID>defence_costs_billed_ff_report</ColumnID>
             </Source>
           </Source>
+        </Measure>
+        <Measure dwd:design-time-name="35deb422-e1f4-4e60-b9d4-99ad9e6e35a2">
+          <ID>Disbursement Balance</ID>
+          <Name>Disbursement Balance</Name>
+          <Source dwd:design-time-name="9e71969a-c4dc-44e3-9bfc-13e9c87e0666">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="69a835cc-8694-4670-93ba-a92ce579fedc">
+              <TableID>dbo_fact_dimension_main</TableID>
+              <ColumnID>disbursement_balance</ColumnID>
+            </Source>
+          </Source>
+          <DisplayFolder>fact_finance_summary</DisplayFolder>
         </Measure>
       </Measures>
       <StorageMode>Molap</StorageMode>
@@ -1448,6 +1529,14 @@
         </Dimension>
         <Dimension xsi:type="ManyToManyMeasureGroupDimension" dwd:design-time-name="860b9b3d-d93a-4d71-8971-6cb62a427e34">
           <CubeDimensionID>Dim Transaction Type</CubeDimensionID>
+          <MeasureGroupID>Fact All Time Activity</MeasureGroupID>
+        </Dimension>
+        <Dimension xsi:type="ManyToManyMeasureGroupDimension" dwd:design-time-name="fad1f32d-841f-4b99-83e3-2abde22911e0">
+          <CubeDimensionID>Dim Fed Hierarchy History 2</CubeDimensionID>
+          <MeasureGroupID>Fact All Time Activity</MeasureGroupID>
+        </Dimension>
+        <Dimension xsi:type="ManyToManyMeasureGroupDimension" dwd:design-time-name="e9abf387-fff9-4e35-8aef-1d95cdc28f61">
+          <CubeDimensionID>Dim Date 6</CubeDimensionID>
           <MeasureGroupID>Fact All Time Activity</MeasureGroupID>
         </Dimension>
       </Dimensions>
@@ -1753,6 +1842,14 @@
         </Dimension>
         <Dimension xsi:type="ManyToManyMeasureGroupDimension" dwd:design-time-name="add8b44d-b08c-4d1c-9491-433519a23494">
           <CubeDimensionID>Dim Transaction Type</CubeDimensionID>
+          <MeasureGroupID>Fact All Time Activity</MeasureGroupID>
+        </Dimension>
+        <Dimension xsi:type="ManyToManyMeasureGroupDimension" dwd:design-time-name="0253e5b7-543e-4dbe-9dd5-47c02dfccada">
+          <CubeDimensionID>Dim Fed Hierarchy History 2</CubeDimensionID>
+          <MeasureGroupID>Fact All Time Activity</MeasureGroupID>
+        </Dimension>
+        <Dimension xsi:type="ManyToManyMeasureGroupDimension" dwd:design-time-name="d6a39e26-6b2a-4ccd-bfc3-6033abf088e8">
+          <CubeDimensionID>Dim Date 6</CubeDimensionID>
           <MeasureGroupID>Fact All Time Activity</MeasureGroupID>
         </Dimension>
       </Dimensions>
@@ -2144,6 +2241,14 @@
           <CubeDimensionID>Dim Transaction Type</CubeDimensionID>
           <MeasureGroupID>Fact All Time Activity</MeasureGroupID>
         </Dimension>
+        <Dimension xsi:type="ManyToManyMeasureGroupDimension" dwd:design-time-name="e7e2a169-41b6-46e5-b818-3674cc7e61ed">
+          <CubeDimensionID>Dim Fed Hierarchy History 2</CubeDimensionID>
+          <MeasureGroupID>Fact All Time Activity</MeasureGroupID>
+        </Dimension>
+        <Dimension xsi:type="ManyToManyMeasureGroupDimension" dwd:design-time-name="6cb2c648-9d1e-4c7f-a970-f3836cc9de78">
+          <CubeDimensionID>Dim Date 6</CubeDimensionID>
+          <MeasureGroupID>Fact All Time Activity</MeasureGroupID>
+        </Dimension>
       </Dimensions>
       <Partitions />
       <AggregationDesigns />
@@ -2482,6 +2587,43 @@
             </Attribute>
           </Attributes>
         </Dimension>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="c09a3925-9437-4845-9b00-406a664494d9">
+          <CubeDimensionID>Dim Fed Hierarchy History 2</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="3838410a-8109-4d02-a433-73578d51ca15">
+              <AttributeID>Dim Fed Hierarchy History Key</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="dc15ab42-7cd4-4a72-b2d5-718a42795f60">
+                  <DataType>Integer</DataType>
+                  <NullProcessing>UnknownMember</NullProcessing>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="93796dfb-c0b0-45ba-99ea-a4149016a631">
+                    <TableID>dbo_fact_all_time_activity</TableID>
+                    <ColumnID>time_owner_dim_fed_hierarchy_history_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="356a064d-1abd-4e4a-a69b-9dfdef2f5647">
+          <CubeDimensionID>Dim Date 6</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="34af9b11-3080-4416-b337-c5b8dc3399d6">
+              <AttributeID>Dim Date Key</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="fd2b74b8-c780-41ab-9532-87fcdf20625b">
+                  <DataType>Integer</DataType>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="c7075f4d-43b9-40df-8e59-317e9602590f">
+                    <TableID>dbo_fact_all_time_activity</TableID>
+                    <ColumnID>dim_transaction_date_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
       </Dimensions>
       <Partitions />
     </MeasureGroup>
@@ -2502,13 +2644,7 @@ The CALCULATE command controls the aggregation of leaf cells in the cube.
 If the CALCULATE command is deleted or modified, the data within the cube is affected.
 You should edit this command only if you manually specify how the cube is aggregated.
 */
-CALCULATE; 
-CREATE MEMBER CURRENTCUBE.[Measures].[Written Off Transaction Time Charge Value]
- AS sum(
-    [Dim Transaction Type].[Transaction Type].[Written Off Transaction],
-    [Measures].[Time Charge Value]
-), 
-VISIBLE = 1 ,  ASSOCIATED_MEASURE_GROUP = 'Fact All Time Activity'  ; </Text>
+CALCULATE; </Text>
         </Command>
       </Commands>
     </MdxScript>
