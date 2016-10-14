@@ -31,7 +31,7 @@
             <Name>_ALL_TABLES_</Name>
             <DiagramLayout>
               <dds>
-                <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="30" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-16118" scrolltop="-2024" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="85" x="44873" y="23416" backcolor="2434342" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+                <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="30" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-16118" scrolltop="-5000" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="85" x="44873" y="23416" backcolor="2434342" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="1" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
                   <font>
                     <ddsxmlobjectstreamwrapper binary="01000000900144420100065461686f6d61" />
                   </font>
@@ -262,7 +262,7 @@
             <ShowRelationshipNames>False</ShowRelationshipNames>
             <UseDiagramDefaultLayout>True</UseDiagramDefaultLayout>
             <DiagramViewPortLeft>-16118</DiagramViewPortLeft>
-            <DiagramViewPortTop>-2024</DiagramViewPortTop>
+            <DiagramViewPortTop>-5000</DiagramViewPortTop>
             <DiagramBoundingLeft>0</DiagramBoundingLeft>
             <DiagramBoundingTop>0</DiagramBoundingTop>
             <DiagramZoom>85</DiagramZoom>
@@ -462,6 +462,13 @@
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
+                  <xs:element name="audit_alert" msprop:DbColumnName="audit_alert" msprop:design-time-name="066a2539-4b1a-4488-be98-9732a22f1bb8" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
@@ -599,13 +606,6 @@
                   <xs:element name="dim_matter_group_key" msprop:design-time-name="564426ce-d3c6-442c-9c56-91302ed45a68" msprop:DbColumnName="dim_matter_group_key" msprop:FriendlyName="dim_matter_group_key" type="xs:int" />
                   <xs:element name="reporting_exclusions" msprop:design-time-name="e7a272da-175e-4589-a26d-0f7dae85ce9d" msprop:DbColumnName="reporting_exclusions" msprop:FriendlyName="reporting_exclusions" type="xs:short" minOccurs="0" />
                   <xs:element name="dim_instruction_type_key" msprop:design-time-name="1b8da77d-4483-4fb6-a544-b9a2eebfff0a" msprop:DbColumnName="dim_instruction_type_key" msprop:FriendlyName="dim_instruction_type_key" type="xs:int" />
-                  <xs:element name="ms_client_code" msprop:design-time-name="6b5571b3-fca2-4018-84bf-1398762252f0" msprop:DbColumnName="ms_client_code" msprop:FriendlyName="ms_client_code" minOccurs="0">
-                    <xs:simpleType>
-                      <xs:restriction base="xs:string">
-                        <xs:maxLength value="8" />
-                      </xs:restriction>
-                    </xs:simpleType>
-                  </xs:element>
                   <xs:element name="final_bill_flag" msprop:design-time-name="041b763f-28b7-4c95-8be9-8252177f19e4" msprop:DbColumnName="final_bill_flag" msprop:FriendlyName="final_bill_flag" minOccurs="0">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
@@ -621,6 +621,27 @@
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
+                  <xs:element name="master_client_code" msprop:DbColumnName="master_client_code" msprop:design-time-name="c3dcc307-9f99-422f-a9cc-57039c236a5a" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="12" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="master_matter_number" msprop:DbColumnName="master_matter_number" msprop:design-time-name="b7e89f42-ca26-4dca-adc3-d31113e6d2c8" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="20" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="billing_portal_status" msprop:DbColumnName="billing_portal_status" msprop:design-time-name="5087d4d4-39e8-4335-9c44-3909fac89bcd" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="64" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
@@ -632,7 +653,7 @@
                   <xs:element name="bill_number" msprop:design-time-name="6fa30a15-edcb-4145-ae59-bda0f3580314" msprop:DbColumnName="bill_number" msprop:FriendlyName="bill_number" minOccurs="0">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
-                        <xs:maxLength value="8" />
+                        <xs:maxLength value="20" />
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
@@ -651,7 +672,6 @@
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
-                  <xs:element name="bill_address" msprop:design-time-name="7a659524-1e4b-45c1-9bc9-e972375c2240" msprop:DbColumnName="bill_address" msprop:FriendlyName="bill_address" type="xs:int" minOccurs="0" />
                   <xs:element name="dss_update_time" msprop:design-time-name="bf5d9715-cefc-4bec-b94f-9661188928ec" msprop:DbColumnName="dss_update_time" msprop:FriendlyName="dss_update_time" type="xs:dateTime" minOccurs="0" />
                   <xs:element name="outstanding_flag" msprop:design-time-name="5c42c63c-4ec4-4ae9-b7de-d88caad22b45" msprop:DbColumnName="outstanding_flag" msprop:FriendlyName="outstanding_flag" minOccurs="0">
                     <xs:simpleType>
@@ -668,19 +688,10 @@
                     </xs:simpleType>
                   </xs:element>
                   <xs:element name="bill_address_id" msprop:design-time-name="b60e958b-b024-464e-b78e-5b7d6972d7d1" msprop:DbColumnName="bill_address_id" msprop:FriendlyName="bill_address_id" type="xs:int" minOccurs="0" />
-                  <xs:element name="fees_apportioned" msprop:design-time-name="8ebc9cd8-f702-45a4-9201-1ab1eb34a3c6" msprop:DbColumnName="fees_apportioned" msprop:FriendlyName="fees_apportioned" minOccurs="0">
+                  <xs:element name="adjustment_type" msprop:DbColumnName="adjustment_type" msprop:design-time-name="ac1cbc7f-8817-4461-947c-ecc8c91e4633" minOccurs="0">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
-                        <xs:maxLength value="1" />
-                      </xs:restriction>
-                    </xs:simpleType>
-                  </xs:element>
-                  <xs:element name="last_reminder_number" msprop:design-time-name="d1dec323-e07c-48e1-be17-5bbd6cc3a506" msprop:DbColumnName="last_reminder_number" msprop:FriendlyName="last_reminder_number" type="xs:short" minOccurs="0" />
-                  <xs:element name="exchange_rate" msprop:design-time-name="6eaf5117-abbf-4ccc-a061-bf10ac65b6dd" msprop:DbColumnName="exchange_rate" msprop:FriendlyName="exchange_rate" type="xs:decimal" minOccurs="0" />
-                  <xs:element name="currency_code" msprop:design-time-name="94235a61-1766-437e-93c0-7338ca5fc582" msprop:DbColumnName="currency_code" msprop:FriendlyName="currency_code" minOccurs="0">
-                    <xs:simpleType>
-                      <xs:restriction base="xs:string">
-                        <xs:maxLength value="2" />
+                        <xs:maxLength value="64" />
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
@@ -1277,6 +1288,7 @@
                     </xs:simpleType>
                   </xs:element>
                   <xs:element name="leaver" msprop:design-time-name="50442bb5-10d2-4960-a15b-ce88852c93a4" msprop:DbColumnName="leaver" msprop:FriendlyName="leaver" type="xs:int" minOccurs="0" />
+                  <xs:element name="dim_employee_key" msprop:DbColumnName="dim_employee_key" msprop:design-time-name="ab0630b8-9813-4d5f-8376-367c1c32ce3c" type="xs:int" minOccurs="0" />
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
@@ -1294,6 +1306,13 @@
                     </xs:simpleType>
                   </xs:element>
                   <xs:element name="dss_update_time" msprop:design-time-name="00ed25e6-06ee-4053-80d2-75ab236cf161" msprop:DbColumnName="dss_update_time" msprop:FriendlyName="dss_update_time" type="xs:dateTime" minOccurs="0" />
+                  <xs:element name="banding_category" msprop:DbColumnName="banding_category" msprop:design-time-name="22ca36d1-e330-4d8e-bf05-5aee9219ef46" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="21" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
@@ -1337,9 +1356,9 @@
           <msdata:Relationship name="fact_debt_monthly-dim_matter_header_history" msdata:parent="dbo_dim_matter_header_history" msdata:child="dbo_fact_debt_monthly" msdata:parentkey="dim_mat_head_history_key" msdata:childkey="dim_mat_head_history_key" msprop:IsLogical="True" />
           <msdata:Relationship name="fact_debt_monthly-dim_bill" msdata:parent="dbo_dim_bill" msdata:child="dbo_fact_debt_monthly" msdata:parentkey="dim_bill_key" msdata:childkey="dim_bill_key" msprop:IsLogical="True" />
           <msdata:Relationship name="fact_debt_monthly-dim_days_banding" msdata:parent="dbo_dim_days_banding" msdata:child="dbo_fact_debt_monthly" msdata:parentkey="dim_days_banding_key" msdata:childkey="dim_days_banding_key" msprop:IsLogical="True" />
-          <msdata:Relationship name="fact_debt_monthly-dim_date" msdata:parent="dbo_dim_date" msdata:child="dbo_fact_debt_monthly" msdata:parentkey="dim_date_key" msdata:childkey="dim_transaction_date_key" msprop:Description="" msprop:IsLogical="True" />
-          <msdata:Relationship name="fact_debt_monthly-dim_fed_hierarchy_history" msdata:parent="dbo_dim_fed_hierarchy_history" msdata:child="dbo_fact_debt_monthly" msdata:parentkey="dim_fed_hierarchy_history_key" msdata:childkey="dim_fed_matter_owner_key" msprop:Description="" msprop:IsLogical="True" />
-          <msdata:Relationship name="fact_debt_monthly-dim_date1" msdata:parent="dbo_dim_date" msdata:child="dbo_fact_debt_monthly" msdata:parentkey="dim_date_key" msdata:childkey="dim_bill_date_key" msprop:Description="" msprop:IsLogical="True" />
+          <msdata:Relationship name="fact_debt_monthly-dim_date" msdata:parent="dbo_dim_date" msdata:child="dbo_fact_debt_monthly" msdata:parentkey="dim_date_key" msdata:childkey="dim_transaction_date_key" msprop:IsLogical="True" msprop:Description="" />
+          <msdata:Relationship name="fact_debt_monthly-dim_fed_hierarchy_history" msdata:parent="dbo_dim_fed_hierarchy_history" msdata:child="dbo_fact_debt_monthly" msdata:parentkey="dim_fed_hierarchy_history_key" msdata:childkey="dim_fed_matter_owner_key" msprop:IsLogical="True" msprop:Description="" />
+          <msdata:Relationship name="fact_debt_monthly-dim_date1" msdata:parent="dbo_dim_date" msdata:child="dbo_fact_debt_monthly" msdata:parentkey="dim_date_key" msdata:childkey="dim_bill_date_key" msprop:IsLogical="True" msprop:Description="" />
         </xs:appinfo>
       </xs:annotation>
     </xs:schema>
