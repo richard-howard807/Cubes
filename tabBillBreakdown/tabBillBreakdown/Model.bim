@@ -123,6 +123,11 @@
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>adjustment_type</Name>
                 </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>proforma_number</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>proforma_number</Name>
+                </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
@@ -479,6 +484,31 @@
                 <Source xsi:type="ColumnBinding">
                   <TableID>dim_bill_6af77c4c-e403-4930-960c-65c7321d5744</TableID>
                   <ColumnID>adjustment_type</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>proforma_number</ID>
+              <Name>proforma_number</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dim_bill_6af77c4c-e403-4930-960c-65c7321d5744</TableID>
+                    <ColumnID>proforma_number</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dim_bill_6af77c4c-e403-4930-960c-65c7321d5744</TableID>
+                  <ColumnID>proforma_number</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
@@ -15137,6 +15167,9 @@
                 <Attribute>
                   <AttributeID>adjustment_type</AttributeID>
                 </Attribute>
+                <Attribute>
+                  <AttributeID>proforma_number</AttributeID>
+                </Attribute>
               </Attributes>
             </Dimension>
             <Dimension>
@@ -16552,6 +16585,20 @@
                           <Source xsi:type="ColumnBinding">
                             <TableID>dim_bill_6af77c4c-e403-4930-960c-65c7321d5744</TableID>
                             <ColumnID>adjustment_type</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>proforma_number</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_6af77c4c-e403-4930-960c-65c7321d5744</TableID>
+                            <ColumnID>proforma_number</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -21353,6 +21400,20 @@
                           <Source xsi:type="ColumnBinding">
                             <TableID>dim_bill_6af77c4c-e403-4930-960c-65c7321d5744</TableID>
                             <ColumnID>adjustment_type</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>proforma_number</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_6af77c4c-e403-4930-960c-65c7321d5744</TableID>
+                            <ColumnID>proforma_number</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -28072,6 +28133,7 @@ CREATE MEASURE 'fact_bill_detail'[Sum of workhrs]=SUM([workhrs]);
                               </xs:restriction>
                             </xs:simpleType>
                           </xs:element>
+                          <xs:element name="proforma_number" msprop:DbColumnName="proforma_number" msprop:FriendlyName="proforma_number" type="xs:int" minOccurs="0" />
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
