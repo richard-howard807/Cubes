@@ -155,7 +155,7 @@
                 <ddscontrol controlprogid="MSDDS.Polyline" left="-11795" top="16005" logicalid="11" controlid="11" masterid="0" hint1="0" hint2="0" width="799" height="3200" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
                   <control>
                     <ddsxmlobj>
-                      <polyline endtypedst="6" endtypesrc="3" usercolor="0" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+                      <polyline endtypedst="6" endtypesrc="3" usercolor="15856113" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
                     </ddsxmlobj>
                   </control>
                   <layoutobject>
@@ -190,7 +190,7 @@
       <xs:element name="Red_x0020_Dw" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:design-time-name="41ef6bee-efa3-4001-91eb-cd8d0570ea33">
         <xs:complexType>
           <xs:choice minOccurs="0" maxOccurs="unbounded">
-            <xs:element name="dbo_fact_finance_summary_daily" msprop:design-time-name="8d60c0ae-586b-4f19-9fdc-4d0edda926af" msprop:IsLogical="True" msprop:FriendlyName="fact_finance_summary_daily" msprop:DbTableName="fact_finance_summary_daily" msprop:TableType="View" msprop:QueryDefinition="SELECT        fact_finance_summary_daily.dim_transaction_date_key, fact_finance_summary_daily.master_fact_key, fact_dimension_main.dim_client_key, fact_finance_summary_daily.wip, &#xD;&#xA;                         fact_finance_summary_daily.output_wip_balance, fact_finance_summary_daily.output_wip_contingent_wip, fact_finance_summary_daily.output_wip_current_value_of_fixed_fee_wip, &#xD;&#xA;                         fact_finance_summary_daily.output_wip_fixed_fee_value, fact_finance_summary_daily.output_wip_hourly_rate, fact_finance_summary_daily.output_wip_other_tbc_wip, &#xD;&#xA;                         fact_finance_summary_daily.output_wip_total_output_wip, fact_finance_summary_daily.output_wip_annual_retainer_wip, fact_finance_summary_daily.output_wip_secondment_wip, &#xD;&#xA;                         fact_finance_summary_daily.output_wip_percentage_complete, fact_finance_summary_daily.dim_mat_head_history_key, fact_dimension_main.dim_fed_hierarchy_history_key&#xD;&#xA;FROM            fact_finance_summary_daily INNER JOIN&#xD;&#xA;                         fact_dimension_main ON fact_dimension_main.master_fact_key = fact_finance_summary_daily.master_fact_key" msprop:QueryBuilder="SpecificQueryBuilder">
+            <xs:element name="dbo_fact_finance_summary_daily" msprop:design-time-name="8d60c0ae-586b-4f19-9fdc-4d0edda926af" msprop:IsLogical="True" msprop:FriendlyName="fact_finance_summary_daily" msprop:DbTableName="fact_finance_summary_daily" msprop:TableType="View" msprop:QueryDefinition="SELECT        fact_finance_summary_daily.dim_transaction_date_key, fact_finance_summary_daily.master_fact_key, fact_dimension_main.dim_client_key, fact_finance_summary_daily.wip, &#xD;&#xA;                         fact_finance_summary_daily.output_wip_balance, fact_finance_summary_daily.output_wip_contingent_wip, fact_finance_summary_daily.output_wip_current_value_of_fixed_fee_wip, &#xD;&#xA;                         fact_finance_summary_daily.output_wip_fixed_fee_value, fact_finance_summary_daily.output_wip_hourly_rate, fact_finance_summary_daily.output_wip_other_tbc_wip, &#xD;&#xA;                         fact_finance_summary_daily.output_wip_total_output_wip, fact_finance_summary_daily.output_wip_annual_retainer_wip, fact_finance_summary_daily.output_wip_secondment_wip, &#xD;&#xA;                         fact_finance_summary_daily.output_wip_percentage_complete, fact_finance_summary_daily.dim_mat_head_history_key, fact_dimension_main.dim_fed_hierarchy_history_key, &#xD;&#xA;                         CASE WHEN wip &lt;&gt; 0 THEN 1 ELSE 0 END AS 'wip_filter'&#xD;&#xA;FROM            fact_finance_summary_daily INNER JOIN&#xD;&#xA;                         fact_dimension_main ON fact_dimension_main.master_fact_key = fact_finance_summary_daily.master_fact_key" msprop:QueryBuilder="SpecificQueryBuilder">
               <xs:complexType>
                 <xs:sequence>
                   <xs:element name="dim_transaction_date_key" msprop:design-time-name="6bac9e2d-963b-4fd2-aa49-ef12dc78ed31" msprop:DbColumnName="dim_transaction_date_key" msprop:FriendlyName="dim_transaction_date_key" type="xs:int" minOccurs="0" />
@@ -214,7 +214,8 @@
                   </xs:element>
                   <xs:element name="dim_client_key" msprop:design-time-name="30374f34-f043-4142-b6c8-785788703759" msprop:DbColumnName="dim_client_key" type="xs:int" minOccurs="0" />
                   <xs:element name="dim_mat_head_history_key" msprop:design-time-name="d3e03a48-e125-4c2d-9205-95e3dcec439c" msprop:DbColumnName="dim_mat_head_history_key" type="xs:int" minOccurs="0" />
-                  <xs:element name="dim_fed_hierarchy_history_key" msprop:DbColumnName="dim_fed_hierarchy_history_key" msprop:design-time-name="4b5776dc-ab58-40d8-9fb8-dc829fcc841e" type="xs:int" minOccurs="0" />
+                  <xs:element name="dim_fed_hierarchy_history_key" msprop:design-time-name="4b5776dc-ab58-40d8-9fb8-dc829fcc841e" msprop:DbColumnName="dim_fed_hierarchy_history_key" type="xs:int" minOccurs="0" />
+                  <xs:element name="wip_filter" msprop:DbColumnName="wip_filter" msprop:design-time-name="b88aebef-36e8-4f25-9e33-8cbedcd5db1c" type="xs:int" minOccurs="0" />
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
@@ -869,7 +870,7 @@
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
-            <xs:element name="dbo_dim_fed_hierarchy_history" msprop:design-time-name="030dacca-300d-4ffc-a358-b4117e14d42b" msprop:DbTableName="dim_fed_hierarchy_history" msprop:FriendlyName="dim_fed_hierarchy_history" msprop:DbSchemaName="dbo" msprop:TableType="Table">
+            <xs:element name="dbo_dim_fed_hierarchy_history" msprop:design-time-name="030dacca-300d-4ffc-a358-b4117e14d42b" msprop:FriendlyName="dim_fed_hierarchy_history" msprop:DbSchemaName="dbo" msprop:DbTableName="dim_fed_hierarchy_history" msprop:TableType="Table">
               <xs:complexType>
                 <xs:sequence>
                   <xs:element name="dim_fed_hierarchy_history_key" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:design-time-name="4fb11da2-5759-46ef-9cce-e90c5e980ef6" msprop:DbColumnName="dim_fed_hierarchy_history_key" msprop:FriendlyName="dim_fed_hierarchy_history_key" type="xs:int" />

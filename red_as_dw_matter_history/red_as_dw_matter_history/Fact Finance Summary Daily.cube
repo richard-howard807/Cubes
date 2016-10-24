@@ -104,7 +104,7 @@
           <ddscontrol controlprogid="MSDDS.Polyline" left="343" top="-700" logicalid="7" controlid="7" masterid="0" hint1="0" hint2="0" width="10497" height="2266" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
             <control>
               <ddsxmlobj>
-                <polyline endtypedst="6" endtypesrc="3" usercolor="0" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+                <polyline endtypedst="6" endtypesrc="3" usercolor="15856113" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
               </ddsxmlobj>
             </control>
             <layoutobject>
@@ -276,6 +276,16 @@
         </Hierarchy>
       </Hierarchies>
     </Dimension>
+    <Dimension dwd:design-time-name="27af25bd-87e3-45a1-a63e-31b1812d3ff7">
+      <ID>Fact Finance Summary Daily</ID>
+      <Name>Fact Finance Summary Daily</Name>
+      <DimensionID>Fact Finance Summary Daily</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="5dd72471-552c-4cbf-aef2-f3130ceaf38f">
+          <AttributeID>Output Wip Percentage Complete</AttributeID>
+        </Attribute>
+      </Attributes>
+    </Dimension>
   </Dimensions>
   <MeasureGroups>
     <MeasureGroup dwd:design-time-name="50e85438-77e5-4df9-88e5-ad6f270ff6ed">
@@ -398,6 +408,7 @@
         </Measure>
       </Measures>
       <StorageMode>Molap</StorageMode>
+      <EstimatedRows>954144</EstimatedRows>
       <ProcessingMode>Regular</ProcessingMode>
       <Dimensions>
         <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="c4a208e3-67b2-4649-9a34-e338a9e87a27">
@@ -473,8 +484,28 @@
             </Attribute>
           </Attributes>
         </Dimension>
+        <Dimension xsi:type="DegenerateMeasureGroupDimension" dwd:design-time-name="c7d7b48c-e016-4ba1-8988-caa10c7470b1">
+          <CubeDimensionID>Fact Finance Summary Daily</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="a823eafe-59e2-4385-b0d4-023a84545106">
+              <AttributeID>Output Wip Percentage Complete</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="6b8bf80c-19e3-405a-b801-d96c41d404e4">
+                  <DataType>WChar</DataType>
+                  <DataSize>255</DataSize>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="66403f72-4233-4b05-992d-54c64ed47154">
+                    <TableID>dbo_fact_finance_summary_daily</TableID>
+                    <ColumnID>output_wip_percentage_complete</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
       </Dimensions>
       <Partitions />
+      <AggregationDesigns />
     </MeasureGroup>
   </MeasureGroups>
   <Source dwd:design-time-name="06d1872b-21e1-42ba-9da1-772f8ef30b77">
