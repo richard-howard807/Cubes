@@ -128,6 +128,11 @@
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>proforma_number</Name>
                 </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>Include_In_Budget</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>include_in_budget 1</Name>
+                </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
@@ -509,6 +514,31 @@
                 <Source xsi:type="ColumnBinding">
                   <TableID>dim_bill_6af77c4c-e403-4930-960c-65c7321d5744</TableID>
                   <ColumnID>proforma_number</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>Include_In_Budget</ID>
+              <Name>include_in_budget</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dim_bill_6af77c4c-e403-4930-960c-65c7321d5744</TableID>
+                    <ColumnID>Include_In_Budget</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dim_bill_6af77c4c-e403-4930-960c-65c7321d5744</TableID>
+                  <ColumnID>Include_In_Budget</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
@@ -15141,20 +15171,14 @@
           <Name>dim_detail_client</Name>
           <Annotations>
             <Annotation>
-              <Name>IsQueryEditorUsed</Name>
-              <Value>True</Value>
+              <Name>TableWidgetSerialization</Name>
             </Annotation>
             <Annotation>
               <Name>QueryEditorSerialization</Name>
             </Annotation>
             <Annotation>
-              <Name>TableWidgetSerialization</Name>
-            </Annotation>
-            <Annotation>
-              <Name>DataMarketWebBaseUrl</Name>
-            </Annotation>
-            <Annotation>
-              <Name>DataMarketWebQueryUrl</Name>
+              <Name>IsQueryEditorUsed</Name>
+              <Value>True</Value>
             </Annotation>
           </Annotations>
           <Source xsi:type="DataSourceViewBinding">
@@ -15200,6 +15224,11 @@
                   <AttributeID>first_date_budget_uploaded</AttributeID>
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>first_date_budget_uploaded</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>aig_litigation_number</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>aig_litigation_number</Name>
                 </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
@@ -15276,6 +15305,31 @@
               <OrderBy>Key</OrderBy>
               <ddl300_300:FormatString>General Date</ddl300_300:FormatString>
             </Attribute>
+            <Attribute>
+              <ID>aig_litigation_number</ID>
+              <Name>aig_litigation_number</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dim_detail_client_127be33e-de6c-45c9-90cc-90a508b88062</TableID>
+                    <ColumnID>aig_litigation_number</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dim_detail_client_127be33e-de6c-45c9-90cc-90a508b88062</TableID>
+                  <ColumnID>aig_litigation_number</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
           </Attributes>
           <ProactiveCaching>
             <SilenceInterval>-PT1S</SilenceInterval>
@@ -15343,6 +15397,9 @@
                 </Attribute>
                 <Attribute>
                   <AttributeID>proforma_number</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Include_In_Budget</AttributeID>
                 </Attribute>
               </Attributes>
             </Dimension>
@@ -16571,6 +16628,9 @@
                 <Attribute>
                   <AttributeID>first_date_budget_uploaded</AttributeID>
                 </Attribute>
+                <Attribute>
+                  <AttributeID>aig_litigation_number</AttributeID>
+                </Attribute>
               </Attributes>
             </Dimension>
           </Dimensions>
@@ -16794,6 +16854,20 @@
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>Include_In_Budget</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_6af77c4c-e403-4930-960c-65c7321d5744</TableID>
+                            <ColumnID>Include_In_Budget</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
                 </Dimension>
@@ -16819,7 +16893,15 @@
                   </Annotations>
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>e8e0673f-7952-4c4e-a705-9ac57378e5ef</DataSourceID>
-                    <QueryDefinition>SELECT [dbo].[dim_bill].*   FROM [dbo].[dim_bill]</QueryDefinition>
+                    <QueryDefinition>SELECT 
+dim_bill.*,
+CASE WHEN dim_bill_date.bill_date &gt; dim_detail_client.first_date_budget_uploaded OR first_date_budget_uploaded IS null THEN 1 ELSE 0 END Include_In_Budget   
+FROM 
+dim_bill
+LEFT JOIN dbo.fact_bill ON fact_bill.dim_bill_key = dim_bill.dim_bill_key
+LEFT JOIN dim_bill_date  ON fact_bill.dim_bill_date_key = dim_bill_date.dim_bill_date_key
+LEFT JOIN dbo.fact_dimension_main ON fact_bill.master_fact_key = fact_dimension_main.master_fact_key
+LEFT JOIN  dim_detail_client  ON dim_detail_client.dim_detail_client_key = fact_dimension_main.dim_detail_client_key</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
@@ -21609,6 +21691,20 @@
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>Include_In_Budget</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_6af77c4c-e403-4930-960c-65c7321d5744</TableID>
+                            <ColumnID>Include_In_Budget</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <IntermediateCubeDimensionID>fact_bill_detail_8a9a376f-026d-4963-b677-2da451051fe7</IntermediateCubeDimensionID>
                   <IntermediateGranularityAttributeID>dim_bill_key</IntermediateGranularityAttributeID>
@@ -24762,6 +24858,20 @@
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>aig_litigation_number</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_detail_client_127be33e-de6c-45c9-90cc-90a508b88062</TableID>
+                            <ColumnID>aig_litigation_number</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <IntermediateCubeDimensionID>fact_dimension_main_f734589e-46c0-4f07-aabb-6eefa61ee368</IntermediateCubeDimensionID>
                   <IntermediateGranularityAttributeID>dim_detail_client_key</IntermediateGranularityAttributeID>
@@ -25441,6 +25551,20 @@
                           <Source xsi:type="ColumnBinding">
                             <TableID>dim_detail_client_127be33e-de6c-45c9-90cc-90a508b88062</TableID>
                             <ColumnID>first_date_budget_uploaded</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>aig_litigation_number</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_detail_client_127be33e-de6c-45c9-90cc-90a508b88062</TableID>
+                            <ColumnID>aig_litigation_number</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -28156,6 +28280,20 @@ FROM [dbo].[dim_bill_item_matter_header_current]</QueryDefinition>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>aig_litigation_number</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_detail_client_127be33e-de6c-45c9-90cc-90a508b88062</TableID>
+                            <ColumnID>aig_litigation_number</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
                 </Dimension>
@@ -28166,19 +28304,22 @@ FROM [dbo].[dim_bill_item_matter_header_current]</QueryDefinition>
                   <Name>dim_detail_client</Name>
                   <Annotations>
                     <Annotation>
-                      <Name>IsQueryEditorUsed</Name>
-                      <Value>True</Value>
+                      <Name>TableWidgetSerialization</Name>
+                    </Annotation>
+                    <Annotation>
+                      <Name>TableWidgetSourceTable</Name>
                     </Annotation>
                     <Annotation>
                       <Name>QueryEditorSerialization</Name>
                     </Annotation>
                     <Annotation>
-                      <Name>TableWidgetSerialization</Name>
+                      <Name>IsQueryEditorUsed</Name>
+                      <Value>True</Value>
                     </Annotation>
                   </Annotations>
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>e8e0673f-7952-4c4e-a705-9ac57378e5ef</DataSourceID>
-                    <QueryDefinition>SELECT dim_detail_client.dim_detail_client_key, dim_detail_client.first_date_budget_uploaded FROM dim_detail_client</QueryDefinition>
+                    <QueryDefinition>SELECT dim_detail_client.dim_detail_client_key, dim_detail_client.first_date_budget_uploaded,aig_litigation_number FROM dim_detail_client</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
@@ -28495,7 +28636,7 @@ CREATE MEASURE 'fact_bill_detail'[Sum of workhrs]=SUM([workhrs]);
               <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:Locale="en-GB">
                 <xs:complexType>
                   <xs:choice minOccurs="0" maxOccurs="unbounded">
-                    <xs:element name="dim_bill_6af77c4c-e403-4930-960c-65c7321d5744" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dim_bill" msprop:DbSchemaName="dbo" msprop:DbTableName="dim_bill" msprop:TableType="View" msprop:Description="dim_bill" msprop:QueryDefinition="SELECT [dbo].[dim_bill].*   FROM [dbo].[dim_bill]">
+                    <xs:element name="dim_bill_6af77c4c-e403-4930-960c-65c7321d5744" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dim_bill" msprop:DbSchemaName="dbo" msprop:DbTableName="dim_bill" msprop:TableType="View" msprop:Description="dim_bill" msprop:QueryDefinition="SELECT &#xD;&#xA;dim_bill.*,&#xD;&#xA;CASE WHEN dim_bill_date.bill_date &gt; dim_detail_client.first_date_budget_uploaded OR first_date_budget_uploaded IS null THEN 1 ELSE 0 END Include_In_Budget   &#xD;&#xA;FROM &#xD;&#xA;dim_bill&#xD;&#xA;LEFT JOIN dbo.fact_bill ON fact_bill.dim_bill_key = dim_bill.dim_bill_key&#xD;&#xA;LEFT JOIN dim_bill_date  ON fact_bill.dim_bill_date_key = dim_bill_date.dim_bill_date_key&#xD;&#xA;LEFT JOIN dbo.fact_dimension_main ON fact_bill.master_fact_key = fact_dimension_main.master_fact_key&#xD;&#xA;LEFT JOIN  dim_detail_client  ON dim_detail_client.dim_detail_client_key = fact_dimension_main.dim_detail_client_key">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="dim_bill_key" msprop:DbColumnName="dim_bill_key" msprop:FriendlyName="dim_bill_key" type="xs:long" />
@@ -28546,6 +28687,7 @@ CREATE MEASURE 'fact_bill_detail'[Sum of workhrs]=SUM([workhrs]);
                             </xs:simpleType>
                           </xs:element>
                           <xs:element name="proforma_number" msprop:DbColumnName="proforma_number" msprop:FriendlyName="proforma_number" type="xs:int" minOccurs="0" />
+                          <xs:element name="Include_In_Budget" msprop:DbColumnName="Include_In_Budget" msprop:FriendlyName="Include_In_Budget" type="xs:int" minOccurs="0" />
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
@@ -30063,11 +30205,18 @@ CREATE MEASURE 'fact_bill_detail'[Sum of workhrs]=SUM([workhrs]);
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dim_detail_client_127be33e-de6c-45c9-90cc-90a508b88062" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dim_detail_client" msprop:DbTableName="dim_detail_client" msprop:TableType="View" msprop:Description="dim_detail_client" msprop:QueryDefinition="SELECT dim_detail_client.dim_detail_client_key, dim_detail_client.first_date_budget_uploaded FROM dim_detail_client">
+                    <xs:element name="dim_detail_client_127be33e-de6c-45c9-90cc-90a508b88062" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dim_detail_client" msprop:DbTableName="dim_detail_client" msprop:TableType="View" msprop:Description="dim_detail_client" msprop:QueryDefinition="SELECT dim_detail_client.dim_detail_client_key, dim_detail_client.first_date_budget_uploaded,aig_litigation_number FROM dim_detail_client">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="dim_detail_client_key" msprop:DbColumnName="dim_detail_client_key" msprop:FriendlyName="dim_detail_client_key" type="xs:int" minOccurs="0" />
                           <xs:element name="first_date_budget_uploaded" msprop:DbColumnName="first_date_budget_uploaded" msprop:FriendlyName="first_date_budget_uploaded" type="xs:dateTime" minOccurs="0" />
+                          <xs:element name="aig_litigation_number" msprop:DbColumnName="aig_litigation_number" msprop:FriendlyName="aig_litigation_number" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
