@@ -233,26 +233,6 @@
                     <point x="7075" y="9300" />
                   </connector>
                 </ddscontrol>
-                <ddscontrol controlprogid="MSDDS.Polyline" left="8002" top="4501" logicalid="28" controlid="15" masterid="0" hint1="0" hint2="0" width="1215" height="4799" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
-                  <control>
-                    <ddsxmlobj>
-                      <polyline endtypedst="6" endtypesrc="3" usercolor="0" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
-                    </ddsxmlobj>
-                  </control>
-                  <layoutobject>
-                    <ddsxmlobj>
-                      <property name="LogicalObject" value="dataSet.Relations[fact_wip-dim_date1]" vartype="8" />
-                      <property name="Virtual" value="0" vartype="11" />
-                      <property name="VisibleAP" value="0" vartype="3" />
-                    </ddsxmlobj>
-                  </layoutobject>
-                  <connector lineroutestyle="MSDDS.Rectilinear" sourceid="2" destid="1" sourceattachpoint="1" destattachpoint="6" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
-                    <point x="8401" y="5000" />
-                    <point x="8401" y="7000" />
-                    <point x="8917" y="7000" />
-                    <point x="8917" y="9000" />
-                  </connector>
-                </ddscontrol>
               </dds>
 </DiagramLayout>
             <ShowRelationshipNames>False</ShowRelationshipNames>
@@ -273,7 +253,7 @@
       <xs:element name="WIP_x0020_Current" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:design-time-name="7108198b-2811-4135-82db-ef7a093fd965">
         <xs:complexType>
           <xs:choice minOccurs="0" maxOccurs="unbounded">
-            <xs:element name="dbo_fact_wip" msprop:design-time-name="d9cce3ba-cf85-46bc-b88c-866d5933c9f0" msprop:IsLogical="True" msprop:FriendlyName="fact_wip" msprop:DbTableName="fact_wip" msprop:TableType="View" msprop:QueryDefinition="SELECT        fact_wip.dim_transaction_date_key, fact_wip.dim_matter_header_history_key, fact_wip.dim_matter_header_current_key, fact_wip.dim_fed_hierarchy_history_key, fact_wip.dim_days_banding_key, &#xD;&#xA;                         fact_wip.dim_fed_matter_owner_key, fact_wip.dim_client_key, fact_wip.master_fact_key, fact_wip.source_system_id, fact_wip.client, fact_wip.matter, fact_wip.matter_owner, fact_wip.fee_earner_code, &#xD;&#xA;                         fact_wip.wip_minutes, fact_wip.wip_value, fact_wip.wip_date, fact_wip.dss_update_time, fact_matter_summary_current.dim_last_bill_date_key&#xD;&#xA;FROM            fact_wip INNER JOIN&#xD;&#xA;                         fact_matter_summary_current ON fact_matter_summary_current.dim_matter_header_curr_key = fact_wip.dim_matter_header_current_key" msprop:QueryBuilder="SpecificQueryBuilder">
+            <xs:element name="dbo_fact_wip" msprop:design-time-name="d9cce3ba-cf85-46bc-b88c-866d5933c9f0" msprop:FriendlyName="fact_wip" msprop:DbSchemaName="dbo" msprop:DbTableName="fact_wip" msprop:TableType="Table" msprop:QueryBuilder="SpecificQueryBuilder">
               <xs:complexType>
                 <xs:sequence>
                   <xs:element name="dim_transaction_date_key" msprop:design-time-name="5e024eef-604e-4c48-b8d6-bc7d1eb84627" msprop:DbColumnName="dim_transaction_date_key" msprop:FriendlyName="dim_transaction_date_key" type="xs:int" minOccurs="0" />
@@ -317,7 +297,6 @@
                   <xs:element name="wip_value" msprop:design-time-name="b4297b14-77b0-4bb5-8dec-855da865d8d9" msprop:DbColumnName="wip_value" msprop:FriendlyName="wip_value" type="xs:decimal" minOccurs="0" />
                   <xs:element name="wip_date" msprop:design-time-name="de7a938e-e1ee-41ed-900f-90de9d3d23e9" msprop:DbColumnName="wip_date" msprop:FriendlyName="wip_date" type="xs:dateTime" minOccurs="0" />
                   <xs:element name="dss_update_time" msprop:design-time-name="01278119-ae96-434f-be65-440eed9eae45" msprop:DbColumnName="dss_update_time" msprop:FriendlyName="dss_update_time" type="xs:dateTime" minOccurs="0" />
-                  <xs:element name="dim_last_bill_date_key" msprop:DbColumnName="dim_last_bill_date_key" msprop:design-time-name="15c96db1-9cfe-4862-9dbb-5e386d0dd82e" type="xs:int" minOccurs="0" />
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
@@ -1305,7 +1284,6 @@
           <msdata:Relationship name="fact_wip-dim_fed_hierarchy_history" msdata:parent="dbo_dim_fed_hierarchy_history" msdata:child="dbo_fact_wip" msdata:parentkey="dim_fed_hierarchy_history_key" msdata:childkey="dim_fed_hierarchy_history_key" msprop:Description="" msprop:IsLogical="True" />
           <msdata:Relationship name="fact_wip-dim_date" msdata:parent="dbo_dim_date" msdata:child="dbo_fact_wip" msdata:parentkey="dim_date_key" msdata:childkey="dim_transaction_date_key" msprop:Description="" msprop:IsLogical="True" />
           <msdata:Relationship name="fact_wip-dim_matter_header_current" msdata:parent="dbo_dim_matter_header_history" msdata:child="dbo_fact_wip" msdata:parentkey="dim_matter_header_curr_key" msdata:childkey="dim_matter_header_current_key" msprop:Description="" msprop:IsLogical="True" />
-          <msdata:Relationship name="fact_wip-dim_date1" msdata:parent="dbo_dim_date" msdata:child="dbo_fact_wip" msdata:parentkey="dim_date_key" msdata:childkey="dim_last_bill_date_key" msprop:IsLogical="True" msprop:Description="" />
         </xs:appinfo>
       </xs:annotation>
     </xs:schema>
