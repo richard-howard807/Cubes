@@ -1300,7 +1300,16 @@ CREATE MEMBER CURRENTCUBE.[Measures].[Annual Average Billable Hours]
         avg([Measures].[Annual Target Chargeable Hours])
         ), 
 VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                                                   
-                
+
+
+CREATE MEMBER CURRENTCUBE.[Measures].[Annual Average Chargeable Hours]
+ AS iif([Measures].[YTD Target Chargeable Hours] = 0, 0, 
+    (avg([Measures].[YTD Chargeable Hours]) / avg([Measures].[YTD Target Chargeable Hours])) * 
+        avg([Measures].[Annual Target Chargeable Hours])
+        ), 
+VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                                                   
+
+
 
                 CREATE MEMBER CURRENTCUBE.[Measures].[Annual Budget Balance (Calculation Measure)]
  AS iif([Dim Fed Hierarchy History].[Hierarchy].CurrentMember.Level.Name = "Display Name"
