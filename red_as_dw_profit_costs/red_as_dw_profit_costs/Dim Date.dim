@@ -21,7 +21,7 @@
           </layoutmanager>
           <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.3" tooltip="dim_date" left="-1303" top="-3678" logicalid="2" controlid="1" masterid="0" hint1="0" hint2="0" width="3995" height="15690" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
             <control>
-              <ddsxmlobjectstreaminitwrapper binary="000a00009b0f00004a3d0000" />
+              <ddsxmlobjectstreaminitwrapper binary="000c00009b0f00004a3d0000" />
             </control>
             <layoutobject>
               <ddsxmlobj>
@@ -70,9 +70,10 @@
       <Value>
         <DiagramLayout ZoomPercent="100" ViewPortX="0" ViewPortY="0" xmlns="">
           <Shapes NodeWidth="107">
-            <Shape Id="Dim Date Key" Expanded="false">
+            <Shape Id="Dim Date Key" Expanded="true">
               <Attributes>
                 <Attribute Id="Dim Date Key" />
+                <Attribute Id="Cal Month" />
               </Attributes>
               <Position x="20" y="20" />
             </Shape>
@@ -100,9 +101,10 @@
               </Attributes>
               <Position x="575" y="20" />
             </Shape>
-            <Shape Id="Fin Period" Expanded="false">
+            <Shape Id="Fin Period" Expanded="true">
               <Attributes>
                 <Attribute Id="Fin Period" />
+                <Attribute Id="Current Fin Month" />
               </Attributes>
               <Position x="297" y="68" />
             </Shape>
@@ -208,8 +210,13 @@
           <RelationshipType>Rigid</RelationshipType>
           <Name>Fin Quarter</Name>
         </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="02ba3ea5-6e73-4f51-a445-e1d99cb82bd2">
+          <AttributeID>Current Fin Month</AttributeID>
+          <Name>Current Fin Month</Name>
+        </AttributeRelationship>
       </AttributeRelationships>
       <OrderBy>Key</OrderBy>
+      <DefaultMember>FILTER([Dim Date].[Fin Period].[Fin Period], [Dim Date].[Hierarchy].CURRENTMEMBER.PROPERTIES("Current Fin Month") = "Current").item(0)</DefaultMember>
       <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
@@ -399,6 +406,23 @@
           </Source>
         </KeyColumn>
       </KeyColumns>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="f17a8f5d-bfa5-4aa9-90fd-03fdb7512de5">
+      <ID>Current Fin Month</ID>
+      <Name>Current Fin Month</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="c05db420-1da5-4aa3-928b-9116e00cc7b9">
+          <DataType>WChar</DataType>
+          <DataSize>8</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="dfbed43a-05a3-4bb0-b694-27e3f20ea244">
+            <TableID>dbo_dim_date</TableID>
+            <ColumnID>current_fin_month</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeHierarchyEnabled>false</AttributeHierarchyEnabled>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
