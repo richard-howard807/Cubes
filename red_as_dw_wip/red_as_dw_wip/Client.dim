@@ -1,6 +1,6 @@
 ﻿<Dimension xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="33ef3213-454e-448c-a0a9-cca7f481df5f" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
   <ID>Dim Client</ID>
-  <Name>Dim Client</Name>
+  <Name>Client</Name>
   <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
   <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
   <Annotations>
@@ -19,9 +19,9 @@
           <layoutmanager>
             <ddsxmlobj />
           </layoutmanager>
-          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.3" tooltip="dim_client" left="20" top="0" logicalid="2" controlid="1" masterid="0" hint1="0" hint2="0" width="3757" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.3" tooltip="Client" left="20" top="0" logicalid="2" controlid="1" masterid="0" hint1="0" hint2="0" width="3757" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
             <control>
-              <ddsxmlobjectstreaminitwrapper binary="000a0000ad0e000088130000" />
+              <ddsxmlobjectstreaminitwrapper binary="000c0000ad0e000088130000" />
             </control>
             <layoutobject>
               <ddsxmlobj>
@@ -70,16 +70,17 @@
       <Value>
         <DiagramLayout ZoomPercent="100" ViewPortX="0" ViewPortY="0" xmlns="">
           <Shapes NodeWidth="136">
-            <Shape Id="Dim Client Key" Expanded="false">
+            <Shape Id="Dim Client Key" Expanded="true">
               <Attributes>
                 <Attribute Id="Dim Client Key" />
-                <Attribute Id="Client Code" />
+                <Attribute Id="Client Partner Name" />
               </Attributes>
               <Position x="20" y="20" />
             </Shape>
-            <Shape Id="Client Name" Expanded="false">
+            <Shape Id="Client Name" Expanded="true">
               <Attributes>
                 <Attribute Id="Client Name" />
+                <Attribute Id="Client Code" />
               </Attributes>
               <Position x="195" y="20" />
             </Shape>
@@ -116,17 +117,13 @@
         <KeyColumn dwd:design-time-name="850626ef-f90b-4b8a-90bd-b5c65c69b300">
           <DataType>Integer</DataType>
           <NullProcessing>UnknownMember</NullProcessing>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="cafe188b-3399-45ea-99c7-235834460400">
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="fe84f924-3994-44f3-ac04-5581d659ec93">
             <TableID>dbo_dim_client</TableID>
-            <ColumnID>dim_client_key</ColumnID>
+            <ColumnID>Dim_x0020_Client_x0020_Key</ColumnID>
           </Source>
         </KeyColumn>
       </KeyColumns>
       <AttributeRelationships>
-        <AttributeRelationship dwd:design-time-name="aa8790f5-bd6f-4a32-bb98-1c5284fb4726">
-          <AttributeID>Client Code</AttributeID>
-          <Name>Client Code</Name>
-        </AttributeRelationship>
         <AttributeRelationship dwd:design-time-name="587425ef-b0ff-4945-a1b1-b801fab9cf13">
           <AttributeID>Client Name</AttributeID>
           <Name>Client Name</Name>
@@ -146,20 +143,20 @@
       <Name>Client Code</Name>
       <EstimatedCount>905193</EstimatedCount>
       <KeyColumns>
-        <KeyColumn dwd:design-time-name="f64f26f6-aa08-49bc-b59a-2e9e4ae2149c">
+        <KeyColumn dwd:design-time-name="b4136c96-cf81-4a69-9d05-4018cd540ca0">
           <DataType>Integer</DataType>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="b2babcb7-2c8f-43d6-81ff-0a9b689b68e3">
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="64a5a50f-fb42-4436-8e8e-9ef45ae1dda5">
             <TableID>dbo_dim_client</TableID>
-            <ColumnID>dim_client_key</ColumnID>
+            <ColumnID>Dim_x0020_Client_x0020_Key</ColumnID>
           </Source>
         </KeyColumn>
       </KeyColumns>
       <NameColumn dwd:design-time-name="bc39784b-0915-42d6-a6cf-3b7e904a4c17">
         <DataType>WChar</DataType>
         <DataSize>8</DataSize>
-        <Source xsi:type="ColumnBinding" dwd:design-time-name="f55ab1d7-363b-4b54-9a04-2461ca6c99d6">
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="e2820e43-c3b9-4e19-ba9e-341d780ab2cc">
           <TableID>dbo_dim_client</TableID>
-          <ColumnID>client_code</ColumnID>
+          <ColumnID>Client_x0020_Code</ColumnID>
         </Source>
       </NameColumn>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
@@ -170,26 +167,30 @@
       <Name>Client Name</Name>
       <EstimatedCount>905193</EstimatedCount>
       <KeyColumns>
-        <KeyColumn dwd:design-time-name="6156700e-52e5-4d3b-af86-39999afb4941">
+        <KeyColumn dwd:design-time-name="f7f1394e-e5ba-4dfd-adde-0263061dcde9">
           <DataType>Integer</DataType>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="d8a1f115-ab4a-4f2f-8c46-68f2da761dbf">
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="0b7df97d-2145-4152-a2ad-6452165ff06d">
             <TableID>dbo_dim_client</TableID>
-            <ColumnID>dim_client_key</ColumnID>
+            <ColumnID>Dim_x0020_Client_x0020_Key</ColumnID>
           </Source>
         </KeyColumn>
       </KeyColumns>
       <NameColumn dwd:design-time-name="af8429e7-b95d-4afb-91e1-30059244d6f5">
         <DataType>WChar</DataType>
         <DataSize>60</DataSize>
-        <Source xsi:type="ColumnBinding" dwd:design-time-name="b77f49d4-217a-4493-88fd-e48343e57450">
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="64f88fc2-ffed-466e-bbae-5f3dcd4e1366">
           <TableID>dbo_dim_client</TableID>
-          <ColumnID>client_name</ColumnID>
+          <ColumnID>Client_x0020_Name</ColumnID>
         </Source>
       </NameColumn>
       <AttributeRelationships>
         <AttributeRelationship dwd:design-time-name="3867e974-3862-4ac2-ac71-54cf2d93a742">
           <AttributeID>Client Group Name</AttributeID>
           <Name>Client Group Name</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="92334f19-ceef-4ce9-905b-bc5e1fe07d87">
+          <AttributeID>Client Code</AttributeID>
+          <Name>Client Code</Name>
         </AttributeRelationship>
       </AttributeRelationships>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
@@ -203,9 +204,9 @@
         <KeyColumn dwd:design-time-name="6e49fa8a-2f78-4e13-81d3-e1478c860f8a">
           <DataType>WChar</DataType>
           <DataSize>40</DataSize>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="380db374-a017-43f3-aab2-fc20532cccd5">
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="8e6dd5e5-6aa8-4175-8037-98d5a35b01bc">
             <TableID>dbo_dim_client</TableID>
-            <ColumnID>client_group_name</ColumnID>
+            <ColumnID>Client_x0020_Group_x0020_Name</ColumnID>
           </Source>
         </KeyColumn>
       </KeyColumns>
@@ -219,9 +220,9 @@
         <KeyColumn dwd:design-time-name="a670cf77-2bce-4649-81b4-dfcb01f82780">
           <DataType>WChar</DataType>
           <DataSize>100</DataSize>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="91866019-61cc-4c51-b1e5-2008b1f58c77">
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="a6c0d9eb-2ab3-40f0-9ac4-55ad4bb98ebe">
             <TableID>dbo_dim_client</TableID>
-            <ColumnID>client_partner_name</ColumnID>
+            <ColumnID>Client_x0020_Partner_x0020_Name</ColumnID>
           </Source>
         </KeyColumn>
       </KeyColumns>
@@ -232,7 +233,7 @@
   <Hierarchies>
     <Hierarchy dwd:design-time-name="e5e2b483-b787-4f92-8ac7-d0e75edec3ff">
       <ID>Hierarchy</ID>
-      <Name>Hierarchy</Name>
+      <Name>Client Group</Name>
       <Levels>
         <Level dwd:design-time-name="5744fc2b-3578-4048-bb1b-fdc420ed80f7">
           <ID>Client Group Name</ID>
