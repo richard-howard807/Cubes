@@ -1,6 +1,6 @@
 ﻿<Dimension xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="3d67e2ac-b70b-4658-b26a-07c650bb1df8" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
   <ID>Dim WIP Date</ID>
-  <Name>Dim WIP Date</Name>
+  <Name>WIP Date</Name>
   <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
   <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
   <Annotations>
@@ -19,9 +19,9 @@
           <layoutmanager>
             <ddsxmlobj />
           </layoutmanager>
-          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.3" tooltip="dim_date" left="20" top="0" logicalid="2" controlid="1" masterid="0" hint1="0" hint2="0" width="3995" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.3" tooltip="Dim Date" left="20" top="0" logicalid="2" controlid="1" masterid="0" hint1="0" hint2="0" width="3995" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
             <control>
-              <ddsxmlobjectstreaminitwrapper binary="000a00009b0f000088130000" />
+              <ddsxmlobjectstreaminitwrapper binary="000c00009b0f000088130000" />
             </control>
             <layoutobject>
               <ddsxmlobj>
@@ -127,20 +127,22 @@
       <KeyColumns>
         <KeyColumn dwd:design-time-name="f9559aa8-75cd-443c-88ea-9005bb38cb93">
           <DataType>Integer</DataType>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="a1b28923-4a30-4edf-8ece-44020ea4d674">
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="3a2801be-3353-40f6-a474-609c96b94c0e">
             <TableID>dbo_dim_date</TableID>
-            <ColumnID>dim_date_key</ColumnID>
+            <ColumnID>Dim_x0020_Date_x0020_Key</ColumnID>
           </Source>
         </KeyColumn>
       </KeyColumns>
       <AttributeRelationships>
         <AttributeRelationship dwd:design-time-name="5320bcf0-6cdf-4366-b5e1-57513d56a1b5">
           <AttributeID>Calendar Date</AttributeID>
+          <RelationshipType>Rigid</RelationshipType>
           <Name>Calendar Date</Name>
         </AttributeRelationship>
         <AttributeRelationship dwd:design-time-name="d72cb0a7-8024-4c18-a4d4-a3e8af516d7e">
           <AttributeID>Fin Month</AttributeID>
-          <Name>Fin Month</Name>
+          <RelationshipType>Rigid</RelationshipType>
+          <Name>Financial Month</Name>
         </AttributeRelationship>
       </AttributeRelationships>
       <OrderBy>Key</OrderBy>
@@ -156,16 +158,17 @@
       <KeyColumns>
         <KeyColumn dwd:design-time-name="631d8dc2-930f-41c6-a87a-d3868ed4690e">
           <DataType>Date</DataType>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="337a7f90-bf1f-48a0-90d3-05ab27efe887">
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="410c6292-fc68-4021-869e-d2f85d00cab6">
             <TableID>dbo_dim_date</TableID>
-            <ColumnID>calendar_date</ColumnID>
+            <ColumnID>Calendar_x0020_Date</ColumnID>
           </Source>
         </KeyColumn>
       </KeyColumns>
       <AttributeRelationships>
         <AttributeRelationship dwd:design-time-name="967e72e7-3208-466a-9e80-260c51271d28">
           <AttributeID>Fin Period</AttributeID>
-          <Name>Fin Period</Name>
+          <RelationshipType>Rigid</RelationshipType>
+          <Name>Financial Period</Name>
         </AttributeRelationship>
       </AttributeRelationships>
       <OrderBy>Key</OrderBy>
@@ -176,23 +179,24 @@
     </Attribute>
     <Attribute dwd:design-time-name="1fe3ce09-9ba4-4d7d-9066-94a4ebae5cb9">
       <ID>Fin Period</ID>
-      <Name>Fin Period</Name>
+      <Name>Financial Period</Name>
       <Type>Months</Type>
       <EstimatedCount>721</EstimatedCount>
       <KeyColumns>
         <KeyColumn dwd:design-time-name="52bac774-1713-4935-8dcb-5bf4132569e2">
           <DataType>WChar</DataType>
           <DataSize>20</DataSize>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="257d25ac-567e-4930-880a-41689d081c48">
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="69f2b230-8a7f-46c5-923e-3c36a42fe03c">
             <TableID>dbo_dim_date</TableID>
-            <ColumnID>fin_period</ColumnID>
+            <ColumnID>Fin_x0020_Period</ColumnID>
           </Source>
         </KeyColumn>
       </KeyColumns>
       <AttributeRelationships>
         <AttributeRelationship dwd:design-time-name="b8376242-1d83-4f41-8984-840a0dfa640c">
           <AttributeID>Fin Quarter</AttributeID>
-          <Name>Fin Quarter</Name>
+          <RelationshipType>Rigid</RelationshipType>
+          <Name>Financial Quarter</Name>
         </AttributeRelationship>
       </AttributeRelationships>
       <OrderBy>Key</OrderBy>
@@ -202,23 +206,24 @@
     </Attribute>
     <Attribute dwd:design-time-name="19290cfe-aeb8-403d-9db6-5a62f410ef12">
       <ID>Fin Quarter</ID>
-      <Name>Fin Quarter</Name>
+      <Name>Financial Quarter</Name>
       <Type>Quarters</Type>
       <EstimatedCount>241</EstimatedCount>
       <KeyColumns>
         <KeyColumn dwd:design-time-name="f4b1cbe9-3b7a-4d62-8d9a-5386139e85bc">
           <DataType>WChar</DataType>
           <DataSize>7</DataSize>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="36100c18-3eb5-4db4-ad87-54d551932281">
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="adeef3b8-c188-48a0-80b0-50e80c11ba0f">
             <TableID>dbo_dim_date</TableID>
-            <ColumnID>fin_quarter</ColumnID>
+            <ColumnID>Fin_x0020_Quarter</ColumnID>
           </Source>
         </KeyColumn>
       </KeyColumns>
       <AttributeRelationships>
         <AttributeRelationship dwd:design-time-name="65aee3af-c25a-4f25-93c0-fd6a0f4881e0">
           <AttributeID>Fin Year</AttributeID>
-          <Name>Fin Year</Name>
+          <RelationshipType>Rigid</RelationshipType>
+          <Name>Financial Year</Name>
         </AttributeRelationship>
       </AttributeRelationships>
       <OrderBy>Key</OrderBy>
@@ -228,15 +233,15 @@
     </Attribute>
     <Attribute dwd:design-time-name="1f524290-ac6c-4fac-ba4d-62c972d0f48e">
       <ID>Fin Year</ID>
-      <Name>Fin Year</Name>
+      <Name>Financial Year</Name>
       <Type>Years</Type>
       <EstimatedCount>62</EstimatedCount>
       <KeyColumns>
         <KeyColumn dwd:design-time-name="44343882-bfbd-4741-a49e-d8c791bb2090">
           <DataType>Integer</DataType>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="4a59a414-5fdd-484e-a6a6-cdde8cf53cbe">
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="583f4b6d-3e9e-48a1-8d5c-c609bb98305e">
             <TableID>dbo_dim_date</TableID>
-            <ColumnID>fin_year</ColumnID>
+            <ColumnID>Fin_x0020_Year</ColumnID>
           </Source>
         </KeyColumn>
       </KeyColumns>
@@ -247,15 +252,15 @@
     </Attribute>
     <Attribute dwd:design-time-name="4c154e3d-ba9d-4196-add2-64f9421a1eee">
       <ID>Fin Month</ID>
-      <Name>Fin Month</Name>
+      <Name>Financial Month</Name>
       <Type>Months</Type>
       <EstimatedCount>722</EstimatedCount>
       <KeyColumns>
         <KeyColumn dwd:design-time-name="b38c1377-29a2-4e80-aec1-6ae250478a5e">
           <DataType>Integer</DataType>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="0b630df9-cc0f-4d69-b393-5137bd1c3cb2">
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="44e5f83f-197d-4e51-86b0-d6be3781bcc9">
             <TableID>dbo_dim_date</TableID>
-            <ColumnID>fin_month</ColumnID>
+            <ColumnID>Fin_x0020_Month</ColumnID>
           </Source>
         </KeyColumn>
       </KeyColumns>
@@ -266,21 +271,21 @@
   <Hierarchies>
     <Hierarchy dwd:design-time-name="890839c3-7f9f-4a35-8e78-c1bd4b12b6ef">
       <ID>Hierarchy</ID>
-      <Name>Hierarchy</Name>
+      <Name>Financial</Name>
       <Levels>
         <Level dwd:design-time-name="8104f154-22e4-42ab-a2f0-6e0a6b42f796">
           <ID>Fin Year</ID>
-          <Name>Fin Year</Name>
+          <Name>Financial Year</Name>
           <SourceAttributeID>Fin Year</SourceAttributeID>
         </Level>
         <Level dwd:design-time-name="c6da27d3-8065-49b9-adc2-ac4442d93a86">
           <ID>Fin Quarter</ID>
-          <Name>Fin Quarter</Name>
+          <Name>Financial Quarter</Name>
           <SourceAttributeID>Fin Quarter</SourceAttributeID>
         </Level>
         <Level dwd:design-time-name="89878395-4e82-4453-9de0-9803ac3b1543">
           <ID>Fin Period</ID>
-          <Name>Fin Period</Name>
+          <Name>Financial Period</Name>
           <SourceAttributeID>Fin Period</SourceAttributeID>
         </Level>
         <Level dwd:design-time-name="7e987db1-f1ee-4820-ac5a-14b0d0b74d50">
