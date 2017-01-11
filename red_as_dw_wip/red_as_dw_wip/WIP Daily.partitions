@@ -11,9 +11,16 @@
           <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
           <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
           <State>Unprocessed</State>
-          <Source xsi:type="QueryBinding" dwd:design-time-name="b32f7f6f-27c4-412f-9860-7efc72e2445c">
+          <Source xsi:type="QueryBinding" dwd:design-time-name="335276e6-1699-46d2-8a96-2539f0e2826d">
             <DataSourceID>Red Dw</DataSourceID>
-            <QueryDefinition>SELECT    *
+            <QueryDefinition>SELECT    dim_transaction_date_key as 'Dim Transaction Date Key',
+	dim_matter_header_history_key as 'Dim Matter Header History Key',
+	dim_fed_hierarchy_history_key as 'Dim Fed Hierarchy History Key',
+	dim_days_banding_key as 'Dim Days Banding Key',
+	dim_fed_matter_owner_key as 'Dim Fed Matter Owner Key',
+	wip_minutes as 'WIP Minutes',
+	wip_value as 'WIP Value',
+	dim_client_key as 'Dim Client Key'
 FROM            fact_wip_daily 
 		WHERE dim_transaction_date_key = replace(cast(getdate() as date), '-', '') - 1 and wip_value &lt;&gt; 0 and master_fact_key &lt;&gt; 0</QueryDefinition>
           </Source>
@@ -35,9 +42,16 @@ FROM            fact_wip_daily
           </Annotations>
           <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
           <State>Unprocessed</State>
-          <Source xsi:type="QueryBinding" dwd:design-time-name="5ef7870d-2324-4db9-97d3-5f6bb670f201">
+          <Source xsi:type="QueryBinding" dwd:design-time-name="baadee9f-98bc-4b8e-9ab6-a190e43dc217">
             <DataSourceID>Red Dw</DataSourceID>
-            <QueryDefinition>SELECT   *
+            <QueryDefinition>SELECT   dim_transaction_date_key as 'Dim Transaction Date Key',
+	dim_matter_header_history_key as 'Dim Matter Header History Key',
+	dim_fed_hierarchy_history_key as 'Dim Fed Hierarchy History Key',
+	dim_days_banding_key as 'Dim Days Banding Key',
+	dim_fed_matter_owner_key as 'Dim Fed Matter Owner Key',
+	wip_minutes as 'WIP Minutes',
+	wip_value as 'WIP Value',
+	dim_client_key as 'Dim Client Key'
 FROM            fact_wip_daily 
 		where dim_transaction_date_key &gt;= cast(left(replace(cast(getdate() as date), '-', '') -1 , 6) as varchar(8)) + '01'
 and dim_transaction_date_key &lt; replace(cast(getdate() as date), '-', '') - 1 and wip_value &lt;&gt; 0 and master_fact_key &lt;&gt; 0</QueryDefinition>
@@ -60,9 +74,16 @@ and dim_transaction_date_key &lt; replace(cast(getdate() as date), '-', '') - 1 
           </Annotations>
           <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
           <State>Unprocessed</State>
-          <Source xsi:type="QueryBinding" dwd:design-time-name="4fa2275a-d6ca-4925-874c-8791631756dd">
+          <Source xsi:type="QueryBinding" dwd:design-time-name="a5519bf4-547f-4734-b6f3-14941cf164b6">
             <DataSourceID>Red Dw</DataSourceID>
-            <QueryDefinition>SELECT    *
+            <QueryDefinition>SELECT    dim_transaction_date_key as 'Dim Transaction Date Key',
+	dim_matter_header_history_key as 'Dim Matter Header History Key',
+	dim_fed_hierarchy_history_key as 'Dim Fed Hierarchy History Key',
+	dim_days_banding_key as 'Dim Days Banding Key',
+	dim_fed_matter_owner_key as 'Dim Fed Matter Owner Key',
+	wip_minutes as 'WIP Minutes',
+	wip_value as 'WIP Value',
+	dim_client_key as 'Dim Client Key'
 FROM            fact_wip_daily
 		where 
 		dim_transaction_date_key &gt;= '20160822'
