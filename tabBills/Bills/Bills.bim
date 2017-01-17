@@ -1717,9 +1717,9 @@
                   <Name>BillID</Name>
                 </AttributeRelationship>
                 <AttributeRelationship>
-                  <AttributeID>bill_reversed</AttributeID>
+                  <AttributeID>BillReversed</AttributeID>
                   <OverrideBehavior>None</OverrideBehavior>
-                  <Name>bill_reversed</Name>
+                  <Name>BillReversed</Name>
                 </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
@@ -2236,8 +2236,8 @@
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
             </Attribute>
             <Attribute>
-              <ID>bill_reversed</ID>
-              <Name>bill_reversed</Name>
+              <ID>BillReversed</ID>
+              <Name>BillReversed</Name>
               <KeyColumns>
                 <KeyColumn>
                   <DataType>UnsignedTinyInt</DataType>
@@ -2245,7 +2245,7 @@
                   <NullProcessing>Preserve</NullProcessing>
                   <Source xsi:type="ColumnBinding">
                     <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
-                    <ColumnID>bill_reversed</ColumnID>
+                    <ColumnID>BillReversed</ColumnID>
                   </Source>
                 </KeyColumn>
               </KeyColumns>
@@ -2255,7 +2255,7 @@
                 <NullProcessing>ZeroOrBlank</NullProcessing>
                 <Source xsi:type="ColumnBinding">
                   <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
-                  <ColumnID>bill_reversed</ColumnID>
+                  <ColumnID>BillReversed</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
@@ -11223,7 +11223,7 @@ order by 1&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryC
                   <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
                 </Attribute>
                 <Attribute>
-                  <AttributeID>bill_reversed</AttributeID>
+                  <AttributeID>BillReversed</AttributeID>
                 </Attribute>
               </Attributes>
             </Dimension>
@@ -15347,7 +15347,7 @@ f.dim_matter_header_curr_key &gt; 0</QueryDefinition>
                       </KeyColumns>
                     </Attribute>
                     <Attribute>
-                      <AttributeID>bill_reversed</AttributeID>
+                      <AttributeID>BillReversed</AttributeID>
                       <KeyColumns>
                         <KeyColumn>
                           <DataType>UnsignedTinyInt</DataType>
@@ -15355,7 +15355,7 @@ f.dim_matter_header_curr_key &gt; 0</QueryDefinition>
                           <NullProcessing>Preserve</NullProcessing>
                           <Source xsi:type="ColumnBinding">
                             <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
-                            <ColumnID>bill_reversed</ColumnID>
+                            <ColumnID>BillReversed</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -18939,7 +18939,7 @@ f.unpaid_disbursements as 'DisbursementsUnpaid',
 f.admin_charges_total as 'AdministrationCharges',
 f.vat_amount as 'VATAmount',
 f.amount_paid as 'AmountPaid',
-d.bill_reversed 'bill_reversed', 
+d.bill_reversed 'BillReversed', 
 amount_outstanding as 'AmountOutstanding',
 case when f.amount_paid = f.bill_total then 0 else cast(datediff(day,cast( cast(f.dim_bill_date_key as varchar(10)) as date), getdate()) as numeric(10,2))  end as 'BillAgeDays',
 d.outstanding_flag as 'OpenItem'
@@ -27121,7 +27121,7 @@ dim_last_transaction_date_key &gt; 0</QueryDefinition>
                       <Type>Granularity</Type>
                     </Attribute>
                     <Attribute>
-                      <AttributeID>bill_reversed</AttributeID>
+                      <AttributeID>BillReversed</AttributeID>
                       <KeyColumns>
                         <KeyColumn>
                           <DataType>UnsignedTinyInt</DataType>
@@ -27129,7 +27129,7 @@ dim_last_transaction_date_key &gt; 0</QueryDefinition>
                           <NullProcessing>Preserve</NullProcessing>
                           <Source xsi:type="ColumnBinding">
                             <TableID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</TableID>
-                            <ColumnID>bill_reversed</ColumnID>
+                            <ColumnID>BillReversed</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -30334,7 +30334,7 @@ CREATE MEASURE 'Matters'[Count of Matters]=countrows(Matters);
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="Bills" msprop:DbTableName="factBill" msprop:TableType="View" msprop:Description="factBill" msprop:QueryDefinition="select distinct&#xD;&#xA;f.dim_bill_key as 'BillID',&#xD;&#xA;f.bill_number as 'BillNumber',&#xD;&#xA;upper(d.record_type) as  'BillTypeCode',&#xD;&#xA;f.dim_matter_header_curr_key as 'MatterID',&#xD;&#xA;d.bill_flag as 'BillFinalOrInterimCode',&#xD;&#xA;f.dim_last_pay_date_key as 'BillLastPaymentDate',&#xD;&#xA;f.dim_bill_date_key as 'BillDate',&#xD;&#xA;f.bill_total as 'BillAmount',&#xD;&#xA;f.fees_total as 'FeeValue',&#xD;&#xA;f.paid_disbursements as 'DisbursementsPaid',&#xD;&#xA;f.unpaid_disbursements as 'DisbursementsUnpaid',&#xD;&#xA;f.admin_charges_total as 'AdministrationCharges',&#xD;&#xA;f.vat_amount as 'VATAmount',&#xD;&#xA;f.amount_paid as 'AmountPaid',&#xD;&#xA;d.bill_reversed 'bill_reversed', &#xD;&#xA;amount_outstanding as 'AmountOutstanding',&#xD;&#xA;case when f.amount_paid = f.bill_total then 0 else cast(datediff(day,cast( cast(f.dim_bill_date_key as varchar(10)) as date), getdate()) as numeric(10,2))  end as 'BillAgeDays',&#xD;&#xA;d.outstanding_flag as 'OpenItem'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_bill f&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; red_dw.dbo.dim_bill d&#xD;&#xA;  on d.dim_bill_key = f.dim_bill_key&#xD;&#xA;&#xD;&#xA;where &#xD;&#xA;f.bill_number != 'PURGE'">
+                    <xs:element name="factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="Bills" msprop:DbTableName="factBill" msprop:TableType="View" msprop:Description="factBill" msprop:QueryDefinition="select distinct&#xD;&#xA;f.dim_bill_key as 'BillID',&#xD;&#xA;f.bill_number as 'BillNumber',&#xD;&#xA;upper(d.record_type) as  'BillTypeCode',&#xD;&#xA;f.dim_matter_header_curr_key as 'MatterID',&#xD;&#xA;d.bill_flag as 'BillFinalOrInterimCode',&#xD;&#xA;f.dim_last_pay_date_key as 'BillLastPaymentDate',&#xD;&#xA;f.dim_bill_date_key as 'BillDate',&#xD;&#xA;f.bill_total as 'BillAmount',&#xD;&#xA;f.fees_total as 'FeeValue',&#xD;&#xA;f.paid_disbursements as 'DisbursementsPaid',&#xD;&#xA;f.unpaid_disbursements as 'DisbursementsUnpaid',&#xD;&#xA;f.admin_charges_total as 'AdministrationCharges',&#xD;&#xA;f.vat_amount as 'VATAmount',&#xD;&#xA;f.amount_paid as 'AmountPaid',&#xD;&#xA;d.bill_reversed 'BillReversed', &#xD;&#xA;amount_outstanding as 'AmountOutstanding',&#xD;&#xA;case when f.amount_paid = f.bill_total then 0 else cast(datediff(day,cast( cast(f.dim_bill_date_key as varchar(10)) as date), getdate()) as numeric(10,2))  end as 'BillAgeDays',&#xD;&#xA;d.outstanding_flag as 'OpenItem'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_bill f&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; red_dw.dbo.dim_bill d&#xD;&#xA;  on d.dim_bill_key = f.dim_bill_key&#xD;&#xA;&#xD;&#xA;where &#xD;&#xA;f.bill_number != 'PURGE'">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="BillDate" msprop:DbColumnName="BillDate" msprop:FriendlyName="BillDate" type="xs:int" minOccurs="0" />
@@ -30378,7 +30378,7 @@ CREATE MEASURE 'Matters'[Count of Matters]=countrows(Matters);
                           </xs:element>
                           <xs:element name="BillAgeDays" msprop:DbColumnName="BillAgeDays" msprop:FriendlyName="BillAgeDays" type="xs:decimal" minOccurs="0" />
                           <xs:element name="BillID" msprop:DbColumnName="BillID" msprop:FriendlyName="BillID" type="xs:int" minOccurs="0" />
-                          <xs:element name="bill_reversed" msprop:DbColumnName="bill_reversed" msprop:FriendlyName="bill_reversed" type="xs:unsignedByte" minOccurs="0" />
+                          <xs:element name="BillReversed" msprop:DbColumnName="BillReversed" msprop:FriendlyName="BillReversed" type="xs:unsignedByte" minOccurs="0" />
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
