@@ -6495,6 +6495,11 @@ order by 1&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryC
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>ClientType</Name>
                 </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>Email</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>Email</Name>
+                </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
@@ -6820,6 +6825,31 @@ order by 1&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryC
                 <Source xsi:type="ColumnBinding">
                   <TableID>dimClientMatter_efa9a451-b17b-4f91-8fea-de6ec489402f</TableID>
                   <ColumnID>ClientType</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>Email</ID>
+              <Name>Email</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimClientMatter_efa9a451-b17b-4f91-8fea-de6ec489402f</TableID>
+                    <ColumnID>Email</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimClientMatter_efa9a451-b17b-4f91-8fea-de6ec489402f</TableID>
+                  <ColumnID>Email</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
@@ -11184,6 +11214,11 @@ order by 1&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryC
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>DimClientInvolvementKey</Name>
                 </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>ClientContactName</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>ClientContactName</Name>
+                </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
@@ -11353,6 +11388,31 @@ order by 1&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryC
               </NameColumn>
               <OrderBy>Key</OrderBy>
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+            </Attribute>
+            <Attribute>
+              <ID>ClientContactName</ID>
+              <Name>ClientContactName</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimClientInvolvement_2860e1a4-5f8c-45d7-b3ac-cfd7496c9b35</TableID>
+                    <ColumnID>ClientContactName</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimClientInvolvement_2860e1a4-5f8c-45d7-b3ac-cfd7496c9b35</TableID>
+                  <ColumnID>ClientContactName</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
             </Attribute>
           </Attributes>
           <ProactiveCaching>
@@ -12213,6 +12273,9 @@ order by 1&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryC
                 <Attribute>
                   <AttributeID>ClientType</AttributeID>
                 </Attribute>
+                <Attribute>
+                  <AttributeID>Email</AttributeID>
+                </Attribute>
               </Attributes>
             </Dimension>
             <Dimension>
@@ -12662,6 +12725,9 @@ order by 1&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryC
                 <Attribute>
                   <AttributeID>DimClientInvolvementKey</AttributeID>
                   <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>ClientContactName</AttributeID>
                 </Attribute>
               </Attributes>
             </Dimension>
@@ -14901,6 +14967,20 @@ order by 1&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryC
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>Email</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClientMatter_efa9a451-b17b-4f91-8fea-de6ec489402f</TableID>
+                            <ColumnID>Email</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <IntermediateCubeDimensionID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</IntermediateCubeDimensionID>
                   <IntermediateGranularityAttributeID>ClientID</IntermediateGranularityAttributeID>
@@ -15637,6 +15717,20 @@ order by 1&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryC
                         </KeyColumn>
                       </KeyColumns>
                       <Type>Granularity</Type>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientContactName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClientInvolvement_2860e1a4-5f8c-45d7-b3ac-cfd7496c9b35</TableID>
+                            <ColumnID>ClientContactName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
                     </Attribute>
                   </Attributes>
                   <IntermediateCubeDimensionID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</IntermediateCubeDimensionID>
@@ -17708,6 +17802,20 @@ f.dim_matter_header_curr_key &gt; 0</QueryDefinition>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>Email</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClientMatter_efa9a451-b17b-4f91-8fea-de6ec489402f</TableID>
+                            <ColumnID>Email</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <IntermediateCubeDimensionID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</IntermediateCubeDimensionID>
                   <IntermediateGranularityAttributeID>ClientID</IntermediateGranularityAttributeID>
@@ -19760,6 +19868,20 @@ f.dim_matter_header_curr_key &gt; 0</QueryDefinition>
                         </KeyColumn>
                       </KeyColumns>
                       <Type>Granularity</Type>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientContactName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClientInvolvement_2860e1a4-5f8c-45d7-b3ac-cfd7496c9b35</TableID>
+                            <ColumnID>ClientContactName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
                     </Attribute>
                   </Attributes>
                   <IntermediateCubeDimensionID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</IntermediateCubeDimensionID>
@@ -23119,6 +23241,20 @@ red_dw.dbo.dim_fed_hierarchy_history</QueryDefinition>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>Email</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClientMatter_efa9a451-b17b-4f91-8fea-de6ec489402f</TableID>
+                            <ColumnID>Email</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
                 </Dimension>
@@ -23307,7 +23443,8 @@ sector AS 'SectorName',
    WHEN crm.cx_data is null then null 
    ELSE 'Rising Star' END AS 'CRMStatus',
 credit_limit as CreditLimit,
-client_type as ClientType
+client_type as ClientType,
+email as Email
 
  FROM 
 [dim_client] c
@@ -26002,6 +26139,20 @@ dim_last_transaction_date_key &gt; 0</QueryDefinition>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>Email</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClientMatter_efa9a451-b17b-4f91-8fea-de6ec489402f</TableID>
+                            <ColumnID>Email</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <IntermediateCubeDimensionID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</IntermediateCubeDimensionID>
                   <IntermediateGranularityAttributeID>ClientID</IntermediateGranularityAttributeID>
@@ -28622,6 +28773,20 @@ dim_last_transaction_date_key &gt; 0</QueryDefinition>
                       </KeyColumns>
                       <Type>Granularity</Type>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientContactName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClientInvolvement_2860e1a4-5f8c-45d7-b3ac-cfd7496c9b35</TableID>
+                            <ColumnID>ClientContactName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <IntermediateCubeDimensionID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</IntermediateCubeDimensionID>
                   <IntermediateGranularityAttributeID>DimClientInvolvementKey</IntermediateGranularityAttributeID>
@@ -30510,6 +30675,20 @@ dim_bill_date_key &gt; 0</QueryDefinition>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientContactName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimClientInvolvement_2860e1a4-5f8c-45d7-b3ac-cfd7496c9b35</TableID>
+                            <ColumnID>ClientContactName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
                 </Dimension>
@@ -30540,7 +30719,8 @@ dim_client_involvement_key as DimClientInvolvementKey,
 insuredclient_name as InsuredClientName,
 insurerclient_name as InsurerClientName,
 insuredclient_reference as InsuredClientReference,
-insurerclient_reference as InsurerClientReference
+insurerclient_reference as InsurerClientReference,
+clientcontact_name as ClientContactName
 
 from
 red_dw.dbo.dim_client_involvement</QueryDefinition>
@@ -32195,7 +32375,7 @@ CREATE MEASURE 'Matters'[Count of Matters]=countrows(Matters);
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimClientMatter_efa9a451-b17b-4f91-8fea-de6ec489402f" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimClient" msprop:DbTableName="dimClientMatter" msprop:TableType="View" msprop:Description="dimClientMatter" msprop:QueryDefinition="SELECT distinct&#xD;&#xA;c.dim_client_key as 'ClientID',&#xD;&#xA;c.client_code as 'ClientCode',&#xD;&#xA;(CASE WHEN ISNUMERIC(LEFT(c.client_code, 1)) = 0&#xD;&#xA;          -- If Client code starts with letter, remove all zeroes between the letter and the first non-zero number (eg. A00123 becomes A123)&#xD;&#xA;          THEN LEFT(c.client_code, 1) + REPLACE(LTRIM(REPLACE(RIGHT(RTRIM(c.client_code), LEN(RTRIM(c.client_code)) - 1), '0', ' ')), ' ', '0')&#xD;&#xA;          WHEN ISNUMERIC(c.client_code) = 1&#xD;&#xA;          -- If Client code is numeric, remove leading zeroes&#xD;&#xA;          THEN CAST(CAST(c.client_code AS int) AS varchar)&#xD;&#xA;          ELSE RTRIM(c.client_code)&#xD;&#xA;          END) as 'ClientCodeTrimmed',&#xD;&#xA;c.client_name as 'ClientName',&#xD;&#xA;c.client_group_code as 'ClientGroupCode',&#xD;&#xA;c.client_group_name as 'ClientGroupName',&#xD;&#xA;case when c.client_group_name is null then c.client_name else c.client_group_name end as 'ClientGroupCalculated',&#xD;&#xA;c.client_partner_code as 'ClientPartnerCode',&#xD;&#xA;case&#xD;&#xA;when cc.cx_data = 'SGO' then 'Stephen Gorman'&#xD;&#xA;when cc.cx_data = 'AQM' then 'Ashleigh Mulligan'&#xD;&#xA;when cc.cx_data = 'KWA' then 'Keith Walters'&#xD;&#xA;when cc.cx_data = 'LIL' then 'Linda Lewis'&#xD;&#xA;when cc.cx_data = 'JWO' then 'Jemma Woodworth'&#xD;&#xA;when cc.cx_data = 'AEV' then 'Alun Evans'&#xD;&#xA;when cc.cx_data = 'JEV' then 'Joanne Sawkins'&#xD;&#xA;when cc.cx_data = 'KEL1' then 'Kelly Ryan'&#xD;&#xA;when cc.cx_data = 'JZD' then 'Julie Dootson'&#xD;&#xA;when cc.cx_data = 'JTUR' then 'Jocelyn Turner'&#xD;&#xA;when cc.cx_data = 'MWN' then 'Michelle Wilson'&#xD;&#xA;when cc.cx_data = 'NMB' then 'Natalie Cooney'&#xD;&#xA;when cc.cx_data = 'DIA' then 'Diane Robinson'&#xD;&#xA;else cc.cx_data&#xD;&#xA;end as 'CreditControllerName',&#xD;&#xA;sector AS 'SectorName',&#xD;&#xA;  CASE WHEN crm.cx_data = '0001' THEN 'Patron'&#xD;&#xA;   WHEN crm.cx_data = '0002' THEN 'Star' &#xD;&#xA;   WHEN crm.cx_data is null then null &#xD;&#xA;   ELSE 'Rising Star' END AS 'CRMStatus',&#xD;&#xA;credit_limit as CreditLimit,&#xD;&#xA;client_type as ClientType&#xD;&#xA;&#xD;&#xA; FROM &#xD;&#xA;[dim_client] c&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join sql2008svr.axxia01.dbo.caclextn  as cc&#xD;&#xA; on c.client_code = cc.cx_accode&#xD;&#xA; and cc.cx_colnum = '5'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join sql2008svr.axxia01.dbo.caclextn crm&#xD;&#xA; on crm.cx_accode = c.client_code&#xD;&#xA; and crm.cx_colnum = '101'">
+                    <xs:element name="dimClientMatter_efa9a451-b17b-4f91-8fea-de6ec489402f" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimClient" msprop:DbTableName="dimClientMatter" msprop:TableType="View" msprop:Description="dimClientMatter" msprop:QueryDefinition="SELECT distinct&#xD;&#xA;c.dim_client_key as 'ClientID',&#xD;&#xA;c.client_code as 'ClientCode',&#xD;&#xA;(CASE WHEN ISNUMERIC(LEFT(c.client_code, 1)) = 0&#xD;&#xA;          -- If Client code starts with letter, remove all zeroes between the letter and the first non-zero number (eg. A00123 becomes A123)&#xD;&#xA;          THEN LEFT(c.client_code, 1) + REPLACE(LTRIM(REPLACE(RIGHT(RTRIM(c.client_code), LEN(RTRIM(c.client_code)) - 1), '0', ' ')), ' ', '0')&#xD;&#xA;          WHEN ISNUMERIC(c.client_code) = 1&#xD;&#xA;          -- If Client code is numeric, remove leading zeroes&#xD;&#xA;          THEN CAST(CAST(c.client_code AS int) AS varchar)&#xD;&#xA;          ELSE RTRIM(c.client_code)&#xD;&#xA;          END) as 'ClientCodeTrimmed',&#xD;&#xA;c.client_name as 'ClientName',&#xD;&#xA;c.client_group_code as 'ClientGroupCode',&#xD;&#xA;c.client_group_name as 'ClientGroupName',&#xD;&#xA;case when c.client_group_name is null then c.client_name else c.client_group_name end as 'ClientGroupCalculated',&#xD;&#xA;c.client_partner_code as 'ClientPartnerCode',&#xD;&#xA;case&#xD;&#xA;when cc.cx_data = 'SGO' then 'Stephen Gorman'&#xD;&#xA;when cc.cx_data = 'AQM' then 'Ashleigh Mulligan'&#xD;&#xA;when cc.cx_data = 'KWA' then 'Keith Walters'&#xD;&#xA;when cc.cx_data = 'LIL' then 'Linda Lewis'&#xD;&#xA;when cc.cx_data = 'JWO' then 'Jemma Woodworth'&#xD;&#xA;when cc.cx_data = 'AEV' then 'Alun Evans'&#xD;&#xA;when cc.cx_data = 'JEV' then 'Joanne Sawkins'&#xD;&#xA;when cc.cx_data = 'KEL1' then 'Kelly Ryan'&#xD;&#xA;when cc.cx_data = 'JZD' then 'Julie Dootson'&#xD;&#xA;when cc.cx_data = 'JTUR' then 'Jocelyn Turner'&#xD;&#xA;when cc.cx_data = 'MWN' then 'Michelle Wilson'&#xD;&#xA;when cc.cx_data = 'NMB' then 'Natalie Cooney'&#xD;&#xA;when cc.cx_data = 'DIA' then 'Diane Robinson'&#xD;&#xA;else cc.cx_data&#xD;&#xA;end as 'CreditControllerName',&#xD;&#xA;sector AS 'SectorName',&#xD;&#xA;  CASE WHEN crm.cx_data = '0001' THEN 'Patron'&#xD;&#xA;   WHEN crm.cx_data = '0002' THEN 'Star' &#xD;&#xA;   WHEN crm.cx_data is null then null &#xD;&#xA;   ELSE 'Rising Star' END AS 'CRMStatus',&#xD;&#xA;credit_limit as CreditLimit,&#xD;&#xA;client_type as ClientType,&#xD;&#xA;email as Email&#xD;&#xA;&#xD;&#xA; FROM &#xD;&#xA;[dim_client] c&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join sql2008svr.axxia01.dbo.caclextn  as cc&#xD;&#xA; on c.client_code = cc.cx_accode&#xD;&#xA; and cc.cx_colnum = '5'&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;left join sql2008svr.axxia01.dbo.caclextn crm&#xD;&#xA; on crm.cx_accode = c.client_code&#xD;&#xA; and crm.cx_colnum = '101'">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="ClientCode" msprop:DbColumnName="ClientCode" msprop:FriendlyName="ClientCode" minOccurs="0">
@@ -32271,6 +32451,13 @@ CREATE MEASURE 'Matters'[Count of Matters]=countrows(Matters);
                           </xs:element>
                           <xs:element name="CreditLimit" msprop:DbColumnName="CreditLimit" msprop:FriendlyName="CreditLimit" type="xs:decimal" minOccurs="0" />
                           <xs:element name="ClientType" msprop:DbColumnName="ClientType" msprop:FriendlyName="ClientType" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="Email" msprop:DbColumnName="Email" msprop:FriendlyName="Email" minOccurs="0">
                             <xs:simpleType>
                               <xs:restriction base="xs:string">
                                 <xs:maxLength value="32768" />
@@ -32705,7 +32892,7 @@ CREATE MEASURE 'Matters'[Count of Matters]=countrows(Matters);
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimClientInvolvement_2860e1a4-5f8c-45d7-b3ac-cfd7496c9b35" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimClientInvolvement" msprop:DbTableName="dimClientInvolvement" msprop:TableType="View" msprop:Description="dimClientInvolvement" msprop:QueryDefinition="select&#xD;&#xA;dim_client_involvement_key as DimClientInvolvementKey,&#xD;&#xA;insuredclient_name as InsuredClientName,&#xD;&#xA;insurerclient_name as InsurerClientName,&#xD;&#xA;insuredclient_reference as InsuredClientReference,&#xD;&#xA;insurerclient_reference as InsurerClientReference&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_client_involvement">
+                    <xs:element name="dimClientInvolvement_2860e1a4-5f8c-45d7-b3ac-cfd7496c9b35" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimClientInvolvement" msprop:DbTableName="dimClientInvolvement" msprop:TableType="View" msprop:Description="dimClientInvolvement" msprop:QueryDefinition="select&#xD;&#xA;dim_client_involvement_key as DimClientInvolvementKey,&#xD;&#xA;insuredclient_name as InsuredClientName,&#xD;&#xA;insurerclient_name as InsurerClientName,&#xD;&#xA;insuredclient_reference as InsuredClientReference,&#xD;&#xA;insurerclient_reference as InsurerClientReference,&#xD;&#xA;clientcontact_name as ClientContactName&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_client_involvement">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="InsuredClientName" msprop:DbColumnName="InsuredClientName" msprop:FriendlyName="InsuredClientName" minOccurs="0">
@@ -32737,6 +32924,13 @@ CREATE MEASURE 'Matters'[Count of Matters]=countrows(Matters);
                             </xs:simpleType>
                           </xs:element>
                           <xs:element name="DimClientInvolvementKey" msprop:DbColumnName="DimClientInvolvementKey" msprop:FriendlyName="DimClientInvolvementKey" type="xs:int" minOccurs="0" />
+                          <xs:element name="ClientContactName" msprop:DbColumnName="ClientContactName" msprop:FriendlyName="ClientContactName" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
