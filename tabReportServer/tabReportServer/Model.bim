@@ -544,7 +544,7 @@
               </ddl300_300:ToRelationshipEnd>
             </ddl300_300:Relationship>
             <ddl300_300:Relationship>
-              <ID>92124268-00a6-4079-b045-8d36d3f95f0b</ID>
+              <ID>1b640420-e85e-4fa6-9919-3d0aa56ac628</ID>
               <ddl300_300:FromRelationshipEnd>
                 <ddl300_300:Multiplicity>Many</ddl300_300:Multiplicity>
                 <ddl300:VisualizationProperties />
@@ -561,7 +561,7 @@
                 <DimensionID>dimDate2_4ac974c3-5cac-418d-a441-0e1663e848ac</DimensionID>
                 <Attributes>
                   <Attribute>
-                    <AttributeID>dim_date_key</AttributeID>
+                    <AttributeID>Calendar Date</AttributeID>
                   </Attribute>
                 </Attributes>
               </ddl300_300:ToRelationshipEnd>
@@ -3098,12 +3098,12 @@
               <AttributeRelationships>
                 <AttributeRelationship>
                   <AttributeID>dim_date_key</AttributeID>
-                  <Cardinality>One</Cardinality>
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>dim_date_key</Name>
                 </AttributeRelationship>
                 <AttributeRelationship>
                   <AttributeID>Calendar Date</AttributeID>
+                  <Cardinality>One</Cardinality>
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>Calendar Date</Name>
                 </AttributeRelationship>
@@ -3166,7 +3166,6 @@
                 <KeyColumn>
                   <DataType>Integer</DataType>
                   <DataSize>-1</DataSize>
-                  <NullProcessing>Error</NullProcessing>
                   <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
                   <Source xsi:type="ColumnBinding">
                     <TableID>dimDate2_4ac974c3-5cac-418d-a441-0e1663e848ac</TableID>
@@ -3202,7 +3201,7 @@
                 <KeyColumn>
                   <DataType>Date</DataType>
                   <DataSize>-1</DataSize>
-                  <NullProcessing>Preserve</NullProcessing>
+                  <NullProcessing>Error</NullProcessing>
                   <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
                   <Source xsi:type="ColumnBinding">
                     <TableID>dimDate2_4ac974c3-5cac-418d-a441-0e1663e848ac</TableID>
@@ -4978,7 +4977,6 @@
                         <KeyColumn>
                           <DataType>Integer</DataType>
                           <DataSize>-1</DataSize>
-                          <NullProcessing>Error</NullProcessing>
                           <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
                           <Source xsi:type="ColumnBinding">
                             <TableID>dimDate2_4ac974c3-5cac-418d-a441-0e1663e848ac</TableID>
@@ -4986,7 +4984,6 @@
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
-                      <Type>Granularity</Type>
                     </Attribute>
                     <Attribute>
                       <AttributeID>Calendar Date</AttributeID>
@@ -4994,7 +4991,7 @@
                         <KeyColumn>
                           <DataType>Date</DataType>
                           <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
+                          <NullProcessing>Error</NullProcessing>
                           <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
                           <Source xsi:type="ColumnBinding">
                             <TableID>dimDate2_4ac974c3-5cac-418d-a441-0e1663e848ac</TableID>
@@ -5002,6 +4999,7 @@
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
+                      <Type>Granularity</Type>
                     </Attribute>
                     <Attribute>
                       <AttributeID>Calendar Year</AttributeID>
@@ -5125,7 +5123,7 @@
                   <IntermediateCubeDimensionID>ExecutionLog_8ba32cd9-e938-4bce-87b7-251e27df5540</IntermediateCubeDimensionID>
                   <IntermediateGranularityAttributeID>ReportRunDate</IntermediateGranularityAttributeID>
                   <Materialization>Regular</Materialization>
-                  <ddl300:RelationshipID>92124268-00a6-4079-b045-8d36d3f95f0b</ddl300:RelationshipID>
+                  <ddl300:RelationshipID>1b640420-e85e-4fa6-9919-3d0aa56ac628</ddl300:RelationshipID>
                 </Dimension>
               </Dimensions>
               <Partitions>
@@ -6937,7 +6935,7 @@ Reporting.dbo.DWHProgress</QueryDefinition>
                     <DataSourceID>7736f8a0-2952-44b4-a638-ae289ecdbf77</DataSourceID>
                     <QueryDefinition>select
 dim_date_key,
-calendar_date as 'Calendar Date',
+cast(calendar_date as date) as 'Calendar Date',
 cal_year as 'Calendar Year',
 cal_quarter as 'Calendar Quarter',
 cal_month_name as 'Calendar Month',
@@ -6997,13 +6995,13 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
 ----------------------------------------------------------
 
 
-CREATE MEASURE 'ExecutionLog'[Count of Executions]=calculate(countrows('ExecutionLog'), 'DataSourceBridge');
-CREATE MEASURE 'ExecutionLog'[Average Data Retrieval Time (Seconds)]=calculate( average([TimeDataRetrievalSeconds]),ExecutionLog[TimeDataRetrievalSeconds]&gt; 0.0, 'DataSourceBridge');
-CREATE MEASURE 'ExecutionLog'[Average Report Processing Time (Seconds)]=calculate(average([TimeProcessingSeconds]),'DataSourceBridge');
-CREATE MEASURE 'ExecutionLog'[Average Report Rendering Time (Seconds)]=calculate(average([TimeRenderingSeconds]), 'DataSourceBridge');
-CREATE MEASURE 'ExecutionLog'[Average Report Load Time (Seconds)]=calculate( average([TotalLoadTimeSeconds]), ExecutionLog[TimeDataRetrievalSeconds]&gt; 0.0, 'DataSourceBridge');
+CREATE MEASURE 'ExecutionLog'[Count of Executions]=calculate(countrows('ExecutionLog'));
+CREATE MEASURE 'ExecutionLog'[Average Data Retrieval Time (Seconds)]=calculate( average([TimeDataRetrievalSeconds]),ExecutionLog[TimeDataRetrievalSeconds]&gt; 0.0);
+CREATE MEASURE 'ExecutionLog'[Average Report Processing Time (Seconds)]=calculate(average([TimeProcessingSeconds]));
+CREATE MEASURE 'ExecutionLog'[Average Report Rendering Time (Seconds)]=calculate(average([TimeRenderingSeconds]));
+CREATE MEASURE 'ExecutionLog'[Average Report Load Time (Seconds)]=calculate( average([TotalLoadTimeSeconds]), ExecutionLog[TimeDataRetrievalSeconds]&gt; 0.0);
 CREATE MEASURE 'Report Catalogue'[Count of Reports]=countrows('Report Catalogue');
-CREATE MEASURE 'ExecutionLog'[Count of Executions (with blanks)]=calculate (if ( isblank( countrows(ExecutionLog)), 0, countrows(ExecutionLog)),DataSourceBridge);
+CREATE MEASURE 'ExecutionLog'[Count of Executions (with blanks)]=calculate (if ( isblank( countrows(ExecutionLog)), 0, countrows(ExecutionLog)));
 CREATE MEASURE 'Report Catalogue'[LiveOnDWH]=calculate(COUNTA('Report Catalogue'[ReportName]),'Report Catalogue'[Status] = "Live");
 CREATE MEASURE 'Report Catalogue'[LiveOn2008]=calculate(counta('Report Catalogue'[ReportName]),'Report Catalogue'[Status] = "08Live");
 CREATE MEASURE 'Report Catalogue'[UATOnDWH]=calculate(COUNTA('Report Catalogue'[ReportName]),'Report Catalogue'[Status] = "UAT");
@@ -7750,7 +7748,7 @@ CREATE MEASURE 'Report Catalogue'[New Reports on 2012]=sum([NewReport]);
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimDate2_4ac974c3-5cac-418d-a441-0e1663e848ac" msdata:Locale="" msprop:DataSourceID="7736f8a0-2952-44b4-a638-ae289ecdbf77" msprop:IsLogical="True" msprop:FriendlyName="dimDate" msprop:DbTableName="dimDate2" msprop:TableType="View" msprop:Description="dimDate2" msprop:QueryDefinition="select&#xD;&#xA;dim_date_key,&#xD;&#xA;calendar_date as 'Calendar Date',&#xD;&#xA;cal_year as 'Calendar Year',&#xD;&#xA;cal_quarter as 'Calendar Quarter',&#xD;&#xA;cal_month_name as 'Calendar Month',&#xD;&#xA;cal_day_in_week as 'Calendar Day of Week',&#xD;&#xA;fin_year as 'Financial Year',&#xD;&#xA;fin_period as 'Financial Period',&#xD;&#xA;holiday_flag as 'Bank Holiday',&#xD;&#xA;week_day_flag as 'Weekday'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;dim_date&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;calendar_date between '2013-01-01' and getdate()">
+                    <xs:element name="dimDate2_4ac974c3-5cac-418d-a441-0e1663e848ac" msdata:Locale="" msprop:DataSourceID="7736f8a0-2952-44b4-a638-ae289ecdbf77" msprop:IsLogical="True" msprop:FriendlyName="dimDate" msprop:DbTableName="dimDate2" msprop:TableType="View" msprop:Description="dimDate2" msprop:QueryDefinition="select&#xD;&#xA;dim_date_key,&#xD;&#xA;cast(calendar_date as date) as 'Calendar Date',&#xD;&#xA;cal_year as 'Calendar Year',&#xD;&#xA;cal_quarter as 'Calendar Quarter',&#xD;&#xA;cal_month_name as 'Calendar Month',&#xD;&#xA;cal_day_in_week as 'Calendar Day of Week',&#xD;&#xA;fin_year as 'Financial Year',&#xD;&#xA;fin_period as 'Financial Period',&#xD;&#xA;holiday_flag as 'Bank Holiday',&#xD;&#xA;week_day_flag as 'Weekday'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;dim_date&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;calendar_date between '2013-01-01' and getdate()">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="dim_date_key" msprop:DbColumnName="dim_date_key" msprop:FriendlyName="dim_date_key" type="xs:int" minOccurs="0" />
