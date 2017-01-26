@@ -452,29 +452,6 @@
           </ProactiveCaching>
           <ddl300_300:Relationships>
             <ddl300_300:Relationship>
-              <ID>da8e1cb1-414c-4895-bdf6-44f0e154d6ce</ID>
-              <ddl300_300:FromRelationshipEnd>
-                <ddl300_300:Multiplicity>Many</ddl300_300:Multiplicity>
-                <ddl300:VisualizationProperties />
-                <DimensionID>ExecutionLog_8ba32cd9-e938-4bce-87b7-251e27df5540</DimensionID>
-                <Attributes>
-                  <Attribute>
-                    <AttributeID>ReportRunDate</AttributeID>
-                  </Attribute>
-                </Attributes>
-              </ddl300_300:FromRelationshipEnd>
-              <ddl300_300:ToRelationshipEnd>
-                <ddl300_300:Multiplicity>One</ddl300_300:Multiplicity>
-                <ddl300:VisualizationProperties />
-                <DimensionID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</DimensionID>
-                <Attributes>
-                  <Attribute>
-                    <AttributeID>Date</AttributeID>
-                  </Attribute>
-                </Attributes>
-              </ddl300_300:ToRelationshipEnd>
-            </ddl300_300:Relationship>
-            <ddl300_300:Relationship>
               <ID>3dfdd1d3-1d89-421b-a4d2-5d4c85d53346</ID>
               <ddl300_300:FromRelationshipEnd>
                 <ddl300_300:Multiplicity>Many</ddl300_300:Multiplicity>
@@ -562,6 +539,29 @@
                 <Attributes>
                   <Attribute>
                     <AttributeID>BusinessKeyNew</AttributeID>
+                  </Attribute>
+                </Attributes>
+              </ddl300_300:ToRelationshipEnd>
+            </ddl300_300:Relationship>
+            <ddl300_300:Relationship>
+              <ID>92124268-00a6-4079-b045-8d36d3f95f0b</ID>
+              <ddl300_300:FromRelationshipEnd>
+                <ddl300_300:Multiplicity>Many</ddl300_300:Multiplicity>
+                <ddl300:VisualizationProperties />
+                <DimensionID>ExecutionLog_8ba32cd9-e938-4bce-87b7-251e27df5540</DimensionID>
+                <Attributes>
+                  <Attribute>
+                    <AttributeID>ReportRunDate</AttributeID>
+                  </Attribute>
+                </Attributes>
+              </ddl300_300:FromRelationshipEnd>
+              <ddl300_300:ToRelationshipEnd>
+                <ddl300_300:Multiplicity>One</ddl300_300:Multiplicity>
+                <ddl300:VisualizationProperties />
+                <DimensionID>dimDate2_4ac974c3-5cac-418d-a441-0e1663e848ac</DimensionID>
+                <Attributes>
+                  <Attribute>
+                    <AttributeID>dim_date_key</AttributeID>
                   </Attribute>
                 </Attributes>
               </ddl300_300:ToRelationshipEnd>
@@ -943,1156 +943,6 @@
               <OrderBy>Key</OrderBy>
             </Attribute>
           </Attributes>
-          <ProactiveCaching>
-            <SilenceInterval>-PT1S</SilenceInterval>
-            <Latency>-PT1S</Latency>
-            <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
-            <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
-            <Source xsi:type="ProactiveCachingInheritedBinding" />
-          </ProactiveCaching>
-        </Dimension>
-        <Dimension>
-          <ID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</ID>
-          <Name>dimDate</Name>
-          <Annotations>
-            <Annotation>
-              <Name>TableWidgetSerialization</Name>
-            </Annotation>
-            <Annotation>
-              <Name>QueryEditorSerialization</Name>
-            </Annotation>
-            <Annotation>
-              <Name>IsQueryEditorUsed</Name>
-              <Value>True</Value>
-            </Annotation>
-          </Annotations>
-          <Source xsi:type="DataSourceViewBinding">
-            <DataSourceViewID>Sandbox</DataSourceViewID>
-          </Source>
-          <Type>Time</Type>
-          <UnknownMember valuens="ddl200_200">AutomaticNull</UnknownMember>
-          <ErrorConfiguration>
-            <KeyNotFound>IgnoreError</KeyNotFound>
-            <KeyDuplicate>ReportAndStop</KeyDuplicate>
-            <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
-          </ErrorConfiguration>
-          <StorageMode valuens="ddl200_200">InMemory</StorageMode>
-          <Language>2057</Language>
-          <UnknownMemberName>Unknown</UnknownMemberName>
-          <Attributes>
-            <Attribute>
-              <ID>RowNumber</ID>
-              <Name>RowNumber</Name>
-              <Type valuens="ddl200_200">RowNumber</Type>
-              <KeyColumns>
-                <KeyColumn>
-                  <DataType>Integer</DataType>
-                  <DataSize>4</DataSize>
-                  <NullProcessing>Error</NullProcessing>
-                  <Source xsi:type="ddl200_200:RowNumberBinding" />
-                </KeyColumn>
-              </KeyColumns>
-              <NameColumn>
-                <DataType>WChar</DataType>
-                <DataSize>4</DataSize>
-                <NullProcessing>ZeroOrBlank</NullProcessing>
-                <Source xsi:type="ddl200_200:RowNumberBinding" />
-              </NameColumn>
-              <AttributeRelationships>
-                <AttributeRelationship>
-                  <AttributeID>DateKey</AttributeID>
-                  <OverrideBehavior>None</OverrideBehavior>
-                  <Name>DateKey</Name>
-                </AttributeRelationship>
-                <AttributeRelationship>
-                  <AttributeID>DayOfMonth</AttributeID>
-                  <OverrideBehavior>None</OverrideBehavior>
-                  <Name>DayOfMonth</Name>
-                </AttributeRelationship>
-                <AttributeRelationship>
-                  <AttributeID>DayOfYear</AttributeID>
-                  <OverrideBehavior>None</OverrideBehavior>
-                  <Name>DayOfYear</Name>
-                </AttributeRelationship>
-                <AttributeRelationship>
-                  <AttributeID>WeekOfMonth</AttributeID>
-                  <OverrideBehavior>None</OverrideBehavior>
-                  <Name>WeekOfMonth</Name>
-                </AttributeRelationship>
-                <AttributeRelationship>
-                  <AttributeID>WeekOfYear</AttributeID>
-                  <OverrideBehavior>None</OverrideBehavior>
-                  <Name>WeekOfYear</Name>
-                </AttributeRelationship>
-                <AttributeRelationship>
-                  <AttributeID>Year</AttributeID>
-                  <OverrideBehavior>None</OverrideBehavior>
-                  <Name>Year</Name>
-                </AttributeRelationship>
-                <AttributeRelationship>
-                  <AttributeID>Semester</AttributeID>
-                  <OverrideBehavior>None</OverrideBehavior>
-                  <Name>Semester</Name>
-                </AttributeRelationship>
-                <AttributeRelationship>
-                  <AttributeID>Quarter</AttributeID>
-                  <OverrideBehavior>None</OverrideBehavior>
-                  <Name>Quarter</Name>
-                </AttributeRelationship>
-                <AttributeRelationship>
-                  <AttributeID>QuarterName</AttributeID>
-                  <OverrideBehavior>None</OverrideBehavior>
-                  <Name>QuarterName</Name>
-                </AttributeRelationship>
-                <AttributeRelationship>
-                  <AttributeID>MonthNumber</AttributeID>
-                  <OverrideBehavior>None</OverrideBehavior>
-                  <Name>MonthNumber</Name>
-                </AttributeRelationship>
-                <AttributeRelationship>
-                  <AttributeID>MonthName</AttributeID>
-                  <OverrideBehavior>None</OverrideBehavior>
-                  <Name>MonthName</Name>
-                </AttributeRelationship>
-                <AttributeRelationship>
-                  <AttributeID>DayNumber</AttributeID>
-                  <OverrideBehavior>None</OverrideBehavior>
-                  <Name>DayNumber</Name>
-                </AttributeRelationship>
-                <AttributeRelationship>
-                  <AttributeID>DayName</AttributeID>
-                  <OverrideBehavior>None</OverrideBehavior>
-                  <Name>DayName</Name>
-                </AttributeRelationship>
-                <AttributeRelationship>
-                  <AttributeID>FiscalMonthNumber</AttributeID>
-                  <OverrideBehavior>None</OverrideBehavior>
-                  <Name>FiscalMonthNumber</Name>
-                </AttributeRelationship>
-                <AttributeRelationship>
-                  <AttributeID>FiscalMonthName</AttributeID>
-                  <OverrideBehavior>None</OverrideBehavior>
-                  <Name>FiscalMonthName</Name>
-                </AttributeRelationship>
-                <AttributeRelationship>
-                  <AttributeID>FiscalYear</AttributeID>
-                  <OverrideBehavior>None</OverrideBehavior>
-                  <Name>FiscalYear</Name>
-                </AttributeRelationship>
-                <AttributeRelationship>
-                  <AttributeID>FiscalQuarter</AttributeID>
-                  <OverrideBehavior>None</OverrideBehavior>
-                  <Name>FiscalQuarter</Name>
-                </AttributeRelationship>
-                <AttributeRelationship>
-                  <AttributeID>FiscalQuarterName</AttributeID>
-                  <OverrideBehavior>None</OverrideBehavior>
-                  <Name>FiscalQuarterName</Name>
-                </AttributeRelationship>
-                <AttributeRelationship>
-                  <AttributeID>IsHoliday</AttributeID>
-                  <OverrideBehavior>None</OverrideBehavior>
-                  <Name>IsHoliday</Name>
-                </AttributeRelationship>
-                <AttributeRelationship>
-                  <AttributeID>IsBusinessDay</AttributeID>
-                  <OverrideBehavior>None</OverrideBehavior>
-                  <Name>IsBusinessDay</Name>
-                </AttributeRelationship>
-                <AttributeRelationship>
-                  <AttributeID>IsWeekEnd</AttributeID>
-                  <OverrideBehavior>None</OverrideBehavior>
-                  <Name>IsWeekEnd</Name>
-                </AttributeRelationship>
-                <AttributeRelationship>
-                  <AttributeID>WeightmansYearPeriod</AttributeID>
-                  <OverrideBehavior>None</OverrideBehavior>
-                  <Name>WeightmansYearPeriod</Name>
-                </AttributeRelationship>
-                <AttributeRelationship>
-                  <AttributeID>WeightmansFinancialYearPeriod</AttributeID>
-                  <OverrideBehavior>None</OverrideBehavior>
-                  <Name>WeightmansFinancialYearPeriod</Name>
-                </AttributeRelationship>
-                <AttributeRelationship>
-                  <AttributeID>WeekBeginDate</AttributeID>
-                  <OverrideBehavior>None</OverrideBehavior>
-                  <Name>WeekBeginDate</Name>
-                </AttributeRelationship>
-                <AttributeRelationship>
-                  <AttributeID>WeekEndDate</AttributeID>
-                  <OverrideBehavior>None</OverrideBehavior>
-                  <Name>WeekEndDate</Name>
-                </AttributeRelationship>
-              </AttributeRelationships>
-              <OrderBy>Key</OrderBy>
-              <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
-            </Attribute>
-            <Attribute>
-              <Annotations>
-                <Annotation>
-                  <Name>Format</Name>
-                  <Value>
-                    <Format Format="General" xmlns="" />
-                  </Value>
-                </Annotation>
-              </Annotations>
-              <ID>DateKey</ID>
-              <Name>DateKey</Name>
-              <KeyColumns>
-                <KeyColumn>
-                  <DataType>Integer</DataType>
-                  <DataSize>-1</DataSize>
-                  <NullProcessing>Preserve</NullProcessing>
-                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                  <Source xsi:type="ColumnBinding">
-                    <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                    <ColumnID>DateKey</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-              <NameColumn>
-                <DataType>WChar</DataType>
-                <DataSize>-1</DataSize>
-                <NullProcessing>ZeroOrBlank</NullProcessing>
-                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                <Source xsi:type="ColumnBinding">
-                  <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                  <ColumnID>DateKey</ColumnID>
-                </Source>
-              </NameColumn>
-              <OrderBy>Key</OrderBy>
-              <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
-            </Attribute>
-            <Attribute>
-              <Annotations>
-                <Annotation>
-                  <Name>Format</Name>
-                  <Value>
-                    <Format Format="DateTimeCustom" xmlns="">
-                      <DateTimes>
-                        <DateTime LCID="2057" Group="ShortDate" FormatString="dd/MM/yyyy" />
-                      </DateTimes>
-                    </Format>
-                  </Value>
-                </Annotation>
-              </Annotations>
-              <ID>Date</ID>
-              <Name>Date</Name>
-              <Usage>Key</Usage>
-              <KeyColumns>
-                <KeyColumn>
-                  <DataType>Date</DataType>
-                  <DataSize>-1</DataSize>
-                  <NullProcessing>Error</NullProcessing>
-                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                  <Source xsi:type="ColumnBinding">
-                    <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                    <ColumnID>Date</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-              <NameColumn>
-                <DataType>WChar</DataType>
-                <DataSize>-1</DataSize>
-                <NullProcessing>ZeroOrBlank</NullProcessing>
-                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                <Source xsi:type="ColumnBinding">
-                  <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                  <ColumnID>Date</ColumnID>
-                </Source>
-              </NameColumn>
-              <AttributeRelationships>
-                <AttributeRelationship>
-                  <AttributeID>RowNumber</AttributeID>
-                  <Cardinality>One</Cardinality>
-                  <OverrideBehavior>None</OverrideBehavior>
-                  <Name>RowNumber</Name>
-                </AttributeRelationship>
-              </AttributeRelationships>
-              <OrderBy>Key</OrderBy>
-              <ddl300_300:FormatString>dd/MM/yyyy</ddl300_300:FormatString>
-            </Attribute>
-            <Attribute>
-              <Annotations>
-                <Annotation>
-                  <Name>Format</Name>
-                  <Value>
-                    <Format Format="General" xmlns="" />
-                  </Value>
-                </Annotation>
-              </Annotations>
-              <ID>DayOfMonth</ID>
-              <Name>DayOfMonth</Name>
-              <KeyColumns>
-                <KeyColumn>
-                  <DataType>Integer</DataType>
-                  <DataSize>-1</DataSize>
-                  <NullProcessing>Preserve</NullProcessing>
-                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                  <Source xsi:type="ColumnBinding">
-                    <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                    <ColumnID>DayOfMonth</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-              <NameColumn>
-                <DataType>WChar</DataType>
-                <DataSize>-1</DataSize>
-                <NullProcessing>ZeroOrBlank</NullProcessing>
-                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                <Source xsi:type="ColumnBinding">
-                  <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                  <ColumnID>DayOfMonth</ColumnID>
-                </Source>
-              </NameColumn>
-              <OrderBy>Key</OrderBy>
-            </Attribute>
-            <Attribute>
-              <Annotations>
-                <Annotation>
-                  <Name>Format</Name>
-                  <Value>
-                    <Format Format="General" xmlns="" />
-                  </Value>
-                </Annotation>
-              </Annotations>
-              <ID>DayOfYear</ID>
-              <Name>DayOfYear</Name>
-              <KeyColumns>
-                <KeyColumn>
-                  <DataType>Integer</DataType>
-                  <DataSize>-1</DataSize>
-                  <NullProcessing>Preserve</NullProcessing>
-                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                  <Source xsi:type="ColumnBinding">
-                    <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                    <ColumnID>DayOfYear</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-              <NameColumn>
-                <DataType>WChar</DataType>
-                <DataSize>-1</DataSize>
-                <NullProcessing>ZeroOrBlank</NullProcessing>
-                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                <Source xsi:type="ColumnBinding">
-                  <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                  <ColumnID>DayOfYear</ColumnID>
-                </Source>
-              </NameColumn>
-              <OrderBy>Key</OrderBy>
-            </Attribute>
-            <Attribute>
-              <Annotations>
-                <Annotation>
-                  <Name>Format</Name>
-                  <Value>
-                    <Format Format="General" xmlns="" />
-                  </Value>
-                </Annotation>
-              </Annotations>
-              <ID>WeekOfMonth</ID>
-              <Name>WeekOfMonth</Name>
-              <KeyColumns>
-                <KeyColumn>
-                  <DataType>Integer</DataType>
-                  <DataSize>-1</DataSize>
-                  <NullProcessing>Preserve</NullProcessing>
-                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                  <Source xsi:type="ColumnBinding">
-                    <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                    <ColumnID>WeekOfMonth</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-              <NameColumn>
-                <DataType>WChar</DataType>
-                <DataSize>-1</DataSize>
-                <NullProcessing>ZeroOrBlank</NullProcessing>
-                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                <Source xsi:type="ColumnBinding">
-                  <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                  <ColumnID>WeekOfMonth</ColumnID>
-                </Source>
-              </NameColumn>
-              <OrderBy>Key</OrderBy>
-            </Attribute>
-            <Attribute>
-              <Annotations>
-                <Annotation>
-                  <Name>Format</Name>
-                  <Value>
-                    <Format Format="General" xmlns="" />
-                  </Value>
-                </Annotation>
-              </Annotations>
-              <ID>WeekOfYear</ID>
-              <Name>WeekOfYear</Name>
-              <KeyColumns>
-                <KeyColumn>
-                  <DataType>Integer</DataType>
-                  <DataSize>-1</DataSize>
-                  <NullProcessing>Preserve</NullProcessing>
-                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                  <Source xsi:type="ColumnBinding">
-                    <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                    <ColumnID>WeekOfYear</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-              <NameColumn>
-                <DataType>WChar</DataType>
-                <DataSize>-1</DataSize>
-                <NullProcessing>ZeroOrBlank</NullProcessing>
-                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                <Source xsi:type="ColumnBinding">
-                  <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                  <ColumnID>WeekOfYear</ColumnID>
-                </Source>
-              </NameColumn>
-              <OrderBy>Key</OrderBy>
-            </Attribute>
-            <Attribute>
-              <Annotations>
-                <Annotation>
-                  <Name>Format</Name>
-                  <Value>
-                    <Format Format="General" xmlns="" />
-                  </Value>
-                </Annotation>
-              </Annotations>
-              <ID>Year</ID>
-              <Name>Year</Name>
-              <KeyColumns>
-                <KeyColumn>
-                  <DataType>Integer</DataType>
-                  <DataSize>-1</DataSize>
-                  <NullProcessing>Preserve</NullProcessing>
-                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                  <Source xsi:type="ColumnBinding">
-                    <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                    <ColumnID>Year</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-              <NameColumn>
-                <DataType>WChar</DataType>
-                <DataSize>-1</DataSize>
-                <NullProcessing>ZeroOrBlank</NullProcessing>
-                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                <Source xsi:type="ColumnBinding">
-                  <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                  <ColumnID>Year</ColumnID>
-                </Source>
-              </NameColumn>
-              <OrderBy>Key</OrderBy>
-            </Attribute>
-            <Attribute>
-              <Annotations>
-                <Annotation>
-                  <Name>Format</Name>
-                  <Value>
-                    <Format Format="Text" xmlns="" />
-                  </Value>
-                </Annotation>
-              </Annotations>
-              <ID>Semester</ID>
-              <Name>Semester</Name>
-              <KeyColumns>
-                <KeyColumn>
-                  <DataType>WChar</DataType>
-                  <DataSize>32768</DataSize>
-                  <NullProcessing>Preserve</NullProcessing>
-                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                  <Source xsi:type="ColumnBinding">
-                    <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                    <ColumnID>Semester</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-              <NameColumn>
-                <DataType>WChar</DataType>
-                <DataSize>32768</DataSize>
-                <NullProcessing>ZeroOrBlank</NullProcessing>
-                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                <Source xsi:type="ColumnBinding">
-                  <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                  <ColumnID>Semester</ColumnID>
-                </Source>
-              </NameColumn>
-              <OrderBy>Key</OrderBy>
-            </Attribute>
-            <Attribute>
-              <Annotations>
-                <Annotation>
-                  <Name>Format</Name>
-                  <Value>
-                    <Format Format="General" xmlns="" />
-                  </Value>
-                </Annotation>
-              </Annotations>
-              <ID>Quarter</ID>
-              <Name>Quarter</Name>
-              <KeyColumns>
-                <KeyColumn>
-                  <DataType>Integer</DataType>
-                  <DataSize>-1</DataSize>
-                  <NullProcessing>Preserve</NullProcessing>
-                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                  <Source xsi:type="ColumnBinding">
-                    <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                    <ColumnID>Quarter</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-              <NameColumn>
-                <DataType>WChar</DataType>
-                <DataSize>-1</DataSize>
-                <NullProcessing>ZeroOrBlank</NullProcessing>
-                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                <Source xsi:type="ColumnBinding">
-                  <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                  <ColumnID>Quarter</ColumnID>
-                </Source>
-              </NameColumn>
-              <OrderBy>Key</OrderBy>
-            </Attribute>
-            <Attribute>
-              <Annotations>
-                <Annotation>
-                  <Name>Format</Name>
-                  <Value>
-                    <Format Format="Text" xmlns="" />
-                  </Value>
-                </Annotation>
-              </Annotations>
-              <ID>QuarterName</ID>
-              <Name>QuarterName</Name>
-              <KeyColumns>
-                <KeyColumn>
-                  <DataType>WChar</DataType>
-                  <DataSize>32768</DataSize>
-                  <NullProcessing>Preserve</NullProcessing>
-                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                  <Source xsi:type="ColumnBinding">
-                    <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                    <ColumnID>QuarterName</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-              <NameColumn>
-                <DataType>WChar</DataType>
-                <DataSize>32768</DataSize>
-                <NullProcessing>ZeroOrBlank</NullProcessing>
-                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                <Source xsi:type="ColumnBinding">
-                  <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                  <ColumnID>QuarterName</ColumnID>
-                </Source>
-              </NameColumn>
-              <OrderBy>AttributeKey</OrderBy>
-              <OrderByAttributeID>Quarter</OrderByAttributeID>
-            </Attribute>
-            <Attribute>
-              <Annotations>
-                <Annotation>
-                  <Name>Format</Name>
-                  <Value>
-                    <Format Format="General" xmlns="" />
-                  </Value>
-                </Annotation>
-              </Annotations>
-              <ID>MonthNumber</ID>
-              <Name>MonthNumber</Name>
-              <KeyColumns>
-                <KeyColumn>
-                  <DataType>Integer</DataType>
-                  <DataSize>-1</DataSize>
-                  <NullProcessing>Preserve</NullProcessing>
-                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                  <Source xsi:type="ColumnBinding">
-                    <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                    <ColumnID>MonthNumber</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-              <NameColumn>
-                <DataType>WChar</DataType>
-                <DataSize>-1</DataSize>
-                <NullProcessing>ZeroOrBlank</NullProcessing>
-                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                <Source xsi:type="ColumnBinding">
-                  <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                  <ColumnID>MonthNumber</ColumnID>
-                </Source>
-              </NameColumn>
-              <OrderBy>Key</OrderBy>
-            </Attribute>
-            <Attribute>
-              <Annotations>
-                <Annotation>
-                  <Name>Format</Name>
-                  <Value>
-                    <Format Format="Text" xmlns="" />
-                  </Value>
-                </Annotation>
-              </Annotations>
-              <ID>MonthName</ID>
-              <Name>MonthName</Name>
-              <KeyColumns>
-                <KeyColumn>
-                  <DataType>WChar</DataType>
-                  <DataSize>32768</DataSize>
-                  <NullProcessing>Preserve</NullProcessing>
-                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                  <Source xsi:type="ColumnBinding">
-                    <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                    <ColumnID>MonthName</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-              <NameColumn>
-                <DataType>WChar</DataType>
-                <DataSize>32768</DataSize>
-                <NullProcessing>ZeroOrBlank</NullProcessing>
-                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                <Source xsi:type="ColumnBinding">
-                  <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                  <ColumnID>MonthName</ColumnID>
-                </Source>
-              </NameColumn>
-              <OrderBy>AttributeKey</OrderBy>
-              <OrderByAttributeID>MonthNumber</OrderByAttributeID>
-            </Attribute>
-            <Attribute>
-              <Annotations>
-                <Annotation>
-                  <Name>Format</Name>
-                  <Value>
-                    <Format Format="General" xmlns="" />
-                  </Value>
-                </Annotation>
-              </Annotations>
-              <ID>DayNumber</ID>
-              <Name>DayNumber</Name>
-              <KeyColumns>
-                <KeyColumn>
-                  <DataType>Integer</DataType>
-                  <DataSize>-1</DataSize>
-                  <NullProcessing>Preserve</NullProcessing>
-                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                  <Source xsi:type="ColumnBinding">
-                    <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                    <ColumnID>DayNumber</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-              <NameColumn>
-                <DataType>WChar</DataType>
-                <DataSize>-1</DataSize>
-                <NullProcessing>ZeroOrBlank</NullProcessing>
-                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                <Source xsi:type="ColumnBinding">
-                  <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                  <ColumnID>DayNumber</ColumnID>
-                </Source>
-              </NameColumn>
-              <OrderBy>Key</OrderBy>
-            </Attribute>
-            <Attribute>
-              <Annotations>
-                <Annotation>
-                  <Name>Format</Name>
-                  <Value>
-                    <Format Format="Text" xmlns="" />
-                  </Value>
-                </Annotation>
-              </Annotations>
-              <ID>DayName</ID>
-              <Name>DayName</Name>
-              <KeyColumns>
-                <KeyColumn>
-                  <DataType>WChar</DataType>
-                  <DataSize>32768</DataSize>
-                  <NullProcessing>Preserve</NullProcessing>
-                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                  <Source xsi:type="ColumnBinding">
-                    <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                    <ColumnID>DayName</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-              <NameColumn>
-                <DataType>WChar</DataType>
-                <DataSize>32768</DataSize>
-                <NullProcessing>ZeroOrBlank</NullProcessing>
-                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                <Source xsi:type="ColumnBinding">
-                  <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                  <ColumnID>DayName</ColumnID>
-                </Source>
-              </NameColumn>
-              <OrderBy>AttributeKey</OrderBy>
-              <OrderByAttributeID>DayNumber</OrderByAttributeID>
-            </Attribute>
-            <Attribute>
-              <Annotations>
-                <Annotation>
-                  <Name>Format</Name>
-                  <Value>
-                    <Format Format="General" xmlns="" />
-                  </Value>
-                </Annotation>
-              </Annotations>
-              <ID>FiscalMonthNumber</ID>
-              <Name>FiscalMonthNumber</Name>
-              <KeyColumns>
-                <KeyColumn>
-                  <DataType>Integer</DataType>
-                  <DataSize>-1</DataSize>
-                  <NullProcessing>Preserve</NullProcessing>
-                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                  <Source xsi:type="ColumnBinding">
-                    <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                    <ColumnID>FiscalMonthNumber</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-              <NameColumn>
-                <DataType>WChar</DataType>
-                <DataSize>-1</DataSize>
-                <NullProcessing>ZeroOrBlank</NullProcessing>
-                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                <Source xsi:type="ColumnBinding">
-                  <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                  <ColumnID>FiscalMonthNumber</ColumnID>
-                </Source>
-              </NameColumn>
-              <OrderBy>Key</OrderBy>
-            </Attribute>
-            <Attribute>
-              <Annotations>
-                <Annotation>
-                  <Name>Format</Name>
-                  <Value>
-                    <Format Format="Text" xmlns="" />
-                  </Value>
-                </Annotation>
-              </Annotations>
-              <ID>FiscalMonthName</ID>
-              <Name>FiscalMonthName</Name>
-              <KeyColumns>
-                <KeyColumn>
-                  <DataType>WChar</DataType>
-                  <DataSize>32768</DataSize>
-                  <NullProcessing>Preserve</NullProcessing>
-                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                  <Source xsi:type="ColumnBinding">
-                    <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                    <ColumnID>FiscalMonthName</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-              <NameColumn>
-                <DataType>WChar</DataType>
-                <DataSize>32768</DataSize>
-                <NullProcessing>ZeroOrBlank</NullProcessing>
-                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                <Source xsi:type="ColumnBinding">
-                  <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                  <ColumnID>FiscalMonthName</ColumnID>
-                </Source>
-              </NameColumn>
-              <OrderBy>AttributeKey</OrderBy>
-              <OrderByAttributeID>FiscalMonthNumber</OrderByAttributeID>
-            </Attribute>
-            <Attribute>
-              <Annotations>
-                <Annotation>
-                  <Name>Format</Name>
-                  <Value>
-                    <Format Format="General" xmlns="" />
-                  </Value>
-                </Annotation>
-              </Annotations>
-              <ID>FiscalYear</ID>
-              <Name>FiscalYear</Name>
-              <KeyColumns>
-                <KeyColumn>
-                  <DataType>Integer</DataType>
-                  <DataSize>-1</DataSize>
-                  <NullProcessing>Preserve</NullProcessing>
-                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                  <Source xsi:type="ColumnBinding">
-                    <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                    <ColumnID>FiscalYear</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-              <NameColumn>
-                <DataType>WChar</DataType>
-                <DataSize>-1</DataSize>
-                <NullProcessing>ZeroOrBlank</NullProcessing>
-                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                <Source xsi:type="ColumnBinding">
-                  <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                  <ColumnID>FiscalYear</ColumnID>
-                </Source>
-              </NameColumn>
-              <OrderBy>Key</OrderBy>
-            </Attribute>
-            <Attribute>
-              <Annotations>
-                <Annotation>
-                  <Name>Format</Name>
-                  <Value>
-                    <Format Format="General" xmlns="" />
-                  </Value>
-                </Annotation>
-              </Annotations>
-              <ID>FiscalQuarter</ID>
-              <Name>FiscalQuarter</Name>
-              <KeyColumns>
-                <KeyColumn>
-                  <DataType>Integer</DataType>
-                  <DataSize>-1</DataSize>
-                  <NullProcessing>Preserve</NullProcessing>
-                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                  <Source xsi:type="ColumnBinding">
-                    <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                    <ColumnID>FiscalQuarter</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-              <NameColumn>
-                <DataType>WChar</DataType>
-                <DataSize>-1</DataSize>
-                <NullProcessing>ZeroOrBlank</NullProcessing>
-                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                <Source xsi:type="ColumnBinding">
-                  <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                  <ColumnID>FiscalQuarter</ColumnID>
-                </Source>
-              </NameColumn>
-              <OrderBy>Key</OrderBy>
-            </Attribute>
-            <Attribute>
-              <Annotations>
-                <Annotation>
-                  <Name>Format</Name>
-                  <Value>
-                    <Format Format="Text" xmlns="" />
-                  </Value>
-                </Annotation>
-              </Annotations>
-              <ID>FiscalQuarterName</ID>
-              <Name>FiscalQuarterName</Name>
-              <KeyColumns>
-                <KeyColumn>
-                  <DataType>WChar</DataType>
-                  <DataSize>32768</DataSize>
-                  <NullProcessing>Preserve</NullProcessing>
-                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                  <Source xsi:type="ColumnBinding">
-                    <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                    <ColumnID>FiscalQuarterName</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-              <NameColumn>
-                <DataType>WChar</DataType>
-                <DataSize>32768</DataSize>
-                <NullProcessing>ZeroOrBlank</NullProcessing>
-                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                <Source xsi:type="ColumnBinding">
-                  <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                  <ColumnID>FiscalQuarterName</ColumnID>
-                </Source>
-              </NameColumn>
-              <OrderBy>Key</OrderBy>
-            </Attribute>
-            <Attribute>
-              <Annotations>
-                <Annotation>
-                  <Name>Format</Name>
-                  <Value>
-                    <Format Format="General" xmlns="" />
-                  </Value>
-                </Annotation>
-              </Annotations>
-              <ID>IsHoliday</ID>
-              <Name>IsHoliday</Name>
-              <KeyColumns>
-                <KeyColumn>
-                  <DataType>UnsignedTinyInt</DataType>
-                  <DataSize>-1</DataSize>
-                  <NullProcessing>Preserve</NullProcessing>
-                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                  <Source xsi:type="ColumnBinding">
-                    <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                    <ColumnID>IsHoliday</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-              <NameColumn>
-                <DataType>WChar</DataType>
-                <DataSize>-1</DataSize>
-                <NullProcessing>ZeroOrBlank</NullProcessing>
-                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                <Source xsi:type="ColumnBinding">
-                  <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                  <ColumnID>IsHoliday</ColumnID>
-                </Source>
-              </NameColumn>
-              <OrderBy>Key</OrderBy>
-            </Attribute>
-            <Attribute>
-              <Annotations>
-                <Annotation>
-                  <Name>Format</Name>
-                  <Value>
-                    <Format Format="General" xmlns="" />
-                  </Value>
-                </Annotation>
-              </Annotations>
-              <ID>IsBusinessDay</ID>
-              <Name>IsBusinessDay</Name>
-              <KeyColumns>
-                <KeyColumn>
-                  <DataType>UnsignedTinyInt</DataType>
-                  <DataSize>-1</DataSize>
-                  <NullProcessing>Preserve</NullProcessing>
-                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                  <Source xsi:type="ColumnBinding">
-                    <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                    <ColumnID>IsBusinessDay</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-              <NameColumn>
-                <DataType>WChar</DataType>
-                <DataSize>-1</DataSize>
-                <NullProcessing>ZeroOrBlank</NullProcessing>
-                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                <Source xsi:type="ColumnBinding">
-                  <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                  <ColumnID>IsBusinessDay</ColumnID>
-                </Source>
-              </NameColumn>
-              <OrderBy>Key</OrderBy>
-            </Attribute>
-            <Attribute>
-              <Annotations>
-                <Annotation>
-                  <Name>Format</Name>
-                  <Value>
-                    <Format Format="General" xmlns="" />
-                  </Value>
-                </Annotation>
-              </Annotations>
-              <ID>IsWeekEnd</ID>
-              <Name>IsWeekEnd</Name>
-              <KeyColumns>
-                <KeyColumn>
-                  <DataType>UnsignedTinyInt</DataType>
-                  <DataSize>-1</DataSize>
-                  <NullProcessing>Preserve</NullProcessing>
-                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                  <Source xsi:type="ColumnBinding">
-                    <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                    <ColumnID>IsWeekEnd</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-              <NameColumn>
-                <DataType>WChar</DataType>
-                <DataSize>-1</DataSize>
-                <NullProcessing>ZeroOrBlank</NullProcessing>
-                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                <Source xsi:type="ColumnBinding">
-                  <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                  <ColumnID>IsWeekEnd</ColumnID>
-                </Source>
-              </NameColumn>
-              <OrderBy>Key</OrderBy>
-            </Attribute>
-            <Attribute>
-              <Annotations>
-                <Annotation>
-                  <Name>Format</Name>
-                  <Value>
-                    <Format Format="General" xmlns="" />
-                  </Value>
-                </Annotation>
-              </Annotations>
-              <ID>WeightmansYearPeriod</ID>
-              <Name>WeightmansYearPeriod</Name>
-              <KeyColumns>
-                <KeyColumn>
-                  <DataType>Integer</DataType>
-                  <DataSize>-1</DataSize>
-                  <NullProcessing>Preserve</NullProcessing>
-                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                  <Source xsi:type="ColumnBinding">
-                    <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                    <ColumnID>WeightmansYearPeriod</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-              <NameColumn>
-                <DataType>WChar</DataType>
-                <DataSize>-1</DataSize>
-                <NullProcessing>ZeroOrBlank</NullProcessing>
-                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                <Source xsi:type="ColumnBinding">
-                  <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                  <ColumnID>WeightmansYearPeriod</ColumnID>
-                </Source>
-              </NameColumn>
-              <OrderBy>Key</OrderBy>
-            </Attribute>
-            <Attribute>
-              <Annotations>
-                <Annotation>
-                  <Name>Format</Name>
-                  <Value>
-                    <Format Format="General" xmlns="" />
-                  </Value>
-                </Annotation>
-              </Annotations>
-              <ID>WeightmansFinancialYearPeriod</ID>
-              <Name>WeightmansFinancialYearPeriod</Name>
-              <KeyColumns>
-                <KeyColumn>
-                  <DataType>Integer</DataType>
-                  <DataSize>-1</DataSize>
-                  <NullProcessing>Preserve</NullProcessing>
-                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                  <Source xsi:type="ColumnBinding">
-                    <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                    <ColumnID>WeightmansFinancialYearPeriod</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-              <NameColumn>
-                <DataType>WChar</DataType>
-                <DataSize>-1</DataSize>
-                <NullProcessing>ZeroOrBlank</NullProcessing>
-                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                <Source xsi:type="ColumnBinding">
-                  <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                  <ColumnID>WeightmansFinancialYearPeriod</ColumnID>
-                </Source>
-              </NameColumn>
-              <OrderBy>Key</OrderBy>
-            </Attribute>
-            <Attribute>
-              <Annotations>
-                <Annotation>
-                  <Name>Format</Name>
-                  <Value>
-                    <Format Format="DateTimeGeneral" xmlns="" />
-                  </Value>
-                </Annotation>
-              </Annotations>
-              <ID>WeekBeginDate</ID>
-              <Name>WeekBeginDate</Name>
-              <KeyColumns>
-                <KeyColumn>
-                  <DataType>Date</DataType>
-                  <DataSize>-1</DataSize>
-                  <NullProcessing>Preserve</NullProcessing>
-                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                  <Source xsi:type="ColumnBinding">
-                    <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                    <ColumnID>WeekBeginDate</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-              <NameColumn>
-                <DataType>WChar</DataType>
-                <DataSize>-1</DataSize>
-                <NullProcessing>ZeroOrBlank</NullProcessing>
-                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                <Source xsi:type="ColumnBinding">
-                  <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                  <ColumnID>WeekBeginDate</ColumnID>
-                </Source>
-              </NameColumn>
-              <OrderBy>Key</OrderBy>
-              <ddl300_300:FormatString>General Date</ddl300_300:FormatString>
-            </Attribute>
-            <Attribute>
-              <Annotations>
-                <Annotation>
-                  <Name>Format</Name>
-                  <Value>
-                    <Format Format="DateTimeGeneral" xmlns="" />
-                  </Value>
-                </Annotation>
-              </Annotations>
-              <ID>WeekEndDate</ID>
-              <Name>WeekEndDate</Name>
-              <KeyColumns>
-                <KeyColumn>
-                  <DataType>Date</DataType>
-                  <DataSize>-1</DataSize>
-                  <NullProcessing>Preserve</NullProcessing>
-                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                  <Source xsi:type="ColumnBinding">
-                    <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                    <ColumnID>WeekEndDate</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-              <NameColumn>
-                <DataType>WChar</DataType>
-                <DataSize>-1</DataSize>
-                <NullProcessing>ZeroOrBlank</NullProcessing>
-                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                <Source xsi:type="ColumnBinding">
-                  <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                  <ColumnID>WeekEndDate</ColumnID>
-                </Source>
-              </NameColumn>
-              <OrderBy>Key</OrderBy>
-              <ddl300_300:FormatString>General Date</ddl300_300:FormatString>
-            </Attribute>
-          </Attributes>
-          <Hierarchies>
-            <Hierarchy>
-              <ID>CalDate</ID>
-              <Name>CalDate</Name>
-              <Levels>
-                <Level>
-                  <ID>Year</ID>
-                  <Name>Year</Name>
-                  <SourceAttributeID>Year</SourceAttributeID>
-                </Level>
-                <Level>
-                  <ID>Semester</ID>
-                  <Name>Semester</Name>
-                  <SourceAttributeID>Semester</SourceAttributeID>
-                </Level>
-                <Level>
-                  <ID>Quarter</ID>
-                  <Name>Quarter</Name>
-                  <SourceAttributeID>Quarter</SourceAttributeID>
-                </Level>
-                <Level>
-                  <ID>MonthName</ID>
-                  <Name>MonthName</Name>
-                  <SourceAttributeID>MonthName</SourceAttributeID>
-                </Level>
-                <Level>
-                  <ID>DayName</ID>
-                  <Name>DayName</Name>
-                  <SourceAttributeID>DayName</SourceAttributeID>
-                </Level>
-              </Levels>
-            </Hierarchy>
-          </Hierarchies>
           <ProactiveCaching>
             <SilenceInterval>-PT1S</SilenceInterval>
             <Latency>-PT1S</Latency>
@@ -2824,261 +1674,6 @@
                 <Source xsi:type="ColumnBinding">
                   <TableID>dimReportCatalogue_a7b89ce4-0564-462d-8307-e883d9f3ed17</TableID>
                   <ColumnID>BusinessKeyNew</ColumnID>
-                </Source>
-              </NameColumn>
-              <OrderBy>Key</OrderBy>
-            </Attribute>
-          </Attributes>
-          <ProactiveCaching>
-            <SilenceInterval>-PT1S</SilenceInterval>
-            <Latency>-PT1S</Latency>
-            <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
-            <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
-            <Source xsi:type="ProactiveCachingInheritedBinding" />
-          </ProactiveCaching>
-        </Dimension>
-        <Dimension>
-          <ID>DataSources_638427a1-bee7-4a63-a00d-d9eb7839c1da</ID>
-          <Name>DataSourceBridge</Name>
-          <Annotations>
-            <Annotation>
-              <Name>TableWidgetSerialization</Name>
-            </Annotation>
-            <Annotation>
-              <Name>QueryEditorSerialization</Name>
-            </Annotation>
-            <Annotation>
-              <Name>IsQueryEditorUsed</Name>
-              <Value>True</Value>
-            </Annotation>
-          </Annotations>
-          <Source xsi:type="DataSourceViewBinding">
-            <DataSourceViewID>Sandbox</DataSourceViewID>
-          </Source>
-          <UnknownMember valuens="ddl200_200">AutomaticNull</UnknownMember>
-          <ErrorConfiguration>
-            <KeyNotFound>IgnoreError</KeyNotFound>
-            <KeyDuplicate>ReportAndStop</KeyDuplicate>
-            <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
-          </ErrorConfiguration>
-          <StorageMode valuens="ddl200_200">InMemory</StorageMode>
-          <Language>2057</Language>
-          <UnknownMemberName>Unknown</UnknownMemberName>
-          <Attributes>
-            <Attribute>
-              <ID>RowNumber</ID>
-              <Name>RowNumber</Name>
-              <Type valuens="ddl200_200">RowNumber</Type>
-              <Usage>Key</Usage>
-              <KeyColumns>
-                <KeyColumn>
-                  <DataType>Integer</DataType>
-                  <DataSize>4</DataSize>
-                  <NullProcessing>Error</NullProcessing>
-                  <Source xsi:type="ddl200_200:RowNumberBinding" />
-                </KeyColumn>
-              </KeyColumns>
-              <NameColumn>
-                <DataType>WChar</DataType>
-                <DataSize>4</DataSize>
-                <NullProcessing>ZeroOrBlank</NullProcessing>
-                <Source xsi:type="ddl200_200:RowNumberBinding" />
-              </NameColumn>
-              <AttributeRelationships>
-                <AttributeRelationship>
-                  <AttributeID>DataSource</AttributeID>
-                  <OverrideBehavior>None</OverrideBehavior>
-                  <Name>DataSource</Name>
-                </AttributeRelationship>
-                <AttributeRelationship>
-                  <AttributeID>BusinessKey</AttributeID>
-                  <OverrideBehavior>None</OverrideBehavior>
-                  <Name>BusinessKey</Name>
-                </AttributeRelationship>
-              </AttributeRelationships>
-              <OrderBy>Key</OrderBy>
-              <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
-            </Attribute>
-            <Attribute>
-              <ID>DataSource</ID>
-              <Name>DataSource</Name>
-              <KeyColumns>
-                <KeyColumn>
-                  <DataType>WChar</DataType>
-                  <DataSize>32768</DataSize>
-                  <NullProcessing>Preserve</NullProcessing>
-                  <Source xsi:type="ColumnBinding">
-                    <TableID>DataSources_638427a1-bee7-4a63-a00d-d9eb7839c1da</TableID>
-                    <ColumnID>DataSource</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-              <NameColumn>
-                <DataType>WChar</DataType>
-                <DataSize>32768</DataSize>
-                <NullProcessing>ZeroOrBlank</NullProcessing>
-                <Source xsi:type="ColumnBinding">
-                  <TableID>DataSources_638427a1-bee7-4a63-a00d-d9eb7839c1da</TableID>
-                  <ColumnID>DataSource</ColumnID>
-                </Source>
-              </NameColumn>
-              <OrderBy>Key</OrderBy>
-              <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
-            </Attribute>
-            <Attribute>
-              <ID>BusinessKey</ID>
-              <Name>BusinessKey</Name>
-              <KeyColumns>
-                <KeyColumn>
-                  <DataType>WChar</DataType>
-                  <DataSize>32768</DataSize>
-                  <NullProcessing>Preserve</NullProcessing>
-                  <Source xsi:type="ColumnBinding">
-                    <TableID>DataSources_638427a1-bee7-4a63-a00d-d9eb7839c1da</TableID>
-                    <ColumnID>BusinessKey</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-              <NameColumn>
-                <DataType>WChar</DataType>
-                <DataSize>32768</DataSize>
-                <NullProcessing>ZeroOrBlank</NullProcessing>
-                <Source xsi:type="ColumnBinding">
-                  <TableID>DataSources_638427a1-bee7-4a63-a00d-d9eb7839c1da</TableID>
-                  <ColumnID>BusinessKey</ColumnID>
-                </Source>
-              </NameColumn>
-              <OrderBy>Key</OrderBy>
-            </Attribute>
-          </Attributes>
-          <ProactiveCaching>
-            <SilenceInterval>-PT1S</SilenceInterval>
-            <Latency>-PT1S</Latency>
-            <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
-            <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
-            <Source xsi:type="ProactiveCachingInheritedBinding" />
-          </ProactiveCaching>
-          <ddl300_300:Relationships>
-            <ddl300_300:Relationship>
-              <ID>fc0a5fbf-2c0f-487d-9ed2-9596896b3c9d</ID>
-              <ddl300_300:FromRelationshipEnd>
-                <ddl300_300:Multiplicity>Many</ddl300_300:Multiplicity>
-                <ddl300:VisualizationProperties />
-                <DimensionID>DataSources_638427a1-bee7-4a63-a00d-d9eb7839c1da</DimensionID>
-                <Attributes>
-                  <Attribute>
-                    <AttributeID>DataSource</AttributeID>
-                  </Attribute>
-                </Attributes>
-              </ddl300_300:FromRelationshipEnd>
-              <ddl300_300:ToRelationshipEnd>
-                <ddl300_300:Multiplicity>One</ddl300_300:Multiplicity>
-                <ddl300:VisualizationProperties />
-                <DimensionID>DataSource_14bd44ae-e47b-48e7-904a-e6ed6e89d3ba</DimensionID>
-                <Attributes>
-                  <Attribute>
-                    <AttributeID>DataSource</AttributeID>
-                  </Attribute>
-                </Attributes>
-              </ddl300_300:ToRelationshipEnd>
-            </ddl300_300:Relationship>
-          </ddl300_300:Relationships>
-        </Dimension>
-        <Dimension>
-          <ID>DataSource_14bd44ae-e47b-48e7-904a-e6ed6e89d3ba</ID>
-          <Name>DataSource</Name>
-          <Annotations>
-            <Annotation>
-              <Name>IsQueryEditorUsed</Name>
-              <Value>True</Value>
-            </Annotation>
-            <Annotation>
-              <Name>QueryEditorSerialization</Name>
-            </Annotation>
-            <Annotation>
-              <Name>TableWidgetSerialization</Name>
-            </Annotation>
-            <Annotation>
-              <Name>DataMarketWebBaseUrl</Name>
-            </Annotation>
-            <Annotation>
-              <Name>DataMarketWebQueryUrl</Name>
-            </Annotation>
-          </Annotations>
-          <Source xsi:type="DataSourceViewBinding">
-            <DataSourceViewID>Sandbox</DataSourceViewID>
-          </Source>
-          <UnknownMember valuens="ddl200_200">AutomaticNull</UnknownMember>
-          <ErrorConfiguration>
-            <KeyNotFound>IgnoreError</KeyNotFound>
-            <KeyDuplicate>ReportAndStop</KeyDuplicate>
-            <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
-          </ErrorConfiguration>
-          <StorageMode valuens="ddl200_200">InMemory</StorageMode>
-          <Language>2057</Language>
-          <UnknownMemberName>Unknown</UnknownMemberName>
-          <Attributes>
-            <Attribute>
-              <ID>RowNumber</ID>
-              <Name>RowNumber</Name>
-              <Type valuens="ddl200_200">RowNumber</Type>
-              <Usage>Key</Usage>
-              <KeyColumns>
-                <KeyColumn>
-                  <DataType>Integer</DataType>
-                  <DataSize>4</DataSize>
-                  <NullProcessing>Error</NullProcessing>
-                  <Source xsi:type="ddl200_200:RowNumberBinding" />
-                </KeyColumn>
-              </KeyColumns>
-              <NameColumn>
-                <DataType>WChar</DataType>
-                <DataSize>4</DataSize>
-                <NullProcessing>ZeroOrBlank</NullProcessing>
-                <Source xsi:type="ddl200_200:RowNumberBinding" />
-              </NameColumn>
-              <AttributeRelationships>
-                <AttributeRelationship>
-                  <AttributeID>DataSource</AttributeID>
-                  <Cardinality>One</Cardinality>
-                  <OverrideBehavior>None</OverrideBehavior>
-                  <Name>DataSource</Name>
-                </AttributeRelationship>
-              </AttributeRelationships>
-              <OrderBy>Key</OrderBy>
-              <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
-            </Attribute>
-            <Attribute>
-              <Annotations>
-                <Annotation>
-                  <Name>Format</Name>
-                  <Value>
-                    <Format Format="Text" xmlns="" />
-                  </Value>
-                </Annotation>
-              </Annotations>
-              <ID>DataSource</ID>
-              <Name>DataSource</Name>
-              <KeyColumns>
-                <KeyColumn>
-                  <DataType>WChar</DataType>
-                  <DataSize>32768</DataSize>
-                  <NullProcessing>Error</NullProcessing>
-                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                  <Source xsi:type="ColumnBinding">
-                    <TableID>DataSource_14bd44ae-e47b-48e7-904a-e6ed6e89d3ba</TableID>
-                    <ColumnID>DataSource</ColumnID>
-                  </Source>
-                </KeyColumn>
-              </KeyColumns>
-              <NameColumn>
-                <DataType>WChar</DataType>
-                <DataSize>32768</DataSize>
-                <NullProcessing>ZeroOrBlank</NullProcessing>
-                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                <Source xsi:type="ColumnBinding">
-                  <TableID>DataSource_14bd44ae-e47b-48e7-904a-e6ed6e89d3ba</TableID>
-                  <ColumnID>DataSource</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
@@ -4453,6 +3048,488 @@
             <Source xsi:type="ProactiveCachingInheritedBinding" />
           </ProactiveCaching>
         </Dimension>
+        <Dimension>
+          <ID>dimDate2_4ac974c3-5cac-418d-a441-0e1663e848ac</ID>
+          <Name>dimDate</Name>
+          <Annotations>
+            <Annotation>
+              <Name>TableWidgetSerialization</Name>
+            </Annotation>
+            <Annotation>
+              <Name>QueryEditorSerialization</Name>
+            </Annotation>
+            <Annotation>
+              <Name>IsQueryEditorUsed</Name>
+              <Value>True</Value>
+            </Annotation>
+          </Annotations>
+          <Source xsi:type="DataSourceViewBinding">
+            <DataSourceViewID>Sandbox</DataSourceViewID>
+          </Source>
+          <UnknownMember valuens="ddl200_200">AutomaticNull</UnknownMember>
+          <ErrorConfiguration>
+            <KeyNotFound>IgnoreError</KeyNotFound>
+            <KeyDuplicate>ReportAndStop</KeyDuplicate>
+            <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+          </ErrorConfiguration>
+          <StorageMode valuens="ddl200_200">InMemory</StorageMode>
+          <Language>2057</Language>
+          <UnknownMemberName>Unknown</UnknownMemberName>
+          <Attributes>
+            <Attribute>
+              <ID>RowNumber</ID>
+              <Name>RowNumber</Name>
+              <Type valuens="ddl200_200">RowNumber</Type>
+              <Usage>Key</Usage>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>4</DataSize>
+                  <NullProcessing>Error</NullProcessing>
+                  <Source xsi:type="ddl200_200:RowNumberBinding" />
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>4</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ddl200_200:RowNumberBinding" />
+              </NameColumn>
+              <AttributeRelationships>
+                <AttributeRelationship>
+                  <AttributeID>dim_date_key</AttributeID>
+                  <Cardinality>One</Cardinality>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>dim_date_key</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>Calendar Date</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>Calendar Date</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>Calendar Year</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>Calendar Year</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>Calendar Quarter</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>Calendar Quarter</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>Calendar Month</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>Calendar Month</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>Calendar Day of Week</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>Calendar Day of Week</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>Financial Year</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>Financial Year</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>Financial Period</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>Financial Period</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>Bank Holiday</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>Bank Holiday</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>Weekday</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>Weekday</Name>
+                </AttributeRelationship>
+              </AttributeRelationships>
+              <OrderBy>Key</OrderBy>
+              <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>dim_date_key</ID>
+              <Name>dim_date_key</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Error</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimDate2_4ac974c3-5cac-418d-a441-0e1663e848ac</TableID>
+                    <ColumnID>dim_date_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimDate2_4ac974c3-5cac-418d-a441-0e1663e848ac</TableID>
+                  <ColumnID>dim_date_key</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+              <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="DateTimeGeneral" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>Calendar Date</ID>
+              <Name>Calendar Date</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Date</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimDate2_4ac974c3-5cac-418d-a441-0e1663e848ac</TableID>
+                    <ColumnID>Calendar_x0020_Date</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimDate2_4ac974c3-5cac-418d-a441-0e1663e848ac</TableID>
+                  <ColumnID>Calendar_x0020_Date</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+              <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+              <ddl300_300:FormatString>General Date</ddl300_300:FormatString>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>Calendar Year</ID>
+              <Name>Calendar Year</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimDate2_4ac974c3-5cac-418d-a441-0e1663e848ac</TableID>
+                    <ColumnID>Calendar_x0020_Year</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimDate2_4ac974c3-5cac-418d-a441-0e1663e848ac</TableID>
+                  <ColumnID>Calendar_x0020_Year</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+              <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>Calendar Quarter</ID>
+              <Name>Calendar Quarter</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimDate2_4ac974c3-5cac-418d-a441-0e1663e848ac</TableID>
+                    <ColumnID>Calendar_x0020_Quarter</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimDate2_4ac974c3-5cac-418d-a441-0e1663e848ac</TableID>
+                  <ColumnID>Calendar_x0020_Quarter</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+              <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="Text" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>Calendar Month</ID>
+              <Name>Calendar Month</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimDate2_4ac974c3-5cac-418d-a441-0e1663e848ac</TableID>
+                    <ColumnID>Calendar_x0020_Month</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimDate2_4ac974c3-5cac-418d-a441-0e1663e848ac</TableID>
+                  <ColumnID>Calendar_x0020_Month</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+              <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="Text" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>Calendar Day of Week</ID>
+              <Name>Calendar Day of Week</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimDate2_4ac974c3-5cac-418d-a441-0e1663e848ac</TableID>
+                    <ColumnID>Calendar_x0020_Day_x0020_of_x0020_Week</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimDate2_4ac974c3-5cac-418d-a441-0e1663e848ac</TableID>
+                  <ColumnID>Calendar_x0020_Day_x0020_of_x0020_Week</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+              <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>Financial Year</ID>
+              <Name>Financial Year</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimDate2_4ac974c3-5cac-418d-a441-0e1663e848ac</TableID>
+                    <ColumnID>Financial_x0020_Year</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimDate2_4ac974c3-5cac-418d-a441-0e1663e848ac</TableID>
+                  <ColumnID>Financial_x0020_Year</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="Text" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>Financial Period</ID>
+              <Name>Financial Period</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimDate2_4ac974c3-5cac-418d-a441-0e1663e848ac</TableID>
+                    <ColumnID>Financial_x0020_Period</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimDate2_4ac974c3-5cac-418d-a441-0e1663e848ac</TableID>
+                  <ColumnID>Financial_x0020_Period</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>Bank Holiday</ID>
+              <Name>Bank Holiday</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimDate2_4ac974c3-5cac-418d-a441-0e1663e848ac</TableID>
+                    <ColumnID>Bank_x0020_Holiday</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimDate2_4ac974c3-5cac-418d-a441-0e1663e848ac</TableID>
+                  <ColumnID>Bank_x0020_Holiday</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>Weekday</ID>
+              <Name>Weekday</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimDate2_4ac974c3-5cac-418d-a441-0e1663e848ac</TableID>
+                    <ColumnID>Weekday</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimDate2_4ac974c3-5cac-418d-a441-0e1663e848ac</TableID>
+                  <ColumnID>Weekday</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+          </Attributes>
+          <Hierarchies>
+            <Hierarchy>
+              <ID>Calendar</ID>
+              <Name>Calendar</Name>
+              <Levels>
+                <Level>
+                  <ID>Calendar Year</ID>
+                  <Name>Calendar Year</Name>
+                  <SourceAttributeID>Calendar Year</SourceAttributeID>
+                </Level>
+                <Level>
+                  <ID>Calendar Quarter</ID>
+                  <Name>Calendar Quarter</Name>
+                  <SourceAttributeID>Calendar Quarter</SourceAttributeID>
+                </Level>
+                <Level>
+                  <ID>Calendar Month</ID>
+                  <Name>Calendar Month</Name>
+                  <SourceAttributeID>Calendar Month</SourceAttributeID>
+                </Level>
+                <Level>
+                  <ID>Calendar Day of Week</ID>
+                  <Name>Calendar Day of Week</Name>
+                  <SourceAttributeID>Calendar Day of Week</SourceAttributeID>
+                </Level>
+                <Level>
+                  <ID>Calendar Date</ID>
+                  <Name>Calendar Date</Name>
+                  <SourceAttributeID>Calendar Date</SourceAttributeID>
+                </Level>
+              </Levels>
+            </Hierarchy>
+          </Hierarchies>
+          <ProactiveCaching>
+            <SilenceInterval>-PT1S</SilenceInterval>
+            <Latency>-PT1S</Latency>
+            <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+            <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+            <Source xsi:type="ProactiveCachingInheritedBinding" />
+          </ProactiveCaching>
+        </Dimension>
       </Dimensions>
       <Cubes>
         <Cube>
@@ -4557,101 +3634,6 @@
               </Attributes>
             </Dimension>
             <Dimension>
-              <ID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</ID>
-              <Name>dimDate</Name>
-              <DimensionID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</DimensionID>
-              <Attributes>
-                <Attribute>
-                  <AttributeID>RowNumber</AttributeID>
-                  <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
-                </Attribute>
-                <Attribute>
-                  <AttributeID>DateKey</AttributeID>
-                  <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
-                </Attribute>
-                <Attribute>
-                  <AttributeID>Date</AttributeID>
-                </Attribute>
-                <Attribute>
-                  <AttributeID>DayOfMonth</AttributeID>
-                </Attribute>
-                <Attribute>
-                  <AttributeID>DayOfYear</AttributeID>
-                </Attribute>
-                <Attribute>
-                  <AttributeID>WeekOfMonth</AttributeID>
-                </Attribute>
-                <Attribute>
-                  <AttributeID>WeekOfYear</AttributeID>
-                </Attribute>
-                <Attribute>
-                  <AttributeID>Year</AttributeID>
-                </Attribute>
-                <Attribute>
-                  <AttributeID>Semester</AttributeID>
-                </Attribute>
-                <Attribute>
-                  <AttributeID>Quarter</AttributeID>
-                </Attribute>
-                <Attribute>
-                  <AttributeID>QuarterName</AttributeID>
-                </Attribute>
-                <Attribute>
-                  <AttributeID>MonthNumber</AttributeID>
-                </Attribute>
-                <Attribute>
-                  <AttributeID>MonthName</AttributeID>
-                </Attribute>
-                <Attribute>
-                  <AttributeID>DayNumber</AttributeID>
-                </Attribute>
-                <Attribute>
-                  <AttributeID>DayName</AttributeID>
-                </Attribute>
-                <Attribute>
-                  <AttributeID>FiscalMonthNumber</AttributeID>
-                </Attribute>
-                <Attribute>
-                  <AttributeID>FiscalMonthName</AttributeID>
-                </Attribute>
-                <Attribute>
-                  <AttributeID>FiscalYear</AttributeID>
-                </Attribute>
-                <Attribute>
-                  <AttributeID>FiscalQuarter</AttributeID>
-                </Attribute>
-                <Attribute>
-                  <AttributeID>FiscalQuarterName</AttributeID>
-                </Attribute>
-                <Attribute>
-                  <AttributeID>IsHoliday</AttributeID>
-                </Attribute>
-                <Attribute>
-                  <AttributeID>IsBusinessDay</AttributeID>
-                </Attribute>
-                <Attribute>
-                  <AttributeID>IsWeekEnd</AttributeID>
-                </Attribute>
-                <Attribute>
-                  <AttributeID>WeightmansYearPeriod</AttributeID>
-                </Attribute>
-                <Attribute>
-                  <AttributeID>WeightmansFinancialYearPeriod</AttributeID>
-                </Attribute>
-                <Attribute>
-                  <AttributeID>WeekBeginDate</AttributeID>
-                </Attribute>
-                <Attribute>
-                  <AttributeID>WeekEndDate</AttributeID>
-                </Attribute>
-              </Attributes>
-              <Hierarchies>
-                <Hierarchy>
-                  <HierarchyID>CalDate</HierarchyID>
-                </Hierarchy>
-              </Hierarchies>
-            </Dimension>
-            <Dimension>
               <ID>dimTime_b7d3fbee-b354-4e83-8cee-0f5b90da06c1</ID>
               <Name>dimTime</Name>
               <DimensionID>dimTime_b7d3fbee-b354-4e83-8cee-0f5b90da06c1</DimensionID>
@@ -4724,39 +3706,6 @@
                 </Attribute>
                 <Attribute>
                   <AttributeID>BusinessKeyNew</AttributeID>
-                </Attribute>
-              </Attributes>
-            </Dimension>
-            <Dimension>
-              <ID>DataSources_638427a1-bee7-4a63-a00d-d9eb7839c1da</ID>
-              <Name>DataSourceBridge</Name>
-              <DimensionID>DataSources_638427a1-bee7-4a63-a00d-d9eb7839c1da</DimensionID>
-              <Visible>false</Visible>
-              <Attributes>
-                <Attribute>
-                  <AttributeID>RowNumber</AttributeID>
-                  <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
-                </Attribute>
-                <Attribute>
-                  <AttributeID>DataSource</AttributeID>
-                  <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
-                </Attribute>
-                <Attribute>
-                  <AttributeID>BusinessKey</AttributeID>
-                </Attribute>
-              </Attributes>
-            </Dimension>
-            <Dimension>
-              <ID>DataSource_14bd44ae-e47b-48e7-904a-e6ed6e89d3ba</ID>
-              <Name>DataSource</Name>
-              <DimensionID>DataSource_14bd44ae-e47b-48e7-904a-e6ed6e89d3ba</DimensionID>
-              <Attributes>
-                <Attribute>
-                  <AttributeID>RowNumber</AttributeID>
-                  <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
-                </Attribute>
-                <Attribute>
-                  <AttributeID>DataSource</AttributeID>
                 </Attribute>
               </Attributes>
             </Dimension>
@@ -4874,6 +3823,58 @@
                   <AttributeID>RevisedPriority</AttributeID>
                 </Attribute>
               </Attributes>
+            </Dimension>
+            <Dimension>
+              <ID>dimDate2_4ac974c3-5cac-418d-a441-0e1663e848ac</ID>
+              <Name>dimDate</Name>
+              <DimensionID>dimDate2_4ac974c3-5cac-418d-a441-0e1663e848ac</DimensionID>
+              <Attributes>
+                <Attribute>
+                  <AttributeID>RowNumber</AttributeID>
+                  <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>dim_date_key</AttributeID>
+                  <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Calendar Date</AttributeID>
+                  <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Calendar Year</AttributeID>
+                  <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Calendar Quarter</AttributeID>
+                  <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Calendar Month</AttributeID>
+                  <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Calendar Day of Week</AttributeID>
+                  <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Financial Year</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Financial Period</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Bank Holiday</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>Weekday</AttributeID>
+                </Attribute>
+              </Attributes>
+              <Hierarchies>
+                <Hierarchy>
+                  <HierarchyID>Calendar</HierarchyID>
+                </Hierarchy>
+              </Hierarchies>
             </Dimension>
           </Dimensions>
           <MeasureGroups>
@@ -5090,417 +4091,6 @@
                     </Attribute>
                   </Attributes>
                   <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
-                </Dimension>
-                <Dimension xsi:type="ReferenceMeasureGroupDimension">
-                  <CubeDimensionID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</CubeDimensionID>
-                  <Attributes>
-                    <Attribute>
-                      <AttributeID>RowNumber</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>4</DataSize>
-                          <NullProcessing>Error</NullProcessing>
-                          <Source xsi:type="ddl200_200:RowNumberBinding" />
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>DateKey</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                            <ColumnID>DateKey</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>Date</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Date</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Error</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                            <ColumnID>Date</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                      <Type>Granularity</Type>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>DayOfMonth</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                            <ColumnID>DayOfMonth</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>DayOfYear</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                            <ColumnID>DayOfYear</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>WeekOfMonth</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                            <ColumnID>WeekOfMonth</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>WeekOfYear</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                            <ColumnID>WeekOfYear</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>Year</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                            <ColumnID>Year</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>Semester</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                            <ColumnID>Semester</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>Quarter</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                            <ColumnID>Quarter</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>QuarterName</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                            <ColumnID>QuarterName</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>MonthNumber</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                            <ColumnID>MonthNumber</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>MonthName</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                            <ColumnID>MonthName</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>DayNumber</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                            <ColumnID>DayNumber</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>DayName</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                            <ColumnID>DayName</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>FiscalMonthNumber</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                            <ColumnID>FiscalMonthNumber</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>FiscalMonthName</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                            <ColumnID>FiscalMonthName</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>FiscalYear</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                            <ColumnID>FiscalYear</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>FiscalQuarter</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                            <ColumnID>FiscalQuarter</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>FiscalQuarterName</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                            <ColumnID>FiscalQuarterName</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>IsHoliday</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>UnsignedTinyInt</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                            <ColumnID>IsHoliday</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>IsBusinessDay</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>UnsignedTinyInt</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                            <ColumnID>IsBusinessDay</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>IsWeekEnd</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>UnsignedTinyInt</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                            <ColumnID>IsWeekEnd</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>WeightmansYearPeriod</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                            <ColumnID>WeightmansYearPeriod</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>WeightmansFinancialYearPeriod</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                            <ColumnID>WeightmansFinancialYearPeriod</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>WeekBeginDate</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Date</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                            <ColumnID>WeekBeginDate</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>WeekEndDate</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Date</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                            <ColumnID>WeekEndDate</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                  </Attributes>
-                  <IntermediateCubeDimensionID>ExecutionLog_8ba32cd9-e938-4bce-87b7-251e27df5540</IntermediateCubeDimensionID>
-                  <IntermediateGranularityAttributeID>ReportRunDate</IntermediateGranularityAttributeID>
-                  <Materialization>Regular</Materialization>
-                  <ddl300:RelationshipID>da8e1cb1-414c-4895-bdf6-44f0e154d6ce</ddl300:RelationshipID>
                 </Dimension>
                 <Dimension xsi:type="ReferenceMeasureGroupDimension">
                   <CubeDimensionID>dimStaffMember_9cff4bd9-978d-42ca-bebe-57d3fb410088</CubeDimensionID>
@@ -6368,6 +4958,175 @@
                   <Materialization>Regular</Materialization>
                   <ddl300:RelationshipID>91dec162-b3e6-4f63-bbd5-6f2b5bd08823</ddl300:RelationshipID>
                 </Dimension>
+                <Dimension xsi:type="ReferenceMeasureGroupDimension">
+                  <CubeDimensionID>dimDate2_4ac974c3-5cac-418d-a441-0e1663e848ac</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>RowNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>4</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ddl200_200:RowNumberBinding" />
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_date_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDate2_4ac974c3-5cac-418d-a441-0e1663e848ac</TableID>
+                            <ColumnID>dim_date_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>Calendar Date</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDate2_4ac974c3-5cac-418d-a441-0e1663e848ac</TableID>
+                            <ColumnID>Calendar_x0020_Date</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>Calendar Year</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDate2_4ac974c3-5cac-418d-a441-0e1663e848ac</TableID>
+                            <ColumnID>Calendar_x0020_Year</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>Calendar Quarter</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDate2_4ac974c3-5cac-418d-a441-0e1663e848ac</TableID>
+                            <ColumnID>Calendar_x0020_Quarter</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>Calendar Month</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDate2_4ac974c3-5cac-418d-a441-0e1663e848ac</TableID>
+                            <ColumnID>Calendar_x0020_Month</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>Calendar Day of Week</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDate2_4ac974c3-5cac-418d-a441-0e1663e848ac</TableID>
+                            <ColumnID>Calendar_x0020_Day_x0020_of_x0020_Week</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>Financial Year</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDate2_4ac974c3-5cac-418d-a441-0e1663e848ac</TableID>
+                            <ColumnID>Financial_x0020_Year</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>Financial Period</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDate2_4ac974c3-5cac-418d-a441-0e1663e848ac</TableID>
+                            <ColumnID>Financial_x0020_Period</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>Bank Holiday</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDate2_4ac974c3-5cac-418d-a441-0e1663e848ac</TableID>
+                            <ColumnID>Bank_x0020_Holiday</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>Weekday</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDate2_4ac974c3-5cac-418d-a441-0e1663e848ac</TableID>
+                            <ColumnID>Weekday</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                  </Attributes>
+                  <IntermediateCubeDimensionID>ExecutionLog_8ba32cd9-e938-4bce-87b7-251e27df5540</IntermediateCubeDimensionID>
+                  <IntermediateGranularityAttributeID>ReportRunDate</IntermediateGranularityAttributeID>
+                  <Materialization>Regular</Materialization>
+                  <ddl300:RelationshipID>92124268-00a6-4079-b045-8d36d3f95f0b</ddl300:RelationshipID>
+                </Dimension>
               </Dimensions>
               <Partitions>
                 <Partition>
@@ -6718,524 +5477,6 @@ select
  null,
  null,
  'Yes' as 'Service Account'</QueryDefinition>
-                  </Source>
-                  <StorageMode valuens="ddl200_200">InMemory</StorageMode>
-                  <ProcessingMode>Regular</ProcessingMode>
-                  <ErrorConfiguration>
-                    <KeyNotFound>IgnoreError</KeyNotFound>
-                    <KeyDuplicate>ReportAndStop</KeyDuplicate>
-                    <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
-                  </ErrorConfiguration>
-                  <ProactiveCaching>
-                    <SilenceInterval>-PT1S</SilenceInterval>
-                    <Latency>-PT1S</Latency>
-                    <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
-                    <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
-                    <Source xsi:type="ProactiveCachingInheritedBinding" />
-                  </ProactiveCaching>
-                </Partition>
-              </Partitions>
-              <ProactiveCaching>
-                <SilenceInterval>-PT1S</SilenceInterval>
-                <Latency>-PT1S</Latency>
-                <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
-                <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
-                <Source xsi:type="ProactiveCachingInheritedBinding" />
-              </ProactiveCaching>
-            </MeasureGroup>
-            <MeasureGroup>
-              <ID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</ID>
-              <Name>dimDate</Name>
-              <Measures>
-                <Measure>
-                  <ID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</ID>
-                  <Name>_Count dimDate</Name>
-                  <AggregateFunction>Count</AggregateFunction>
-                  <DataType>BigInt</DataType>
-                  <Source>
-                    <DataType>BigInt</DataType>
-                    <DataSize>8</DataSize>
-                    <Source xsi:type="RowBinding">
-                      <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                    </Source>
-                  </Source>
-                  <Visible>false</Visible>
-                </Measure>
-              </Measures>
-              <StorageMode valuens="ddl200_200">InMemory</StorageMode>
-              <ErrorConfiguration>
-                <KeyNotFound>IgnoreError</KeyNotFound>
-                <KeyDuplicate>ReportAndStop</KeyDuplicate>
-                <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
-              </ErrorConfiguration>
-              <ProcessingMode>Regular</ProcessingMode>
-              <Dimensions>
-                <Dimension xsi:type="DegenerateMeasureGroupDimension">
-                  <CubeDimensionID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</CubeDimensionID>
-                  <Attributes>
-                    <Attribute>
-                      <AttributeID>RowNumber</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDate</TableID>
-                            <ColumnID>RowNumber</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                      <Type>Granularity</Type>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>DateKey</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                            <ColumnID>DateKey</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>Date</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Date</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                            <ColumnID>Date</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>DayOfMonth</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                            <ColumnID>DayOfMonth</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>DayOfYear</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                            <ColumnID>DayOfYear</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>WeekOfMonth</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                            <ColumnID>WeekOfMonth</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>WeekOfYear</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                            <ColumnID>WeekOfYear</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>Year</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                            <ColumnID>Year</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>Semester</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                            <ColumnID>Semester</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>Quarter</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                            <ColumnID>Quarter</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>QuarterName</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                            <ColumnID>QuarterName</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>MonthNumber</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                            <ColumnID>MonthNumber</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>MonthName</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                            <ColumnID>MonthName</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>DayNumber</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                            <ColumnID>DayNumber</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>DayName</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                            <ColumnID>DayName</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>FiscalMonthNumber</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                            <ColumnID>FiscalMonthNumber</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>FiscalMonthName</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                            <ColumnID>FiscalMonthName</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>FiscalYear</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                            <ColumnID>FiscalYear</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>FiscalQuarter</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                            <ColumnID>FiscalQuarter</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>FiscalQuarterName</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                            <ColumnID>FiscalQuarterName</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>IsHoliday</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>UnsignedTinyInt</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                            <ColumnID>IsHoliday</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>IsBusinessDay</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>UnsignedTinyInt</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                            <ColumnID>IsBusinessDay</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>IsWeekEnd</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>UnsignedTinyInt</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                            <ColumnID>IsWeekEnd</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>WeightmansYearPeriod</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                            <ColumnID>WeightmansYearPeriod</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>WeightmansFinancialYearPeriod</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                            <ColumnID>WeightmansFinancialYearPeriod</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>WeekBeginDate</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Date</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                            <ColumnID>WeekBeginDate</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>WeekEndDate</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Date</DataType>
-                          <DataSize>-1</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</TableID>
-                            <ColumnID>WeekEndDate</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                  </Attributes>
-                  <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
-                </Dimension>
-              </Dimensions>
-              <Partitions>
-                <Partition>
-                  <ID>dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced</ID>
-                  <Name>dimDate</Name>
-                  <Annotations>
-                    <Annotation>
-                      <Name>TableWidgetSerialization</Name>
-                    </Annotation>
-                    <Annotation>
-                      <Name>TableWidgetSourceTable</Name>
-                    </Annotation>
-                    <Annotation>
-                      <Name>QueryEditorSerialization</Name>
-                    </Annotation>
-                    <Annotation>
-                      <Name>IsQueryEditorUsed</Name>
-                      <Value>True</Value>
-                    </Annotation>
-                  </Annotations>
-                  <Source xsi:type="QueryBinding">
-                    <DataSourceID>0ee6ebfa-2c0a-4f90-90ff-0f366d812ffd</DataSourceID>
-                    <QueryDefinition>SELECT [DateKey]
-      ,[Date]
-      ,[DayOfMonth]
-      ,[DayOfYear]
-      ,[WeekOfMonth]
-      ,[WeekOfYear]
-      ,[Year]
-      ,[Semester]
-      ,[Quarter]
-      ,[QuarterName]
-      ,[MonthNumber]
-      ,[MonthName]
-      ,case 
-   when [DayOfWeek] = 1 then 7
-   else [DayOfWeek] - 1
-   end  as 'DayNumber'
-      ,[DayName]
-      ,[FiscalMonthNumber]
-      ,[FiscalMonthName]
-      ,[FiscalYear]
-      ,[FiscalQuarter]
-      ,[FiscalQuarterName]
-      ,[IsHoliday]
-      ,[IsBusinessDay]
-      ,[IsWeekEnd]
-      ,[WeightmansYearPeriod]
-      ,[WeightmansFinancialYearPeriod]
-      ,[WeekBeginDate]
-      ,[WeekEndDate]
-  FROM [Reporting].[DW].[dim_Date]
-  where
-  Date between '2013-01-01' and getdate()
-
-order by 
-DateKey</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
@@ -7754,328 +5995,6 @@ and Description like '%-%'
 
 where
 ReportID is not null</QueryDefinition>
-                  </Source>
-                  <StorageMode valuens="ddl200_200">InMemory</StorageMode>
-                  <ProcessingMode>Regular</ProcessingMode>
-                  <ErrorConfiguration>
-                    <KeyNotFound>IgnoreError</KeyNotFound>
-                    <KeyDuplicate>ReportAndStop</KeyDuplicate>
-                    <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
-                  </ErrorConfiguration>
-                  <ProactiveCaching>
-                    <SilenceInterval>-PT1S</SilenceInterval>
-                    <Latency>-PT1S</Latency>
-                    <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
-                    <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
-                    <Source xsi:type="ProactiveCachingInheritedBinding" />
-                  </ProactiveCaching>
-                </Partition>
-              </Partitions>
-              <ProactiveCaching>
-                <SilenceInterval>-PT1S</SilenceInterval>
-                <Latency>-PT1S</Latency>
-                <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
-                <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
-                <Source xsi:type="ProactiveCachingInheritedBinding" />
-              </ProactiveCaching>
-            </MeasureGroup>
-            <MeasureGroup>
-              <ID>DataSources_638427a1-bee7-4a63-a00d-d9eb7839c1da</ID>
-              <Name>DataSourceBridge</Name>
-              <Measures>
-                <Measure>
-                  <ID>DataSources_638427a1-bee7-4a63-a00d-d9eb7839c1da</ID>
-                  <Name>_Count DataSourceBridge</Name>
-                  <AggregateFunction>Count</AggregateFunction>
-                  <DataType>BigInt</DataType>
-                  <Source>
-                    <DataType>BigInt</DataType>
-                    <DataSize>8</DataSize>
-                    <Source xsi:type="RowBinding">
-                      <TableID>DataSources_638427a1-bee7-4a63-a00d-d9eb7839c1da</TableID>
-                    </Source>
-                  </Source>
-                  <Visible>false</Visible>
-                </Measure>
-              </Measures>
-              <StorageMode valuens="ddl200_200">InMemory</StorageMode>
-              <ErrorConfiguration>
-                <KeyNotFound>IgnoreError</KeyNotFound>
-                <KeyDuplicate>ReportAndStop</KeyDuplicate>
-                <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
-              </ErrorConfiguration>
-              <ProcessingMode>Regular</ProcessingMode>
-              <Dimensions>
-                <Dimension xsi:type="DegenerateMeasureGroupDimension">
-                  <CubeDimensionID>DataSources_638427a1-bee7-4a63-a00d-d9eb7839c1da</CubeDimensionID>
-                  <Attributes>
-                    <Attribute>
-                      <AttributeID>RowNumber</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>DataSources</TableID>
-                            <ColumnID>RowNumber</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                      <Type>Granularity</Type>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>DataSource</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>DataSources_638427a1-bee7-4a63-a00d-d9eb7839c1da</TableID>
-                            <ColumnID>DataSource</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>BusinessKey</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Preserve</NullProcessing>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>DataSources_638427a1-bee7-4a63-a00d-d9eb7839c1da</TableID>
-                            <ColumnID>BusinessKey</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                  </Attributes>
-                  <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
-                </Dimension>
-                <Dimension xsi:type="ReferenceMeasureGroupDimension">
-                  <CubeDimensionID>DataSource_14bd44ae-e47b-48e7-904a-e6ed6e89d3ba</CubeDimensionID>
-                  <Attributes>
-                    <Attribute>
-                      <AttributeID>RowNumber</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <DataSize>4</DataSize>
-                          <NullProcessing>Error</NullProcessing>
-                          <Source xsi:type="ddl200_200:RowNumberBinding" />
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>DataSource</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Error</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>DataSource_14bd44ae-e47b-48e7-904a-e6ed6e89d3ba</TableID>
-                            <ColumnID>DataSource</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                      <Type>Granularity</Type>
-                    </Attribute>
-                  </Attributes>
-                  <IntermediateCubeDimensionID>DataSources_638427a1-bee7-4a63-a00d-d9eb7839c1da</IntermediateCubeDimensionID>
-                  <IntermediateGranularityAttributeID>DataSource</IntermediateGranularityAttributeID>
-                  <Materialization>Regular</Materialization>
-                  <ddl300:RelationshipID>fc0a5fbf-2c0f-487d-9ed2-9596896b3c9d</ddl300:RelationshipID>
-                </Dimension>
-              </Dimensions>
-              <Partitions>
-                <Partition>
-                  <ID>DataSources_638427a1-bee7-4a63-a00d-d9eb7839c1da</ID>
-                  <Name>DataSources</Name>
-                  <Annotations>
-                    <Annotation>
-                      <Name>TableWidgetSerialization</Name>
-                    </Annotation>
-                    <Annotation>
-                      <Name>TableWidgetSourceTable</Name>
-                    </Annotation>
-                    <Annotation>
-                      <Name>QueryEditorSerialization</Name>
-                    </Annotation>
-                    <Annotation>
-                      <Name>IsQueryEditorUsed</Name>
-                      <Value>True</Value>
-                    </Annotation>
-                  </Annotations>
-                  <Source xsi:type="QueryBinding">
-                    <DataSourceID>0ee6ebfa-2c0a-4f90-90ff-0f366d812ffd</DataSourceID>
-                    <QueryDefinition>select
-  'SQL2008SVR' +  
-     substring(c.[Path],
-   len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3, case when 
-   (len(c.[Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) &lt; 0 then 0 else
-   (len(c.[Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) + 1 end
-  )
-+ c.Name as 'BusinessKey',
-  cat1.Name as 'DataSource'
-from
-  ReportServer.dbo.Catalog  c
-  join ReportServer.dbo.DataSource
-    on c.ItemID = DataSource.ItemID
-  join ReportServer.dbo.Catalog cat1
-    on DataSource.Link = cat1.ItemID
-where
-  c.Type = 2
-
-  union
-
-  select
-  'SVR-LIV-DWH-01' +  
-     substring(c.[Path],
-   len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3, case when 
-   (len(c.[Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) &lt; 0 then 0 else
-   (len(c.[Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) + 1 end
-  )
-+ c.Name as 'BusinessKey',
-  cat1.Name datasource
-from
-  [SVR-LIV-DWH-01].[ReportServer].[dbo].[Catalog] c
-  join [SVR-LIV-DWH-01].[ReportServer].[dbo].DataSource
-    on c.ItemID = DataSource.ItemID
-  join [SVR-LIV-DWH-01].[ReportServer].[dbo].Catalog cat1
-    on DataSource.Link = cat1.ItemID
-where
-  c.Type = 2</QueryDefinition>
-                  </Source>
-                  <StorageMode valuens="ddl200_200">InMemory</StorageMode>
-                  <ProcessingMode>Regular</ProcessingMode>
-                  <ErrorConfiguration>
-                    <KeyNotFound>IgnoreError</KeyNotFound>
-                    <KeyDuplicate>ReportAndStop</KeyDuplicate>
-                    <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
-                  </ErrorConfiguration>
-                  <ProactiveCaching>
-                    <SilenceInterval>-PT1S</SilenceInterval>
-                    <Latency>-PT1S</Latency>
-                    <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
-                    <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
-                    <Source xsi:type="ProactiveCachingInheritedBinding" />
-                  </ProactiveCaching>
-                </Partition>
-              </Partitions>
-              <ProactiveCaching>
-                <SilenceInterval>-PT1S</SilenceInterval>
-                <Latency>-PT1S</Latency>
-                <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
-                <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
-                <Source xsi:type="ProactiveCachingInheritedBinding" />
-              </ProactiveCaching>
-            </MeasureGroup>
-            <MeasureGroup>
-              <ID>DataSource_14bd44ae-e47b-48e7-904a-e6ed6e89d3ba</ID>
-              <Name>DataSource</Name>
-              <Measures>
-                <Measure>
-                  <ID>DataSource_14bd44ae-e47b-48e7-904a-e6ed6e89d3ba</ID>
-                  <Name>_Count DataSource</Name>
-                  <AggregateFunction>Count</AggregateFunction>
-                  <DataType>BigInt</DataType>
-                  <Source>
-                    <DataType>BigInt</DataType>
-                    <DataSize>8</DataSize>
-                    <Source xsi:type="RowBinding">
-                      <TableID>DataSource_14bd44ae-e47b-48e7-904a-e6ed6e89d3ba</TableID>
-                    </Source>
-                  </Source>
-                  <Visible>false</Visible>
-                </Measure>
-              </Measures>
-              <StorageMode valuens="ddl200_200">InMemory</StorageMode>
-              <ErrorConfiguration>
-                <KeyNotFound>IgnoreError</KeyNotFound>
-                <KeyDuplicate>ReportAndStop</KeyDuplicate>
-                <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
-              </ErrorConfiguration>
-              <ProcessingMode>Regular</ProcessingMode>
-              <Dimensions>
-                <Dimension xsi:type="DegenerateMeasureGroupDimension">
-                  <CubeDimensionID>DataSource_14bd44ae-e47b-48e7-904a-e6ed6e89d3ba</CubeDimensionID>
-                  <Attributes>
-                    <Attribute>
-                      <AttributeID>RowNumber</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>Integer</DataType>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>DataSource</TableID>
-                            <ColumnID>RowNumber</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                      <Type>Granularity</Type>
-                    </Attribute>
-                    <Attribute>
-                      <AttributeID>DataSource</AttributeID>
-                      <KeyColumns>
-                        <KeyColumn>
-                          <DataType>WChar</DataType>
-                          <DataSize>32768</DataSize>
-                          <NullProcessing>Error</NullProcessing>
-                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
-                          <Source xsi:type="ColumnBinding">
-                            <TableID>DataSource_14bd44ae-e47b-48e7-904a-e6ed6e89d3ba</TableID>
-                            <ColumnID>DataSource</ColumnID>
-                          </Source>
-                        </KeyColumn>
-                      </KeyColumns>
-                    </Attribute>
-                  </Attributes>
-                  <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
-                </Dimension>
-              </Dimensions>
-              <Partitions>
-                <Partition>
-                  <ID>DataSource_14bd44ae-e47b-48e7-904a-e6ed6e89d3ba</ID>
-                  <Name>DataSource</Name>
-                  <Annotations>
-                    <Annotation>
-                      <Name>IsQueryEditorUsed</Name>
-                      <Value>True</Value>
-                    </Annotation>
-                    <Annotation>
-                      <Name>QueryEditorSerialization</Name>
-                    </Annotation>
-                    <Annotation>
-                      <Name>TableWidgetSerialization</Name>
-                    </Annotation>
-                  </Annotations>
-                  <Source xsi:type="QueryBinding">
-                    <DataSourceID>0ee6ebfa-2c0a-4f90-90ff-0f366d812ffd</DataSourceID>
-                    <QueryDefinition>select distinct
-  cat1.Name as 'DataSource'
-from
-  ReportServer.dbo.Catalog
-  join ReportServer.dbo.DataSource
-    on Catalog.ItemID = DataSource.ItemID
-  join ReportServer.dbo.Catalog cat1
-    on DataSource.Link = cat1.ItemID
-where
-  Catalog.Type = 2
-
-  union
-
-  select distinct
-  cat1.Name datasource
-from
-  [SVR-LIV-DWH-01].[ReportServer].[dbo].[Catalog]
-  join [SVR-LIV-DWH-01].[ReportServer].[dbo].DataSource
-    on Catalog.ItemID = DataSource.ItemID
-  join [SVR-LIV-DWH-01].[ReportServer].[dbo].Catalog cat1
-    on DataSource.Link = cat1.ItemID
-where
-  Catalog.Type = 2</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
@@ -8800,6 +6719,264 @@ Reporting.dbo.DWHProgress</QueryDefinition>
                 <Source xsi:type="ProactiveCachingInheritedBinding" />
               </ProactiveCaching>
             </MeasureGroup>
+            <MeasureGroup>
+              <ID>dimDate2_4ac974c3-5cac-418d-a441-0e1663e848ac</ID>
+              <Name>dimDate</Name>
+              <Measures>
+                <Measure>
+                  <ID>dimDate2_4ac974c3-5cac-418d-a441-0e1663e848ac</ID>
+                  <Name>_Count dimDate</Name>
+                  <AggregateFunction>Count</AggregateFunction>
+                  <DataType>BigInt</DataType>
+                  <Source>
+                    <DataType>BigInt</DataType>
+                    <DataSize>8</DataSize>
+                    <Source xsi:type="RowBinding">
+                      <TableID>dimDate2_4ac974c3-5cac-418d-a441-0e1663e848ac</TableID>
+                    </Source>
+                  </Source>
+                  <Visible>false</Visible>
+                </Measure>
+              </Measures>
+              <StorageMode valuens="ddl200_200">InMemory</StorageMode>
+              <ErrorConfiguration>
+                <KeyNotFound>IgnoreError</KeyNotFound>
+                <KeyDuplicate>ReportAndStop</KeyDuplicate>
+                <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+              </ErrorConfiguration>
+              <ProcessingMode>Regular</ProcessingMode>
+              <Dimensions>
+                <Dimension xsi:type="DegenerateMeasureGroupDimension">
+                  <CubeDimensionID>dimDate2_4ac974c3-5cac-418d-a441-0e1663e848ac</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>RowNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDate2</TableID>
+                            <ColumnID>RowNumber</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>dim_date_key</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDate2_4ac974c3-5cac-418d-a441-0e1663e848ac</TableID>
+                            <ColumnID>dim_date_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>Calendar Date</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDate2_4ac974c3-5cac-418d-a441-0e1663e848ac</TableID>
+                            <ColumnID>Calendar_x0020_Date</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>Calendar Year</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDate2_4ac974c3-5cac-418d-a441-0e1663e848ac</TableID>
+                            <ColumnID>Calendar_x0020_Year</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>Calendar Quarter</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDate2_4ac974c3-5cac-418d-a441-0e1663e848ac</TableID>
+                            <ColumnID>Calendar_x0020_Quarter</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>Calendar Month</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDate2_4ac974c3-5cac-418d-a441-0e1663e848ac</TableID>
+                            <ColumnID>Calendar_x0020_Month</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>Calendar Day of Week</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDate2_4ac974c3-5cac-418d-a441-0e1663e848ac</TableID>
+                            <ColumnID>Calendar_x0020_Day_x0020_of_x0020_Week</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>Financial Year</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDate2_4ac974c3-5cac-418d-a441-0e1663e848ac</TableID>
+                            <ColumnID>Financial_x0020_Year</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>Financial Period</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDate2_4ac974c3-5cac-418d-a441-0e1663e848ac</TableID>
+                            <ColumnID>Financial_x0020_Period</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>Bank Holiday</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDate2_4ac974c3-5cac-418d-a441-0e1663e848ac</TableID>
+                            <ColumnID>Bank_x0020_Holiday</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>Weekday</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimDate2_4ac974c3-5cac-418d-a441-0e1663e848ac</TableID>
+                            <ColumnID>Weekday</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                  </Attributes>
+                  <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
+                </Dimension>
+              </Dimensions>
+              <Partitions>
+                <Partition>
+                  <ID>dimDate2_4ac974c3-5cac-418d-a441-0e1663e848ac</ID>
+                  <Name>dimDate2</Name>
+                  <Annotations>
+                    <Annotation>
+                      <Name>TableWidgetSerialization</Name>
+                    </Annotation>
+                    <Annotation>
+                      <Name>TableWidgetSourceTable</Name>
+                    </Annotation>
+                    <Annotation>
+                      <Name>QueryEditorSerialization</Name>
+                    </Annotation>
+                    <Annotation>
+                      <Name>IsQueryEditorUsed</Name>
+                      <Value>True</Value>
+                    </Annotation>
+                  </Annotations>
+                  <Source xsi:type="QueryBinding">
+                    <DataSourceID>7736f8a0-2952-44b4-a638-ae289ecdbf77</DataSourceID>
+                    <QueryDefinition>select
+dim_date_key,
+calendar_date as 'Calendar Date',
+cal_year as 'Calendar Year',
+cal_quarter as 'Calendar Quarter',
+cal_month_name as 'Calendar Month',
+cal_day_in_week as 'Calendar Day of Week',
+fin_year as 'Financial Year',
+fin_period as 'Financial Period',
+holiday_flag as 'Bank Holiday',
+week_day_flag as 'Weekday'
+
+from
+dim_date
+
+where
+calendar_date between '2013-01-01' and getdate()</QueryDefinition>
+                  </Source>
+                  <StorageMode valuens="ddl200_200">InMemory</StorageMode>
+                  <ProcessingMode>Regular</ProcessingMode>
+                  <ErrorConfiguration>
+                    <KeyNotFound>IgnoreError</KeyNotFound>
+                    <KeyDuplicate>ReportAndStop</KeyDuplicate>
+                    <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+                  </ErrorConfiguration>
+                  <ProactiveCaching>
+                    <SilenceInterval>-PT1S</SilenceInterval>
+                    <Latency>-PT1S</Latency>
+                    <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+                    <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+                    <Source xsi:type="ProactiveCachingInheritedBinding" />
+                  </ProactiveCaching>
+                </Partition>
+              </Partitions>
+              <ProactiveCaching>
+                <SilenceInterval>-PT1S</SilenceInterval>
+                <Latency>-PT1S</Latency>
+                <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+                <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+                <Source xsi:type="ProactiveCachingInheritedBinding" />
+              </ProactiveCaching>
+            </MeasureGroup>
           </MeasureGroups>
           <Source>
             <DataSourceViewID>Sandbox</DataSourceViewID>
@@ -9166,6 +7343,21 @@ CREATE MEASURE 'Report Catalogue'[New Reports on 2012]=sum([NewReport]);
           </ImpersonationInfo>
           <Timeout>PT0S</Timeout>
         </DataSource>
+        <DataSource xsi:type="RelationalDataSource">
+          <ID>7736f8a0-2952-44b4-a638-ae289ecdbf77</ID>
+          <Name>SqlServer svr-liv-dwh-01 red_dw</Name>
+          <Annotations>
+            <Annotation>
+              <Name>ConnectionEditUISource</Name>
+              <Value>SqlServer</Value>
+            </Annotation>
+          </Annotations>
+          <ConnectionString>Provider=SQLNCLI11;Data Source=svr-liv-dwh-01;Integrated Security=SSPI;Persist Security Info=false;Initial Catalog=red_dw</ConnectionString>
+          <ImpersonationInfo>
+            <ImpersonationMode>ImpersonateServiceAccount</ImpersonationMode>
+          </ImpersonationInfo>
+          <Timeout>PT0S</Timeout>
+        </DataSource>
       </DataSources>
       <DataSourceViews>
         <DataSourceView>
@@ -9300,74 +7492,6 @@ CREATE MEASURE 'Report Catalogue'[New Reports on 2012]=sum([NewReport]);
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimDate_c7f9352c-7e3d-402c-91fe-3c04d11b3ced" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimDate" msprop:DbTableName="dimDate" msprop:TableType="View" msprop:Description="dimDate" msprop:QueryDefinition="SELECT [DateKey]&#xD;&#xA;      ,[Date]&#xD;&#xA;      ,[DayOfMonth]&#xD;&#xA;      ,[DayOfYear]&#xD;&#xA;      ,[WeekOfMonth]&#xD;&#xA;      ,[WeekOfYear]&#xD;&#xA;      ,[Year]&#xD;&#xA;      ,[Semester]&#xD;&#xA;      ,[Quarter]&#xD;&#xA;      ,[QuarterName]&#xD;&#xA;      ,[MonthNumber]&#xD;&#xA;      ,[MonthName]&#xD;&#xA;      ,case &#xD;&#xA;   when [DayOfWeek] = 1 then 7&#xD;&#xA;   else [DayOfWeek] - 1&#xD;&#xA;   end  as 'DayNumber'&#xD;&#xA;      ,[DayName]&#xD;&#xA;      ,[FiscalMonthNumber]&#xD;&#xA;      ,[FiscalMonthName]&#xD;&#xA;      ,[FiscalYear]&#xD;&#xA;      ,[FiscalQuarter]&#xD;&#xA;      ,[FiscalQuarterName]&#xD;&#xA;      ,[IsHoliday]&#xD;&#xA;      ,[IsBusinessDay]&#xD;&#xA;      ,[IsWeekEnd]&#xD;&#xA;      ,[WeightmansYearPeriod]&#xD;&#xA;      ,[WeightmansFinancialYearPeriod]&#xD;&#xA;      ,[WeekBeginDate]&#xD;&#xA;      ,[WeekEndDate]&#xD;&#xA;  FROM [Reporting].[DW].[dim_Date]&#xD;&#xA;  where&#xD;&#xA;  Date between '2013-01-01' and getdate()&#xD;&#xA;&#xD;&#xA;order by &#xD;&#xA;DateKey">
-                      <xs:complexType>
-                        <xs:sequence>
-                          <xs:element name="DateKey" msprop:DbColumnName="DateKey" msprop:FriendlyName="DateKey" type="xs:int" minOccurs="0" />
-                          <xs:element name="Date" msprop:DbColumnName="Date" msprop:FriendlyName="Date" type="xs:dateTime" minOccurs="0" />
-                          <xs:element name="DayOfMonth" msprop:DbColumnName="DayOfMonth" msprop:FriendlyName="DayOfMonth" type="xs:int" minOccurs="0" />
-                          <xs:element name="DayOfYear" msprop:DbColumnName="DayOfYear" msprop:FriendlyName="DayOfYear" type="xs:int" minOccurs="0" />
-                          <xs:element name="WeekOfMonth" msprop:DbColumnName="WeekOfMonth" msprop:FriendlyName="WeekOfMonth" type="xs:int" minOccurs="0" />
-                          <xs:element name="WeekOfYear" msprop:DbColumnName="WeekOfYear" msprop:FriendlyName="WeekOfYear" type="xs:int" minOccurs="0" />
-                          <xs:element name="Year" msprop:DbColumnName="Year" msprop:FriendlyName="Year" type="xs:int" minOccurs="0" />
-                          <xs:element name="Semester" msprop:DbColumnName="Semester" msprop:FriendlyName="Semester" minOccurs="0">
-                            <xs:simpleType>
-                              <xs:restriction base="xs:string">
-                                <xs:maxLength value="32768" />
-                              </xs:restriction>
-                            </xs:simpleType>
-                          </xs:element>
-                          <xs:element name="Quarter" msprop:DbColumnName="Quarter" msprop:FriendlyName="Quarter" type="xs:int" minOccurs="0" />
-                          <xs:element name="QuarterName" msprop:DbColumnName="QuarterName" msprop:FriendlyName="QuarterName" minOccurs="0">
-                            <xs:simpleType>
-                              <xs:restriction base="xs:string">
-                                <xs:maxLength value="32768" />
-                              </xs:restriction>
-                            </xs:simpleType>
-                          </xs:element>
-                          <xs:element name="MonthNumber" msprop:DbColumnName="MonthNumber" msprop:FriendlyName="MonthNumber" type="xs:int" minOccurs="0" />
-                          <xs:element name="MonthName" msprop:DbColumnName="MonthName" msprop:FriendlyName="MonthName" minOccurs="0">
-                            <xs:simpleType>
-                              <xs:restriction base="xs:string">
-                                <xs:maxLength value="32768" />
-                              </xs:restriction>
-                            </xs:simpleType>
-                          </xs:element>
-                          <xs:element name="DayNumber" msprop:DbColumnName="DayNumber" msprop:FriendlyName="DayNumber" type="xs:int" minOccurs="0" />
-                          <xs:element name="DayName" msprop:DbColumnName="DayName" msprop:FriendlyName="DayName" minOccurs="0">
-                            <xs:simpleType>
-                              <xs:restriction base="xs:string">
-                                <xs:maxLength value="32768" />
-                              </xs:restriction>
-                            </xs:simpleType>
-                          </xs:element>
-                          <xs:element name="FiscalMonthNumber" msprop:DbColumnName="FiscalMonthNumber" msprop:FriendlyName="FiscalMonthNumber" type="xs:int" minOccurs="0" />
-                          <xs:element name="FiscalMonthName" msprop:DbColumnName="FiscalMonthName" msprop:FriendlyName="FiscalMonthName" minOccurs="0">
-                            <xs:simpleType>
-                              <xs:restriction base="xs:string">
-                                <xs:maxLength value="32768" />
-                              </xs:restriction>
-                            </xs:simpleType>
-                          </xs:element>
-                          <xs:element name="FiscalYear" msprop:DbColumnName="FiscalYear" msprop:FriendlyName="FiscalYear" type="xs:int" minOccurs="0" />
-                          <xs:element name="FiscalQuarter" msprop:DbColumnName="FiscalQuarter" msprop:FriendlyName="FiscalQuarter" type="xs:int" minOccurs="0" />
-                          <xs:element name="FiscalQuarterName" msprop:DbColumnName="FiscalQuarterName" msprop:FriendlyName="FiscalQuarterName" minOccurs="0">
-                            <xs:simpleType>
-                              <xs:restriction base="xs:string">
-                                <xs:maxLength value="32768" />
-                              </xs:restriction>
-                            </xs:simpleType>
-                          </xs:element>
-                          <xs:element name="IsHoliday" msprop:DbColumnName="IsHoliday" msprop:FriendlyName="IsHoliday" type="xs:unsignedByte" minOccurs="0" />
-                          <xs:element name="IsBusinessDay" msprop:DbColumnName="IsBusinessDay" msprop:FriendlyName="IsBusinessDay" type="xs:unsignedByte" minOccurs="0" />
-                          <xs:element name="IsWeekEnd" msprop:DbColumnName="IsWeekEnd" msprop:FriendlyName="IsWeekEnd" type="xs:unsignedByte" minOccurs="0" />
-                          <xs:element name="WeightmansYearPeriod" msprop:DbColumnName="WeightmansYearPeriod" msprop:FriendlyName="WeightmansYearPeriod" type="xs:int" minOccurs="0" />
-                          <xs:element name="WeightmansFinancialYearPeriod" msprop:DbColumnName="WeightmansFinancialYearPeriod" msprop:FriendlyName="WeightmansFinancialYearPeriod" type="xs:int" minOccurs="0" />
-                          <xs:element name="WeekBeginDate" msprop:DbColumnName="WeekBeginDate" msprop:FriendlyName="WeekBeginDate" type="xs:dateTime" minOccurs="0" />
-                          <xs:element name="WeekEndDate" msprop:DbColumnName="WeekEndDate" msprop:FriendlyName="WeekEndDate" type="xs:dateTime" minOccurs="0" />
-                        </xs:sequence>
-                      </xs:complexType>
-                    </xs:element>
                     <xs:element name="dimTime_b7d3fbee-b354-4e83-8cee-0f5b90da06c1" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimTime" msprop:DbTableName="dimTime" msprop:TableType="View" msprop:Description="dimTime" msprop:QueryDefinition="select &#xD;&#xA; TimeKey,&#xD;&#xA; TimeAltKey,&#xD;&#xA; left([Time], 5) as 'Time',&#xD;&#xA; HourNumber,&#xD;&#xA; MinuteNumber,&#xD;&#xA; SecondNumber,&#xD;&#xA; TimeInSecond,&#xD;&#xA; HourBand,&#xD;&#xA; DayTimeBandGroupKey,&#xD;&#xA; DayTimeBand&#xD;&#xA;&#xD;&#xA; from&#xD;&#xA; Reporting.dbo.DimTime&#xD;&#xA;&#xD;&#xA; where&#xD;&#xA; right([Time], 2) = 0">
                       <xs:complexType>
                         <xs:sequence>
@@ -9442,39 +7566,6 @@ CREATE MEASURE 'Report Catalogue'[New Reports on 2012]=sum([NewReport]);
                           </xs:element>
                           <xs:element name="NewReport" msprop:DbColumnName="NewReport" msprop:FriendlyName="NewReport" type="xs:int" minOccurs="0" />
                           <xs:element name="BusinessKeyNew" msprop:DbColumnName="BusinessKeyNew" msprop:FriendlyName="BusinessKeyNew" minOccurs="0">
-                            <xs:simpleType>
-                              <xs:restriction base="xs:string">
-                                <xs:maxLength value="32768" />
-                              </xs:restriction>
-                            </xs:simpleType>
-                          </xs:element>
-                        </xs:sequence>
-                      </xs:complexType>
-                    </xs:element>
-                    <xs:element name="DataSources_638427a1-bee7-4a63-a00d-d9eb7839c1da" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="DataSourceBridge" msprop:DbTableName="DataSources" msprop:TableType="View" msprop:Description="DataSources" msprop:QueryDefinition="select&#xD;&#xA;  'SQL2008SVR' +  &#xD;&#xA;     substring(c.[Path],&#xD;&#xA;   len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3, case when &#xD;&#xA;   (len(c.[Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) &lt; 0 then 0 else&#xD;&#xA;   (len(c.[Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) + 1 end&#xD;&#xA;  )&#xD;&#xA;+ c.Name as 'BusinessKey',&#xD;&#xA;  cat1.Name as 'DataSource'&#xD;&#xA;from&#xD;&#xA;  ReportServer.dbo.Catalog  c&#xD;&#xA;  join ReportServer.dbo.DataSource&#xD;&#xA;    on c.ItemID = DataSource.ItemID&#xD;&#xA;  join ReportServer.dbo.Catalog cat1&#xD;&#xA;    on DataSource.Link = cat1.ItemID&#xD;&#xA;where&#xD;&#xA;  c.Type = 2&#xD;&#xA;&#xD;&#xA;  union&#xD;&#xA;&#xD;&#xA;  select&#xD;&#xA;  'SVR-LIV-DWH-01' +  &#xD;&#xA;     substring(c.[Path],&#xD;&#xA;   len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3, case when &#xD;&#xA;   (len(c.[Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) &lt; 0 then 0 else&#xD;&#xA;   (len(c.[Path]) - charindex('/', reverse(c.[Path]), 1)) -  ( len(substring(c.[Path], 2, charindex('/', right(c.[Path], len(c.[Path]) - 1), 1) -1)) + 3) + 1 end&#xD;&#xA;  )&#xD;&#xA;+ c.Name as 'BusinessKey',&#xD;&#xA;  cat1.Name datasource&#xD;&#xA;from&#xD;&#xA;  [SVR-LIV-DWH-01].[ReportServer].[dbo].[Catalog] c&#xD;&#xA;  join [SVR-LIV-DWH-01].[ReportServer].[dbo].DataSource&#xD;&#xA;    on c.ItemID = DataSource.ItemID&#xD;&#xA;  join [SVR-LIV-DWH-01].[ReportServer].[dbo].Catalog cat1&#xD;&#xA;    on DataSource.Link = cat1.ItemID&#xD;&#xA;where&#xD;&#xA;  c.Type = 2">
-                      <xs:complexType>
-                        <xs:sequence>
-                          <xs:element name="DataSource" msprop:DbColumnName="DataSource" msprop:FriendlyName="DataSource" minOccurs="0">
-                            <xs:simpleType>
-                              <xs:restriction base="xs:string">
-                                <xs:maxLength value="32768" />
-                              </xs:restriction>
-                            </xs:simpleType>
-                          </xs:element>
-                          <xs:element name="BusinessKey" msprop:DbColumnName="BusinessKey" msprop:FriendlyName="BusinessKey" minOccurs="0">
-                            <xs:simpleType>
-                              <xs:restriction base="xs:string">
-                                <xs:maxLength value="32768" />
-                              </xs:restriction>
-                            </xs:simpleType>
-                          </xs:element>
-                        </xs:sequence>
-                      </xs:complexType>
-                    </xs:element>
-                    <xs:element name="DataSource_14bd44ae-e47b-48e7-904a-e6ed6e89d3ba" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="DataSource" msprop:DbTableName="DataSource" msprop:TableType="View" msprop:Description="DataSource" msprop:QueryDefinition="select distinct&#xD;&#xA;  cat1.Name as 'DataSource'&#xD;&#xA;from&#xD;&#xA;  ReportServer.dbo.Catalog&#xD;&#xA;  join ReportServer.dbo.DataSource&#xD;&#xA;    on Catalog.ItemID = DataSource.ItemID&#xD;&#xA;  join ReportServer.dbo.Catalog cat1&#xD;&#xA;    on DataSource.Link = cat1.ItemID&#xD;&#xA;where&#xD;&#xA;  Catalog.Type = 2&#xD;&#xA;&#xD;&#xA;  union&#xD;&#xA;&#xD;&#xA;  select distinct&#xD;&#xA;  cat1.Name datasource&#xD;&#xA;from&#xD;&#xA;  [SVR-LIV-DWH-01].[ReportServer].[dbo].[Catalog]&#xD;&#xA;  join [SVR-LIV-DWH-01].[ReportServer].[dbo].DataSource&#xD;&#xA;    on Catalog.ItemID = DataSource.ItemID&#xD;&#xA;  join [SVR-LIV-DWH-01].[ReportServer].[dbo].Catalog cat1&#xD;&#xA;    on DataSource.Link = cat1.ItemID&#xD;&#xA;where&#xD;&#xA;  Catalog.Type = 2">
-                      <xs:complexType>
-                        <xs:sequence>
-                          <xs:element name="DataSource" msprop:DbColumnName="DataSource" msprop:FriendlyName="DataSource" minOccurs="0">
                             <xs:simpleType>
                               <xs:restriction base="xs:string">
                                 <xs:maxLength value="32768" />
@@ -9650,6 +7741,52 @@ CREATE MEASURE 'Report Catalogue'[New Reports on 2012]=sum([NewReport]);
                             </xs:simpleType>
                           </xs:element>
                           <xs:element name="RevisedPriority" msprop:DbColumnName="RevisedPriority" msprop:FriendlyName="RevisedPriority" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="dimDate2_4ac974c3-5cac-418d-a441-0e1663e848ac" msdata:Locale="" msprop:DataSourceID="7736f8a0-2952-44b4-a638-ae289ecdbf77" msprop:IsLogical="True" msprop:FriendlyName="dimDate" msprop:DbTableName="dimDate2" msprop:TableType="View" msprop:Description="dimDate2" msprop:QueryDefinition="select&#xD;&#xA;dim_date_key,&#xD;&#xA;calendar_date as 'Calendar Date',&#xD;&#xA;cal_year as 'Calendar Year',&#xD;&#xA;cal_quarter as 'Calendar Quarter',&#xD;&#xA;cal_month_name as 'Calendar Month',&#xD;&#xA;cal_day_in_week as 'Calendar Day of Week',&#xD;&#xA;fin_year as 'Financial Year',&#xD;&#xA;fin_period as 'Financial Period',&#xD;&#xA;holiday_flag as 'Bank Holiday',&#xD;&#xA;week_day_flag as 'Weekday'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;dim_date&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;calendar_date between '2013-01-01' and getdate()">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="dim_date_key" msprop:DbColumnName="dim_date_key" msprop:FriendlyName="dim_date_key" type="xs:int" minOccurs="0" />
+                          <xs:element name="Calendar_x0020_Date" msprop:DbColumnName="Calendar Date" msprop:FriendlyName="Calendar Date" type="xs:dateTime" minOccurs="0" />
+                          <xs:element name="Calendar_x0020_Year" msprop:DbColumnName="Calendar Year" msprop:FriendlyName="Calendar Year" type="xs:int" minOccurs="0" />
+                          <xs:element name="Calendar_x0020_Quarter" msprop:DbColumnName="Calendar Quarter" msprop:FriendlyName="Calendar Quarter" type="xs:int" minOccurs="0" />
+                          <xs:element name="Calendar_x0020_Month" msprop:DbColumnName="Calendar Month" msprop:FriendlyName="Calendar Month" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="Calendar_x0020_Day_x0020_of_x0020_Week" msprop:DbColumnName="Calendar Day of Week" msprop:FriendlyName="Calendar Day of Week" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="Financial_x0020_Year" msprop:DbColumnName="Financial Year" msprop:FriendlyName="Financial Year" type="xs:int" minOccurs="0" />
+                          <xs:element name="Financial_x0020_Period" msprop:DbColumnName="Financial Period" msprop:FriendlyName="Financial Period" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="Bank_x0020_Holiday" msprop:DbColumnName="Bank Holiday" msprop:FriendlyName="Bank Holiday" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="Weekday" msprop:DbColumnName="Weekday" msprop:FriendlyName="Weekday" minOccurs="0">
                             <xs:simpleType>
                               <xs:restriction base="xs:string">
                                 <xs:maxLength value="32768" />
