@@ -1,0 +1,46 @@
+﻿<Cube xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="290e15b2-35ea-48d6-a8e1-1820f9013ccd" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>Billable Hours Drilldown</ID>
+  <MeasureGroups>
+    <MeasureGroup>
+      <ID>Billable Hours Drilldown</ID>
+      <Partitions>
+        <Partition dwd:design-time-name="decedaa8-eb03-4e24-873c-e097eaa9033b">
+          <ID>Billable Hours Drilldown</ID>
+          <Name>Billable Hours Drilldown - Pre 2009</Name>
+          <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+          <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+          <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+          <State>Unprocessed</State>
+          <Source xsi:type="QueryBinding" dwd:design-time-name="81535078-5274-4c9b-b362-39339e5a542e">
+            <DataSourceID>Red Dw</DataSourceID>
+            <QueryDefinition>SELECT        dim_client_key AS 'Dim Client Key', dim_transaction_date_key AS 'Dim Transaction Date Key', dim_fed_hierarchy_history_key AS 'Dim Fed Hierarchy History Key', 
+                         dim_matter_header_curr_key AS 'Dim Matter Header Curr Key', minutes_recorded / 60 AS 'Hours Recorded'
+FROM            fact_billable_time_activity where dim_transaction_date_key &lt; 20090501</QueryDefinition>
+          </Source>
+          <StorageMode>Molap</StorageMode>
+          <CurrentStorageMode>Molap</CurrentStorageMode>
+          <ProcessingMode>Regular</ProcessingMode>
+          <EstimatedRows>20306796</EstimatedRows>
+        </Partition>
+        <Partition dwd:design-time-name="99e491da-acd2-4f25-9ba8-cad49d0c24bc">
+          <ID>Billable Hours Drilldown - Post 2009</ID>
+          <Name>Billable Hours Drilldown - Post 2009</Name>
+          <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+          <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+          <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+          <State>Unprocessed</State>
+          <Source xsi:type="QueryBinding" dwd:design-time-name="0ec0aa75-5848-4564-a01d-034885258b4c">
+            <DataSourceID>Red Dw</DataSourceID>
+            <QueryDefinition>SELECT        dim_client_key AS 'Dim Client Key', dim_transaction_date_key AS 'Dim Transaction Date Key', dim_fed_hierarchy_history_key AS 'Dim Fed Hierarchy History Key', 
+                         dim_matter_header_curr_key AS 'Dim Matter Header Curr Key', minutes_recorded / 60 AS 'Hours Recorded'
+FROM            fact_billable_time_activity WHERE dim_transaction_date_key &gt;= 20090501</QueryDefinition>
+          </Source>
+          <StorageMode>Molap</StorageMode>
+          <CurrentStorageMode>Molap</CurrentStorageMode>
+          <ProcessingMode>Regular</ProcessingMode>
+          <EstimatedRows>25343182</EstimatedRows>
+        </Partition>
+      </Partitions>
+    </MeasureGroup>
+  </MeasureGroups>
+</Cube>
