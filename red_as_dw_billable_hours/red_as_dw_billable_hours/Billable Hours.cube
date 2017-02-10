@@ -284,4 +284,57 @@
   <Source dwd:design-time-name="3784e6fe-c3e4-456a-aef7-f49da89e8990">
     <DataSourceViewID>Summary</DataSourceViewID>
   </Source>
+  <MdxScripts>
+    <MdxScript dwd:design-time-name="1763ee40-6fe3-4b98-8d4d-c836c1d80114">
+      <ID>MdxScript</ID>
+      <Name>MdxScript</Name>
+      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+      <Commands>
+        <Command>
+          <Text>/*
+The CALCULATE command controls the aggregation of leaf cells in the cube.
+If the CALCULATE command is deleted or modified, the data within the cube is affected.
+You should edit this command only if you manually specify how the cube is aggregated.
+*/
+CALCULATE; 
+CREATE MEMBER CURRENTCUBE.[Measures].[YTD Billable Hours]
+ AS sum(
+                YTD([Date].[Financial].CurrentMember),
+                Measures.[Billable Hours]
+   ), 
+NON_EMPTY_BEHAVIOR = { [Billable Hours] }, 
+VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Billable Hours'  ; 
+CREATE MEMBER CURRENTCUBE.[Measures].[YTD Target Billable Hours]
+ AS sum(
+                YTD([Date].[Financial].CurrentMember),
+                Measures.[Target Billable Hours]
+   ), 
+NON_EMPTY_BEHAVIOR = { [Target Billable Hours] }, 
+VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Billable Hours'  ; 
+CREATE MEMBER CURRENTCUBE.[Measures].[Annual Target Billable Hours]
+ AS sum(
+                ([Date].[Fin Year].CurrentMember),
+                Measures.[Target Billable Hours]
+   ), 
+NON_EMPTY_BEHAVIOR = { [Target Billable Hours] }, 
+VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Billable Hours'  ; 
+CREATE MEMBER CURRENTCUBE.[Measures].[Annual Average Billable Hours]
+ AS iif([Measures].[YTD Target Billable Hours] = 0, 0, 
+(avg([Measures].[YTD Billable Hours]) / avg([Measures].[YTD Target Billable Hours])) * 
+    avg([Measures].[Annual Target Billable Hours])   
+), 
+VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Billable Hours'  ; 
+CREATE MEMBER CURRENTCUBE.[Measures].[KPI Billable Hours Filter]
+ AS + [Measures].[Billable Hours]
+    + [Measures].[Target Billable Hours]
+    + [Measures].[YTD Billable Hours]
+    + [Measures].[YTD Target Billable Hours]
+    + [Measures].[Annual Average Billable Hours]
+    + [Measures].[Annual Target Billable Hours], 
+VISIBLE = 1 ,  ASSOCIATED_MEASURE_GROUP = 'Billable Hours'  ; </Text>
+        </Command>
+      </Commands>
+    </MdxScript>
+  </MdxScripts>
 </Cube>
