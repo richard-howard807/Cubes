@@ -693,6 +693,25 @@
         </Attribute>
       </Attributes>
     </Dimension>
+    <Dimension dwd:design-time-name="67902711-2c6a-4e90-b83e-ccc722aaaa6b">
+      <ID>Fact Payor Debt Summary</ID>
+      <Name>Fact Payor Debt Summary</Name>
+      <DimensionID>Fact Payor Debt Summary</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="4fb8bc8e-fa24-4d48-8a6c-7876c3f69ab1">
+          <AttributeID>Composite Key</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="ffd23d99-ebf0-4726-ae88-716f2abbbcce">
+          <AttributeID>Client Id</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="d23f632c-8d9a-4825-b31b-656fbaf14855">
+          <AttributeID>Dim Bill Key</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="acad76d0-3322-423b-876e-f52ffbbb8b99">
+          <AttributeID>Dim Payor Debt Narrative Key</AttributeID>
+        </Attribute>
+      </Attributes>
+    </Dimension>
   </Dimensions>
   <CubePermissions>
     <CubePermission dwd:design-time-name="786b0988-8d82-43f4-8cac-939988df7e58">
@@ -936,10 +955,6 @@
             </Attribute>
           </Attributes>
         </Dimension>
-        <Dimension xsi:type="ManyToManyMeasureGroupDimension" dwd:design-time-name="5c845b56-1c7b-4625-a775-a53d29b37e3c">
-          <CubeDimensionID>Dim Payor Debt Narrative</CubeDimensionID>
-          <MeasureGroupID>Fact Payor Debt Summary</MeasureGroupID>
-        </Dimension>
       </Dimensions>
       <Partitions />
       <AggregationDesigns />
@@ -1131,6 +1146,25 @@
                   <Source xsi:type="ColumnBinding" dwd:design-time-name="ff2816ee-da81-496e-b4a9-ae0d7a6631d0">
                     <TableID>dbo_fact_payor_debt_summary</TableID>
                     <ColumnID>dim_transaction_date_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="ffc73232-1767-4dd0-9ddc-31afc4d24cc3">
+          <CubeDimensionID>Fact Payor Debt Summary</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="d3b789b0-66bf-4702-825d-491b05676e9a">
+              <AttributeID>Composite Key</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="9415dd57-9955-411a-97c1-f0ce7a01479a">
+                  <DataType>WChar</DataType>
+                  <DataSize>120</DataSize>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="b28b6423-aa1c-4155-9485-e0dae751a4b6">
+                    <TableID>dbo_fact_payor_debt_summary</TableID>
+                    <ColumnID>composite_key</ColumnID>
                   </Source>
                 </KeyColumn>
               </KeyColumns>
