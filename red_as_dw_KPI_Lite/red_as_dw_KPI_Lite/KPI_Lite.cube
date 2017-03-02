@@ -987,7 +987,14 @@ VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Mon
                 [Dim Bill Date].[Hierarchy].CurrentMember),
                 Measures.[Budget Balance]
                 ), 
-VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                                                                 
+VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup'; 
+CREATE MEMBER CURRENTCUBE.[Measures].[YTD Holidays Taken]
+ AS sum(
+                YTD(
+                [Dim Bill Date].[Hierarchy].CurrentMember),
+                Measures.[Holidays Taken]
+                ), 
+VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup'  ;                                                                 
 
                 CREATE MEMBER CURRENTCUBE.[Measures].[YTD Business Line Level Budget Value]
  AS sum(
