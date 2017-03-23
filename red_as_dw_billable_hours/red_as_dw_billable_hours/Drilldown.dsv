@@ -191,7 +191,7 @@
       <xs:element name="Drilldown" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:design-time-name="0df00d2c-a8a7-4b90-a17c-374e7c7243b5">
         <xs:complexType>
           <xs:choice minOccurs="0" maxOccurs="unbounded">
-            <xs:element name="dbo_fact_billable_time_activity" msprop:design-time-name="f36561ba-5dec-4551-943a-15a650d2927b" msprop:IsLogical="True" msprop:FriendlyName="Billable Hours Drilldown" msprop:DbTableName="Billable Hours Drilldown" msprop:TableType="View" msprop:QueryDefinition="SELECT        dim_client_key AS 'Dim Client Key', dim_transaction_date_key AS 'Dim Transaction Date Key', dim_fed_hierarchy_history_key AS 'Dim Fed Hierarchy History Key', &#xD;&#xA;                         dim_matter_header_curr_key AS 'Dim Matter Header Curr Key', minutes_recorded / 60 AS 'Hours Recorded', dim_gl_date_key AS 'Dim GL Date Key', hourly_charge_rate AS 'Charge Rate'&#xD;&#xA;FROM            fact_billable_time_activity" msprop:QueryBuilder="SpecificQueryBuilder">
+            <xs:element name="dbo_fact_billable_time_activity" msprop:design-time-name="f36561ba-5dec-4551-943a-15a650d2927b" msprop:IsLogical="True" msprop:FriendlyName="Billable Hours Drilldown" msprop:DbTableName="Billable Hours Drilldown" msprop:TableType="View" msprop:QueryDefinition="SELECT        dim_client_key AS 'Dim Client Key', dim_transaction_date_key AS 'Dim Transaction Date Key', dim_fed_hierarchy_history_key AS 'Dim Fed Hierarchy History Key', &#xD;&#xA;                         dim_matter_header_curr_key AS 'Dim Matter Header Curr Key', minutes_recorded / 60 AS 'Hours Recorded', dim_gl_date_key AS 'Dim GL Date Key', hourly_charge_rate AS 'Charge Rate', &#xD;&#xA;                         time_activity_code AS 'Time Activity Code'&#xD;&#xA;FROM            fact_billable_time_activity" msprop:QueryBuilder="SpecificQueryBuilder">
               <xs:complexType>
                 <xs:sequence>
                   <xs:element name="Dim_x0020_Client_x0020_Key" msprop:design-time-name="dd2ad79f-baa0-439e-966d-b94634673ca9" msprop:DbColumnName="Dim Client Key" type="xs:int" minOccurs="0" />
@@ -200,7 +200,14 @@
                   <xs:element name="Dim_x0020_Matter_x0020_Header_x0020_Curr_x0020_Key" msprop:design-time-name="6f6a5375-b323-4630-959f-83d305a99205" msprop:DbColumnName="Dim Matter Header Curr Key" type="xs:int" minOccurs="0" />
                   <xs:element name="Hours_x0020_Recorded" msprop:design-time-name="a9431e09-9dcb-4183-a6fd-1b19842afdd5" msprop:DbColumnName="Hours Recorded" type="xs:decimal" minOccurs="0" />
                   <xs:element name="Dim_x0020_GL_x0020_Date_x0020_Key" msprop:design-time-name="3cbbaad5-6c62-4612-afc5-36399807ebcc" msprop:DbColumnName="Dim GL Date Key" type="xs:int" minOccurs="0" />
-                  <xs:element name="Charge_x0020_Rate" msprop:DbColumnName="Charge Rate" msprop:design-time-name="13fa35c3-ba3e-4539-ad67-7d0e4b13de38" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="Charge_x0020_Rate" msprop:design-time-name="13fa35c3-ba3e-4539-ad67-7d0e4b13de38" msprop:DbColumnName="Charge Rate" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="Time_x0020_Activity_x0020_Code" msprop:DbColumnName="Time Activity Code" msprop:design-time-name="5d204d85-8552-4c28-9899-94ac9315189d" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="16" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
