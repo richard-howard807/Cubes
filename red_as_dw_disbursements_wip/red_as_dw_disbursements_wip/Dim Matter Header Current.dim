@@ -8,7 +8,7 @@
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
       <Value>
         <dds xmlns="">
-          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="8" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-1797" scrolltop="635" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="75" x="7541" y="7091" backcolor="16185078" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="1" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="8" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-1797" scrolltop="635" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="75" x="6376" y="11880" backcolor="16185078" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="1" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
             <font>
               <ddsxmlobjectstreamwrapper binary="01000000900144420100065461686f6d61" />
             </font>
@@ -36,7 +36,7 @@
             </control>
             <layoutobject>
               <ddsxmlobj>
-                <property name="LogicalObject" value="dbo_dim_matter_header_history" vartype="8" />
+                <property name="LogicalObject" value="dbo_dim_matter_header_current" vartype="8" />
               </ddsxmlobj>
             </layoutobject>
             <shape groupshapeid="0" groupnode="0" />
@@ -49,7 +49,7 @@
             </control>
             <layoutobject>
               <ddsxmlobj>
-                <property name="LogicalObject" value="dataSet.Relations[dim_matter_header_history-dim_instruction_type]" vartype="8" />
+                <property name="LogicalObject" value="dataSet.Relations[dim_matter_header_current-dim_instruction_type]" vartype="8" />
                 <property name="Virtual" value="0" vartype="11" />
                 <property name="VisibleAP" value="0" vartype="3" />
               </ddsxmlobj>
@@ -116,7 +116,7 @@
         <KeyColumn dwd:design-time-name="7b9095da-1b5a-48c7-9498-5f472057a777">
           <DataType>Integer</DataType>
           <Source xsi:type="ColumnBinding" dwd:design-time-name="61332bfd-beb5-4202-83d9-0fdb40b6999e">
-            <TableID>dbo_dim_matter_header_history</TableID>
+            <TableID>dbo_dim_matter_header_current</TableID>
             <ColumnID>dim_matter_header_curr_key</ColumnID>
           </Source>
         </KeyColumn>
@@ -125,10 +125,6 @@
         <AttributeRelationship dwd:design-time-name="0d8a68c7-21e0-4210-9857-aa0aeca2555b">
           <AttributeID>Matter Number</AttributeID>
           <Name>Matter Number</Name>
-        </AttributeRelationship>
-        <AttributeRelationship dwd:design-time-name="05c8359f-5a88-4f5f-9dfe-decf12b1e4cc">
-          <AttributeID>Matter Description</AttributeID>
-          <Name>Matter Description</Name>
         </AttributeRelationship>
         <AttributeRelationship dwd:design-time-name="69617636-a6c4-4c46-81ea-b280d07ce3d6">
           <AttributeID>Date Opened Case Management</AttributeID>
@@ -219,25 +215,8 @@
           <DataType>WChar</DataType>
           <DataSize>8</DataSize>
           <Source xsi:type="ColumnBinding" dwd:design-time-name="5b458fc2-b040-4a67-a466-33bc28e647a1">
-            <TableID>dbo_dim_matter_header_history</TableID>
+            <TableID>dbo_dim_matter_header_current</TableID>
             <ColumnID>matter_number</ColumnID>
-          </Source>
-        </KeyColumn>
-      </KeyColumns>
-      <OrderBy>Key</OrderBy>
-      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
-      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
-    </Attribute>
-    <Attribute dwd:design-time-name="cd5324a9-332e-4301-beb5-d26b362bbf98">
-      <ID>Matter Description</ID>
-      <Name>Matter Description</Name>
-      <KeyColumns>
-        <KeyColumn dwd:design-time-name="5c53d953-97c8-4484-a341-fc334f5c5436">
-          <DataType>WChar</DataType>
-          <DataSize>200</DataSize>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="a3e39a0d-8970-4bcc-a653-06d8a8c6a225">
-            <TableID>dbo_dim_matter_header_history</TableID>
-            <ColumnID>matter_description</ColumnID>
           </Source>
         </KeyColumn>
       </KeyColumns>
@@ -252,7 +231,7 @@
         <KeyColumn dwd:design-time-name="5847f4b3-d494-49ed-bc14-207ce405c544">
           <DataType>Date</DataType>
           <Source xsi:type="ColumnBinding" dwd:design-time-name="b2bb1547-5c0e-4d89-b3f9-018733a95355">
-            <TableID>dbo_dim_matter_header_history</TableID>
+            <TableID>dbo_dim_matter_header_current</TableID>
             <ColumnID>date_opened_case_management</ColumnID>
           </Source>
         </KeyColumn>
@@ -268,7 +247,7 @@
         <KeyColumn dwd:design-time-name="0c6e9467-2314-44b0-bdf3-c28a04a292bf">
           <DataType>Date</DataType>
           <Source xsi:type="ColumnBinding" dwd:design-time-name="01f8973c-fca1-4f73-9146-f19da1231beb">
-            <TableID>dbo_dim_matter_header_history</TableID>
+            <TableID>dbo_dim_matter_header_current</TableID>
             <ColumnID>date_closed_case_management</ColumnID>
           </Source>
         </KeyColumn>
@@ -286,7 +265,7 @@
           <DataSize>4</DataSize>
           <Collation>Latin1_General_CS_AS</Collation>
           <Source xsi:type="ColumnBinding" dwd:design-time-name="5fd7c6c7-ddfe-4dab-b982-a3f4f8f5f397">
-            <TableID>dbo_dim_matter_header_history</TableID>
+            <TableID>dbo_dim_matter_header_current</TableID>
             <ColumnID>branch_code</ColumnID>
           </Source>
         </KeyColumn>
@@ -303,7 +282,7 @@
           <DataType>WChar</DataType>
           <DataSize>40</DataSize>
           <Source xsi:type="ColumnBinding" dwd:design-time-name="c9784e6f-ee65-49bf-be77-f442c671ddc2">
-            <TableID>dbo_dim_matter_header_history</TableID>
+            <TableID>dbo_dim_matter_header_current</TableID>
             <ColumnID>branch_name</ColumnID>
           </Source>
         </KeyColumn>
@@ -321,7 +300,7 @@
           <DataSize>4</DataSize>
           <Collation>Latin1_General_CS_AS</Collation>
           <Source xsi:type="ColumnBinding" dwd:design-time-name="a55c3db7-5206-461d-aee3-39e2874381ed">
-            <TableID>dbo_dim_matter_header_history</TableID>
+            <TableID>dbo_dim_matter_header_current</TableID>
             <ColumnID>matter_partner_code</ColumnID>
           </Source>
         </KeyColumn>
@@ -338,7 +317,7 @@
           <DataType>WChar</DataType>
           <DataSize>50</DataSize>
           <Source xsi:type="ColumnBinding" dwd:design-time-name="e9722725-ddd4-4e03-9823-863815b98038">
-            <TableID>dbo_dim_matter_header_history</TableID>
+            <TableID>dbo_dim_matter_header_current</TableID>
             <ColumnID>matter_partner_full_name</ColumnID>
           </Source>
         </KeyColumn>
@@ -356,7 +335,7 @@
           <DataSize>4</DataSize>
           <Collation>Latin1_General_CS_AS</Collation>
           <Source xsi:type="ColumnBinding" dwd:design-time-name="b0e4fbf1-0ffa-4215-8d4e-d81dbbde6e84">
-            <TableID>dbo_dim_matter_header_history</TableID>
+            <TableID>dbo_dim_matter_header_current</TableID>
             <ColumnID>fee_earner_code</ColumnID>
           </Source>
         </KeyColumn>
@@ -373,7 +352,7 @@
           <DataType>WChar</DataType>
           <DataSize>50</DataSize>
           <Source xsi:type="ColumnBinding" dwd:design-time-name="09ca2d61-bbbd-44ce-a68c-12276994effe">
-            <TableID>dbo_dim_matter_header_history</TableID>
+            <TableID>dbo_dim_matter_header_current</TableID>
             <ColumnID>matter_owner_full_name</ColumnID>
           </Source>
         </KeyColumn>
@@ -390,7 +369,7 @@
           <DataType>WChar</DataType>
           <DataSize>60</DataSize>
           <Source xsi:type="ColumnBinding" dwd:design-time-name="22bb0fb8-c5a8-4a8e-8513-e603b7ee2b02">
-            <TableID>dbo_dim_matter_header_history</TableID>
+            <TableID>dbo_dim_matter_header_current</TableID>
             <ColumnID>fixed_fee</ColumnID>
           </Source>
         </KeyColumn>
@@ -407,7 +386,7 @@
           <DataType>WChar</DataType>
           <DataSize>60</DataSize>
           <Source xsi:type="ColumnBinding" dwd:design-time-name="8e83863b-6ac4-4067-b4ae-f21bd3b7a879">
-            <TableID>dbo_dim_matter_header_history</TableID>
+            <TableID>dbo_dim_matter_header_current</TableID>
             <ColumnID>delegated</ColumnID>
           </Source>
         </KeyColumn>
@@ -424,7 +403,7 @@
           <DataType>WChar</DataType>
           <DataSize>1</DataSize>
           <Source xsi:type="ColumnBinding" dwd:design-time-name="d6d63a0b-bd1f-411f-82b7-842712353f58">
-            <TableID>dbo_dim_matter_header_history</TableID>
+            <TableID>dbo_dim_matter_header_current</TableID>
             <ColumnID>final_bill_flag</ColumnID>
           </Source>
         </KeyColumn>
@@ -440,7 +419,7 @@
         <KeyColumn dwd:design-time-name="3e9d2042-8d03-45f6-b379-7ead44dceb24">
           <DataType>Date</DataType>
           <Source xsi:type="ColumnBinding" dwd:design-time-name="35e70972-d62c-4a78-b30c-22887b4c4335">
-            <TableID>dbo_dim_matter_header_history</TableID>
+            <TableID>dbo_dim_matter_header_current</TableID>
             <ColumnID>final_bill_date</ColumnID>
           </Source>
         </KeyColumn>
@@ -457,7 +436,7 @@
           <DataType>WChar</DataType>
           <DataSize>60</DataSize>
           <Source xsi:type="ColumnBinding" dwd:design-time-name="4bfb82d8-33e4-4bca-b71c-1ef0cd0e6e58">
-            <TableID>dbo_dim_matter_header_history</TableID>
+            <TableID>dbo_dim_matter_header_current</TableID>
             <ColumnID>present_position</ColumnID>
           </Source>
         </KeyColumn>
@@ -474,7 +453,7 @@
           <DataType>WChar</DataType>
           <DataSize>12</DataSize>
           <Source xsi:type="ColumnBinding" dwd:design-time-name="e935ce46-0d1a-4658-9d2e-20e28eba470d">
-            <TableID>dbo_dim_matter_header_history</TableID>
+            <TableID>dbo_dim_matter_header_current</TableID>
             <ColumnID>master_client_code</ColumnID>
           </Source>
         </KeyColumn>
@@ -491,7 +470,7 @@
           <DataType>WChar</DataType>
           <DataSize>20</DataSize>
           <Source xsi:type="ColumnBinding" dwd:design-time-name="31d0b879-e67c-43f0-8bf9-87a63b727e35">
-            <TableID>dbo_dim_matter_header_history</TableID>
+            <TableID>dbo_dim_matter_header_current</TableID>
             <ColumnID>master_matter_number</ColumnID>
           </Source>
         </KeyColumn>
@@ -508,7 +487,7 @@
           <DataType>WChar</DataType>
           <DataSize>4</DataSize>
           <Source xsi:type="ColumnBinding" dwd:design-time-name="3e77fa1a-c9a3-4a9c-9a56-8e2ae52533f2">
-            <TableID>dbo_dim_matter_header_history</TableID>
+            <TableID>dbo_dim_matter_header_current</TableID>
             <ColumnID>department_code</ColumnID>
           </Source>
         </KeyColumn>
@@ -525,7 +504,7 @@
           <DataType>WChar</DataType>
           <DataSize>64</DataSize>
           <Source xsi:type="ColumnBinding" dwd:design-time-name="c385f88b-6f34-47c3-962d-4ac0ee027a96">
-            <TableID>dbo_dim_matter_header_history</TableID>
+            <TableID>dbo_dim_matter_header_current</TableID>
             <ColumnID>billing_portal_status</ColumnID>
           </Source>
         </KeyColumn>
@@ -582,7 +561,7 @@
           <DataSize>8</DataSize>
           <Collation>Latin1_General_CS_AS</Collation>
           <Source xsi:type="ColumnBinding" dwd:design-time-name="2485bcf5-7acc-416a-992f-27af230b30a0">
-            <TableID>dbo_dim_matter_header_history</TableID>
+            <TableID>dbo_dim_matter_header_current</TableID>
             <ColumnID>client_code</ColumnID>
           </Source>
         </KeyColumn>
