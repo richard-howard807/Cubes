@@ -8,7 +8,7 @@
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
       <Value>
         <dds xmlns="">
-          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="28" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-936" scrolltop="4759" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="75" x="16536" y="7091" backcolor="16185078" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="1" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="28" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-936" scrolltop="4759" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="75" x="12700" y="7091" backcolor="16185078" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="1" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
             <font>
               <ddsxmlobjectstreamwrapper binary="01000000900144420100065461686f6d61" />
             </font>
@@ -303,6 +303,9 @@
       <Name>Dim Matter Header History</Name>
       <DimensionID>Dim Matter Header History</DimensionID>
       <Attributes>
+        <Attribute dwd:design-time-name="d70ab7b6-371a-4da5-bfb1-16f2d0f68fb5">
+          <AttributeID>Dim Mat Head History Key</AttributeID>
+        </Attribute>
         <Attribute dwd:design-time-name="981c2648-f5f7-443a-8491-3b50e40edbeb">
           <AttributeID>Client Code</AttributeID>
         </Attribute>
@@ -374,9 +377,6 @@
         </Attribute>
         <Attribute dwd:design-time-name="939000a3-4658-4015-894a-29caebdfb4b1">
           <AttributeID>Instruction Type</AttributeID>
-        </Attribute>
-        <Attribute dwd:design-time-name="d70ab7b6-371a-4da5-bfb1-16f2d0f68fb5">
-          <AttributeID>Dim Mat Head History Key</AttributeID>
         </Attribute>
       </Attributes>
     </Dimension>
@@ -496,9 +496,6 @@
       <EstimatedRows>1577406</EstimatedRows>
       <ProcessingMode>Regular</ProcessingMode>
       <Dimensions>
-        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="cca4d1f8-88ba-4f7a-b77d-13e7c9e9c1e3">
-          <CubeDimensionID>Dim Matter Header History</CubeDimensionID>
-        </Dimension>
         <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="4e8f9089-5c21-41e7-aa02-10c41241c09c">
           <CubeDimensionID>Dim Client</CubeDimensionID>
           <Attributes>
@@ -564,6 +561,24 @@
                   <Source xsi:type="ColumnBinding" dwd:design-time-name="313b3081-ee44-46f2-8723-bc9d3c02fb15">
                     <TableID>dbo_fact_disbursements_wip_daily</TableID>
                     <ColumnID>dim_transaction_date_key</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="9bbe1b47-d4d1-4b56-bcb6-c5c737fa91d9">
+          <CubeDimensionID>Dim Matter Header History</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="b3ee5c23-bfc7-46e4-a217-d700ffc26b69">
+              <AttributeID>Dim Mat Head History Key</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="105b64b0-f542-4e22-80d0-05f5a08293a9">
+                  <DataType>Integer</DataType>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="2d90828c-00ba-4634-8aa9-efa62650b6ff">
+                    <TableID>dbo_fact_disbursements_wip_daily</TableID>
+                    <ColumnID>dim_matter_header_history_key</ColumnID>
                   </Source>
                 </KeyColumn>
               </KeyColumns>
