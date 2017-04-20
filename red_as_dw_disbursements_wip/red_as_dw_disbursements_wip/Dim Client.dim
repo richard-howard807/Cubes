@@ -74,22 +74,12 @@
               <Attributes>
                 <Attribute Id="Dim Client Key" />
                 <Attribute Id="Client Code" />
+                <Attribute Id="Client Group Name" />
+                <Attribute Id="Client Name" />
                 <Attribute Id="Client Partner Code" />
                 <Attribute Id="Client Partner Name" />
               </Attributes>
               <Position x="20" y="20" />
-            </Shape>
-            <Shape Id="Client Name" Expanded="false">
-              <Attributes>
-                <Attribute Id="Client Name" />
-              </Attributes>
-              <Position x="213" y="20" />
-            </Shape>
-            <Shape Id="Client Group Name" Expanded="false">
-              <Attributes>
-                <Attribute Id="Client Group Name" />
-              </Attributes>
-              <Position x="407" y="20" />
             </Shape>
           </Shapes>
         </DiagramLayout>
@@ -127,10 +117,6 @@
           <AttributeID>Client Code</AttributeID>
           <Name>Client Code</Name>
         </AttributeRelationship>
-        <AttributeRelationship dwd:design-time-name="1c87f7b0-6b56-4b08-9b89-69ebadcbbadc">
-          <AttributeID>Client Name</AttributeID>
-          <Name>Client Name</Name>
-        </AttributeRelationship>
         <AttributeRelationship dwd:design-time-name="8bdf457f-e500-41c2-b8b0-6f234d4f9c05">
           <AttributeID>Client Partner Code</AttributeID>
           <Name>Client Partner Code</Name>
@@ -138,6 +124,14 @@
         <AttributeRelationship dwd:design-time-name="6b225ecc-c183-4f6f-8c0a-edda2b1760aa">
           <AttributeID>Client Partner Name</AttributeID>
           <Name>Client Partner Name</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="3fac611b-b3c7-4298-a763-f8bb55cfdec9">
+          <AttributeID>Client Name</AttributeID>
+          <Name>Client Name</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="48c6affa-8bc0-4a8a-aa50-8b9369e4a157">
+          <AttributeID>Client Group Name</AttributeID>
+          <Name>Client Group Name</Name>
         </AttributeRelationship>
       </AttributeRelationships>
       <OrderBy>Key</OrderBy>
@@ -167,22 +161,25 @@
       <Name>Client Name</Name>
       <EstimatedCount>456184</EstimatedCount>
       <KeyColumns>
-        <KeyColumn dwd:design-time-name="46166793-d504-4b09-b665-1a22b8b9f22b">
+        <KeyColumn dwd:design-time-name="802e3a6b-a86d-41d6-8175-a9517f6229de">
           <DataType>WChar</DataType>
           <DataSize>60</DataSize>
+          <Trimming>LeftRight</Trimming>
           <Collation>Latin1_General_CS_AS</Collation>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="f8738667-ccd2-4587-a233-d4d56f996672">
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="1025eb2a-3097-400f-b3e0-7616ea7de767">
             <TableID>dbo_dim_client</TableID>
             <ColumnID>client_name</ColumnID>
           </Source>
         </KeyColumn>
       </KeyColumns>
-      <AttributeRelationships>
-        <AttributeRelationship dwd:design-time-name="2cc85ab5-4b28-4124-b900-0d039e6650e0">
-          <AttributeID>Client Group Name</AttributeID>
-          <Name>Client Group Name</Name>
-        </AttributeRelationship>
-      </AttributeRelationships>
+      <NameColumn dwd:design-time-name="8ffb44bd-90e6-4ad0-8e88-f7c8eb694782">
+        <DataType>WChar</DataType>
+        <DataSize>60</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="417487d1-812d-477b-bbe8-69c56aec28fd">
+          <TableID>dbo_dim_client</TableID>
+          <ColumnID>client_name</ColumnID>
+        </Source>
+      </NameColumn>
       <OrderBy>Key</OrderBy>
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
@@ -195,6 +192,7 @@
         <KeyColumn dwd:design-time-name="9ede8f27-65c0-4b1f-921a-dd97f71b39f8">
           <DataType>WChar</DataType>
           <DataSize>40</DataSize>
+          <Trimming>LeftRight</Trimming>
           <Collation>Latin1_General_CS_AS</Collation>
           <Source xsi:type="ColumnBinding" dwd:design-time-name="06cb166a-65e9-4c9b-92ee-090234e7ce5a">
             <TableID>dbo_dim_client</TableID>
@@ -243,23 +241,5 @@
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
   </Attributes>
-  <Hierarchies>
-    <Hierarchy dwd:design-time-name="b71cd226-1016-47e0-834a-15ed969f8bef">
-      <ID>Hierarchy</ID>
-      <Name>Hierarchy</Name>
-      <Levels>
-        <Level dwd:design-time-name="8718fcdb-4938-474c-a133-6521e76a6f2f">
-          <ID>Client Group Name</ID>
-          <Name>Client Group Name</Name>
-          <SourceAttributeID>Client Group Name</SourceAttributeID>
-        </Level>
-        <Level dwd:design-time-name="fad4e56f-5ec3-4f33-b871-de23172a0e9a">
-          <ID>Client Name</ID>
-          <Name>Client Name</Name>
-          <SourceAttributeID>Client Name</SourceAttributeID>
-        </Level>
-      </Levels>
-    </Hierarchy>
-  </Hierarchies>
   <ddl300:ProcessingState>Unprocessed</ddl300:ProcessingState>
 </Dimension>
