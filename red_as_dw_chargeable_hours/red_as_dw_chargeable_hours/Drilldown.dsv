@@ -564,7 +564,7 @@
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
-            <xs:element name="dbo_fact_chargeable_time_activity" msprop:design-time-name="ff79abc5-1dd1-40cc-b0d0-9ef503b8b329" msprop:IsLogical="True" msprop:FriendlyName="fact_chargeable_time_activity" msprop:DbTableName="fact_chargeable_time_activity" msprop:TableType="View" msprop:QueryDefinition="SELECT        dim_bill_key, dim_client_key, dim_transaction_date_key, dim_fed_hierarchy_history_key, dim_matter_header_curr_key, dim_gl_date_key, dim_billable_time_activity_key AS dim_chargeable_time_activity_key, &#xD;&#xA;                         dim_billable_time_narratives_key AS dim_chargeable_time_narratives_key, master_fact_key, source_system_id, transaction_sequence_number, time_activity_code, minutes_recorded, &#xD;&#xA;                         zero_rate_minutes_recorded, hourly_charge_rate, time_charge_value, actual_time_recorded_value, fact_billable_time_activity_key AS fact_chargeable_time_activity_key, reporting_exclusions, &#xD;&#xA;                         dss_update_time, isactive, wiphrs, wipamt, minutes_recorded / 60 AS hours_recorded&#xD;&#xA;FROM            fact_billable_time_activity" msprop:QueryBuilder="SpecificQueryBuilder">
+            <xs:element name="dbo_fact_chargeable_time_activity" msprop:design-time-name="ff79abc5-1dd1-40cc-b0d0-9ef503b8b329" msprop:FriendlyName="fact_chargeable_time_activity" msprop:DbSchemaName="dbo" msprop:DbTableName="fact_chargeable_time_activity" msprop:TableType="Table" msprop:QueryBuilder="SpecificQueryBuilder">
               <xs:complexType>
                 <xs:sequence>
                   <xs:element name="dim_bill_key" msprop:design-time-name="db163bf4-ed79-4a54-a330-da2bca6f7125" msprop:DbColumnName="dim_bill_key" msprop:FriendlyName="dim_bill_key" type="xs:int" minOccurs="0" />
@@ -587,16 +587,13 @@
                   <xs:element name="dim_matter_header_curr_key" msprop:design-time-name="aa177d17-d571-492d-97aa-b0b778832006" msprop:DbColumnName="dim_matter_header_curr_key" type="xs:int" minOccurs="0" />
                   <xs:element name="dim_gl_date_key" msprop:design-time-name="674df8c7-8233-47fb-9b1b-d7f12d5d150a" msprop:DbColumnName="dim_gl_date_key" type="xs:int" minOccurs="0" />
                   <xs:element name="dim_client_key" msprop:design-time-name="a6f4b255-7d0d-4c96-bee0-135522bb28bc" msprop:DbColumnName="dim_client_key" type="xs:int" minOccurs="0" />
+                  <xs:element name="hours_recorded" msdata:ReadOnly="true" msprop:design-time-name="bfb98ebf-90cf-4dfd-b537-ec2b8fa76649" msprop:IsLogical="True" msprop:FriendlyName="hours_recorded" msprop:Description="Measure is stored as minutes instead of hours in fact table" msprop:DbColumnName="hours_recorded" msprop:ComputedColumnExpression="[minutes_recorded] / 60" type="xs:decimal" minOccurs="0" />
                   <xs:element name="dim_chargeable_time_activity_key" msprop:design-time-name="4091ab95-a3e0-42e1-a40c-90c71a38268b" msprop:DbColumnName="dim_chargeable_time_activity_key" type="xs:int" minOccurs="0" />
                   <xs:element name="dim_chargeable_time_narratives_key" msprop:design-time-name="91ad53ee-f25a-42a1-9043-ca35642f9952" msprop:DbColumnName="dim_chargeable_time_narratives_key" type="xs:int" minOccurs="0" />
                   <xs:element name="master_fact_key" msprop:design-time-name="8dcd2ae0-e6ef-4122-ad96-707107160349" msprop:DbColumnName="master_fact_key" type="xs:int" minOccurs="0" />
-                  <xs:element name="fact_chargeable_time_activity_key" msprop:design-time-name="45b564b0-8559-41b4-be4b-3ac0676151b4" msprop:DbColumnName="fact_chargeable_time_activity_key" type="xs:int" minOccurs="0" />
+                  <xs:element name="fact_chargeable_time_activity_key" msprop:design-time-name="45b564b0-8559-41b4-be4b-3ac0676151b4" msprop:DbColumnName="fact_chargeable_time_activity_key" type="xs:int" />
                   <xs:element name="reporting_exclusions" msprop:design-time-name="1a5546bc-48ad-4d57-98e5-466c64ea2d4e" msprop:DbColumnName="reporting_exclusions" type="xs:int" minOccurs="0" />
                   <xs:element name="zero_rate_minutes_recorded" msprop:design-time-name="58976674-522d-4513-a765-78585f1137d5" msprop:DbColumnName="zero_rate_minutes_recorded" type="xs:decimal" minOccurs="0" />
-                  <xs:element name="isactive" msprop:DbColumnName="isactive" msprop:design-time-name="95b54f4a-e6d0-4ed9-9c72-db0716d3a682" type="xs:unsignedByte" minOccurs="0" />
-                  <xs:element name="wiphrs" msprop:DbColumnName="wiphrs" msprop:design-time-name="b6ed9752-fbfa-4ec0-bf03-26e37c0e3343" type="xs:decimal" minOccurs="0" />
-                  <xs:element name="wipamt" msprop:DbColumnName="wipamt" msprop:design-time-name="01a6a3b0-b944-48a4-8195-430f5b53e864" type="xs:decimal" minOccurs="0" />
-                  <xs:element name="hours_recorded" msprop:DbColumnName="hours_recorded" msprop:design-time-name="6efeb6f6-ce7c-42f8-819c-152b5bc9263b" type="xs:decimal" minOccurs="0" />
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
@@ -1074,7 +1071,7 @@
           <xs:selector xpath=".//dbo_dim_fed_hierarchy_history" />
           <xs:field xpath="dim_fed_hierarchy_history_key" />
         </xs:unique>
-        <xs:unique name="Constraint11" msprop:IsLogical="True" msdata:PrimaryKey="true">
+        <xs:unique name="Constraint11" msdata:PrimaryKey="true">
           <xs:selector xpath=".//dbo_fact_chargeable_time_activity" />
           <xs:field xpath="fact_chargeable_time_activity_key" />
         </xs:unique>
@@ -1089,11 +1086,11 @@
       </xs:element>
       <xs:annotation>
         <xs:appinfo>
-          <msdata:Relationship name="fact_chargeable_time_activity-dim_fed_hierarchy_history" msdata:parent="dbo_dim_fed_hierarchy_history" msdata:child="dbo_fact_chargeable_time_activity" msdata:parentkey="dim_fed_hierarchy_history_key" msdata:childkey="dim_fed_hierarchy_history_key" msprop:Description="" msprop:IsLogical="True" />
-          <msdata:Relationship name="fact_chargeable_time_activity-dim_matter_header_current" msdata:parent="dbo_dim_matter_header" msdata:child="dbo_fact_chargeable_time_activity" msdata:parentkey="dim_matter_header_curr_key" msdata:childkey="dim_matter_header_curr_key" msprop:Description="" msprop:IsLogical="True" />
-          <msdata:Relationship name="fact_chargeable_time_activity-dim_client" msdata:parent="dbo_dim_client" msdata:child="dbo_fact_chargeable_time_activity" msdata:parentkey="dim_client_key" msdata:childkey="dim_client_key" msprop:Description="" msprop:IsLogical="True" />
-          <msdata:Relationship name="fact_chargeable_time_activity-dim_date" msdata:parent="dbo_dim_date" msdata:child="dbo_fact_chargeable_time_activity" msdata:parentkey="dim_date_key" msdata:childkey="dim_gl_date_key" msprop:Description="" msprop:IsLogical="True" />
-          <msdata:Relationship name="fact_chargeable_time_activity-dim_date1" msdata:parent="dbo_dim_date" msdata:child="dbo_fact_chargeable_time_activity" msdata:parentkey="dim_date_key" msdata:childkey="dim_transaction_date_key" msprop:Description="" msprop:IsLogical="True" />
+          <msdata:Relationship name="fact_chargeable_time_activity-dim_fed_hierarchy_history" msdata:parent="dbo_dim_fed_hierarchy_history" msdata:child="dbo_fact_chargeable_time_activity" msdata:parentkey="dim_fed_hierarchy_history_key" msdata:childkey="dim_fed_hierarchy_history_key" msprop:IsLogical="True" msprop:Description="" />
+          <msdata:Relationship name="fact_chargeable_time_activity-dim_matter_header_current" msdata:parent="dbo_dim_matter_header" msdata:child="dbo_fact_chargeable_time_activity" msdata:parentkey="dim_matter_header_curr_key" msdata:childkey="dim_matter_header_curr_key" msprop:IsLogical="True" msprop:Description="" />
+          <msdata:Relationship name="fact_chargeable_time_activity-dim_client" msdata:parent="dbo_dim_client" msdata:child="dbo_fact_chargeable_time_activity" msdata:parentkey="dim_client_key" msdata:childkey="dim_client_key" msprop:IsLogical="True" msprop:Description="" />
+          <msdata:Relationship name="fact_chargeable_time_activity-dim_date" msdata:parent="dbo_dim_date" msdata:child="dbo_fact_chargeable_time_activity" msdata:parentkey="dim_date_key" msdata:childkey="dim_gl_date_key" msprop:IsLogical="True" msprop:Description="" />
+          <msdata:Relationship name="fact_chargeable_time_activity-dim_date1" msdata:parent="dbo_dim_date" msdata:child="dbo_fact_chargeable_time_activity" msdata:parentkey="dim_date_key" msdata:childkey="dim_transaction_date_key" msprop:IsLogical="True" msprop:Description="" />
         </xs:appinfo>
       </xs:annotation>
     </xs:schema>
