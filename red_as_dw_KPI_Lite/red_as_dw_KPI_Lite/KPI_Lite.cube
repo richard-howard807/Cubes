@@ -942,11 +942,11 @@ VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Mon
 
 
                 CREATE MEMBER CURRENTCUBE.[Measures].[YTD Target Recovery Rate]
- AS iif([Measures].[YTD Target Billed Hours] = 0, 0, [Measures].[YTD Target Profit Costs (Budget Balanced)] / [Measures].[YTD Target Billed Hours]), 
+ AS iif([Measures].[YTD Target Billed Hours] = 0, null, [Measures].[YTD Target Profit Costs (Budget Balanced)] / [Measures].[YTD Target Billed Hours]), 
 VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                                               
 
                 CREATE MEMBER CURRENTCUBE.[Measures].[YTD Recovery Rate]
- AS iif([Measures].[YTD Billed Hours Recorded] = 0, 0, [Measures].[YTD Profit Costs] / [Measures].[YTD Billed Hours Recorded]), 
+ AS iif([Measures].[YTD Billed Hours Recorded] = 0, null, [Measures].[YTD Profit Costs] / [Measures].[YTD Billed Hours Recorded]), 
 VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                                                            
                 
 
@@ -1083,7 +1083,7 @@ VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Mon
 
 
                 CREATE MEMBER CURRENTCUBE.[Measures].[YTD Percentage of Profit Costs Target Achieved]
- AS iif(([Measures].[YTD Profit Costs] = 0 and [Measures].[YTD Target Profit Costs (Budget Balanced)] = 0) or [Measures].[YTD Target Profit Costs (Budget Balanced)] = 0, 0,
+ AS iif(([Measures].[YTD Profit Costs] = 0 and [Measures].[YTD Target Profit Costs (Budget Balanced)] = 0) or [Measures].[YTD Target Profit Costs (Budget Balanced)] = 0, null,
                 [Measures].[YTD Profit Costs] / [Measures].[YTD Target Profit Costs (Budget Balanced)]
                 ), 
 FORMAT_STRING = "#,##0.00;-#,##0.00", 
@@ -1091,21 +1091,21 @@ VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Mon
 
 
                 CREATE MEMBER CURRENTCUBE.[Measures].[YTD Percentage of Annual Profit Costs Target Achieved]
- AS iif(([Measures].[YTD Profit Costs] = 0 and [Measures].[Annual Target Profit Costs (Budget Balanced)] = 0) or [Measures].[Annual Target Profit Costs (Budget Balanced)] = 0, 0,
+ AS iif(([Measures].[YTD Profit Costs] = 0 and [Measures].[Annual Target Profit Costs (Budget Balanced)] = 0) or [Measures].[Annual Target Profit Costs (Budget Balanced)] = 0, null,
                 [Measures].[YTD Profit Costs] / [Measures].[Annual Target Profit Costs (Budget Balanced)]
                 ), 
 FORMAT_STRING = "#,##0.00;-#,##0.00", 
 VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                 
                    
 CREATE MEMBER CURRENTCUBE.[Measures].[YTD Percentage of Annual Chargeable Hours Target Achieved]
- AS iif([Measures].[Annual Target Chargeable Hours] = 0, 0,
+ AS iif([Measures].[Annual Target Chargeable Hours] = 0, null,
                 [Measures].[YTD Chargeable Hours] / [Measures].[Annual Target Chargeable Hours]
                 ), 
 FORMAT_STRING = "#,##0.00;-#,##0.00", 
 VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                
 
 CREATE MEMBER CURRENTCUBE.[Measures].[YTD Percentage of Annual Billable Hours Target Achieved]
- AS iif([Measures].[Annual Target Chargeable Hours] = 0, 0,
+ AS iif([Measures].[Annual Target Chargeable Hours] = 0, null,
                 [Measures].[YTD Billable Hours] / [Measures].[Annual Target Chargeable Hours]
                 ), 
 FORMAT_STRING = "#,##0.00;-#,##0.00", 
@@ -1131,7 +1131,7 @@ VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Mon
 
 
 CREATE MEMBER CURRENTCUBE.[Measures].[YTD Chargeable Hours Per Day Remaining to Meet Annual Chargeable Hours Target]
- AS iif([Measures].[Remaining Fte Working Days] = 0, 0,
+ AS iif([Measures].[Remaining Fte Working Days] = 0, null,
                 [Measures].[YTD Chargeable Hours Remaining to Meet Annual Chargeable Hours Target] / [Measures].[Remaining Fte Working Days] 
                 ), 
 FORMAT_STRING = "#,##0.00;-#,##0.00", 
@@ -1139,14 +1139,14 @@ VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Mon
 
 
 CREATE MEMBER CURRENTCUBE.[Measures].[YTD Billable Hours Per Day Remaining to Meet Annual Billable Hours Target]
- AS iif([Measures].[Remaining Fte Working Days] = 0, 0,
+ AS iif([Measures].[Remaining Fte Working Days] = 0, null,
                 [Measures].[YTD Billable Hours Remaining to Meet Annual Billable Hours Target] / [Measures].[Remaining Fte Working Days] 
                 ), 
 FORMAT_STRING = "#,##0.00;-#,##0.00", 
 VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                
 
 CREATE MEMBER CURRENTCUBE.[Measures].[YTD Chargeable Hours Per Day Remaining to Meet Annual Chargeable Hours Target (less Remaining Holiday Entitlement)]
- AS iif([Measures].[Remaining Fte Working Days] = 0, 0,
+ AS iif([Measures].[Remaining Fte Working Days] = 0, null,
                 [Measures].[YTD Chargeable Hours Remaining to Meet Annual Chargeable Hours Target] / ([Measures].[Remaining Fte Working Days] - [Measures].[Annual Holidays Remaining])
                 ), 
 FORMAT_STRING = "#,##0.00;-#,##0.00", 
@@ -1156,7 +1156,7 @@ VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Mon
 
 
 CREATE MEMBER CURRENTCUBE.[Measures].[YTD Billable Hours Per Day Remaining to Meet Annual Billable Hours Target (less Remaining Holiday Entitlement)]
- AS iif([Measures].[Remaining Fte Working Days] = 0, 0,
+ AS iif([Measures].[Remaining Fte Working Days] = 0, null,
                 [Measures].[YTD Billable Hours Remaining to Meet Annual Billable Hours Target] / ([Measures].[Remaining Fte Working Days] - [Measures].[Annual Holidays Remaining])
                 ), 
 FORMAT_STRING = "#,##0.00;-#,##0.00", 
@@ -1164,13 +1164,13 @@ VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Mon
 
                  
 CREATE MEMBER CURRENTCUBE.[Measures].[YTD Percentage of Annual Billed Hours Target Achieved]
- AS iif([Measures].[Annual Target Billed Hours] = 0, 0,
+ AS iif([Measures].[Annual Target Billed Hours] = 0, null,
                 [Measures].[YTD Billed Hours Recorded] / [Measures].[Annual Target Billed Hours]
                 ), 
 FORMAT_STRING = "#,##0.00;-#,##0.00", 
 VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                                          
 CREATE MEMBER CURRENTCUBE.[Measures].[YTD Percentage of Billed Hours Target Achieved]
- AS iif([Measures].[YTD Target Billed Hours] = 0, 0, [Measures].[YTD Billed Hours Recorded] / [Measures].[YTD Target Billed Hours]), 
+ AS iif([Measures].[YTD Target Billed Hours] = 0, null, [Measures].[YTD Billed Hours Recorded] / [Measures].[YTD Target Billed Hours]), 
 FORMAT_STRING = "#,##0.00;-#,##0.00", 
 VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                                                                 
 
@@ -1186,10 +1186,10 @@ CREATE MEMBER CURRENTCUBE.[Measures].[Annual Holidays Taken]
                 ), 
 VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual'  ;                                   
 CREATE MEMBER CURRENTCUBE.[Measures].[Annual Recovery Rate]
- AS iif([Measures].[Annual Billed Hours Recorded] = 0, 0, [Measures].[Annual Profit Costs] / [Measures].[Annual Billed Hours Recorded]), 
+ AS iif([Measures].[Annual Billed Hours Recorded] = 0, null, [Measures].[Annual Profit Costs] / [Measures].[Annual Billed Hours Recorded]), 
 VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                                   
 CREATE MEMBER CURRENTCUBE.[Measures].[Annual Target Recovery Rate]
- AS iif([Measures].[Annual Target Billed Hours] = 0, 0, [Measures].[Annual Target Profit Costs (Budget Balanced)] / [Measures].[Annual Target Billed Hours]), 
+ AS iif([Measures].[Annual Target Billed Hours] = 0, null, [Measures].[Annual Target Profit Costs (Budget Balanced)] / [Measures].[Annual Target Billed Hours]), 
 VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                                                    
                 
 
@@ -1223,13 +1223,13 @@ VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi 
 
 
 CREATE MEMBER CURRENTCUBE.[Measures].[Annual Percentage of Chargeable Hours Target Achieved]
- AS iif([Measures].[Annual Target Chargeable Hours] = 0, 0, [Measures].[Annual Chargeable Hours] / [Measures].[Annual Target Chargeable Hours]), 
+ AS iif([Measures].[Annual Target Chargeable Hours] = 0, null, [Measures].[Annual Chargeable Hours] / [Measures].[Annual Target Chargeable Hours]), 
 FORMAT_STRING = "#,##0.00;-#,##0.00", 
 VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';      
 
 
 CREATE MEMBER CURRENTCUBE.[Measures].[Annual Percentage of Billable Hours Target Achieved]
- AS iif([Measures].[Annual Target Chargeable Hours] = 0, 0, [Measures].[Annual Billable Hours] / [Measures].[Annual Target Chargeable Hours]), 
+ AS iif([Measures].[Annual Target Chargeable Hours] = 0, null, [Measures].[Annual Billable Hours] / [Measures].[Annual Target Chargeable Hours]), 
 FORMAT_STRING = "#,##0.00;-#,##0.00", 
 VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';      
 
@@ -1317,7 +1317,7 @@ VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi 
 
 
                 CREATE MEMBER CURRENTCUBE.[Measures].[Annual Percentage of Profit Costs Target Achieved]
- AS iif(([Measures].[Annual Profit Costs] = 0 and [Measures].[Annual Target Profit Costs (Budget Balanced)] = 0) or [Measures].[Annual Target Profit Costs (Budget Balanced)] = 0, 0,
+ AS iif(([Measures].[Annual Profit Costs] = 0 and [Measures].[Annual Target Profit Costs (Budget Balanced)] = 0) or [Measures].[Annual Target Profit Costs (Budget Balanced)] = 0, null,
                 [Measures].[Annual Profit Costs] / [Measures].[Annual Target Profit Costs (Budget Balanced)]
                 ), 
 FORMAT_STRING = "#,##0.00;-#,##0.00", 
@@ -1335,7 +1335,7 @@ VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi 
 
 
 CREATE MEMBER CURRENTCUBE.[Measures].[Annual Average Billable Hours]
- AS iif([Measures].[YTD Target Chargeable Hours] = 0, 0, 
+ AS iif([Measures].[YTD Target Chargeable Hours] = 0, null, 
     (avg([Measures].[YTD Billable Hours]) / avg([Measures].[YTD Target Chargeable Hours])) * 
         avg([Measures].[Annual Target Chargeable Hours])
         ), 
@@ -1343,7 +1343,7 @@ VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi 
 
 
 CREATE MEMBER CURRENTCUBE.[Measures].[Annual Average Chargeable Hours]
- AS iif([Measures].[YTD Target Chargeable Hours] = 0, 0, 
+ AS iif([Measures].[YTD Target Chargeable Hours] = 0, null, 
     (avg([Measures].[YTD Chargeable Hours]) / avg([Measures].[YTD Target Chargeable Hours])) * 
         avg([Measures].[Annual Target Chargeable Hours])
         ), 
@@ -1369,14 +1369,14 @@ VISIBLE = 0 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi 
 VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                                                            
                 
                 CREATE MEMBER CURRENTCUBE.[Measures].[Percentage of Chargeable Hours Target Achieved]
- AS iif([Measures].[Target Chargeable Hours] = 0, 0, [Measures].[Chargeable Hours Recorded] / [Measures].[Target Chargeable Hours]), 
+ AS iif([Measures].[Target Chargeable Hours] = 0, null, [Measures].[Chargeable Hours Recorded] / [Measures].[Target Chargeable Hours]), 
 FORMAT_STRING = "#,##0.00;-#,##0.00", 
 NON_EMPTY_BEHAVIOR = { [Target Chargeable Hours] }, 
 VISIBLE = 1 ,  DISPLAY_FOLDER = 'Monthly' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';  
 
 
                 CREATE MEMBER CURRENTCUBE.[Measures].[Percentage of Billable Hours Target Achieved]
- AS iif([Measures].[Target Chargeable Hours] = 0, 0, [Measures].[Billable Hours Recorded] / [Measures].[Target Chargeable Hours]), 
+ AS iif([Measures].[Target Chargeable Hours] = 0, null, [Measures].[Billable Hours Recorded] / [Measures].[Target Chargeable Hours]), 
 FORMAT_STRING = "#,##0.00;-#,##0.00", 
 NON_EMPTY_BEHAVIOR = { [Target Chargeable Hours] }, 
 VISIBLE = 1 ,  DISPLAY_FOLDER = 'Monthly' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';  
@@ -1392,20 +1392,20 @@ VISIBLE = 1 ,  DISPLAY_FOLDER = 'Monthly' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi
 
 
 CREATE MEMBER CURRENTCUBE.[Measures].[Annual Percentage of Billed Hours Target Achieved]
- AS iif([Measures].[Annual Target Billed Hours] = 0, 0, [Measures].[Annual Billed Hours Recorded] / [Measures].[Annual Target Billed Hours]), 
+ AS iif([Measures].[Annual Target Billed Hours] = 0, null, [Measures].[Annual Billed Hours Recorded] / [Measures].[Annual Target Billed Hours]), 
 FORMAT_STRING = "#,##0.00;-#,##0.00", 
 VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                                                  
 
                 
                 CREATE MEMBER CURRENTCUBE.[Measures].[YTD Percentage of Zero Rate Time vs YTD Chargeable Time]
- AS iif([Measures].[YTD Chargeable Hours] = 0, 0, 
+ AS iif([Measures].[YTD Chargeable Hours] = 0, null, 
                         [Measures].[YTD Zero Rate Hours Recorded] / [Measures].[YTD Chargeable Hours]
                    ), 
 VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                                                            
 
 
                 CREATE MEMBER CURRENTCUBE.[Measures].[YTD Percentage of Zero Rate Time vs YTD Billable Time]
- AS iif([Measures].[YTD Billable Hours] = 0, 0, 
+ AS iif([Measures].[YTD Billable Hours] = 0, null, 
                         [Measures].[YTD Zero Rate Billable Hours Recorded] / [Measures].[YTD Billable Hours]
                    ), 
 VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup'; 
@@ -1427,11 +1427,11 @@ VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi 
 
 
                 CREATE MEMBER CURRENTCUBE.[Measures].[Recovery Rate]
- AS iif([Measures].[Billed Hours Recorded] = 0, 0, [Measures].[Profit Costs] / [Measures].[Billed Hours Recorded]), 
+ AS iif([Measures].[Billed Hours Recorded] = 0, null, [Measures].[Profit Costs] / [Measures].[Billed Hours Recorded]), 
 NON_EMPTY_BEHAVIOR = { [Billed Minutes Recorded] }, 
 VISIBLE = 1 ,  DISPLAY_FOLDER = 'Monthly' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                                   
 CREATE MEMBER CURRENTCUBE.[Measures].[Target Recovery Rate]
- AS iif([Measures].[Target Billed Hours] = 0, 0, [Measures].[Target Profit Costs (Budget Balanced)] / [Measures].[Target Billed Hours]), 
+ AS iif([Measures].[Target Billed Hours] = 0, null, [Measures].[Target Profit Costs (Budget Balanced)] / [Measures].[Target Billed Hours]), 
 VISIBLE = 1 ,  DISPLAY_FOLDER = 'Monthly' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                                                            
 
 
@@ -1441,7 +1441,7 @@ FORMAT_STRING = "#,##0.00;-#,##0.00",
 NON_EMPTY_BEHAVIOR = { [Target Profit Costs] }, 
 VISIBLE = 1 ,  DISPLAY_FOLDER = 'Monthly' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                                           
 CREATE MEMBER CURRENTCUBE.[Measures].[Percentage of Billed Hours Target Achieved]
- AS iif([Measures].[Target Billed Hours] = 0, 0, [Measures].[Billed Hours Recorded] / [Measures].[Target Billed Hours]), 
+ AS iif([Measures].[Target Billed Hours] = 0, null, [Measures].[Billed Hours Recorded] / [Measures].[Target Billed Hours]), 
 FORMAT_STRING = "#,##0.00;-#,##0.00", 
 NON_EMPTY_BEHAVIOR = { [Target Billed Hours] }, 
 VISIBLE = 1 ,  DISPLAY_FOLDER = 'Monthly' ,  ASSOCIATED_MEASURE_GROUP = 'Agg Kpi Monthly Rollup';                                                     
