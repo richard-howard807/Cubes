@@ -40,7 +40,7 @@ dim_transaction_date_key between 20161001 and 20170131</QueryDefinition>
           <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
           <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
           <State>Unprocessed</State>
-          <Source xsi:type="QueryBinding" dwd:design-time-name="bb58ac63-18ca-4c11-9a27-5aca5d60a7ae">
+          <Source xsi:type="QueryBinding" dwd:design-time-name="d8cdf6b1-f888-456e-8a7b-b526e75b66d8">
             <DataSourceID>Red Dw</DataSourceID>
             <QueryDefinition>SELECT        fact_finance_summary_daily.dim_transaction_date_key, fact_finance_summary_daily.master_fact_key, fact_dimension_main.dim_client_key, fact_finance_summary_daily.wip, 
                          fact_finance_summary_daily.output_wip_balance, fact_finance_summary_daily.output_wip_contingent_wip, fact_finance_summary_daily.output_wip_current_value_of_fixed_fee_wip, 
@@ -50,11 +50,41 @@ dim_transaction_date_key between 20161001 and 20170131</QueryDefinition>
                          fact_finance_summary_daily.output_wip_fixed_fee_wip, fact_finance_summary_daily.output_wip_internal_no_charge
 FROM            fact_finance_summary_daily INNER JOIN
                          fact_dimension_main ON fact_dimension_main.master_fact_key = fact_finance_summary_daily.master_fact_key
-where dim_transaction_date_key between 201710201 and 20170430</QueryDefinition>
+where dim_transaction_date_key between 20170201 and 20170430</QueryDefinition>
           </Source>
           <StorageMode>Molap</StorageMode>
           <CurrentStorageMode>Molap</CurrentStorageMode>
           <ProcessingMode>Regular</ProcessingMode>
+        </Partition>
+        <Partition dwd:design-time-name="66399e33-8575-4ac1-9897-a6d5623cb060">
+          <ID>Fact Finance Summary Daily 1</ID>
+          <Name>Fact Finance Summary Daily 2018 Q1</Name>
+          <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+          <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+          <Annotations>
+            <Annotation>
+              <Name>AggregationPercent</Name>
+              <Value></Value>
+            </Annotation>
+          </Annotations>
+          <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+          <State>Unprocessed</State>
+          <Source xsi:type="QueryBinding" dwd:design-time-name="98a3eff4-6b79-4cf4-9c3d-c5ed2bc1d53e">
+            <DataSourceID>Red Dw</DataSourceID>
+            <QueryDefinition>SELECT        fact_finance_summary_daily.dim_transaction_date_key, fact_finance_summary_daily.master_fact_key, fact_dimension_main.dim_client_key, fact_finance_summary_daily.wip, 
+                         fact_finance_summary_daily.output_wip_balance, fact_finance_summary_daily.output_wip_contingent_wip, fact_finance_summary_daily.output_wip_current_value_of_fixed_fee_wip, 
+                         fact_finance_summary_daily.output_wip_fixed_fee_value, fact_finance_summary_daily.output_wip_hourly_rate, fact_finance_summary_daily.output_wip_other_tbc_wip, 
+                         fact_finance_summary_daily.output_wip_total_output_wip, fact_finance_summary_daily.output_wip_annual_retainer_wip, fact_finance_summary_daily.output_wip_secondment_wip, 
+                         fact_finance_summary_daily.output_wip_percentage_complete, fact_finance_summary_daily.dim_mat_head_history_key, fact_dimension_main.dim_fed_hierarchy_history_key, 
+                         fact_finance_summary_daily.output_wip_fixed_fee_wip, fact_finance_summary_daily.output_wip_internal_no_charge
+FROM            fact_finance_summary_daily INNER JOIN
+                         fact_dimension_main ON fact_dimension_main.master_fact_key = fact_finance_summary_daily.master_fact_key
+where dim_transaction_date_key between 20170501 and 20170731</QueryDefinition>
+          </Source>
+          <StorageMode>Molap</StorageMode>
+          <CurrentStorageMode>Molap</CurrentStorageMode>
+          <ProcessingMode>Regular</ProcessingMode>
+          <AggregationDesignID>AggregationDesign</AggregationDesignID>
         </Partition>
       </Partitions>
       <AggregationDesigns>
