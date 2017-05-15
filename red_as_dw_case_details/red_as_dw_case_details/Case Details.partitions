@@ -15300,7 +15300,7 @@
           <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
           <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
           <State>Unprocessed</State>
-          <Source xsi:type="QueryBinding" dwd:design-time-name="9270e511-bfa8-473e-bcb5-8dea97337f6b">
+          <Source xsi:type="QueryBinding" dwd:design-time-name="ebd751f2-eeda-4eee-a7e8-940a57ad9801">
             <DataSourceID>Red Dw</DataSourceID>
             <QueryDefinition>SELECT        fact_all_time_activity.dim_fed_hierarchy_history_key AS 'time_owner_dim_fed_hierarchy_history_key', dim_all_time_activity.transaction_type, fact_all_time_activity.dim_transaction_date_key, 
                          fact_all_time_activity.dim_all_time_activity_key, 1 AS '1', dim_all_time_activity.time_activity_code, fact_matter_summary_current.dim_open_practice_management_date_key, 
@@ -15308,7 +15308,7 @@
                          fact_all_time_activity.dim_matter_header_curr_key, fact_all_time_activity.dim_bill_key, fact_bill.dim_bill_date_key, fact_dimension_main.dim_client_involvement_key, 
                          fact_matter_summary_current.dim_last_transaction_date_key, fact_matter_summary_current.dim_closed_practice_management_date_key, fact_matter_summary_current.dim_open_case_management_date_key,
                           fact_matter_summary_current.dim_closed_case_management_date_key, fact_dimension_main.dim_detail_outcome_key, fact_dimension_main.dim_detail_claim_key, 
-                         dim_matter_header_current.dim_matter_worktype_key, fact_all_time_activity.time_charge_value, fact_all_time_activity.minutes_recorded, fact_matter_summary_current.dim_fed_hierarchy_history_key, CASE WHEN fact_all_time_activity.chargeable_nonc_nonb = 'C' THEN CAST(minutes_recorded / 60 AS decimal(10, 2))  END AS chargeable_hours
+                         dim_matter_header_current.dim_matter_worktype_key, fact_all_time_activity.time_charge_value, fact_all_time_activity.minutes_recorded, fact_matter_summary_current.dim_fed_hierarchy_history_key, CASE WHEN fact_all_time_activity.chargeable_nonc_nonb = 'C' THEN CAST(minutes_recorded / 60 AS decimal(10, 2))  END AS chargeable_hours, CASE WHEN fact_all_time_activity.dim_bill_key &gt; 0 THEN CAST(minutes_recorded / 60 AS decimal(10, 2)) ELSE NULL END AS billed_hours
 
 FROM            fact_all_time_activity LEFT OUTER JOIN
                          fact_bill ON fact_bill.dim_bill_key = fact_all_time_activity.dim_bill_key INNER JOIN
@@ -15331,7 +15331,7 @@ FROM            fact_all_time_activity LEFT OUTER JOIN
           <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
           <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
           <State>Unprocessed</State>
-          <Source xsi:type="QueryBinding" dwd:design-time-name="6dc4d1c8-2a8f-4f9f-b237-e64b7b91327d">
+          <Source xsi:type="QueryBinding" dwd:design-time-name="80cb7cb6-a4a2-45b2-aa81-f3a708c8b5f6">
             <DataSourceID>Red Dw</DataSourceID>
             <QueryDefinition>SELECT        fact_all_time_activity.dim_fed_hierarchy_history_key AS 'time_owner_dim_fed_hierarchy_history_key', dim_all_time_activity.transaction_type, fact_all_time_activity.dim_transaction_date_key, 
                          fact_all_time_activity.dim_all_time_activity_key, 1 AS '1', fact_matter_summary_current.dim_open_practice_management_date_key, 
@@ -15339,7 +15339,7 @@ FROM            fact_all_time_activity LEFT OUTER JOIN
                          fact_all_time_activity.dim_matter_header_curr_key, fact_all_time_activity.dim_bill_key, fact_bill.dim_bill_date_key, fact_dimension_main.dim_client_involvement_key, 
                          fact_matter_summary_current.dim_last_transaction_date_key, fact_matter_summary_current.dim_closed_practice_management_date_key, fact_matter_summary_current.dim_open_case_management_date_key,
                           fact_matter_summary_current.dim_closed_case_management_date_key, fact_dimension_main.dim_detail_outcome_key, fact_dimension_main.dim_detail_claim_key, 
-                         dim_matter_header_current.dim_matter_worktype_key, fact_all_time_activity.time_charge_value, fact_all_time_activity.minutes_recorded, fact_matter_summary_current.dim_fed_hierarchy_history_key,dim_all_time_activity.time_activity_code, CASE WHEN fact_all_time_activity.chargeable_nonc_nonb = 'C' THEN CAST(minutes_recorded / 60 AS decimal(10, 2)) else null  END AS chargeable_hours
+                         dim_matter_header_current.dim_matter_worktype_key, fact_all_time_activity.time_charge_value, fact_all_time_activity.minutes_recorded, fact_matter_summary_current.dim_fed_hierarchy_history_key,dim_all_time_activity.time_activity_code, CASE WHEN fact_all_time_activity.chargeable_nonc_nonb = 'C' THEN CAST(minutes_recorded / 60 AS decimal(10, 2)) else null  END AS chargeable_hours, CASE WHEN fact_all_time_activity.dim_bill_key &gt; 0 THEN CAST(minutes_recorded / 60 AS decimal(10, 2)) ELSE NULL END AS billed_hours
 
 FROM            fact_all_time_activity LEFT OUTER JOIN
                          fact_bill ON fact_bill.dim_bill_key = fact_all_time_activity.dim_bill_key INNER JOIN
@@ -15363,7 +15363,7 @@ FROM            fact_all_time_activity LEFT OUTER JOIN
           <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
           <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
           <State>Unprocessed</State>
-          <Source xsi:type="QueryBinding" dwd:design-time-name="54e17198-c853-4c38-9390-8283465f1396">
+          <Source xsi:type="QueryBinding" dwd:design-time-name="cf88421f-2e1b-46c6-a88b-0fd062177393">
             <DataSourceID>Red Dw</DataSourceID>
             <QueryDefinition>SELECT        fact_all_time_activity.dim_fed_hierarchy_history_key AS 'time_owner_dim_fed_hierarchy_history_key', dim_all_time_activity.transaction_type, fact_all_time_activity.dim_transaction_date_key, 
                          fact_all_time_activity.dim_all_time_activity_key, 1 AS '1', dim_all_time_activity.time_activity_code, fact_matter_summary_current.dim_open_practice_management_date_key, 
@@ -15371,7 +15371,7 @@ FROM            fact_all_time_activity LEFT OUTER JOIN
                          fact_all_time_activity.dim_matter_header_curr_key, fact_all_time_activity.dim_bill_key, fact_bill.dim_bill_date_key, fact_dimension_main.dim_client_involvement_key, 
                          fact_matter_summary_current.dim_last_transaction_date_key, fact_matter_summary_current.dim_closed_practice_management_date_key, fact_matter_summary_current.dim_open_case_management_date_key,
                           fact_matter_summary_current.dim_closed_case_management_date_key, fact_dimension_main.dim_detail_outcome_key, fact_dimension_main.dim_detail_claim_key, 
-                         dim_matter_header_current.dim_matter_worktype_key, fact_all_time_activity.time_charge_value, fact_all_time_activity.minutes_recorded, fact_matter_summary_current.dim_fed_hierarchy_history_key, CASE WHEN fact_all_time_activity.chargeable_nonc_nonb = 'C' THEN CAST(minutes_recorded / 60 AS decimal(10, 2))  else null END AS chargeable_hours
+                         dim_matter_header_current.dim_matter_worktype_key, fact_all_time_activity.time_charge_value, fact_all_time_activity.minutes_recorded, fact_matter_summary_current.dim_fed_hierarchy_history_key, CASE WHEN fact_all_time_activity.chargeable_nonc_nonb = 'C' THEN CAST(minutes_recorded / 60 AS decimal(10, 2))  else null END AS chargeable_hours, CASE WHEN fact_all_time_activity.dim_bill_key &gt; 0 THEN CAST(minutes_recorded / 60 AS decimal(10, 2)) ELSE NULL END AS billed_hours
 
 FROM            fact_all_time_activity LEFT OUTER JOIN
                          fact_bill ON fact_bill.dim_bill_key = fact_all_time_activity.dim_bill_key INNER JOIN
@@ -15395,7 +15395,7 @@ where fin_year &gt;= 2003 and fin_year &lt; 2006</QueryDefinition>
           <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
           <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
           <State>Unprocessed</State>
-          <Source xsi:type="QueryBinding" dwd:design-time-name="5bdf6141-937c-4582-bedc-2f9ad77b12e4">
+          <Source xsi:type="QueryBinding" dwd:design-time-name="f67f7af0-44fb-4fa3-80f2-9ccc3aaf5923">
             <DataSourceID>Red Dw</DataSourceID>
             <QueryDefinition>SELECT        fact_all_time_activity.dim_fed_hierarchy_history_key AS 'time_owner_dim_fed_hierarchy_history_key', dim_all_time_activity.transaction_type, fact_all_time_activity.dim_transaction_date_key, 
                          fact_all_time_activity.dim_all_time_activity_key, 1 AS '1', dim_all_time_activity.time_activity_code, fact_matter_summary_current.dim_open_practice_management_date_key, 
@@ -15403,7 +15403,7 @@ where fin_year &gt;= 2003 and fin_year &lt; 2006</QueryDefinition>
                          fact_all_time_activity.dim_matter_header_curr_key, fact_all_time_activity.dim_bill_key, fact_bill.dim_bill_date_key, fact_dimension_main.dim_client_involvement_key, 
                          fact_matter_summary_current.dim_last_transaction_date_key, fact_matter_summary_current.dim_closed_practice_management_date_key, fact_matter_summary_current.dim_open_case_management_date_key,
                           fact_matter_summary_current.dim_closed_case_management_date_key, fact_dimension_main.dim_detail_outcome_key, fact_dimension_main.dim_detail_claim_key, 
-                         dim_matter_header_current.dim_matter_worktype_key, fact_all_time_activity.time_charge_value, fact_all_time_activity.minutes_recorded, fact_matter_summary_current.dim_fed_hierarchy_history_key, CASE WHEN fact_all_time_activity.chargeable_nonc_nonb = 'C' THEN CAST(minutes_recorded / 60 AS decimal(10, 2)) else null  END AS chargeable_hours
+                         dim_matter_header_current.dim_matter_worktype_key, fact_all_time_activity.time_charge_value, fact_all_time_activity.minutes_recorded, fact_matter_summary_current.dim_fed_hierarchy_history_key, CASE WHEN fact_all_time_activity.chargeable_nonc_nonb = 'C' THEN CAST(minutes_recorded / 60 AS decimal(10, 2)) else null  END AS chargeable_hours, CASE WHEN fact_all_time_activity.dim_bill_key &gt; 0 THEN CAST(minutes_recorded / 60 AS decimal(10, 2)) ELSE NULL END AS billed_hours
 
 FROM            fact_all_time_activity LEFT OUTER JOIN
                          fact_bill ON fact_bill.dim_bill_key = fact_all_time_activity.dim_bill_key INNER JOIN
@@ -15427,7 +15427,7 @@ where fin_year &gt;= 2006 and fin_year &lt; 2008</QueryDefinition>
           <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
           <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
           <State>Unprocessed</State>
-          <Source xsi:type="QueryBinding" dwd:design-time-name="42e8f368-757a-4d6f-b1f8-967134cb660c">
+          <Source xsi:type="QueryBinding" dwd:design-time-name="c8b8244a-93bc-438e-8314-a969ff4de655">
             <DataSourceID>Red Dw</DataSourceID>
             <QueryDefinition>SELECT        fact_all_time_activity.dim_fed_hierarchy_history_key AS 'time_owner_dim_fed_hierarchy_history_key', dim_all_time_activity.transaction_type, fact_all_time_activity.dim_transaction_date_key, 
                          fact_all_time_activity.dim_all_time_activity_key, 1 AS '1', dim_all_time_activity.time_activity_code, fact_matter_summary_current.dim_open_practice_management_date_key, 
@@ -15435,7 +15435,7 @@ where fin_year &gt;= 2006 and fin_year &lt; 2008</QueryDefinition>
                          fact_all_time_activity.dim_matter_header_curr_key, fact_all_time_activity.dim_bill_key, fact_bill.dim_bill_date_key, fact_dimension_main.dim_client_involvement_key, 
                          fact_matter_summary_current.dim_last_transaction_date_key, fact_matter_summary_current.dim_closed_practice_management_date_key, fact_matter_summary_current.dim_open_case_management_date_key,
                           fact_matter_summary_current.dim_closed_case_management_date_key, fact_dimension_main.dim_detail_outcome_key, fact_dimension_main.dim_detail_claim_key, 
-                         dim_matter_header_current.dim_matter_worktype_key, fact_all_time_activity.time_charge_value, fact_all_time_activity.minutes_recorded, fact_matter_summary_current.dim_fed_hierarchy_history_key, CASE WHEN fact_all_time_activity.chargeable_nonc_nonb = 'C' THEN CAST(minutes_recorded / 60 AS decimal(10, 2)) else null  END AS chargeable_hours
+                         dim_matter_header_current.dim_matter_worktype_key, fact_all_time_activity.time_charge_value, fact_all_time_activity.minutes_recorded, fact_matter_summary_current.dim_fed_hierarchy_history_key, CASE WHEN fact_all_time_activity.chargeable_nonc_nonb = 'C' THEN CAST(minutes_recorded / 60 AS decimal(10, 2)) else null  END AS chargeable_hours, CASE WHEN fact_all_time_activity.dim_bill_key &gt; 0 THEN CAST(minutes_recorded / 60 AS decimal(10, 2)) ELSE NULL END AS billed_hours
 
 FROM            fact_all_time_activity LEFT OUTER JOIN
                          fact_bill ON fact_bill.dim_bill_key = fact_all_time_activity.dim_bill_key INNER JOIN
@@ -15459,7 +15459,7 @@ where fin_year &gt;= 2008 and fin_year &lt; 2010</QueryDefinition>
           <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
           <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
           <State>Unprocessed</State>
-          <Source xsi:type="QueryBinding" dwd:design-time-name="68509cdb-78f8-4d5d-984c-01a6525e6c86">
+          <Source xsi:type="QueryBinding" dwd:design-time-name="9d50c7a7-3aaf-450a-b1f7-b5986e520760">
             <DataSourceID>Red Dw</DataSourceID>
             <QueryDefinition>SELECT        fact_all_time_activity.dim_fed_hierarchy_history_key AS 'time_owner_dim_fed_hierarchy_history_key', dim_all_time_activity.transaction_type, fact_all_time_activity.dim_transaction_date_key, 
                          fact_all_time_activity.dim_all_time_activity_key, 1 AS '1', dim_all_time_activity.time_activity_code, fact_matter_summary_current.dim_open_practice_management_date_key, 
@@ -15467,7 +15467,7 @@ where fin_year &gt;= 2008 and fin_year &lt; 2010</QueryDefinition>
                          fact_all_time_activity.dim_matter_header_curr_key, fact_all_time_activity.dim_bill_key, fact_bill.dim_bill_date_key, fact_dimension_main.dim_client_involvement_key, 
                          fact_matter_summary_current.dim_last_transaction_date_key, fact_matter_summary_current.dim_closed_practice_management_date_key, fact_matter_summary_current.dim_open_case_management_date_key,
                           fact_matter_summary_current.dim_closed_case_management_date_key, fact_dimension_main.dim_detail_outcome_key, fact_dimension_main.dim_detail_claim_key, 
-                         dim_matter_header_current.dim_matter_worktype_key, fact_all_time_activity.time_charge_value, fact_all_time_activity.minutes_recorded, fact_matter_summary_current.dim_fed_hierarchy_history_key, CASE WHEN fact_all_time_activity.chargeable_nonc_nonb = 'C' THEN CAST(minutes_recorded / 60 AS decimal(10, 2)) else null  END AS chargeable_hours
+                         dim_matter_header_current.dim_matter_worktype_key, fact_all_time_activity.time_charge_value, fact_all_time_activity.minutes_recorded, fact_matter_summary_current.dim_fed_hierarchy_history_key, CASE WHEN fact_all_time_activity.chargeable_nonc_nonb = 'C' THEN CAST(minutes_recorded / 60 AS decimal(10, 2)) else null  END AS chargeable_hours, CASE WHEN fact_all_time_activity.dim_bill_key &gt; 0 THEN CAST(minutes_recorded / 60 AS decimal(10, 2)) ELSE NULL END AS billed_hours
 
 FROM            fact_all_time_activity LEFT OUTER JOIN
                          fact_bill ON fact_bill.dim_bill_key = fact_all_time_activity.dim_bill_key INNER JOIN
@@ -15491,7 +15491,7 @@ where fin_year &gt;= 2010 and fin_year &lt; 2012</QueryDefinition>
           <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
           <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
           <State>Unprocessed</State>
-          <Source xsi:type="QueryBinding" dwd:design-time-name="4384b6da-918f-4135-ae2e-a6c79da3bc62">
+          <Source xsi:type="QueryBinding" dwd:design-time-name="7ede7f35-7245-4303-a6c2-299d5d127a2b">
             <DataSourceID>Red Dw</DataSourceID>
             <QueryDefinition>SELECT        fact_all_time_activity.dim_fed_hierarchy_history_key AS 'time_owner_dim_fed_hierarchy_history_key', dim_all_time_activity.transaction_type, fact_all_time_activity.dim_transaction_date_key, 
                          fact_all_time_activity.dim_all_time_activity_key, 1 AS '1', dim_all_time_activity.time_activity_code, fact_matter_summary_current.dim_open_practice_management_date_key, 
@@ -15499,7 +15499,7 @@ where fin_year &gt;= 2010 and fin_year &lt; 2012</QueryDefinition>
                          fact_all_time_activity.dim_matter_header_curr_key, fact_all_time_activity.dim_bill_key, fact_bill.dim_bill_date_key, fact_dimension_main.dim_client_involvement_key, 
                          fact_matter_summary_current.dim_last_transaction_date_key, fact_matter_summary_current.dim_closed_practice_management_date_key, fact_matter_summary_current.dim_open_case_management_date_key,
                           fact_matter_summary_current.dim_closed_case_management_date_key, fact_dimension_main.dim_detail_outcome_key, fact_dimension_main.dim_detail_claim_key, 
-                         dim_matter_header_current.dim_matter_worktype_key, fact_all_time_activity.time_charge_value, fact_all_time_activity.minutes_recorded, fact_matter_summary_current.dim_fed_hierarchy_history_key, CASE WHEN fact_all_time_activity.chargeable_nonc_nonb = 'C' THEN CAST(minutes_recorded / 60 AS decimal(10, 2)) else null END AS chargeable_hours
+                         dim_matter_header_current.dim_matter_worktype_key, fact_all_time_activity.time_charge_value, fact_all_time_activity.minutes_recorded, fact_matter_summary_current.dim_fed_hierarchy_history_key, CASE WHEN fact_all_time_activity.chargeable_nonc_nonb = 'C' THEN CAST(minutes_recorded / 60 AS decimal(10, 2)) else null END AS chargeable_hours, CASE WHEN fact_all_time_activity.dim_bill_key &gt; 0 THEN CAST(minutes_recorded / 60 AS decimal(10, 2)) ELSE NULL END AS billed_hours
 
 FROM            fact_all_time_activity LEFT OUTER JOIN
                          fact_bill ON fact_bill.dim_bill_key = fact_all_time_activity.dim_bill_key INNER JOIN
@@ -15523,7 +15523,7 @@ where fin_year = 2012</QueryDefinition>
           <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
           <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
           <State>Unprocessed</State>
-          <Source xsi:type="QueryBinding" dwd:design-time-name="c59ca4ce-509a-46d9-97eb-e63942e56d0a">
+          <Source xsi:type="QueryBinding" dwd:design-time-name="8c5a590b-98b8-478c-b2ed-c33f2c377b56">
             <DataSourceID>Red Dw</DataSourceID>
             <QueryDefinition>SELECT        fact_all_time_activity.dim_fed_hierarchy_history_key AS 'time_owner_dim_fed_hierarchy_history_key', dim_all_time_activity.transaction_type, fact_all_time_activity.dim_transaction_date_key, 
                          fact_all_time_activity.dim_all_time_activity_key, 1 AS '1', dim_all_time_activity.time_activity_code, fact_matter_summary_current.dim_open_practice_management_date_key, 
@@ -15531,7 +15531,7 @@ where fin_year = 2012</QueryDefinition>
                          fact_all_time_activity.dim_matter_header_curr_key, fact_all_time_activity.dim_bill_key, fact_bill.dim_bill_date_key, fact_dimension_main.dim_client_involvement_key, 
                          fact_matter_summary_current.dim_last_transaction_date_key, fact_matter_summary_current.dim_closed_practice_management_date_key, fact_matter_summary_current.dim_open_case_management_date_key,
                           fact_matter_summary_current.dim_closed_case_management_date_key, fact_dimension_main.dim_detail_outcome_key, fact_dimension_main.dim_detail_claim_key, 
-                         dim_matter_header_current.dim_matter_worktype_key, fact_all_time_activity.time_charge_value, fact_all_time_activity.minutes_recorded, fact_matter_summary_current.dim_fed_hierarchy_history_key, CASE WHEN fact_all_time_activity.chargeable_nonc_nonb = 'C' then CAST(minutes_recorded / 60 AS decimal(10, 2))  else null END AS chargeable_hours
+                         dim_matter_header_current.dim_matter_worktype_key, fact_all_time_activity.time_charge_value, fact_all_time_activity.minutes_recorded, fact_matter_summary_current.dim_fed_hierarchy_history_key, CASE WHEN fact_all_time_activity.chargeable_nonc_nonb = 'C' then CAST(minutes_recorded / 60 AS decimal(10, 2))  else null END AS chargeable_hours, CASE WHEN fact_all_time_activity.dim_bill_key &gt; 0 THEN CAST(minutes_recorded / 60 AS decimal(10, 2)) ELSE NULL END AS billed_hours
 
 FROM            fact_all_time_activity LEFT OUTER JOIN
                          fact_bill ON fact_bill.dim_bill_key = fact_all_time_activity.dim_bill_key INNER JOIN
@@ -15555,7 +15555,7 @@ where fin_year = 2013</QueryDefinition>
           <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
           <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
           <State>Unprocessed</State>
-          <Source xsi:type="QueryBinding" dwd:design-time-name="c1c11f06-8ea1-4767-8daa-b40c2c951a59">
+          <Source xsi:type="QueryBinding" dwd:design-time-name="65132512-3765-440f-90ab-7238d462dfbc">
             <DataSourceID>Red Dw</DataSourceID>
             <QueryDefinition>SELECT        fact_all_time_activity.dim_fed_hierarchy_history_key AS 'time_owner_dim_fed_hierarchy_history_key', dim_all_time_activity.transaction_type, fact_all_time_activity.dim_transaction_date_key, 
                          fact_all_time_activity.dim_all_time_activity_key, 1 AS '1', dim_all_time_activity.time_activity_code, fact_matter_summary_current.dim_open_practice_management_date_key, 
@@ -15563,7 +15563,7 @@ where fin_year = 2013</QueryDefinition>
                          fact_all_time_activity.dim_matter_header_curr_key, fact_all_time_activity.dim_bill_key, fact_bill.dim_bill_date_key, fact_dimension_main.dim_client_involvement_key, 
                          fact_matter_summary_current.dim_last_transaction_date_key, fact_matter_summary_current.dim_closed_practice_management_date_key, fact_matter_summary_current.dim_open_case_management_date_key,
                           fact_matter_summary_current.dim_closed_case_management_date_key, fact_dimension_main.dim_detail_outcome_key, fact_dimension_main.dim_detail_claim_key, 
-                         dim_matter_header_current.dim_matter_worktype_key, fact_all_time_activity.time_charge_value, fact_all_time_activity.minutes_recorded, fact_matter_summary_current.dim_fed_hierarchy_history_key, CASE WHEN fact_all_time_activity.chargeable_nonc_nonb = 'C' THEN CAST(minutes_recorded / 60 AS decimal(10, 2))  else null END AS chargeable_hours
+                         dim_matter_header_current.dim_matter_worktype_key, fact_all_time_activity.time_charge_value, fact_all_time_activity.minutes_recorded, fact_matter_summary_current.dim_fed_hierarchy_history_key, CASE WHEN fact_all_time_activity.chargeable_nonc_nonb = 'C' THEN CAST(minutes_recorded / 60 AS decimal(10, 2))  else null END AS chargeable_hours, CASE WHEN fact_all_time_activity.dim_bill_key &gt; 0 THEN CAST(minutes_recorded / 60 AS decimal(10, 2)) ELSE NULL END AS billed_hours
 
 FROM            fact_all_time_activity LEFT OUTER JOIN
                          fact_bill ON fact_bill.dim_bill_key = fact_all_time_activity.dim_bill_key INNER JOIN
@@ -15587,7 +15587,7 @@ where fin_year = 2014</QueryDefinition>
           <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
           <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
           <State>Unprocessed</State>
-          <Source xsi:type="QueryBinding" dwd:design-time-name="869ba96b-4ffa-41b0-8ab9-e166a4e54193">
+          <Source xsi:type="QueryBinding" dwd:design-time-name="2748309e-36f9-4eb0-a79a-52191ac74b65">
             <DataSourceID>Red Dw</DataSourceID>
             <QueryDefinition>SELECT        fact_all_time_activity.dim_fed_hierarchy_history_key AS 'time_owner_dim_fed_hierarchy_history_key', dim_all_time_activity.transaction_type, fact_all_time_activity.dim_transaction_date_key, 
                          fact_all_time_activity.dim_all_time_activity_key, 1 AS '1', dim_all_time_activity.time_activity_code, fact_matter_summary_current.dim_open_practice_management_date_key, 
@@ -15595,7 +15595,7 @@ where fin_year = 2014</QueryDefinition>
                          fact_all_time_activity.dim_matter_header_curr_key, fact_all_time_activity.dim_bill_key, fact_bill.dim_bill_date_key, fact_dimension_main.dim_client_involvement_key, 
                          fact_matter_summary_current.dim_last_transaction_date_key, fact_matter_summary_current.dim_closed_practice_management_date_key, fact_matter_summary_current.dim_open_case_management_date_key,
                           fact_matter_summary_current.dim_closed_case_management_date_key, fact_dimension_main.dim_detail_outcome_key, fact_dimension_main.dim_detail_claim_key, 
-                         dim_matter_header_current.dim_matter_worktype_key, fact_all_time_activity.time_charge_value, fact_all_time_activity.minutes_recorded, fact_matter_summary_current.dim_fed_hierarchy_history_key, CASE WHEN fact_all_time_activity.chargeable_nonc_nonb = 'C' THEN CAST(minutes_recorded / 60 AS decimal(10, 2)) else null END AS chargeable_hours
+                         dim_matter_header_current.dim_matter_worktype_key, fact_all_time_activity.time_charge_value, fact_all_time_activity.minutes_recorded, fact_matter_summary_current.dim_fed_hierarchy_history_key, CASE WHEN fact_all_time_activity.chargeable_nonc_nonb = 'C' THEN CAST(minutes_recorded / 60 AS decimal(10, 2)) else null END AS chargeable_hours, CASE WHEN fact_all_time_activity.dim_bill_key &gt; 0 THEN CAST(minutes_recorded / 60 AS decimal(10, 2)) ELSE NULL END AS billed_hours
 
 FROM            fact_all_time_activity LEFT OUTER JOIN
                          fact_bill ON fact_bill.dim_bill_key = fact_all_time_activity.dim_bill_key INNER JOIN
@@ -15619,7 +15619,7 @@ where fin_year = 2015</QueryDefinition>
           <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
           <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
           <State>Unprocessed</State>
-          <Source xsi:type="QueryBinding" dwd:design-time-name="dfa0b12e-96e4-4bd3-b79a-467cf795a8e2">
+          <Source xsi:type="QueryBinding" dwd:design-time-name="193ef061-2769-49f6-82ff-9d4fdc632a47">
             <DataSourceID>Red Dw</DataSourceID>
             <QueryDefinition>SELECT        fact_all_time_activity.dim_fed_hierarchy_history_key AS 'time_owner_dim_fed_hierarchy_history_key', dim_all_time_activity.transaction_type, fact_all_time_activity.dim_transaction_date_key, 
                          fact_all_time_activity.dim_all_time_activity_key, 1 AS '1', dim_all_time_activity.time_activity_code, fact_matter_summary_current.dim_open_practice_management_date_key, 
@@ -15627,8 +15627,7 @@ where fin_year = 2015</QueryDefinition>
                          fact_all_time_activity.dim_matter_header_curr_key, fact_all_time_activity.dim_bill_key, fact_bill.dim_bill_date_key, fact_dimension_main.dim_client_involvement_key, 
                          fact_matter_summary_current.dim_last_transaction_date_key, fact_matter_summary_current.dim_closed_practice_management_date_key, fact_matter_summary_current.dim_open_case_management_date_key,
                           fact_matter_summary_current.dim_closed_case_management_date_key, fact_dimension_main.dim_detail_outcome_key, fact_dimension_main.dim_detail_claim_key, 
-                         dim_matter_header_current.dim_matter_worktype_key, fact_all_time_activity.time_charge_value, fact_all_time_activity.minutes_recorded, fact_matter_summary_current.dim_fed_hierarchy_history_key, CASE WHEN fact_all_time_activity.chargeable_nonc_nonb = 'C' THEN CAST(minutes_recorded / 60 AS decimal(10, 2)) else null END AS chargeable_hours
-
+                         dim_matter_header_current.dim_matter_worktype_key, fact_all_time_activity.time_charge_value, fact_all_time_activity.minutes_recorded, fact_matter_summary_current.dim_fed_hierarchy_history_key, CASE WHEN fact_all_time_activity.chargeable_nonc_nonb = 'C' THEN CAST(minutes_recorded / 60 AS decimal(10, 2)) else null END AS chargeable_hours, CASE WHEN fact_all_time_activity.dim_bill_key &gt; 0 THEN CAST(minutes_recorded / 60 AS decimal(10, 2)) ELSE NULL END AS billed_hours
 FROM            fact_all_time_activity LEFT OUTER JOIN
                          fact_bill ON fact_bill.dim_bill_key = fact_all_time_activity.dim_bill_key INNER JOIN
                          fact_matter_summary_current ON fact_matter_summary_current.dim_matter_header_curr_key = fact_all_time_activity.dim_matter_header_curr_key INNER JOIN
@@ -15651,7 +15650,7 @@ where fin_year = 2016</QueryDefinition>
           <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
           <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
           <State>Unprocessed</State>
-          <Source xsi:type="QueryBinding" dwd:design-time-name="aedf71ff-e3c0-4c07-99d3-f552a3069d3e">
+          <Source xsi:type="QueryBinding" dwd:design-time-name="904550c3-16b0-441f-a890-6639618a27b1">
             <DataSourceID>Red Dw</DataSourceID>
             <QueryDefinition>SELECT        fact_all_time_activity.dim_fed_hierarchy_history_key AS 'time_owner_dim_fed_hierarchy_history_key', dim_all_time_activity.transaction_type, fact_all_time_activity.dim_transaction_date_key, 
                          fact_all_time_activity.dim_all_time_activity_key, 1 AS '1', dim_all_time_activity.time_activity_code, fact_matter_summary_current.dim_open_practice_management_date_key, 
@@ -15659,7 +15658,7 @@ where fin_year = 2016</QueryDefinition>
                          fact_all_time_activity.dim_matter_header_curr_key, fact_all_time_activity.dim_bill_key, fact_bill.dim_bill_date_key, fact_dimension_main.dim_client_involvement_key, 
                          fact_matter_summary_current.dim_last_transaction_date_key, fact_matter_summary_current.dim_closed_practice_management_date_key, fact_matter_summary_current.dim_open_case_management_date_key,
                           fact_matter_summary_current.dim_closed_case_management_date_key, fact_dimension_main.dim_detail_outcome_key, fact_dimension_main.dim_detail_claim_key, 
-                         dim_matter_header_current.dim_matter_worktype_key, fact_all_time_activity.time_charge_value, fact_all_time_activity.minutes_recorded, fact_matter_summary_current.dim_fed_hierarchy_history_key, CASE WHEN fact_all_time_activity.chargeable_nonc_nonb = 'C' THEN CAST(minutes_recorded / 60 AS decimal(10, 2)) else null END AS chargeable_hours
+                         dim_matter_header_current.dim_matter_worktype_key, fact_all_time_activity.time_charge_value, fact_all_time_activity.minutes_recorded, fact_matter_summary_current.dim_fed_hierarchy_history_key, CASE WHEN fact_all_time_activity.chargeable_nonc_nonb = 'C' THEN CAST(minutes_recorded / 60 AS decimal(10, 2)) else null END AS chargeable_hours, CASE WHEN fact_all_time_activity.dim_bill_key &gt; 0 THEN CAST(minutes_recorded / 60 AS decimal(10, 2)) ELSE NULL END AS billed_hours
 
 FROM            fact_all_time_activity LEFT OUTER JOIN
                          fact_bill ON fact_bill.dim_bill_key = fact_all_time_activity.dim_bill_key INNER JOIN
@@ -15683,7 +15682,7 @@ where fin_year = 2017</QueryDefinition>
           <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
           <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
           <State>Unprocessed</State>
-          <Source xsi:type="QueryBinding" dwd:design-time-name="cdad4de6-f893-485a-99ef-ffa7dcfafa37">
+          <Source xsi:type="QueryBinding" dwd:design-time-name="60288e3b-a2b2-4e8a-b058-f2e35b4b4e43">
             <DataSourceID>Red Dw</DataSourceID>
             <QueryDefinition>SELECT        fact_all_time_activity.dim_fed_hierarchy_history_key AS 'time_owner_dim_fed_hierarchy_history_key', dim_all_time_activity.transaction_type, fact_all_time_activity.dim_transaction_date_key, 
                          fact_all_time_activity.dim_all_time_activity_key, 1 AS '1', dim_all_time_activity.time_activity_code, fact_matter_summary_current.dim_open_practice_management_date_key, 
@@ -15691,7 +15690,7 @@ where fin_year = 2017</QueryDefinition>
                          fact_all_time_activity.dim_matter_header_curr_key, fact_all_time_activity.dim_bill_key, fact_bill.dim_bill_date_key, fact_dimension_main.dim_client_involvement_key, 
                          fact_matter_summary_current.dim_last_transaction_date_key, fact_matter_summary_current.dim_closed_practice_management_date_key, fact_matter_summary_current.dim_open_case_management_date_key,
                           fact_matter_summary_current.dim_closed_case_management_date_key, fact_dimension_main.dim_detail_outcome_key, fact_dimension_main.dim_detail_claim_key, 
-                         dim_matter_header_current.dim_matter_worktype_key, fact_all_time_activity.time_charge_value, fact_all_time_activity.minutes_recorded, fact_matter_summary_current.dim_fed_hierarchy_history_key, CASE WHEN fact_all_time_activity.chargeable_nonc_nonb = 'C' THEN CAST(minutes_recorded / 60 AS decimal(10, 2)) else null END AS chargeable_hours
+                         dim_matter_header_current.dim_matter_worktype_key, fact_all_time_activity.time_charge_value, fact_all_time_activity.minutes_recorded, fact_matter_summary_current.dim_fed_hierarchy_history_key, CASE WHEN fact_all_time_activity.chargeable_nonc_nonb = 'C' THEN CAST(minutes_recorded / 60 AS decimal(10, 2)) else null END AS chargeable_hours, CASE WHEN fact_all_time_activity.dim_bill_key &gt; 0 THEN CAST(minutes_recorded / 60 AS decimal(10, 2)) ELSE NULL END AS billed_hours
 
 FROM            fact_all_time_activity LEFT OUTER JOIN
                          fact_bill ON fact_bill.dim_bill_key = fact_all_time_activity.dim_bill_key INNER JOIN

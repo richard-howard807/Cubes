@@ -1734,17 +1734,6 @@
             </Source>
           </Source>
         </Measure>
-        <Measure dwd:design-time-name="b43b803d-a30c-40e5-acdd-c54967d874d7">
-          <ID>Billed Time</ID>
-          <Name>Billed Time</Name>
-          <Source dwd:design-time-name="a053b4e1-d54a-4bd6-b31e-8d0447c69c08">
-            <DataType>Double</DataType>
-            <Source xsi:type="ColumnBinding" dwd:design-time-name="468227a7-5132-4824-8c0e-d2fb49345aaf">
-              <TableID>fact_bill_activity</TableID>
-              <ColumnID>billed_time</ColumnID>
-            </Source>
-          </Source>
-        </Measure>
       </Measures>
       <StorageMode>Molap</StorageMode>
       <EstimatedRows>2221074</EstimatedRows>
@@ -2495,6 +2484,17 @@
           </Source>
           <FormatString>#,##0.00;-#,##0.00</FormatString>
         </Measure>
+        <Measure dwd:design-time-name="c260f7c3-ad73-41ef-adaa-1ed2adef100e">
+          <ID>Billed Hours</ID>
+          <Name>Billed Hours</Name>
+          <Source dwd:design-time-name="eedd6e06-f6f9-4272-a01e-d4fdc93f11da">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="421be500-923a-4029-bceb-9c19fe70a25d">
+              <TableID>dbo_fact_all_time_activity</TableID>
+              <ColumnID>billed_hours</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
       </Measures>
       <StorageMode>Molap</StorageMode>
       <EstimatedRows>47164861</EstimatedRows>
@@ -2881,9 +2881,9 @@ The CALCULATE command controls the aggregation of leaf cells in the cube.
 If the CALCULATE command is deleted or modified, the data within the cube is affected.
 You should edit this command only if you manually specify how the cube is aggregated.
 */
-CALCULATE; 
+CALCULATE;  
 CREATE MEMBER CURRENTCUBE.[Measures].[Recovery Rate]
- AS iif([Measures].[Billed Time] = 0, null, [Measures].[Bill Amount] / [Measures].[Billed Time] ), 
+ AS iif([Measures].[Billed Hours] = 0, null, [Measures].[Bill Amount] / [Measures].[Billed Hours] ), 
 VISIBLE = 1 ,  ASSOCIATED_MEASURE_GROUP = 'Fact Bill Activity'  ; </Text>
         </Command>
       </Commands>
