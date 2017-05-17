@@ -31,7 +31,7 @@
             <Name>_ALL_TABLES_</Name>
             <DiagramLayout>
               <dds>
-                <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="44" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-12630" scrolltop="-1503" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="80" x="44873" y="23416" backcolor="2434342" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="1" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+                <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="44" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-12630" scrolltop="6901" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="80" x="44873" y="23416" backcolor="2434342" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="1" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
                   <font>
                     <ddsxmlobjectstreamwrapper binary="01000000900144420100065461686f6d61" />
                   </font>
@@ -384,7 +384,7 @@
             <ShowRelationshipNames>False</ShowRelationshipNames>
             <UseDiagramDefaultLayout>True</UseDiagramDefaultLayout>
             <DiagramViewPortLeft>-12630</DiagramViewPortLeft>
-            <DiagramViewPortTop>-1503</DiagramViewPortTop>
+            <DiagramViewPortTop>6901</DiagramViewPortTop>
             <DiagramBoundingLeft>0</DiagramBoundingLeft>
             <DiagramBoundingTop>0</DiagramBoundingTop>
             <DiagramZoom>80</DiagramZoom>
@@ -891,7 +891,7 @@
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
-            <xs:element name="dbo_dim_client" msprop:design-time-name="3dae0403-f95c-4c48-a233-628ea7d21d07" msprop:IsLogical="True" msprop:FriendlyName="dim_client" msprop:DbTableName="dim_client" msprop:TableType="View" msprop:QueryDefinition="SELECT        dim_client_key, source_system_id, client_code, client_name, client_group_name AS client_group_name, client_partner_code, client_partner_name, contact_salutation, contact_name, address_type, addresse, &#xD;&#xA;                         address_line_1, address_line_2, address_line_3, address_line_4, postcode, phone_number, dss_update_time, ISNULL(client_group_name, client_name) AS 'client_group_name_calculated', &#xD;&#xA;                         ISNULL(LTRIM(RTRIM(client_group_code)) + '_gr', LTRIM(RTRIM(client_code))) AS client_group_code_calculated, sector&#xD;&#xA;FROM            dim_client" msprop:QueryBuilder="SpecificQueryBuilder">
+            <xs:element name="dbo_dim_client" msprop:design-time-name="3dae0403-f95c-4c48-a233-628ea7d21d07" msprop:IsLogical="True" msprop:FriendlyName="dim_client" msprop:DbTableName="dim_client" msprop:TableType="View" msprop:QueryDefinition="SELECT        dim_client_key, source_system_id, client_code, client_name, client_group_name, ISNULL(client_partner_code, '') AS client_partner_code, client_partner_name, contact_salutation, contact_name, address_type, &#xD;&#xA;                         addresse, address_line_1, address_line_2, address_line_3, address_line_4, postcode, phone_number, dss_update_time, ISNULL(ISNULL(client_group_name, ''), ISNULL(client_name, '')) &#xD;&#xA;                         AS 'client_group_name_calculated', ISNULL(LTRIM(RTRIM(ISNULL(client_group_code, ''))) + '_gr', LTRIM(RTRIM(ISNULL(client_code, '')))) AS client_group_code_calculated, sector&#xD;&#xA;FROM            dim_client" msprop:QueryBuilder="SpecificQueryBuilder">
               <xs:complexType>
                 <xs:sequence>
                   <xs:element name="dim_client_key" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:design-time-name="51b8b5fb-8ce0-44b3-91fb-d858c5587ee1" msprop:DbColumnName="dim_client_key" msprop:FriendlyName="dim_client_key" type="xs:int" minOccurs="0" />
@@ -899,14 +899,14 @@
                   <xs:element name="client_code" msprop:design-time-name="56ef73ec-8d88-4048-b865-87fd9b097745" msprop:DbColumnName="client_code" msprop:FriendlyName="client_code" minOccurs="0">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
-                        <xs:maxLength value="8" />
+                        <xs:maxLength value="12" />
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
                   <xs:element name="client_name" msprop:design-time-name="3992c67f-49ce-40ff-806f-ccba06e47d65" msprop:DbColumnName="client_name" msprop:FriendlyName="client_name" minOccurs="0">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
-                        <xs:maxLength value="60" />
+                        <xs:maxLength value="80" />
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
@@ -927,14 +927,14 @@
                   <xs:element name="contact_salutation" msprop:design-time-name="4e7899dd-93c8-4cd2-9aa0-ef8b41eec2a0" msprop:DbColumnName="contact_salutation" msprop:FriendlyName="contact_salutation" minOccurs="0">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
-                        <xs:maxLength value="30" />
+                        <xs:maxLength value="50" />
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
                   <xs:element name="contact_name" msprop:design-time-name="440221dc-de7f-436b-9306-fdb2d3e5caf6" msprop:DbColumnName="contact_name" msprop:FriendlyName="contact_name" minOccurs="0">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
-                        <xs:maxLength value="30" />
+                        <xs:maxLength value="80" />
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
@@ -948,60 +948,53 @@
                   <xs:element name="addresse" msprop:design-time-name="c8f17b5a-2919-4c8f-9260-52644ba44cf6" msprop:DbColumnName="addresse" msprop:FriendlyName="addresse" minOccurs="0">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
-                        <xs:maxLength value="40" />
+                        <xs:maxLength value="50" />
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
                   <xs:element name="address_line_1" msprop:design-time-name="5de5090d-1434-48d6-bd5e-bde23bbdb18b" msprop:DbColumnName="address_line_1" msprop:FriendlyName="address_line_1" minOccurs="0">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
-                        <xs:maxLength value="40" />
+                        <xs:maxLength value="50" />
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
                   <xs:element name="address_line_2" msprop:design-time-name="bc512486-f2dd-4c82-8d43-f5e7bcd59129" msprop:DbColumnName="address_line_2" msprop:FriendlyName="address_line_2" minOccurs="0">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
-                        <xs:maxLength value="40" />
+                        <xs:maxLength value="50" />
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
                   <xs:element name="address_line_3" msprop:design-time-name="ff90fa8b-02db-420f-ace4-7776425ffe03" msprop:DbColumnName="address_line_3" msprop:FriendlyName="address_line_3" minOccurs="0">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
-                        <xs:maxLength value="40" />
+                        <xs:maxLength value="50" />
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
                   <xs:element name="address_line_4" msprop:design-time-name="6d3c8bb2-ff63-4304-9216-f5fcc6c54d0d" msprop:DbColumnName="address_line_4" msprop:FriendlyName="address_line_4" minOccurs="0">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
-                        <xs:maxLength value="40" />
+                        <xs:maxLength value="50" />
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
                   <xs:element name="postcode" msprop:design-time-name="f5d91701-908a-4c93-820d-1fe024deb9a8" msprop:DbColumnName="postcode" msprop:FriendlyName="postcode" minOccurs="0">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
-                        <xs:maxLength value="12" />
+                        <xs:maxLength value="15" />
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
                   <xs:element name="phone_number" msprop:design-time-name="15bbe920-3e79-41d3-b318-af35d0cca3e3" msprop:DbColumnName="phone_number" msprop:FriendlyName="phone_number" minOccurs="0">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
-                        <xs:maxLength value="20" />
+                        <xs:maxLength value="30" />
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
                   <xs:element name="dss_update_time" msprop:design-time-name="ebd0f842-4dac-4575-b424-7966e44e080d" msprop:DbColumnName="dss_update_time" msprop:FriendlyName="dss_update_time" type="xs:dateTime" minOccurs="0" />
-                  <xs:element name="client_partner_code" msprop:design-time-name="de328bdf-653b-4332-a321-ae9bc9814ba9" msprop:DbColumnName="client_partner_code" minOccurs="0">
-                    <xs:simpleType>
-                      <xs:restriction base="xs:string">
-                        <xs:maxLength value="8" />
-                      </xs:restriction>
-                    </xs:simpleType>
-                  </xs:element>
                   <xs:element name="client_group_name_calculated" msprop:design-time-name="a1eb825c-e830-4398-861c-1ca3e1d78ff4" msprop:DbColumnName="client_group_name_calculated" minOccurs="0">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
@@ -1020,6 +1013,13 @@
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
                         <xs:maxLength value="40" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="client_partner_code" msprop:design-time-name="d07fe9ed-be52-4973-8293-588f4ef409cf" msprop:DbColumnName="client_partner_code" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="8" />
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
