@@ -1463,10 +1463,10 @@
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
-            <xs:element name="dbo_dim_detail_core_details" msprop:design-time-name="6fc0d2e3-df2c-4e57-b549-3d5f9042f80c" msprop:IsLogical="True" msprop:FriendlyName="dim_detail_core_details" msprop:DbTableName="dim_detail_core_details" msprop:TableType="View" msprop:QueryDefinition="SELECT        dim_detail_core_detail_key, ISNULL(fixed_fee, '') AS fixed_fee, ISNULL(date_instructions_received, '') AS date_instructions_received, ISNULL(delegated_c, '') AS delegated_c, ISNULL(nature_of_claim, '') &#xD;&#xA;                         AS nature_of_claim, ISNULL(track, '') AS track, ISNULL(incident_date, '') AS incident_date, ISNULL(present_position, '') AS present_position&#xD;&#xA;FROM            dim_detail_core_details" msprop:QueryBuilder="SpecificQueryBuilder">
+            <xs:element name="dbo_dim_detail_core_details" msprop:design-time-name="6fc0d2e3-df2c-4e57-b549-3d5f9042f80c" msprop:IsLogical="True" msprop:FriendlyName="dim_detail_core_details" msprop:DbTableName="dim_detail_core_details" msprop:TableType="View" msprop:QueryDefinition="SELECT        dim_detail_core_detail_key, ISNULL(fixed_fee, '') AS fixed_fee, ISNULL(date_instructions_received, '') AS date_instructions_received, ISNULL(delegated_c, '') AS delegated_c, ISNULL(nature_of_claim, '') &#xD;&#xA;                         AS nature_of_claim, ISNULL(track, '') AS track, ISNULL(incident_date, '') AS incident_date, ISNULL(present_position, '') AS present_position, insured_sector&#xD;&#xA;FROM            dim_detail_core_details" msprop:QueryBuilder="SpecificQueryBuilder">
               <xs:complexType>
                 <xs:sequence>
-                  <xs:element name="dim_detail_core_detail_key" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:design-time-name="9bef269f-6dae-4218-8094-6c8ca19c7351" msprop:DbColumnName="dim_detail_core_detail_key" msprop:FriendlyName="dim_detail_core_detail_key" type="xs:int" />
+                  <xs:element name="dim_detail_core_detail_key" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:design-time-name="9bef269f-6dae-4218-8094-6c8ca19c7351" msprop:DbColumnName="dim_detail_core_detail_key" msprop:FriendlyName="dim_detail_core_detail_key" type="xs:int" minOccurs="0" />
                   <xs:element name="fixed_fee" msprop:design-time-name="b850ef10-71f4-4e5a-a440-e4e2b898f9a7" msprop:DbColumnName="fixed_fee" msprop:FriendlyName="fixed_fee" minOccurs="0">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
@@ -1498,6 +1498,13 @@
                   </xs:element>
                   <xs:element name="incident_date" msprop:design-time-name="74f75b5f-a661-4652-85c0-42fb021b977d" msprop:DbColumnName="incident_date" type="xs:dateTime" minOccurs="0" />
                   <xs:element name="present_position" msprop:design-time-name="609d32e7-31c3-4394-af60-8820ab35f4d6" msprop:DbColumnName="present_position" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="255" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="insured_sector" msprop:DbColumnName="insured_sector" msprop:design-time-name="369482c7-512b-4974-a11d-65435127b51a" minOccurs="0">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
                         <xs:maxLength value="255" />
@@ -2799,7 +2806,7 @@
                     </xs:simpleType>
                   </xs:element>
                   <xs:element name="chargeable_hours" msprop:design-time-name="401c2251-ae9f-4f38-8ee8-e897abbdba53" msprop:DbColumnName="chargeable_hours" type="xs:decimal" minOccurs="0" />
-                  <xs:element name="billed_hours" msprop:DbColumnName="billed_hours" msprop:design-time-name="8ffdac02-209f-4268-a921-ea3f983e4a3b" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="billed_hours" msprop:design-time-name="8ffdac02-209f-4268-a921-ea3f983e4a3b" msprop:DbColumnName="billed_hours" type="xs:decimal" minOccurs="0" />
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
