@@ -2760,6 +2760,11 @@
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>EditRate 1</Name>
                 </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>OriginalMatterID</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>OriginalMatterID</Name>
+                </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
@@ -3257,6 +3262,31 @@
               </NameColumn>
               <OrderBy>Key</OrderBy>
             </Attribute>
+            <Attribute>
+              <ID>OriginalMatterID</ID>
+              <Name>OriginalMatterID</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
+                    <ColumnID>OriginalMatterID</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
+                  <ColumnID>OriginalMatterID</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
           </Attributes>
           <ProactiveCaching>
             <SilenceInterval>-PT1S</SilenceInterval>
@@ -3469,6 +3499,29 @@
                 <Attributes>
                   <Attribute>
                     <AttributeID>TimeTransactionTimeTypeID</AttributeID>
+                  </Attribute>
+                </Attributes>
+              </ddl300_300:ToRelationshipEnd>
+            </ddl300_300:Relationship>
+            <ddl300_300:Relationship>
+              <ID>356d20c0-93f5-4bc7-a710-ff0041fdd494</ID>
+              <ddl300_300:FromRelationshipEnd>
+                <ddl300_300:Multiplicity>Many</ddl300_300:Multiplicity>
+                <ddl300:VisualizationProperties />
+                <DimensionID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</DimensionID>
+                <Attributes>
+                  <Attribute>
+                    <AttributeID>OriginalMatterID</AttributeID>
+                  </Attribute>
+                </Attributes>
+              </ddl300_300:FromRelationshipEnd>
+              <ddl300_300:ToRelationshipEnd>
+                <ddl300_300:Multiplicity>One</ddl300_300:Multiplicity>
+                <ddl300:VisualizationProperties />
+                <DimensionID>dimOriginalMatter_0a412fb8-19b9-4195-b2a0-1e87771422d8</DimensionID>
+                <Attributes>
+                  <Attribute>
+                    <AttributeID>OriginalMatterID</AttributeID>
                   </Attribute>
                 </Attributes>
               </ddl300_300:ToRelationshipEnd>
@@ -12468,6 +12521,195 @@
             <Source xsi:type="ProactiveCachingInheritedBinding" />
           </ProactiveCaching>
         </Dimension>
+        <Dimension>
+          <ID>dimOriginalMatter_0a412fb8-19b9-4195-b2a0-1e87771422d8</ID>
+          <Name>dimOriginalMatter</Name>
+          <Annotations>
+            <Annotation>
+              <Name>IsQueryEditorUsed</Name>
+              <Value>True</Value>
+            </Annotation>
+            <Annotation>
+              <Name>QueryEditorSerialization</Name>
+            </Annotation>
+            <Annotation>
+              <Name>TableWidgetSerialization</Name>
+            </Annotation>
+            <Annotation>
+              <Name>DataMarketWebBaseUrl</Name>
+            </Annotation>
+            <Annotation>
+              <Name>DataMarketWebQueryUrl</Name>
+            </Annotation>
+          </Annotations>
+          <Source xsi:type="DataSourceViewBinding">
+            <DataSourceViewID>Sandbox</DataSourceViewID>
+          </Source>
+          <UnknownMember valuens="ddl200_200">AutomaticNull</UnknownMember>
+          <ErrorConfiguration>
+            <KeyNotFound>IgnoreError</KeyNotFound>
+            <KeyDuplicate>ReportAndStop</KeyDuplicate>
+            <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+          </ErrorConfiguration>
+          <StorageMode valuens="ddl200_200">InMemory</StorageMode>
+          <Language>1033</Language>
+          <Collation>Latin1_General_CS_AS</Collation>
+          <UnknownMemberName>Unknown</UnknownMemberName>
+          <Attributes>
+            <Attribute>
+              <ID>RowNumber</ID>
+              <Name>RowNumber</Name>
+              <Type valuens="ddl200_200">RowNumber</Type>
+              <Usage>Key</Usage>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>4</DataSize>
+                  <NullProcessing>Error</NullProcessing>
+                  <Source xsi:type="ddl200_200:RowNumberBinding" />
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>4</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ddl200_200:RowNumberBinding" />
+              </NameColumn>
+              <AttributeRelationships>
+                <AttributeRelationship>
+                  <AttributeID>OriginalMatterID</AttributeID>
+                  <Cardinality>One</Cardinality>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>OriginalMatterID</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>ClientCode</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>ClientCode</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>MatterNumber</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>MatterNumber</Name>
+                </AttributeRelationship>
+              </AttributeRelationships>
+              <OrderBy>Key</OrderBy>
+              <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>OriginalMatterID</ID>
+              <Name>OriginalMatterID</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Error</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimOriginalMatter_0a412fb8-19b9-4195-b2a0-1e87771422d8</TableID>
+                    <ColumnID>OriginalMatterID</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimOriginalMatter_0a412fb8-19b9-4195-b2a0-1e87771422d8</TableID>
+                  <ColumnID>OriginalMatterID</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="Text" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>ClientCode</ID>
+              <Name>ClientCode</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimOriginalMatter_0a412fb8-19b9-4195-b2a0-1e87771422d8</TableID>
+                    <ColumnID>ClientCode</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimOriginalMatter_0a412fb8-19b9-4195-b2a0-1e87771422d8</TableID>
+                  <ColumnID>ClientCode</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="Text" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>MatterNumber</ID>
+              <Name>MatterNumber</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimOriginalMatter_0a412fb8-19b9-4195-b2a0-1e87771422d8</TableID>
+                    <ColumnID>MatterNumber</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimOriginalMatter_0a412fb8-19b9-4195-b2a0-1e87771422d8</TableID>
+                  <ColumnID>MatterNumber</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+          </Attributes>
+          <ProactiveCaching>
+            <SilenceInterval>-PT1S</SilenceInterval>
+            <Latency>-PT1S</Latency>
+            <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+            <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+            <Source xsi:type="ProactiveCachingInheritedBinding" />
+          </ProactiveCaching>
+        </Dimension>
       </Dimensions>
       <Cubes>
         <Cube>
@@ -12787,6 +13029,9 @@
                 </Attribute>
                 <Attribute>
                   <AttributeID>editrate</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>OriginalMatterID</AttributeID>
                 </Attribute>
               </Attributes>
             </Dimension>
@@ -13731,6 +13976,26 @@
                 </Attribute>
                 <Attribute>
                   <AttributeID>date_recovery_concluded</AttributeID>
+                </Attribute>
+              </Attributes>
+            </Dimension>
+            <Dimension>
+              <ID>dimOriginalMatter_0a412fb8-19b9-4195-b2a0-1e87771422d8</ID>
+              <Name>dimOriginalMatter</Name>
+              <DimensionID>dimOriginalMatter_0a412fb8-19b9-4195-b2a0-1e87771422d8</DimensionID>
+              <Attributes>
+                <Attribute>
+                  <AttributeID>RowNumber</AttributeID>
+                  <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>OriginalMatterID</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>ClientCode</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>MatterNumber</AttributeID>
                 </Attribute>
               </Attributes>
             </Dimension>
@@ -17943,6 +18208,20 @@ red_dw.dbo.dim_matter_branch</QueryDefinition>
                           <Source xsi:type="ColumnBinding">
                             <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
                             <ColumnID>editrate</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>OriginalMatterID</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
+                            <ColumnID>OriginalMatterID</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -22167,6 +22446,72 @@ red_dw.dbo.dim_matter_branch</QueryDefinition>
                   <IntermediateCubeDimensionID>FactDimensionMain_c4c7d804-aeec-421d-9197-28fedb345df1</IntermediateCubeDimensionID>
                   <IntermediateGranularityAttributeID>dim_detail_claim_key</IntermediateGranularityAttributeID>
                 </Dimension>
+                <Dimension xsi:type="ReferenceMeasureGroupDimension">
+                  <CubeDimensionID>dimOriginalMatter_0a412fb8-19b9-4195-b2a0-1e87771422d8</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>RowNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>4</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ddl200_200:RowNumberBinding" />
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>OriginalMatterID</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimOriginalMatter_0a412fb8-19b9-4195-b2a0-1e87771422d8</TableID>
+                            <ColumnID>OriginalMatterID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientCode</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimOriginalMatter_0a412fb8-19b9-4195-b2a0-1e87771422d8</TableID>
+                            <ColumnID>ClientCode</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimOriginalMatter_0a412fb8-19b9-4195-b2a0-1e87771422d8</TableID>
+                            <ColumnID>MatterNumber</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                  </Attributes>
+                  <IntermediateCubeDimensionID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</IntermediateCubeDimensionID>
+                  <IntermediateGranularityAttributeID>OriginalMatterID</IntermediateGranularityAttributeID>
+                  <Materialization>Regular</Materialization>
+                  <ddl300:RelationshipID>356d20c0-93f5-4bc7-a710-ff0041fdd494</ddl300:RelationshipID>
+                </Dimension>
               </Dimensions>
               <Partitions>
                 <Partition>
@@ -22189,7 +22534,9 @@ red_dw.dbo.dim_matter_branch</QueryDefinition>
                   </Annotations>
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
-                    <QueryDefinition>select 
+                    <QueryDefinition>select
+dim_orig_matter_header_curr_key AS OriginalMatterID,
+ 
 a.transaction_sequence_number TransactionID,
 a.dim_client_key ClientID,
 a.dim_matter_header_curr_key MatterID,
@@ -29803,6 +30150,142 @@ red_dw.dbo.dim_employee</QueryDefinition>
                 <Source xsi:type="ProactiveCachingInheritedBinding" />
               </ProactiveCaching>
             </MeasureGroup>
+            <MeasureGroup>
+              <ID>dimOriginalMatter_0a412fb8-19b9-4195-b2a0-1e87771422d8</ID>
+              <Name>dimOriginalMatter</Name>
+              <Measures>
+                <Measure>
+                  <ID>dimOriginalMatter_0a412fb8-19b9-4195-b2a0-1e87771422d8</ID>
+                  <Name>_Count dimOriginalMatter</Name>
+                  <AggregateFunction>Count</AggregateFunction>
+                  <DataType>BigInt</DataType>
+                  <Source>
+                    <DataType>BigInt</DataType>
+                    <DataSize>8</DataSize>
+                    <Source xsi:type="RowBinding">
+                      <TableID>dimOriginalMatter_0a412fb8-19b9-4195-b2a0-1e87771422d8</TableID>
+                    </Source>
+                  </Source>
+                  <Visible>false</Visible>
+                </Measure>
+              </Measures>
+              <StorageMode valuens="ddl200_200">InMemory</StorageMode>
+              <ErrorConfiguration>
+                <KeyNotFound>IgnoreError</KeyNotFound>
+                <KeyDuplicate>ReportAndStop</KeyDuplicate>
+                <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+              </ErrorConfiguration>
+              <ProcessingMode>Regular</ProcessingMode>
+              <Dimensions>
+                <Dimension xsi:type="DegenerateMeasureGroupDimension">
+                  <CubeDimensionID>dimOriginalMatter_0a412fb8-19b9-4195-b2a0-1e87771422d8</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>RowNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimOriginalMatter</TableID>
+                            <ColumnID>RowNumber</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>OriginalMatterID</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimOriginalMatter_0a412fb8-19b9-4195-b2a0-1e87771422d8</TableID>
+                            <ColumnID>OriginalMatterID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>ClientCode</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimOriginalMatter_0a412fb8-19b9-4195-b2a0-1e87771422d8</TableID>
+                            <ColumnID>ClientCode</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>MatterNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimOriginalMatter_0a412fb8-19b9-4195-b2a0-1e87771422d8</TableID>
+                            <ColumnID>MatterNumber</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                  </Attributes>
+                  <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
+                </Dimension>
+              </Dimensions>
+              <Partitions>
+                <Partition>
+                  <ID>dimOriginalMatter_0a412fb8-19b9-4195-b2a0-1e87771422d8</ID>
+                  <Name>dimOriginalMatter</Name>
+                  <Annotations>
+                    <Annotation>
+                      <Name>IsQueryEditorUsed</Name>
+                      <Value>True</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>QueryEditorSerialization</Name>
+                    </Annotation>
+                    <Annotation>
+                      <Name>TableWidgetSerialization</Name>
+                    </Annotation>
+                  </Annotations>
+                  <Source xsi:type="QueryBinding">
+                    <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
+                    <QueryDefinition>SELECT dim_matter_header_curr_key as OriginalMatterID, client_code as ClientCode, matter_number as MatterNumber FROM dim_matter_header_current</QueryDefinition>
+                  </Source>
+                  <StorageMode valuens="ddl200_200">InMemory</StorageMode>
+                  <ProcessingMode>Regular</ProcessingMode>
+                  <ErrorConfiguration>
+                    <KeyNotFound>IgnoreError</KeyNotFound>
+                    <KeyDuplicate>ReportAndStop</KeyDuplicate>
+                    <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+                  </ErrorConfiguration>
+                  <ProactiveCaching>
+                    <SilenceInterval>-PT1S</SilenceInterval>
+                    <Latency>-PT1S</Latency>
+                    <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+                    <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+                    <Source xsi:type="ProactiveCachingInheritedBinding" />
+                  </ProactiveCaching>
+                </Partition>
+              </Partitions>
+              <ProactiveCaching>
+                <SilenceInterval>-PT1S</SilenceInterval>
+                <Latency>-PT1S</Latency>
+                <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+                <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+                <Source xsi:type="ProactiveCachingInheritedBinding" />
+              </ProactiveCaching>
+            </MeasureGroup>
           </MeasureGroups>
           <Source>
             <DataSourceViewID>Sandbox</DataSourceViewID>
@@ -30900,7 +31383,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="TimeTransactions" msprop:DbTableName="factMainTable" msprop:TableType="View" msprop:Description="factMainTable" msprop:QueryDefinition="select &#xD;&#xA;a.transaction_sequence_number TransactionID,&#xD;&#xA;a.dim_client_key ClientID,&#xD;&#xA;a.dim_matter_header_curr_key MatterID,&#xD;&#xA;a.dim_bill_key BillID,&#xD;&#xA;a.dim_all_time_narrative_key NarrativeID,&#xD;&#xA;&#xD;&#xA;t.chargeable_nonc_nonb ChargeableTimeCode,&#xD;&#xA;--a.time_type ChargeableTimeCode,&#xD;&#xA;a.dim_fed_hierarchy_history_key FEDCodeID,&#xD;&#xA;a.dim_transaction_date_key TransactionDate,&#xD;&#xA;a.minutes_recorded MinutesRecorded,&#xD;&#xA;a.hourly_charge_rate ChargeRate,&#xD;&#xA;a.time_charge_value timeChargeValue,&#xD;&#xA;t.transaction_type TransactionType,&#xD;&#xA;t.time_activity_code TimeActivityCode,&#xD;&#xA;--t.rate_code RateCode,&#xD;&#xA;t.matter_stage_descrn StageDesc,&#xD;&#xA;datediff(d, d3.calendar_date, getdate()) TransactionAgeDays,&#xD;&#xA;t.reporting_exclusions ReportingExclusions,&#xD;&#xA;edithrs EditHrs, &#xD;&#xA;editamt EditAmt, &#xD;&#xA;editrate EditRate&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_all_time_activity a&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; red_dw.dbo.dim_all_time_activity t&#xD;&#xA;  on a.dim_all_time_activity_key = t.dim_all_time_activity_key&#xD;&#xA;&#xD;&#xA;&#xD;&#xA; left join red_dw.dbo.dim_date d3&#xD;&#xA; on d3.dim_date_key = a.dim_transaction_date_key&#xD;&#xA;&#xD;&#xA;where isactive = 1">
+                    <xs:element name="factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="TimeTransactions" msprop:DbTableName="factMainTable" msprop:TableType="View" msprop:Description="factMainTable" msprop:QueryDefinition="select &#xD;&#xA;dim_orig_matter_header_curr_key AS OriginalMatterID,&#xD;&#xA;a.transaction_sequence_number TransactionID,&#xD;&#xA;a.dim_client_key ClientID,&#xD;&#xA;a.dim_matter_header_curr_key MatterID,&#xD;&#xA;a.dim_bill_key BillID,&#xD;&#xA;a.dim_all_time_narrative_key NarrativeID,&#xD;&#xA;&#xD;&#xA;t.chargeable_nonc_nonb ChargeableTimeCode,&#xD;&#xA;--a.time_type ChargeableTimeCode,&#xD;&#xA;a.dim_fed_hierarchy_history_key FEDCodeID,&#xD;&#xA;a.dim_transaction_date_key TransactionDate,&#xD;&#xA;a.minutes_recorded MinutesRecorded,&#xD;&#xA;a.hourly_charge_rate ChargeRate,&#xD;&#xA;a.time_charge_value timeChargeValue,&#xD;&#xA;t.transaction_type TransactionType,&#xD;&#xA;t.time_activity_code TimeActivityCode,&#xD;&#xA;--t.rate_code RateCode,&#xD;&#xA;t.matter_stage_descrn StageDesc,&#xD;&#xA;datediff(d, d3.calendar_date, getdate()) TransactionAgeDays,&#xD;&#xA;t.reporting_exclusions ReportingExclusions,&#xD;&#xA;edithrs EditHrs, &#xD;&#xA;editamt EditAmt, &#xD;&#xA;editrate EditRate&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_all_time_activity a&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; red_dw.dbo.dim_all_time_activity t&#xD;&#xA;  on a.dim_all_time_activity_key = t.dim_all_time_activity_key&#xD;&#xA;&#xD;&#xA;&#xD;&#xA; left join red_dw.dbo.dim_date d3&#xD;&#xA; on d3.dim_date_key = a.dim_transaction_date_key&#xD;&#xA;&#xD;&#xA;where isactive = 1">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="BillID" msprop:DbColumnName="BillID" msprop:FriendlyName="BillID" type="xs:int" minOccurs="0" />
@@ -30946,6 +31429,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                           <xs:element name="edithrs" msprop:DbColumnName="edithrs" msprop:FriendlyName="edithrs" type="xs:decimal" minOccurs="0" />
                           <xs:element name="editamt" msprop:DbColumnName="editamt" msprop:FriendlyName="editamt" type="xs:decimal" minOccurs="0" />
                           <xs:element name="editrate" msprop:DbColumnName="editrate" msprop:FriendlyName="editrate" type="xs:decimal" minOccurs="0" />
+                          <xs:element name="OriginalMatterID" msprop:DbColumnName="OriginalMatterID" msprop:FriendlyName="OriginalMatterID" type="xs:int" minOccurs="0" />
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
@@ -31885,6 +32369,27 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                         <xs:sequence>
                           <xs:element name="dim_detail_claim_key" msprop:DbColumnName="dim_detail_claim_key" msprop:FriendlyName="dim_detail_claim_key" type="xs:int" minOccurs="0" />
                           <xs:element name="date_recovery_concluded" msprop:DbColumnName="date_recovery_concluded" msprop:FriendlyName="date_recovery_concluded" type="xs:dateTime" minOccurs="0" />
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="dimOriginalMatter_0a412fb8-19b9-4195-b2a0-1e87771422d8" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimOriginalMatter" msprop:DbTableName="dimOriginalMatter" msprop:TableType="View" msprop:Description="dimOriginalMatter" msprop:QueryDefinition="SELECT dim_matter_header_curr_key as OriginalMatterID, client_code as ClientCode, matter_number as MatterNumber FROM dim_matter_header_current">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="OriginalMatterID" msprop:DbColumnName="OriginalMatterID" msprop:FriendlyName="OriginalMatterID" type="xs:int" minOccurs="0" />
+                          <xs:element name="ClientCode" msprop:DbColumnName="ClientCode" msprop:FriendlyName="ClientCode" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="MatterNumber" msprop:DbColumnName="MatterNumber" msprop:FriendlyName="MatterNumber" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
