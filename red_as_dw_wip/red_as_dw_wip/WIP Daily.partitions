@@ -74,7 +74,7 @@ and dim_transaction_date_key &lt; replace(cast(getdate() as date), '-', '') - 1 
           </Annotations>
           <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
           <State>Unprocessed</State>
-          <Source xsi:type="QueryBinding" dwd:design-time-name="a5519bf4-547f-4734-b6f3-14941cf164b6">
+          <Source xsi:type="QueryBinding" dwd:design-time-name="bba8f8a4-2abc-43b4-b6be-5969439871a5">
             <DataSourceID>Red Dw</DataSourceID>
             <QueryDefinition>SELECT    dim_transaction_date_key as 'Dim Transaction Date Key',
 	dim_matter_header_history_key as 'Dim Matter Header History Key',
@@ -87,12 +87,40 @@ and dim_transaction_date_key &lt; replace(cast(getdate() as date), '-', '') - 1 
 FROM            fact_wip_daily
 		where 
 		dim_transaction_date_key &gt;= '20160822'
-		and dim_transaction_date_key &lt; cast(left(replace(cast(getdate() as date), '-', '') -1 , 6) as varchar(8)) + '01' and wip_value &lt;&gt; 0 and master_fact_key &lt;&gt; 0</QueryDefinition>
+		and dim_transaction_date_key &lt; 20170501</QueryDefinition>
           </Source>
           <StorageMode>Molap</StorageMode>
           <CurrentStorageMode>Molap</CurrentStorageMode>
           <ProcessingMode>Regular</ProcessingMode>
           <Slice>[WIP Date].[Financial].[Financial Year].&amp;[2017]</Slice>
+          <AggregationDesignID>AggregationDesign</AggregationDesignID>
+        </Partition>
+        <Partition dwd:design-time-name="c755e8a5-f5fd-47fa-9344-428dd75e26e2">
+          <ID>Fact Wip Daily_2018</ID>
+          <Name>Fact Wip Daily_2018</Name>
+          <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+          <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+          <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+          <State>Unprocessed</State>
+          <Source xsi:type="QueryBinding" dwd:design-time-name="c3578374-1f7c-484f-a104-0f88738b134e">
+            <DataSourceID>Red Dw</DataSourceID>
+            <QueryDefinition>SELECT    dim_transaction_date_key as 'Dim Transaction Date Key',
+	dim_matter_header_history_key as 'Dim Matter Header History Key',
+	dim_fed_hierarchy_history_key as 'Dim Fed Hierarchy History Key',
+	dim_days_banding_key as 'Dim Days Banding Key',
+	dim_fed_matter_owner_key as 'Dim Fed Matter Owner Key',
+	wip_minutes as 'WIP Minutes',
+	wip_value as 'WIP Value',
+	dim_client_key as 'Dim Client Key'
+FROM            fact_wip_daily
+		where 
+		dim_transaction_date_key &gt;= '20170501'
+		and dim_transaction_date_key &lt; cast(left(replace(cast(getdate() as date), '-', '') -1 , 6) as varchar(8)) + '01' and wip_value &lt;&gt; 0 and master_fact_key &lt;&gt; 0</QueryDefinition>
+          </Source>
+          <StorageMode>Molap</StorageMode>
+          <CurrentStorageMode>Molap</CurrentStorageMode>
+          <ProcessingMode>Regular</ProcessingMode>
+          <Slice>[WIP Date].[Financial].[Financial Year].&amp;[2018]</Slice>
           <AggregationDesignID>AggregationDesign</AggregationDesignID>
         </Partition>
       </Partitions>
