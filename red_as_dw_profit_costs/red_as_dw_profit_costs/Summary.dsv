@@ -31,7 +31,7 @@
             <Name>_ALL_TABLES_</Name>
             <DiagramLayout>
               <dds>
-                <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="16" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-9520" scrolltop="-2196" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="96" x="44873" y="17621" backcolor="2434342" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="1" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+                <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="16" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-9520" scrolltop="-2196" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="96" x="36407" y="18653" backcolor="2434342" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="1" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
                   <font>
                     <ddsxmlobjectstreamwrapper binary="01000000900144420100065461686f6d61" />
                   </font>
@@ -166,11 +166,11 @@
       <xs:element name="Red_dw" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:design-time-name="639c8064-37ad-467e-9908-d844ac995b58">
         <xs:complexType>
           <xs:choice minOccurs="0" maxOccurs="unbounded">
-            <xs:element name="dbo_agg_bill_activity_monthly_rollup" msprop:design-time-name="bbbd4022-b7d7-4871-8c93-09af500fb3fe" msprop:IsLogical="True" msprop:FriendlyName="agg_bill_activity_monthly_rollup" msprop:DbTableName="agg_bill_activity_monthly_rollup" msprop:TableType="View" msprop:QueryDefinition="SELECT        b.dim_bill_date_key, b.dim_fed_hierarchy_history_key, b.billed_time, b.minutes_recorded, b.bill_amount, &#xD;&#xA;                         CASE WHEN fed.display_name = 'Budget Balance' THEN 0 WHEN fed.hierarchylevel3hist IS NOT NULL AND &#xD;&#xA;                         fed.display_name != 'Budget Balance' THEN b.fed_level_budget_value ELSE 0 END AS target_profit_costs, b.fed_level_minute_value, b.fed_level_tb_budget_value, &#xD;&#xA;                         b.team_level_budget_value, b.practice_area_level_budget_value, b.business_line_level_budget_value, b.firm_level_budget_value, b.dss_update_time&#xD;&#xA;FROM            agg_bill_activity_monthly_rollup AS b LEFT OUTER JOIN&#xD;&#xA;                         dim_fed_hierarchy_history AS fed ON fed.dim_fed_hierarchy_history_key = b.dim_fed_hierarchy_history_key" msprop:QueryBuilder="SpecificQueryBuilder">
+            <xs:element name="dbo_agg_bill_activity_monthly_rollup" msprop:design-time-name="bbbd4022-b7d7-4871-8c93-09af500fb3fe" msprop:IsLogical="True" msprop:FriendlyName="agg_bill_activity_monthly_rollup" msprop:DbTableName="agg_bill_activity_monthly_rollup" msprop:TableType="View" msprop:QueryDefinition="SELECT        b.dim_bill_date_key, b.dim_fed_hierarchy_history_key, b.billed_time, b.minutes_recorded, b.bill_amount, CASE WHEN fed.display_name = 'Budget Balance' THEN 0 WHEN fed.hierarchylevel3hist IS NOT NULL &#xD;&#xA;                         AND fed.display_name != 'Budget Balance' THEN b.fed_level_budget_value ELSE 0 END AS target_profit_costs, b.fed_level_minute_value, b.fed_level_tb_budget_value, b.team_level_budget_value, &#xD;&#xA;                         b.practice_area_level_budget_value, b.business_line_level_budget_value, b.firm_level_budget_value, b.dss_update_time&#xD;&#xA;FROM            agg_bill_activity_monthly_rollup_20170609 AS b LEFT OUTER JOIN&#xD;&#xA;                         dim_fed_hierarchy_history AS fed ON fed.dim_fed_hierarchy_history_key = b.dim_fed_hierarchy_history_key" msprop:QueryBuilder="SpecificQueryBuilder">
               <xs:complexType>
                 <xs:sequence>
                   <xs:element name="dim_bill_date_key" msprop:design-time-name="382f499f-6bea-4aef-94b0-1916482ce1f4" msprop:DbColumnName="dim_bill_date_key" msprop:FriendlyName="dim_bill_date_key" type="xs:int" minOccurs="0" />
-                  <xs:element name="dim_fed_hierarchy_history_key" msprop:design-time-name="3c5cc27b-7522-4bdb-af8a-f1236fa114c4" msprop:DbColumnName="dim_fed_hierarchy_history_key" msprop:FriendlyName="dim_fed_hierarchy_history_key" type="xs:int" />
+                  <xs:element name="dim_fed_hierarchy_history_key" msprop:design-time-name="3c5cc27b-7522-4bdb-af8a-f1236fa114c4" msprop:DbColumnName="dim_fed_hierarchy_history_key" msprop:FriendlyName="dim_fed_hierarchy_history_key" type="xs:int" minOccurs="0" />
                   <xs:element name="billed_time" msprop:design-time-name="2aa43778-d0c8-487a-92d8-05d8a0493a4e" msprop:DbColumnName="billed_time" msprop:FriendlyName="billed_time" type="xs:decimal" minOccurs="0" />
                   <xs:element name="minutes_recorded" msprop:design-time-name="4db0923a-0bb2-43ae-8fd2-f4445ef3ae5b" msprop:DbColumnName="minutes_recorded" msprop:FriendlyName="minutes_recorded" type="xs:decimal" minOccurs="0" />
                   <xs:element name="bill_amount" msprop:design-time-name="af6d6cbb-0f7d-4d46-a293-f4ce94d94528" msprop:DbColumnName="bill_amount" msprop:FriendlyName="bill_amount" type="xs:decimal" minOccurs="0" />
@@ -436,43 +436,43 @@
                   </xs:element>
                   <xs:element name="leaver" msprop:design-time-name="138f7e02-aa95-4fef-9c54-0d78739c415c" msprop:DbColumnName="leaver" type="xs:int" minOccurs="0" />
                   <xs:element name="dim_employee_key" msprop:design-time-name="2ee4638e-2abc-40fc-bbd8-330c65f7d45e" msprop:DbColumnName="dim_employee_key" type="xs:int" minOccurs="0" />
-                  <xs:element name="hierarchynodehist_pre_francis" msprop:DbColumnName="hierarchynodehist_pre_francis" msprop:design-time-name="e01012c6-a351-4cb1-a851-4489de69d312" type="xs:long" minOccurs="0" />
-                  <xs:element name="hierarchylevel1hist_pre_francis" msprop:DbColumnName="hierarchylevel1hist_pre_francis" msprop:design-time-name="c5fe6ae4-0a0c-4fd1-951f-4438b98dbadf" minOccurs="0">
+                  <xs:element name="hierarchynodehist_pre_francis" msprop:design-time-name="e01012c6-a351-4cb1-a851-4489de69d312" msprop:DbColumnName="hierarchynodehist_pre_francis" type="xs:long" minOccurs="0" />
+                  <xs:element name="hierarchylevel1hist_pre_francis" msprop:design-time-name="c5fe6ae4-0a0c-4fd1-951f-4438b98dbadf" msprop:DbColumnName="hierarchylevel1hist_pre_francis" minOccurs="0">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
                         <xs:maxLength value="50" />
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
-                  <xs:element name="hierarchylevel2hist_pre_francis" msprop:DbColumnName="hierarchylevel2hist_pre_francis" msprop:design-time-name="fb5dbf5b-40ed-482a-8f5c-569c389eac9f" minOccurs="0">
+                  <xs:element name="hierarchylevel2hist_pre_francis" msprop:design-time-name="fb5dbf5b-40ed-482a-8f5c-569c389eac9f" msprop:DbColumnName="hierarchylevel2hist_pre_francis" minOccurs="0">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
                         <xs:maxLength value="50" />
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
-                  <xs:element name="hierarchylevel3hist_pre_francis" msprop:DbColumnName="hierarchylevel3hist_pre_francis" msprop:design-time-name="b7380847-2955-4007-ab6e-3f7f8c3278d7" minOccurs="0">
+                  <xs:element name="hierarchylevel3hist_pre_francis" msprop:design-time-name="b7380847-2955-4007-ab6e-3f7f8c3278d7" msprop:DbColumnName="hierarchylevel3hist_pre_francis" minOccurs="0">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
                         <xs:maxLength value="50" />
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
-                  <xs:element name="hierarchylevel4hist_pre_francis" msprop:DbColumnName="hierarchylevel4hist_pre_francis" msprop:design-time-name="3f2a1b10-e5ec-4423-a926-e3fbccd5e6b0" minOccurs="0">
+                  <xs:element name="hierarchylevel4hist_pre_francis" msprop:design-time-name="3f2a1b10-e5ec-4423-a926-e3fbccd5e6b0" msprop:DbColumnName="hierarchylevel4hist_pre_francis" minOccurs="0">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
                         <xs:maxLength value="50" />
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
-                  <xs:element name="hierarchylevel5hist_pre_francis" msprop:DbColumnName="hierarchylevel5hist_pre_francis" msprop:design-time-name="c11a0e7e-4a37-408b-9025-68b51616b88f" minOccurs="0">
+                  <xs:element name="hierarchylevel5hist_pre_francis" msprop:design-time-name="c11a0e7e-4a37-408b-9025-68b51616b88f" msprop:DbColumnName="hierarchylevel5hist_pre_francis" minOccurs="0">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
                         <xs:maxLength value="50" />
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
-                  <xs:element name="hierarchylevel6hist_pre_francis" msprop:DbColumnName="hierarchylevel6hist_pre_francis" msprop:design-time-name="7bc736fe-846b-4fe5-b574-da049b107248" minOccurs="0">
+                  <xs:element name="hierarchylevel6hist_pre_francis" msprop:design-time-name="7bc736fe-846b-4fe5-b574-da049b107248" msprop:DbColumnName="hierarchylevel6hist_pre_francis" minOccurs="0">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
                         <xs:maxLength value="50" />
@@ -957,7 +957,7 @@
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
-                  <xs:element name="postid" msprop:DbColumnName="postid" msprop:design-time-name="bc4c799f-4db7-4eb8-a6e7-62af7d1b1d51" minOccurs="0">
+                  <xs:element name="postid" msprop:design-time-name="bc4c799f-4db7-4eb8-a6e7-62af7d1b1d51" msprop:DbColumnName="postid" minOccurs="0">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
                         <xs:maxLength value="200" />
