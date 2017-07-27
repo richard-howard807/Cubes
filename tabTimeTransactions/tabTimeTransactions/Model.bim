@@ -2765,6 +2765,11 @@
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>OriginalMatterID</Name>
                 </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>OrginalTransactionID</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>OrginalTransactionID</Name>
+                </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
@@ -3283,6 +3288,31 @@
                 <Source xsi:type="ColumnBinding">
                   <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
                   <ColumnID>OriginalMatterID</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>OrginalTransactionID</ID>
+              <Name>OrginalTransactionID</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
+                    <ColumnID>OrginalTransactionID</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
+                  <ColumnID>OrginalTransactionID</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
@@ -13033,6 +13063,9 @@
                 <Attribute>
                   <AttributeID>OriginalMatterID</AttributeID>
                 </Attribute>
+                <Attribute>
+                  <AttributeID>OrginalTransactionID</AttributeID>
+                </Attribute>
               </Attributes>
             </Dimension>
             <Dimension>
@@ -18226,6 +18259,20 @@ red_dw.dbo.dim_matter_branch</QueryDefinition>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>OrginalTransactionID</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
+                            <ColumnID>OrginalTransactionID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
                 </Dimension>
@@ -22534,9 +22581,9 @@ red_dw.dbo.dim_matter_branch</QueryDefinition>
                   </Annotations>
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
-                    <QueryDefinition>select
+                    <QueryDefinition>select 
 dim_orig_matter_header_curr_key AS OriginalMatterID,
- 
+a.original_transaction_sequence_number OrginalTransactionID,
 a.transaction_sequence_number TransactionID,
 a.dim_client_key ClientID,
 a.dim_matter_header_curr_key MatterID,
@@ -22569,7 +22616,9 @@ left join
 
 
  left join red_dw.dbo.dim_date d3
- on d3.dim_date_key = a.dim_transaction_date_key where isactive = 1</QueryDefinition>
+ on d3.dim_date_key = a.dim_transaction_date_key
+
+where isactive = 1</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
@@ -31383,7 +31432,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="TimeTransactions" msprop:DbTableName="factMainTable" msprop:TableType="View" msprop:Description="factMainTable" msprop:QueryDefinition="select &#xD;&#xA;dim_orig_matter_header_curr_key AS OriginalMatterID,&#xD;&#xA;a.transaction_sequence_number TransactionID,&#xD;&#xA;a.dim_client_key ClientID,&#xD;&#xA;a.dim_matter_header_curr_key MatterID,&#xD;&#xA;a.dim_bill_key BillID,&#xD;&#xA;a.dim_all_time_narrative_key NarrativeID,&#xD;&#xA;&#xD;&#xA;t.chargeable_nonc_nonb ChargeableTimeCode,&#xD;&#xA;--a.time_type ChargeableTimeCode,&#xD;&#xA;a.dim_fed_hierarchy_history_key FEDCodeID,&#xD;&#xA;a.dim_transaction_date_key TransactionDate,&#xD;&#xA;a.minutes_recorded MinutesRecorded,&#xD;&#xA;a.hourly_charge_rate ChargeRate,&#xD;&#xA;a.time_charge_value timeChargeValue,&#xD;&#xA;t.transaction_type TransactionType,&#xD;&#xA;t.time_activity_code TimeActivityCode,&#xD;&#xA;--t.rate_code RateCode,&#xD;&#xA;t.matter_stage_descrn StageDesc,&#xD;&#xA;datediff(d, d3.calendar_date, getdate()) TransactionAgeDays,&#xD;&#xA;t.reporting_exclusions ReportingExclusions,&#xD;&#xA;edithrs EditHrs, &#xD;&#xA;editamt EditAmt, &#xD;&#xA;editrate EditRate&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_all_time_activity a&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; red_dw.dbo.dim_all_time_activity t&#xD;&#xA;  on a.dim_all_time_activity_key = t.dim_all_time_activity_key&#xD;&#xA;&#xD;&#xA;&#xD;&#xA; left join red_dw.dbo.dim_date d3&#xD;&#xA; on d3.dim_date_key = a.dim_transaction_date_key&#xD;&#xA;&#xD;&#xA;where isactive = 1">
+                    <xs:element name="factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="TimeTransactions" msprop:DbTableName="factMainTable" msprop:TableType="View" msprop:Description="factMainTable" msprop:QueryDefinition="select &#xD;&#xA;dim_orig_matter_header_curr_key AS OriginalMatterID,&#xD;&#xA;a.original_transaction_sequence_number OrginalTransactionID,&#xD;&#xA;a.transaction_sequence_number TransactionID,&#xD;&#xA;a.dim_client_key ClientID,&#xD;&#xA;a.dim_matter_header_curr_key MatterID,&#xD;&#xA;a.dim_bill_key BillID,&#xD;&#xA;a.dim_all_time_narrative_key NarrativeID,&#xD;&#xA;&#xD;&#xA;t.chargeable_nonc_nonb ChargeableTimeCode,&#xD;&#xA;--a.time_type ChargeableTimeCode,&#xD;&#xA;a.dim_fed_hierarchy_history_key FEDCodeID,&#xD;&#xA;a.dim_transaction_date_key TransactionDate,&#xD;&#xA;a.minutes_recorded MinutesRecorded,&#xD;&#xA;a.hourly_charge_rate ChargeRate,&#xD;&#xA;a.time_charge_value timeChargeValue,&#xD;&#xA;t.transaction_type TransactionType,&#xD;&#xA;t.time_activity_code TimeActivityCode,&#xD;&#xA;--t.rate_code RateCode,&#xD;&#xA;t.matter_stage_descrn StageDesc,&#xD;&#xA;datediff(d, d3.calendar_date, getdate()) TransactionAgeDays,&#xD;&#xA;t.reporting_exclusions ReportingExclusions,&#xD;&#xA;edithrs EditHrs, &#xD;&#xA;editamt EditAmt, &#xD;&#xA;editrate EditRate&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_all_time_activity a&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; red_dw.dbo.dim_all_time_activity t&#xD;&#xA;  on a.dim_all_time_activity_key = t.dim_all_time_activity_key&#xD;&#xA;&#xD;&#xA;&#xD;&#xA; left join red_dw.dbo.dim_date d3&#xD;&#xA; on d3.dim_date_key = a.dim_transaction_date_key&#xD;&#xA;&#xD;&#xA;where isactive = 1">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="BillID" msprop:DbColumnName="BillID" msprop:FriendlyName="BillID" type="xs:int" minOccurs="0" />
@@ -31430,6 +31479,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                           <xs:element name="editamt" msprop:DbColumnName="editamt" msprop:FriendlyName="editamt" type="xs:decimal" minOccurs="0" />
                           <xs:element name="editrate" msprop:DbColumnName="editrate" msprop:FriendlyName="editrate" type="xs:decimal" minOccurs="0" />
                           <xs:element name="OriginalMatterID" msprop:DbColumnName="OriginalMatterID" msprop:FriendlyName="OriginalMatterID" type="xs:int" minOccurs="0" />
+                          <xs:element name="OrginalTransactionID" msprop:DbColumnName="OrginalTransactionID" msprop:FriendlyName="OrginalTransactionID" type="xs:int" minOccurs="0" />
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
