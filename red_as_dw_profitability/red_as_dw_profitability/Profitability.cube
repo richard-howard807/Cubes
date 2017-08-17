@@ -8,7 +8,7 @@
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
       <Value>
         <dds xmlns="">
-          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="21" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-16985" scrolltop="-21" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="86" x="41354" y="17515" backcolor="2434342" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="20" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-16985" scrolltop="-21" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="86" x="41354" y="17515" backcolor="2434342" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
             <font>
               <ddsxmlobjectstreamwrapper binary="01000000900144420100065461686f6d61" />
             </font>
@@ -132,7 +132,7 @@
               <point x="5457" y="12100" />
             </connector>
           </ddscontrol>
-          <ddscontrol controlprogid="MSDDS.Polyline" left="331" top="4501" logicalid="20" controlid="11" masterid="0" hint1="0" hint2="0" width="799" height="3199" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+          <ddscontrol controlprogid="MSDDS.Polyline" left="331" top="4501" logicalid="18" controlid="9" masterid="0" hint1="0" hint2="0" width="799" height="3199" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
             <control>
               <ddsxmlobj>
                 <polyline endtypedst="6" endtypesrc="3" usercolor="15856113" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
@@ -327,6 +327,30 @@
           </Source>
           <FormatString>\£ #,##0.00;(\£ #,##0.00)</FormatString>
         </Measure>
+        <Measure dwd:design-time-name="99dc90bf-7545-468f-8120-120993c5a07e">
+          <ID>Profit Costs</ID>
+          <Name>Profit Costs</Name>
+          <Source dwd:design-time-name="5802d8d6-b438-4d0e-8292-7516012f9c62">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="6604bac0-5cb5-4705-8664-cabdad85fea3">
+              <TableID>dbo_fact_profitability</TableID>
+              <ColumnID>profit_costs</ColumnID>
+            </Source>
+          </Source>
+          <FormatString>\£ #,##0.00;(\£ #,##0.00)</FormatString>
+        </Measure>
+        <Measure dwd:design-time-name="c42edcd0-ac0a-4410-850c-0211bf380319">
+          <ID>Chargeable Minutes 1</ID>
+          <Name>Chargeable Minutes</Name>
+          <Source dwd:design-time-name="0b61f8ad-b251-432b-abd4-59ca500d60b9">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="a8231e89-0a98-4b90-961a-935ecc4de010">
+              <TableID>dbo_fact_profitability</TableID>
+              <ColumnID>chargeable_minutes</ColumnID>
+            </Source>
+          </Source>
+          <Visible>false</Visible>
+        </Measure>
       </Measures>
       <StorageMode>Molap</StorageMode>
       <ProcessingMode>Regular</ProcessingMode>
@@ -450,4 +474,26 @@
   <Source dwd:design-time-name="6985e6a5-1f99-4ecb-8781-8d42b0483008">
     <DataSourceViewID>Profitability</DataSourceViewID>
   </Source>
+  <MdxScripts>
+    <MdxScript dwd:design-time-name="21568fd0-270e-480f-bf7b-7ff15a911b6a">
+      <ID>MdxScript</ID>
+      <Name>MdxScript</Name>
+      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+      <Commands>
+        <Command>
+          <Text>/*
+The CALCULATE command controls the aggregation of leaf cells in the cube.
+If the CALCULATE command is deleted or modified, the data within the cube is affected.
+You should edit this command only if you manually specify how the cube is aggregated.
+*/
+CALCULATE; 
+CREATE MEMBER CURRENTCUBE.[Measures].[Chargeable Hours]
+ AS [Measures].[Chargeable Minutes] / 60, 
+FORMAT_STRING = "#,##0.00;-#,##0.0", 
+VISIBLE = 1 ,  ASSOCIATED_MEASURE_GROUP = 'Profitability'  ; </Text>
+        </Command>
+      </Commands>
+    </MdxScript>
+  </MdxScripts>
 </Cube>
