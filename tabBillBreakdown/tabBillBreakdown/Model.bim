@@ -31032,20 +31032,14 @@
           <Name>dim_client_involvement</Name>
           <Annotations>
             <Annotation>
-              <Name>IsQueryEditorUsed</Name>
-              <Value>True</Value>
+              <Name>TableWidgetSerialization</Name>
             </Annotation>
             <Annotation>
               <Name>QueryEditorSerialization</Name>
             </Annotation>
             <Annotation>
-              <Name>TableWidgetSerialization</Name>
-            </Annotation>
-            <Annotation>
-              <Name>DataMarketWebBaseUrl</Name>
-            </Annotation>
-            <Annotation>
-              <Name>DataMarketWebQueryUrl</Name>
+              <Name>IsQueryEditorUsed</Name>
+              <Value>True</Value>
             </Annotation>
           </Annotations>
           <Source xsi:type="DataSourceViewBinding">
@@ -31091,6 +31085,21 @@
                   <AttributeID>insurerclient_name</AttributeID>
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>insurerclient_name</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>insuredclient_name</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>insuredclient_name</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>insuredclient_reference</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>insuredclient_reference</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>insurerclient_reference</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>insurerclient_reference</Name>
                 </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
@@ -31163,6 +31172,81 @@
                 <Source xsi:type="ColumnBinding">
                   <TableID>dim_client_involvement_636e2df3-d366-4279-bf5a-4cc90def96c3</TableID>
                   <ColumnID>insurerclient_name</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>insuredclient_name</ID>
+              <Name>insuredclient_name</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dim_client_involvement_636e2df3-d366-4279-bf5a-4cc90def96c3</TableID>
+                    <ColumnID>insuredclient_name</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dim_client_involvement_636e2df3-d366-4279-bf5a-4cc90def96c3</TableID>
+                  <ColumnID>insuredclient_name</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>insuredclient_reference</ID>
+              <Name>insuredclient_reference</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dim_client_involvement_636e2df3-d366-4279-bf5a-4cc90def96c3</TableID>
+                    <ColumnID>insuredclient_reference</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dim_client_involvement_636e2df3-d366-4279-bf5a-4cc90def96c3</TableID>
+                  <ColumnID>insuredclient_reference</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>insurerclient_reference</ID>
+              <Name>insurerclient_reference</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dim_client_involvement_636e2df3-d366-4279-bf5a-4cc90def96c3</TableID>
+                    <ColumnID>insurerclient_reference</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dim_client_involvement_636e2df3-d366-4279-bf5a-4cc90def96c3</TableID>
+                  <ColumnID>insurerclient_reference</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
@@ -33723,6 +33807,15 @@
                 </Attribute>
                 <Attribute>
                   <AttributeID>insurerclient_name</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>insuredclient_name</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>insuredclient_reference</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>insurerclient_reference</AttributeID>
                 </Attribute>
               </Attributes>
             </Dimension>
@@ -49828,6 +49921,48 @@ LEFT JOIN dbo.dim_fed_hierarchy_history h ON h.fed_code = d.fee_earner_code AND 
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>insuredclient_name</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_client_involvement_636e2df3-d366-4279-bf5a-4cc90def96c3</TableID>
+                            <ColumnID>insuredclient_name</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>insuredclient_reference</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_client_involvement_636e2df3-d366-4279-bf5a-4cc90def96c3</TableID>
+                            <ColumnID>insuredclient_reference</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>insurerclient_reference</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_client_involvement_636e2df3-d366-4279-bf5a-4cc90def96c3</TableID>
+                            <ColumnID>insurerclient_reference</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <IntermediateCubeDimensionID>fact_dimension_main_f734589e-46c0-4f07-aabb-6eefa61ee368</IntermediateCubeDimensionID>
                   <IntermediateGranularityAttributeID>dim_client_involvement_key</IntermediateGranularityAttributeID>
@@ -54640,6 +54775,48 @@ LEFT JOIN dbo.dim_fed_hierarchy_history h ON h.fed_code = d.fee_earner_code AND 
                           <Source xsi:type="ColumnBinding">
                             <TableID>dim_client_involvement_636e2df3-d366-4279-bf5a-4cc90def96c3</TableID>
                             <ColumnID>insurerclient_name</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>insuredclient_name</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_client_involvement_636e2df3-d366-4279-bf5a-4cc90def96c3</TableID>
+                            <ColumnID>insuredclient_name</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>insuredclient_reference</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_client_involvement_636e2df3-d366-4279-bf5a-4cc90def96c3</TableID>
+                            <ColumnID>insuredclient_reference</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>insurerclient_reference</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_client_involvement_636e2df3-d366-4279-bf5a-4cc90def96c3</TableID>
+                            <ColumnID>insurerclient_reference</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -63075,6 +63252,48 @@ FROM [dbo].[dim_bill_item_matter_header_current]</QueryDefinition>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>insuredclient_name</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_client_involvement_636e2df3-d366-4279-bf5a-4cc90def96c3</TableID>
+                            <ColumnID>insuredclient_name</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>insuredclient_reference</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_client_involvement_636e2df3-d366-4279-bf5a-4cc90def96c3</TableID>
+                            <ColumnID>insuredclient_reference</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>insurerclient_reference</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_client_involvement_636e2df3-d366-4279-bf5a-4cc90def96c3</TableID>
+                            <ColumnID>insurerclient_reference</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
                 </Dimension>
@@ -63085,24 +63304,28 @@ FROM [dbo].[dim_bill_item_matter_header_current]</QueryDefinition>
                   <Name>dim_client_involvement</Name>
                   <Annotations>
                     <Annotation>
-                      <Name>IsQueryEditorUsed</Name>
-                      <Value>True</Value>
+                      <Name>TableWidgetSerialization</Name>
+                    </Annotation>
+                    <Annotation>
+                      <Name>TableWidgetSourceTable</Name>
                     </Annotation>
                     <Annotation>
                       <Name>QueryEditorSerialization</Name>
                     </Annotation>
                     <Annotation>
-                      <Name>TableWidgetSerialization</Name>
+                      <Name>IsQueryEditorUsed</Name>
+                      <Value>True</Value>
                     </Annotation>
                   </Annotations>
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>e8e0673f-7952-4c4e-a705-9ac57378e5ef</DataSourceID>
-                    <QueryDefinition>select 
-dim_client_involvement_key,
-insurerclient_name 
+                    <QueryDefinition>SELECT [dim_client_involvement_key]
 
-from
-dim_client_involvement</QueryDefinition>
+      ,[insuredclient_name]
+      ,[insurerclient_name]
+      ,[insuredclient_reference]
+      ,[insurerclient_reference]
+  FROM [red_dw].[dbo].[dim_client_involvement]</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
@@ -66790,11 +67013,32 @@ CREATE MEASURE 'fact_bill_detail'[Sum of workhrs]=SUM([workhrs]);
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dim_client_involvement_636e2df3-d366-4279-bf5a-4cc90def96c3" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dim_client_involvement" msprop:DbTableName="dim_client_involvement" msprop:TableType="View" msprop:Description="dim_client_involvement" msprop:QueryDefinition="select &#xD;&#xA;dim_client_involvement_key,&#xD;&#xA;insurerclient_name &#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;dim_client_involvement">
+                    <xs:element name="dim_client_involvement_636e2df3-d366-4279-bf5a-4cc90def96c3" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dim_client_involvement" msprop:DbTableName="dim_client_involvement" msprop:TableType="View" msprop:Description="dim_client_involvement" msprop:QueryDefinition="SELECT [dim_client_involvement_key]&#xD;&#xA;&#xD;&#xA;      ,[insuredclient_name]&#xD;&#xA;      ,[insurerclient_name]&#xD;&#xA;      ,[insuredclient_reference]&#xD;&#xA;      ,[insurerclient_reference]&#xD;&#xA;  FROM [red_dw].[dbo].[dim_client_involvement]">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="dim_client_involvement_key" msprop:DbColumnName="dim_client_involvement_key" msprop:FriendlyName="dim_client_involvement_key" type="xs:int" minOccurs="0" />
                           <xs:element name="insurerclient_name" msprop:DbColumnName="insurerclient_name" msprop:FriendlyName="insurerclient_name" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="insuredclient_name" msprop:DbColumnName="insuredclient_name" msprop:FriendlyName="insuredclient_name" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="insuredclient_reference" msprop:DbColumnName="insuredclient_reference" msprop:FriendlyName="insuredclient_reference" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="insurerclient_reference" msprop:DbColumnName="insurerclient_reference" msprop:FriendlyName="insurerclient_reference" minOccurs="0">
                             <xs:simpleType>
                               <xs:restriction base="xs:string">
                                 <xs:maxLength value="32768" />
