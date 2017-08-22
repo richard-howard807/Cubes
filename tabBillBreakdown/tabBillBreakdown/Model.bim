@@ -27812,20 +27812,14 @@
           <Name>dim_detail_core_details</Name>
           <Annotations>
             <Annotation>
-              <Name>IsQueryEditorUsed</Name>
-              <Value>True</Value>
+              <Name>TableWidgetSerialization</Name>
             </Annotation>
             <Annotation>
               <Name>QueryEditorSerialization</Name>
             </Annotation>
             <Annotation>
-              <Name>TableWidgetSerialization</Name>
-            </Annotation>
-            <Annotation>
-              <Name>DataMarketWebBaseUrl</Name>
-            </Annotation>
-            <Annotation>
-              <Name>DataMarketWebQueryUrl</Name>
+              <Name>IsQueryEditorUsed</Name>
+              <Value>True</Value>
             </Annotation>
           </Annotations>
           <Source xsi:type="DataSourceViewBinding">
@@ -27871,6 +27865,11 @@
                   <AttributeID>name_of_consortium</AttributeID>
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>name_of_consortium</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>insured_sector</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>insured_sector</Name>
                 </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
@@ -27942,6 +27941,31 @@
                 <Source xsi:type="ColumnBinding">
                   <TableID>dim_detail_core_details_c0ec7b4a-2c89-437b-8a48-a05430c982df</TableID>
                   <ColumnID>name_of_consortium</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>insured_sector</ID>
+              <Name>insured_sector</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dim_detail_core_details_c0ec7b4a-2c89-437b-8a48-a05430c982df</TableID>
+                    <ColumnID>insured_sector</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dim_detail_core_details_c0ec7b4a-2c89-437b-8a48-a05430c982df</TableID>
+                  <ColumnID>insured_sector</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
@@ -33553,6 +33577,9 @@
                 </Attribute>
                 <Attribute>
                   <AttributeID>name_of_consortium</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>insured_sector</AttributeID>
                 </Attribute>
               </Attributes>
             </Dimension>
@@ -48728,6 +48755,20 @@ LEFT JOIN dbo.dim_fed_hierarchy_history h ON h.fed_code = d.fee_earner_code AND 
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>insured_sector</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_detail_core_details_c0ec7b4a-2c89-437b-8a48-a05430c982df</TableID>
+                            <ColumnID>insured_sector</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <IntermediateCubeDimensionID>fact_dimension_main_f734589e-46c0-4f07-aabb-6eefa61ee368</IntermediateCubeDimensionID>
                   <IntermediateGranularityAttributeID>dim_detail_core_detail_key</IntermediateGranularityAttributeID>
@@ -54724,6 +54765,20 @@ LEFT JOIN dbo.dim_fed_hierarchy_history h ON h.fed_code = d.fee_earner_code AND 
                           <Source xsi:type="ColumnBinding">
                             <TableID>dim_detail_core_details_c0ec7b4a-2c89-437b-8a48-a05430c982df</TableID>
                             <ColumnID>name_of_consortium</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>insured_sector</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_detail_core_details_c0ec7b4a-2c89-437b-8a48-a05430c982df</TableID>
+                            <ColumnID>insured_sector</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -61915,6 +61970,20 @@ FROM [dbo].[dim_bill_item_matter_header_current]</QueryDefinition>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>insured_sector</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_detail_core_details_c0ec7b4a-2c89-437b-8a48-a05430c982df</TableID>
+                            <ColumnID>insured_sector</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
                 </Dimension>
@@ -61925,19 +61994,22 @@ FROM [dbo].[dim_bill_item_matter_header_current]</QueryDefinition>
                   <Name>dim_detail_core_details</Name>
                   <Annotations>
                     <Annotation>
-                      <Name>IsQueryEditorUsed</Name>
-                      <Value>True</Value>
+                      <Name>TableWidgetSerialization</Name>
+                    </Annotation>
+                    <Annotation>
+                      <Name>TableWidgetSourceTable</Name>
                     </Annotation>
                     <Annotation>
                       <Name>QueryEditorSerialization</Name>
                     </Annotation>
                     <Annotation>
-                      <Name>TableWidgetSerialization</Name>
+                      <Name>IsQueryEditorUsed</Name>
+                      <Value>True</Value>
                     </Annotation>
                   </Annotations>
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>e8e0673f-7952-4c4e-a705-9ac57378e5ef</DataSourceID>
-                    <QueryDefinition>select dim_detail_core_detail_key,name_of_consortium from   red_Dw.dbo.dim_detail_core_details</QueryDefinition>
+                    <QueryDefinition>select dim_detail_core_detail_key,name_of_consortium, insured_sector from   red_Dw.dbo.dim_detail_core_details</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
@@ -66666,11 +66738,18 @@ CREATE MEASURE 'fact_bill_detail'[Sum of workhrs]=SUM([workhrs]);
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dim_detail_core_details_c0ec7b4a-2c89-437b-8a48-a05430c982df" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dim_detail_core_details" msprop:DbTableName="dim_detail_core_details" msprop:TableType="View" msprop:Description="dim_detail_core_details" msprop:QueryDefinition="select dim_detail_core_detail_key,name_of_consortium from   red_Dw.dbo.dim_detail_core_details">
+                    <xs:element name="dim_detail_core_details_c0ec7b4a-2c89-437b-8a48-a05430c982df" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dim_detail_core_details" msprop:DbTableName="dim_detail_core_details" msprop:TableType="View" msprop:Description="dim_detail_core_details" msprop:QueryDefinition="select dim_detail_core_detail_key,name_of_consortium, insured_sector from   red_Dw.dbo.dim_detail_core_details">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="dim_detail_core_detail_key" msprop:DbColumnName="dim_detail_core_detail_key" msprop:FriendlyName="dim_detail_core_detail_key" type="xs:int" minOccurs="0" />
                           <xs:element name="name_of_consortium" msprop:DbColumnName="name_of_consortium" msprop:FriendlyName="name_of_consortium" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="insured_sector" msprop:DbColumnName="insured_sector" msprop:FriendlyName="insured_sector" minOccurs="0">
                             <xs:simpleType>
                               <xs:restriction base="xs:string">
                                 <xs:maxLength value="32768" />
