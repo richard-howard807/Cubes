@@ -31,7 +31,7 @@
             <Name>_ALL_TABLES_</Name>
             <DiagramLayout>
               <dds>
-                <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="34" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-4197" scrolltop="6727" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="85" x="44212" y="19235" backcolor="2434342" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="1" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+                <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="34" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-4197" scrolltop="5731" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="85" x="44212" y="19235" backcolor="2434342" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="1" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
                   <font>
                     <ddsxmlobjectstreamwrapper binary="01000000900144420100065461686f6d61" />
                   </font>
@@ -295,7 +295,7 @@
             <ShowRelationshipNames>False</ShowRelationshipNames>
             <UseDiagramDefaultLayout>True</UseDiagramDefaultLayout>
             <DiagramViewPortLeft>-4197</DiagramViewPortLeft>
-            <DiagramViewPortTop>6727</DiagramViewPortTop>
+            <DiagramViewPortTop>5731</DiagramViewPortTop>
             <DiagramBoundingLeft>0</DiagramBoundingLeft>
             <DiagramBoundingTop>0</DiagramBoundingTop>
             <DiagramZoom>85</DiagramZoom>
@@ -310,7 +310,7 @@
       <xs:element name="Debt_x0020_Monthly" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:design-time-name="86ff2d31-8fcc-4c5e-a2c3-53bedc401473">
         <xs:complexType>
           <xs:choice minOccurs="0" maxOccurs="unbounded">
-            <xs:element name="dbo_fact_debt_monthly" msprop:design-time-name="847fe45c-e0f9-4674-89fa-ad272bb08009" msprop:IsLogical="True" msprop:FriendlyName="fact_debt_daily" msprop:DbTableName="fact_debt_daily" msprop:TableType="View" msprop:QueryDefinition="SELECT        fact_debt_daily.dim_client_key, fact_debt_daily.dim_mat_head_history_key, fact_debt_daily.dim_matter_header_curr_key, fact_debt_daily.dim_bill_key, fact_debt_daily.dim_bill_date_key, &#xD;&#xA;                         fact_debt_daily.dim_fed_matter_owner_key, fact_debt_daily.dim_days_banding_key, fact_debt_daily.dim_transaction_date_key, fact_debt_daily.source_system_id, fact_debt_daily.client_code, &#xD;&#xA;                         fact_debt_daily.matter_number, fact_debt_daily.bill_number, fact_debt_daily.bill_date, fact_debt_daily.matter_owner, fact_debt_daily.outstanding_total_bill, fact_debt_daily.outstanding_costs, &#xD;&#xA;                         fact_debt_daily.age_of_debt, fact_debt_daily.debt_date, fact_debt_daily.debt_month, fact_debt_daily.dss_update_time, fact_debt_daily.master_fact_key, CASE WHEN month(calendar_date) = month(getdate()) &#xD;&#xA;                         - 2 AND year(calendar_date) = year(getdate()) AND cal_day_in_month = 1 THEN outstanding_total_bill ELSE 0 END AS 'opening_period'&#xD;&#xA;FROM            fact_debt_daily LEFT OUTER JOIN&#xD;&#xA;                         dim_date ON dim_date.dim_date_key = fact_debt_daily.dim_bill_date_key&#xD;&#xA;WHERE        (fact_debt_daily.dim_transaction_date_key &gt;= 20160822)" msprop:QueryBuilder="SpecificQueryBuilder">
+            <xs:element name="dbo_fact_debt_monthly" msprop:design-time-name="847fe45c-e0f9-4674-89fa-ad272bb08009" msprop:IsLogical="True" msprop:FriendlyName="fact_debt_daily" msprop:DbTableName="fact_debt_daily" msprop:TableType="View" msprop:QueryDefinition="SELECT        dim_client_key, dim_mat_head_history_key, dim_matter_header_curr_key, dim_bill_key, dim_bill_date_key, dim_fed_matter_owner_key, dim_days_banding_key, dim_transaction_date_key, source_system_id, &#xD;&#xA;                         client_code, matter_number, bill_number, bill_date, matter_owner, outstanding_total_bill, outstanding_costs, age_of_debt, debt_date, debt_month, dss_update_time, master_fact_key&#xD;&#xA;FROM            fact_debt_daily&#xD;&#xA;WHERE        (dim_transaction_date_key &gt;= 20160822)" msprop:QueryBuilder="SpecificQueryBuilder">
               <xs:complexType>
                 <xs:sequence>
                   <xs:element name="dim_client_key" msprop:design-time-name="f6be6764-86bc-4297-afe4-45f340c33018" msprop:DbColumnName="dim_client_key" msprop:FriendlyName="dim_client_key" type="xs:int" minOccurs="0" />
@@ -364,7 +364,6 @@
                   </xs:element>
                   <xs:element name="dss_update_time" msprop:design-time-name="2b49d381-a131-4666-952c-db4802cab073" msprop:DbColumnName="dss_update_time" msprop:FriendlyName="dss_update_time" type="xs:dateTime" minOccurs="0" />
                   <xs:element name="master_fact_key" msprop:design-time-name="cfdb1ceb-2620-4ade-a562-845d7362ddee" msprop:DbColumnName="master_fact_key" msprop:FriendlyName="master_fact_key" type="xs:int" minOccurs="0" />
-                  <xs:element name="opening_period" msprop:DbColumnName="opening_period" msprop:design-time-name="e05a8c0e-3b65-40e4-89c7-1b7764c7abe8" type="xs:decimal" minOccurs="0" />
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
