@@ -31,7 +31,7 @@
             <Name>_ALL_TABLES_</Name>
             <DiagramLayout>
               <dds>
-                <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="40" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="4016" scrolltop="11719" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="35745" y="14076" backcolor="2434342" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="1" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+                <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="40" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="4016" scrolltop="1243" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="44212" y="19235" backcolor="2434342" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="1" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
                   <font>
                     <ddsxmlobjectstreamwrapper binary="01000000900144420100065461686f6d61" />
                   </font>
@@ -353,7 +353,7 @@
             <ShowRelationshipNames>False</ShowRelationshipNames>
             <UseDiagramDefaultLayout>True</UseDiagramDefaultLayout>
             <DiagramViewPortLeft>4016</DiagramViewPortLeft>
-            <DiagramViewPortTop>11719</DiagramViewPortTop>
+            <DiagramViewPortTop>1243</DiagramViewPortTop>
             <DiagramBoundingLeft>0</DiagramBoundingLeft>
             <DiagramBoundingTop>0</DiagramBoundingTop>
             <DiagramZoom>100</DiagramZoom>
@@ -368,7 +368,7 @@
       <xs:element name="fact_wip_monthly" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:design-time-name="d8252102-1f4f-4463-9a23-1ec65335761f">
         <xs:complexType>
           <xs:choice minOccurs="0" maxOccurs="unbounded">
-            <xs:element name="dbo_fact_wip_monthly" msprop:design-time-name="0cb08586-5559-4875-bbff-b4fb54fdc1e6" msprop:IsLogical="True" msprop:FriendlyName="WIP Monthly" msprop:DbTableName="WIP Monthly" msprop:TableType="View" msprop:QueryDefinition="SELECT        fact_wip_monthly.dim_client_key AS 'Dim Client Key', fact_wip_monthly.dim_transaction_date_key AS 'Dim Transaction Date Key', &#xD;&#xA;                         fact_wip_monthly.dim_matter_header_history_key AS 'Dim Matter Header History Key', fact_wip_monthly.dim_fed_hierarchy_history_key AS 'Dim Fed Hierarchy History Key', &#xD;&#xA;                         fact_wip_monthly.dim_days_banding_key AS 'Dim Days Banding Key', fact_wip_monthly.dim_fed_matter_owner_key AS 'Dim Fed Matter Owner Key', fact_wip_monthly.wip_minutes AS 'WIP Minutes', &#xD;&#xA;                         fact_wip_monthly.wip_value AS 'WIP Value', CAST(CAST(d.cal_month AS VARCHAR(6)) + '01' AS INT) AS 'WIP Month', CASE WHEN dim_days_banding_key &gt; 2 THEN wip_value ELSE NULL &#xD;&#xA;                         END AS 'WIP Over 90 Days'&#xD;&#xA;FROM            fact_wip_monthly INNER JOIN&#xD;&#xA;                             (SELECT DISTINCT fin_month, cal_month&#xD;&#xA;                               FROM            dim_date) AS d ON d.fin_month = fact_wip_monthly.wip_month&#xD;&#xA;WHERE        (fact_wip_monthly.wip_month &gt;= 201704)" msprop:QueryBuilder="SpecificQueryBuilder">
+            <xs:element name="dbo_fact_wip_monthly" msprop:design-time-name="0cb08586-5559-4875-bbff-b4fb54fdc1e6" msprop:IsLogical="True" msprop:FriendlyName="WIP Monthly" msprop:DbTableName="WIP Monthly" msprop:TableType="View" msprop:QueryDefinition="SELECT        fact_wip_monthly.dim_client_key AS 'Dim Client Key', fact_wip_monthly.dim_transaction_date_key AS 'Dim Transaction Date Key', &#xD;&#xA;                         fact_wip_monthly.dim_matter_header_history_key AS 'Dim Matter Header History Key', fact_wip_monthly.dim_fed_hierarchy_history_key AS 'Dim Fed Hierarchy History Key', &#xD;&#xA;                         fact_wip_monthly.dim_days_banding_key AS 'Dim Days Banding Key', fact_wip_monthly.dim_fed_matter_owner_key AS 'Dim Fed Matter Owner Key', fact_wip_monthly.wip_minutes AS 'WIP Minutes', &#xD;&#xA;                         fact_wip_monthly.wip_value AS 'WIP Value', CAST(CAST(d.cal_month AS VARCHAR(6)) + '01' AS INT) AS 'WIP Month', fact_wip_monthly.wip_over_90_days&#xD;&#xA;FROM            fact_wip_monthly INNER JOIN&#xD;&#xA;                             (SELECT DISTINCT fin_month, cal_month&#xD;&#xA;                               FROM            dim_date) AS d ON d.fin_month = fact_wip_monthly.wip_month&#xD;&#xA;WHERE        (fact_wip_monthly.wip_month &gt;= 201704)" msprop:QueryBuilder="SpecificQueryBuilder">
               <xs:complexType>
                 <xs:sequence>
                   <xs:element name="Dim_x0020_Client_x0020_Key" msprop:design-time-name="06fc6d11-33cf-4aae-9d77-0fe59df50a6f" msprop:DbColumnName="Dim Client Key" type="xs:int" minOccurs="0" />
@@ -380,7 +380,7 @@
                   <xs:element name="WIP_x0020_Minutes" msprop:design-time-name="a39e3c65-05fa-4ede-a548-e8b2f0cb1c78" msprop:DbColumnName="WIP Minutes" type="xs:decimal" minOccurs="0" />
                   <xs:element name="WIP_x0020_Value" msprop:design-time-name="ca3a6119-35e5-4c66-8805-ee6ce4237d15" msprop:DbColumnName="WIP Value" type="xs:decimal" minOccurs="0" />
                   <xs:element name="WIP_x0020_Month" msprop:design-time-name="924a4261-dff2-4492-bf55-7b454e1a2f88" msprop:DbColumnName="WIP Month" type="xs:int" minOccurs="0" />
-                  <xs:element name="WIP_x0020_Over_x0020_90_x0020_Days" msprop:design-time-name="2cdea8b0-c604-4ab3-a1d6-976d05d4ea44" msprop:DbColumnName="WIP Over 90 Days" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="wip_over_90_days" msprop:DbColumnName="wip_over_90_days" msprop:design-time-name="35dc409a-ae98-4847-9751-79714ed06345" type="xs:decimal" minOccurs="0" />
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
@@ -415,7 +415,7 @@
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
-                  <xs:element name="Dim_x0020_Client_x0020_Key" msprop:design-time-name="e9b09b88-e17e-4b2f-a54e-e3d2a703caf5" msprop:DbColumnName="Dim Client Key" type="xs:int" minOccurs="0" />
+                  <xs:element name="Dim_x0020_Client_x0020_Key" msprop:design-time-name="e9b09b88-e17e-4b2f-a54e-e3d2a703caf5" msprop:DbColumnName="Dim Client Key" type="xs:int" />
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
