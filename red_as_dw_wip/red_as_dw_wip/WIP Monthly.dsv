@@ -31,7 +31,7 @@
             <Name>_ALL_TABLES_</Name>
             <DiagramLayout>
               <dds>
-                <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="40" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="4016" scrolltop="1243" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="44212" y="19235" backcolor="2434342" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="1" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+                <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="40" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="4016" scrolltop="-4841" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="44212" y="19235" backcolor="2434342" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="1" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
                   <font>
                     <ddsxmlobjectstreamwrapper binary="01000000900144420100065461686f6d61" />
                   </font>
@@ -353,7 +353,7 @@
             <ShowRelationshipNames>False</ShowRelationshipNames>
             <UseDiagramDefaultLayout>True</UseDiagramDefaultLayout>
             <DiagramViewPortLeft>4016</DiagramViewPortLeft>
-            <DiagramViewPortTop>1243</DiagramViewPortTop>
+            <DiagramViewPortTop>-4841</DiagramViewPortTop>
             <DiagramBoundingLeft>0</DiagramBoundingLeft>
             <DiagramBoundingTop>0</DiagramBoundingTop>
             <DiagramZoom>100</DiagramZoom>
@@ -380,7 +380,7 @@
                   <xs:element name="WIP_x0020_Minutes" msprop:design-time-name="a39e3c65-05fa-4ede-a548-e8b2f0cb1c78" msprop:DbColumnName="WIP Minutes" type="xs:decimal" minOccurs="0" />
                   <xs:element name="WIP_x0020_Value" msprop:design-time-name="ca3a6119-35e5-4c66-8805-ee6ce4237d15" msprop:DbColumnName="WIP Value" type="xs:decimal" minOccurs="0" />
                   <xs:element name="WIP_x0020_Month" msprop:design-time-name="924a4261-dff2-4492-bf55-7b454e1a2f88" msprop:DbColumnName="WIP Month" type="xs:int" minOccurs="0" />
-                  <xs:element name="wip_over_90_days" msprop:DbColumnName="wip_over_90_days" msprop:design-time-name="35dc409a-ae98-4847-9751-79714ed06345" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="wip_over_90_days" msprop:design-time-name="35dc409a-ae98-4847-9751-79714ed06345" msprop:DbColumnName="wip_over_90_days" type="xs:decimal" minOccurs="0" />
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
@@ -433,7 +433,7 @@
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
-            <xs:element name="dbo_dim_fed_hierarchy_history" msprop:design-time-name="8fe6116e-a37b-4174-945c-a58d33188999" msprop:IsLogical="True" msprop:FriendlyName="Employee" msprop:DbTableName="Employee" msprop:TableType="View" msprop:QueryDefinition="SELECT        hierarchylevel1hist AS 'Organisation', hierarchylevel2hist AS 'Business Line', hierarchylevel3hist AS 'Practice Area', hierarchylevel4hist AS 'Team', hierarchylevel5hist AS 'Subteam', &#xD;&#xA;                         display_name AS 'Display Name', dim_fed_hierarchy_history_key AS 'Dim Fed Hierarchy History Key', fed_hierarchy_business_key AS 'Fed Hierarchy Business Key', fed_code AS 'Fee Earner Code', name, &#xD;&#xA;                         windowsusername&#xD;&#xA;FROM            dim_fed_hierarchy_history AS Employee" msprop:QueryBuilder="SpecificQueryBuilder">
+            <xs:element name="dbo_dim_fed_hierarchy_history" msprop:design-time-name="8fe6116e-a37b-4174-945c-a58d33188999" msprop:IsLogical="True" msprop:FriendlyName="Employee" msprop:DbTableName="Employee" msprop:TableType="View" msprop:QueryDefinition="SELECT        hierarchylevel1hist AS 'Organisation', hierarchylevel2hist AS 'Business Line', hierarchylevel3hist AS 'Practice Area', hierarchylevel4hist AS 'Team', hierarchylevel5hist AS 'Subteam', &#xD;&#xA;                         display_name AS 'Display Name', dim_fed_hierarchy_history_key AS 'Dim Fed Hierarchy History Key', fed_hierarchy_business_key AS 'Fed Hierarchy Business Key', fed_code AS 'Fee Earner Code', &#xD;&#xA;                         ISNULL(name, '') AS name, windowsusername, hierarchylevel6hist&#xD;&#xA;FROM            dim_fed_hierarchy_history AS Employee" msprop:QueryBuilder="SpecificQueryBuilder">
               <xs:complexType>
                 <xs:sequence>
                   <xs:element name="Organisation" msprop:design-time-name="5914901a-38f1-4345-ade7-565e4c50985a" msprop:DbColumnName="Organisation" minOccurs="0">
@@ -478,7 +478,7 @@
                       </xs:restriction>
                     </xs:simpleType>
                   </xs:element>
-                  <xs:element name="Dim_x0020_Fed_x0020_Hierarchy_x0020_History_x0020_Key" msprop:design-time-name="5a580bd8-1c23-40e8-b9ae-831b5a74c7f7" msprop:DbColumnName="Dim Fed Hierarchy History Key" type="xs:int" />
+                  <xs:element name="Dim_x0020_Fed_x0020_Hierarchy_x0020_History_x0020_Key" msprop:design-time-name="5a580bd8-1c23-40e8-b9ae-831b5a74c7f7" msprop:DbColumnName="Dim Fed Hierarchy History Key" type="xs:int" minOccurs="0" />
                   <xs:element name="Fed_x0020_Hierarchy_x0020_Business_x0020_Key" msprop:design-time-name="127cd37d-0677-4bfe-97db-5c30564e12f1" msprop:DbColumnName="Fed Hierarchy Business Key" minOccurs="0">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
@@ -501,6 +501,13 @@
                     </xs:simpleType>
                   </xs:element>
                   <xs:element name="windowsusername" msprop:design-time-name="f310d788-ca73-4b52-9ece-ea4bf18f2f36" msprop:DbColumnName="windowsusername" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="50" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="hierarchylevel6hist" msprop:design-time-name="2a5a88c4-c33a-47f7-9a47-214a9c9c153e" msprop:DbColumnName="hierarchylevel6hist" minOccurs="0">
                     <xs:simpleType>
                       <xs:restriction base="xs:string">
                         <xs:maxLength value="50" />
