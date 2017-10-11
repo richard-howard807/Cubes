@@ -6142,6 +6142,11 @@ order by 1&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryC
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>MatterSupervisorName</Name>
                 </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>employeeid</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>employeeid</Name>
+                </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
@@ -6567,6 +6572,31 @@ order by 1&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryC
                 <Source xsi:type="ColumnBinding">
                   <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
                   <ColumnID>MatterSupervisorName</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>employeeid</ID>
+              <Name>employeeid</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                    <ColumnID>employeeid</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                  <ColumnID>employeeid</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
@@ -16589,6 +16619,9 @@ order by 1&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryC
                 <Attribute>
                   <AttributeID>MatterSupervisorName</AttributeID>
                 </Attribute>
+                <Attribute>
+                  <AttributeID>employeeid</AttributeID>
+                </Attribute>
               </Attributes>
             </Dimension>
             <Dimension>
@@ -18323,6 +18356,20 @@ order by 1&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryC
                           <Source xsi:type="ColumnBinding">
                             <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
                             <ColumnID>MatterSupervisorName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>employeeid</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                            <ColumnID>employeeid</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -22718,6 +22765,20 @@ f.dim_matter_header_curr_key &gt; 0</QueryDefinition>
                           <Source xsi:type="ColumnBinding">
                             <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
                             <ColumnID>MatterSupervisorName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>employeeid</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                            <ColumnID>employeeid</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -30575,6 +30636,20 @@ dim_matter_worktype</QueryDefinition>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>employeeid</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                            <ColumnID>employeeid</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
                 </Dimension>
@@ -30862,6 +30937,7 @@ order by 1&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryC
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
                     <QueryDefinition>select distinct
 dim_employee_key,
+employeeid,
 dim_fed_hierarchy_history_key as 'MatterFEDCodeID',
 fed_code as 'MatterFEDCode',
 name as 'MatterFEDName',
@@ -32707,6 +32783,20 @@ dim_last_transaction_date_key &gt; 0</QueryDefinition>
                           <Source xsi:type="ColumnBinding">
                             <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
                             <ColumnID>MatterSupervisorName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>employeeid</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437</TableID>
+                            <ColumnID>employeeid</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -43691,7 +43781,7 @@ CREATE MEASURE 'Matters'[Count of Matters]=countrows(Matters);
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimMatterFEDHierarchy" msprop:DbTableName="dimMatterFEDHierarchy" msprop:TableType="View" msprop:Description="dimMatterFEDHierarchy" msprop:QueryDefinition="select distinct&#xD;&#xA;dim_employee_key,&#xD;&#xA;dim_fed_hierarchy_history_key as 'MatterFEDCodeID',&#xD;&#xA;fed_code as 'MatterFEDCode',&#xD;&#xA;name as 'MatterFEDName',&#xD;&#xA;display_name as 'MatterFEDDisplayName',&#xD;&#xA;hierarchylevel2hist as 'MatterBusinessLine',&#xD;&#xA;hierarchylevel3hist as 'MatterPracticeArea',&#xD;&#xA;hierarchylevel4hist as 'MatterTeam',&#xD;&#xA;hierarchylevel2hist as 'MatterBusinessLine_PreFrancis',&#xD;&#xA;hierarchylevel3hist as 'MatterPracticeArea_PreFrancis',&#xD;&#xA;hierarchylevel4hist as 'MatterTeam_PreFrancis',&#xD;&#xA;reportingbcmname as 'MatterBCMName',&#xD;&#xA;worksforname    AS 'MatterSupervisorName',&#xD;&#xA;case when leaver = 1 then 'Y' else 'N' end as 'MatterLeaver',&#xD;&#xA;windowsusername as 'MatterLogin',&#xD;&#xA;dss_current_flag as 'MatterCurrentFlag',&#xD;&#xA;activeud as 'MatterActiveUD'&#xD;&#xA;--case when leaver = 1 and activeud = 0 and dss_current_flag = 'Y'  then 'Leaver' &#xD;&#xA;--    when h1.activeud = 1 and h1.dss_current_flag = 'Y' and attend.type = 'Maternity' then 'Maternity'&#xD;&#xA;--  when h1.activeud = 0 and h1.dss_current_flag = 'Y' and e.leaver = 0 then 'Team Transfer'&#xD;&#xA;--end as 'AuditStatus'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_fed_hierarchy_history">
+                    <xs:element name="dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimMatterFEDHierarchy" msprop:DbTableName="dimMatterFEDHierarchy" msprop:TableType="View" msprop:Description="dimMatterFEDHierarchy" msprop:QueryDefinition="select distinct&#xD;&#xA;dim_employee_key,&#xD;&#xA;employeeid,&#xD;&#xA;dim_fed_hierarchy_history_key as 'MatterFEDCodeID',&#xD;&#xA;fed_code as 'MatterFEDCode',&#xD;&#xA;name as 'MatterFEDName',&#xD;&#xA;display_name as 'MatterFEDDisplayName',&#xD;&#xA;hierarchylevel2hist as 'MatterBusinessLine',&#xD;&#xA;hierarchylevel3hist as 'MatterPracticeArea',&#xD;&#xA;hierarchylevel4hist as 'MatterTeam',&#xD;&#xA;hierarchylevel2hist as 'MatterBusinessLine_PreFrancis',&#xD;&#xA;hierarchylevel3hist as 'MatterPracticeArea_PreFrancis',&#xD;&#xA;hierarchylevel4hist as 'MatterTeam_PreFrancis',&#xD;&#xA;reportingbcmname as 'MatterBCMName',&#xD;&#xA;worksforname    AS 'MatterSupervisorName',&#xD;&#xA;case when leaver = 1 then 'Y' else 'N' end as 'MatterLeaver',&#xD;&#xA;windowsusername as 'MatterLogin',&#xD;&#xA;dss_current_flag as 'MatterCurrentFlag',&#xD;&#xA;activeud as 'MatterActiveUD'&#xD;&#xA;--case when leaver = 1 and activeud = 0 and dss_current_flag = 'Y'  then 'Leaver' &#xD;&#xA;--    when h1.activeud = 1 and h1.dss_current_flag = 'Y' and attend.type = 'Maternity' then 'Maternity'&#xD;&#xA;--  when h1.activeud = 0 and h1.dss_current_flag = 'Y' and e.leaver = 0 then 'Team Transfer'&#xD;&#xA;--end as 'AuditStatus'&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_fed_hierarchy_history">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="MatterFEDCodeID" msprop:DbColumnName="MatterFEDCodeID" msprop:FriendlyName="MatterFEDCodeID" type="xs:int" minOccurs="0" />
@@ -43789,6 +43879,13 @@ CREATE MEASURE 'Matters'[Count of Matters]=countrows(Matters);
                             </xs:simpleType>
                           </xs:element>
                           <xs:element name="MatterSupervisorName" msprop:DbColumnName="MatterSupervisorName" msprop:FriendlyName="MatterSupervisorName" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="employeeid" msprop:DbColumnName="employeeid" msprop:FriendlyName="employeeid" minOccurs="0">
                             <xs:simpleType>
                               <xs:restriction base="xs:string">
                                 <xs:maxLength value="32768" />
