@@ -8,7 +8,7 @@
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
       <Value>
         <dds xmlns="">
-          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="12" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-16251" scrolltop="-4886" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="41645" y="22093" backcolor="2434342" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="12" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-16251" scrolltop="-4886" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="32888" y="13150" backcolor="2434342" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="1" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
             <font>
               <ddsxmlobjectstreamwrapper binary="01000000900144420100065461686f6d61" />
             </font>
@@ -21,7 +21,7 @@
           </layoutmanager>
           <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.3" tooltip="Employee" left="7421" top="1" logicalid="6" controlid="1" masterid="0" hint1="0" hint2="0" width="5001" height="4842" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
             <control>
-              <ddsxmlobjectstreaminitwrapper binary="000a000089130000ea120000" />
+              <ddsxmlobjectstreaminitwrapper binary="000c000089130000ea120000" />
             </control>
             <layoutobject>
               <ddsxmlobj>
@@ -32,7 +32,7 @@
           </ddscontrol>
           <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.3" tooltip="Date" left="1012" top="6184" logicalid="7" controlid="2" masterid="0" hint1="0" hint2="0" width="3016" height="3149" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
             <control>
-              <ddsxmlobjectstreaminitwrapper binary="000a0000c80b00004d0c0000" />
+              <ddsxmlobjectstreaminitwrapper binary="000c0000c80b00004d0c0000" />
             </control>
             <layoutobject>
               <ddsxmlobj>
@@ -43,7 +43,7 @@
           </ddscontrol>
           <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.3" tooltip="Billable Hours" left="20" top="1059" logicalid="8" controlid="3" masterid="0" hint1="0" hint2="0" width="5001" height="2725" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
             <control>
-              <ddsxmlobjectstreaminitwrapper binary="000a000089130000a50a0000" />
+              <ddsxmlobjectstreaminitwrapper binary="000c000089130000a50a0000" />
             </control>
             <layoutobject>
               <ddsxmlobj>
@@ -253,6 +253,7 @@
             </Source>
           </Source>
           <DisplayFolder>Monthly</DisplayFolder>
+          <FormatString>#,#0.0;-#,#0.0</FormatString>
         </Measure>
         <Measure dwd:design-time-name="2630ee75-e5b5-4539-9312-2a26540845e6">
           <ID>Hours Recorded</ID>
@@ -266,6 +267,7 @@
             </Source>
           </Source>
           <DisplayFolder>Monthly</DisplayFolder>
+          <FormatString>#,#0.0;-#,#0.0</FormatString>
         </Measure>
       </Measures>
       <StorageMode>Molap</StorageMode>
@@ -612,34 +614,38 @@ The CALCULATE command controls the aggregation of leaf cells in the cube.
 If the CALCULATE command is deleted or modified, the data within the cube is affected.
 You should edit this command only if you manually specify how the cube is aggregated.
 */
-CALCULATE;  
+CALCULATE;   
 CREATE MEMBER CURRENTCUBE.[Measures].[YTD Billable Hours]
  AS sum(
                 YTD([Date].[Financial].CurrentMember),
                 Measures.[Billable Hours]
    ), 
+FORMAT_STRING = "#,#0.0;-#,#0.0", 
 NON_EMPTY_BEHAVIOR = { [Billable Hours] }, 
-VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Billable Hours';  
+VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Billable Hours'  ;   
 CREATE MEMBER CURRENTCUBE.[Measures].[YTD Target Billable Hours]
- AS sum(
+ AS round(sum(
                 YTD([Date].[Financial].CurrentMember),
                 Measures.[Target Billable Hours]
-   ), 
+   ),2), 
+FORMAT_STRING = "#,#0.0;-#,#0.0", 
 NON_EMPTY_BEHAVIOR = { [Target Billable Hours] }, 
-VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Billable Hours';  
+VISIBLE = 1 ,  DISPLAY_FOLDER = 'YTD' ,  ASSOCIATED_MEASURE_GROUP = 'Billable Hours'  ;   
 CREATE MEMBER CURRENTCUBE.[Measures].[Annual Target Billable Hours]
  AS sum(
                 ([Date].[Fin Year].CurrentMember),
                 Measures.[Target Billable Hours]
    ), 
+FORMAT_STRING = "#,#0.0;-#,#0.0", 
 NON_EMPTY_BEHAVIOR = { [Target Billable Hours] }, 
-VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Billable Hours';  
+VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Billable Hours'  ;   
 CREATE MEMBER CURRENTCUBE.[Measures].[Annual Average Billable Hours]
  AS iif([Measures].[YTD Target Billable Hours] = 0, null, 
 (avg([Measures].[YTD Billable Hours]) / avg([Measures].[YTD Target Billable Hours])) * 
     avg([Measures].[Annual Target Billable Hours])   
 ), 
-VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Billable Hours'  ;  
+FORMAT_STRING = "#,#0.0;-#,#0.0", 
+VISIBLE = 1 ,  DISPLAY_FOLDER = 'Annual' ,  ASSOCIATED_MEASURE_GROUP = 'Billable Hours'  ;   
 CREATE MEMBER CURRENTCUBE.[Measures].[KPI Billable Hours Filter]
  AS + [Measures].[Billable Hours]
     + [Measures].[Target Billable Hours]
