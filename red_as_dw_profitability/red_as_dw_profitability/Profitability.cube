@@ -8,7 +8,7 @@
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
       <Value>
         <dds xmlns="">
-          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="20" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-16985" scrolltop="-21" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="86" x="41354" y="17515" backcolor="2434342" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="20" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-16985" scrolltop="-21" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="86" x="41407" y="17912" backcolor="2434342" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
             <font>
               <ddsxmlobjectstreamwrapper binary="01000000900144420100065461686f6d61" />
             </font>
@@ -235,6 +235,9 @@
         <Attribute dwd:design-time-name="931976a0-8e6e-4df6-8eba-e10bf8477f48">
           <AttributeID>Display Name</AttributeID>
         </Attribute>
+        <Attribute dwd:design-time-name="5770e541-bcf4-4eb8-8302-cf21e1aed1a9">
+          <AttributeID>Costrate</AttributeID>
+        </Attribute>
       </Attributes>
       <Hierarchies>
         <Hierarchy dwd:design-time-name="3fc3a6d9-3cc0-479b-af42-6e143072515b">
@@ -261,6 +264,9 @@
         </Attribute>
         <Attribute dwd:design-time-name="256e1a7c-828e-467c-b622-b6e01e7695e6">
           <AttributeID>Client Name</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="913742ca-44d4-4114-a567-94413d734395">
+          <AttributeID>Cost Per Minute Act</AttributeID>
         </Attribute>
       </Attributes>
       <Hierarchies>
@@ -291,7 +297,7 @@
       <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
       <RoleID>Role</RoleID>
       <Read>Allowed</Read>
-      <ReadSourceData>None</ReadSourceData>
+      <ReadSourceData>Allowed</ReadSourceData>
     </CubePermission>
   </CubePermissions>
   <MeasureGroups>
@@ -339,17 +345,17 @@
           </Source>
           <FormatString>\£ #,##0.00;(\£ #,##0.00)</FormatString>
         </Measure>
-        <Measure dwd:design-time-name="c42edcd0-ac0a-4410-850c-0211bf380319">
-          <ID>Chargeable Minutes 1</ID>
-          <Name>Chargeable Minutes</Name>
-          <Source dwd:design-time-name="0b61f8ad-b251-432b-abd4-59ca500d60b9">
+        <Measure dwd:design-time-name="77994ca1-b76c-4652-b30e-9c402e25466f">
+          <ID>Chargeable Hours</ID>
+          <Name>Chargeable Hours</Name>
+          <Source dwd:design-time-name="eafd479d-69e4-4ac1-9fec-afaf1f5549b3">
             <DataType>Double</DataType>
-            <Source xsi:type="ColumnBinding" dwd:design-time-name="a8231e89-0a98-4b90-961a-935ecc4de010">
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="a05c9918-6e37-4f0a-8420-15caa96d2dc1">
               <TableID>dbo_fact_profitability</TableID>
-              <ColumnID>chargeable_minutes</ColumnID>
+              <ColumnID>chargeable_hours</ColumnID>
             </Source>
           </Source>
-          <Visible>false</Visible>
+          <FormatString>#,##0.0;-#,##0.0</FormatString>
         </Measure>
       </Measures>
       <StorageMode>Molap</StorageMode>
@@ -487,13 +493,75 @@ The CALCULATE command controls the aggregation of leaf cells in the cube.
 If the CALCULATE command is deleted or modified, the data within the cube is affected.
 You should edit this command only if you manually specify how the cube is aggregated.
 */
-CALCULATE; 
-CREATE MEMBER CURRENTCUBE.[Measures].[Chargeable Hours]
- AS [Measures].[Chargeable Minutes] / 60, 
-FORMAT_STRING = "#,##0.00;-#,##0.0", 
-VISIBLE = 1 ,  ASSOCIATED_MEASURE_GROUP = 'Profitability'  ; </Text>
+CALCULATE; </Text>
         </Command>
       </Commands>
     </MdxScript>
   </MdxScripts>
+  <Actions>
+    <Action xsi:type="DrillThroughAction" dwd:design-time-name="36a3284f-2ee8-44d8-9136-98a1afc2aa9b">
+      <ID>Drillthrough Action</ID>
+      <Name>Profitability Drillthrough Action</Name>
+      <Caption>Drillthrough to Profitability Details..</Caption>
+      <TargetType>Cells</TargetType>
+      <Target>MeasureGroupMeasures("Profitability")</Target>
+      <Type>DrillThrough</Type>
+      <Columns>
+        <Column xsi:type="CubeAttributeBinding" dwd:design-time-name="18902ea3-8974-49c4-bcd2-f037784d1c47">
+          <CubeID>Profitability</CubeID>
+          <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+          <AttributeID>Hierarchylevel2hist</AttributeID>
+          <Type>All</Type>
+        </Column>
+        <Column xsi:type="CubeAttributeBinding" dwd:design-time-name="951fdaa2-aef5-4a2d-a2e3-0ef12a9fef64">
+          <CubeID>Profitability</CubeID>
+          <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+          <AttributeID>Hierarchylevel3hist</AttributeID>
+          <Type>All</Type>
+        </Column>
+        <Column xsi:type="CubeAttributeBinding" dwd:design-time-name="70772829-67fc-489c-b4e1-a48d0a16043a">
+          <CubeID>Profitability</CubeID>
+          <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+          <AttributeID>Hierarchylevel4hist</AttributeID>
+          <Type>All</Type>
+        </Column>
+        <Column xsi:type="CubeAttributeBinding" dwd:design-time-name="56fd7fec-519c-4a16-bf0c-b750c325f333">
+          <CubeID>Profitability</CubeID>
+          <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
+          <AttributeID>Display Name</AttributeID>
+          <Type>All</Type>
+        </Column>
+        <Column xsi:type="CubeAttributeBinding" dwd:design-time-name="6c35f548-7842-4385-b363-5d6fe0c0f4a9">
+          <CubeID>Profitability</CubeID>
+          <CubeDimensionID>Fact Profitability</CubeDimensionID>
+          <AttributeID>Case Description</AttributeID>
+          <Type>All</Type>
+        </Column>
+        <Column xsi:type="CubeAttributeBinding" dwd:design-time-name="2c425164-82d6-442c-bf9a-6278ff495804">
+          <CubeID>Profitability</CubeID>
+          <CubeDimensionID>Fact Profitability</CubeDimensionID>
+          <AttributeID>Client Group Name</AttributeID>
+          <Type>All</Type>
+        </Column>
+        <Column xsi:type="CubeAttributeBinding" dwd:design-time-name="a16e2df9-0dfd-4173-a6f4-bfc2d497649c">
+          <CubeID>Profitability</CubeID>
+          <CubeDimensionID>Fact Profitability</CubeDimensionID>
+          <AttributeID>Client Name</AttributeID>
+          <Type>All</Type>
+        </Column>
+        <Column xsi:type="MeasureBinding" dwd:design-time-name="8924b1b5-deb9-4e99-8fcb-d98324756d96">
+          <MeasureID>Profitability Avg</MeasureID>
+        </Column>
+        <Column xsi:type="MeasureBinding" dwd:design-time-name="11e2461b-932b-476c-a44f-d28b2b76ef0b">
+          <MeasureID>Profitability Act</MeasureID>
+        </Column>
+        <Column xsi:type="MeasureBinding" dwd:design-time-name="358ef280-b33c-4f80-a551-69348d5e609d">
+          <MeasureID>Profit Costs</MeasureID>
+        </Column>
+        <Column xsi:type="MeasureBinding" dwd:design-time-name="19fececa-ffa8-4997-bf84-0b97ad288a9b">
+          <MeasureID>Chargeable Hours</MeasureID>
+        </Column>
+      </Columns>
+    </Action>
+  </Actions>
 </Cube>
