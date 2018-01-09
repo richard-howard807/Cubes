@@ -8,7 +8,7 @@
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
       <Value>
         <dds xmlns="">
-          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="20" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-16985" scrolltop="-21" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="86" x="41407" y="17912" backcolor="2434342" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="20" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-16985" scrolltop="-21" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="86" x="41354" y="17912" backcolor="2434342" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
             <font>
               <ddsxmlobjectstreamwrapper binary="01000000900144420100065461686f6d61" />
             </font>
@@ -244,6 +244,9 @@
         <Attribute dwd:design-time-name="84433817-598a-45b0-afa2-174f6cf37bb8">
           <AttributeID>Jobtitle</AttributeID>
         </Attribute>
+        <Attribute dwd:design-time-name="b0104865-e5a0-4c96-9de8-7002b158841b">
+          <AttributeID>Cost Per Minute Gross</AttributeID>
+        </Attribute>
       </Attributes>
       <Hierarchies>
         <Hierarchy dwd:design-time-name="3fc3a6d9-3cc0-479b-af42-6e143072515b">
@@ -362,6 +365,18 @@
             </Source>
           </Source>
           <FormatString>#,##0.0;-#,##0.0</FormatString>
+        </Measure>
+        <Measure dwd:design-time-name="2dfd4e6b-50b8-412e-a2dd-2fdeaf9be407">
+          <ID>Profitability Gross</ID>
+          <Name>Profitability Gross</Name>
+          <Source dwd:design-time-name="601bcaee-cade-4e90-8a7c-546be016ae99">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="3c3a5433-ee4a-4650-9155-c078e7f4a43b">
+              <TableID>dbo_fact_profitability</TableID>
+              <ColumnID>profitability_gross</ColumnID>
+            </Source>
+          </Source>
+          <FormatString>\£ #,##0.00;(\£ #,##0.00)</FormatString>
         </Measure>
       </Measures>
       <StorageMode>Molap</StorageMode>
@@ -513,59 +528,62 @@ CALCULATE; </Text>
       <Target>MeasureGroupMeasures("Profitability")</Target>
       <Type>DrillThrough</Type>
       <Columns>
-        <Column xsi:type="CubeAttributeBinding" dwd:design-time-name="18902ea3-8974-49c4-bcd2-f037784d1c47">
+        <Column xsi:type="CubeAttributeBinding" dwd:design-time-name="8d78f19f-b505-4485-bce4-06ef15faa9e1">
           <CubeID>Profitability</CubeID>
           <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
           <AttributeID>Hierarchylevel2hist</AttributeID>
           <Type>All</Type>
         </Column>
-        <Column xsi:type="CubeAttributeBinding" dwd:design-time-name="951fdaa2-aef5-4a2d-a2e3-0ef12a9fef64">
+        <Column xsi:type="CubeAttributeBinding" dwd:design-time-name="69389f78-0a33-47dd-b55b-732ddb6afcdb">
           <CubeID>Profitability</CubeID>
           <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
           <AttributeID>Hierarchylevel3hist</AttributeID>
           <Type>All</Type>
         </Column>
-        <Column xsi:type="CubeAttributeBinding" dwd:design-time-name="70772829-67fc-489c-b4e1-a48d0a16043a">
+        <Column xsi:type="CubeAttributeBinding" dwd:design-time-name="3f308ac2-4df0-401c-8246-a0b3d406fd55">
           <CubeID>Profitability</CubeID>
           <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
           <AttributeID>Hierarchylevel4hist</AttributeID>
           <Type>All</Type>
         </Column>
-        <Column xsi:type="CubeAttributeBinding" dwd:design-time-name="56fd7fec-519c-4a16-bf0c-b750c325f333">
+        <Column xsi:type="CubeAttributeBinding" dwd:design-time-name="57a6f9ec-9d3c-40ec-a187-00f23501952e">
           <CubeID>Profitability</CubeID>
           <CubeDimensionID>Dim Fed Hierarchy History</CubeDimensionID>
           <AttributeID>Display Name</AttributeID>
           <Type>All</Type>
         </Column>
-        <Column xsi:type="CubeAttributeBinding" dwd:design-time-name="6c35f548-7842-4385-b363-5d6fe0c0f4a9">
+        <Column xsi:type="CubeAttributeBinding" dwd:design-time-name="bc5d920d-da37-48be-bf53-a4f351401ecb">
           <CubeID>Profitability</CubeID>
           <CubeDimensionID>Fact Profitability</CubeDimensionID>
           <AttributeID>Case Description</AttributeID>
           <Type>All</Type>
         </Column>
-        <Column xsi:type="CubeAttributeBinding" dwd:design-time-name="2c425164-82d6-442c-bf9a-6278ff495804">
+        <Column xsi:type="CubeAttributeBinding" dwd:design-time-name="4f139b69-052c-402c-a0bd-adc840c25961">
           <CubeID>Profitability</CubeID>
           <CubeDimensionID>Fact Profitability</CubeDimensionID>
           <AttributeID>Client Group Name</AttributeID>
           <Type>All</Type>
         </Column>
-        <Column xsi:type="CubeAttributeBinding" dwd:design-time-name="a16e2df9-0dfd-4173-a6f4-bfc2d497649c">
+        <Column xsi:type="CubeAttributeBinding" dwd:design-time-name="b0a64bb5-d659-4799-a69d-a155fb3712f6">
           <CubeID>Profitability</CubeID>
           <CubeDimensionID>Fact Profitability</CubeDimensionID>
           <AttributeID>Client Name</AttributeID>
           <Type>All</Type>
         </Column>
-        <Column xsi:type="MeasureBinding" dwd:design-time-name="8924b1b5-deb9-4e99-8fcb-d98324756d96">
+        <Column xsi:type="MeasureBinding" dwd:design-time-name="5563d2ea-e6c4-4d0f-9799-818632c19b11">
           <MeasureID>Profitability Avg</MeasureID>
         </Column>
-        <Column xsi:type="MeasureBinding" dwd:design-time-name="11e2461b-932b-476c-a44f-d28b2b76ef0b">
+        <Column xsi:type="MeasureBinding" dwd:design-time-name="f440cf29-dd03-4183-9c4b-43928ea8630c">
           <MeasureID>Profitability Act</MeasureID>
         </Column>
-        <Column xsi:type="MeasureBinding" dwd:design-time-name="358ef280-b33c-4f80-a551-69348d5e609d">
+        <Column xsi:type="MeasureBinding" dwd:design-time-name="cb476dfd-073a-4ba6-82b5-e65e55b916a0">
           <MeasureID>Profit Costs</MeasureID>
         </Column>
-        <Column xsi:type="MeasureBinding" dwd:design-time-name="19fececa-ffa8-4997-bf84-0b97ad288a9b">
+        <Column xsi:type="MeasureBinding" dwd:design-time-name="ead88a2d-2e92-49bd-ac78-2f92f55cc9ae">
           <MeasureID>Chargeable Hours</MeasureID>
+        </Column>
+        <Column xsi:type="MeasureBinding" dwd:design-time-name="bc76d394-40c8-4dcc-b3b5-48cf5bdd467d">
+          <MeasureID>Profitability Gross</MeasureID>
         </Column>
       </Columns>
     </Action>
