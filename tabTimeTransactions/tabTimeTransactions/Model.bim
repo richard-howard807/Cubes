@@ -2770,6 +2770,11 @@
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>OriginalTransactionID</Name>
                 </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>GLDate</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>GLDate</Name>
+                </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
@@ -3317,6 +3322,32 @@
               </NameColumn>
               <OrderBy>Key</OrderBy>
             </Attribute>
+            <Attribute>
+              <ID>GLDate</ID>
+              <Name>GLDate</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
+                    <ColumnID>GLDate</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
+                  <ColumnID>GLDate</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+              <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+            </Attribute>
           </Attributes>
           <ProactiveCaching>
             <SilenceInterval>-PT1S</SilenceInterval>
@@ -3552,6 +3583,29 @@
                 <Attributes>
                   <Attribute>
                     <AttributeID>OriginalMatterID</AttributeID>
+                  </Attribute>
+                </Attributes>
+              </ddl300_300:ToRelationshipEnd>
+            </ddl300_300:Relationship>
+            <ddl300_300:Relationship>
+              <ID>dc3c3836-d0a7-4956-86f6-4791a499c238</ID>
+              <ddl300_300:FromRelationshipEnd>
+                <ddl300_300:Multiplicity>Many</ddl300_300:Multiplicity>
+                <ddl300:VisualizationProperties />
+                <DimensionID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</DimensionID>
+                <Attributes>
+                  <Attribute>
+                    <AttributeID>GLDate</AttributeID>
+                  </Attribute>
+                </Attributes>
+              </ddl300_300:FromRelationshipEnd>
+              <ddl300_300:ToRelationshipEnd>
+                <ddl300_300:Multiplicity>One</ddl300_300:Multiplicity>
+                <ddl300:VisualizationProperties />
+                <DimensionID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</DimensionID>
+                <Attributes>
+                  <Attribute>
+                    <AttributeID>GLDateKey</AttributeID>
                   </Attribute>
                 </Attributes>
               </ddl300_300:ToRelationshipEnd>
@@ -12740,6 +12794,917 @@
             <Source xsi:type="ProactiveCachingInheritedBinding" />
           </ProactiveCaching>
         </Dimension>
+        <Dimension>
+          <ID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</ID>
+          <Name>dimGLDate</Name>
+          <Annotations>
+            <Annotation>
+              <Name>IsQueryEditorUsed</Name>
+              <Value>True</Value>
+            </Annotation>
+            <Annotation>
+              <Name>QueryEditorSerialization</Name>
+            </Annotation>
+            <Annotation>
+              <Name>TableWidgetSerialization</Name>
+            </Annotation>
+            <Annotation>
+              <Name>DataMarketWebBaseUrl</Name>
+            </Annotation>
+            <Annotation>
+              <Name>DataMarketWebQueryUrl</Name>
+            </Annotation>
+          </Annotations>
+          <Source xsi:type="DataSourceViewBinding">
+            <DataSourceViewID>Sandbox</DataSourceViewID>
+          </Source>
+          <UnknownMember valuens="ddl200_200">AutomaticNull</UnknownMember>
+          <ErrorConfiguration>
+            <KeyNotFound>IgnoreError</KeyNotFound>
+            <KeyDuplicate>ReportAndStop</KeyDuplicate>
+            <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+          </ErrorConfiguration>
+          <StorageMode valuens="ddl200_200">InMemory</StorageMode>
+          <Language>1033</Language>
+          <Collation>Latin1_General_CS_AS</Collation>
+          <UnknownMemberName>Unknown</UnknownMemberName>
+          <Attributes>
+            <Attribute>
+              <ID>RowNumber</ID>
+              <Name>RowNumber</Name>
+              <Type valuens="ddl200_200">RowNumber</Type>
+              <Usage>Key</Usage>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>4</DataSize>
+                  <NullProcessing>Error</NullProcessing>
+                  <Source xsi:type="ddl200_200:RowNumberBinding" />
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>4</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ddl200_200:RowNumberBinding" />
+              </NameColumn>
+              <AttributeRelationships>
+                <AttributeRelationship>
+                  <AttributeID>GLDateKey</AttributeID>
+                  <Cardinality>One</Cardinality>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>GLDateKey</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>GLDateDate</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>GLDateDate</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>GLDateDayInMonth</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>GLDateDayInMonth</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>GLDateDayInYear</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>GLDateDayInYear</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>GLDateWeekdayNo</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>GLDateWeekdayNo</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>GLDateWeekdayName</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>GLDateWeekdayName</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>GLDateCalendarWeek</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>GLDateCalendarWeek</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>GLDateCalendarMonthNo</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>GLDateCalendarMonthNo</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>GLDateCalendarMonthName</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>GLDateCalendarMonthName</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>GLDateCalendarQuarterNo</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>GLDateCalendarQuarterNo</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>GLDateCalendarYear</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>GLDateCalendarYear</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>GLDateFinancialDate</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>GLDateFinancialDate</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>GLDateFinancialWeek</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>GLDateFinancialWeek</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>GLDateFinancialMonthNo</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>GLDateFinancialMonthNo</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>GLDateFinancialMonthName</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>GLDateFinancialMonthName</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>GLDateFinancialQuarterNo</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>GLDateFinancialQuarterNo</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>GLDateFinancialYear</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>GLDateFinancialYear</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>GLDateWeekend</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>GLDateWeekend</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>GLDateHoliday</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>GLDateHoliday</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>GLDateCalPeriod</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>GLDateCalPeriod</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>GLDateFinancialPeriod</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>GLDateFinancialPeriod</Name>
+                </AttributeRelationship>
+              </AttributeRelationships>
+              <OrderBy>Key</OrderBy>
+              <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>GLDateKey</ID>
+              <Name>GLDateKey</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Error</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                    <ColumnID>GLDateKey</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                  <ColumnID>GLDateKey</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="DateTimeGeneral" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>GLDateDate</ID>
+              <Name>GLDateDate</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Date</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                    <ColumnID>GLDateDate</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                  <ColumnID>GLDateDate</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+              <ddl300_300:FormatString>General Date</ddl300_300:FormatString>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>GLDateDayInMonth</ID>
+              <Name>GLDateDayInMonth</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                    <ColumnID>GLDateDayInMonth</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                  <ColumnID>GLDateDayInMonth</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>GLDateDayInYear</ID>
+              <Name>GLDateDayInYear</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                    <ColumnID>GLDateDayInYear</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                  <ColumnID>GLDateDayInYear</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>GLDateWeekdayNo</ID>
+              <Name>GLDateWeekdayNo</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                    <ColumnID>GLDateWeekdayNo</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                  <ColumnID>GLDateWeekdayNo</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="Text" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>GLDateWeekdayName</ID>
+              <Name>GLDateWeekdayName</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                    <ColumnID>GLDateWeekdayName</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                  <ColumnID>GLDateWeekdayName</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>GLDateCalendarWeek</ID>
+              <Name>GLDateCalendarWeek</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                    <ColumnID>GLDateCalendarWeek</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                  <ColumnID>GLDateCalendarWeek</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>GLDateCalendarMonthNo</ID>
+              <Name>GLDateCalendarMonthNo</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                    <ColumnID>GLDateCalendarMonthNo</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                  <ColumnID>GLDateCalendarMonthNo</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="Text" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>GLDateCalendarMonthName</ID>
+              <Name>GLDateCalendarMonthName</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                    <ColumnID>GLDateCalendarMonthName</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                  <ColumnID>GLDateCalendarMonthName</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>GLDateCalendarQuarterNo</ID>
+              <Name>GLDateCalendarQuarterNo</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                    <ColumnID>GLDateCalendarQuarterNo</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                  <ColumnID>GLDateCalendarQuarterNo</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>GLDateCalendarYear</ID>
+              <Name>GLDateCalendarYear</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                    <ColumnID>GLDateCalendarYear</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                  <ColumnID>GLDateCalendarYear</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="DateTimeGeneral" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>GLDateFinancialDate</ID>
+              <Name>GLDateFinancialDate</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Date</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                    <ColumnID>GLDateFinancialDate</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                  <ColumnID>GLDateFinancialDate</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+              <ddl300_300:FormatString>General Date</ddl300_300:FormatString>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>GLDateFinancialWeek</ID>
+              <Name>GLDateFinancialWeek</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                    <ColumnID>GLDateFinancialWeek</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                  <ColumnID>GLDateFinancialWeek</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>GLDateFinancialMonthNo</ID>
+              <Name>GLDateFinancialMonthNo</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                    <ColumnID>GLDateFinancialMonthNo</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                  <ColumnID>GLDateFinancialMonthNo</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="Text" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>GLDateFinancialMonthName</ID>
+              <Name>GLDateFinancialMonthName</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                    <ColumnID>GLDateFinancialMonthName</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                  <ColumnID>GLDateFinancialMonthName</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>GLDateFinancialQuarterNo</ID>
+              <Name>GLDateFinancialQuarterNo</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                    <ColumnID>GLDateFinancialQuarterNo</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                  <ColumnID>GLDateFinancialQuarterNo</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="General" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>GLDateFinancialYear</ID>
+              <Name>GLDateFinancialYear</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Integer</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                    <ColumnID>GLDateFinancialYear</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                  <ColumnID>GLDateFinancialYear</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="Text" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>GLDateWeekend</ID>
+              <Name>GLDateWeekend</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                    <ColumnID>GLDateWeekend</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                  <ColumnID>GLDateWeekend</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="Text" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>GLDateHoliday</ID>
+              <Name>GLDateHoliday</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                    <ColumnID>GLDateHoliday</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                  <ColumnID>GLDateHoliday</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="Text" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>GLDateCalPeriod</ID>
+              <Name>GLDateCalPeriod</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                    <ColumnID>GLDateCalPeriod</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                  <ColumnID>GLDateCalPeriod</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <Annotations>
+                <Annotation>
+                  <Name>Format</Name>
+                  <Value>
+                    <Format Format="Text" xmlns="" />
+                  </Value>
+                </Annotation>
+              </Annotations>
+              <ID>GLDateFinancialPeriod</ID>
+              <Name>GLDateFinancialPeriod</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                    <ColumnID>GLDateFinancialPeriod</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                  <ColumnID>GLDateFinancialPeriod</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+          </Attributes>
+          <ProactiveCaching>
+            <SilenceInterval>-PT1S</SilenceInterval>
+            <Latency>-PT1S</Latency>
+            <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+            <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+            <Source xsi:type="ProactiveCachingInheritedBinding" />
+          </ProactiveCaching>
+        </Dimension>
       </Dimensions>
       <Cubes>
         <Cube>
@@ -13065,6 +14030,10 @@
                 </Attribute>
                 <Attribute>
                   <AttributeID>OriginalTransactionID</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>GLDate</AttributeID>
+                  <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
                 </Attribute>
               </Attributes>
             </Dimension>
@@ -14029,6 +14998,80 @@
                 </Attribute>
                 <Attribute>
                   <AttributeID>MatterNumber</AttributeID>
+                </Attribute>
+              </Attributes>
+            </Dimension>
+            <Dimension>
+              <ID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</ID>
+              <Name>dimGLDate</Name>
+              <DimensionID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</DimensionID>
+              <Attributes>
+                <Attribute>
+                  <AttributeID>RowNumber</AttributeID>
+                  <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>GLDateKey</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>GLDateDate</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>GLDateDayInMonth</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>GLDateDayInYear</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>GLDateWeekdayNo</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>GLDateWeekdayName</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>GLDateCalendarWeek</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>GLDateCalendarMonthNo</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>GLDateCalendarMonthName</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>GLDateCalendarQuarterNo</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>GLDateCalendarYear</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>GLDateFinancialDate</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>GLDateFinancialWeek</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>GLDateFinancialMonthNo</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>GLDateFinancialMonthName</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>GLDateFinancialQuarterNo</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>GLDateFinancialYear</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>GLDateWeekend</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>GLDateHoliday</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>GLDateCalPeriod</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>GLDateFinancialPeriod</AttributeID>
                 </Attribute>
               </Attributes>
             </Dimension>
@@ -18269,6 +19312,20 @@ red_dw.dbo.dim_matter_branch</QueryDefinition>
                           <Source xsi:type="ColumnBinding">
                             <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
                             <ColumnID>OriginalTransactionID</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>GLDate</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
+                            <ColumnID>GLDate</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -22559,6 +23616,342 @@ red_dw.dbo.dim_matter_branch</QueryDefinition>
                   <Materialization>Regular</Materialization>
                   <ddl300:RelationshipID>356d20c0-93f5-4bc7-a710-ff0041fdd494</ddl300:RelationshipID>
                 </Dimension>
+                <Dimension xsi:type="ReferenceMeasureGroupDimension">
+                  <CubeDimensionID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>RowNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>4</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <Source xsi:type="ddl200_200:RowNumberBinding" />
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>GLDateKey</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                            <ColumnID>GLDateKey</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>GLDateDate</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                            <ColumnID>GLDateDate</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>GLDateDayInMonth</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                            <ColumnID>GLDateDayInMonth</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>GLDateDayInYear</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                            <ColumnID>GLDateDayInYear</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>GLDateWeekdayNo</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                            <ColumnID>GLDateWeekdayNo</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>GLDateWeekdayName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                            <ColumnID>GLDateWeekdayName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>GLDateCalendarWeek</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                            <ColumnID>GLDateCalendarWeek</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>GLDateCalendarMonthNo</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                            <ColumnID>GLDateCalendarMonthNo</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>GLDateCalendarMonthName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                            <ColumnID>GLDateCalendarMonthName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>GLDateCalendarQuarterNo</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                            <ColumnID>GLDateCalendarQuarterNo</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>GLDateCalendarYear</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                            <ColumnID>GLDateCalendarYear</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>GLDateFinancialDate</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                            <ColumnID>GLDateFinancialDate</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>GLDateFinancialWeek</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                            <ColumnID>GLDateFinancialWeek</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>GLDateFinancialMonthNo</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                            <ColumnID>GLDateFinancialMonthNo</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>GLDateFinancialMonthName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                            <ColumnID>GLDateFinancialMonthName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>GLDateFinancialQuarterNo</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                            <ColumnID>GLDateFinancialQuarterNo</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>GLDateFinancialYear</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                            <ColumnID>GLDateFinancialYear</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>GLDateWeekend</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                            <ColumnID>GLDateWeekend</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>GLDateHoliday</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                            <ColumnID>GLDateHoliday</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>GLDateCalPeriod</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                            <ColumnID>GLDateCalPeriod</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>GLDateFinancialPeriod</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                            <ColumnID>GLDateFinancialPeriod</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                  </Attributes>
+                  <IntermediateCubeDimensionID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</IntermediateCubeDimensionID>
+                  <IntermediateGranularityAttributeID>GLDate</IntermediateGranularityAttributeID>
+                  <Materialization>Regular</Materialization>
+                  <ddl300:RelationshipID>dc3c3836-d0a7-4956-86f6-4791a499c238</ddl300:RelationshipID>
+                </Dimension>
               </Dimensions>
               <Partitions>
                 <Partition>
@@ -22581,7 +23974,7 @@ red_dw.dbo.dim_matter_branch</QueryDefinition>
                   </Annotations>
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
-                    <QueryDefinition>select 
+                    <QueryDefinition>select dim_gl_date_key as 'GLDate', 
 dim_orig_matter_header_curr_key AS OriginalMatterID,
 a.original_transaction_sequence_number OriginalTransactionID,
 a.transaction_sequence_number TransactionID,
@@ -30337,6 +31730,439 @@ red_dw.dbo.dim_employee</QueryDefinition>
                 <Source xsi:type="ProactiveCachingInheritedBinding" />
               </ProactiveCaching>
             </MeasureGroup>
+            <MeasureGroup>
+              <ID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</ID>
+              <Name>dimGLDate</Name>
+              <Measures>
+                <Measure>
+                  <ID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</ID>
+                  <Name>_Count dimGLDate</Name>
+                  <AggregateFunction>Count</AggregateFunction>
+                  <DataType>BigInt</DataType>
+                  <Source>
+                    <DataType>BigInt</DataType>
+                    <DataSize>8</DataSize>
+                    <Source xsi:type="RowBinding">
+                      <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                    </Source>
+                  </Source>
+                  <Visible>false</Visible>
+                </Measure>
+              </Measures>
+              <StorageMode valuens="ddl200_200">InMemory</StorageMode>
+              <ErrorConfiguration>
+                <KeyNotFound>IgnoreError</KeyNotFound>
+                <KeyDuplicate>ReportAndStop</KeyDuplicate>
+                <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+              </ErrorConfiguration>
+              <ProcessingMode>Regular</ProcessingMode>
+              <Dimensions>
+                <Dimension xsi:type="DegenerateMeasureGroupDimension">
+                  <CubeDimensionID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</CubeDimensionID>
+                  <Attributes>
+                    <Attribute>
+                      <AttributeID>RowNumber</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimGLDate</TableID>
+                            <ColumnID>RowNumber</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                      <Type>Granularity</Type>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>GLDateKey</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Error</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                            <ColumnID>GLDateKey</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>GLDateDate</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                            <ColumnID>GLDateDate</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>GLDateDayInMonth</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                            <ColumnID>GLDateDayInMonth</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>GLDateDayInYear</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                            <ColumnID>GLDateDayInYear</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>GLDateWeekdayNo</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                            <ColumnID>GLDateWeekdayNo</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>GLDateWeekdayName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                            <ColumnID>GLDateWeekdayName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>GLDateCalendarWeek</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                            <ColumnID>GLDateCalendarWeek</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>GLDateCalendarMonthNo</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                            <ColumnID>GLDateCalendarMonthNo</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>GLDateCalendarMonthName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                            <ColumnID>GLDateCalendarMonthName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>GLDateCalendarQuarterNo</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                            <ColumnID>GLDateCalendarQuarterNo</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>GLDateCalendarYear</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                            <ColumnID>GLDateCalendarYear</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>GLDateFinancialDate</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Date</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                            <ColumnID>GLDateFinancialDate</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>GLDateFinancialWeek</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                            <ColumnID>GLDateFinancialWeek</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>GLDateFinancialMonthNo</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                            <ColumnID>GLDateFinancialMonthNo</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>GLDateFinancialMonthName</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                            <ColumnID>GLDateFinancialMonthName</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>GLDateFinancialQuarterNo</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                            <ColumnID>GLDateFinancialQuarterNo</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>GLDateFinancialYear</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Integer</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                            <ColumnID>GLDateFinancialYear</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>GLDateWeekend</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                            <ColumnID>GLDateWeekend</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>GLDateHoliday</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                            <ColumnID>GLDateHoliday</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>GLDateCalPeriod</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                            <ColumnID>GLDateCalPeriod</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>GLDateFinancialPeriod</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</TableID>
+                            <ColumnID>GLDateFinancialPeriod</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                  </Attributes>
+                  <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
+                </Dimension>
+              </Dimensions>
+              <Partitions>
+                <Partition>
+                  <ID>dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4</ID>
+                  <Name>dimGLDate</Name>
+                  <Annotations>
+                    <Annotation>
+                      <Name>IsQueryEditorUsed</Name>
+                      <Value>True</Value>
+                    </Annotation>
+                    <Annotation>
+                      <Name>QueryEditorSerialization</Name>
+                    </Annotation>
+                    <Annotation>
+                      <Name>TableWidgetSerialization</Name>
+                    </Annotation>
+                  </Annotations>
+                  <Source xsi:type="QueryBinding">
+                    <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
+                    <QueryDefinition>select
+dim_date_key GLDateKey,
+calendar_date GLDateDate,
+cal_day_in_month GLDateDayInMonth,
+cal_day_in_year GLDateDayInYear,
+cal_day_in_week_no GLDateWeekdayNo,
+cal_day_in_week GLDateWeekdayName,
+cal_week_in_year GLDateCalendarWeek,
+cal_month_no GLDateCalendarMonthNo,
+cal_month_name GLDateCalendarMonthName,
+cal_quarter_no GLDateCalendarQuarterNo,
+cal_year GLDateCalendarYear,
+case when month(calendar_date) &gt; 4 then dateadd(month, -4, dateadd(year, 1, calendar_date)) else dateadd(month, 8, dateadd(year, 0, calendar_date)) end GLDateFinancialDate,
+fin_week_in_year GLDateFinancialWeek,
+fin_month_no GLDateFinancialMonthNo,
+fin_month_name GLDateFinancialMonthName,
+fin_quarter_no GLDateFinancialQuarterNo,
+fin_year GLDateFinancialYear,
+week_end_flag GLDateWeekend,
+holiday_flag GLDateHoliday,
+cal_month_name + '-' + right(cal_year, 2) GLDateCalPeriod,
+fin_month_name + '-' + right(fin_year, 2) GLDateFinancialPeriod
+
+
+
+
+from
+dim_date</QueryDefinition>
+                  </Source>
+                  <StorageMode valuens="ddl200_200">InMemory</StorageMode>
+                  <ProcessingMode>Regular</ProcessingMode>
+                  <ErrorConfiguration>
+                    <KeyNotFound>IgnoreError</KeyNotFound>
+                    <KeyDuplicate>ReportAndStop</KeyDuplicate>
+                    <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+                  </ErrorConfiguration>
+                  <ProactiveCaching>
+                    <SilenceInterval>-PT1S</SilenceInterval>
+                    <Latency>-PT1S</Latency>
+                    <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+                    <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+                    <Source xsi:type="ProactiveCachingInheritedBinding" />
+                  </ProactiveCaching>
+                </Partition>
+              </Partitions>
+              <ProactiveCaching>
+                <SilenceInterval>-PT1S</SilenceInterval>
+                <Latency>-PT1S</Latency>
+                <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+                <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+                <Source xsi:type="ProactiveCachingInheritedBinding" />
+              </ProactiveCaching>
+            </MeasureGroup>
           </MeasureGroups>
           <Source>
             <DataSourceViewID>Sandbox</DataSourceViewID>
@@ -31434,7 +33260,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="TimeTransactions" msprop:DbTableName="factMainTable" msprop:TableType="View" msprop:Description="factMainTable" msprop:QueryDefinition="select &#xD;&#xA;dim_orig_matter_header_curr_key AS OriginalMatterID,&#xD;&#xA;a.original_transaction_sequence_number OriginalTransactionID,&#xD;&#xA;a.transaction_sequence_number TransactionID,&#xD;&#xA;a.dim_client_key ClientID,&#xD;&#xA;a.dim_matter_header_curr_key MatterID,&#xD;&#xA;a.dim_bill_key BillID,&#xD;&#xA;a.dim_all_time_narrative_key NarrativeID,&#xD;&#xA;&#xD;&#xA;t.chargeable_nonc_nonb ChargeableTimeCode,&#xD;&#xA;--a.time_type ChargeableTimeCode,&#xD;&#xA;a.dim_fed_hierarchy_history_key FEDCodeID,&#xD;&#xA;a.dim_transaction_date_key TransactionDate,&#xD;&#xA;a.minutes_recorded MinutesRecorded,&#xD;&#xA;a.hourly_charge_rate ChargeRate,&#xD;&#xA;a.time_charge_value timeChargeValue,&#xD;&#xA;t.transaction_type TransactionType,&#xD;&#xA;t.time_activity_code TimeActivityCode,&#xD;&#xA;--t.rate_code RateCode,&#xD;&#xA;t.matter_stage_descrn StageDesc,&#xD;&#xA;datediff(d, d3.calendar_date, getdate()) TransactionAgeDays,&#xD;&#xA;t.reporting_exclusions ReportingExclusions,&#xD;&#xA;edithrs EditHrs, &#xD;&#xA;editamt EditAmt, &#xD;&#xA;editrate EditRate&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_all_time_activity a&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; red_dw.dbo.dim_all_time_activity t&#xD;&#xA;  on a.dim_all_time_activity_key = t.dim_all_time_activity_key&#xD;&#xA;&#xD;&#xA;&#xD;&#xA; left join red_dw.dbo.dim_date d3&#xD;&#xA; on d3.dim_date_key = a.dim_transaction_date_key&#xD;&#xA;&#xD;&#xA;where isactive = 1">
+                    <xs:element name="factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="TimeTransactions" msprop:DbTableName="factMainTable" msprop:TableType="View" msprop:Description="factMainTable" msprop:QueryDefinition="select &#xD;&#xA;dim_orig_matter_header_curr_key AS OriginalMatterID,&#xD;&#xA;a.original_transaction_sequence_number OriginalTransactionID,&#xD;&#xA;dim_gl_date_key as 'GLDate',&#xD;&#xA;a.transaction_sequence_number TransactionID,&#xD;&#xA;a.dim_client_key ClientID,&#xD;&#xA;a.dim_matter_header_curr_key MatterID,&#xD;&#xA;a.dim_bill_key BillID,&#xD;&#xA;a.dim_all_time_narrative_key NarrativeID,&#xD;&#xA;&#xD;&#xA;t.chargeable_nonc_nonb ChargeableTimeCode,&#xD;&#xA;--a.time_type ChargeableTimeCode,&#xD;&#xA;a.dim_fed_hierarchy_history_key FEDCodeID,&#xD;&#xA;a.dim_transaction_date_key TransactionDate,&#xD;&#xA;a.minutes_recorded MinutesRecorded,&#xD;&#xA;a.hourly_charge_rate ChargeRate,&#xD;&#xA;a.time_charge_value timeChargeValue,&#xD;&#xA;t.transaction_type TransactionType,&#xD;&#xA;t.time_activity_code TimeActivityCode,&#xD;&#xA;--t.rate_code RateCode,&#xD;&#xA;t.matter_stage_descrn StageDesc,&#xD;&#xA;datediff(d, d3.calendar_date, getdate()) TransactionAgeDays,&#xD;&#xA;t.reporting_exclusions ReportingExclusions,&#xD;&#xA;edithrs EditHrs, &#xD;&#xA;editamt EditAmt, &#xD;&#xA;editrate EditRate&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_all_time_activity a&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; red_dw.dbo.dim_all_time_activity t&#xD;&#xA;  on a.dim_all_time_activity_key = t.dim_all_time_activity_key&#xD;&#xA;&#xD;&#xA;&#xD;&#xA; left join red_dw.dbo.dim_date d3&#xD;&#xA; on d3.dim_date_key = a.dim_transaction_date_key&#xD;&#xA;&#xD;&#xA;where isactive = 1">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="BillID" msprop:DbColumnName="BillID" msprop:FriendlyName="BillID" type="xs:int" minOccurs="0" />
@@ -31482,6 +33308,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                           <xs:element name="editrate" msprop:DbColumnName="editrate" msprop:FriendlyName="editrate" type="xs:decimal" minOccurs="0" />
                           <xs:element name="OriginalMatterID" msprop:DbColumnName="OriginalMatterID" msprop:FriendlyName="OriginalMatterID" type="xs:int" minOccurs="0" />
                           <xs:element name="OriginalTransactionID" msprop:DbColumnName="OriginalTransactionID" msprop:FriendlyName="OriginalTransactionID" type="xs:int" minOccurs="0" />
+                          <xs:element name="GLDate" msprop:DbColumnName="GLDate" msprop:FriendlyName="GLDate" type="xs:int" minOccurs="0" />
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
@@ -32436,6 +34263,75 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                             </xs:simpleType>
                           </xs:element>
                           <xs:element name="MatterNumber" msprop:DbColumnName="MatterNumber" msprop:FriendlyName="MatterNumber" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="dimGLDate_e5f91521-6549-4f87-9442-da95276e85e4" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimGLDate" msprop:DbTableName="dimGLDate" msprop:TableType="View" msprop:Description="dimGLDate" msprop:QueryDefinition="select&#xD;&#xA;dim_date_key GLDateKey,&#xD;&#xA;calendar_date GLDateDate,&#xD;&#xA;cal_day_in_month GLDateDayInMonth,&#xD;&#xA;cal_day_in_year GLDateDayInYear,&#xD;&#xA;cal_day_in_week_no GLDateWeekdayNo,&#xD;&#xA;cal_day_in_week GLDateWeekdayName,&#xD;&#xA;cal_week_in_year GLDateCalendarWeek,&#xD;&#xA;cal_month_no GLDateCalendarMonthNo,&#xD;&#xA;cal_month_name GLDateCalendarMonthName,&#xD;&#xA;cal_quarter_no GLDateCalendarQuarterNo,&#xD;&#xA;cal_year GLDateCalendarYear,&#xD;&#xA;case when month(calendar_date) &gt; 4 then dateadd(month, -4, dateadd(year, 1, calendar_date)) else dateadd(month, 8, dateadd(year, 0, calendar_date)) end GLDateFinancialDate,&#xD;&#xA;fin_week_in_year GLDateFinancialWeek,&#xD;&#xA;fin_month_no GLDateFinancialMonthNo,&#xD;&#xA;fin_month_name GLDateFinancialMonthName,&#xD;&#xA;fin_quarter_no GLDateFinancialQuarterNo,&#xD;&#xA;fin_year GLDateFinancialYear,&#xD;&#xA;week_end_flag GLDateWeekend,&#xD;&#xA;holiday_flag GLDateHoliday,&#xD;&#xA;cal_month_name + '-' + right(cal_year, 2) GLDateCalPeriod,&#xD;&#xA;fin_month_name + '-' + right(fin_year, 2) GLDateFinancialPeriod&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;dim_date">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="GLDateKey" msprop:DbColumnName="GLDateKey" msprop:FriendlyName="GLDateKey" type="xs:int" minOccurs="0" />
+                          <xs:element name="GLDateDate" msprop:DbColumnName="GLDateDate" msprop:FriendlyName="GLDateDate" type="xs:dateTime" minOccurs="0" />
+                          <xs:element name="GLDateDayInMonth" msprop:DbColumnName="GLDateDayInMonth" msprop:FriendlyName="GLDateDayInMonth" type="xs:int" minOccurs="0" />
+                          <xs:element name="GLDateDayInYear" msprop:DbColumnName="GLDateDayInYear" msprop:FriendlyName="GLDateDayInYear" type="xs:int" minOccurs="0" />
+                          <xs:element name="GLDateWeekdayNo" msprop:DbColumnName="GLDateWeekdayNo" msprop:FriendlyName="GLDateWeekdayNo" type="xs:int" minOccurs="0" />
+                          <xs:element name="GLDateWeekdayName" msprop:DbColumnName="GLDateWeekdayName" msprop:FriendlyName="GLDateWeekdayName" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="GLDateCalendarWeek" msprop:DbColumnName="GLDateCalendarWeek" msprop:FriendlyName="GLDateCalendarWeek" type="xs:int" minOccurs="0" />
+                          <xs:element name="GLDateCalendarMonthNo" msprop:DbColumnName="GLDateCalendarMonthNo" msprop:FriendlyName="GLDateCalendarMonthNo" type="xs:int" minOccurs="0" />
+                          <xs:element name="GLDateCalendarMonthName" msprop:DbColumnName="GLDateCalendarMonthName" msprop:FriendlyName="GLDateCalendarMonthName" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="GLDateCalendarQuarterNo" msprop:DbColumnName="GLDateCalendarQuarterNo" msprop:FriendlyName="GLDateCalendarQuarterNo" type="xs:int" minOccurs="0" />
+                          <xs:element name="GLDateCalendarYear" msprop:DbColumnName="GLDateCalendarYear" msprop:FriendlyName="GLDateCalendarYear" type="xs:int" minOccurs="0" />
+                          <xs:element name="GLDateFinancialDate" msprop:DbColumnName="GLDateFinancialDate" msprop:FriendlyName="GLDateFinancialDate" type="xs:dateTime" minOccurs="0" />
+                          <xs:element name="GLDateFinancialWeek" msprop:DbColumnName="GLDateFinancialWeek" msprop:FriendlyName="GLDateFinancialWeek" type="xs:int" minOccurs="0" />
+                          <xs:element name="GLDateFinancialMonthNo" msprop:DbColumnName="GLDateFinancialMonthNo" msprop:FriendlyName="GLDateFinancialMonthNo" type="xs:int" minOccurs="0" />
+                          <xs:element name="GLDateFinancialMonthName" msprop:DbColumnName="GLDateFinancialMonthName" msprop:FriendlyName="GLDateFinancialMonthName" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="GLDateFinancialQuarterNo" msprop:DbColumnName="GLDateFinancialQuarterNo" msprop:FriendlyName="GLDateFinancialQuarterNo" type="xs:int" minOccurs="0" />
+                          <xs:element name="GLDateFinancialYear" msprop:DbColumnName="GLDateFinancialYear" msprop:FriendlyName="GLDateFinancialYear" type="xs:int" minOccurs="0" />
+                          <xs:element name="GLDateWeekend" msprop:DbColumnName="GLDateWeekend" msprop:FriendlyName="GLDateWeekend" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="GLDateHoliday" msprop:DbColumnName="GLDateHoliday" msprop:FriendlyName="GLDateHoliday" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="GLDateCalPeriod" msprop:DbColumnName="GLDateCalPeriod" msprop:FriendlyName="GLDateCalPeriod" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="GLDateFinancialPeriod" msprop:DbColumnName="GLDateFinancialPeriod" msprop:FriendlyName="GLDateFinancialPeriod" minOccurs="0">
                             <xs:simpleType>
                               <xs:restriction base="xs:string">
                                 <xs:maxLength value="32768" />
