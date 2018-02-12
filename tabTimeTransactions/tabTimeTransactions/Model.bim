@@ -27670,7 +27670,7 @@ red_dw.dbo.dim_matter_worktype</QueryDefinition>
 dim_fed_hierarchy_history_key MatterFEDCodeID,
 fed_code MatterFEDCode,
 name MatterFEDName,
-ISNULL(jobtitle,'') MatterJobTitle,
+jobtitle MatterJobTitle,
 case when leaver= 1 then 'Y' else 'N' end as MatterLeaver,
 hierarchylevel2hist MatterBusinessLine,
 hierarchylevel3hist MatterPracticeArea,
@@ -33145,7 +33145,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
               <Value>SqlServer</Value>
             </Annotation>
           </Annotations>
-          <ConnectionString>Provider=SQLNCLI11;Data Source=svr-liv-dwh-01;Initial Catalog=red_dw;Persist Security Info=true;User ID=DWH_SSASAdmin;Integrated Security=SSPI</ConnectionString>
+          <ConnectionString>Provider=SQLNCLI11;Data Source=svr-liv-dwh-01;Initial Catalog=red_dw;Persist Security Info=false;User ID=DWH_SSASAdmin;Integrated Security=SSPI</ConnectionString>
           <ImpersonationInfo>
             <ImpersonationMode>ImpersonateAccount</ImpersonationMode>
             <Account>SBC\DWH_SSASAdmin</Account>
@@ -33957,7 +33957,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimMatterFEDHierarchy" msprop:DbTableName="dimMatterFEDHierarchy" msprop:TableType="View" msprop:Description="dimMatterFEDHierarchy" msprop:QueryDefinition="select distinct&#xD;&#xA;dim_fed_hierarchy_history_key MatterFEDCodeID,&#xD;&#xA;fed_code MatterFEDCode,&#xD;&#xA;name MatterFEDName,&#xD;&#xA;ISNULL(jobtitle,'') MatterJobTitle,&#xD;&#xA;case when leaver= 1 then 'Y' else 'N' end as MatterLeaver,&#xD;&#xA;hierarchylevel2hist MatterBusinessLine,&#xD;&#xA;hierarchylevel3hist MatterPracticeArea,&#xD;&#xA;hierarchylevel4hist MatterTeam,&#xD;&#xA;reportingbcmname MatterBCMName,&#xD;&#xA;&#xD;&#xA;dss_current_flag MatterCurrentFlag,&#xD;&#xA;dim_employee_key &#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_fed_hierarchy_history">
+                    <xs:element name="dimMatterFEDHierarchy_807b3207-43d2-456c-bd7d-9729de4a7437" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimMatterFEDHierarchy" msprop:DbTableName="dimMatterFEDHierarchy" msprop:TableType="View" msprop:Description="dimMatterFEDHierarchy" msprop:QueryDefinition="select distinct&#xD;&#xA;dim_fed_hierarchy_history_key MatterFEDCodeID,&#xD;&#xA;fed_code MatterFEDCode,&#xD;&#xA;name MatterFEDName,&#xD;&#xA;jobtitle MatterJobTitle,&#xD;&#xA;case when leaver= 1 then 'Y' else 'N' end as MatterLeaver,&#xD;&#xA;hierarchylevel2hist MatterBusinessLine,&#xD;&#xA;hierarchylevel3hist MatterPracticeArea,&#xD;&#xA;hierarchylevel4hist MatterTeam,&#xD;&#xA;reportingbcmname MatterBCMName,&#xD;&#xA;&#xD;&#xA;dss_current_flag MatterCurrentFlag,&#xD;&#xA;dim_employee_key &#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_fed_hierarchy_history">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="MatterFEDCodeID" msprop:DbColumnName="MatterFEDCodeID" msprop:FriendlyName="MatterFEDCodeID" type="xs:int" minOccurs="0" />
