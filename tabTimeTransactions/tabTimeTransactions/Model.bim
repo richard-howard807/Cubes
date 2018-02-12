@@ -6724,6 +6724,11 @@
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>dim_employee_key</Name>
                 </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>TimeTransactionsJobTitle</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>TimeTransactionsJobTitle</Name>
+                </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
@@ -6978,6 +6983,31 @@
               </NameColumn>
               <OrderBy>Key</OrderBy>
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+            </Attribute>
+            <Attribute>
+              <ID>TimeTransactionsJobTitle</ID>
+              <Name>TimeTransactionsJobTitle</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32768</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dimFEDHierarchy_e077edfd-a3df-4415-9164-2f7aab15a75f</TableID>
+                    <ColumnID>TimeTransactionsJobTitle</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32768</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dimFEDHierarchy_e077edfd-a3df-4415-9164-2f7aab15a75f</TableID>
+                  <ColumnID>TimeTransactionsJobTitle</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
             </Attribute>
           </Attributes>
           <Hierarchies>
@@ -14405,6 +14435,9 @@
                 <Attribute>
                   <AttributeID>dim_employee_key</AttributeID>
                   <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>TimeTransactionsJobTitle</AttributeID>
                 </Attribute>
               </Attributes>
               <Hierarchies>
@@ -22222,6 +22255,20 @@ red_dw.dbo.dim_matter_branch</QueryDefinition>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>TimeTransactionsJobTitle</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimFEDHierarchy_e077edfd-a3df-4415-9164-2f7aab15a75f</TableID>
+                            <ColumnID>TimeTransactionsJobTitle</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <IntermediateCubeDimensionID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</IntermediateCubeDimensionID>
                   <IntermediateGranularityAttributeID>FEDCodeID</IntermediateGranularityAttributeID>
@@ -26127,6 +26174,20 @@ dim_closed_practice_management_date_key &gt; 0</QueryDefinition>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>TimeTransactionsJobTitle</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32768</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dimFEDHierarchy_e077edfd-a3df-4415-9164-2f7aab15a75f</TableID>
+                            <ColumnID>TimeTransactionsJobTitle</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
                 </Dimension>
@@ -26249,6 +26310,7 @@ dim_fed_hierarchy_history_key TimeTransactionsFEDCodeID,
 fed_code TimeTransactionsFEDCode,
 name TimeTransactionsFEDName,
 display_name TimeTransactionsDisplayName,
+ISNULL(jobtitle,'') TimeTransactionsJobTitle,
 hierarchylevel2hist TimeTransactionsBusinessLine,
 hierarchylevel3hist TimeTransactionsPracticeArea,
 hierarchylevel4hist TimeTransactionsTeam,
@@ -26257,7 +26319,7 @@ activeud TimeTransactionsActiveUD,
 dim_employee_key
 
 
-from
+FROm
 red_dw.dbo.dim_fed_hierarchy_history</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
@@ -33632,7 +33694,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimFEDHierarchy_e077edfd-a3df-4415-9164-2f7aab15a75f" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimTimeTransactionsFEDHierarchy" msprop:DbTableName="dimFEDHierarchy" msprop:TableType="View" msprop:Description="dimFEDHierarchy" msprop:QueryDefinition="select distinct&#xD;&#xA;dim_fed_hierarchy_history_key TimeTransactionsFEDCodeID,&#xD;&#xA;fed_code TimeTransactionsFEDCode,&#xD;&#xA;name TimeTransactionsFEDName,&#xD;&#xA;display_name TimeTransactionsDisplayName,&#xD;&#xA;hierarchylevel2hist TimeTransactionsBusinessLine,&#xD;&#xA;hierarchylevel3hist TimeTransactionsPracticeArea,&#xD;&#xA;hierarchylevel4hist TimeTransactionsTeam,&#xD;&#xA;reportingbcmname TimeTransactionsBCMName,&#xD;&#xA;activeud TimeTransactionsActiveUD,&#xD;&#xA;dim_employee_key&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.dim_fed_hierarchy_history">
+                    <xs:element name="dimFEDHierarchy_e077edfd-a3df-4415-9164-2f7aab15a75f" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimTimeTransactionsFEDHierarchy" msprop:DbTableName="dimFEDHierarchy" msprop:TableType="View" msprop:Description="dimFEDHierarchy" msprop:QueryDefinition="select distinct&#xD;&#xA;dim_fed_hierarchy_history_key TimeTransactionsFEDCodeID,&#xD;&#xA;fed_code TimeTransactionsFEDCode,&#xD;&#xA;name TimeTransactionsFEDName,&#xD;&#xA;display_name TimeTransactionsDisplayName,&#xD;&#xA;ISNULL(jobtitle,'') TimeTransactionsJobTitle,&#xD;&#xA;hierarchylevel2hist TimeTransactionsBusinessLine,&#xD;&#xA;hierarchylevel3hist TimeTransactionsPracticeArea,&#xD;&#xA;hierarchylevel4hist TimeTransactionsTeam,&#xD;&#xA;reportingbcmname TimeTransactionsBCMName,&#xD;&#xA;activeud TimeTransactionsActiveUD,&#xD;&#xA;dim_employee_key&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;FROm&#xD;&#xA;red_dw.dbo.dim_fed_hierarchy_history">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="TimeTransactionsFEDCodeID" msprop:DbColumnName="TimeTransactionsFEDCodeID" msprop:FriendlyName="TimeTransactionsFEDCodeID" type="xs:int" minOccurs="0" />
@@ -33687,6 +33749,13 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                           </xs:element>
                           <xs:element name="TimeTransactionsActiveUD" msprop:DbColumnName="TimeTransactionsActiveUD" msprop:FriendlyName="TimeTransactionsActiveUD" type="xs:boolean" minOccurs="0" />
                           <xs:element name="dim_employee_key" msprop:DbColumnName="dim_employee_key" msprop:FriendlyName="dim_employee_key" type="xs:int" minOccurs="0" />
+                          <xs:element name="TimeTransactionsJobTitle" msprop:DbColumnName="TimeTransactionsJobTitle" msprop:FriendlyName="TimeTransactionsJobTitle" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32768" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
