@@ -993,13 +993,17 @@ The CALCULATE command controls the aggregation of leaf cells in the cube.
 If the CALCULATE command is deleted or modified, the data within the cube is affected.
 You should edit this command only if you manually specify how the cube is aggregated.
 */
-CALCULATE; 
+CALCULATE;
+alter cube [Debt Monthly] update dimension [Dim Debt Date], default_member= 
+FILTER([Dim Debt Date].[Fin Period].[Fin Period], 
+[Dim Debt Date].[Financial].CURRENTMEMBER.PROPERTIES("Current Fin Month") = "Current").item(0)  ;
+;  
 CREATE MEMBER CURRENTCUBE.[Measures].[Percentage of Debt over 90 Days]
  AS iif([Measures].[Debt Value] = 0,
 null,
 [Measures].[Debt over 90 days] / [Measures].[Debt Value]
 ), 
-VISIBLE = 1 ,  ASSOCIATED_MEASURE_GROUP = 'Fact Debt Monthly'  ; </Text>
+VISIBLE = 1 ,  ASSOCIATED_MEASURE_GROUP = 'Fact Debt Monthly'; </Text>
         </Command>
       </Commands>
     </MdxScript>
