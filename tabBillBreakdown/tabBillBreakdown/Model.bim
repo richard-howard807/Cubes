@@ -148,6 +148,16 @@
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>dim_last_pay_date_key</Name>
                 </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>amount_outstanding</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>amount_outstanding</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>amount_paid</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>amount_paid</Name>
+                </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
               <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
@@ -629,6 +639,56 @@
                 <Source xsi:type="ColumnBinding">
                   <TableID>dim_bill_6af77c4c-e403-4930-960c-65c7321d5744</TableID>
                   <ColumnID>dim_last_pay_date_key</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>amount_outstanding</ID>
+              <Name>amount_outstanding</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Double</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dim_bill_6af77c4c-e403-4930-960c-65c7321d5744</TableID>
+                    <ColumnID>amount_outstanding</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dim_bill_6af77c4c-e403-4930-960c-65c7321d5744</TableID>
+                  <ColumnID>amount_outstanding</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>amount_paid</ID>
+              <Name>amount_paid</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Double</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>dim_bill_6af77c4c-e403-4930-960c-65c7321d5744</TableID>
+                    <ColumnID>amount_paid</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>dim_bill_6af77c4c-e403-4930-960c-65c7321d5744</TableID>
+                  <ColumnID>amount_paid</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
@@ -31355,6 +31415,12 @@
                 <Attribute>
                   <AttributeID>dim_last_pay_date_key</AttributeID>
                 </Attribute>
+                <Attribute>
+                  <AttributeID>amount_outstanding</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>amount_paid</AttributeID>
+                </Attribute>
               </Attributes>
             </Dimension>
             <Dimension>
@@ -34123,6 +34189,34 @@
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>amount_outstanding</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Double</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_6af77c4c-e403-4930-960c-65c7321d5744</TableID>
+                            <ColumnID>amount_outstanding</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>amount_paid</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Double</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_6af77c4c-e403-4930-960c-65c7321d5744</TableID>
+                            <ColumnID>amount_paid</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
                 </Dimension>
@@ -35296,10 +35390,14 @@
                     <DataSourceID>e8e0673f-7952-4c4e-a705-9ac57378e5ef</DataSourceID>
                     <QueryDefinition>SELECT 
 dim_bill.*,
+f.amount_outstanding,
+f.amount_paid,
 CASE WHEN dim_bill_date.bill_date &gt; dim_detail_client.first_date_budget_uploaded OR first_date_budget_uploaded IS null THEN 1 ELSE 0 END Include_In_Budget ,
 fact_bill.dim_last_pay_date_key
 FROM 
-dim_bill
+ red_dw.dbo.dim_bill dim_bill
+ 
+left JOIN red_dw.dbo.fact_bill f ON  dim_bill.dim_bill_key = f.dim_bill_key
 LEFT JOIN dbo.fact_bill ON fact_bill.dim_bill_key = dim_bill.dim_bill_key
 LEFT JOIN dim_bill_date  ON fact_bill.dim_bill_date_key = dim_bill_date.dim_bill_date_key
 LEFT JOIN dbo.fact_dimension_main ON fact_bill.master_fact_key = fact_dimension_main.master_fact_key
@@ -41503,6 +41601,34 @@ LEFT JOIN dbo.dim_fed_hierarchy_history h ON h.fed_code = d.fee_earner_code AND 
                           <Source xsi:type="ColumnBinding">
                             <TableID>dim_bill_6af77c4c-e403-4930-960c-65c7321d5744</TableID>
                             <ColumnID>dim_last_pay_date_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>amount_outstanding</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Double</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_6af77c4c-e403-4930-960c-65c7321d5744</TableID>
+                            <ColumnID>amount_outstanding</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>amount_paid</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Double</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>dim_bill_6af77c4c-e403-4930-960c-65c7321d5744</TableID>
+                            <ColumnID>amount_paid</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -63714,7 +63840,7 @@ CREATE MEASURE 'fact_bill_detail'[Sum of workhrs]=SUM([workhrs]);
               <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:Locale="en-GB">
                 <xs:complexType>
                   <xs:choice minOccurs="0" maxOccurs="unbounded">
-                    <xs:element name="dim_bill_6af77c4c-e403-4930-960c-65c7321d5744" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dim_bill" msprop:DbSchemaName="dbo" msprop:DbTableName="dim_bill" msprop:TableType="View" msprop:Description="dim_bill" msprop:QueryDefinition="SELECT &#xD;&#xA;dim_bill.*,&#xD;&#xA;CASE WHEN dim_bill_date.bill_date &gt; dim_detail_client.first_date_budget_uploaded OR first_date_budget_uploaded IS null THEN 1 ELSE 0 END Include_In_Budget ,&#xD;&#xA;fact_bill.dim_last_pay_date_key&#xD;&#xA;FROM &#xD;&#xA;dim_bill&#xD;&#xA;LEFT JOIN dbo.fact_bill ON fact_bill.dim_bill_key = dim_bill.dim_bill_key&#xD;&#xA;LEFT JOIN dim_bill_date  ON fact_bill.dim_bill_date_key = dim_bill_date.dim_bill_date_key&#xD;&#xA;LEFT JOIN dbo.fact_dimension_main ON fact_bill.master_fact_key = fact_dimension_main.master_fact_key&#xD;&#xA;LEFT JOIN  dim_detail_client  ON dim_detail_client.dim_detail_client_key = fact_dimension_main.dim_detail_client_key">
+                    <xs:element name="dim_bill_6af77c4c-e403-4930-960c-65c7321d5744" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dim_bill" msprop:DbSchemaName="dbo" msprop:DbTableName="dim_bill" msprop:TableType="View" msprop:Description="dim_bill" msprop:QueryDefinition="SELECT &#xD;&#xA;dim_bill.*,&#xD;&#xA;f.amount_outstanding,&#xD;&#xA;f.amount_paid,&#xD;&#xA;CASE WHEN dim_bill_date.bill_date &gt; dim_detail_client.first_date_budget_uploaded OR first_date_budget_uploaded IS null THEN 1 ELSE 0 END Include_In_Budget ,&#xD;&#xA;fact_bill.dim_last_pay_date_key&#xD;&#xA;FROM &#xD;&#xA; red_dw.dbo.dim_bill dim_bill&#xD;&#xA; &#xD;&#xA;left JOIN red_dw.dbo.fact_bill f ON  dim_bill.dim_bill_key = f.dim_bill_key&#xD;&#xA;LEFT JOIN dbo.fact_bill ON fact_bill.dim_bill_key = dim_bill.dim_bill_key&#xD;&#xA;LEFT JOIN dim_bill_date  ON fact_bill.dim_bill_date_key = dim_bill_date.dim_bill_date_key&#xD;&#xA;LEFT JOIN dbo.fact_dimension_main ON fact_bill.master_fact_key = fact_dimension_main.master_fact_key&#xD;&#xA;LEFT JOIN  dim_detail_client  ON dim_detail_client.dim_detail_client_key = fact_dimension_main.dim_detail_client_key">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="dim_bill_key" msprop:DbColumnName="dim_bill_key" msprop:FriendlyName="dim_bill_key" type="xs:long" />
@@ -63769,6 +63895,8 @@ CREATE MEASURE 'fact_bill_detail'[Sum of workhrs]=SUM([workhrs]);
                           <xs:element name="ebilling_bill_sent_to_client_date" msprop:DbColumnName="ebilling_bill_sent_to_client_date" msprop:FriendlyName="ebilling_bill_sent_to_client_date" type="xs:dateTime" minOccurs="0" />
                           <xs:element name="bill_reversed" msprop:DbColumnName="bill_reversed" msprop:FriendlyName="bill_reversed" type="xs:unsignedByte" minOccurs="0" />
                           <xs:element name="dim_last_pay_date_key" msprop:DbColumnName="dim_last_pay_date_key" msprop:FriendlyName="dim_last_pay_date_key" type="xs:int" minOccurs="0" />
+                          <xs:element name="amount_outstanding" msprop:DbColumnName="amount_outstanding" msprop:FriendlyName="amount_outstanding" type="xs:decimal" minOccurs="0" />
+                          <xs:element name="amount_paid" msprop:DbColumnName="amount_paid" msprop:FriendlyName="amount_paid" type="xs:decimal" minOccurs="0" />
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
