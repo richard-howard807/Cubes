@@ -31,7 +31,7 @@
             <Name>_ALL_TABLES_</Name>
             <DiagramLayout>
               <dds>
-                <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="48" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-7886" scrolltop="-2392" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="80" x="44212" y="19235" backcolor="2434342" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="1" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+                <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="48" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="936" scrolltop="-2392" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="80" x="29554" y="10980" backcolor="2434342" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="1" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
                   <font>
                     <ddsxmlobjectstreamwrapper binary="01000000900144420100065461686f6d61" />
                   </font>
@@ -410,7 +410,7 @@
 </DiagramLayout>
             <ShowRelationshipNames>False</ShowRelationshipNames>
             <UseDiagramDefaultLayout>True</UseDiagramDefaultLayout>
-            <DiagramViewPortLeft>-7886</DiagramViewPortLeft>
+            <DiagramViewPortLeft>936</DiagramViewPortLeft>
             <DiagramViewPortTop>-2392</DiagramViewPortTop>
             <DiagramBoundingLeft>0</DiagramBoundingLeft>
             <DiagramBoundingTop>0</DiagramBoundingTop>
@@ -982,7 +982,7 @@
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
-            <xs:element name="dbo_dim_client" msprop:design-time-name="3dae0403-f95c-4c48-a233-628ea7d21d07" msprop:IsLogical="True" msprop:FriendlyName="dim_client" msprop:DbTableName="dim_client" msprop:TableType="View" msprop:QueryDefinition="SELECT        dim_client.dim_client_key, dim_client.source_system_id, dim_client.client_code, dim_client.client_name, ISNULL(dim_client.client_group_name, '') AS client_group_name, ISNULL(dim_client.client_partner_code, &#xD;&#xA;                         '') AS client_partner_code, dim_client.client_partner_name, dim_client.contact_salutation, dim_client.contact_name, dim_client.address_type, dim_client.addresse, dim_client.address_line_1, &#xD;&#xA;                         dim_client.address_line_2, dim_client.address_line_3, dim_client.address_line_4, dim_client.postcode, dim_client.phone_number, dim_client.dss_update_time, &#xD;&#xA;                         CASE WHEN RTRIM(LTRIM(ISNULL(client_group_name, ''))) = '' THEN ISNULL(RTRIM(LTRIM(client_name)), '') ELSE client_group_name END AS 'client_group_name_calculated', &#xD;&#xA;                         CASE WHEN client_group_code IS NULL THEN client_code ELSE client_group_code + '_gr' END AS client_group_code_calculated, dim_client.sector, dim_client.segment, dim_client.sub_sector, &#xD;&#xA;                         dim_client.open_date, dim_date.fin_year&#xD;&#xA;FROM            dim_client LEFT OUTER JOIN&#xD;&#xA;                         dim_date ON CAST(dim_date.calendar_date AS DATE) = CAST(dim_client.open_date AS DATE)" msprop:QueryBuilder="SpecificQueryBuilder">
+            <xs:element name="dbo_dim_client" msprop:design-time-name="3dae0403-f95c-4c48-a233-628ea7d21d07" msprop:IsLogical="True" msprop:FriendlyName="dim_client" msprop:DbTableName="dim_client" msprop:TableType="View" msprop:QueryDefinition="SELECT        dim_client.dim_client_key, dim_client.source_system_id, dim_client.client_code, dim_client.client_name, ISNULL(dim_client.client_group_name, '') AS client_group_name, ISNULL(dim_client.client_partner_code, &#xD;&#xA;                         '') AS client_partner_code, dim_client.client_partner_name, dim_client.contact_salutation, dim_client.contact_name, dim_client.address_type, dim_client.addresse, dim_client.address_line_1, &#xD;&#xA;                         dim_client.address_line_2, dim_client.address_line_3, dim_client.address_line_4, dim_client.postcode, dim_client.phone_number, dim_client.dss_update_time, &#xD;&#xA;                         CASE WHEN RTRIM(LTRIM(ISNULL(client_group_name, ''))) = '' THEN ISNULL(RTRIM(LTRIM(client_name)), '') ELSE client_group_name END AS 'client_group_name_calculated', &#xD;&#xA;                         CASE WHEN client_group_code IS NULL THEN client_code ELSE client_group_code + '_gr' END AS client_group_code_calculated, dim_client.sector, dim_client.segment, dim_client.sub_sector, &#xD;&#xA;                         dim_client.open_date, dim_date.fin_year, dim_client.client_group_partner_name&#xD;&#xA;FROM            dim_client LEFT OUTER JOIN&#xD;&#xA;                         dim_date ON CAST(dim_date.calendar_date AS DATE) = CAST(dim_client.open_date AS DATE)" msprop:QueryBuilder="SpecificQueryBuilder">
               <xs:complexType>
                 <xs:sequence>
                   <xs:element name="dim_client_key" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:design-time-name="51b8b5fb-8ce0-44b3-91fb-d858c5587ee1" msprop:DbColumnName="dim_client_key" msprop:FriendlyName="dim_client_key" type="xs:int" minOccurs="0" />
@@ -1130,6 +1130,13 @@
                   </xs:element>
                   <xs:element name="open_date" msprop:design-time-name="6e8f5086-ef76-452c-a5cb-6202130425ea" msprop:DbColumnName="open_date" type="xs:dateTime" minOccurs="0" />
                   <xs:element name="fin_year" msprop:design-time-name="b130f010-e396-4a42-ad15-fef2bb53f1f4" msprop:DbColumnName="fin_year" type="xs:int" minOccurs="0" />
+                  <xs:element name="client_group_partner_name" msprop:DbColumnName="client_group_partner_name" msprop:design-time-name="9816e743-6ec2-45d7-9c80-ad014680db4d" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="50" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
