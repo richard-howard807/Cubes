@@ -17338,17 +17338,61 @@ ORDER BY TimeActivityCode&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Te
                   <Name>dimClient</Name>
                   <Annotations>
                     <Annotation>
-                      <Name>TableWidgetSerialization</Name>
-                    </Annotation>
-                    <Annotation>
-                      <Name>TableWidgetSourceTable</Name>
-                    </Annotation>
-                    <Annotation>
                       <Name>QueryEditorSerialization</Name>
-                    </Annotation>
-                    <Annotation>
-                      <Name>IsQueryEditorUsed</Name>
-                      <Value>True</Value>
+                      <Value>&lt;?xml version="1.0" encoding="UTF-16"?&gt;&lt;Gemini xmlns="QueryEditorSerialization"&gt;&lt;AnnotationContent&gt;&lt;![CDATA[&lt;RSQueryCommandText&gt;SELECT distinct
+c.dim_client_key as 'ClientID',
+c.client_code ClientCode,
+(CASE WHEN ISNUMERIC(LEFT(c.client_code, 1)) = 0
+          -- If Client code starts with letter, remove all zeroes between the letter and the first non-zero number (eg. A00123 becomes A123)
+          THEN LEFT(c.client_code, 1) + REPLACE(LTRIM(REPLACE(RIGHT(RTRIM(c.client_code), LEN(RTRIM(c.client_code)) - 1), '0', ' ')), ' ', '0')
+          WHEN ISNUMERIC(c.client_code) = 1
+          -- If Client code is numeric, remove leading zeroes
+          THEN CAST(CAST(c.client_code AS int) AS varchar)
+          ELSE RTRIM(c.client_code)
+          END)    as  'ClientCodeTrimmed',
+c.client_name ClientName,
+c.client_group_name ClientGroupName,
+c.client_partner_name ClientPartnerName,
+c.client_partner_code ClientPartnerCode,
+--case
+--when cc.cx_data = 'SGO' then 'Stephen Gorman'
+--when cc.cx_data = 'KWA' then 'Keith Walters'
+--when cc.cx_data = 'LIL' then 'Linda Lewis'
+--when cc.cx_data = 'JWO' then 'Jemma Woodworth'
+--when cc.cx_data = 'AEV' then 'Alun Evans'
+--when cc.cx_data = 'JEV' then 'Joanne Sawkins'
+--when cc.cx_data = 'KEL1' then 'Kelly Ryan'
+--when cc.cx_data = 'JZD' then 'Julie Dootson'
+--when cc.cx_data = 'JTUR' then 'Jocelyn Turner'
+--when cc.cx_data = 'MWN' then 'Michelle Wilson'
+--when cc.cx_data = 'NMB' then 'Natalie Cooney'
+--when cc.cx_data = 'DIA' then 'Diane Robinson'
+--else cc.cx_data END
+ 'Unknown' CreditControllerName,
+sector SectorName,
+  --CASE WHEN crm.cx_data = '0001' THEN 'Patron'
+  -- WHEN crm.cx_data = '0002' THEN 'Star' 
+  -- WHEN crm.cx_data is null then null 
+  -- ELSE 'Rising Star' END 
+   generator_status as   CRMStatus
+
+
+ FROM 
+[dim_client] c
+
+inner join fact_matter_summary a
+ on a.dim_client_key = c.dim_client_key
+
+
+--left join sql2008svr.axxia01.dbo.caclextn  as cc
+-- on c.client_code = cc.cx_accode
+-- and cc.cx_colnum = '5'
+
+
+
+--left join sql2008svr.axxia01.dbo.caclextn crm
+-- on crm.cx_accode = c.client_code
+-- and crm.cx_colnum = '101'&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryCommandType&gt;&lt;RSQueryDesignState&gt;&lt;/RSQueryDesignState&gt;]]&gt;&lt;/AnnotationContent&gt;&lt;/Gemini&gt;</Value>
                     </Annotation>
                   </Annotations>
                   <Source xsi:type="QueryBinding">
@@ -17368,26 +17412,27 @@ c.client_name ClientName,
 c.client_group_name ClientGroupName,
 c.client_partner_name ClientPartnerName,
 c.client_partner_code ClientPartnerCode,
-case
-when cc.cx_data = 'SGO' then 'Stephen Gorman'
-when cc.cx_data = 'KWA' then 'Keith Walters'
-when cc.cx_data = 'LIL' then 'Linda Lewis'
-when cc.cx_data = 'JWO' then 'Jemma Woodworth'
-when cc.cx_data = 'AEV' then 'Alun Evans'
-when cc.cx_data = 'JEV' then 'Joanne Sawkins'
-when cc.cx_data = 'KEL1' then 'Kelly Ryan'
-when cc.cx_data = 'JZD' then 'Julie Dootson'
-when cc.cx_data = 'JTUR' then 'Jocelyn Turner'
-when cc.cx_data = 'MWN' then 'Michelle Wilson'
-when cc.cx_data = 'NMB' then 'Natalie Cooney'
-when cc.cx_data = 'DIA' then 'Diane Robinson'
-else cc.cx_data
-end CreditControllerName,
+--case
+--when cc.cx_data = 'SGO' then 'Stephen Gorman'
+--when cc.cx_data = 'KWA' then 'Keith Walters'
+--when cc.cx_data = 'LIL' then 'Linda Lewis'
+--when cc.cx_data = 'JWO' then 'Jemma Woodworth'
+--when cc.cx_data = 'AEV' then 'Alun Evans'
+--when cc.cx_data = 'JEV' then 'Joanne Sawkins'
+--when cc.cx_data = 'KEL1' then 'Kelly Ryan'
+--when cc.cx_data = 'JZD' then 'Julie Dootson'
+--when cc.cx_data = 'JTUR' then 'Jocelyn Turner'
+--when cc.cx_data = 'MWN' then 'Michelle Wilson'
+--when cc.cx_data = 'NMB' then 'Natalie Cooney'
+--when cc.cx_data = 'DIA' then 'Diane Robinson'
+--else cc.cx_data END
+ 'Unknown' CreditControllerName,
 sector SectorName,
-  CASE WHEN crm.cx_data = '0001' THEN 'Patron'
-   WHEN crm.cx_data = '0002' THEN 'Star' 
-   WHEN crm.cx_data is null then null 
-   ELSE 'Rising Star' END CRMStatus
+  --CASE WHEN crm.cx_data = '0001' THEN 'Patron'
+  -- WHEN crm.cx_data = '0002' THEN 'Star' 
+  -- WHEN crm.cx_data is null then null 
+  -- ELSE 'Rising Star' END 
+   generator_status as   CRMStatus
 
 
  FROM 
@@ -17397,15 +17442,15 @@ inner join fact_matter_summary a
  on a.dim_client_key = c.dim_client_key
 
 
-left join sql2008svr.axxia01.dbo.caclextn  as cc
- on c.client_code = cc.cx_accode
- and cc.cx_colnum = '5'
+--left join sql2008svr.axxia01.dbo.caclextn  as cc
+-- on c.client_code = cc.cx_accode
+-- and cc.cx_colnum = '5'
 
 
 
-left join sql2008svr.axxia01.dbo.caclextn crm
- on crm.cx_accode = c.client_code
- and crm.cx_colnum = '101'</QueryDefinition>
+--left join sql2008svr.axxia01.dbo.caclextn crm
+-- on crm.cx_accode = c.client_code
+-- and crm.cx_colnum = '101'</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
