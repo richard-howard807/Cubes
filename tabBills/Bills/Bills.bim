@@ -3,7 +3,7 @@
     <DatabaseID>SemanticModel</DatabaseID>
   </Object>
   <ObjectDefinition>
-    <Database xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400">
+    <Database xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500">
       <ID>SemanticModel</ID>
       <Name>SemanticModel</Name>
       <Annotations>
@@ -31464,17 +31464,63 @@ red_dw.dbo.dim_fed_hierarchy_history</QueryDefinition>
                   <Name>dimClientMatter</Name>
                   <Annotations>
                     <Annotation>
-                      <Name>TableWidgetSerialization</Name>
-                    </Annotation>
-                    <Annotation>
-                      <Name>TableWidgetSourceTable</Name>
-                    </Annotation>
-                    <Annotation>
                       <Name>QueryEditorSerialization</Name>
-                    </Annotation>
-                    <Annotation>
-                      <Name>IsQueryEditorUsed</Name>
-                      <Value>True</Value>
+                      <Value>&lt;?xml version="1.0" encoding="UTF-16"?&gt;&lt;Gemini xmlns="QueryEditorSerialization"&gt;&lt;AnnotationContent&gt;&lt;![CDATA[&lt;RSQueryCommandText&gt;SELECT distinct
+c.dim_client_key as 'ClientID',
+c.client_code as 'ClientCode',
+(CASE WHEN ISNUMERIC(LEFT(c.client_code, 1)) = 0
+          -- If Client code starts with letter, remove all zeroes between the letter and the first non-zero number (eg. A00123 becomes A123)
+          THEN LEFT(c.client_code, 1) + REPLACE(LTRIM(REPLACE(RIGHT(RTRIM(c.client_code), LEN(RTRIM(c.client_code)) - 1), '0', ' ')), ' ', '0')
+          WHEN ISNUMERIC(c.client_code) = 1
+          -- If Client code is numeric, remove leading zeroes
+          THEN CAST(CAST(c.client_code AS int) AS varchar)
+          ELSE RTRIM(c.client_code)
+          END) as 'ClientCodeTrimmed',
+c.client_name as 'ClientName',
+c.client_group_code as 'ClientGroupCode',
+c.client_group_name as 'ClientGroupName',
+case when c.client_group_name is null then c.client_name else c.client_group_name end as 'ClientGroupCalculated',
+c.client_partner_code as 'ClientPartnerCode',
+--case
+--when cc.cx_data = 'SGO' then 'Stephen Gorman'
+--when cc.cx_data = 'AQM' then 'Ashleigh Mulligan'
+--when cc.cx_data = 'KWA' then 'Keith Walters'
+--when cc.cx_data = 'LIL' then 'Linda Lewis'
+--when cc.cx_data = 'JWO' then 'Jemma Woodworth'
+--when cc.cx_data = 'AEV' then 'Alun Evans'
+--when cc.cx_data = 'JEV' then 'Joanne Sawkins'
+--when cc.cx_data = 'KEL1' then 'Kelly Ryan'
+--when cc.cx_data = 'JZD' then 'Julie Dootson'
+--when cc.cx_data = 'JTUR' then 'Jocelyn Turner'
+--when cc.cx_data = 'MWN' then 'Michelle Wilson'
+--when cc.cx_data = 'NMB' then 'Natalie Cooney'
+--when cc.cx_data = 'DIA' then 'Diane Robinson'
+--else cc.cx_data
+--end 
+'Unknown'	AS 'CreditControllerName',
+sector AS 'SectorName',
+  --CASE WHEN crm.cx_data = '0001' THEN 'Patron'
+  -- WHEN crm.cx_data = '0002' THEN 'Star' 
+  -- WHEN crm.cx_data is null then null 
+  -- ELSE 'Rising Star'END 
+  generator_status  AS 'CRMStatus',
+credit_limit as CreditLimit,
+client_type as ClientType,
+email as Email
+,sub_sector AS SubSector,segment AS Segment
+-- select *
+ FROM 
+[dim_client] c
+
+
+--left join axxia01.dbo.caclextn  as cc
+-- on c.client_code = cc.cx_accode
+-- and cc.cx_colnum = '5'
+
+
+--left join axxia01.dbo.caclextn crm
+-- on crm.cx_accode = c.client_code
+-- and crm.cx_colnum = '101'&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryCommandType&gt;&lt;RSQueryDesignState&gt;&lt;/RSQueryDesignState&gt;]]&gt;&lt;/AnnotationContent&gt;&lt;/Gemini&gt;</Value>
                     </Annotation>
                   </Annotations>
                   <Source xsi:type="QueryBinding">
@@ -31495,43 +31541,46 @@ c.client_group_code as 'ClientGroupCode',
 c.client_group_name as 'ClientGroupName',
 case when c.client_group_name is null then c.client_name else c.client_group_name end as 'ClientGroupCalculated',
 c.client_partner_code as 'ClientPartnerCode',
-case
-when cc.cx_data = 'SGO' then 'Stephen Gorman'
-when cc.cx_data = 'AQM' then 'Ashleigh Mulligan'
-when cc.cx_data = 'KWA' then 'Keith Walters'
-when cc.cx_data = 'LIL' then 'Linda Lewis'
-when cc.cx_data = 'JWO' then 'Jemma Woodworth'
-when cc.cx_data = 'AEV' then 'Alun Evans'
-when cc.cx_data = 'JEV' then 'Joanne Sawkins'
-when cc.cx_data = 'KEL1' then 'Kelly Ryan'
-when cc.cx_data = 'JZD' then 'Julie Dootson'
-when cc.cx_data = 'JTUR' then 'Jocelyn Turner'
-when cc.cx_data = 'MWN' then 'Michelle Wilson'
-when cc.cx_data = 'NMB' then 'Natalie Cooney'
-when cc.cx_data = 'DIA' then 'Diane Robinson'
-else cc.cx_data
-end as 'CreditControllerName',
+--case
+--when cc.cx_data = 'SGO' then 'Stephen Gorman'
+--when cc.cx_data = 'AQM' then 'Ashleigh Mulligan'
+--when cc.cx_data = 'KWA' then 'Keith Walters'
+--when cc.cx_data = 'LIL' then 'Linda Lewis'
+--when cc.cx_data = 'JWO' then 'Jemma Woodworth'
+--when cc.cx_data = 'AEV' then 'Alun Evans'
+--when cc.cx_data = 'JEV' then 'Joanne Sawkins'
+--when cc.cx_data = 'KEL1' then 'Kelly Ryan'
+--when cc.cx_data = 'JZD' then 'Julie Dootson'
+--when cc.cx_data = 'JTUR' then 'Jocelyn Turner'
+--when cc.cx_data = 'MWN' then 'Michelle Wilson'
+--when cc.cx_data = 'NMB' then 'Natalie Cooney'
+--when cc.cx_data = 'DIA' then 'Diane Robinson'
+--else cc.cx_data
+--end 
+'Unknown'	AS 'CreditControllerName',
 sector AS 'SectorName',
-  CASE WHEN crm.cx_data = '0001' THEN 'Patron'
-   WHEN crm.cx_data = '0002' THEN 'Star' 
-   WHEN crm.cx_data is null then null 
-   ELSE 'Rising Star' END AS 'CRMStatus',
+  --CASE WHEN crm.cx_data = '0001' THEN 'Patron'
+  -- WHEN crm.cx_data = '0002' THEN 'Star' 
+  -- WHEN crm.cx_data is null then null 
+  -- ELSE 'Rising Star'END 
+  generator_status  AS 'CRMStatus',
 credit_limit as CreditLimit,
 client_type as ClientType,
 email as Email
 ,sub_sector AS SubSector,segment AS Segment
+-- select *
  FROM 
 [dim_client] c
 
 
-left join sql2008svr.axxia01.dbo.caclextn  as cc
- on c.client_code = cc.cx_accode
- and cc.cx_colnum = '5'
+--left join axxia01.dbo.caclextn  as cc
+-- on c.client_code = cc.cx_accode
+-- and cc.cx_colnum = '5'
 
 
-left join sql2008svr.axxia01.dbo.caclextn crm
- on crm.cx_accode = c.client_code
- and crm.cx_colnum = '101'</QueryDefinition>
+--left join axxia01.dbo.caclextn crm
+-- on crm.cx_accode = c.client_code
+-- and crm.cx_colnum = '101'</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
