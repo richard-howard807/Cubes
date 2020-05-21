@@ -3279,7 +3279,17 @@ FROM dbo.fact_bill_activity
 INNER JOIN dbo.dim_date ON dim_date.dim_date_key = fact_bill_activity.dim_gl_date_key
 WHERE current_fin_year IN ('Current','Previous')
 AND CAST (calendar_date AS date) &lt; CAST(GETDATE() AS DATE)
-GROUP BY dim_fed_hierarchy_history_key, dim_gl_date_key&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryCommandType&gt;&lt;RSQueryDesignState&gt;&lt;/RSQueryDesignState&gt;]]&gt;&lt;/AnnotationContent&gt;&lt;/Gemini&gt;</Value>
+GROUP BY dim_fed_hierarchy_history_key, dim_gl_date_key
+
+union all
+
+
+SELECT dim_fed_hierarchy_history.dim_fed_hierarchy_history_key, fact_budget_activity.dim_gl_date_key, 0 bill_amount, getdate() data_date    
+FROM fact_budget_activity
+    INNER JOIN dim_fed_hierarchy_history ON dim_fed_hierarchy_history.dim_fed_hierarchy_history_key = fact_budget_activity.dim_fed_hierarchy_history_key
+    INNER JOIN dim_date ON dim_date.dim_date_key = dbo.fact_budget_activity.dim_budget_date_key
+WHERE current_fin_year IN ('Current', 'Previous')
+AND dim_fed_hierarchy_history.display_name = 'Budget Balance'&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryCommandType&gt;&lt;RSQueryDesignState&gt;&lt;/RSQueryDesignState&gt;]]&gt;&lt;/AnnotationContent&gt;&lt;/Gemini&gt;</Value>
                     </Annotation>
                   </Annotations>
                   <Source xsi:type="QueryBinding">
@@ -3289,7 +3299,17 @@ FROM dbo.fact_bill_activity
 INNER JOIN dbo.dim_date ON dim_date.dim_date_key = fact_bill_activity.dim_gl_date_key
 WHERE current_fin_year IN ('Current','Previous')
 AND CAST (calendar_date AS date) &lt; CAST(GETDATE() AS DATE)
-GROUP BY dim_fed_hierarchy_history_key, dim_gl_date_key</QueryDefinition>
+GROUP BY dim_fed_hierarchy_history_key, dim_gl_date_key
+
+union all
+
+
+SELECT dim_fed_hierarchy_history.dim_fed_hierarchy_history_key, fact_budget_activity.dim_gl_date_key, 0 bill_amount, getdate() data_date    
+FROM fact_budget_activity
+    INNER JOIN dim_fed_hierarchy_history ON dim_fed_hierarchy_history.dim_fed_hierarchy_history_key = fact_budget_activity.dim_fed_hierarchy_history_key
+    INNER JOIN dim_date ON dim_date.dim_date_key = dbo.fact_budget_activity.dim_budget_date_key
+WHERE current_fin_year IN ('Current', 'Previous')
+AND dim_fed_hierarchy_history.display_name = 'Budget Balance'</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
@@ -3687,8 +3707,7 @@ CASE
 -- select *
 
 FROM [dbo].[dim_bill_date]
-WHERE bill_current_fin_year IN ('Current','Previous')
-AND CAST (bill_date AS date) &lt;= CAST(GETDATE() AS DATE)&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryCommandType&gt;&lt;RSQueryDesignState&gt;&lt;/RSQueryDesignState&gt;]]&gt;&lt;/AnnotationContent&gt;&lt;/Gemini&gt;</Value>
+WHERE bill_current_fin_year IN ('Current','Previous')&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryCommandType&gt;&lt;RSQueryDesignState&gt;&lt;/RSQueryDesignState&gt;]]&gt;&lt;/AnnotationContent&gt;&lt;/Gemini&gt;</Value>
                     </Annotation>
                   </Annotations>
                   <Source xsi:type="QueryBinding">
@@ -3718,8 +3737,7 @@ CASE
 -- select *
 
 FROM [dbo].[dim_bill_date]
-WHERE bill_current_fin_year IN ('Current','Previous')
-AND CAST (bill_date AS date) &lt;= CAST(GETDATE() AS DATE)</QueryDefinition>
+WHERE bill_current_fin_year IN ('Current','Previous')</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
@@ -4476,8 +4494,7 @@ AND CAST (bill_date AS date) &lt;= CAST(GETDATE() AS DATE)</QueryDefinition>
 FROM fact_budget_activity
     INNER JOIN dim_fed_hierarchy_history ON dim_fed_hierarchy_history.dim_fed_hierarchy_history_key = fact_budget_activity.dim_fed_hierarchy_history_key
     INNER JOIN dim_date ON dim_date.dim_date_key = dbo.fact_budget_activity.dim_budget_date_key
-WHERE current_fin_year IN ('Current', 'Previous')
-AND CAST(calendar_date AS DATE) &lt; CAST(GETDATE() AS DATE)&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryCommandType&gt;&lt;RSQueryDesignState&gt;&lt;/RSQueryDesignState&gt;]]&gt;&lt;/AnnotationContent&gt;&lt;/Gemini&gt;</Value>
+WHERE current_fin_year IN ('Current', 'Previous')&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryCommandType&gt;&lt;RSQueryDesignState&gt;&lt;/RSQueryDesignState&gt;]]&gt;&lt;/AnnotationContent&gt;&lt;/Gemini&gt;</Value>
                     </Annotation>
                   </Annotations>
                   <Source xsi:type="QueryBinding">
@@ -4502,8 +4519,7 @@ AND CAST(calendar_date AS DATE) &lt; CAST(GETDATE() AS DATE)&lt;/RSQueryCommandT
 FROM fact_budget_activity
     INNER JOIN dim_fed_hierarchy_history ON dim_fed_hierarchy_history.dim_fed_hierarchy_history_key = fact_budget_activity.dim_fed_hierarchy_history_key
     INNER JOIN dim_date ON dim_date.dim_date_key = dbo.fact_budget_activity.dim_budget_date_key
-WHERE current_fin_year IN ('Current', 'Previous')
-AND CAST(calendar_date AS DATE) &lt; CAST(GETDATE() AS DATE)</QueryDefinition>
+WHERE current_fin_year IN ('Current', 'Previous')</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
