@@ -3429,12 +3429,15 @@ GROUP BY dim_fed_hierarchy_history_key, revenue.dim_date_key</QueryDefinition>
                   <Annotations>
                     <Annotation>
                       <Name>QueryEditorSerialization</Name>
-                      <Value>&lt;?xml version="1.0" encoding="UTF-16"?&gt;&lt;Gemini xmlns="QueryEditorSerialization"&gt;&lt;AnnotationContent&gt;&lt;![CDATA[&lt;RSQueryCommandText&gt;SELECT dim_fed_hierarchy_history.dim_fed_hierarchy_history_key, dim_date.dim_date_key, SUM(CASE 
+                      <Value>&lt;?xml version="1.0" encoding="UTF-16"?&gt;&lt;Gemini xmlns="QueryEditorSerialization"&gt;&lt;AnnotationContent&gt;&lt;![CDATA[&lt;RSQueryCommandText&gt;SET TRAN ISOLATION LEVEL READ UNCOMMITTED
+
+
+SELECT dim_fed_hierarchy_history.dim_fed_hierarchy_history_key, dim_date.dim_date_key dim_gl_date_key, SUM(CASE 
 																	WHEN BILL.BILL_TYPE = 'CRED' then PM_ANALYSIS.BILLED * -1
 																	ELSE PM_ANALYSIS.BILLED
-																END	) revenue, GETDATE()
-FROM [svr-liv-sql-02\WB].Lawsoft.dbo.BILL
-INNER JOIN [svr-liv-sql-02\WB].Lawsoft.dbo.PM_ANALYSIS ON PM_ANALYSIS.BILL_DIWOR = BILL.DIWOR
+																END	) bill_amount, GETDATE() data_date
+FROM [svr-liv-sql-02\WB].Lawsoft.dbo.BILL 
+INNER JOIN [svr-liv-sql-02\WB].Lawsoft.dbo.PM_ANALYSIS  ON PM_ANALYSIS.BILL_DIWOR = BILL.DIWOR
 INNER JOIN [svr-liv-sql-02\WB].Lawsoft.dbo.STAFF ON STAFF.DIWOR = PM_ANALYSIS.STAFF_DIWOR
 INNER JOIN [svr-liv-sql-02\WB].Lawsoft.dbo.MATTER ON MATTER.MATTER_DIWOR = BILL.MATTER_DIWOR
 LEFT OUTER JOIN dbo.dim_employee ON ISNULL(dim_employee.windowsusername, dim_employee.payrollid) =  REPLACE(LOWER(STAFF.NT_USER_NAME), 'sbc\', '') COLLATE Latin1_General_BIN AND ISNULL(dim_employee.windowsusername, dim_employee.payrollid) &lt;&gt; '' 
@@ -3449,12 +3452,15 @@ GROUP BY dim_fed_hierarchy_history.dim_fed_hierarchy_history_key, dim_date.dim_d
                   </Annotations>
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>8d020b0a-9c25-4e79-a388-1fe485b0fb5f</DataSourceID>
-                    <QueryDefinition>SELECT dim_fed_hierarchy_history.dim_fed_hierarchy_history_key, dim_date.dim_date_key, SUM(CASE 
+                    <QueryDefinition>SET TRAN ISOLATION LEVEL READ UNCOMMITTED
+
+
+SELECT dim_fed_hierarchy_history.dim_fed_hierarchy_history_key, dim_date.dim_date_key dim_gl_date_key, SUM(CASE 
 																	WHEN BILL.BILL_TYPE = 'CRED' then PM_ANALYSIS.BILLED * -1
 																	ELSE PM_ANALYSIS.BILLED
-																END	) revenue, GETDATE()
-FROM [svr-liv-sql-02\WB].Lawsoft.dbo.BILL
-INNER JOIN [svr-liv-sql-02\WB].Lawsoft.dbo.PM_ANALYSIS ON PM_ANALYSIS.BILL_DIWOR = BILL.DIWOR
+																END	) bill_amount, GETDATE() data_date
+FROM [svr-liv-sql-02\WB].Lawsoft.dbo.BILL 
+INNER JOIN [svr-liv-sql-02\WB].Lawsoft.dbo.PM_ANALYSIS  ON PM_ANALYSIS.BILL_DIWOR = BILL.DIWOR
 INNER JOIN [svr-liv-sql-02\WB].Lawsoft.dbo.STAFF ON STAFF.DIWOR = PM_ANALYSIS.STAFF_DIWOR
 INNER JOIN [svr-liv-sql-02\WB].Lawsoft.dbo.MATTER ON MATTER.MATTER_DIWOR = BILL.MATTER_DIWOR
 LEFT OUTER JOIN dbo.dim_employee ON ISNULL(dim_employee.windowsusername, dim_employee.payrollid) =  REPLACE(LOWER(STAFF.NT_USER_NAME), 'sbc\', '') COLLATE Latin1_General_BIN AND ISNULL(dim_employee.windowsusername, dim_employee.payrollid) &lt;&gt; '' 
