@@ -931,14 +931,14 @@ CASE
   WHEN CAST (bill_date AS date) = CAST(GETDATE() AS DATE) THEN 'Current' 
   
   WHEN CAST (bill_date AS date) =  (SELECT CAST(MAX(calendar_date) AS DATE) FROM dim_date a
-									 WHERE a.calendar_date &lt; CAST(GETDATE() AS DATE)
-									AND a.trading_day_flag = 'Y'
-									AND a.holiday_flag = 'N'
-									AND a.current_fin_month = 'Current') THEN 'Yesterday'
+          WHERE a.calendar_date &lt; CAST(GETDATE() AS DATE)
+         AND a.trading_day_flag = 'Y'
+         AND a.holiday_flag = 'N'
+         AND a.current_fin_month = 'Current') THEN 'Yesterday'
 
    WHEN bill_current_fin_year = 'Previous' AND bill_current_fin_month = 'Lastyear'
-	    AND bill_trading_days_so_far_desc = (SELECT bill_trading_days_so_far_desc FROM dbo.dim_date
-										WHERE CAST(calendar_date AS DATE) = CAST(GETDATE() AS DATE)) THEN 'Lastyear' 
+     AND bill_trading_days_so_far_desc = (SELECT bill_trading_days_so_far_desc FROM dbo.dim_bill_date
+          WHERE CAST(dim_bill_date.bill_date AS DATE) = CAST(GETDATE() AS DATE)) THEN 'Lastyear' 
 
    ELSE 'No' 
    END bill_current_fin_day,
@@ -3749,14 +3749,14 @@ CASE
   WHEN CAST (bill_date AS date) = CAST(GETDATE() AS DATE) THEN 'Current' 
   
   WHEN CAST (bill_date AS date) =  (SELECT CAST(MAX(calendar_date) AS DATE) FROM dim_date a
-									 WHERE a.calendar_date &lt; CAST(GETDATE() AS DATE)
-									AND a.trading_day_flag = 'Y'
-									AND a.holiday_flag = 'N'
-									AND a.current_fin_month = 'Current') THEN 'Yesterday'
+          WHERE a.calendar_date &lt; CAST(GETDATE() AS DATE)
+         AND a.trading_day_flag = 'Y'
+         AND a.holiday_flag = 'N'
+         AND a.current_fin_month = 'Current') THEN 'Yesterday'
 
    WHEN bill_current_fin_year = 'Previous' AND bill_current_fin_month = 'Lastyear'
-	    AND bill_trading_days_so_far_desc = (SELECT bill_trading_days_so_far_desc FROM dbo.dim_date
-										WHERE CAST(calendar_date AS DATE) = CAST(GETDATE() AS DATE)) THEN 'Lastyear' 
+     AND bill_trading_days_so_far_desc = (SELECT bill_trading_days_so_far_desc FROM dbo.dim_bill_date
+          WHERE CAST(dim_bill_date.bill_date AS DATE) = CAST(GETDATE() AS DATE)) THEN 'Lastyear' 
 
    ELSE 'No' 
    END bill_current_fin_day,
@@ -3779,14 +3779,14 @@ CASE
   WHEN CAST (bill_date AS date) = CAST(GETDATE() AS DATE) THEN 'Current' 
   
   WHEN CAST (bill_date AS date) =  (SELECT CAST(MAX(calendar_date) AS DATE) FROM dim_date a
-									 WHERE a.calendar_date &lt; CAST(GETDATE() AS DATE)
-									AND a.trading_day_flag = 'Y'
-									AND a.holiday_flag = 'N'
-									AND a.current_fin_month = 'Current') THEN 'Yesterday'
+          WHERE a.calendar_date &lt; CAST(GETDATE() AS DATE)
+         AND a.trading_day_flag = 'Y'
+         AND a.holiday_flag = 'N'
+         AND a.current_fin_month = 'Current') THEN 'Yesterday'
 
    WHEN bill_current_fin_year = 'Previous' AND bill_current_fin_month = 'Lastyear'
-	    AND bill_trading_days_so_far_desc = (SELECT bill_trading_days_so_far_desc FROM dbo.dim_date
-										WHERE CAST(calendar_date AS DATE) = CAST(GETDATE() AS DATE)) THEN 'Lastyear' 
+     AND bill_trading_days_so_far_desc = (SELECT bill_trading_days_so_far_desc FROM dbo.dim_bill_date
+          WHERE CAST(dim_bill_date.bill_date AS DATE) = CAST(GETDATE() AS DATE)) THEN 'Lastyear' 
 
    ELSE 'No' 
    END bill_current_fin_day,
@@ -4764,7 +4764,7 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dim_bill_date_52c287bc-5d1a-4d58-abda-f5544c01e37e" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dim_bill_date" msprop:DbTableName="dim_bill_date" msprop:TableType="View" msprop:Description="dim_bill_date" msprop:QueryDefinition="SELECT dim_bill_date_key, bill_date, bill_financial_date, bill_fin_period,&#xD;&#xA; bill_fin_year, bill_fin_quarter_no, bill_fin_quarter, bill_fin_month, bill_fin_month_no&#xD;&#xA; , bill_current_fin_year, bill_current_fin_month, &#xD;&#xA;&#xD;&#xA;CASE &#xD;&#xA;  WHEN CAST (bill_date AS date) = CAST(GETDATE() AS DATE) THEN 'Current' &#xD;&#xA;  &#xD;&#xA;  WHEN CAST (bill_date AS date) =  (SELECT CAST(MAX(calendar_date) AS DATE) FROM dim_date a&#xD;&#xA;          WHERE a.calendar_date &lt; CAST(GETDATE() AS DATE)&#xD;&#xA;         AND a.trading_day_flag = 'Y'&#xD;&#xA;         AND a.holiday_flag = 'N'&#xD;&#xA;         AND a.current_fin_month = 'Current') THEN 'Yesterday'&#xD;&#xA;&#xD;&#xA;   WHEN bill_current_fin_year = 'Previous' AND bill_current_fin_month = 'Lastyear'&#xD;&#xA;     AND bill_trading_days_so_far_desc = (SELECT bill_trading_days_so_far_desc FROM dbo.dim_date&#xD;&#xA;          WHERE CAST(calendar_date AS DATE) = CAST(GETDATE() AS DATE)) THEN 'Lastyear' &#xD;&#xA;&#xD;&#xA;   ELSE 'No' &#xD;&#xA;   END bill_current_fin_day,&#xD;&#xA;&#xD;&#xA;   IIF(CAST(bill_date AS DATE) = CAST(GETDATE() AS DATE), 'Current', bill_current_fin_ytd) bill_current_fin_ytd&#xD;&#xA;&#xD;&#xA;-- select *&#xD;&#xA;&#xD;&#xA;FROM [dbo].[dim_bill_date]&#xD;&#xA;WHERE bill_current_fin_year IN ('Current','Previous')">
+                    <xs:element name="dim_bill_date_52c287bc-5d1a-4d58-abda-f5544c01e37e" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dim_bill_date" msprop:DbTableName="dim_bill_date" msprop:TableType="View" msprop:Description="dim_bill_date" msprop:QueryDefinition="SELECT dim_bill_date_key, bill_date, bill_financial_date, bill_fin_period,&#xD;&#xA; bill_fin_year, bill_fin_quarter_no, bill_fin_quarter, bill_fin_month, bill_fin_month_no&#xD;&#xA; , bill_current_fin_year, bill_current_fin_month, &#xD;&#xA;&#xD;&#xA;CASE &#xD;&#xA;  WHEN CAST (bill_date AS date) = CAST(GETDATE() AS DATE) THEN 'Current' &#xD;&#xA;  &#xD;&#xA;  WHEN CAST (bill_date AS date) =  (SELECT CAST(MAX(calendar_date) AS DATE) FROM dim_date a&#xD;&#xA;          WHERE a.calendar_date &lt; CAST(GETDATE() AS DATE)&#xD;&#xA;         AND a.trading_day_flag = 'Y'&#xD;&#xA;         AND a.holiday_flag = 'N'&#xD;&#xA;         AND a.current_fin_month = 'Current') THEN 'Yesterday'&#xD;&#xA;&#xD;&#xA;   WHEN bill_current_fin_year = 'Previous' AND bill_current_fin_month = 'Lastyear'&#xD;&#xA;     AND bill_trading_days_so_far_desc = (SELECT bill_trading_days_so_far_desc FROM dbo.dim_bill_date&#xD;&#xA;          WHERE CAST(dim_bill_date.bill_date AS DATE) = CAST(GETDATE() AS DATE)) THEN 'Lastyear' &#xD;&#xA;&#xD;&#xA;   ELSE 'No' &#xD;&#xA;   END bill_current_fin_day,&#xD;&#xA;&#xD;&#xA;   IIF(CAST(bill_date AS DATE) = CAST(GETDATE() AS DATE), 'Current', bill_current_fin_ytd) bill_current_fin_ytd&#xD;&#xA;&#xD;&#xA;-- select *&#xD;&#xA;&#xD;&#xA;FROM [dbo].[dim_bill_date]&#xD;&#xA;WHERE bill_current_fin_year IN ('Current','Previous')">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="dim_bill_date_key" msprop:DbColumnName="dim_bill_date_key" msprop:FriendlyName="dim_bill_date_key" type="xs:int" minOccurs="0" />
