@@ -937,7 +937,7 @@ CASE
 									AND a.current_fin_month = 'Current') THEN 'Yesterday'
 
    WHEN bill_current_fin_year = 'Previous' AND bill_current_fin_month = 'Lastyear'
-	    AND bill_trading_days_so_far = (SELECT trading_days_so_far FROM dbo.dim_date
+	    AND bill_trading_days_so_far_desc = (SELECT bill_trading_days_so_far_desc FROM dbo.dim_date
 										WHERE CAST(calendar_date AS DATE) = CAST(GETDATE() AS DATE)) THEN 'Lastyear' 
 
    ELSE 'No' 
@@ -948,8 +948,7 @@ CASE
 -- select *
 
 FROM [dbo].[dim_bill_date]
-WHERE bill_current_fin_year IN ('Current','Previous')
-AND CAST (bill_date AS date) &lt;= CAST(GETDATE() AS DATE)&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryCommandType&gt;&lt;RSQueryDesignState&gt;&lt;/RSQueryDesignState&gt;]]&gt;&lt;/AnnotationContent&gt;&lt;/Gemini&gt;</Value>
+WHERE bill_current_fin_year IN ('Current','Previous')&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryCommandType&gt;&lt;RSQueryDesignState&gt;&lt;/RSQueryDesignState&gt;]]&gt;&lt;/AnnotationContent&gt;&lt;/Gemini&gt;</Value>
             </Annotation>
             <Annotation>
               <Name>IsQueryEditorUsed</Name>
@@ -3424,6 +3423,60 @@ GROUP BY dim_fed_hierarchy_history_key, revenue.dim_date_key</QueryDefinition>
                   </ProactiveCaching>
                   <ddl300_300:DirectQueryUsage>InMemoryOnly</ddl300_300:DirectQueryUsage>
                 </Partition>
+                <Partition>
+                  <ID>fact_bill_activity_20ab1a73-dd2a-4d3a-b265-5a3dd2871ee4</ID>
+                  <Name>fact_bill_activity_current_day_WB</Name>
+                  <Annotations>
+                    <Annotation>
+                      <Name>QueryEditorSerialization</Name>
+                      <Value>&lt;?xml version="1.0" encoding="UTF-16"?&gt;&lt;Gemini xmlns="QueryEditorSerialization"&gt;&lt;AnnotationContent&gt;&lt;![CDATA[&lt;RSQueryCommandText&gt;SELECT dim_fed_hierarchy_history.dim_fed_hierarchy_history_key, dim_date.dim_date_key, SUM(CASE 
+																	WHEN BILL.BILL_TYPE = 'CRED' then PM_ANALYSIS.BILLED * -1
+																	ELSE PM_ANALYSIS.BILLED
+																END	) revenue, GETDATE()
+FROM [svr-liv-sql-02\WB].Lawsoft.dbo.BILL
+INNER JOIN [svr-liv-sql-02\WB].Lawsoft.dbo.PM_ANALYSIS ON PM_ANALYSIS.BILL_DIWOR = BILL.DIWOR
+INNER JOIN [svr-liv-sql-02\WB].Lawsoft.dbo.STAFF ON STAFF.DIWOR = PM_ANALYSIS.STAFF_DIWOR
+INNER JOIN [svr-liv-sql-02\WB].Lawsoft.dbo.MATTER ON MATTER.MATTER_DIWOR = BILL.MATTER_DIWOR
+LEFT OUTER JOIN dbo.dim_employee ON ISNULL(dim_employee.windowsusername, dim_employee.payrollid) =  REPLACE(LOWER(STAFF.NT_USER_NAME), 'sbc\', '') COLLATE Latin1_General_BIN AND ISNULL(dim_employee.windowsusername, dim_employee.payrollid) &lt;&gt; '' 
+INNER JOIN dbo.dim_fed_hierarchy_history ON dim_fed_hierarchy_history.dim_employee_key = dim_employee.dim_employee_key AND BILL.BILL_DATE BETWEEN dim_fed_hierarchy_history.dss_start_date AND dim_fed_hierarchy_history.dss_end_date 
+			AND dim_fed_hierarchy_history.activeud = 1
+INNER JOIN dim_date ON dim_date.calendar_date = CAST(BILL.BILL_DATE AS DATE)
+WHERE  BILL.BILL_DATE = CAST(GETDATE() AS DATE)
+and BILL.BILL_TYPE &lt;&gt; 'WOV'
+AND BILL.BILL_STATUS = 'P'
+GROUP BY dim_fed_hierarchy_history.dim_fed_hierarchy_history_key, dim_date.dim_date_key&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryCommandType&gt;&lt;RSQueryDesignState&gt;&lt;/RSQueryDesignState&gt;]]&gt;&lt;/AnnotationContent&gt;&lt;/Gemini&gt;</Value>
+                    </Annotation>
+                  </Annotations>
+                  <Source xsi:type="QueryBinding">
+                    <DataSourceID>8d020b0a-9c25-4e79-a388-1fe485b0fb5f</DataSourceID>
+                    <QueryDefinition>SELECT dim_fed_hierarchy_history.dim_fed_hierarchy_history_key, dim_date.dim_date_key, SUM(CASE 
+																	WHEN BILL.BILL_TYPE = 'CRED' then PM_ANALYSIS.BILLED * -1
+																	ELSE PM_ANALYSIS.BILLED
+																END	) revenue, GETDATE()
+FROM [svr-liv-sql-02\WB].Lawsoft.dbo.BILL
+INNER JOIN [svr-liv-sql-02\WB].Lawsoft.dbo.PM_ANALYSIS ON PM_ANALYSIS.BILL_DIWOR = BILL.DIWOR
+INNER JOIN [svr-liv-sql-02\WB].Lawsoft.dbo.STAFF ON STAFF.DIWOR = PM_ANALYSIS.STAFF_DIWOR
+INNER JOIN [svr-liv-sql-02\WB].Lawsoft.dbo.MATTER ON MATTER.MATTER_DIWOR = BILL.MATTER_DIWOR
+LEFT OUTER JOIN dbo.dim_employee ON ISNULL(dim_employee.windowsusername, dim_employee.payrollid) =  REPLACE(LOWER(STAFF.NT_USER_NAME), 'sbc\', '') COLLATE Latin1_General_BIN AND ISNULL(dim_employee.windowsusername, dim_employee.payrollid) &lt;&gt; '' 
+INNER JOIN dbo.dim_fed_hierarchy_history ON dim_fed_hierarchy_history.dim_employee_key = dim_employee.dim_employee_key AND BILL.BILL_DATE BETWEEN dim_fed_hierarchy_history.dss_start_date AND dim_fed_hierarchy_history.dss_end_date 
+			AND dim_fed_hierarchy_history.activeud = 1
+INNER JOIN dim_date ON dim_date.calendar_date = CAST(BILL.BILL_DATE AS DATE)
+WHERE  BILL.BILL_DATE = CAST(GETDATE() AS DATE)
+and BILL.BILL_TYPE &lt;&gt; 'WOV'
+AND BILL.BILL_STATUS = 'P'
+GROUP BY dim_fed_hierarchy_history.dim_fed_hierarchy_history_key, dim_date.dim_date_key</QueryDefinition>
+                  </Source>
+                  <StorageMode valuens="ddl200_200">InMemory</StorageMode>
+                  <ProcessingMode>Regular</ProcessingMode>
+                  <ProactiveCaching>
+                    <SilenceInterval>-PT1S</SilenceInterval>
+                    <Latency>-PT1S</Latency>
+                    <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+                    <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+                    <Source xsi:type="ProactiveCachingInheritedBinding" />
+                  </ProactiveCaching>
+                  <ddl300_300:DirectQueryUsage>InMemoryOnly</ddl300_300:DirectQueryUsage>
+                </Partition>
               </Partitions>
               <ProactiveCaching>
                 <SilenceInterval>-PT1S</SilenceInterval>
@@ -3696,7 +3749,7 @@ CASE
 									AND a.current_fin_month = 'Current') THEN 'Yesterday'
 
    WHEN bill_current_fin_year = 'Previous' AND bill_current_fin_month = 'Lastyear'
-	    AND bill_trading_days_so_far = (SELECT trading_days_so_far FROM dbo.dim_date
+	    AND bill_trading_days_so_far_desc = (SELECT bill_trading_days_so_far_desc FROM dbo.dim_date
 										WHERE CAST(calendar_date AS DATE) = CAST(GETDATE() AS DATE)) THEN 'Lastyear' 
 
    ELSE 'No' 
@@ -3726,7 +3779,7 @@ CASE
 									AND a.current_fin_month = 'Current') THEN 'Yesterday'
 
    WHEN bill_current_fin_year = 'Previous' AND bill_current_fin_month = 'Lastyear'
-	    AND bill_trading_days_so_far = (SELECT trading_days_so_far FROM dbo.dim_date
+	    AND bill_trading_days_so_far_desc = (SELECT bill_trading_days_so_far_desc FROM dbo.dim_date
 										WHERE CAST(calendar_date AS DATE) = CAST(GETDATE() AS DATE)) THEN 'Lastyear' 
 
    ELSE 'No' 
@@ -4705,7 +4758,7 @@ ALTER CUBE CURRENTCUBE UPDATE DIMENSION Measures, Default_Member = [__No measure
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dim_bill_date_52c287bc-5d1a-4d58-abda-f5544c01e37e" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dim_bill_date" msprop:DbTableName="dim_bill_date" msprop:TableType="View" msprop:Description="dim_bill_date" msprop:QueryDefinition="SELECT dim_bill_date_key, bill_date, bill_financial_date, bill_fin_period,&#xD;&#xA; bill_fin_year, bill_fin_quarter_no, bill_fin_quarter, bill_fin_month, bill_fin_month_no&#xD;&#xA; , bill_current_fin_year, bill_current_fin_month, &#xD;&#xA;&#xD;&#xA;CASE &#xD;&#xA;  WHEN CAST (bill_date AS date) = CAST(GETDATE() AS DATE) THEN 'Current' &#xD;&#xA;  &#xD;&#xA;  WHEN CAST (bill_date AS date) =  (SELECT CAST(MAX(calendar_date) AS DATE) FROM dim_date a&#xD;&#xA;          WHERE a.calendar_date &lt; CAST(GETDATE() AS DATE)&#xD;&#xA;         AND a.trading_day_flag = 'Y'&#xD;&#xA;         AND a.holiday_flag = 'N'&#xD;&#xA;         AND a.current_fin_month = 'Current') THEN 'Yesterday'&#xD;&#xA;&#xD;&#xA;   WHEN bill_current_fin_year = 'Previous' AND bill_current_fin_month = 'Lastyear'&#xD;&#xA;     AND bill_trading_days_so_far = (SELECT trading_days_so_far FROM dbo.dim_date&#xD;&#xA;          WHERE CAST(calendar_date AS DATE) = CAST(GETDATE() AS DATE)) THEN 'Lastyear' &#xD;&#xA;&#xD;&#xA;   ELSE 'No' &#xD;&#xA;   END bill_current_fin_day,&#xD;&#xA;&#xD;&#xA;   IIF(CAST(bill_date AS DATE) = CAST(GETDATE() AS DATE), 'Current', bill_current_fin_ytd) bill_current_fin_ytd&#xD;&#xA;&#xD;&#xA;-- select *&#xD;&#xA;&#xD;&#xA;FROM [dbo].[dim_bill_date]&#xD;&#xA;WHERE bill_current_fin_year IN ('Current','Previous')&#xD;&#xA;AND CAST (bill_date AS date) &lt;= CAST(GETDATE() AS DATE)">
+                    <xs:element name="dim_bill_date_52c287bc-5d1a-4d58-abda-f5544c01e37e" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dim_bill_date" msprop:DbTableName="dim_bill_date" msprop:TableType="View" msprop:Description="dim_bill_date" msprop:QueryDefinition="SELECT dim_bill_date_key, bill_date, bill_financial_date, bill_fin_period,&#xD;&#xA; bill_fin_year, bill_fin_quarter_no, bill_fin_quarter, bill_fin_month, bill_fin_month_no&#xD;&#xA; , bill_current_fin_year, bill_current_fin_month, &#xD;&#xA;&#xD;&#xA;CASE &#xD;&#xA;  WHEN CAST (bill_date AS date) = CAST(GETDATE() AS DATE) THEN 'Current' &#xD;&#xA;  &#xD;&#xA;  WHEN CAST (bill_date AS date) =  (SELECT CAST(MAX(calendar_date) AS DATE) FROM dim_date a&#xD;&#xA;          WHERE a.calendar_date &lt; CAST(GETDATE() AS DATE)&#xD;&#xA;         AND a.trading_day_flag = 'Y'&#xD;&#xA;         AND a.holiday_flag = 'N'&#xD;&#xA;         AND a.current_fin_month = 'Current') THEN 'Yesterday'&#xD;&#xA;&#xD;&#xA;   WHEN bill_current_fin_year = 'Previous' AND bill_current_fin_month = 'Lastyear'&#xD;&#xA;     AND bill_trading_days_so_far_desc = (SELECT bill_trading_days_so_far_desc FROM dbo.dim_date&#xD;&#xA;          WHERE CAST(calendar_date AS DATE) = CAST(GETDATE() AS DATE)) THEN 'Lastyear' &#xD;&#xA;&#xD;&#xA;   ELSE 'No' &#xD;&#xA;   END bill_current_fin_day,&#xD;&#xA;&#xD;&#xA;   IIF(CAST(bill_date AS DATE) = CAST(GETDATE() AS DATE), 'Current', bill_current_fin_ytd) bill_current_fin_ytd&#xD;&#xA;&#xD;&#xA;-- select *&#xD;&#xA;&#xD;&#xA;FROM [dbo].[dim_bill_date]&#xD;&#xA;WHERE bill_current_fin_year IN ('Current','Previous')">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="dim_bill_date_key" msprop:DbColumnName="dim_bill_date_key" msprop:FriendlyName="dim_bill_date_key" type="xs:int" minOccurs="0" />
