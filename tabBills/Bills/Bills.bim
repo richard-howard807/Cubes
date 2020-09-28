@@ -9664,6 +9664,26 @@ order by 1&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryC
             </Annotation>
             <Annotation>
               <Name>QueryEditorSerialization</Name>
+              <Value>&lt;?xml version="1.0" encoding="UTF-16"?&gt;&lt;Gemini xmlns="QueryEditorSerialization"&gt;&lt;AnnotationContent&gt;&lt;![CDATA[&lt;RSQueryCommandText&gt;select
+b.dim_matter_header_curr_key as 'MatterID',
+a.SectorName as 'SectorName'
+from
+
+Reporting.Accounts.LocalGovernmentClients a
+
+inner join red_dw.dbo.fact_matter_summary b
+ on a.Client = b.client_code
+ and b.matter_number = a.Matter
+ and b.fin_month = (
+ select
+ fin_month
+
+ from
+ red_dw.dbo.dim_date
+
+ where
+ calendar_date = cast(getdate() as date))
+and b.dim_matter_header_curr_key &gt; 0&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryCommandType&gt;&lt;RSQueryDesignState&gt;&lt;/RSQueryDesignState&gt;]]&gt;&lt;/AnnotationContent&gt;&lt;/Gemini&gt;</Value>
             </Annotation>
             <Annotation>
               <Name>IsQueryEditorUsed</Name>
@@ -39679,17 +39699,27 @@ red_dw.dbo.dim_fed_hierarchy_history</QueryDefinition>
                   <Name>dimLocalGovernmentMatters</Name>
                   <Annotations>
                     <Annotation>
-                      <Name>TableWidgetSerialization</Name>
-                    </Annotation>
-                    <Annotation>
-                      <Name>TableWidgetSourceTable</Name>
-                    </Annotation>
-                    <Annotation>
                       <Name>QueryEditorSerialization</Name>
-                    </Annotation>
-                    <Annotation>
-                      <Name>IsQueryEditorUsed</Name>
-                      <Value>True</Value>
+                      <Value>&lt;?xml version="1.0" encoding="UTF-16"?&gt;&lt;Gemini xmlns="QueryEditorSerialization"&gt;&lt;AnnotationContent&gt;&lt;![CDATA[&lt;RSQueryCommandText&gt;select
+b.dim_matter_header_curr_key as 'MatterID',
+a.SectorName as 'SectorName'
+from
+
+Reporting.Accounts.LocalGovernmentClients a
+
+inner join red_dw.dbo.fact_matter_summary b
+ on a.Client = b.client_code
+ and b.matter_number = a.Matter
+ and b.fin_month = (
+ select
+ fin_month
+
+ from
+ red_dw.dbo.dim_date
+
+ where
+ calendar_date = cast(getdate() as date))
+and b.dim_matter_header_curr_key &gt; 0&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryCommandType&gt;&lt;RSQueryDesignState&gt;&lt;/RSQueryDesignState&gt;]]&gt;&lt;/AnnotationContent&gt;&lt;/Gemini&gt;</Value>
                     </Annotation>
                   </Annotations>
                   <Source xsi:type="QueryBinding">
@@ -39699,7 +39729,7 @@ b.dim_matter_header_curr_key as 'MatterID',
 a.SectorName as 'SectorName'
 from
 
-sql2008svr.Reporting.Accounts.LocalGovernmentClients a
+Reporting.Accounts.LocalGovernmentClients a
 
 inner join red_dw.dbo.fact_matter_summary b
  on a.Client = b.client_code
@@ -50944,7 +50974,7 @@ CREATE MEASURE 'Matters'[Count of Matters]=countrows(Matters);
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="dimLocalGovernmentMatters_7216695e-93b5-4045-8585-ecaa8789da89" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimLocalGovernmentMatters" msprop:DbTableName="dimLocalGovernmentMatters" msprop:TableType="View" msprop:Description="dimLocalGovernmentMatters" msprop:QueryDefinition="select&#xD;&#xA;b.dim_matter_header_curr_key as 'MatterID',&#xD;&#xA;a.SectorName as 'SectorName'&#xD;&#xA;from&#xD;&#xA;&#xD;&#xA;sql2008svr.Reporting.Accounts.LocalGovernmentClients a&#xD;&#xA;&#xD;&#xA;inner join red_dw.dbo.fact_matter_summary b&#xD;&#xA; on a.Client = b.client_code&#xD;&#xA; and b.matter_number = a.Matter&#xD;&#xA; and b.fin_month = (&#xD;&#xA; select&#xD;&#xA; fin_month&#xD;&#xA;&#xD;&#xA; from&#xD;&#xA; red_dw.dbo.dim_date&#xD;&#xA;&#xD;&#xA; where&#xD;&#xA; calendar_date = cast(getdate() as date))&#xD;&#xA;and b.dim_matter_header_curr_key &gt; 0">
+                    <xs:element name="dimLocalGovernmentMatters_7216695e-93b5-4045-8585-ecaa8789da89" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="dimLocalGovernmentMatters" msprop:DbTableName="dimLocalGovernmentMatters" msprop:TableType="View" msprop:Description="dimLocalGovernmentMatters" msprop:QueryDefinition="select&#xD;&#xA;b.dim_matter_header_curr_key as 'MatterID',&#xD;&#xA;a.SectorName as 'SectorName'&#xD;&#xA;from&#xD;&#xA;&#xD;&#xA;Reporting.Accounts.LocalGovernmentClients a&#xD;&#xA;&#xD;&#xA;inner join red_dw.dbo.fact_matter_summary b&#xD;&#xA; on a.Client = b.client_code&#xD;&#xA; and b.matter_number = a.Matter&#xD;&#xA; and b.fin_month = (&#xD;&#xA; select&#xD;&#xA; fin_month&#xD;&#xA;&#xD;&#xA; from&#xD;&#xA; red_dw.dbo.dim_date&#xD;&#xA;&#xD;&#xA; where&#xD;&#xA; calendar_date = cast(getdate() as date))&#xD;&#xA;and b.dim_matter_header_curr_key &gt; 0">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="MatterID" msprop:DbColumnName="MatterID" msprop:FriendlyName="MatterID" type="xs:int" minOccurs="0" />
