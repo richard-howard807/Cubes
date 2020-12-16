@@ -3276,6 +3276,7 @@ FROM dbo.fact_bill_activity
 INNER JOIN dbo.dim_date ON dim_date.dim_date_key = fact_bill_activity.dim_gl_date_key
 WHERE current_fin_year IN ('Current','Previous')
 AND CAST (calendar_date AS date) &lt; CAST(GETDATE() AS DATE)
+and  ISNULL(finance_reporting_exclusion,'') &lt;&gt; 1
 GROUP BY dim_fed_hierarchy_history_key, dim_gl_date_key
 
 union all
@@ -3296,6 +3297,7 @@ FROM dbo.fact_bill_activity
 INNER JOIN dbo.dim_date ON dim_date.dim_date_key = fact_bill_activity.dim_gl_date_key
 WHERE current_fin_year IN ('Current','Previous')
 AND CAST (calendar_date AS date) &lt; CAST(GETDATE() AS DATE)
+and  ISNULL(finance_reporting_exclusion,'') &lt;&gt; 1
 GROUP BY dim_fed_hierarchy_history_key, dim_gl_date_key
 
 union all
