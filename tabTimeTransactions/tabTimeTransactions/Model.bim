@@ -20898,17 +20898,36 @@ f.dim_matter_header_curr_key &gt; 0</QueryDefinition>
                   <Name>Bills</Name>
                   <Annotations>
                     <Annotation>
-                      <Name>TableWidgetSerialization</Name>
-                    </Annotation>
-                    <Annotation>
-                      <Name>TableWidgetSourceTable</Name>
-                    </Annotation>
-                    <Annotation>
                       <Name>QueryEditorSerialization</Name>
-                    </Annotation>
-                    <Annotation>
-                      <Name>IsQueryEditorUsed</Name>
-                      <Value>True</Value>
+                      <Value>&lt;?xml version="1.0" encoding="UTF-16"?&gt;&lt;Gemini xmlns="QueryEditorSerialization"&gt;&lt;AnnotationContent&gt;&lt;![CDATA[&lt;RSQueryCommandText&gt;select distinct
+f.dim_bill_key BillID,
+f.bill_number BillNumber,
+upper(d.record_type) as  'BillTypeCode',
+d.bill_flag BillFinalOrInterimCode,
+f.dim_last_pay_date_key BillLastPaymentDate,
+f.dim_bill_date_key BillDate,
+f.bill_total BillAmount,
+f.fees_total FeeValue,
+f.paid_disbursements DisbursementsPaid,
+f.unpaid_disbursements DisbursementsUnpaid,
+f.admin_charges_total AdministrationCharges,
+f.vat_amount VATAmount,
+f.amount_paid AmountPaid,
+f.bill_total - f.amount_paid AmountOutstanding,
+case when f.amount_paid = f.bill_total then 'Paid' else cast(datediff(day,cast( cast(f.dim_bill_date_key as varchar(10)) as date), getdate()) as varchar(10)) end BillAgeDays,
+d.outstanding_flag OpenItem
+
+from
+red_dw.dbo.fact_bill f
+
+left join
+ red_dw.dbo.dim_bill d
+  on d.dim_bill_key = f.dim_bill_key
+
+
+where
+f.dim_bill_key &gt; 0
+and  ISNULL(d.finance_reporting_exclusion,'') &lt;&gt; 1&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryCommandType&gt;&lt;RSQueryDesignState&gt;&lt;/RSQueryDesignState&gt;]]&gt;&lt;/AnnotationContent&gt;&lt;/Gemini&gt;</Value>
                     </Annotation>
                   </Annotations>
                   <Source xsi:type="QueryBinding">
@@ -20940,7 +20959,8 @@ left join
 
 
 where
-f.dim_bill_key &gt; 0</QueryDefinition>
+f.dim_bill_key &gt; 0
+and  ISNULL(d.finance_reporting_exclusion,'') &lt;&gt; 1</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
@@ -26726,17 +26746,54 @@ red_dw.dbo.dim_matter_branch</QueryDefinition>
                   <Name>TimeTransactions</Name>
                   <Annotations>
                     <Annotation>
-                      <Name>TableWidgetSerialization</Name>
-                    </Annotation>
-                    <Annotation>
-                      <Name>TableWidgetSourceTable</Name>
-                    </Annotation>
-                    <Annotation>
                       <Name>QueryEditorSerialization</Name>
-                    </Annotation>
-                    <Annotation>
-                      <Name>IsQueryEditorUsed</Name>
-                      <Value>True</Value>
+                      <Value>&lt;?xml version="1.0" encoding="UTF-16"?&gt;&lt;Gemini xmlns="QueryEditorSerialization"&gt;&lt;AnnotationContent&gt;&lt;![CDATA[&lt;RSQueryCommandText&gt;select 
+dim_orig_matter_header_curr_key AS OriginalMatterID,
+a.original_transaction_sequence_number OriginalTransactionID,
+dim_gl_date_key as 'GLDate',
+a.transaction_sequence_number TransactionID,
+a.dim_client_key ClientID,
+a.dim_matter_header_curr_key MatterID,
+a.dim_bill_key BillID,
+a.dim_all_time_narrative_key NarrativeID,
+
+t.chargeable_nonc_nonb ChargeableTimeCode,
+--a.time_type ChargeableTimeCode,
+a.dim_fed_hierarchy_history_key FEDCodeID,
+a.dim_transaction_date_key TransactionDate,
+a.minutes_recorded MinutesRecorded,
+a.hourly_charge_rate ChargeRate,
+a.time_charge_value timeChargeValue,
+t.transaction_type TransactionType,
+t.time_activity_code TimeActivityCode,
+--t.rate_code RateCode,
+t.matter_stage_descrn StageDesc,
+datediff(d, d3.calendar_date, getdate()) TransactionAgeDays,
+t.reporting_exclusions ReportingExclusions,
+edithrs EditHrs, 
+editamt EditAmt, 
+editrate EditRate,
+dim_activity_time_type_key, dim_time_phase_type_key, dim_time_task_type_key
+, BilledTime.TimeRevenue
+from
+red_dw.dbo.fact_all_time_activity a
+
+left join
+ red_dw.dbo.dim_all_time_activity t
+  on a.dim_all_time_activity_key = t.dim_all_time_activity_key
+
+
+ left join red_dw.dbo.dim_date d3
+ on d3.dim_date_key = a.dim_transaction_date_key
+
+ LEFT JOIN (SELECT transaction_sequence_number, master_fact_key, SUM(time_charge_value) AS TimeRevenue
+		    FROM red_dw.dbo.fact_bill_billed_time_activity
+			where  ISNULL(finance_reporting_exclusion,'') &lt;&gt; 1
+		    GROUP BY transaction_sequence_number, master_fact_key) 
+		AS BilledTime ON BilledTime.master_fact_key = a.master_fact_key AND BilledTime.transaction_sequence_number = a.transaction_sequence_number
+
+where isactive = 1
+and  ISNULL(a.finance_reporting_exclusion,'') &lt;&gt; 1&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryCommandType&gt;&lt;RSQueryDesignState&gt;&lt;/RSQueryDesignState&gt;]]&gt;&lt;/AnnotationContent&gt;&lt;/Gemini&gt;</Value>
                     </Annotation>
                   </Annotations>
                   <Source xsi:type="QueryBinding">
@@ -26782,10 +26839,12 @@ left join
 
  LEFT JOIN (SELECT transaction_sequence_number, master_fact_key, SUM(time_charge_value) AS TimeRevenue
 		    FROM red_dw.dbo.fact_bill_billed_time_activity
+			where  ISNULL(finance_reporting_exclusion,'') &lt;&gt; 1
 		    GROUP BY transaction_sequence_number, master_fact_key) 
 		AS BilledTime ON BilledTime.master_fact_key = a.master_fact_key AND BilledTime.transaction_sequence_number = a.transaction_sequence_number
 
-where isactive = 1</QueryDefinition>
+where isactive = 1
+and  ISNULL(a.finance_reporting_exclusion,'') &lt;&gt; 1</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
@@ -32830,17 +32889,16 @@ dim_last_transaction_date_key &gt; 0</QueryDefinition>
                   <Name>BillExtension</Name>
                   <Annotations>
                     <Annotation>
-                      <Name>TableWidgetSerialization</Name>
-                    </Annotation>
-                    <Annotation>
-                      <Name>TableWidgetSourceTable</Name>
-                    </Annotation>
-                    <Annotation>
                       <Name>QueryEditorSerialization</Name>
-                    </Annotation>
-                    <Annotation>
-                      <Name>IsQueryEditorUsed</Name>
-                      <Value>True</Value>
+                      <Value>&lt;?xml version="1.0" encoding="UTF-16"?&gt;&lt;Gemini xmlns="QueryEditorSerialization"&gt;&lt;AnnotationContent&gt;&lt;![CDATA[&lt;RSQueryCommandText&gt;select
+dim_bill_key BillXBillID,
+dim_fed_hierarchy_history_key BillXFeeEarner,
+bill_amount BillXBillAmount,
+billed_time BillXTimeBilled
+
+from
+red_dw.dbo.fact_bill_activity
+and  ISNULL(finance_reporting_exclusion,'') &lt;&gt; 1&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryCommandType&gt;&lt;RSQueryDesignState&gt;&lt;/RSQueryDesignState&gt;]]&gt;&lt;/AnnotationContent&gt;&lt;/Gemini&gt;</Value>
                     </Annotation>
                   </Annotations>
                   <Source xsi:type="QueryBinding">
@@ -32852,7 +32910,8 @@ bill_amount BillXBillAmount,
 billed_time BillXTimeBilled
 
 from
-red_dw.dbo.fact_bill_activity</QueryDefinition>
+red_dw.dbo.fact_bill_activity
+and  ISNULL(finance_reporting_exclusion,'') &lt;&gt; 1</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
