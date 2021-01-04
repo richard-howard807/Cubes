@@ -2625,7 +2625,7 @@
             </Annotation>
             <Annotation>
               <Name>QueryEditorSerialization</Name>
-              <Value>&lt;?xml version="1.0" encoding="UTF-16"?&gt;&lt;Gemini xmlns="QueryEditorSerialization"&gt;&lt;AnnotationContent&gt;&lt;![CDATA[&lt;RSQueryCommandText&gt;select 
+              <Value>&lt;?xml version="1.0" encoding="UTF-16"?&gt;&lt;Gemini xmlns="QueryEditorSerialization"&gt;&lt;AnnotationContent&gt;&lt;![CDATA[&lt;RSQueryCommandText&gt;select  TOP 10 
 dim_orig_matter_header_curr_key AS OriginalMatterID,
 a.original_transaction_sequence_number OriginalTransactionID,
 dim_gl_date_key as 'GLDate',
@@ -2648,9 +2648,9 @@ t.time_activity_code TimeActivityCode,
 t.matter_stage_descrn StageDesc,
 datediff(d, d3.calendar_date, getdate()) TransactionAgeDays,
 t.reporting_exclusions ReportingExclusions,
---edithrs EditHrs, 
---editamt EditAmt, 
---editrate EditRate,
+edithrs EditHrs, 
+editamt EditAmt, 
+editrate EditRate,
 dim_activity_time_type_key, dim_time_phase_type_key, dim_time_task_type_key
 , BilledTime.TimeRevenue
 from
@@ -2669,7 +2669,8 @@ left join
       GROUP BY transaction_sequence_number, master_fact_key) 
   AS BilledTime ON BilledTime.master_fact_key = a.master_fact_key AND BilledTime.transaction_sequence_number = a.transaction_sequence_number
 
-where isactive = 1&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryCommandType&gt;&lt;RSQueryDesignState&gt;&lt;/RSQueryDesignState&gt;]]&gt;&lt;/AnnotationContent&gt;&lt;/Gemini&gt;</Value>
+where isactive = 1
+AND ISNULL(a.finance_reporting_exclusion, 0) = 0&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryCommandType&gt;&lt;RSQueryDesignState&gt;&lt;/RSQueryDesignState&gt;]]&gt;&lt;/AnnotationContent&gt;&lt;/Gemini&gt;</Value>
             </Annotation>
             <Annotation>
               <Name>IsQueryEditorUsed</Name>
@@ -2824,6 +2825,21 @@ where isactive = 1&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/
                   <AttributeID>TimeRevenue</AttributeID>
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>TimeRevenue</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>EditHrs</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>EditHrs</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>EditAmt</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>EditAmt</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>EditRate</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>EditRate</Name>
                 </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
@@ -3419,6 +3435,87 @@ where isactive = 1&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/
                 <Source xsi:type="ColumnBinding">
                   <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
                   <ColumnID>TimeRevenue</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>EditHrs</ID>
+              <Name>EditHrs</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Double</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
+                    <ColumnID>EditHrs</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
+                  <ColumnID>EditHrs</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>EditAmt</ID>
+              <Name>EditAmt</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Double</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
+                    <ColumnID>EditAmt</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
+                  <ColumnID>EditAmt</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>EditRate</ID>
+              <Name>EditRate</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>Double</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
+                    <ColumnID>EditRate</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
+                  <ColumnID>EditRate</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
@@ -15909,6 +16006,15 @@ ORDER BY TimeActivityCode&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Te
                 <Attribute>
                   <AttributeID>TimeRevenue</AttributeID>
                 </Attribute>
+                <Attribute>
+                  <AttributeID>EditHrs</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>EditAmt</AttributeID>
+                </Attribute>
+                <Attribute>
+                  <AttributeID>EditRate</AttributeID>
+                </Attribute>
               </Attributes>
             </Dimension>
             <Dimension>
@@ -21435,6 +21541,51 @@ red_dw.dbo.dim_matter_branch</QueryDefinition>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>EditHrs</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Double</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
+                            <ColumnID>EditHrs</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>EditAmt</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Double</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
+                            <ColumnID>EditAmt</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>EditRate</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>Double</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc</TableID>
+                            <ColumnID>EditRate</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
                 </Dimension>
@@ -26651,7 +26802,7 @@ red_dw.dbo.dim_matter_branch</QueryDefinition>
                   <Annotations>
                     <Annotation>
                       <Name>QueryEditorSerialization</Name>
-                      <Value>&lt;?xml version="1.0" encoding="UTF-16"?&gt;&lt;Gemini xmlns="QueryEditorSerialization"&gt;&lt;AnnotationContent&gt;&lt;![CDATA[&lt;RSQueryCommandText&gt;select 
+                      <Value>&lt;?xml version="1.0" encoding="UTF-16"?&gt;&lt;Gemini xmlns="QueryEditorSerialization"&gt;&lt;AnnotationContent&gt;&lt;![CDATA[&lt;RSQueryCommandText&gt;select  TOP 10 
 dim_orig_matter_header_curr_key AS OriginalMatterID,
 a.original_transaction_sequence_number OriginalTransactionID,
 dim_gl_date_key as 'GLDate',
@@ -26674,9 +26825,9 @@ t.time_activity_code TimeActivityCode,
 t.matter_stage_descrn StageDesc,
 datediff(d, d3.calendar_date, getdate()) TransactionAgeDays,
 t.reporting_exclusions ReportingExclusions,
---edithrs EditHrs, 
---editamt EditAmt, 
---editrate EditRate,
+edithrs EditHrs, 
+editamt EditAmt, 
+editrate EditRate,
 dim_activity_time_type_key, dim_time_phase_type_key, dim_time_task_type_key
 , BilledTime.TimeRevenue
 from
@@ -26695,12 +26846,13 @@ left join
       GROUP BY transaction_sequence_number, master_fact_key) 
   AS BilledTime ON BilledTime.master_fact_key = a.master_fact_key AND BilledTime.transaction_sequence_number = a.transaction_sequence_number
 
-where isactive = 1&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryCommandType&gt;&lt;RSQueryDesignState&gt;&lt;/RSQueryDesignState&gt;]]&gt;&lt;/AnnotationContent&gt;&lt;/Gemini&gt;</Value>
+where isactive = 1
+AND ISNULL(a.finance_reporting_exclusion, 0) = 0&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryCommandType&gt;&lt;RSQueryDesignState&gt;&lt;/RSQueryDesignState&gt;]]&gt;&lt;/AnnotationContent&gt;&lt;/Gemini&gt;</Value>
                     </Annotation>
                   </Annotations>
                   <Source xsi:type="QueryBinding">
                     <DataSourceID>1d61b8d0-51d7-43c5-ab1a-dbc6ba699532</DataSourceID>
-                    <QueryDefinition>select 
+                    <QueryDefinition>select  TOP 10 
 dim_orig_matter_header_curr_key AS OriginalMatterID,
 a.original_transaction_sequence_number OriginalTransactionID,
 dim_gl_date_key as 'GLDate',
@@ -26723,9 +26875,9 @@ t.time_activity_code TimeActivityCode,
 t.matter_stage_descrn StageDesc,
 datediff(d, d3.calendar_date, getdate()) TransactionAgeDays,
 t.reporting_exclusions ReportingExclusions,
---edithrs EditHrs, 
---editamt EditAmt, 
---editrate EditRate,
+edithrs EditHrs, 
+editamt EditAmt, 
+editrate EditRate,
 dim_activity_time_type_key, dim_time_phase_type_key, dim_time_task_type_key
 , BilledTime.TimeRevenue
 from
@@ -26744,7 +26896,8 @@ left join
       GROUP BY transaction_sequence_number, master_fact_key) 
   AS BilledTime ON BilledTime.master_fact_key = a.master_fact_key AND BilledTime.transaction_sequence_number = a.transaction_sequence_number
 
-where isactive = 1</QueryDefinition>
+where isactive = 1
+AND ISNULL(a.finance_reporting_exclusion, 0) = 0</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
@@ -36917,7 +37070,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="TimeTransactions" msprop:DbTableName="factMainTable" msprop:TableType="View" msprop:Description="factMainTable" msprop:QueryDefinition="select &#xD;&#xA;dim_orig_matter_header_curr_key AS OriginalMatterID,&#xD;&#xA;a.original_transaction_sequence_number OriginalTransactionID,&#xD;&#xA;dim_gl_date_key as 'GLDate',&#xD;&#xA;a.transaction_sequence_number TransactionID,&#xD;&#xA;a.dim_client_key ClientID,&#xD;&#xA;a.dim_matter_header_curr_key MatterID,&#xD;&#xA;a.dim_bill_key BillID,&#xD;&#xA;a.dim_all_time_narrative_key NarrativeID,&#xD;&#xA;&#xD;&#xA;t.chargeable_nonc_nonb ChargeableTimeCode,&#xD;&#xA;--a.time_type ChargeableTimeCode,&#xD;&#xA;a.dim_fed_hierarchy_history_key FEDCodeID,&#xD;&#xA;a.dim_transaction_date_key TransactionDate,&#xD;&#xA;a.minutes_recorded MinutesRecorded,&#xD;&#xA;a.hourly_charge_rate ChargeRate,&#xD;&#xA;a.time_charge_value timeChargeValue,&#xD;&#xA;t.transaction_type TransactionType,&#xD;&#xA;t.time_activity_code TimeActivityCode,&#xD;&#xA;--t.rate_code RateCode,&#xD;&#xA;t.matter_stage_descrn StageDesc,&#xD;&#xA;datediff(d, d3.calendar_date, getdate()) TransactionAgeDays,&#xD;&#xA;t.reporting_exclusions ReportingExclusions,&#xD;&#xA;--edithrs EditHrs, &#xD;&#xA;--editamt EditAmt, &#xD;&#xA;--editrate EditRate,&#xD;&#xA;dim_activity_time_type_key, dim_time_phase_type_key, dim_time_task_type_key&#xD;&#xA;, BilledTime.TimeRevenue&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_all_time_activity a&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; red_dw.dbo.dim_all_time_activity t&#xD;&#xA;  on a.dim_all_time_activity_key = t.dim_all_time_activity_key&#xD;&#xA;&#xD;&#xA;&#xD;&#xA; left join red_dw.dbo.dim_date d3&#xD;&#xA; on d3.dim_date_key = a.dim_transaction_date_key&#xD;&#xA;&#xD;&#xA; LEFT JOIN (SELECT transaction_sequence_number, master_fact_key, SUM(time_charge_value) AS TimeRevenue&#xD;&#xA;      FROM red_dw.dbo.fact_bill_billed_time_activity&#xD;&#xA;      GROUP BY transaction_sequence_number, master_fact_key) &#xD;&#xA;  AS BilledTime ON BilledTime.master_fact_key = a.master_fact_key AND BilledTime.transaction_sequence_number = a.transaction_sequence_number&#xD;&#xA;&#xD;&#xA;where isactive = 1">
+                    <xs:element name="factMainTable_22f1cd23-b180-4a55-b850-06eacaef0ddc" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="TimeTransactions" msprop:DbTableName="factMainTable" msprop:TableType="View" msprop:Description="factMainTable" msprop:QueryDefinition="select  TOP 10 &#xD;&#xA;dim_orig_matter_header_curr_key AS OriginalMatterID,&#xD;&#xA;a.original_transaction_sequence_number OriginalTransactionID,&#xD;&#xA;dim_gl_date_key as 'GLDate',&#xD;&#xA;a.transaction_sequence_number TransactionID,&#xD;&#xA;a.dim_client_key ClientID,&#xD;&#xA;a.dim_matter_header_curr_key MatterID,&#xD;&#xA;a.dim_bill_key BillID,&#xD;&#xA;a.dim_all_time_narrative_key NarrativeID,&#xD;&#xA;&#xD;&#xA;t.chargeable_nonc_nonb ChargeableTimeCode,&#xD;&#xA;--a.time_type ChargeableTimeCode,&#xD;&#xA;a.dim_fed_hierarchy_history_key FEDCodeID,&#xD;&#xA;a.dim_transaction_date_key TransactionDate,&#xD;&#xA;a.minutes_recorded MinutesRecorded,&#xD;&#xA;a.hourly_charge_rate ChargeRate,&#xD;&#xA;a.time_charge_value timeChargeValue,&#xD;&#xA;t.transaction_type TransactionType,&#xD;&#xA;t.time_activity_code TimeActivityCode,&#xD;&#xA;--t.rate_code RateCode,&#xD;&#xA;t.matter_stage_descrn StageDesc,&#xD;&#xA;datediff(d, d3.calendar_date, getdate()) TransactionAgeDays,&#xD;&#xA;t.reporting_exclusions ReportingExclusions,&#xD;&#xA;edithrs EditHrs, &#xD;&#xA;editamt EditAmt, &#xD;&#xA;editrate EditRate,&#xD;&#xA;dim_activity_time_type_key, dim_time_phase_type_key, dim_time_task_type_key&#xD;&#xA;, BilledTime.TimeRevenue&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_all_time_activity a&#xD;&#xA;&#xD;&#xA;left join&#xD;&#xA; red_dw.dbo.dim_all_time_activity t&#xD;&#xA;  on a.dim_all_time_activity_key = t.dim_all_time_activity_key&#xD;&#xA;&#xD;&#xA;&#xD;&#xA; left join red_dw.dbo.dim_date d3&#xD;&#xA; on d3.dim_date_key = a.dim_transaction_date_key&#xD;&#xA;&#xD;&#xA; LEFT JOIN (SELECT transaction_sequence_number, master_fact_key, SUM(time_charge_value) AS TimeRevenue&#xD;&#xA;      FROM red_dw.dbo.fact_bill_billed_time_activity&#xD;&#xA;      GROUP BY transaction_sequence_number, master_fact_key) &#xD;&#xA;  AS BilledTime ON BilledTime.master_fact_key = a.master_fact_key AND BilledTime.transaction_sequence_number = a.transaction_sequence_number&#xD;&#xA;&#xD;&#xA;where isactive = 1&#xD;&#xA;AND ISNULL(a.finance_reporting_exclusion, 0) = 0">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="BillID" msprop:DbColumnName="BillID" msprop:FriendlyName="BillID" type="xs:int" minOccurs="0" />
@@ -36967,6 +37120,9 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                           <xs:element name="dim_time_phase_type_key" msprop:DbColumnName="dim_time_phase_type_key" msprop:FriendlyName="dim_time_phase_type_key" type="xs:int" minOccurs="0" />
                           <xs:element name="dim_time_task_type_key" msprop:DbColumnName="dim_time_task_type_key" msprop:FriendlyName="dim_time_task_type_key" type="xs:int" minOccurs="0" />
                           <xs:element name="TimeRevenue" msprop:DbColumnName="TimeRevenue" msprop:FriendlyName="TimeRevenue" type="xs:decimal" minOccurs="0" />
+                          <xs:element name="EditHrs" msprop:DbColumnName="EditHrs" msprop:FriendlyName="EditHrs" type="xs:decimal" minOccurs="0" />
+                          <xs:element name="EditAmt" msprop:DbColumnName="EditAmt" msprop:FriendlyName="EditAmt" type="xs:decimal" minOccurs="0" />
+                          <xs:element name="EditRate" msprop:DbColumnName="EditRate" msprop:FriendlyName="EditRate" type="xs:decimal" minOccurs="0" />
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
