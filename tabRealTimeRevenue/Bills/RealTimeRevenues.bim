@@ -3423,66 +3423,6 @@ GROUP BY dim_fed_hierarchy_history_key, revenue.dim_date_key</QueryDefinition>
                   </ProactiveCaching>
                   <ddl300_300:DirectQueryUsage>InMemoryOnly</ddl300_300:DirectQueryUsage>
                 </Partition>
-                <Partition>
-                  <ID>fact_bill_activity_20ab1a73-dd2a-4d3a-b265-5a3dd2871ee4</ID>
-                  <Name>fact_bill_activity_current_day_WB</Name>
-                  <Annotations>
-                    <Annotation>
-                      <Name>QueryEditorSerialization</Name>
-                      <Value>&lt;?xml version="1.0" encoding="UTF-16"?&gt;&lt;Gemini xmlns="QueryEditorSerialization"&gt;&lt;AnnotationContent&gt;&lt;![CDATA[&lt;RSQueryCommandText&gt;SET TRAN ISOLATION LEVEL READ UNCOMMITTED
-
-
-SELECT dim_fed_hierarchy_history.dim_fed_hierarchy_history_key, dim_date.dim_date_key dim_gl_date_key, SUM(CASE 
-																	WHEN BILL.BILL_TYPE = 'CRED' then PM_ANALYSIS.BILLED * -1
-																	ELSE PM_ANALYSIS.BILLED
-																END	) bill_amount, GETDATE() data_date
-FROM [svr-liv-sql-02\WB].Lawsoft.dbo.BILL 
-INNER JOIN [svr-liv-sql-02\WB].Lawsoft.dbo.PM_ANALYSIS  ON PM_ANALYSIS.BILL_DIWOR = BILL.DIWOR
-INNER JOIN [svr-liv-sql-02\WB].Lawsoft.dbo.STAFF ON STAFF.DIWOR = PM_ANALYSIS.STAFF_DIWOR
-INNER JOIN [svr-liv-sql-02\WB].Lawsoft.dbo.MATTER ON MATTER.MATTER_DIWOR = BILL.MATTER_DIWOR
-LEFT OUTER JOIN dbo.dim_employee ON ISNULL(dim_employee.windowsusername, dim_employee.payrollid) =  REPLACE(LOWER(STAFF.NT_USER_NAME), 'sbc\', '') COLLATE Latin1_General_BIN AND ISNULL(dim_employee.windowsusername, dim_employee.payrollid) &lt;&gt; '' 
-INNER JOIN dbo.dim_fed_hierarchy_history ON dim_fed_hierarchy_history.dim_employee_key = dim_employee.dim_employee_key AND BILL.BILL_DATE BETWEEN dim_fed_hierarchy_history.dss_start_date AND dim_fed_hierarchy_history.dss_end_date 
-			AND dim_fed_hierarchy_history.activeud = 1
-INNER JOIN dim_date ON dim_date.calendar_date = CAST(BILL.BILL_DATE AS DATE)
-WHERE  BILL.BILL_DATE = CAST(GETDATE() AS DATE)
-and BILL.BILL_TYPE &lt;&gt; 'WOV'
-AND BILL.BILL_STATUS = 'P'
-GROUP BY dim_fed_hierarchy_history.dim_fed_hierarchy_history_key, dim_date.dim_date_key&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryCommandType&gt;&lt;RSQueryDesignState&gt;&lt;/RSQueryDesignState&gt;]]&gt;&lt;/AnnotationContent&gt;&lt;/Gemini&gt;</Value>
-                    </Annotation>
-                  </Annotations>
-                  <Source xsi:type="QueryBinding">
-                    <DataSourceID>8d020b0a-9c25-4e79-a388-1fe485b0fb5f</DataSourceID>
-                    <QueryDefinition>SET TRAN ISOLATION LEVEL READ UNCOMMITTED
-
-
-SELECT dim_fed_hierarchy_history.dim_fed_hierarchy_history_key, dim_date.dim_date_key dim_gl_date_key, SUM(CASE 
-																	WHEN BILL.BILL_TYPE = 'CRED' then PM_ANALYSIS.BILLED * -1
-																	ELSE PM_ANALYSIS.BILLED
-																END	) bill_amount, GETDATE() data_date
-FROM [svr-liv-sql-02\WB].Lawsoft.dbo.BILL 
-INNER JOIN [svr-liv-sql-02\WB].Lawsoft.dbo.PM_ANALYSIS  ON PM_ANALYSIS.BILL_DIWOR = BILL.DIWOR
-INNER JOIN [svr-liv-sql-02\WB].Lawsoft.dbo.STAFF ON STAFF.DIWOR = PM_ANALYSIS.STAFF_DIWOR
-INNER JOIN [svr-liv-sql-02\WB].Lawsoft.dbo.MATTER ON MATTER.MATTER_DIWOR = BILL.MATTER_DIWOR
-LEFT OUTER JOIN dbo.dim_employee ON ISNULL(dim_employee.windowsusername, dim_employee.payrollid) =  REPLACE(LOWER(STAFF.NT_USER_NAME), 'sbc\', '') COLLATE Latin1_General_BIN AND ISNULL(dim_employee.windowsusername, dim_employee.payrollid) &lt;&gt; '' 
-INNER JOIN dbo.dim_fed_hierarchy_history ON dim_fed_hierarchy_history.dim_employee_key = dim_employee.dim_employee_key AND BILL.BILL_DATE BETWEEN dim_fed_hierarchy_history.dss_start_date AND dim_fed_hierarchy_history.dss_end_date 
-			AND dim_fed_hierarchy_history.activeud = 1
-INNER JOIN dim_date ON dim_date.calendar_date = CAST(BILL.BILL_DATE AS DATE)
-WHERE  BILL.BILL_DATE = CAST(GETDATE() AS DATE)
-and BILL.BILL_TYPE &lt;&gt; 'WOV'
-AND BILL.BILL_STATUS = 'P'
-GROUP BY dim_fed_hierarchy_history.dim_fed_hierarchy_history_key, dim_date.dim_date_key</QueryDefinition>
-                  </Source>
-                  <StorageMode valuens="ddl200_200">InMemory</StorageMode>
-                  <ProcessingMode>Regular</ProcessingMode>
-                  <ProactiveCaching>
-                    <SilenceInterval>-PT1S</SilenceInterval>
-                    <Latency>-PT1S</Latency>
-                    <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
-                    <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
-                    <Source xsi:type="ProactiveCachingInheritedBinding" />
-                  </ProactiveCaching>
-                  <ddl300_300:DirectQueryUsage>InMemoryOnly</ddl300_300:DirectQueryUsage>
-                </Partition>
               </Partitions>
               <ProactiveCaching>
                 <SilenceInterval>-PT1S</SilenceInterval>
