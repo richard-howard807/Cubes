@@ -19905,17 +19905,55 @@ inner join fact_matter_summary a
                   <Name>factMatter</Name>
                   <Annotations>
                     <Annotation>
-                      <Name>TableWidgetSerialization</Name>
-                    </Annotation>
-                    <Annotation>
-                      <Name>TableWidgetSourceTable</Name>
-                    </Annotation>
-                    <Annotation>
                       <Name>QueryEditorSerialization</Name>
-                    </Annotation>
-                    <Annotation>
-                      <Name>IsQueryEditorUsed</Name>
-                      <Value>True</Value>
+                      <Value>&lt;?xml version="1.0" encoding="UTF-16"?&gt;&lt;Gemini xmlns="QueryEditorSerialization"&gt;&lt;AnnotationContent&gt;&lt;![CDATA[&lt;RSQueryCommandText&gt;select distinct 
+f.dim_matter_header_curr_key MatterID,
+f.dim_fed_hierarchy_history_key FEDCodeID,
+d.dim_matter_group_key MatterGroupID,
+br.dim_matter_branch_key BranchID,
+d.dim_matter_worktype_key WorkTypeID,
+d.dim_department_key DepartmentID,
+d.matter_partner_code PartnerCode,
+d.matter_number MatterNumber,
+CASE WHEN ISNUMERIC(d.matter_number) = 1 and rtrim(d.matter_number) != '.' THEN CAST(CAST(d.matter_number AS int) AS varchar) ELSE RTRIM(d.matter_number) END as 'MatterNumberTrimmed',
+f.dim_client_key ClientID,
+d.matter_description MatterDesc,
+dim_open_practice_management_date_key as DateMatterOpen,
+dim_closed_practice_management_date_key as DateMatterClosed,
+datediff(day, d.date_opened_case_management, isnull(d.date_closed_case_management, getdate())) AgeOfMatterDays,
+disbursement_balance DisbursementBalance,
+client_account_balance_of_matter ClientAccountBalance,
+unpaid_bill_balance UnpaidBillsBalance,
+wip_balance WIPBalance,
+costs_to_date CostsToDate,
+time_billed TotalTimeBilled,
+number_bills_matter NumberOfBillsRaised,
+unbilled_time UnbilledTime,
+case when d.case_id is null then 'No' else 'Yes' end HasRecordInCashdr,
+dim_last_bill_date_key LastBillDate,
+dim_last_transaction_date_key LastTimeDate,
+fixed_fee FixedFee,
+fixed_fee_amount FixedFeeAmount,
+delegated Delegated,
+d.master_client_code as MasterClientCode,
+d.dim_instruction_type_key,
+d.matter_partner_full_name as 'PartnerName',
+master_fact_key AS master_fact_key,
+ISNULL(d.reporting_exclusions, 0)  reporting_exclusions
+from
+red_dw.dbo.fact_matter_summary_current f
+
+inner join red_dw.dbo.dim_matter_header_current d
+ on d.dim_matter_header_curr_key = f.dim_matter_header_curr_key
+
+left join red_dw.dbo.dim_matter_branch br
+ on br.branch_code = d.branch_code
+
+
+
+
+where
+f.dim_matter_header_curr_key &gt; 0&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryCommandType&gt;&lt;RSQueryDesignState&gt;&lt;/RSQueryDesignState&gt;]]&gt;&lt;/AnnotationContent&gt;&lt;/Gemini&gt;</Value>
                     </Annotation>
                   </Annotations>
                   <Source xsi:type="QueryBinding">
@@ -19952,7 +19990,8 @@ delegated Delegated,
 d.master_client_code as MasterClientCode,
 d.dim_instruction_type_key,
 d.matter_partner_full_name as 'PartnerName',
-master_fact_key AS master_fact_key
+master_fact_key AS master_fact_key,
+ISNULL(d.reporting_exclusions, 0)  reporting_exclusions
 from
 red_dw.dbo.fact_matter_summary_current f
 
