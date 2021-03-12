@@ -414,6 +414,54 @@
             </Annotation>
             <Annotation>
               <Name>QueryEditorSerialization</Name>
+              <Value>&lt;?xml version="1.0" encoding="UTF-16"?&gt;&lt;Gemini xmlns="QueryEditorSerialization"&gt;&lt;AnnotationContent&gt;&lt;![CDATA[&lt;RSQueryCommandText&gt;select distinct 
+f.dim_matter_header_curr_key MatterID,
+f.dim_fed_hierarchy_history_key FEDCodeID,
+d.dim_matter_group_key MatterGroupID,
+br.dim_matter_branch_key BranchID,
+d.dim_matter_worktype_key WorkTypeID,
+d.dim_department_key DepartmentID,
+d.matter_partner_code PartnerCode,
+d.matter_number MatterNumber,
+CASE WHEN ISNUMERIC(d.matter_number) = 1 and rtrim(d.matter_number) != '.' THEN CAST(CAST(d.matter_number AS int) AS varchar) ELSE RTRIM(d.matter_number) END as 'MatterNumberTrimmed',
+f.dim_client_key ClientID,
+d.matter_description MatterDesc,
+dim_open_practice_management_date_key as DateMatterOpen,
+dim_closed_practice_management_date_key as DateMatterClosed,
+datediff(day, d.date_opened_case_management, isnull(d.date_closed_case_management, getdate())) AgeOfMatterDays,
+disbursement_balance DisbursementBalance,
+client_account_balance_of_matter ClientAccountBalance,
+unpaid_bill_balance UnpaidBillsBalance,
+wip_balance WIPBalance,
+costs_to_date CostsToDate,
+time_billed TotalTimeBilled,
+number_bills_matter NumberOfBillsRaised,
+unbilled_time UnbilledTime,
+case when d.case_id is null then 'No' else 'Yes' end HasRecordInCashdr,
+dim_last_bill_date_key LastBillDate,
+dim_last_transaction_date_key LastTimeDate,
+fixed_fee FixedFee,
+fixed_fee_amount FixedFeeAmount,
+delegated Delegated,
+d.master_client_code as MasterClientCode,
+d.dim_instruction_type_key,
+d.matter_partner_full_name as 'PartnerName',
+master_fact_key AS master_fact_key
+, ISNULL(d.reporting_exclusions, 0)  reporting_exclusions
+from
+red_dw.dbo.fact_matter_summary_current f
+
+inner join red_dw.dbo.dim_matter_header_current d
+ on d.dim_matter_header_curr_key = f.dim_matter_header_curr_key
+
+left join red_dw.dbo.dim_matter_branch br
+ on br.branch_code = d.branch_code
+
+
+
+
+where
+f.dim_matter_header_curr_key &gt; 0&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryCommandType&gt;&lt;RSQueryDesignState&gt;&lt;/RSQueryDesignState&gt;]]&gt;&lt;/AnnotationContent&gt;&lt;/Gemini&gt;</Value>
             </Annotation>
             <Annotation>
               <Name>IsQueryEditorUsed</Name>
@@ -614,6 +662,11 @@
                   <AttributeID>master_fact_key</AttributeID>
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>master_fact_key</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>reporting_exclusions</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>reporting_exclusions</Name>
                 </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
@@ -1496,6 +1549,33 @@
                 <Source xsi:type="ColumnBinding">
                   <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
                   <ColumnID>master_fact_key</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>reporting_exclusions</ID>
+              <Name>reporting_exclusions</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>SmallInt</DataType>
+                  <DataSize>-1</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                    <ColumnID>reporting_exclusions</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>-1</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                  <ColumnID>reporting_exclusions</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
@@ -15835,6 +15915,9 @@ ORDER BY TimeActivityCode&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Te
                 <Attribute>
                   <AttributeID>master_fact_key</AttributeID>
                 </Attribute>
+                <Attribute>
+                  <AttributeID>reporting_exclusions</AttributeID>
+                </Attribute>
               </Attributes>
             </Dimension>
             <Dimension>
@@ -18027,6 +18110,21 @@ inner join fact_matter_summary a
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>reporting_exclusions</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>SmallInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                            <ColumnID>reporting_exclusions</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <ddl200_200:ShareDimensionStorage>Shared</ddl200_200:ShareDimensionStorage>
                 </Dimension>
@@ -19938,8 +20036,8 @@ delegated Delegated,
 d.master_client_code as MasterClientCode,
 d.dim_instruction_type_key,
 d.matter_partner_full_name as 'PartnerName',
-master_fact_key AS master_fact_key,
-ISNULL(d.reporting_exclusions, 0)  reporting_exclusions
+master_fact_key AS master_fact_key
+, ISNULL(d.reporting_exclusions, 0)  reporting_exclusions
 from
 red_dw.dbo.fact_matter_summary_current f
 
@@ -19990,8 +20088,8 @@ delegated Delegated,
 d.master_client_code as MasterClientCode,
 d.dim_instruction_type_key,
 d.matter_partner_full_name as 'PartnerName',
-master_fact_key AS master_fact_key,
-ISNULL(d.reporting_exclusions, 0)  reporting_exclusions
+master_fact_key AS master_fact_key
+, ISNULL(d.reporting_exclusions, 0)  reporting_exclusions
 from
 red_dw.dbo.fact_matter_summary_current f
 
@@ -24051,6 +24149,21 @@ red_dw.dbo.dim_matter_branch</QueryDefinition>
                           <Source xsi:type="ColumnBinding">
                             <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
                             <ColumnID>master_fact_key</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>reporting_exclusions</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>SmallInt</DataType>
+                          <DataSize>-1</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                            <ColumnID>reporting_exclusions</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -36944,7 +37057,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
-                    <xs:element name="factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="Matter" msprop:DbTableName="factMatter" msprop:TableType="View" msprop:Description="factMatter" msprop:QueryDefinition="select distinct &#xD;&#xA;f.dim_matter_header_curr_key MatterID,&#xD;&#xA;f.dim_fed_hierarchy_history_key FEDCodeID,&#xD;&#xA;d.dim_matter_group_key MatterGroupID,&#xD;&#xA;br.dim_matter_branch_key BranchID,&#xD;&#xA;d.dim_matter_worktype_key WorkTypeID,&#xD;&#xA;d.dim_department_key DepartmentID,&#xD;&#xA;d.matter_partner_code PartnerCode,&#xD;&#xA;d.matter_number MatterNumber,&#xD;&#xA;CASE WHEN ISNUMERIC(d.matter_number) = 1 and rtrim(d.matter_number) != '.' THEN CAST(CAST(d.matter_number AS int) AS varchar) ELSE RTRIM(d.matter_number) END as 'MatterNumberTrimmed',&#xD;&#xA;f.dim_client_key ClientID,&#xD;&#xA;d.matter_description MatterDesc,&#xD;&#xA;dim_open_practice_management_date_key as DateMatterOpen,&#xD;&#xA;dim_closed_practice_management_date_key as DateMatterClosed,&#xD;&#xA;datediff(day, d.date_opened_case_management, isnull(d.date_closed_case_management, getdate())) AgeOfMatterDays,&#xD;&#xA;disbursement_balance DisbursementBalance,&#xD;&#xA;client_account_balance_of_matter ClientAccountBalance,&#xD;&#xA;unpaid_bill_balance UnpaidBillsBalance,&#xD;&#xA;wip_balance WIPBalance,&#xD;&#xA;costs_to_date CostsToDate,&#xD;&#xA;time_billed TotalTimeBilled,&#xD;&#xA;number_bills_matter NumberOfBillsRaised,&#xD;&#xA;unbilled_time UnbilledTime,&#xD;&#xA;case when d.case_id is null then 'No' else 'Yes' end HasRecordInCashdr,&#xD;&#xA;dim_last_bill_date_key LastBillDate,&#xD;&#xA;dim_last_transaction_date_key LastTimeDate,&#xD;&#xA;fixed_fee FixedFee,&#xD;&#xA;fixed_fee_amount FixedFeeAmount,&#xD;&#xA;delegated Delegated,&#xD;&#xA;d.master_client_code as MasterClientCode,&#xD;&#xA;d.dim_instruction_type_key,&#xD;&#xA;d.matter_partner_full_name as 'PartnerName',&#xD;&#xA;master_fact_key AS master_fact_key&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_matter_summary_current f&#xD;&#xA;&#xD;&#xA;inner join red_dw.dbo.dim_matter_header_current d&#xD;&#xA; on d.dim_matter_header_curr_key = f.dim_matter_header_curr_key&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_matter_branch br&#xD;&#xA; on br.branch_code = d.branch_code&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;f.dim_matter_header_curr_key &gt; 0">
+                    <xs:element name="factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="Matter" msprop:DbTableName="factMatter" msprop:TableType="View" msprop:Description="factMatter" msprop:QueryDefinition="select distinct &#xD;&#xA;f.dim_matter_header_curr_key MatterID,&#xD;&#xA;f.dim_fed_hierarchy_history_key FEDCodeID,&#xD;&#xA;d.dim_matter_group_key MatterGroupID,&#xD;&#xA;br.dim_matter_branch_key BranchID,&#xD;&#xA;d.dim_matter_worktype_key WorkTypeID,&#xD;&#xA;d.dim_department_key DepartmentID,&#xD;&#xA;d.matter_partner_code PartnerCode,&#xD;&#xA;d.matter_number MatterNumber,&#xD;&#xA;CASE WHEN ISNUMERIC(d.matter_number) = 1 and rtrim(d.matter_number) != '.' THEN CAST(CAST(d.matter_number AS int) AS varchar) ELSE RTRIM(d.matter_number) END as 'MatterNumberTrimmed',&#xD;&#xA;f.dim_client_key ClientID,&#xD;&#xA;d.matter_description MatterDesc,&#xD;&#xA;dim_open_practice_management_date_key as DateMatterOpen,&#xD;&#xA;dim_closed_practice_management_date_key as DateMatterClosed,&#xD;&#xA;datediff(day, d.date_opened_case_management, isnull(d.date_closed_case_management, getdate())) AgeOfMatterDays,&#xD;&#xA;disbursement_balance DisbursementBalance,&#xD;&#xA;client_account_balance_of_matter ClientAccountBalance,&#xD;&#xA;unpaid_bill_balance UnpaidBillsBalance,&#xD;&#xA;wip_balance WIPBalance,&#xD;&#xA;costs_to_date CostsToDate,&#xD;&#xA;time_billed TotalTimeBilled,&#xD;&#xA;number_bills_matter NumberOfBillsRaised,&#xD;&#xA;unbilled_time UnbilledTime,&#xD;&#xA;case when d.case_id is null then 'No' else 'Yes' end HasRecordInCashdr,&#xD;&#xA;dim_last_bill_date_key LastBillDate,&#xD;&#xA;dim_last_transaction_date_key LastTimeDate,&#xD;&#xA;fixed_fee FixedFee,&#xD;&#xA;fixed_fee_amount FixedFeeAmount,&#xD;&#xA;delegated Delegated,&#xD;&#xA;d.master_client_code as MasterClientCode,&#xD;&#xA;d.dim_instruction_type_key,&#xD;&#xA;d.matter_partner_full_name as 'PartnerName',&#xD;&#xA;master_fact_key AS master_fact_key&#xD;&#xA;, ISNULL(d.reporting_exclusions, 0)  reporting_exclusions&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_matter_summary_current f&#xD;&#xA;&#xD;&#xA;inner join red_dw.dbo.dim_matter_header_current d&#xD;&#xA; on d.dim_matter_header_curr_key = f.dim_matter_header_curr_key&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_matter_branch br&#xD;&#xA; on br.branch_code = d.branch_code&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;f.dim_matter_header_curr_key &gt; 0">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="MatterID" msprop:DbColumnName="MatterID" msprop:FriendlyName="MatterID" type="xs:int" minOccurs="0" />
@@ -37033,6 +37146,7 @@ CREATE MEASURE 'TimeTransactions'[ChargeableMinutes]=calculate( sum( TimeTransac
                             </xs:simpleType>
                           </xs:element>
                           <xs:element name="master_fact_key" msprop:DbColumnName="master_fact_key" msprop:FriendlyName="master_fact_key" type="xs:int" minOccurs="0" />
+                          <xs:element name="reporting_exclusions" msprop:DbColumnName="reporting_exclusions" msprop:FriendlyName="reporting_exclusions" type="xs:short" minOccurs="0" />
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
