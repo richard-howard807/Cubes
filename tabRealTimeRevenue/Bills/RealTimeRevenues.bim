@@ -3701,7 +3701,11 @@ CASE
    ELSE 'No' 
    END bill_current_fin_day,
 
-   IIF(CAST(bill_date AS DATE) = CAST(GETDATE() AS DATE), 'Current', bill_current_fin_ytd) bill_current_fin_ytd
+   case when CAST(bill_date AS DATE) = CAST(GETDATE() AS DATE) then 'Current'
+	    when dim_bill_date.bill_current_fin_month = 'Lastyear' and dim_bill_date.bill_trading_days_so_far_desc &gt; (SELECT bill_trading_days_so_far_desc FROM dbo.dim_bill_date
+          WHERE CAST(dim_bill_date.bill_date AS DATE) = CAST(GETDATE() AS DATE))
+		  then 'Previous' else  bill_current_fin_ytd end
+   bill_current_fin_ytd
 
 -- select *
 
@@ -3731,7 +3735,11 @@ CASE
    ELSE 'No' 
    END bill_current_fin_day,
 
-   IIF(CAST(bill_date AS DATE) = CAST(GETDATE() AS DATE), 'Current', bill_current_fin_ytd) bill_current_fin_ytd
+   case when CAST(bill_date AS DATE) = CAST(GETDATE() AS DATE) then 'Current'
+	    when dim_bill_date.bill_current_fin_month = 'Lastyear' and dim_bill_date.bill_trading_days_so_far_desc &gt; (SELECT bill_trading_days_so_far_desc FROM dbo.dim_bill_date
+          WHERE CAST(dim_bill_date.bill_date AS DATE) = CAST(GETDATE() AS DATE))
+		  then 'Previous' else  bill_current_fin_ytd end
+   bill_current_fin_ytd
 
 -- select *
 
