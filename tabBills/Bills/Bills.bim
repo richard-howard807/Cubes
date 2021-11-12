@@ -29,6 +29,72 @@
             </Annotation>
             <Annotation>
               <Name>QueryEditorSerialization</Name>
+              <Value>&lt;?xml version="1.0" encoding="UTF-16"?&gt;&lt;Gemini xmlns="QueryEditorSerialization"&gt;&lt;AnnotationContent&gt;&lt;![CDATA[&lt;RSQueryCommandText&gt;SELECT
+fdm.dim_detail_outcome_key AS OutcomeKey,
+f.master_fact_key as MasterFactKey,
+d.master_client_code as MasterClientCode,
+d.master_matter_number as MasterMatterNumber,
+d.master_client_code + '-' + d.master_matter_number as MasterClientMatterCombined,
+f.dim_matter_header_curr_key MatterID,
+f.dim_fed_hierarchy_history_key FEDCodeID,
+d.dim_matter_group_key MatterGroupID,
+br.dim_matter_branch_key BranchID,
+d.dim_matter_worktype_key WorkTypeID,
+d.dim_department_key DepartmentID,
+d.matter_partner_code PartnerCode,
+d.matter_partner_full_name as PartnerName,
+d.matter_number MatterNumber,
+CASE WHEN ISNUMERIC(d.matter_number) = 1 and rtrim(d.matter_number) != '.' THEN CAST(CAST(d.matter_number AS int) AS varchar) ELSE RTRIM(d.matter_number) END as 'MatterNumberTrimmed',
+f.dim_client_key ClientID,
+d.matter_description MatterDesc,
+f.dim_open_practice_management_date_key DateMatterOpen,
+f.dim_closed_practice_management_date_key DateMatterClosed,
+datediff(day, d.date_opened_practice_management, isnull(d.date_closed_practice_management, getdate())) AgeOfMatterDays,
+disbursement_balance DisbursementBalance,
+client_account_balance_of_matter ClientAccountBalance,
+unpaid_bill_balance UnpaidBillsBalance,
+wip_balance WIPBalance,
+costs_to_date CostsToDate,
+time_billed TotalTimeBilled,
+number_bills_matter NumberOfBillsRaised,
+unbilled_time UnbilledTime,
+case when d.case_id is null then 'No' else 'Yes' end HasRecordInCashdr,
+dim_last_bill_date_key LastBillDate,
+dim_last_transaction_date_key LastTimeDate,
+case when 
+d.date_closed_case_management is not null
+and d.date_closed_practice_management is null
+then 'OpenInArtiionClosedInFED' else null end as 'FileClosedStatus',
+fixed_fee FixedFee,
+fixed_fee_amount FixedFeeAmount,
+delegated Delegated,
+d.dim_instruction_type_key,
+d.reporting_exclusions,
+billing_portal_status as 'BillingPortalStatus',
+fdm.dim_detail_core_detail_key as DimDetailCoreDetailKey,
+fdm.dim_client_involvement_key as DimClientInvolvementKey,
+master_client.dim_client_key as MasterClientKey,
+d.billing_rate_description AS BillingRateDescription
+
+from
+red_dw.dbo.fact_matter_summary_current f
+
+inner join red_dw.dbo.dim_matter_header_current d
+ on d.dim_matter_header_curr_key = f.dim_matter_header_curr_key
+
+left join red_dw.dbo.dim_matter_branch br
+ on br.branch_code = d.branch_code
+
+left join fact_dimension_main fdm on fdm.master_fact_key = f.master_fact_key 
+
+left join red_dw.dbo.dim_client as master_client 
+    on CASE WHEN ISNUMERIC(d.master_client_code) = 1 THEN RIGHT('00000000' + CONVERT(VARCHAR,d.master_client_code), 8) ELSE CAST(RTRIM(d.master_client_code)  AS VARCHAR(8)) END
+                         = master_client.client_code
+
+
+
+where
+f.dim_matter_header_curr_key &gt; 0&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryCommandType&gt;&lt;RSQueryDesignState&gt;&lt;/RSQueryDesignState&gt;]]&gt;&lt;/AnnotationContent&gt;&lt;/Gemini&gt;</Value>
             </Annotation>
             <Annotation>
               <Name>IsQueryEditorUsed</Name>
@@ -274,6 +340,11 @@
                   <AttributeID>OutcomeKey</AttributeID>
                   <OverrideBehavior>None</OverrideBehavior>
                   <Name>OutcomeKey</Name>
+                </AttributeRelationship>
+                <AttributeRelationship>
+                  <AttributeID>BillingRateDescription</AttributeID>
+                  <OverrideBehavior>None</OverrideBehavior>
+                  <Name>BillingRateDescription</Name>
                 </AttributeRelationship>
               </AttributeRelationships>
               <OrderBy>Key</OrderBy>
@@ -1412,6 +1483,33 @@
                 <Source xsi:type="ColumnBinding">
                   <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
                   <ColumnID>OutcomeKey</ColumnID>
+                </Source>
+              </NameColumn>
+              <OrderBy>Key</OrderBy>
+            </Attribute>
+            <Attribute>
+              <ID>BillingRateDescription</ID>
+              <Name>BillingRateDescription</Name>
+              <KeyColumns>
+                <KeyColumn>
+                  <DataType>WChar</DataType>
+                  <DataSize>32766</DataSize>
+                  <NullProcessing>Preserve</NullProcessing>
+                  <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                  <Source xsi:type="ColumnBinding">
+                    <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                    <ColumnID>BillingRateDescription</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <NameColumn>
+                <DataType>WChar</DataType>
+                <DataSize>32766</DataSize>
+                <NullProcessing>ZeroOrBlank</NullProcessing>
+                <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                <Source xsi:type="ColumnBinding">
+                  <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                  <ColumnID>BillingRateDescription</ColumnID>
                 </Source>
               </NameColumn>
               <OrderBy>Key</OrderBy>
@@ -16711,6 +16809,9 @@ and b.dim_matter_header_curr_key &gt; 0&lt;/RSQueryCommandText&gt;&lt;RSQueryCom
                 <Attribute>
                   <AttributeID>OutcomeKey</AttributeID>
                 </Attribute>
+                <Attribute>
+                  <AttributeID>BillingRateDescription</AttributeID>
+                </Attribute>
               </Attributes>
             </Dimension>
             <Dimension>
@@ -18744,6 +18845,21 @@ and b.dim_matter_header_curr_key &gt; 0&lt;/RSQueryCommandText&gt;&lt;RSQueryCom
                           <Source xsi:type="ColumnBinding">
                             <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
                             <ColumnID>OutcomeKey</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BillingRateDescription</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32766</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                            <ColumnID>BillingRateDescription</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -22763,17 +22879,73 @@ and b.dim_matter_header_curr_key &gt; 0&lt;/RSQueryCommandText&gt;&lt;RSQueryCom
                   <Name>factMatter</Name>
                   <Annotations>
                     <Annotation>
-                      <Name>TableWidgetSerialization</Name>
-                    </Annotation>
-                    <Annotation>
-                      <Name>TableWidgetSourceTable</Name>
-                    </Annotation>
-                    <Annotation>
                       <Name>QueryEditorSerialization</Name>
-                    </Annotation>
-                    <Annotation>
-                      <Name>IsQueryEditorUsed</Name>
-                      <Value>True</Value>
+                      <Value>&lt;?xml version="1.0" encoding="UTF-16"?&gt;&lt;Gemini xmlns="QueryEditorSerialization"&gt;&lt;AnnotationContent&gt;&lt;![CDATA[&lt;RSQueryCommandText&gt;SELECT
+fdm.dim_detail_outcome_key AS OutcomeKey,
+f.master_fact_key as MasterFactKey,
+d.master_client_code as MasterClientCode,
+d.master_matter_number as MasterMatterNumber,
+d.master_client_code + '-' + d.master_matter_number as MasterClientMatterCombined,
+f.dim_matter_header_curr_key MatterID,
+f.dim_fed_hierarchy_history_key FEDCodeID,
+d.dim_matter_group_key MatterGroupID,
+br.dim_matter_branch_key BranchID,
+d.dim_matter_worktype_key WorkTypeID,
+d.dim_department_key DepartmentID,
+d.matter_partner_code PartnerCode,
+d.matter_partner_full_name as PartnerName,
+d.matter_number MatterNumber,
+CASE WHEN ISNUMERIC(d.matter_number) = 1 and rtrim(d.matter_number) != '.' THEN CAST(CAST(d.matter_number AS int) AS varchar) ELSE RTRIM(d.matter_number) END as 'MatterNumberTrimmed',
+f.dim_client_key ClientID,
+d.matter_description MatterDesc,
+f.dim_open_practice_management_date_key DateMatterOpen,
+f.dim_closed_practice_management_date_key DateMatterClosed,
+datediff(day, d.date_opened_practice_management, isnull(d.date_closed_practice_management, getdate())) AgeOfMatterDays,
+disbursement_balance DisbursementBalance,
+client_account_balance_of_matter ClientAccountBalance,
+unpaid_bill_balance UnpaidBillsBalance,
+wip_balance WIPBalance,
+costs_to_date CostsToDate,
+time_billed TotalTimeBilled,
+number_bills_matter NumberOfBillsRaised,
+unbilled_time UnbilledTime,
+case when d.case_id is null then 'No' else 'Yes' end HasRecordInCashdr,
+dim_last_bill_date_key LastBillDate,
+dim_last_transaction_date_key LastTimeDate,
+case when 
+d.date_closed_case_management is not null
+and d.date_closed_practice_management is null
+then 'OpenInArtiionClosedInFED' else null end as 'FileClosedStatus',
+fixed_fee FixedFee,
+fixed_fee_amount FixedFeeAmount,
+delegated Delegated,
+d.dim_instruction_type_key,
+d.reporting_exclusions,
+billing_portal_status as 'BillingPortalStatus',
+fdm.dim_detail_core_detail_key as DimDetailCoreDetailKey,
+fdm.dim_client_involvement_key as DimClientInvolvementKey,
+master_client.dim_client_key as MasterClientKey,
+d.billing_rate_description AS BillingRateDescription
+
+from
+red_dw.dbo.fact_matter_summary_current f
+
+inner join red_dw.dbo.dim_matter_header_current d
+ on d.dim_matter_header_curr_key = f.dim_matter_header_curr_key
+
+left join red_dw.dbo.dim_matter_branch br
+ on br.branch_code = d.branch_code
+
+left join fact_dimension_main fdm on fdm.master_fact_key = f.master_fact_key 
+
+left join red_dw.dbo.dim_client as master_client 
+    on CASE WHEN ISNUMERIC(d.master_client_code) = 1 THEN RIGHT('00000000' + CONVERT(VARCHAR,d.master_client_code), 8) ELSE CAST(RTRIM(d.master_client_code)  AS VARCHAR(8)) END
+                         = master_client.client_code
+
+
+
+where
+f.dim_matter_header_curr_key &gt; 0&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryCommandType&gt;&lt;RSQueryDesignState&gt;&lt;/RSQueryDesignState&gt;]]&gt;&lt;/AnnotationContent&gt;&lt;/Gemini&gt;</Value>
                     </Annotation>
                   </Annotations>
                   <Source xsi:type="QueryBinding">
@@ -22822,7 +22994,8 @@ d.reporting_exclusions,
 billing_portal_status as 'BillingPortalStatus',
 fdm.dim_detail_core_detail_key as DimDetailCoreDetailKey,
 fdm.dim_client_involvement_key as DimClientInvolvementKey,
-master_client.dim_client_key as MasterClientKey
+master_client.dim_client_key as MasterClientKey,
+d.billing_rate_description AS BillingRateDescription
 
 from
 red_dw.dbo.fact_matter_summary_current f
@@ -26240,6 +26413,21 @@ f.dim_matter_header_curr_key &gt; 0</QueryDefinition>
                           <Source xsi:type="ColumnBinding">
                             <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
                             <ColumnID>OutcomeKey</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BillingRateDescription</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32766</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                            <ColumnID>BillingRateDescription</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -36353,6 +36541,21 @@ dim_last_transaction_date_key &gt; 0</QueryDefinition>
                           <Source xsi:type="ColumnBinding">
                             <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
                             <ColumnID>OutcomeKey</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
+                    <Attribute>
+                      <AttributeID>BillingRateDescription</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32766</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                            <ColumnID>BillingRateDescription</ColumnID>
                           </Source>
                         </KeyColumn>
                       </KeyColumns>
@@ -48537,6 +48740,21 @@ dss_current_flag = 'Y' and fed_code != 'Unknown'</QueryDefinition>
                         </KeyColumn>
                       </KeyColumns>
                     </Attribute>
+                    <Attribute>
+                      <AttributeID>BillingRateDescription</AttributeID>
+                      <KeyColumns>
+                        <KeyColumn>
+                          <DataType>WChar</DataType>
+                          <DataSize>32766</DataSize>
+                          <NullProcessing>Preserve</NullProcessing>
+                          <InvalidXmlCharacters>Remove</InvalidXmlCharacters>
+                          <Source xsi:type="ColumnBinding">
+                            <TableID>factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30</TableID>
+                            <ColumnID>BillingRateDescription</ColumnID>
+                          </Source>
+                        </KeyColumn>
+                      </KeyColumns>
+                    </Attribute>
                   </Attributes>
                   <IntermediateCubeDimensionID>factBill_cd0d97b1-8343-42e5-9e74-fc4d3f552072</IntermediateCubeDimensionID>
                   <IntermediateGranularityAttributeID>MatterID</IntermediateGranularityAttributeID>
@@ -50026,7 +50244,7 @@ CREATE MEASURE 'Matters'[Count of Matters]=countrows(Matters);
               <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:Locale="en-US">
                 <xs:complexType>
                   <xs:choice minOccurs="0" maxOccurs="unbounded">
-                    <xs:element name="factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="Matters" msprop:DbTableName="factMatter" msprop:TableType="View" msprop:Description="factMatter" msprop:QueryDefinition="SELECT&#xD;&#xA;fdm.dim_detail_outcome_key AS OutcomeKey,&#xD;&#xA;f.master_fact_key as MasterFactKey,&#xD;&#xA;d.master_client_code as MasterClientCode,&#xD;&#xA;d.master_matter_number as MasterMatterNumber,&#xD;&#xA;d.master_client_code + '-' + d.master_matter_number as MasterClientMatterCombined,&#xD;&#xA;f.dim_matter_header_curr_key MatterID,&#xD;&#xA;f.dim_fed_hierarchy_history_key FEDCodeID,&#xD;&#xA;d.dim_matter_group_key MatterGroupID,&#xD;&#xA;br.dim_matter_branch_key BranchID,&#xD;&#xA;d.dim_matter_worktype_key WorkTypeID,&#xD;&#xA;d.dim_department_key DepartmentID,&#xD;&#xA;d.matter_partner_code PartnerCode,&#xD;&#xA;d.matter_partner_full_name as PartnerName,&#xD;&#xA;d.matter_number MatterNumber,&#xD;&#xA;CASE WHEN ISNUMERIC(d.matter_number) = 1 and rtrim(d.matter_number) != '.' THEN CAST(CAST(d.matter_number AS int) AS varchar) ELSE RTRIM(d.matter_number) END as 'MatterNumberTrimmed',&#xD;&#xA;f.dim_client_key ClientID,&#xD;&#xA;d.matter_description MatterDesc,&#xD;&#xA;f.dim_open_practice_management_date_key DateMatterOpen,&#xD;&#xA;f.dim_closed_practice_management_date_key DateMatterClosed,&#xD;&#xA;datediff(day, d.date_opened_practice_management, isnull(d.date_closed_practice_management, getdate())) AgeOfMatterDays,&#xD;&#xA;disbursement_balance DisbursementBalance,&#xD;&#xA;client_account_balance_of_matter ClientAccountBalance,&#xD;&#xA;unpaid_bill_balance UnpaidBillsBalance,&#xD;&#xA;wip_balance WIPBalance,&#xD;&#xA;costs_to_date CostsToDate,&#xD;&#xA;time_billed TotalTimeBilled,&#xD;&#xA;number_bills_matter NumberOfBillsRaised,&#xD;&#xA;unbilled_time UnbilledTime,&#xD;&#xA;case when d.case_id is null then 'No' else 'Yes' end HasRecordInCashdr,&#xD;&#xA;dim_last_bill_date_key LastBillDate,&#xD;&#xA;dim_last_transaction_date_key LastTimeDate,&#xD;&#xA;case when &#xD;&#xA;d.date_closed_case_management is not null&#xD;&#xA;and d.date_closed_practice_management is null&#xD;&#xA;then 'OpenInArtiionClosedInFED' else null end as 'FileClosedStatus',&#xD;&#xA;fixed_fee FixedFee,&#xD;&#xA;fixed_fee_amount FixedFeeAmount,&#xD;&#xA;delegated Delegated,&#xD;&#xA;d.dim_instruction_type_key,&#xD;&#xA;d.reporting_exclusions,&#xD;&#xA;billing_portal_status as 'BillingPortalStatus',&#xD;&#xA;fdm.dim_detail_core_detail_key as DimDetailCoreDetailKey,&#xD;&#xA;fdm.dim_client_involvement_key as DimClientInvolvementKey,&#xD;&#xA;master_client.dim_client_key as MasterClientKey&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_matter_summary_current f&#xD;&#xA;&#xD;&#xA;inner join red_dw.dbo.dim_matter_header_current d&#xD;&#xA; on d.dim_matter_header_curr_key = f.dim_matter_header_curr_key&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_matter_branch br&#xD;&#xA; on br.branch_code = d.branch_code&#xD;&#xA;&#xD;&#xA;left join fact_dimension_main fdm on fdm.master_fact_key = f.master_fact_key &#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_client as master_client &#xD;&#xA;    on CASE WHEN ISNUMERIC(d.master_client_code) = 1 THEN RIGHT('00000000' + CONVERT(VARCHAR,d.master_client_code), 8) ELSE CAST(RTRIM(d.master_client_code)  AS VARCHAR(8)) END&#xD;&#xA;                         = master_client.client_code&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;f.dim_matter_header_curr_key &gt; 0">
+                    <xs:element name="factMatter_4687f6e7-e12b-44f9-98ad-df651c999f30" msdata:Locale="" msprop:IsLogical="True" msprop:FriendlyName="Matters" msprop:DbTableName="factMatter" msprop:TableType="View" msprop:Description="factMatter" msprop:QueryDefinition="SELECT&#xD;&#xA;fdm.dim_detail_outcome_key AS OutcomeKey,&#xD;&#xA;f.master_fact_key as MasterFactKey,&#xD;&#xA;d.master_client_code as MasterClientCode,&#xD;&#xA;d.master_matter_number as MasterMatterNumber,&#xD;&#xA;d.master_client_code + '-' + d.master_matter_number as MasterClientMatterCombined,&#xD;&#xA;f.dim_matter_header_curr_key MatterID,&#xD;&#xA;f.dim_fed_hierarchy_history_key FEDCodeID,&#xD;&#xA;d.dim_matter_group_key MatterGroupID,&#xD;&#xA;br.dim_matter_branch_key BranchID,&#xD;&#xA;d.dim_matter_worktype_key WorkTypeID,&#xD;&#xA;d.dim_department_key DepartmentID,&#xD;&#xA;d.matter_partner_code PartnerCode,&#xD;&#xA;d.matter_partner_full_name as PartnerName,&#xD;&#xA;d.matter_number MatterNumber,&#xD;&#xA;CASE WHEN ISNUMERIC(d.matter_number) = 1 and rtrim(d.matter_number) != '.' THEN CAST(CAST(d.matter_number AS int) AS varchar) ELSE RTRIM(d.matter_number) END as 'MatterNumberTrimmed',&#xD;&#xA;f.dim_client_key ClientID,&#xD;&#xA;d.matter_description MatterDesc,&#xD;&#xA;f.dim_open_practice_management_date_key DateMatterOpen,&#xD;&#xA;f.dim_closed_practice_management_date_key DateMatterClosed,&#xD;&#xA;datediff(day, d.date_opened_practice_management, isnull(d.date_closed_practice_management, getdate())) AgeOfMatterDays,&#xD;&#xA;disbursement_balance DisbursementBalance,&#xD;&#xA;client_account_balance_of_matter ClientAccountBalance,&#xD;&#xA;unpaid_bill_balance UnpaidBillsBalance,&#xD;&#xA;wip_balance WIPBalance,&#xD;&#xA;costs_to_date CostsToDate,&#xD;&#xA;time_billed TotalTimeBilled,&#xD;&#xA;number_bills_matter NumberOfBillsRaised,&#xD;&#xA;unbilled_time UnbilledTime,&#xD;&#xA;case when d.case_id is null then 'No' else 'Yes' end HasRecordInCashdr,&#xD;&#xA;dim_last_bill_date_key LastBillDate,&#xD;&#xA;dim_last_transaction_date_key LastTimeDate,&#xD;&#xA;case when &#xD;&#xA;d.date_closed_case_management is not null&#xD;&#xA;and d.date_closed_practice_management is null&#xD;&#xA;then 'OpenInArtiionClosedInFED' else null end as 'FileClosedStatus',&#xD;&#xA;fixed_fee FixedFee,&#xD;&#xA;fixed_fee_amount FixedFeeAmount,&#xD;&#xA;delegated Delegated,&#xD;&#xA;d.dim_instruction_type_key,&#xD;&#xA;d.reporting_exclusions,&#xD;&#xA;billing_portal_status as 'BillingPortalStatus',&#xD;&#xA;fdm.dim_detail_core_detail_key as DimDetailCoreDetailKey,&#xD;&#xA;fdm.dim_client_involvement_key as DimClientInvolvementKey,&#xD;&#xA;master_client.dim_client_key as MasterClientKey,&#xD;&#xA;d.billing_rate_description AS BillingRateDescription&#xD;&#xA;&#xD;&#xA;from&#xD;&#xA;red_dw.dbo.fact_matter_summary_current f&#xD;&#xA;&#xD;&#xA;inner join red_dw.dbo.dim_matter_header_current d&#xD;&#xA; on d.dim_matter_header_curr_key = f.dim_matter_header_curr_key&#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_matter_branch br&#xD;&#xA; on br.branch_code = d.branch_code&#xD;&#xA;&#xD;&#xA;left join fact_dimension_main fdm on fdm.master_fact_key = f.master_fact_key &#xD;&#xA;&#xD;&#xA;left join red_dw.dbo.dim_client as master_client &#xD;&#xA;    on CASE WHEN ISNUMERIC(d.master_client_code) = 1 THEN RIGHT('00000000' + CONVERT(VARCHAR,d.master_client_code), 8) ELSE CAST(RTRIM(d.master_client_code)  AS VARCHAR(8)) END&#xD;&#xA;                         = master_client.client_code&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;where&#xD;&#xA;f.dim_matter_header_curr_key &gt; 0">
                       <xs:complexType>
                         <xs:sequence>
                           <xs:element name="MatterID" msprop:DbColumnName="MatterID" msprop:FriendlyName="MatterID" type="xs:int" minOccurs="0" />
@@ -50148,6 +50366,13 @@ CREATE MEASURE 'Matters'[Count of Matters]=countrows(Matters);
                           <xs:element name="DimClientInvolvementKey" msprop:DbColumnName="DimClientInvolvementKey" msprop:FriendlyName="DimClientInvolvementKey" type="xs:int" minOccurs="0" />
                           <xs:element name="MasterClientKey" msprop:DbColumnName="MasterClientKey" msprop:FriendlyName="MasterClientKey" type="xs:int" minOccurs="0" />
                           <xs:element name="OutcomeKey" msprop:DbColumnName="OutcomeKey" msprop:FriendlyName="OutcomeKey" type="xs:int" minOccurs="0" />
+                          <xs:element name="BillingRateDescription" msprop:DbColumnName="BillingRateDescription" msprop:FriendlyName="BillingRateDescription" minOccurs="0">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:maxLength value="32766" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
                         </xs:sequence>
                       </xs:complexType>
                     </xs:element>
