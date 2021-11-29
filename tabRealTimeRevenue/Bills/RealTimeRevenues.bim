@@ -3344,7 +3344,7 @@ AND dim_fed_hierarchy_history.display_name = 'Budget Balance'</QueryDefinition>
 	INNER JOIN TE_3E_Prod..Timecard (NOLOCK) ON TimeBill.timecard = Timecard.timeindex
 	INNER JOIN TE_3E_Prod..Timekeeper (NOLOCK) ON Timecard.timekeeper = Timekeeper.tkprindex
 	INNER JOIN dim_date (NOLOCK) ON CAST(dim_date.calendar_date AS DATE) = CAST(ARMaster.gldate AS DATE)
-	where calendar_date = CAST(GETDATE() AS DATE)
+	where   CAST(ARMaster.gldate AS DATE) = CAST(GETDATE() AS DATE)
 	
 	  UNION all
 
@@ -3386,7 +3386,7 @@ GROUP BY dim_fed_hierarchy_history_key, revenue.dim_date_key&lt;/RSQueryCommandT
 	INNER JOIN TE_3E_Prod..Timecard (NOLOCK) ON TimeBill.timecard = Timecard.timeindex
 	INNER JOIN TE_3E_Prod..Timekeeper (NOLOCK) ON Timecard.timekeeper = Timekeeper.tkprindex
 	INNER JOIN dim_date (NOLOCK) ON CAST(dim_date.calendar_date AS DATE) = CAST(ARMaster.gldate AS DATE)
-	where calendar_date = CAST(GETDATE() AS DATE)
+	where   CAST(ARMaster.gldate AS DATE) = CAST(GETDATE() AS DATE)
 	
 	  UNION all
 
