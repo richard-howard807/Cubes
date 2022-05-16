@@ -33285,17 +33285,44 @@ dim_last_transaction_date_key &gt; 0</QueryDefinition>
                   <Name>dimDaysBanding</Name>
                   <Annotations>
                     <Annotation>
-                      <Name>TableWidgetSerialization</Name>
-                    </Annotation>
-                    <Annotation>
-                      <Name>TableWidgetSourceTable</Name>
-                    </Annotation>
-                    <Annotation>
                       <Name>QueryEditorSerialization</Name>
-                    </Annotation>
-                    <Annotation>
-                      <Name>IsQueryEditorUsed</Name>
-                      <Value>True</Value>
+                      <Value>&lt;?xml version="1.0" encoding="UTF-16"?&gt;&lt;Gemini xmlns="QueryEditorSerialization"&gt;&lt;AnnotationContent&gt;&lt;![CDATA[&lt;RSQueryCommandText&gt;select 
+  n as 'Number',
+ grouping3.daysbanding as 'DebtAgeBanding',
+  --case when n between 0 and 30 then '0 - 30 Days'
+--  when n between 31 and 90 then '31 - 90 Days'
+ -- when n between 91 and 180 then '91 - 180 Days'
+ -- when n between 181 and 270 then '181 - 270 Days'
+  --when n between 271 and 360 then '271 - 360 Days'
+  --when n between 361 and 720 then '361 - 720 Days'
+ -- when n &gt; 710 then 'Over 720 Days' end as 'DebtAgeBanding',
+  case when n between 0 and 30 then '0 - 30 Days'
+  when n between 31 and 45 then '31 - 45 Days'
+  when n between 46 and 60 then '46 - 60 Days'
+  when n between 61 and 90 then '61 - 90 Days'
+  when n between 91 and 120 then '91 - 120 Days'
+  when n between 121 and 180 then '121 - 180 Days'
+  when n between 181 and 270 then '181 - 270 Days'
+  when n between 271 and 360 then '271 - 360 Days'
+  when n &gt; 360 then 'Over 360 Days' end as 'ClientAgedDebtBanding'
+
+
+  from (
+  select 
+  top 100000
+  row_number() over(order by t1.number) as n
+  
+  
+  from 
+  master..spt_values t1   
+  CROSS JOIN master..spt_values t2
+
+  ) tbl
+  LEFT JOIN dbo.dim_days_banding grouping3 ON n &gt;= grouping3.startdays AND n &lt;=grouping3.enddays AND grouping3.banding_category = 'grouping4'
+  union
+  select 0, '0 - 30 Days', '0 - 30 Days'
+
+  order by 1&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryCommandType&gt;&lt;RSQueryDesignState&gt;&lt;/RSQueryDesignState&gt;]]&gt;&lt;/AnnotationContent&gt;&lt;/Gemini&gt;</Value>
                     </Annotation>
                   </Annotations>
                   <Source xsi:type="QueryBinding">
@@ -33332,7 +33359,7 @@ dim_last_transaction_date_key &gt; 0</QueryDefinition>
   CROSS JOIN master..spt_values t2
 
   ) tbl
-  LEFT JOIN dbo.dim_days_banding grouping3 ON n &gt;= grouping3.startdays AND n &lt;=grouping3.enddays AND grouping3.banding_category = 'grouping3'
+  LEFT JOIN dbo.dim_days_banding grouping3 ON n &gt;= grouping3.startdays AND n &lt;=grouping3.enddays AND grouping3.banding_category = 'grouping4'
   union
   select 0, '0 - 30 Days', '0 - 30 Days'
 
