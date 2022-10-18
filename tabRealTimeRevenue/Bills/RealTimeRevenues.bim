@@ -3287,7 +3287,9 @@ FROM fact_budget_activity
     INNER JOIN dim_fed_hierarchy_history ON dim_fed_hierarchy_history.dim_fed_hierarchy_history_key = fact_budget_activity.dim_fed_hierarchy_history_key
     INNER JOIN dim_date ON dim_date.dim_date_key = dbo.fact_budget_activity.dim_budget_date_key
 WHERE current_fin_year IN ('Current', 'Previous')
-AND dim_fed_hierarchy_history.display_name = 'Budget Balance'&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryCommandType&gt;&lt;RSQueryDesignState&gt;&lt;/RSQueryDesignState&gt;]]&gt;&lt;/AnnotationContent&gt;&lt;/Gemini&gt;</Value>
+AND ( dim_fed_hierarchy_history.display_name = 'Budget Balance'
+OR fed_level_budget_value &lt;&gt; 0 
+OR fed_level_minute_value &lt;&gt; 0)&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryCommandType&gt;&lt;RSQueryDesignState&gt;&lt;/RSQueryDesignState&gt;]]&gt;&lt;/AnnotationContent&gt;&lt;/Gemini&gt;</Value>
                     </Annotation>
                   </Annotations>
                   <Source xsi:type="QueryBinding">
@@ -3308,7 +3310,9 @@ FROM fact_budget_activity
     INNER JOIN dim_fed_hierarchy_history ON dim_fed_hierarchy_history.dim_fed_hierarchy_history_key = fact_budget_activity.dim_fed_hierarchy_history_key
     INNER JOIN dim_date ON dim_date.dim_date_key = dbo.fact_budget_activity.dim_budget_date_key
 WHERE current_fin_year IN ('Current', 'Previous')
-AND dim_fed_hierarchy_history.display_name = 'Budget Balance'</QueryDefinition>
+AND ( dim_fed_hierarchy_history.display_name = 'Budget Balance'
+OR fed_level_budget_value &lt;&gt; 0 
+OR fed_level_minute_value &lt;&gt; 0)</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
                   <ProcessingMode>Regular</ProcessingMode>
