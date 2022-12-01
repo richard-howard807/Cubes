@@ -3337,7 +3337,7 @@ OR fed_level_minute_value &lt;&gt; 0)</QueryDefinition>
                       <Name>QueryEditorSerialization</Name>
                       <Value>&lt;?xml version="1.0" encoding="UTF-16"?&gt;&lt;Gemini xmlns="QueryEditorSerialization"&gt;&lt;AnnotationContent&gt;&lt;![CDATA[&lt;RSQueryCommandText&gt;WITH revenue AS (
 
-	SELECT ISNULL(Timekeeper.number, Timekeeper.altnumber) timekeeper, dim_date_key, ARMaster.GLDate gldate, billamt  
+	SELECT ISNULL(Timekeeper.number, Timekeeper.altnumber) timekeeper, dim_date_key, ARMaster.GLDate gldate, billamt , MAX(Timecard.WorkDate) MaxWorkDate
 	From TE_3E_Prod..TimeBill (NOLOCK)
 	INNER JOIN TE_3E_Prod..InvMaster (NOLOCK) ON TimeBill.invmaster = InvMaster.invindex
 	LEFT OUTER JOIN (select InvNumber, min(InvDate) mininvdate
@@ -3349,10 +3349,15 @@ OR fed_level_minute_value &lt;&gt; 0)</QueryDefinition>
 	INNER JOIN TE_3E_Prod..Timekeeper (NOLOCK) ON Timecard.timekeeper = Timekeeper.tkprindex
 	INNER JOIN dim_date (NOLOCK) ON CAST(dim_date.calendar_date AS DATE) = CAST(ARMaster.gldate AS DATE)
 	where   CAST(ARMaster.gldate AS DATE) = CAST(GETDATE() AS DATE)
-	
+	--AND InvMaster.InvNumber = '02129850'
+	GROUP BY ISNULL(Timekeeper.number, Timekeeper.altnumber),
+             dim_date.dim_date_key,
+             ARMaster.GLDate,
+             TimeBill.BillAmt
+
 	  UNION all
 
-	SELECT ISNULL(Timekeeper.number, Timekeeper.altnumber) timekeeper, dim_date_key, ARMaster.GLDate gldate, billamt 
+	SELECT ISNULL(Timekeeper.number, Timekeeper.altnumber) timekeeper, dim_date_key, ARMaster.GLDate gldate, billamt , MAX(ChrgCard.WorkDate) MaxWorkDate
 	From TE_3E_Prod..ChrgBill (NOLOCK)
 	INNER JOIN TE_3E_Prod..InvMaster (NOLOCK) ON ChrgBill.invmaster = InvMaster.invindex
 	LEFT OUTER JOIN (select InvNumber, min(invdate) mininvdate
@@ -3363,15 +3368,22 @@ OR fed_level_minute_value &lt;&gt; 0)</QueryDefinition>
 	INNER JOIN TE_3E_Prod..ChrgCard (NOLOCK) ON ChrgBill.chrgcard = ChrgCard.chrgcardindex AND trantype = 'FEES'
 	INNER JOIN TE_3E_Prod..Timekeeper (NOLOCK) ON ChrgCard.timekeeper = Timekeeper.tkprindex
 	INNER JOIN dim_date (NOLOCK) ON CAST(dim_date.calendar_date AS DATE) = CAST(ARMaster.gldate AS DATE)
-	where calendar_date = CAST(GETDATE() AS DATE)
-
+	where calendar_date = CAST(GETDATE()  AS DATE)
+	--AND InvMaster.InvNumber = '02129850'
+	GROUP BY ISNULL(Timekeeper.number, Timekeeper.altnumber),
+             dim_date.dim_date_key,
+             ARMaster.GLDate,
+             ChrgBill.BillAmt
   )
 
 
-SELECT dim_fed_hierarchy_history_key, revenue.dim_date_key dim_gl_date_key, SUM(revenue.billamt) bill_amount, getdate() data_date
+SELECT dim_fed_hierarchy_history_key,  revenue.dim_date_key dim_gl_date_key,
+		SUM(revenue.billamt) bill_amount, getdate() data_date
+		
 FROM revenue
 LEFT OUTER JOIN dbo.dim_fed_hierarchy_history (NOLOCK) ON revenue.timekeeper COLLATE Latin1_General_BIN = dim_fed_hierarchy_history.fed_hierarchy_business_key 
-											AND revenue.gldate BETWEEN dim_fed_hierarchy_history.dss_start_date AND dim_fed_hierarchy_history.dss_end_date
+											AND revenue.MaxWorkDate BETWEEN dim_fed_hierarchy_history.dss_start_date AND dim_fed_hierarchy_history.dss_end_date
+
 GROUP BY dim_fed_hierarchy_history_key, revenue.dim_date_key&lt;/RSQueryCommandText&gt;&lt;RSQueryCommandType&gt;Text&lt;/RSQueryCommandType&gt;&lt;RSQueryDesignState&gt;&lt;/RSQueryDesignState&gt;]]&gt;&lt;/AnnotationContent&gt;&lt;/Gemini&gt;</Value>
                     </Annotation>
                   </Annotations>
@@ -3379,7 +3391,7 @@ GROUP BY dim_fed_hierarchy_history_key, revenue.dim_date_key&lt;/RSQueryCommandT
                     <DataSourceID>8d020b0a-9c25-4e79-a388-1fe485b0fb5f</DataSourceID>
                     <QueryDefinition>WITH revenue AS (
 
-	SELECT ISNULL(Timekeeper.number, Timekeeper.altnumber) timekeeper, dim_date_key, ARMaster.GLDate gldate, billamt  
+	SELECT ISNULL(Timekeeper.number, Timekeeper.altnumber) timekeeper, dim_date_key, ARMaster.GLDate gldate, billamt , MAX(Timecard.WorkDate) MaxWorkDate
 	From TE_3E_Prod..TimeBill (NOLOCK)
 	INNER JOIN TE_3E_Prod..InvMaster (NOLOCK) ON TimeBill.invmaster = InvMaster.invindex
 	LEFT OUTER JOIN (select InvNumber, min(InvDate) mininvdate
@@ -3391,10 +3403,15 @@ GROUP BY dim_fed_hierarchy_history_key, revenue.dim_date_key&lt;/RSQueryCommandT
 	INNER JOIN TE_3E_Prod..Timekeeper (NOLOCK) ON Timecard.timekeeper = Timekeeper.tkprindex
 	INNER JOIN dim_date (NOLOCK) ON CAST(dim_date.calendar_date AS DATE) = CAST(ARMaster.gldate AS DATE)
 	where   CAST(ARMaster.gldate AS DATE) = CAST(GETDATE() AS DATE)
-	
+	--AND InvMaster.InvNumber = '02129850'
+	GROUP BY ISNULL(Timekeeper.number, Timekeeper.altnumber),
+             dim_date.dim_date_key,
+             ARMaster.GLDate,
+             TimeBill.BillAmt
+
 	  UNION all
 
-	SELECT ISNULL(Timekeeper.number, Timekeeper.altnumber) timekeeper, dim_date_key, ARMaster.GLDate gldate, billamt 
+	SELECT ISNULL(Timekeeper.number, Timekeeper.altnumber) timekeeper, dim_date_key, ARMaster.GLDate gldate, billamt , MAX(ChrgCard.WorkDate) MaxWorkDate
 	From TE_3E_Prod..ChrgBill (NOLOCK)
 	INNER JOIN TE_3E_Prod..InvMaster (NOLOCK) ON ChrgBill.invmaster = InvMaster.invindex
 	LEFT OUTER JOIN (select InvNumber, min(invdate) mininvdate
@@ -3405,15 +3422,22 @@ GROUP BY dim_fed_hierarchy_history_key, revenue.dim_date_key&lt;/RSQueryCommandT
 	INNER JOIN TE_3E_Prod..ChrgCard (NOLOCK) ON ChrgBill.chrgcard = ChrgCard.chrgcardindex AND trantype = 'FEES'
 	INNER JOIN TE_3E_Prod..Timekeeper (NOLOCK) ON ChrgCard.timekeeper = Timekeeper.tkprindex
 	INNER JOIN dim_date (NOLOCK) ON CAST(dim_date.calendar_date AS DATE) = CAST(ARMaster.gldate AS DATE)
-	where calendar_date = CAST(GETDATE() AS DATE)
-
+	where calendar_date = CAST(GETDATE()  AS DATE)
+	--AND InvMaster.InvNumber = '02129850'
+	GROUP BY ISNULL(Timekeeper.number, Timekeeper.altnumber),
+             dim_date.dim_date_key,
+             ARMaster.GLDate,
+             ChrgBill.BillAmt
   )
 
 
-SELECT dim_fed_hierarchy_history_key, revenue.dim_date_key dim_gl_date_key, SUM(revenue.billamt) bill_amount, getdate() data_date
+SELECT dim_fed_hierarchy_history_key,  revenue.dim_date_key dim_gl_date_key,
+		SUM(revenue.billamt) bill_amount, getdate() data_date
+		
 FROM revenue
 LEFT OUTER JOIN dbo.dim_fed_hierarchy_history (NOLOCK) ON revenue.timekeeper COLLATE Latin1_General_BIN = dim_fed_hierarchy_history.fed_hierarchy_business_key 
-											AND revenue.gldate BETWEEN dim_fed_hierarchy_history.dss_start_date AND dim_fed_hierarchy_history.dss_end_date
+											AND revenue.MaxWorkDate BETWEEN dim_fed_hierarchy_history.dss_start_date AND dim_fed_hierarchy_history.dss_end_date
+
 GROUP BY dim_fed_hierarchy_history_key, revenue.dim_date_key</QueryDefinition>
                   </Source>
                   <StorageMode valuens="ddl200_200">InMemory</StorageMode>
